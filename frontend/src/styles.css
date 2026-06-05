@@ -898,6 +898,111 @@ button .help-icon-wrapper {
   box-shadow: 0 8px 20px rgba(47, 107, 67, 0.26);
 }
 
+.optional-planning-tools {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(246, 243, 236, 0.7);
+  border: 1px solid var(--border-warm-soft);
+  border-radius: 12px;
+}
+
+.optional-planning-header {
+  margin-bottom: 2px;
+}
+
+.optional-planning-header h3 {
+  margin: 0;
+  color: #3a2d1f;
+  font-size: 16px;
+}
+
+.optional-planning-header p {
+  margin: 3px 0 0;
+  color: #6d6255;
+  font-size: 13px;
+}
+
+.pour-layer-planning-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+  padding: 12px;
+  background: var(--surface-ivory);
+  border: 1px solid var(--border-warm);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(54, 45, 34, 0.07);
+}
+
+.pour-layer-planning-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.planning-tool-title {
+  flex: 1 1 100%;
+  margin: 0 0 2px;
+  color: #2f2418;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.pour-layer-field {
+  font-weight: bold;
+}
+
+.pour-layer-result {
+  flex: 1 1 100%;
+  color: #224d31;
+  font-weight: bold;
+}
+
+.pour-plan-table-wrap {
+  flex: 1 1 100%;
+  overflow-x: auto;
+}
+
+.pour-plan-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  color: #2f2418;
+  font-size: 13px;
+}
+
+.pour-plan-table th,
+.pour-plan-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border-warm-soft);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pour-plan-table th {
+  background: rgba(240, 235, 226, 0.72);
+  font-weight: bold;
+}
+
+.pour-plan-note {
+  margin-top: 7px;
+  color: #6d6255;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.pour-layer-validation {
+  flex: 1 1 100%;
+  color: #704500;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.pour-layer-helper {
+  max-width: none;
+}
+
 .result {
   margin-top: 12px;
   padding: 12px;
@@ -952,6 +1057,10 @@ button .help-icon-wrapper {
 
 @media (max-width: 760px) {
   .result-summary-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .pour-layer-planning-row {
     grid-template-columns: 1fr;
   }
 

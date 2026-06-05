@@ -466,6 +466,8 @@ export default function App() {
   const cavityControlsRef = useRef(null);
   const finalActionBarRef = useRef(null);
   const mainDepthInputRef = useRef(null);
+  const maxPourThicknessInputRef = useRef(null);
+  const firstFillThicknessInputRef = useRef(null);
 
   const [calculationMode, setCalculationMode] = useState("wood");
   const [mode, setMode] = useState("reference");
@@ -488,6 +490,15 @@ export default function App() {
   const [zoomFactor, setZoomFactor] = useState(1);
   const [imageDataUrl, setImageDataUrl] = useState("");
   const [depthMm, setDepthMm] = useState("");
+  const [maxPourThicknessMm, setMaxPourThicknessMm] = useState("");
+  const [recommendedLayerCount, setRecommendedLayerCount] = useState(null);
+  const [pourPlanRows, setPourPlanRows] = useState([]);
+  const [layerPlanningError, setLayerPlanningError] = useState("");
+  const [firstFillThicknessMm, setFirstFillThicknessMm] = useState("");
+  const [firstFillVolumeLiters, setFirstFillVolumeLiters] = useState(null);
+  const [recommendedFirstFillVolumeLiters, setRecommendedFirstFillVolumeLiters] =
+    useState(null);
+  const [firstFillError, setFirstFillError] = useState("");
   const [cavityDepthsMm, setCavityDepthsMm] = useState([]);
   const [useMainDepthForCavities, setUseMainDepthForCavities] = useState(false);
   const [projectNotes, setProjectNotes] = useState("");
@@ -840,6 +851,14 @@ export default function App() {
         setDraftReferencePoints([]);
         setDraftKnownLengthCm("");
         setProjectNotes("");
+        setMaxPourThicknessMm("");
+        setRecommendedLayerCount(null);
+        setPourPlanRows([]);
+        setLayerPlanningError("");
+        setFirstFillThicknessMm("");
+        setFirstFillVolumeLiters(null);
+        setRecommendedFirstFillVolumeLiters(null);
+        setFirstFillError("");
         setRotationDeg(initialRotationDeg);
         setZoomFactor(1);
         setMode("reference");
@@ -1212,6 +1231,12 @@ export default function App() {
       useMainDepthForCavities,
       currentCavityPoints,
       mainResinDepthMm: depthMm,
+      maxPourThicknessMm,
+      recommendedLayerCount,
+      pourPlanRows,
+      firstFillThicknessMm,
+      firstFillVolumeLiters,
+      recommendedFirstFillVolumeLiters,
     },
     projectNotes,
     result,
@@ -1304,6 +1329,19 @@ export default function App() {
       setRotationDeg(ui.rotationDeg ?? 0);
       setZoomFactor(ui.zoomFactor ?? 1);
       setDepthMm(wood.mainResinDepthMm ?? standard.resinDepthMm ?? "");
+      setMaxPourThicknessMm(wood.maxPourThicknessMm ?? "");
+      setRecommendedLayerCount(wood.recommendedLayerCount ?? null);
+      setPourPlanRows(Array.isArray(wood.pourPlanRows) ? wood.pourPlanRows : []);
+      setLayerPlanningError("");
+      setFirstFillThicknessMm(wood.firstFillThicknessMm ?? "");
+      setFirstFillVolumeLiters(wood.firstFillVolumeLiters ?? null);
+      setRecommendedFirstFillVolumeLiters(
+        wood.recommendedFirstFillVolumeLiters ??
+          (Number.isFinite(Number(wood.firstFillVolumeLiters))
+            ? Number(wood.firstFillVolumeLiters) * 1.1
+            : null)
+      );
+      setFirstFillError("");
       setProjectNotes(project.projectNotes || "");
       setSelectedShape(importedSelectedShape);
       setResult(project.result || null);
@@ -1482,6 +1520,33 @@ export default function App() {
         `${formatNumber(result.mainVolumeLiters, 3)} L`
       );
 
+      if (firstFillVolumeLiters != null) {
+        addSectionTitle("First Fill Seal Coat");
+        addLine(
+          "First fill thickness",
+          `${formatNumber(firstFillThicknessMm, 2)} mm`
+        );
+        addLine(
+          "First fill seal coat volume",
+          `${formatNumber(firstFillVolumeLiters, 3)} L`
+        );
+        addLine(
+          "Recommended first fill amount (+10%)",
+          `${formatNumber(recommendedFirstFillVolumeLiters, 3)} L`
+        );
+      }
+
+      if (pourPlanRows.length > 0) {
+        addSectionTitle("Pour Layer Planning");
+        addLine("Maximum pour thickness", `${formatNumber(maxPourThicknessMm, 2)} mm`);
+        pourPlanRows.forEach((row) => {
+          addLine(
+            row.label,
+            `${formatNumber(row.thicknessMm, 2)} mm | ${formatNumber(row.volumeLiters, 3)} L | ${formatNumber(row.recommendedVolumeLiters, 3)} L recommended`
+          );
+        });
+      }
+
       if (Array.isArray(result.cavities) && result.cavities.length > 0) {
         result.cavities.forEach((cavity, idx) => {
           ensureSpace(22);
@@ -1647,6 +1712,183 @@ export default function App() {
     if (event.key !== "Enter") return;
     event.preventDefault();
     calculateWood();
+  };
+
+  const focusPourLayerPlanning = () => {
+    requestAnimationFrame(() => {
+      maxPourThicknessInputRef.current?.focus();
+    });
+  };
+
+  const calculatePourLayers = () => {
+    const mainDepthValue = mainDepthInputRef.current?.value ?? depthMm;
+    const mainDepth = parseFloat(mainDepthValue);
+    const maxPourThicknessValue =
+      maxPourThicknessInputRef.current?.value ?? maxPourThicknessMm;
+    const maxPourThickness = parseFloat(maxPourThicknessValue);
+    const firstFillThicknessValue =
+      firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
+    const hasFirstFillThickness = String(firstFillThicknessValue).trim() !== "";
+    const firstFillThickness = parseFloat(firstFillThicknessValue);
+    const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
+
+    if (!Number.isFinite(mainDepth) || mainDepth <= 0) {
+      setRecommendedLayerCount(null);
+      setPourPlanRows([]);
+      setLayerPlanningError("Enter a valid Main Resin Depth before calculating layers.");
+      focusPourLayerPlanning();
+      return;
+    }
+
+    if (!Number.isFinite(maxPourThickness) || maxPourThickness <= 0) {
+      setRecommendedLayerCount(null);
+      setPourPlanRows([]);
+      setLayerPlanningError("Maximum Pour Thickness must be greater than 0.");
+      focusPourLayerPlanning();
+      return;
+    }
+
+    if (!resinSurfaceAreaCm2) {
+      setRecommendedLayerCount(null);
+      setPourPlanRows([]);
+      setLayerPlanningError("Calculate Resin Volume first to set the resin surface area.");
+      focusPourLayerPlanning();
+      return;
+    }
+
+    if (
+      hasFirstFillThickness &&
+      (!Number.isFinite(firstFillThickness) ||
+        firstFillThickness <= 0 ||
+        firstFillThickness > mainDepth)
+    ) {
+      setRecommendedLayerCount(null);
+      setPourPlanRows([]);
+      setLayerPlanningError(
+        "First Fill Seal Coat Thickness must be greater than 0 and not exceed Main Resin Depth."
+      );
+      focusPourLayerPlanning();
+      return;
+    }
+
+    const buildVolumeRow = (label, thicknessMm) => {
+      const volumeLiters = resinSurfaceAreaCm2 * (thicknessMm / 10) / 1000;
+      return {
+        label,
+        thicknessMm,
+        volumeLiters,
+        recommendedVolumeLiters: volumeLiters * 1.1,
+      };
+    };
+
+    const nextPourPlanRows = [];
+    let remainingDepthMm = mainDepth;
+
+    if (hasFirstFillThickness) {
+      nextPourPlanRows.push(
+        buildVolumeRow("Pour 1 — First Fill Seal Coat", firstFillThickness)
+      );
+      remainingDepthMm = Math.max(0, mainDepth - firstFillThickness);
+    }
+
+    const remainingDepthHundredths = Math.round(remainingDepthMm * 100);
+    const maxPourThicknessHundredths = Math.max(
+      1,
+      Math.floor(maxPourThickness * 100)
+    );
+    const remainingPourCount =
+      remainingDepthHundredths > 0
+        ? Math.ceil(remainingDepthHundredths / maxPourThicknessHundredths)
+        : 0;
+    const baseThicknessHundredths =
+      remainingPourCount > 0
+        ? Math.floor(remainingDepthHundredths / remainingPourCount)
+        : 0;
+    const extraHundredths =
+      remainingPourCount > 0
+        ? remainingDepthHundredths % remainingPourCount
+        : 0;
+
+    for (let idx = 0; idx < remainingPourCount; idx += 1) {
+      const thicknessHundredths =
+        baseThicknessHundredths + (idx < extraHundredths ? 1 : 0);
+      nextPourPlanRows.push(
+        buildVolumeRow(
+          `Pour ${nextPourPlanRows.length + 1}`,
+          thicknessHundredths / 100
+        )
+      );
+    }
+
+    setRecommendedLayerCount(nextPourPlanRows.length);
+    setPourPlanRows(nextPourPlanRows);
+    setLayerPlanningError("");
+    focusPourLayerPlanning();
+  };
+
+  const handleMaxPourThicknessKeyDown = (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    calculatePourLayers();
+  };
+
+  const focusFirstFillPlanning = () => {
+    requestAnimationFrame(() => {
+      firstFillThicknessInputRef.current?.focus();
+    });
+  };
+
+  const getCalculatedResinSurfaceAreaCm2 = () => {
+    if (!result || resultOutdated) return null;
+    const cavityAreaFromItems = Array.isArray(result.cavities)
+      ? result.cavities.reduce((sum, cavity) => {
+          const area = Number(cavity.areaCm2);
+          return sum + (Number.isFinite(area) ? area : 0);
+        }, 0)
+      : 0;
+    const cavityArea =
+      cavityAreaFromItems > 0 ? cavityAreaFromItems : Number(result.cavityAreaCm2) || 0;
+    const area =
+      result.calculationType === "wood"
+        ? Number(result.mainResinAreaCm2) + cavityArea
+        : result.areaCm2;
+    const numericArea = Number(area);
+    return Number.isFinite(numericArea) && numericArea > 0 ? numericArea : null;
+  };
+
+  const calculateFirstFillVolume = () => {
+    const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
+    const firstFillThicknessValue =
+      firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
+    const firstFillThickness = parseFloat(firstFillThicknessValue);
+
+    if (!resinSurfaceAreaCm2) {
+      setFirstFillVolumeLiters(null);
+      setRecommendedFirstFillVolumeLiters(null);
+      setFirstFillError("Calculate Resin Volume first to set the resin surface area.");
+      focusFirstFillPlanning();
+      return;
+    }
+
+    if (!Number.isFinite(firstFillThickness) || firstFillThickness <= 0) {
+      setFirstFillVolumeLiters(null);
+      setRecommendedFirstFillVolumeLiters(null);
+      setFirstFillError("First Fill Seal Coat Thickness must be greater than 0.");
+      focusFirstFillPlanning();
+      return;
+    }
+
+    const volumeLiters = resinSurfaceAreaCm2 * (firstFillThickness / 10) / 1000;
+    setFirstFillVolumeLiters(volumeLiters);
+    setRecommendedFirstFillVolumeLiters(volumeLiters * 1.1);
+    setFirstFillError("");
+    focusFirstFillPlanning();
+  };
+
+  const handleFirstFillThicknessKeyDown = (event) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    calculateFirstFillVolume();
   };
 
   const finishWoodIsland = () => {
@@ -2055,7 +2297,9 @@ export default function App() {
                     <p>
                       Draw reference measurements using known dimensions visible in
                       the photo. These measurements are used to calibrate the image
-                      scale before calculating resin volume.
+                      scale before calculating resin volume. For best accuracy, add
+                      multiple horizontal and vertical references, especially when
+                      the photo is not perfectly top-down.
                     </p>
                   </div>
                 </aside>
@@ -2776,6 +3020,8 @@ export default function App() {
                 value={depthMm}
                 onChange={(e) => {
                   setDepthMm(e.target.value);
+                  setRecommendedLayerCount(null);
+                  setPourPlanRows([]);
                   markResultOutdated();
                 }}
                 onKeyDown={handleMainResinDepthKeyDown}
@@ -2849,6 +3095,141 @@ export default function App() {
               <div className="project-notes-counter">{projectNotes.length}/1000</div>
             </div>
           </div>
+
+          <section className="optional-planning-tools" aria-label="Optional pour planning tools">
+            <div className="optional-planning-header">
+              <h3>Optional Pour Planning Tools</h3>
+              <p>Use these planning aids when helpful. They do not change the resin volume calculation.</p>
+            </div>
+            <div className="pour-layer-planning-row">
+              <div className="pour-layer-planning-controls">
+                <h3 className="planning-tool-title">First Fill Seal Coat Calculator</h3>
+                <label className="pour-layer-field">
+                  First Fill Seal Coat Thickness (mm)
+                  <input
+                    ref={firstFillThicknessInputRef}
+                    type="number"
+                    step="0.1"
+                    value={firstFillThicknessMm}
+                    onChange={(event) => {
+                      setFirstFillThicknessMm(event.target.value);
+                      setFirstFillVolumeLiters(null);
+                      setRecommendedFirstFillVolumeLiters(null);
+                      setRecommendedLayerCount(null);
+                      setPourPlanRows([]);
+                      setFirstFillError("");
+                    }}
+                    onKeyDown={handleFirstFillThicknessKeyDown}
+                  />
+                </label>
+                <button className="primary-action" onClick={calculateFirstFillVolume}>
+                  Calculate First Fill Volume
+                </button>
+                {firstFillVolumeLiters != null && (
+                  <div className="pour-layer-result">
+                    <div>
+                      First Fill Seal Coat Volume:{" "}
+                      {formatNumber(firstFillVolumeLiters, 3)} L
+                    </div>
+                    <div>
+                      Recommended First Fill Amount (+10%):{" "}
+                      {formatNumber(recommendedFirstFillVolumeLiters, 3)} L
+                    </div>
+                  </div>
+                )}
+                {firstFillError && (
+                  <div className="pour-layer-validation">{firstFillError}</div>
+                )}
+              </div>
+              <aside
+                className="upload-onboarding-panel pour-layer-helper"
+                aria-label="First fill seal coat guidance"
+              >
+                <span className="onboarding-badge">i</span>
+                <div>
+                  <h2>First Fill Seal Coat Calculator</h2>
+                  <p>
+                    Enter the thickness of the initial sealing layer. The
+                    application will calculate the amount of resin needed for the
+                    first fill coat used to seal pores, cracks and potential leak
+                    paths before the main pour.
+                  </p>
+                </div>
+              </aside>
+            </div>
+            <div className="pour-layer-planning-row">
+              <div className="pour-layer-planning-controls">
+                <h3 className="planning-tool-title">Pour Layer Planning</h3>
+                <label className="pour-layer-field">
+                  Maximum Pour Thickness Per Layer (mm)
+                  <input
+                    ref={maxPourThicknessInputRef}
+                    type="number"
+                    step="0.1"
+                    value={maxPourThicknessMm}
+                    onChange={(event) => {
+                      setMaxPourThicknessMm(event.target.value);
+                      setRecommendedLayerCount(null);
+                      setPourPlanRows([]);
+                      setLayerPlanningError("");
+                    }}
+                    onKeyDown={handleMaxPourThicknessKeyDown}
+                  />
+                </label>
+                <button className="primary-action" onClick={calculatePourLayers}>
+                  Calculate Pour Plan
+                </button>
+                {pourPlanRows.length > 0 && (
+                  <div className="pour-plan-table-wrap">
+                    <table className="pour-plan-table">
+                      <thead>
+                        <tr>
+                          <th>Pour</th>
+                          <th>Thickness</th>
+                          <th>Resin Volume</th>
+                          <th>Recommended Amount (+10%)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {pourPlanRows.map((row, idx) => (
+                          <tr key={`${row.label}-${idx}`}>
+                            <td>{row.label}</td>
+                            <td>{formatNumber(row.thicknessMm, 2)} mm</td>
+                            <td>{formatNumber(row.volumeLiters, 3)} L</td>
+                            <td>{formatNumber(row.recommendedVolumeLiters, 3)} L</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <div className="pour-plan-note">
+                      Layer thicknesses are automatically balanced to avoid very thin
+                      final pours.
+                    </div>
+                  </div>
+                )}
+                {layerPlanningError && (
+                  <div className="pour-layer-validation">{layerPlanningError}</div>
+                )}
+              </div>
+              <aside
+                className="upload-onboarding-panel pour-layer-helper"
+                aria-label="Pour layer planning guidance"
+              >
+                <span className="onboarding-badge">i</span>
+                <div>
+                  <h2>Pour Layer Planning</h2>
+                  <p>
+                    Enter the maximum pour thickness recommended by the resin
+                    manufacturer for the resin system you are using.
+                  </p>
+                  <p>
+                    The application will use any entered first fill seal coat and
+                    split the remaining depth into safe pour layers.
+                  </p>
+                </div>
+              </aside>
+            </div>
+          </section>
 
           <details className="detailed-breakdown">
             <summary>Detailed Breakdown</summary>
