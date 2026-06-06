@@ -900,7 +900,7 @@ button .help-icon-wrapper {
 
 .optional-planning-tools {
   margin-top: 12px;
-  padding: 12px;
+  padding: 14px;
   background: rgba(246, 243, 236, 0.7);
   border: 1px solid var(--border-warm-soft);
   border-radius: 12px;
@@ -924,10 +924,10 @@ button .help-icon-wrapper {
 
 .pour-layer-planning-row {
   display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1fr);
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 285px);
+  gap: 8px;
   margin-top: 10px;
-  padding: 12px;
+  padding: 10px;
   background: var(--surface-ivory);
   border: 1px solid var(--border-warm);
   border-radius: 12px;
@@ -938,7 +938,8 @@ button .help-icon-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 10px;
+  gap: 8px;
+  min-width: 0;
 }
 
 .planning-tool-title {
@@ -953,28 +954,84 @@ button .help-icon-wrapper {
   font-weight: bold;
 }
 
+.pour-layer-field select {
+  margin-left: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-warm);
+  border-radius: 9px;
+  background: #fffdf8;
+  color: #2f2418;
+  font: inherit;
+}
+
 .pour-layer-result {
   flex: 1 1 100%;
   color: #224d31;
   font-weight: bold;
 }
 
+.first-fill-recommendation-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(240, 235, 226, 0.52);
+  border: 1px solid var(--border-warm-soft);
+  border-radius: 10px;
+  color: #2f2418;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.first-fill-recommendation-title {
+  color: #3a2d1f;
+  font-weight: bold;
+}
+
+.first-fill-recommendation-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  border-radius: 8px;
+  font-weight: normal;
+}
+
+.first-fill-recommendation-option:has(input:checked) {
+  background: rgba(47, 107, 67, 0.1);
+  color: #224d31;
+  font-weight: bold;
+}
+
+.first-fill-recommendation-option input {
+  margin: 0;
+}
+
+.first-fill-recommendation-volume {
+  font-size: 1.12em;
+}
+
+.first-fill-recommendation-helper {
+  color: #6d6255;
+  font-size: 12px;
+}
+
 .pour-plan-table-wrap {
   flex: 1 1 100%;
-  overflow-x: auto;
+  overflow-x: visible;
 }
 
 .pour-plan-table {
   width: 100%;
-  min-width: 560px;
   border-collapse: collapse;
   color: #2f2418;
-  font-size: 13px;
+  font-size: 11.5px;
 }
 
 .pour-plan-table th,
 .pour-plan-table td {
-  padding: 7px 8px;
+  padding: 5px 4px;
   border-bottom: 1px solid var(--border-warm-soft);
   text-align: left;
   white-space: nowrap;
@@ -1001,6 +1058,19 @@ button .help-icon-wrapper {
 
 .pour-layer-helper {
   max-width: none;
+  align-self: stretch;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.pour-layer-helper h2 {
+  font-size: 15px;
+}
+
+.pour-layer-helper p {
+  font-size: 13px;
+  line-height: 1.35;
 }
 
 .result {
