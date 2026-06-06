@@ -1,6 +1,6 @@
-# Resin Volume Prototype (React + Flask)
+# Resin Volume Calculator
 
-Very simple prototype web app for estimating epoxy resin volume from a photo.
+Web app for estimating epoxy resin volume from a photo.
 
 ## Features
 
@@ -16,49 +16,78 @@ No AI image recognition is used.
 
 ## Project structure
 
-```text
-ResinCalculator/
+```
+resin-calculator/
   backend/
-    app.py
-    requirements.txt
+    app.py          # FastAPI server
+    pyproject.toml  # Python dependencies (uv)
   frontend/
-    index.html
-    package.json
-    vite.config.js
     src/
-      App.jsx
-      main.jsx
-      styles.css
+      App.jsx       # React component
+      main.jsx      # Entry point
+      styles.css    # Styles
+    package.json    # Node dependencies
 ```
 
-## Requirements (Windows)
+## Prerequisites
 
-- Python 3.10+ installed
-- Node.js 18+ installed
+- **UV** - Manages Python automatically (no separate Python install needed). Install via winget:
+  ```powershell
+  winget install astral-sh.uv
+  ```
+- **Node.js 24 LTS** - Install via winget:
+  ```powershell
+  winget install OpenJS.NodeJS.LTS
+  ```
 
-## Run locally (Windows PowerShell)
+## Setup (run all commands from project root)
 
-### 1) Start backend (Flask)
+### 1. Install Python dependencies
 
 ```powershell
-cd D:\ResinCalculator\backend
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python app.py
+uv venv --python 3.13 --project backend
+uv sync --project backend
 ```
 
-Backend runs at: `http://127.0.0.1:5000`
-
-### 2) Start frontend (React + Vite) in a new terminal
+### 2. Install Node.js dependencies
 
 ```powershell
-cd D:\ResinCalculator\frontend
-npm install
-npm run dev
+npm install --prefix frontend
 ```
 
-Vite will print a local URL (usually `http://127.0.0.1:5173`).
+## IDE Setup
+
+After creating the venv, point your IDE at `backend/.venv/Scripts/python.exe`:
+
+- **Cursor** — `Ctrl+Shift+P` → "Python: Select Interpreter" → select `backend/.venv/Scripts/python.exe`
+- **IntelliJ** — Settings → Project → Python Interpreter → Add → Existing → `backend/.venv/Scripts/python.exe`
+
+## Run locally (from project root)
+
+### Start backend
+
+```powershell
+uv run --project backend uvicorn app:app --app-dir backend --host 0.0.0.0 --port 5000 --reload
+```
+
+Backend runs at `http://127.0.0.1:5000`.
+
+### Start frontend (in another terminal)
+
+```powershell
+npm run dev --prefix frontend
+```
+
+Vite will print a local URL (usually `http://127.0.0.1:5173`). Open this in your browser.
+
+## Deploy (Docker)
+
+A multi-stage Dockerfile builds the frontend and packages everything into a single Python image — no Node.js in production.
+
+```powershell
+docker build -t resin-calculator .
+docker run -p 5000:5000 resin-calculator
+```
 
 ## How to use
 
@@ -70,19 +99,17 @@ Vite will print a local URL (usually `http://127.0.0.1:5173`).
 6. Enter resin depth in **mm**.
 7. Click **Calculate**.
 
-## Calculation notes
+## Calculation details
 
 - Polygon area is computed in pixel² using the shoelace formula.
 - Each reference converts pixels to centimeters:
   - horizontal reference -> contributes to `scaleX` with `known_length_cm / abs(deltaX_px)`
   - vertical reference -> contributes to `scaleY` with `known_length_cm / abs(deltaY_px)`
   - diagonal references are tracked but not used as primary axis calibration
-- Area conversion is direction-aware:
-  - `area_cm2 = area_px2 * (scaleX * scaleY)`
-- The app shows calibration quality with separate horizontal/vertical averages and counts.
 - Area conversion:
-  - `area_cm2 = area_px2 * (cm_per_pixel_avg^2)`
+  - `area_cm2 = area_px2 * (scaleX * scaleY)`
 - Volume:
   - `depth_cm = depth_mm / 10`
   - `volume_cm3 = area_cm2 * depth_cm`
   - `volume_liters = volume_cm3 / 1000`
+- A 10% safety margin is added to the recommended volume.

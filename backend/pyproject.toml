@@ -1,0 +1,11 @@
+[project]
+name = "resin-calculator-backend"
+version = "0.1.0"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+]
+
+[tool.uv]
+dev-dependencies = []
