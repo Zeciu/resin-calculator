@@ -1,4 +1,7 @@
+import os
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from typing import Optional, List, Any
 from fastapi.middleware.cors import CORSMiddleware
@@ -310,6 +313,12 @@ def calculate_wood(req: CalculateWoodRequest):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+# Serve built frontend in production (static/ folder is present in the Docker image)
+_static_dir = os.path.join(os.path.dirname(__file__), "static")
+if os.path.isdir(_static_dir):
+    app.mount("/", StaticFiles(directory=_static_dir, html=True), name="static")
 
 
 if __name__ == "__main__":
