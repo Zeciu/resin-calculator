@@ -18,6 +18,29 @@ const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
 const ROTATIONS = [0, 90, 180, 270];
 const AXIS_DOMINANCE_RATIO = 1.5;
+const MIX_RATIO_OPTIONS = [
+  { value: "1:1", label: "1 : 1", aParts: 1, bParts: 1 },
+  { value: "2:1", label: "2 : 1", aParts: 2, bParts: 1 },
+  { value: "2.5:1", label: "2.5 : 1", aParts: 2.5, bParts: 1 },
+  { value: "3:1", label: "3 : 1", aParts: 3, bParts: 1 },
+  { value: "100:40", label: "100 : 40", aParts: 100, bParts: 40 },
+  { value: "100:45", label: "100 : 45", aParts: 100, bParts: 45 },
+  { value: "100:50", label: "100 : 50", aParts: 100, bParts: 50 },
+  { value: "100:60", label: "100 : 60", aParts: 100, bParts: 60 },
+  { value: "100:70", label: "100 : 70", aParts: 100, bParts: 70 },
+];
+const FIRST_FILL_RECOMMENDATION_OPTIONS = [
+  {
+    value: "10",
+    label: "Use +10% — Wood sealed underneath",
+    multiplier: 1.1,
+  },
+  {
+    value: "30",
+    label: "Use +30% — Wood not sealed underneath",
+    multiplier: 1.3,
+  },
+];
 const MODE_HELP = {
   standard: {
     title: "Standard Resin Area",
@@ -172,6 +195,56 @@ function pointInPolygon(point, polygon) {
 function formatNumber(value, digits = 2, fallback = "N/A") {
   const num = Number(value);
   return Number.isFinite(num) ? num.toFixed(digits) : fallback;
+}
+
+function getMixRatioOption(value) {
+  return (
+    MIX_RATIO_OPTIONS.find((option) => option.value === value) ||
+    MIX_RATIO_OPTIONS[0]
+  );
+}
+
+function calculateMixComponents(recommendedVolumeLiters, mixRatioValue) {
+  const recommendedAmountMl = Number(recommendedVolumeLiters) * 1000;
+  const ratio = getMixRatioOption(mixRatioValue);
+  const totalParts = ratio.aParts + ratio.bParts;
+
+  if (!Number.isFinite(recommendedAmountMl) || recommendedAmountMl < 0) {
+    return { componentAMl: null, componentBMl: null };
+  }
+
+  return {
+    componentAMl: Math.round((recommendedAmountMl * ratio.aParts) / totalParts),
+    componentBMl: Math.round((recommendedAmountMl * ratio.bParts) / totalParts),
+  };
+}
+
+function getFirstFillRecommendationOption(value) {
+  return (
+    FIRST_FILL_RECOMMENDATION_OPTIONS.find((option) => option.value === value) ||
+    FIRST_FILL_RECOMMENDATION_OPTIONS[0]
+  );
+}
+
+function getFirstFillRecommendedVolume(volumeLiters, mode) {
+  const volume = Number(volumeLiters);
+  if (!Number.isFinite(volume)) return null;
+  return volume * getFirstFillRecommendationOption(mode).multiplier;
+}
+
+function isFirstFillPourRow(row) {
+  return row?.type === "firstFill" || row?.label?.includes("First Fill Seal Coat");
+}
+
+function getPourPlanRecommendedVolume(row, firstFillRecommendationMode) {
+  if (isFirstFillPourRow(row)) {
+    return getFirstFillRecommendedVolume(
+      row.volumeLiters,
+      firstFillRecommendationMode
+    );
+  }
+
+  return row.recommendedVolumeLiters;
 }
 
 function drawPolygonOnCanvas(ctx, screenPts, { stroke, fill, pointFill, lineWidth = 2 }) {
@@ -494,10 +567,14 @@ export default function App() {
   const [recommendedLayerCount, setRecommendedLayerCount] = useState(null);
   const [pourPlanRows, setPourPlanRows] = useState([]);
   const [layerPlanningError, setLayerPlanningError] = useState("");
+  const [resinMixRatio, setResinMixRatio] = useState(MIX_RATIO_OPTIONS[0].value);
   const [firstFillThicknessMm, setFirstFillThicknessMm] = useState("");
   const [firstFillVolumeLiters, setFirstFillVolumeLiters] = useState(null);
   const [recommendedFirstFillVolumeLiters, setRecommendedFirstFillVolumeLiters] =
     useState(null);
+  const [firstFillRecommendationMode, setFirstFillRecommendationMode] = useState(
+    FIRST_FILL_RECOMMENDATION_OPTIONS[0].value
+  );
   const [firstFillError, setFirstFillError] = useState("");
   const [cavityDepthsMm, setCavityDepthsMm] = useState([]);
   const [useMainDepthForCavities, setUseMainDepthForCavities] = useState(false);
@@ -855,9 +932,11 @@ export default function App() {
         setRecommendedLayerCount(null);
         setPourPlanRows([]);
         setLayerPlanningError("");
+        setResinMixRatio(MIX_RATIO_OPTIONS[0].value);
         setFirstFillThicknessMm("");
         setFirstFillVolumeLiters(null);
         setRecommendedFirstFillVolumeLiters(null);
+        setFirstFillRecommendationMode(FIRST_FILL_RECOMMENDATION_OPTIONS[0].value);
         setFirstFillError("");
         setRotationDeg(initialRotationDeg);
         setZoomFactor(1);
@@ -1234,9 +1313,11 @@ export default function App() {
       maxPourThicknessMm,
       recommendedLayerCount,
       pourPlanRows,
+      resinMixRatio,
       firstFillThicknessMm,
       firstFillVolumeLiters,
       recommendedFirstFillVolumeLiters,
+      firstFillRecommendationMode,
     },
     projectNotes,
     result,
@@ -1297,6 +1378,12 @@ export default function App() {
         ui.selectedShape?.type === "wood" && ui.selectedShape.index == null
           ? { type: "wood", index: 0 }
           : ui.selectedShape || null;
+      const importedFirstFillRecommendationMode =
+        FIRST_FILL_RECOMMENDATION_OPTIONS.some(
+          (option) => option.value === wood.firstFillRecommendationMode
+        )
+          ? wood.firstFillRecommendationMode
+          : FIRST_FILL_RECOMMENDATION_OPTIONS[0].value;
 
       imageRef.current = img;
       dragRef.current = null;
@@ -1332,13 +1419,22 @@ export default function App() {
       setMaxPourThicknessMm(wood.maxPourThicknessMm ?? "");
       setRecommendedLayerCount(wood.recommendedLayerCount ?? null);
       setPourPlanRows(Array.isArray(wood.pourPlanRows) ? wood.pourPlanRows : []);
+      setResinMixRatio(
+        MIX_RATIO_OPTIONS.some((option) => option.value === wood.resinMixRatio)
+          ? wood.resinMixRatio
+          : MIX_RATIO_OPTIONS[0].value
+      );
       setLayerPlanningError("");
       setFirstFillThicknessMm(wood.firstFillThicknessMm ?? "");
       setFirstFillVolumeLiters(wood.firstFillVolumeLiters ?? null);
+      setFirstFillRecommendationMode(importedFirstFillRecommendationMode);
       setRecommendedFirstFillVolumeLiters(
         wood.recommendedFirstFillVolumeLiters ??
           (Number.isFinite(Number(wood.firstFillVolumeLiters))
-            ? Number(wood.firstFillVolumeLiters) * 1.1
+            ? getFirstFillRecommendedVolume(
+                wood.firstFillVolumeLiters,
+                importedFirstFillRecommendationMode
+              )
             : null)
       );
       setFirstFillError("");
@@ -1521,6 +1617,9 @@ export default function App() {
       );
 
       if (firstFillVolumeLiters != null) {
+        const selectedFirstFillOption = getFirstFillRecommendationOption(
+          firstFillRecommendationMode
+        );
         addSectionTitle("First Fill Seal Coat");
         addLine(
           "First fill thickness",
@@ -1531,18 +1630,31 @@ export default function App() {
           `${formatNumber(firstFillVolumeLiters, 3)} L`
         );
         addLine(
-          "Recommended first fill amount (+10%)",
-          `${formatNumber(recommendedFirstFillVolumeLiters, 3)} L`
+          "Selected first fill recommendation",
+          selectedFirstFillOption.label
+        );
+        addLine(
+          "Selected first fill amount",
+          `${formatNumber(getFirstFillRecommendedVolume(firstFillVolumeLiters, firstFillRecommendationMode), 3)} L`
         );
       }
 
       if (pourPlanRows.length > 0) {
         addSectionTitle("Pour Layer Planning");
         addLine("Maximum pour thickness", `${formatNumber(maxPourThicknessMm, 2)} mm`);
+        addLine("Resin mix ratio (A:B)", getMixRatioOption(resinMixRatio).label);
         pourPlanRows.forEach((row) => {
+          const recommendedVolumeLiters = getPourPlanRecommendedVolume(
+            row,
+            firstFillRecommendationMode
+          );
+          const { componentAMl, componentBMl } = calculateMixComponents(
+            recommendedVolumeLiters,
+            resinMixRatio
+          );
           addLine(
             row.label,
-            `${formatNumber(row.thicknessMm, 2)} mm | ${formatNumber(row.volumeLiters, 3)} L | ${formatNumber(row.recommendedVolumeLiters, 3)} L recommended`
+            `${formatNumber(row.thicknessMm, 2)} mm | ${formatNumber(row.volumeLiters, 3)} L | ${formatNumber(recommendedVolumeLiters, 3)} L recommended | A ${componentAMl} ml | B ${componentBMl} ml`
           );
         });
       }
@@ -1771,10 +1883,11 @@ export default function App() {
       return;
     }
 
-    const buildVolumeRow = (label, thicknessMm) => {
+    const buildVolumeRow = (label, thicknessMm, type = "mainPour") => {
       const volumeLiters = resinSurfaceAreaCm2 * (thicknessMm / 10) / 1000;
       return {
         label,
+        type,
         thicknessMm,
         volumeLiters,
         recommendedVolumeLiters: volumeLiters * 1.1,
@@ -1786,7 +1899,11 @@ export default function App() {
 
     if (hasFirstFillThickness) {
       nextPourPlanRows.push(
-        buildVolumeRow("Pour 1 — First Fill Seal Coat", firstFillThickness)
+        buildVolumeRow(
+          "Pour 1 — First Fill Seal Coat",
+          firstFillThickness,
+          "firstFill"
+        )
       );
       remainingDepthMm = Math.max(0, mainDepth - firstFillThickness);
     }
@@ -1880,7 +1997,9 @@ export default function App() {
 
     const volumeLiters = resinSurfaceAreaCm2 * (firstFillThickness / 10) / 1000;
     setFirstFillVolumeLiters(volumeLiters);
-    setRecommendedFirstFillVolumeLiters(volumeLiters * 1.1);
+    setRecommendedFirstFillVolumeLiters(
+      getFirstFillRecommendedVolume(volumeLiters, firstFillRecommendationMode)
+    );
     setFirstFillError("");
     focusFirstFillPlanning();
   };
@@ -3131,9 +3250,50 @@ export default function App() {
                       First Fill Seal Coat Volume:{" "}
                       {formatNumber(firstFillVolumeLiters, 3)} L
                     </div>
-                    <div>
-                      Recommended First Fill Amount (+10%):{" "}
-                      {formatNumber(recommendedFirstFillVolumeLiters, 3)} L
+                    <div className="first-fill-recommendation-options">
+                      <div className="first-fill-recommendation-title">
+                        First Fill Recommendation Mode
+                      </div>
+                      {FIRST_FILL_RECOMMENDATION_OPTIONS.map((option) => {
+                        const recommendedVolumeLiters =
+                          getFirstFillRecommendedVolume(
+                            firstFillVolumeLiters,
+                            option.value
+                          );
+
+                        return (
+                          <label
+                            key={option.value}
+                            className="first-fill-recommendation-option"
+                          >
+                            <input
+                              type="radio"
+                              name="first-fill-recommendation-mode"
+                              value={option.value}
+                              checked={firstFillRecommendationMode === option.value}
+                              onChange={() => {
+                                setFirstFillRecommendationMode(option.value);
+                                setRecommendedFirstFillVolumeLiters(
+                                  recommendedVolumeLiters
+                                );
+                              }}
+                            />
+                            <span>
+                              {option.value === "10"
+                                ? "Wood sealed underneath (silicone seal underneath wood)"
+                                : "Wood not sealed underneath (resin may leak underneath wood)"}{" "}
+                              —{" "}
+                              <strong className="first-fill-recommendation-volume">
+                                {formatNumber(recommendedVolumeLiters, 3)} L
+                              </strong>
+                            </span>
+                          </label>
+                        );
+                      })}
+                      <div className="first-fill-recommendation-helper">
+                        This selection controls the First Fill Seal Coat row in the
+                        Pour Layer Planning table.
+                      </div>
                     </div>
                   </div>
                 )}
@@ -3176,6 +3336,19 @@ export default function App() {
                     onKeyDown={handleMaxPourThicknessKeyDown}
                   />
                 </label>
+                <label className="pour-layer-field">
+                  Resin Mix Ratio (A:B)
+                  <select
+                    value={resinMixRatio}
+                    onChange={(event) => setResinMixRatio(event.target.value)}
+                  >
+                    {MIX_RATIO_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
                 <button className="primary-action" onClick={calculatePourLayers}>
                   Calculate Pour Plan
                 </button>
@@ -3188,17 +3361,34 @@ export default function App() {
                           <th>Thickness</th>
                           <th>Resin Volume</th>
                           <th>Recommended Amount (+10%)</th>
+                          <th>Component A</th>
+                          <th>Component B</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {pourPlanRows.map((row, idx) => (
-                          <tr key={`${row.label}-${idx}`}>
-                            <td>{row.label}</td>
-                            <td>{formatNumber(row.thicknessMm, 2)} mm</td>
-                            <td>{formatNumber(row.volumeLiters, 3)} L</td>
-                            <td>{formatNumber(row.recommendedVolumeLiters, 3)} L</td>
-                          </tr>
-                        ))}
+                        {pourPlanRows.map((row, idx) => {
+                          const recommendedVolumeLiters =
+                            getPourPlanRecommendedVolume(
+                              row,
+                              firstFillRecommendationMode
+                            );
+                          const { componentAMl, componentBMl } =
+                            calculateMixComponents(
+                              recommendedVolumeLiters,
+                              resinMixRatio
+                            );
+
+                          return (
+                            <tr key={`${row.label}-${idx}`}>
+                              <td>{row.label}</td>
+                              <td>{formatNumber(row.thicknessMm, 2)} mm</td>
+                              <td>{formatNumber(row.volumeLiters, 3)} L</td>
+                              <td>{formatNumber(recommendedVolumeLiters, 3)} L</td>
+                              <td>{componentAMl} ml</td>
+                              <td>{componentBMl} ml</td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                     <div className="pour-plan-note">
