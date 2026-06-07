@@ -57,11 +57,14 @@ The script is safe to run more than once. Every step checks whether the resource
 
 ### 1. Build and push from WSL
 
-From a WSL terminal:
-
+Build, run and test locally:
 ```bash
 docker build -t resin-calculator /mnt/e/Programare/resin-calculator
+docker run --rm -p 5000:5000 resin-calculator
+```
 
+Push the image to ECR:
+```
 REGION=eu-central-1
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 ECR_URI=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/resin-calculator

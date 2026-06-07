@@ -14,7 +14,7 @@ import {
   ZoomOut,
 } from "lucide-react";
 
-const API_BASE_URL = "http://127.0.0.1:5000";
+const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
 const ROTATIONS = [0, 90, 180, 270];
 const AXIS_DOMINANCE_RATIO = 1.5;
