@@ -194,13 +194,6 @@ echo           "awslogs-group": "/ecs/resin-calculator",
 echo           "awslogs-region": "%REGION%",
 echo           "awslogs-stream-prefix": "ecs"
 echo         }
-echo       },
-echo       "healthCheck": {
-echo         "command": ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"],
-echo         "interval": 30,
-echo         "timeout": 5,
-echo         "retries": 3,
-echo         "startPeriod": 10
 echo       }
 echo     }
 echo   ]
