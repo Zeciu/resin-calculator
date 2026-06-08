@@ -1,29 +1,26 @@
 # Architecture Rules
+App will be deployed to AWS and will use multiple AWS services like Fargate, Cognito, S3, Dynamo.
+We will also need a payment processor integration like Strip, in the future.
+When we write code, we must ensure it will be compatible with those.
 
-## IP Protection — Computation Logic
+All the rules for a single page web app apply here, but we should pay attention to Intellectual Property (IP)
 
-All non-trivial computation logic must live in the Python backend, not in JavaScript.
+## IP Protection
 
+All non-trivial computation logic should live in the Python backend, as much as possible, not in JavaScript.
 The guiding principle for deciding where logic belongs:
 
-- **Fast feedback required** (mouse movement, mouse clicks, live canvas drawing): logic may stay in JS because a network round-trip would hurt UX.
-- **Slow feedback acceptable** (button clicks, text input updates): logic must move to the backend to protect IP.
+- **Fast feedback required** (mouse movement, mouse clicks, live canvas drawing):
+  logic may stay in JS, if a network round-trip would hurt UX.
+- **Slow feedback acceptable** (button clicks, text input updates):
+  if it is important IP logic, it should be in the backend, if possible.
 
-### What belongs in the backend (Python)
-- Area calculations (shoelace formula on polygon points)
-- Volume calculations (area × depth, unit conversions)
-- Scale/calibration resolution from reference measurements
-- Pour layer planning (layer count, thickness distribution, per-layer volumes)
-- First fill seal coat volume calculation
-- Any future resin quantity or planning computation triggered by a button or input change
+# Coding rules
+If you right new code, that implements significant functionality or changes existing functionality significantly,
+you must write tests for it. We want the tests to cover backend and frontend, but we should keep the test execution
+time low, so using Selenim, for example, is discouraged.
 
-### What may stay in the frontend (JavaScript)
-- Live canvas drawing and rendering
-- Polygon point hit-testing (`pointInPolygon`) used during mouse interaction
-- Live preview calculations that update on every mouse click while drawing (e.g. `referenceQuality`, `cavitySummaries`, `woodLiveSummary`) — these are acceptable duplicates of backend logic purely for drawing-time UX
-- Trivial display helpers: unit formatting, ratio lookups, label generation
-- UI state management
-
-### Summary
-If a calculation is triggered by a button click or a text field change, it belongs in the backend.
-If it must update on every mouse click or mouse move to give live drawing feedback, it may stay in JS.
+# AI Assistant rules
+If you update the file with AI Assistant rules, please update both the Kiro and the Cursor rules.
+If the architecture of the app changes, you must update the AI Assistant rule files.
+You must keep the current level of abstraction for rule files and documentation files. Don't add starting tons of details, they clutter the big picture. 
