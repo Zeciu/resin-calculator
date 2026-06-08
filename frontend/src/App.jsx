@@ -1832,14 +1832,10 @@ export default function App() {
     });
   };
 
-  const calculatePourLayers = () => {
-    const mainDepthValue = mainDepthInputRef.current?.value ?? depthMm;
-    const mainDepth = parseFloat(mainDepthValue);
-    const maxPourThicknessValue =
-      maxPourThicknessInputRef.current?.value ?? maxPourThicknessMm;
-    const maxPourThickness = parseFloat(maxPourThicknessValue);
-    const firstFillThicknessValue =
-      firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
+  const calculatePourLayers = async () => {
+    const mainDepth = parseFloat(mainDepthInputRef.current?.value ?? depthMm);
+    const maxPourThickness = parseFloat(maxPourThicknessInputRef.current?.value ?? maxPourThicknessMm);
+    const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
     const hasFirstFillThickness = String(firstFillThicknessValue).trim() !== "";
     const firstFillThickness = parseFloat(firstFillThicknessValue);
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
@@ -1851,7 +1847,6 @@ export default function App() {
       focusPourLayerPlanning();
       return;
     }
-
     if (!Number.isFinite(maxPourThickness) || maxPourThickness <= 0) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
@@ -1859,7 +1854,6 @@ export default function App() {
       focusPourLayerPlanning();
       return;
     }
-
     if (!resinSurfaceAreaCm2) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
@@ -1867,79 +1861,35 @@ export default function App() {
       focusPourLayerPlanning();
       return;
     }
-
-    if (
-      hasFirstFillThickness &&
-      (!Number.isFinite(firstFillThickness) ||
-        firstFillThickness <= 0 ||
-        firstFillThickness > mainDepth)
-    ) {
+    if (hasFirstFillThickness && (!Number.isFinite(firstFillThickness) || firstFillThickness <= 0 || firstFillThickness > mainDepth)) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
-      setLayerPlanningError(
-        "First Fill Seal Coat Thickness must be greater than 0 and not exceed Main Resin Depth."
-      );
+      setLayerPlanningError("First Fill Seal Coat Thickness must be greater than 0 and not exceed Main Resin Depth.");
       focusPourLayerPlanning();
       return;
     }
 
-    const buildVolumeRow = (label, thicknessMm, type = "mainPour") => {
-      const volumeLiters = resinSurfaceAreaCm2 * (thicknessMm / 10) / 1000;
-      return {
-        label,
-        type,
-        thicknessMm,
-        volumeLiters,
-        recommendedVolumeLiters: volumeLiters * 1.1,
-      };
-    };
-
-    const nextPourPlanRows = [];
-    let remainingDepthMm = mainDepth;
-
-    if (hasFirstFillThickness) {
-      nextPourPlanRows.push(
-        buildVolumeRow(
-          "Pour 1 — First Fill Seal Coat",
-          firstFillThickness,
-          "firstFill"
-        )
-      );
-      remainingDepthMm = Math.max(0, mainDepth - firstFillThickness);
+    try {
+      const response = await fetch(`${API_BASE_URL}/calculate-pour-layers`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mainDepthMm: mainDepth,
+          maxPourThicknessMm: maxPourThickness,
+          resinSurfaceAreaCm2,
+          firstFillThicknessMm: hasFirstFillThickness ? firstFillThickness : null,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.detail || "Pour layer calculation failed.");
+      setRecommendedLayerCount(data.layerCount);
+      setPourPlanRows(data.rows);
+      setLayerPlanningError("");
+    } catch (err) {
+      setRecommendedLayerCount(null);
+      setPourPlanRows([]);
+      setLayerPlanningError(err.message);
     }
-
-    const remainingDepthHundredths = Math.round(remainingDepthMm * 100);
-    const maxPourThicknessHundredths = Math.max(
-      1,
-      Math.floor(maxPourThickness * 100)
-    );
-    const remainingPourCount =
-      remainingDepthHundredths > 0
-        ? Math.ceil(remainingDepthHundredths / maxPourThicknessHundredths)
-        : 0;
-    const baseThicknessHundredths =
-      remainingPourCount > 0
-        ? Math.floor(remainingDepthHundredths / remainingPourCount)
-        : 0;
-    const extraHundredths =
-      remainingPourCount > 0
-        ? remainingDepthHundredths % remainingPourCount
-        : 0;
-
-    for (let idx = 0; idx < remainingPourCount; idx += 1) {
-      const thicknessHundredths =
-        baseThicknessHundredths + (idx < extraHundredths ? 1 : 0);
-      nextPourPlanRows.push(
-        buildVolumeRow(
-          `Pour ${nextPourPlanRows.length + 1}`,
-          thicknessHundredths / 100
-        )
-      );
-    }
-
-    setRecommendedLayerCount(nextPourPlanRows.length);
-    setPourPlanRows(nextPourPlanRows);
-    setLayerPlanningError("");
     focusPourLayerPlanning();
   };
 
@@ -1973,10 +1923,9 @@ export default function App() {
     return Number.isFinite(numericArea) && numericArea > 0 ? numericArea : null;
   };
 
-  const calculateFirstFillVolume = () => {
+  const calculateFirstFillVolume = async () => {
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
-    const firstFillThicknessValue =
-      firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
+    const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
     const firstFillThickness = parseFloat(firstFillThicknessValue);
 
     if (!resinSurfaceAreaCm2) {
@@ -1986,7 +1935,6 @@ export default function App() {
       focusFirstFillPlanning();
       return;
     }
-
     if (!Number.isFinite(firstFillThickness) || firstFillThickness <= 0) {
       setFirstFillVolumeLiters(null);
       setRecommendedFirstFillVolumeLiters(null);
@@ -1995,12 +1943,24 @@ export default function App() {
       return;
     }
 
-    const volumeLiters = resinSurfaceAreaCm2 * (firstFillThickness / 10) / 1000;
-    setFirstFillVolumeLiters(volumeLiters);
-    setRecommendedFirstFillVolumeLiters(
-      getFirstFillRecommendedVolume(volumeLiters, firstFillRecommendationMode)
-    );
-    setFirstFillError("");
+    try {
+      const response = await fetch(`${API_BASE_URL}/calculate-first-fill`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resinSurfaceAreaCm2, firstFillThicknessMm: firstFillThickness }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.detail || "First fill calculation failed.");
+      setFirstFillVolumeLiters(data.volumeLiters);
+      setRecommendedFirstFillVolumeLiters(
+        getFirstFillRecommendedVolume(data.volumeLiters, firstFillRecommendationMode)
+      );
+      setFirstFillError("");
+    } catch (err) {
+      setFirstFillVolumeLiters(null);
+      setRecommendedFirstFillVolumeLiters(null);
+      setFirstFillError(err.message);
+    }
     focusFirstFillPlanning();
   };
 

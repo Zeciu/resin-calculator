@@ -310,6 +310,78 @@ def calculate_wood(req: CalculateWoodRequest):
     }
 
 
+class CalculatePourLayersRequest(BaseModel):
+    mainDepthMm: float
+    maxPourThicknessMm: float
+    resinSurfaceAreaCm2: float
+    firstFillThicknessMm: Optional[float] = None
+
+
+class CalculateFirstFillRequest(BaseModel):
+    resinSurfaceAreaCm2: float
+    firstFillThicknessMm: float
+
+
+@app.post("/calculate-pour-layers")
+def calculate_pour_layers(req: CalculatePourLayersRequest):
+    main_depth = req.mainDepthMm
+    max_pour = req.maxPourThicknessMm
+    area_cm2 = req.resinSurfaceAreaCm2
+    first_fill = req.firstFillThicknessMm
+
+    if main_depth <= 0:
+        raise HTTPException(status_code=400, detail="mainDepthMm must be > 0.")
+    if max_pour <= 0:
+        raise HTTPException(status_code=400, detail="maxPourThicknessMm must be > 0.")
+    if area_cm2 <= 0:
+        raise HTTPException(status_code=400, detail="resinSurfaceAreaCm2 must be > 0.")
+    if first_fill is not None and (first_fill <= 0 or first_fill > main_depth):
+        raise HTTPException(status_code=400, detail="firstFillThicknessMm must be > 0 and not exceed mainDepthMm.")
+
+    def build_row(label, thickness_mm, row_type="mainPour"):
+        volume_liters = area_cm2 * (thickness_mm / 10.0) / 1000.0
+        return {
+            "label": label,
+            "type": row_type,
+            "thicknessMm": thickness_mm,
+            "volumeLiters": volume_liters,
+            "recommendedVolumeLiters": volume_liters * (1.0 + RESIN_SAFETY_MARGIN),
+        }
+
+    rows = []
+    remaining_mm = main_depth
+
+    if first_fill is not None:
+        rows.append(build_row("Pour 1 — First Fill Seal Coat", first_fill, "firstFill"))
+        remaining_mm = max(0.0, main_depth - first_fill)
+
+    remaining_hundredths = round(remaining_mm * 100)
+    max_pour_hundredths = max(1, int(max_pour * 100))
+    remaining_pour_count = -(-remaining_hundredths // max_pour_hundredths) if remaining_hundredths > 0 else 0  # ceiling div
+    base_hundredths = remaining_hundredths // remaining_pour_count if remaining_pour_count > 0 else 0
+    extra_hundredths = remaining_hundredths % remaining_pour_count if remaining_pour_count > 0 else 0
+
+    for idx in range(remaining_pour_count):
+        thickness_hundredths = base_hundredths + (1 if idx < extra_hundredths else 0)
+        rows.append(build_row(f"Pour {len(rows) + 1}", thickness_hundredths / 100.0))
+
+    return {"rows": rows, "layerCount": len(rows)}
+
+
+@app.post("/calculate-first-fill")
+def calculate_first_fill(req: CalculateFirstFillRequest):
+    area_cm2 = req.resinSurfaceAreaCm2
+    thickness_mm = req.firstFillThicknessMm
+
+    if area_cm2 <= 0:
+        raise HTTPException(status_code=400, detail="resinSurfaceAreaCm2 must be > 0.")
+    if thickness_mm <= 0:
+        raise HTTPException(status_code=400, detail="firstFillThicknessMm must be > 0.")
+
+    volume_liters = area_cm2 * (thickness_mm / 10.0) / 1000.0
+    return {"volumeLiters": volume_liters}
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
