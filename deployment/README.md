@@ -147,12 +147,6 @@ cd deployment
 deploy-app.cmd eu-central-1 hfzwood
 ```
 
-ECS pulls the new image and replaces the running task. To wait for completion:
-
-```cmd
-aws ecs wait services-stable --cluster resin-calculator-cluster --services resin-calculator-service --region eu-central-1 --profile hfzwood
-```
-
 ## Architecture
 
 ```
