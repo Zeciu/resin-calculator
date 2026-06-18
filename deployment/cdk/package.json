@@ -1,0 +1,18 @@
+{
+  "name": "resin-calculator-cdk",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.258.1",
+    "constructs": "10.6.0"
+  },
+  "devDependencies": {
+    "aws-cdk": "2.1126.0",
+    "typescript": "5.8.3",
+    "@types/node": "22.15.21"
+  }
+}

@@ -1,10 +1,13 @@
 import os
-from fastapi import FastAPI, HTTPException
+import httpx
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 from typing import Optional, List, Any
 from fastapi.middleware.cors import CORSMiddleware
+from jose import jwt, JWTError
+from jose.exceptions import ExpiredSignatureError
 
 
 app = FastAPI()
@@ -15,6 +18,57 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── Cognito JWT validation ─────────────────────────────────────────────────────
+_COGNITO_USER_POOL_ID = os.environ.get("COGNITO_USER_POOL_ID", "")
+_COGNITO_REGION = os.environ.get("COGNITO_REGION", "")
+_COGNITO_ISSUER = (
+    f"https://cognito-idp.{_COGNITO_REGION}.amazonaws.com/{_COGNITO_USER_POOL_ID}"
+    if _COGNITO_USER_POOL_ID and _COGNITO_REGION else ""
+)
+_JWKS_CACHE: dict | None = None
+
+_AUTH_ENABLED = bool(_COGNITO_USER_POOL_ID and _COGNITO_REGION)
+_UNPROTECTED_PATHS = {"/health", "/callback"}
+
+
+async def _get_jwks() -> dict:
+    global _JWKS_CACHE
+    if _JWKS_CACHE is None:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(f"{_COGNITO_ISSUER}/.well-known/jwks.json")
+            resp.raise_for_status()
+            _JWKS_CACHE = resp.json()
+    return _JWKS_CACHE
+
+
+@app.middleware("http")
+async def cognito_auth_middleware(request: Request, call_next):
+    if not _AUTH_ENABLED or request.url.path in _UNPROTECTED_PATHS:
+        return await call_next(request)
+
+    auth_header = request.headers.get("Authorization", "")
+    if not auth_header.startswith("Bearer "):
+        return JSONResponse(status_code=401, content={"detail": "Unauthorized"})
+
+    token = auth_header[len("Bearer "):]
+    try:
+        jwks = await _get_jwks()
+        jwt.decode(
+            token,
+            jwks,
+            algorithms=["RS256"],
+            issuer=_COGNITO_ISSUER,
+            options={"verify_at_hash": False},
+        )
+    except ExpiredSignatureError:
+        return JSONResponse(status_code=401, content={"detail": "Token expired"})
+    except JWTError:
+        return JSONResponse(status_code=401, content={"detail": "Invalid token"})
+    except Exception:
+        return JSONResponse(status_code=401, content={"detail": "Unauthorized"})
+
+    return await call_next(request)
 
 AXIS_DOMINANCE_RATIO = 1.5
 RESIN_SAFETY_MARGIN = 0.10  # 10% extra resin recommended
@@ -390,6 +444,12 @@ def health():
 # Serve built frontend in production (static/ folder is present in the Docker image)
 _static_dir = os.path.join(os.path.dirname(__file__), "static")
 if os.path.isdir(_static_dir):
+    _index_html = os.path.join(_static_dir, "index.html")
+
+    @app.get("/callback", include_in_schema=False)
+    async def spa_callback():
+        return FileResponse(_index_html)
+
     app.mount("/", StaticFiles(directory=_static_dir, html=True), name="static")
 
 

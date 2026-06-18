@@ -5,6 +5,12 @@ setlocal
 set ROOT=%~dp0
 set ROOT=%ROOT:~0,-1%
 
+:: Cognito configuration (from InfraStack outputs)
+set VITE_COGNITO_USER_POOL_ID=eu-central-1_cM7UmwtpB
+set VITE_COGNITO_CLIENT_ID=2kb538fbaa8udmh32ov0q7bm9
+set VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.eu-central-1.amazoncognito.com
+set VITE_COGNITO_REDIRECT_URI=http://localhost:5173/callback
+
 echo Starting Resin Calculator...
 
 echo Installing frontend dependencies...
@@ -19,4 +25,4 @@ start "Backend" cmd /k "cd /d "%ROOT%" && uv run --project backend uvicorn app:a
 echo Starting frontend dev server...
 start "Frontend" cmd /k "cd /d "%ROOT%" && npm --prefix frontend run dev"
 
-echo Done. Backend: http://127.0.0.1:5000 ^| Frontend: http://127.0.0.1:5173
+echo Done. Backend: http://localhost:5000 ^| Frontend: http://localhost:5173

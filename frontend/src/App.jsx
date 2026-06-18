@@ -13,6 +13,7 @@ import {
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
+import AppHeader from "./AppHeader";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -2102,22 +2103,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <header className="app-header">
-        <div className="app-brand-mark">
-          <img
-            className="app-brand-logo"
-            src="/hefzech-logo.png"
-            alt="HEFZECH logo"
-          />
-        </div>
-        <div>
-          <h1>Epoxy Resin Volume Estimator</h1>
-          <p className="app-subtitle">
-            Professional Tool for River Tables and Woodworking Projects
-          </p>
-          <p className="app-tagline">From Photo to Precise Resin Estimate</p>
-        </div>
-      </header>
+      <AppHeader />
 
       <div className="calculation-mode-bar">
         <span className="calculation-mode-label">

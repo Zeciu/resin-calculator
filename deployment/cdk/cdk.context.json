@@ -1,0 +1,38 @@
+{
+  "vpc-provider:account=325866321073:filter.isDefault=true:region=eu-central-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-04df8789790d5bd9e",
+    "vpcCidrBlock": "172.31.0.0/16",
+    "ownerAccountId": "325866321073",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-03ce47b37860a7a59",
+            "cidr": "172.31.16.0/20",
+            "availabilityZone": "eu-central-1a",
+            "routeTableId": "rtb-0525aa3e0c430bb49"
+          },
+          {
+            "subnetId": "subnet-03b4af2110c004149",
+            "cidr": "172.31.32.0/20",
+            "availabilityZone": "eu-central-1b",
+            "routeTableId": "rtb-0525aa3e0c430bb49"
+          },
+          {
+            "subnetId": "subnet-0835a34c43be13c80",
+            "cidr": "172.31.0.0/20",
+            "availabilityZone": "eu-central-1c",
+            "routeTableId": "rtb-0525aa3e0c430bb49"
+          }
+        ]
+      }
+    ]
+  },
+  "hosted-zone:account=325866321073:domainName=hfzwood.com:region=eu-central-1": {
+    "Id": "/hostedzone/Z07974382ZQ7UI82HES6X",
+    "Name": "hfzwood.com."
+  }
+}

@@ -5,3 +5,5 @@ backend/*.pyc
 .env
 *.log
 .DS_Store
+/deployment/cdk/node_modules/
+/deployment/cdk/cdk.out/

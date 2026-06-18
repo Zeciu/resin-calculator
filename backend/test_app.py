@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch, AsyncMock
 from fastapi.testclient import TestClient
 from app import (
     app,
@@ -261,3 +262,62 @@ class TestCalculateFirstFillEndpoint:
             "firstFillThicknessMm": 5,
         })
         assert r.status_code == 400
+
+
+
+# ---------------------------------------------------------------------------
+# JWT middleware tests
+# ---------------------------------------------------------------------------
+
+VALID_PAYLOAD = {"sub": "user-123", "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_test", "token_use": "access"}
+MOCK_JWKS = {"keys": [{"kty": "RSA", "kid": "test-key"}]}
+
+
+class TestJwtMiddleware:
+    def test_health_endpoint_requires_no_auth(self):
+        """Health check is always public."""
+        response = client.get("/health")
+        assert response.status_code == 200
+
+    def test_protected_endpoint_without_token_returns_401(self):
+        """Requests without Authorization header are rejected when auth is enabled."""
+        with patch("app._AUTH_ENABLED", True):
+            response = client.post("/calculate", json={})
+            assert response.status_code == 401
+
+    def test_protected_endpoint_with_invalid_token_returns_401(self):
+        """Requests with a malformed token are rejected."""
+        with patch("app._AUTH_ENABLED", True), \
+             patch("app._get_jwks", AsyncMock(return_value=MOCK_JWKS)), \
+             patch("app.jwt.decode", side_effect=Exception("bad token")):
+            response = client.post(
+                "/calculate", json={},
+                headers={"Authorization": "Bearer not.a.real.token"}
+            )
+            assert response.status_code == 401
+
+    def test_protected_endpoint_with_valid_token_passes_through(self):
+        """Requests with a valid token reach the endpoint (may still get 400 for bad body)."""
+        with patch("app._AUTH_ENABLED", True), \
+             patch("app._get_jwks", AsyncMock(return_value=MOCK_JWKS)), \
+             patch("app.jwt.decode", return_value=VALID_PAYLOAD):
+            response = client.post(
+                "/calculate",
+                json={"polygonPoints": [], "referenceMeasurements": [], "depthMm": 10},
+                headers={"Authorization": "Bearer valid.token.here"}
+            )
+            # Middleware passed — endpoint logic returns 400 for empty polygon
+            assert response.status_code == 400
+
+    def test_auth_disabled_when_env_vars_missing(self):
+        """When COGNITO env vars are not set, all requests pass through without auth."""
+        with patch("app._AUTH_ENABLED", False):
+            response = client.post(
+                "/calculate",
+                json={"polygonPoints": [], "referenceMeasurements": [], "depthMm": 10},
+            )
+            # No 401 — auth is disabled; endpoint returns 400 for bad input
+            assert response.status_code == 400
+
+
+

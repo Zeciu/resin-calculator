@@ -27,6 +27,10 @@ resin-calculator/
       main.jsx      # Entry point
       styles.css    # Styles
     package.json    # Node dependencies
+  deployment/
+    README.md       # Deployment guide
+    cdk/            # AWS CDK Python app (infrastructure as code)
+    fargate/        # deploy.cmd (trigger ECS redeployment after image push)
 ```
 
 ## Prerequisites

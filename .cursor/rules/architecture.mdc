@@ -6,7 +6,7 @@ alwaysApply: true
 
 # Architecture Rules
 App will be deployed to AWS and will use multiple AWS services like Fargate, Cognito, S3, Dynamo.
-We will also need a payment processor integration like Strip, in the future.
+We will also need a payment processor integration like Stripe, in the future.
 When we write code, we must ensure it will be compatible with those.
 
 All the rules for a single page web app apply here, but we should pay attention to Intellectual Property (IP)
@@ -22,11 +22,15 @@ The guiding principle for deciding where logic belongs:
   if it is important IP logic, it should be in the backend, if possible.
 
 # Coding rules
-If you right new code, that implements significant functionality or changes existing functionality significantly,
+If you write new code that implements significant functionality or changes existing functionality significantly,
 you must write tests for it. We want the tests to cover backend and frontend, but we should keep the test execution
-time low, so using Selenim, for example, is discouraged.
+time low, so using Selenium, for example, is discouraged.
+
+## Infrastructure as Code
+We use AWS CDK (Python) in `deployment/cdk/` for all AWS resources. Every time a new AWS dependency is introduced,
+the CDK stack must be updated in the same change.
 
 # AI Assistant rules
 If you update the file with AI Assistant rules, please update both the Kiro and the Cursor rules.
 If the architecture of the app changes, you must update the AI Assistant rule files.
-You must keep the current level of abstraction for rule files and documentation files. Don't add starting tons of details, they clutter the big picture. 
+You must keep the current level of abstraction for rule files and documentation files. Don't start adding tons of details, they clutter the big picture. 
