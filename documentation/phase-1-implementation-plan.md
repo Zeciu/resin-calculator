@@ -1,0 +1,588 @@
+# Phase 1 Implementation Plan — Application Workspace
+
+This plan implements **Phase 1 – Foundation / Application Workspace** per the finalized documentation. It wraps the existing calculator without replacing it, delivers Guest + Authenticated UI modes with **mock/session auth** (production Cognito wiring deferred), and uses the current stack: **React 18 + Vite + Vitest** frontend, **FastAPI** backend (unchanged for Phase 1 UI work).
+
+---
+
+## Current baseline (relevant to sequencing)
+
+| Existing asset | Implication |
+|----------------|-------------|
+| `frontend/src/App.jsx` (~3,400 lines) | Full calculator; must be extracted, not rewritten |
+| `frontend/src/main.jsx` | Gates app: unauthenticated → `LandingPage`, authenticated → `App` |
+| `LandingPage.jsx` + Amplify/Cognito | Conflicts with doc Guest Mode workspace; must be reconciled in Phase 1 |
+| `AppHeader.jsx` | Hero branding exists; workspace hero should reuse/adapt it |
+| `App.test.jsx` | Tests assume `App` is root; must be updated after extraction |
+| No `react-router` | Routing layer must be added |
+| Backend Cognito middleware | Optional when env vars unset; no backend work required for Phase 1 UI |
+
+---
+
+## Execution principles
+
+- One task = one verifiable outcome.
+- Calculator regression tests run after extraction (Task 34+).
+- Mock auth in Phase 1; Cognito preserved behind an adapter for a later phase.
+- No CDK/infra changes in Phase 1 (no new AWS dependencies).
+
+---
+
+## Phase 1A — Foundation & Workspace (Tasks 1–10)
+
+### Task 1 — Add client-side routing dependency
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Enable module-based navigation inside the workspace |
+| **Files likely modified** | `frontend/package.json`, `frontend/package-lock.json` |
+| **Dependencies** | None |
+| **Expected result** | `react-router-dom` installed; `npm run build` succeeds |
+| **Acceptance criteria** | Dependency resolves; no breaking changes to existing entry point |
+
+---
+
+### Task 2 — Define workspace navigation configuration
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Single source of truth for sidebar items, routes, and lock rules |
+| **Files likely modified** | `frontend/src/workspace/navigation.js` (new) |
+| **Dependencies** | Task 1 |
+| **Expected result** | Config exports nav items: New Project, Projects, Manual & Tutorials, Glossary, Knowledge Base, Login/Register, My Account; each with `id`, `label`, `path`, `requiresAuth` |
+| **Acceptance criteria** | Config matches all three docs; importable without React |
+
+---
+
+### Task 3 — Define workspace route map
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Map URL paths to workspace modules |
+| **Files likely modified** | `frontend/src/workspace/routes.js` (new) |
+| **Dependencies** | Task 2 |
+| **Expected result** | Constants for `/`, `/login`, `/register`, `/password-recovery`, `/account`, `/projects`, `/manual`, `/glossary`, `/knowledge-base`, `/calculator` |
+| **Acceptance criteria** | No duplicate path strings across codebase after adoption |
+
+---
+
+### Task 4 — Create Phase 1 mock authentication context
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Provide `isAuthenticated`, `user`, `login()`, `logout()` without Cognito |
+| **Files likely modified** | `frontend/src/auth/AuthContext.jsx`, `frontend/src/auth/useAuth.js` (new) |
+| **Dependencies** | None |
+| **Expected result** | Auth state persists in `sessionStorage`; login/register set authenticated stub user |
+| **Acceptance criteria** | Unit-testable; no Amplify calls; logout clears session |
+
+---
+
+### Task 5 — Create auth adapter interface stub for future Cognito
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Isolate existing Amplify/Cognito code behind a swappable boundary |
+| **Files likely modified** | `frontend/src/auth/authAdapter.js` (new), optionally move logic from `LandingPage.jsx` |
+| **Dependencies** | Task 4 |
+| **Expected result** | `mockAuthAdapter` used in Phase 1; `cognitoAuthAdapter` stub exports same interface, not wired |
+| **Acceptance criteria** | `AuthContext` depends on adapter interface only; `amplify-config.js` untouched for now |
+
+---
+
+### Task 6 — Create ApplicationWorkspace shell component
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Three-area layout: hero, sidebar, central content |
+| **Files likely modified** | `frontend/src/workspace/ApplicationWorkspace.jsx` (new) |
+| **Dependencies** | Tasks 1, 4 |
+| **Expected result** | Shell renders hero + sidebar + `<Outlet />` or children slot |
+| **Acceptance criteria** | Renders without errors; no module content yet |
+
+---
+
+### Task 7 — Implement WorkspaceHero section
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Top brand area per dashboard spec |
+| **Files likely modified** | `frontend/src/workspace/WorkspaceHero.jsx` (new), possibly refactor `AppHeader.jsx` |
+| **Dependencies** | Task 6 |
+| **Expected result** | Logo, HFZWood name, headline, subtitle, background image |
+| **Acceptance criteria** | Matches spec copy; reuses existing brand assets (`/hefzech-logo.png`, header background) |
+
+---
+
+### Task 8 — Implement WorkspaceSidebar navigation
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Persistent left nav from config |
+| **Files likely modified** | `frontend/src/workspace/WorkspaceSidebar.jsx` (new) |
+| **Dependencies** | Tasks 2, 6, 4 |
+| **Expected result** | All nav items render; active item highlighted; lock icon when guest + `requiresAuth` |
+| **Acceptance criteria** | Sidebar visible on all workspace routes; Login/Register never locked in guest mode |
+
+---
+
+### Task 9 — Add workspace layout CSS
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Visual structure consistent with existing warm ivory theme |
+| **Files likely modified** | `frontend/src/styles.css` or `frontend/src/workspace/workspace.css` (new) |
+| **Dependencies** | Tasks 6–8 |
+| **Expected result** | Hero + sidebar + content grid; calm spacing; responsive baseline (sidebar stacks on narrow viewport) |
+| **Acceptance criteria** | Layout usable at desktop width; no horizontal overflow in shell |
+
+---
+
+### Task 10 — Wire workspace router shell
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Connect router to ApplicationWorkspace as layout route |
+| **Files likely modified** | `frontend/src/workspace/WorkspaceRouter.jsx` (new), `frontend/src/main.jsx` |
+| **Dependencies** | Tasks 1, 3, 6 |
+| **Expected result** | All workspace routes render inside shell |
+| **Acceptance criteria** | Browser navigation works; back/forward preserves shell |
+
+---
+
+## Phase 1B — Guest & Authentication (Tasks 11–23)
+
+### Task 11 — Create GuestIntro central content
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Default guest/authenticated landing content per spec |
+| **Files likely modified** | `frontend/src/workspace/GuestIntro.jsx` (new) |
+| **Dependencies** | Task 6 |
+| **Expected result** | Positioning statement, supporting line, video placeholder, account-required message |
+| **Acceptance criteria** | Copy matches dashboard-spec suggested text |
+
+---
+
+### Task 12 — Create LockedModuleMessage component
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Friendly locked-feature message for guest nav clicks |
+| **Files likely modified** | `frontend/src/workspace/LockedModuleMessage.jsx` (new) |
+| **Dependencies** | Task 11 |
+| **Expected result** | Shows spec message when guest selects locked module |
+| **Acceptance criteria** | Message appears in central area; does not navigate away from workspace |
+
+---
+
+### Task 13 — Implement guest navigation guard logic
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Locked modules show LockedModuleMessage; auth routes remain accessible |
+| **Files likely modified** | `frontend/src/workspace/useWorkspaceNavigation.js` (new), `WorkspaceSidebar.jsx` |
+| **Dependencies** | Tasks 4, 8, 12 |
+| **Expected result** | Guest clicking New Project / Projects / Manual / Glossary / KB → locked message; Login/Register → auth pages |
+| **Acceptance criteria** | Behavior matches application-design §6 Guest Mode |
+
+---
+
+### Task 14 — Guest Mode smoke test
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Verify guest behavior independently |
+| **Files likely modified** | `frontend/src/workspace/GuestMode.test.jsx` (new) |
+| **Dependencies** | Tasks 10, 13 |
+| **Expected result** | Tests: guest sees all nav items; locked click shows message; intro video area present |
+| **Acceptance criteria** | `npm run test` passes |
+
+---
+
+### Task 15 — Create Login page UI
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | In-app login interface (UI shell, not Cognito Hosted UI) |
+| **Files likely modified** | `frontend/src/auth/LoginPage.jsx` (new) |
+| **Dependencies** | Tasks 4, 10 |
+| **Expected result** | Email/username + password fields, submit button, link to Register and Password Recovery |
+| **Acceptance criteria** | Renders inside workspace central area; accessible from sidebar |
+
+---
+
+### Task 16 — Create Registration page UI
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | In-app registration interface |
+| **Files likely modified** | `frontend/src/auth/RegisterPage.jsx` (new) |
+| **Dependencies** | Task 15 |
+| **Expected result** | Registration form with validation messages (client-side only) |
+| **Acceptance criteria** | Successful submit calls mock `login()` and redirects to workspace |
+
+---
+
+### Task 17 — Create Password Recovery page UI
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Password recovery interface (UI only) |
+| **Files likely modified** | `frontend/src/auth/PasswordRecoveryPage.jsx` (new) |
+| **Dependencies** | Task 15 |
+| **Expected result** | Email field + submit; confirmation message (no real email sent) |
+| **Acceptance criteria** | Page reachable from Login; no backend dependency |
+
+---
+
+### Task 18 — Wire mock login/logout flow
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Complete Phase 1 auth UX without production services |
+| **Files likely modified** | `AuthContext.jsx`, `LoginPage.jsx`, `RegisterPage.jsx`, `WorkspaceSidebar.jsx` |
+| **Dependencies** | Tasks 4, 15–17 |
+| **Expected result** | Login/Register authenticates user; sidebar switches to Authenticated Mode |
+| **Acceptance criteria** | Refresh preserves session; logout returns to Guest Mode |
+
+---
+
+### Task 19 — Auth UI smoke tests
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Verify mock auth flows |
+| **Files likely modified** | `frontend/src/auth/AuthFlow.test.jsx` (new) |
+| **Dependencies** | Task 18 |
+| **Expected result** | Tests: login unlocks nav; logout re-locks modules; session restore works |
+| **Acceptance criteria** | `npm run test` passes |
+
+---
+
+### Task 20 — Implement Authenticated Mode nav unlock
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | All module nav items active when authenticated |
+| **Files likely modified** | `WorkspaceSidebar.jsx`, `useWorkspaceNavigation.js` |
+| **Dependencies** | Task 18 |
+| **Expected result** | No lock icons; module routes navigable |
+| **Acceptance criteria** | Guest vs authenticated behavior clearly distinct |
+
+---
+
+### Task 21 — Replace Login/Register with My Account nav item
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Sidebar shows My Account when authenticated |
+| **Files likely modified** | `WorkspaceSidebar.jsx`, `navigation.js` |
+| **Dependencies** | Task 20 |
+| **Expected result** | `Login / Register` hidden after auth; `My Account` shown |
+| **Acceptance criteria** | Matches dashboard-spec Authenticated Mode |
+
+---
+
+### Task 22 — Create My Account page UI
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Profile, subscription status placeholder, settings placeholder |
+| **Files likely modified** | `frontend/src/account/MyAccountPage.jsx` (new) |
+| **Dependencies** | Tasks 10, 21 |
+| **Expected result** | Sections for profile info, subscription status (static placeholder), settings links |
+| **Acceptance criteria** | Logout control present; no real billing integration |
+
+---
+
+### Task 23 — My Account page test
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Verify account page and logout |
+| **Files likely modified** | `frontend/src/account/MyAccountPage.test.jsx` (new) |
+| **Dependencies** | Task 22 |
+| **Expected result** | Renders profile stub; logout works |
+| **Acceptance criteria** | `npm run test` passes |
+
+---
+
+## Phase 1C — Platform Modules (Tasks 24–28)
+
+### Task 24 — Create shared ModulePlaceholder component
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Reusable placeholder for Phase 2+ modules |
+| **Files likely modified** | `frontend/src/workspace/ModulePlaceholder.jsx` (new) |
+| **Dependencies** | Task 6 |
+| **Expected result** | Title + short description + “Coming in a future phase” message |
+| **Acceptance criteria** | Styling consistent with workspace |
+
+---
+
+### Task 25 — Projects module placeholder page
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Routed Projects destination for authenticated users |
+| **Files likely modified** | `frontend/src/modules/ProjectsPage.jsx` (new) |
+| **Dependencies** | Tasks 10, 20, 24 |
+| **Expected result** | Placeholder explaining future project list |
+| **Acceptance criteria** | Reachable only when authenticated |
+
+---
+
+### Task 26 — Manual & Tutorials placeholder page
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Educational module stub |
+| **Files likely modified** | `frontend/src/modules/ManualTutorialsPage.jsx` (new) |
+| **Dependencies** | Tasks 10, 20, 24 |
+| **Expected result** | Placeholder with module description from docs |
+| **Acceptance criteria** | Authenticated route works |
+
+---
+
+### Task 27 — Glossary placeholder page
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Glossary module stub |
+| **Files likely modified** | `frontend/src/modules/GlossaryPage.jsx` (new) |
+| **Dependencies** | Tasks 10, 20, 24 |
+| **Expected result** | Placeholder page routed from sidebar |
+| **Acceptance criteria** | Authenticated route works |
+
+---
+
+### Task 28 — Knowledge Base placeholder page
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Knowledge Base module stub |
+| **Files likely modified** | `frontend/src/modules/KnowledgeBasePage.jsx` (new) |
+| **Dependencies** | Tasks 10, 20, 24 |
+| **Expected result** | Placeholder page routed from sidebar |
+| **Acceptance criteria** | Authenticated route works |
+
+---
+
+## Phase 1D — Calculator Integration & Verification (Tasks 29–42)
+
+### Task 29 — Extract calculator into dedicated component
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Preserve calculator logic without rewriting |
+| **Files likely modified** | Rename/move `App.jsx` → `frontend/src/calculator/ResinCalculator.jsx`; update imports |
+| **Dependencies** | None (can parallelize after Task 1, but do before routing integration) |
+| **Expected result** | All existing calculator behavior unchanged; export `ResinCalculator` |
+| **Acceptance criteria** | `npm run build` succeeds; existing `App.test.jsx` still passes against extracted component |
+
+---
+
+### Task 30 — Remove duplicate AppHeader from calculator when inside workspace
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Avoid double hero when calculator loads in workspace |
+| **Files likely modified** | `ResinCalculator.jsx`, `WorkspaceHero.jsx` |
+| **Dependencies** | Tasks 7, 29 |
+| **Expected result** | Calculator renders without top `AppHeader`; workspace hero provides branding |
+| **Acceptance criteria** | Calculator UI intact below workspace shell; no duplicate headers |
+
+---
+
+### Task 31 — Route New Project to calculator (authenticated only)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Connect primary action to existing workflow |
+| **Files likely modified** | `WorkspaceRouter.jsx`, `navigation.js` |
+| **Dependencies** | Tasks 20, 29, 30 |
+| **Expected result** | Authenticated user selecting New Project opens `ResinCalculator` in central area |
+| **Acceptance criteria** | Upload, draw, calculate, save/import, PDF export still work |
+
+---
+
+### Task 32 — Guest blocked from calculator route
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Direct URL to `/calculator` guarded in guest mode |
+| **Files likely modified** | `frontend/src/workspace/AuthRouteGuard.jsx` (new), `WorkspaceRouter.jsx` |
+| **Dependencies** | Tasks 13, 31 |
+| **Expected result** | Guest navigating to calculator URL sees LockedModuleMessage or redirect |
+| **Acceptance criteria** | No calculator access without authentication |
+
+---
+
+### Task 33 — Calculator integration regression tests
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Ensure calculator still works after extraction and routing |
+| **Files likely modified** | `frontend/src/calculator/ResinCalculator.test.jsx` (migrate from `App.test.jsx`) |
+| **Dependencies** | Tasks 29, 31 |
+| **Expected result** | Existing smoke tests pass against `ResinCalculator` |
+| **Acceptance criteria** | `npm run test` passes; key workflows (upload UI, save error, PDF disabled) covered |
+
+---
+
+### Task 34 — Refactor main.jsx to workspace-first entry
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | All users land in Application Workspace (Guest or Authenticated) |
+| **Files likely modified** | `frontend/src/main.jsx` |
+| **Dependencies** | Tasks 10, 18 |
+| **Expected result** | No more `LandingPage` gate; `AuthProvider` + `WorkspaceRouter` at root |
+| **Acceptance criteria** | App loads workspace in guest mode by default |
+
+---
+
+### Task 35 — Retire or redirect legacy LandingPage
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Align with doc Guest Mode (workspace replaces separate landing) |
+| **Files likely modified** | `LandingPage.jsx` (delete or redirect stub), `main.jsx` |
+| **Dependencies** | Task 34 |
+| **Expected result** | `LandingPage` no longer primary entry; guest intro lives in workspace |
+| **Acceptance criteria** | No dead routes; no duplicate login UX |
+
+---
+
+### Task 36 — Preserve /callback route for future Cognito (non-blocking)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Keep OAuth callback path available without activating production auth |
+| **Files likely modified** | `WorkspaceRouter.jsx`, `AuthCallback.jsx` |
+| **Dependencies** | Tasks 5, 34 |
+| **Expected result** | `/callback` renders `AuthCallback` with message or future hook; does not break mock auth flow |
+| **Acceptance criteria** | Route exists; Phase 1 does not require Cognito env vars |
+
+---
+
+### Task 37 — Default workspace home route behavior
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Define what `/` shows in each mode |
+| **Files likely modified** | `WorkspaceRouter.jsx` |
+| **Dependencies** | Tasks 11, 18 |
+| **Expected result** | Guest → `GuestIntro`; Authenticated → `GuestIntro` or redirect to Projects (document choice: intro OK for Phase 1) |
+| **Acceptance criteria** | Consistent, predictable home behavior |
+
+---
+
+### Task 38 — Emphasize New Project as primary action (authenticated)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Visual emphasis per application-design §6 |
+| **Files likely modified** | `WorkspaceSidebar.jsx`, `workspace.css` |
+| **Dependencies** | Task 20 |
+| **Expected result** | New Project uses primary-action styling when authenticated |
+| **Acceptance criteria** | Visually distinct from other nav items |
+
+---
+
+### Task 39 — End-to-end workspace navigation test
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Verify full Phase 1 navigation matrix |
+| **Files likely modified** | `frontend/src/workspace/WorkspaceNavigation.test.jsx` (new) |
+| **Dependencies** | Tasks 25–31, 34 |
+| **Expected result** | Tests cover: guest locked modules, auth pages, authenticated module routes, calculator via New Project |
+| **Acceptance criteria** | `npm run test` passes |
+
+---
+
+### Task 40 — Production build verification
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Confirm deployable artifact |
+| **Files likely modified** | None (verification only) |
+| **Dependencies** | All prior tasks |
+| **Expected result** | `npm run build` succeeds; bundle loads in browser |
+| **Acceptance criteria** | No console errors on initial load; workspace renders |
+
+---
+
+### Task 41 — Backend regression check
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Ensure Phase 1 frontend changes do not break API |
+| **Files likely modified** | None (verification only) |
+| **Dependencies** | Task 31 |
+| **Expected result** | `uv run --project backend pytest` (or existing test command) passes |
+| **Acceptance criteria** | Calculator API calls still work when auth middleware disabled locally |
+
+---
+
+### Task 42 — Phase 1 completion checklist review
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Map implementation to roadmap Phase 1 objectives |
+| **Files likely modified** | None |
+| **Dependencies** | Task 40 |
+| **Expected result** | Written confirmation each roadmap objective is met |
+| **Acceptance criteria** | All Phase 1 completion items from `implementation-roadmap.md` checked off |
+
+---
+
+## Dependency overview (critical path)
+
+```
+Task 1 → 2 → 3 → 6 → 10 → 13 → 18 → 20 → 31 → 34 → 40
+              ↓
+              4 → 5 → 15–17 → 18
+              ↓
+              29 → 30 → 31 → 33
+```
+
+**Parallelizable after Task 6:** Tasks 11–12, 24, 29  
+**Parallelizable after Task 20:** Tasks 25–28  
+**Tests:** Tasks 14, 19, 23, 33, 39 after their feature blocks
+
+---
+
+## Phase 1 completion mapping (roadmap objectives)
+
+| Roadmap objective | Covered by tasks |
+|-------------------|------------------|
+| Application Workspace implemented | 6–10, 9 |
+| Guest + Authenticated modes defined | 11–14, 18–20 |
+| All nav modules routable | 2–3, 10, 25–28 |
+| Login, Register, Password Recovery UI | 15–17 |
+| My Account UI | 21–22 |
+| Calculator via New Project | 29–32 |
+| Stable navigation | 10, 34, 39 |
+| Ready for backend auth integration | 4–5, 36 |
+
+---
+
+## Out of scope for Phase 1 (explicit)
+
+- AWS Cognito production wiring
+- DynamoDB / S3 project persistence
+- CDK stack changes
+- Real subscription/billing
+- Educational content CMS
+- Backend API changes (unless auth guard breaks local dev — verify Task 41)
+
+---
+
+## Recommended execution order (summary)
+
+Execute tasks **1 → 42 sequentially** by number, allowing parallel work only where noted. Do not start Task 31 until Task 29 calculator extraction is complete and tested. Do not refactor `main.jsx` (Task 34) until workspace shell and mock auth are functional in isolation.
+
+This checklist is ready to execute one task at a time.
