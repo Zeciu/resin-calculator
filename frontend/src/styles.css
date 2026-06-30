@@ -1762,3 +1762,111 @@ button.workspace-sidebar__link {
 .register-page__link:hover {
   text-decoration: underline;
 }
+
+/* ── Password recovery page (workspace central content) ──────── */
+.password-recovery-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 420px;
+}
+
+.password-recovery-page__title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #3a3228;
+}
+
+.password-recovery-page__intro,
+.password-recovery-page__confirmation {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a4034;
+}
+
+.password-recovery-page__confirmation {
+  padding: 12px 14px;
+  background: var(--surface-ivory);
+  border: 1px solid var(--border-warm);
+  border-radius: 10px;
+}
+
+.password-recovery-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.password-recovery-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.password-recovery-page__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a4034;
+}
+
+.password-recovery-page__input {
+  padding: 10px 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #3a3228;
+  background: var(--surface-ivory);
+  border: 1px solid var(--border-warm);
+  border-radius: 10px;
+}
+
+.password-recovery-page__input:focus {
+  outline: 2px solid #b8956a;
+  outline-offset: 1px;
+}
+
+.password-recovery-page__input[aria-invalid="true"] {
+  border-color: #a94442;
+}
+
+.password-recovery-page__error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #a94442;
+}
+
+.password-recovery-page__submit {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: #6b4f2a;
+  border: 1px solid #5a4020;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.password-recovery-page__submit:hover {
+  background: #5a4020;
+}
+
+.password-recovery-page__links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.password-recovery-page__link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b4f2a;
+  text-decoration: none;
+}
+
+.password-recovery-page__link:hover {
+  text-decoration: underline;
+}

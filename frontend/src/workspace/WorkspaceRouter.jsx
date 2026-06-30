@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "../auth/LoginPage.jsx";
+import PasswordRecoveryPage from "../auth/PasswordRecoveryPage.jsx";
 import RegisterPage from "../auth/RegisterPage.jsx";
 import ApplicationWorkspace from "./ApplicationWorkspace.jsx";
 import RoutePlaceholder from "./RoutePlaceholder.jsx";
@@ -26,7 +27,6 @@ function workspaceRoutePath(route) {
 }
 
 const WORKSPACE_ROUTE_PLACEHOLDERS = [
-  { path: ROUTES.PASSWORD_RECOVERY, title: "Password Recovery" },
   { path: ROUTES.ACCOUNT, title: "My Account" },
   { path: ROUTES.PROJECTS, title: "Projects" },
   { path: ROUTES.MANUAL, title: "Manual & Tutorials" },
@@ -41,6 +41,10 @@ export default function WorkspaceRouter() {
       <Route element={<ApplicationWorkspace />}>
         <Route path={workspaceRoutePath(ROUTES.LOGIN)} element={<LoginPage />} />
         <Route path={workspaceRoutePath(ROUTES.REGISTER)} element={<RegisterPage />} />
+        <Route
+          path={workspaceRoutePath(ROUTES.PASSWORD_RECOVERY)}
+          element={<PasswordRecoveryPage />}
+        />
         {WORKSPACE_ROUTE_PLACEHOLDERS.map(({ path, title }) => (
           <Route
             key={path}

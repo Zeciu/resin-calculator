@@ -365,6 +365,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 15 |
 | **Expected result** | Email field + submit; confirmation message (no real email sent) |
 | **Acceptance criteria** | Page reachable from Login; no backend dependency |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `PasswordRecoveryPage.jsx` with email field, submit button, link back to Login, and client-side email validation
+- Valid submit shows a confirmation message (no API call or email sent); invalid submit shows field errors
+- Updated `WorkspaceRouter.jsx` so `/password-recovery` renders `PasswordRecoveryPage`; added scoped `password-recovery-page*` styles in `styles.css`
+- Manual verification passed; `npm run build` and `npm run test` succeeded
 
 ---
 
