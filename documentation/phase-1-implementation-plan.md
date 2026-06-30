@@ -262,6 +262,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 11 |
 | **Expected result** | Shows spec message when guest selects locked module |
 | **Acceptance criteria** | Message appears in central area; does not navigate away from workspace |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `LockedModuleMessage.jsx` with approved title, explanatory text, and text-only action line
+- Added scoped `locked-module-message*` styles in `styles.css`; component not wired into navigation yet (deferred to Task 13)
+- `npm run build` succeeded; `WorkspaceSidebar.jsx`, `WorkspaceRouter.jsx`, `main.jsx`, and calculator files left unchanged
 
 ---
 
