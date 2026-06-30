@@ -3,47 +3,49 @@
  * Single source of truth for nav labels, paths, and auth requirements.
  */
 
+import { ROUTES } from "./routes.js";
+
 export const WORKSPACE_NAV_ITEMS = [
   {
     id: "new-project",
     label: "New Project",
-    path: "/new-project",
+    path: ROUTES.NEW_PROJECT,
     requiresAuth: true,
   },
   {
     id: "projects",
     label: "Projects",
-    path: "/projects",
+    path: ROUTES.PROJECTS,
     requiresAuth: true,
   },
   {
     id: "manual-tutorials",
     label: "Manual & Tutorials",
-    path: "/manual",
+    path: ROUTES.MANUAL,
     requiresAuth: true,
   },
   {
     id: "glossary",
     label: "Glossary",
-    path: "/glossary",
+    path: ROUTES.GLOSSARY,
     requiresAuth: true,
   },
   {
     id: "knowledge-base",
     label: "Knowledge Base",
-    path: "/knowledge-base",
+    path: ROUTES.KNOWLEDGE_BASE,
     requiresAuth: true,
   },
   {
     id: "login-register",
     label: "Login / Register",
-    path: "/login",
+    path: ROUTES.LOGIN,
     requiresAuth: false,
   },
   {
     id: "my-account",
     label: "My Account",
-    path: "/account",
+    path: ROUTES.ACCOUNT,
     requiresAuth: true,
   },
 ];

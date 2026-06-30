@@ -78,6 +78,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 2 |
 | **Expected result** | Constants for `/`, `/login`, `/register`, `/password-recovery`, `/account`, `/projects`, `/manual`, `/glossary`, `/knowledge-base`, `/calculator` |
 | **Acceptance criteria** | No duplicate path strings across codebase after adoption |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `frontend/src/workspace/routes.js` exporting `ROUTES` with ten path constants; `/new-project` used instead of `/calculator` per Task 2
+- Updated `navigation.js` to import path values from `ROUTES`; no duplicate path literals remain in `frontend/src/workspace/`
+- `npm run build` succeeded; `main.jsx`, calculator files, and `/callback` route left unchanged
 
 ---
 
