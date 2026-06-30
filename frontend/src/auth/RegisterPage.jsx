@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth.js";
 import { ROUTES } from "../workspace/routes.js";
 
 const INITIAL_ERRORS = {
@@ -48,16 +49,23 @@ function hasValidationErrors(errors) {
 }
 
 export default function RegisterPage() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [errors, setErrors] = useState(INITIAL_ERRORS);
 
   function handleSubmit(event) {
     event.preventDefault();
-    const nextErrors = validateRegistration(new FormData(event.currentTarget));
+    const formData = new FormData(event.currentTarget);
+    const nextErrors = validateRegistration(formData);
     setErrors(nextErrors);
 
     if (!hasValidationErrors(nextErrors)) {
+      const email = String(formData.get("email") ?? "").trim();
+      const username = String(formData.get("username") ?? "").trim();
+      login({ email, username });
       event.currentTarget.reset();
       setErrors(INITIAL_ERRORS);
+      navigate(ROUTES.PROJECTS, { replace: true });
     }
   }
 

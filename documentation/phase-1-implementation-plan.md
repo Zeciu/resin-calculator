@@ -386,6 +386,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 4, 15–17 |
 | **Expected result** | Login/Register authenticates user; sidebar switches to Authenticated Mode |
 | **Acceptance criteria** | Refresh preserves session; logout returns to Guest Mode |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- `LoginPage.jsx` calls mock `login()` on valid submit and navigates to `/projects`; `RegisterPage.jsx` calls `login({ email, username })` after valid registration submit and navigates to `/projects`
+- Session persists via existing `AuthContext` + `sessionStorage` (`hfzwood.mockAuth`); no `AuthContext` changes required
+- Added temporary sidebar **Log out** button for Task 18 verification — clears session, returns to `/login`, and guest lock behavior is restored
+- Manual verification passed; `npm run build` and `npm run test` succeeded
 
 ---
 

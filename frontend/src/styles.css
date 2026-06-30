@@ -1462,6 +1462,11 @@ button.workspace-sidebar__link {
   text-align: left;
 }
 
+.workspace-sidebar__logout {
+  margin-top: 8px;
+  color: #6b4f2a;
+}
+
 .workspace-sidebar__link:hover {
   background: var(--surface-ivory);
   border-color: var(--border-warm-soft);
@@ -1651,6 +1656,13 @@ button.workspace-sidebar__link {
 
 .login-page__submit:hover {
   background: #5a4020;
+}
+
+.login-page__error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #a94442;
 }
 
 .login-page__links {
