@@ -38,6 +38,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | None |
 | **Expected result** | `react-router-dom` installed; `npm run build` succeeds |
 | **Acceptance criteria** | Dependency resolves; no breaking changes to existing entry point |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Installed `react-router-dom@^7.18.1` with `npm install react-router-dom` in `frontend/`
+- Only `package.json` and `package-lock.json` changed; no application source files modified
+- `npm run build` succeeded after install
 
 ---
 
