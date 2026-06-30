@@ -118,6 +118,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 4 |
 | **Expected result** | `mockAuthAdapter` used in Phase 1; `cognitoAuthAdapter` stub exports same interface, not wired |
 | **Acceptance criteria** | `AuthContext` depends on adapter interface only; `amplify-config.js` untouched for now |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `frontend/src/auth/authAdapter.js` with `mockAuthAdapter` and a non-wired `cognitoAuthAdapter` stub sharing the same interface
+- Updated `AuthContext.jsx` to use an injected adapter interface, defaulting to `mockAuthAdapter` for Phase 1
+- Confirmed no Amplify imports in `frontend/src/auth/` and verified with `npm run build` passing
 
 ---
 
