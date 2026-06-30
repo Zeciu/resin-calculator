@@ -304,6 +304,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 10, 13 |
 | **Expected result** | Tests: guest sees all nav items; locked click shows message; intro video area present |
 | **Acceptance criteria** | `npm run test` passes |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `GuestMode.test.jsx` with three smoke tests: all sidebar nav items visible for guests, locked click shows `LockedModuleMessage`, and `GuestIntro` video placeholder present
+- Tests render `WorkspaceRouter` in `MemoryRouter` at `/login` with cleared `sessionStorage`; no production source changes
+- `npm run test` passed (12 tests: 9 existing + 3 new)
 
 ---
 
