@@ -158,6 +158,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 6 |
 | **Expected result** | Logo, HFZWood name, headline, subtitle, background image |
 | **Acceptance criteria** | Matches spec copy; reuses existing brand assets (`/hefzech-logo.png`, header background) |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `WorkspaceHero.jsx` with dashboard-spec copy and workspace-specific classes (`workspace-hero`, `workspace-hero__*`)
+- Wired `WorkspaceHero` into `ApplicationWorkspace.jsx`; added minimal `workspace-hero*` styles in `styles.css` without reusing `.app-header`
+- Reused `/hefzech-logo.png` and `/header-wood-epoxy.png`; `AppHeader.jsx` and calculator files left unchanged
 
 ---
 

@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import WorkspaceHero from "./WorkspaceHero.jsx";
 
 export default function ApplicationWorkspace({ children }) {
   return (
     <div className="application-workspace">
       <header className="workspace-hero-slot" aria-label="Workspace hero">
-        {/* Task 7 will render WorkspaceHero here. */}
+        <WorkspaceHero />
       </header>
 
       <div className="workspace-body">
