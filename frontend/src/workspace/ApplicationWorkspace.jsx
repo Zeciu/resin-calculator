@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import WorkspaceHero from "./WorkspaceHero.jsx";
+import WorkspaceSidebar from "./WorkspaceSidebar.jsx";
 
 export default function ApplicationWorkspace({ children }) {
   return (
@@ -10,7 +11,7 @@ export default function ApplicationWorkspace({ children }) {
 
       <div className="workspace-body">
         <aside className="workspace-sidebar-slot" aria-label="Workspace navigation">
-          {/* Task 8 will render WorkspaceSidebar here. */}
+          <WorkspaceSidebar />
         </aside>
 
         <main className="workspace-content">

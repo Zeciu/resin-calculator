@@ -178,6 +178,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 2, 6, 4 |
 | **Expected result** | All nav items render; active item highlighted; lock icon when guest + `requiresAuth` |
 | **Acceptance criteria** | Sidebar visible on all workspace routes; Login/Register never locked in guest mode |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `WorkspaceSidebar.jsx` rendering all seven items from `WORKSPACE_NAV_ITEMS` with workspace-specific class names
+- Added optional `isAuthenticated = false` prop for guest lock display; no direct `AuthContext` import or router active-state handling yet
+- Wired sidebar into `ApplicationWorkspace.jsx`; lock icon shown for guest + `requiresAuth`; Login/Register never locked; `npm run build` passed
 
 ---
 
