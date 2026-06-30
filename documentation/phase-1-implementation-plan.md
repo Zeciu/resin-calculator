@@ -282,6 +282,16 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 4, 8, 12 |
 | **Expected result** | Guest clicking New Project / Projects / Manual / Glossary / KB → locked message; Login/Register → auth pages |
 | **Acceptance criteria** | Behavior matches application-design §6 Guest Mode |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `useWorkspaceNavigation.js` with `WorkspaceNavigationProvider`, locked-view state, and guest lock helpers
+- Updated `ApplicationWorkspace.jsx` with workspace-scoped `AuthProvider`, navigation provider, and conditional `LockedModuleMessage` vs `<Outlet />`
+- Updated `WorkspaceSidebar.jsx` to render locked items as clickable buttons (show locked message) and Login / Register as `NavLink`
+- Adjusted `styles.css` for clickable locked sidebar items; direct URL guards deferred; `main.jsx` and calculator files left unchanged
+- Manual verification passed on `/login`; `npm run build` succeeded
 
 ---
 

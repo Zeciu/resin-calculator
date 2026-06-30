@@ -1454,19 +1454,26 @@ button .help-icon-wrapper {
   transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
+button.workspace-sidebar__link {
+  width: 100%;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
 .workspace-sidebar__link:hover {
   background: var(--surface-ivory);
   border-color: var(--border-warm-soft);
 }
 
-.workspace-sidebar__link[aria-disabled="true"] {
-  opacity: 0.72;
-  cursor: not-allowed;
+.workspace-sidebar__link--locked {
+  opacity: 0.88;
 }
 
-.workspace-sidebar__link[aria-disabled="true"]:hover {
-  background: transparent;
-  border-color: transparent;
+.workspace-sidebar__link--locked:hover {
+  background: var(--surface-ivory);
+  border-color: var(--border-warm-soft);
 }
 
 .workspace-sidebar__link--active {
