@@ -324,6 +324,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 4, 10 |
 | **Expected result** | Email/username + password fields, submit button, link to Register and Password Recovery |
 | **Acceptance criteria** | Renders inside workspace central area; accessible from sidebar |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `LoginPage.jsx` with email/username field, password field, Log in button, and links to Register and Password Recovery (UI only; submit prevents default, no `login()` call)
+- Updated `WorkspaceRouter.jsx` so `/login` renders `LoginPage` inside the workspace shell; added scoped `login-page*` styles in `styles.css`
+- Manual verification passed; `npm run build` and `npm run test` succeeded; `AuthContext`, calculator files, and `main.jsx` left unchanged
 
 ---
 
