@@ -1469,6 +1469,11 @@ button .help-icon-wrapper {
   border-color: transparent;
 }
 
+.workspace-sidebar__link--active {
+  background: var(--surface-ivory);
+  border-color: var(--border-warm);
+}
+
 .workspace-sidebar__label {
   flex: 1 1 auto;
   min-width: 0;

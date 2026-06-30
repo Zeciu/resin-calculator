@@ -1,4 +1,5 @@
 import { Lock } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 
 export default function WorkspaceSidebar({ isAuthenticated = false }) {
@@ -10,10 +11,22 @@ export default function WorkspaceSidebar({ isAuthenticated = false }) {
 
           return (
             <li key={item.id} className="workspace-sidebar__item">
-              <a
-                className="workspace-sidebar__link"
-                href={item.path}
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  [
+                    "workspace-sidebar__link",
+                    isActive ? "workspace-sidebar__link--active" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")
+                }
                 aria-disabled={isLocked ? "true" : undefined}
+                onClick={(event) => {
+                  if (isLocked) {
+                    event.preventDefault();
+                  }
+                }}
               >
                 <span className="workspace-sidebar__label">{item.label}</span>
                 {isLocked ? (
@@ -21,7 +34,7 @@ export default function WorkspaceSidebar({ isAuthenticated = false }) {
                     <Lock size={14} strokeWidth={1.8} aria-hidden="true" />
                   </span>
                 ) : null}
-              </a>
+              </NavLink>
             </li>
           );
         })}

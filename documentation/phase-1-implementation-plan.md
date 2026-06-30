@@ -218,6 +218,16 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 1, 3, 6 |
 | **Expected result** | All workspace routes render inside shell |
 | **Acceptance criteria** | Browser navigation works; back/forward preserves shell |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `WorkspaceRouter.jsx` with `ApplicationWorkspace` as a layout route and `RoutePlaceholder` for each workspace path; exported `WORKSPACE_ROUTE_PATHS` and `isWorkspacePath()`
+- Updated `main.jsx` with `BrowserRouter`, workspace-path branching to `WorkspaceRouter`, and legacy `/` unchanged (`LandingPage` / `App` calculator)
+- Updated `WorkspaceSidebar.jsx` to use `NavLink` with active styling and `preventDefault` on locked items
+- Added `.workspace-sidebar__link--active` in `styles.css`; `ROUTES.HOME` excluded from workspace paths; `GuestIntro` wiring deferred to Task 37
+- `npm run build` succeeded
 
 ---
 
