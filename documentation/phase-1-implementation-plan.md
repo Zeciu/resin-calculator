@@ -58,6 +58,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 1 |
 | **Expected result** | Config exports nav items: New Project, Projects, Manual & Tutorials, Glossary, Knowledge Base, Login/Register, My Account; each with `id`, `label`, `path`, `requiresAuth` |
 | **Acceptance criteria** | Config matches all three docs; importable without React |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `frontend/src/workspace/navigation.js` exporting `WORKSPACE_NAV_ITEMS` only (no helper functions)
+- Seven nav items with `id`, `label`, `path`, `requiresAuth`; New Project uses user-oriented path `/new-project`
+- `npm run build` succeeded; no application logic or other files modified
 
 ---
 
