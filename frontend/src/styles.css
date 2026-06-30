@@ -1500,3 +1500,49 @@ button .help-icon-wrapper {
     padding: 16px;
   }
 }
+
+/* ── Guest intro (central workspace content) ─────────────────── */
+.guest-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guest-intro__statement {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #3a3228;
+}
+
+.guest-intro__supporting {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4a4034;
+}
+
+.guest-intro__video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding: 24px;
+  background: var(--surface-ivory);
+  border: 1px dashed var(--border-warm);
+  border-radius: 12px;
+  color: #6b5c48;
+}
+
+.guest-intro__video-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.guest-intro__account-message {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5a4a32;
+}

@@ -232,6 +232,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 6 |
 | **Expected result** | Positioning statement, supporting line, video placeholder, account-required message |
 | **Acceptance criteria** | Copy matches dashboard-spec suggested text |
+| **Completion date** | 2026-06-30 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `GuestIntro.jsx` with approved positioning statement, supporting line, video placeholder, and account message
+- Added minimal scoped `guest-intro*` styles in `styles.css`; component not wired into routing yet (deferred to Task 37)
+- `npm run build` succeeded; `WorkspaceRouter.jsx`, `main.jsx`, and calculator files left unchanged
 
 ---
 
