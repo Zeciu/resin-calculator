@@ -429,6 +429,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 18 |
 | **Expected result** | No lock icons; module routes navigable |
 | **Acceptance criteria** | Guest vs authenticated behavior clearly distinct |
+| **Completion date** | 2026-07-01 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Existing Tasks 13 and 18 already satisfied authenticated nav unlock via `isNavItemLocked()` and `useAuth().isAuthenticated`; no production source changes required
+- Added `AuthenticatedNav.test.jsx` to verify guest locked navigation, authenticated unlocked links without lock icons, and sidebar navigation to protected module routes
+- Manual review confirmed guest vs authenticated behavior remains distinct; Login / Register still visible (Task 21 deferred); `npm run build` and `npm run test` passed (18 tests)
 
 ---
 
