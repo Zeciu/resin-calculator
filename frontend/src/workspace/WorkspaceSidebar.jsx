@@ -1,7 +1,7 @@
 import { Lock } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
-import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
+import { getVisibleWorkspaceNavItems } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
 
@@ -35,7 +35,7 @@ export default function WorkspaceSidebar() {
   return (
     <nav className="workspace-sidebar" aria-label="Workspace navigation">
       <ul className="workspace-sidebar__list">
-        {WORKSPACE_NAV_ITEMS.map((item) => {
+        {getVisibleWorkspaceNavItems(isAuthenticated).map((item) => {
           const isLocked = isNavItemLocked(item);
 
           return (

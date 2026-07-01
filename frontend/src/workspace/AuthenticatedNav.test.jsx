@@ -73,7 +73,15 @@ describe("Authenticated Mode navigation", () => {
     }
 
     expect(screen.queryAllByLabelText("Locked feature")).toHaveLength(0);
+    expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
+  });
+
+  it("shows Login / Register and locked My Account for guests", () => {
+    renderWorkspace(ROUTES.LOGIN);
     expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /My Account/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
   });
 
   it("lets authenticated users navigate protected module routes from the sidebar", async () => {

@@ -449,6 +449,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 20 |
 | **Expected result** | `Login / Register` hidden after auth; `My Account` shown |
 | **Acceptance criteria** | Matches dashboard-spec Authenticated Mode |
+| **Completion date** | 2026-07-01 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Added `getVisibleWorkspaceNavItems(isAuthenticated)` in `navigation.js` to hide Login / Register when authenticated while keeping My Account in the config
+- Guest sidebar: Login / Register link visible; My Account remains locked; `WorkspaceSidebar.jsx` renders filtered items
+- Authenticated sidebar: Login / Register hidden; My Account shown as a normal link; temporary Log out button retained; `/account` still uses `RoutePlaceholder` (Task 22)
+- Manual verification passed; `npm run build` and `npm run test` succeeded (19 tests)
 
 ---
 

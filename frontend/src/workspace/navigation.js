@@ -49,3 +49,12 @@ export const WORKSPACE_NAV_ITEMS = [
     requiresAuth: true,
   },
 ];
+
+export function getVisibleWorkspaceNavItems(isAuthenticated) {
+  return WORKSPACE_NAV_ITEMS.filter((item) => {
+    if (item.id === "login-register") {
+      return !isAuthenticated;
+    }
+    return true;
+  });
+}
