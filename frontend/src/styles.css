@@ -1882,3 +1882,91 @@ button.workspace-sidebar__link {
 .password-recovery-page__link:hover {
   text-decoration: underline;
 }
+
+/* ── My Account page (workspace central content) ─────────────── */
+.my-account-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 520px;
+}
+
+.my-account-page__title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #3a3228;
+}
+
+.my-account-page__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.my-account-page__section-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a4034;
+}
+
+.my-account-page__details {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.my-account-page__detail {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 8px 16px;
+  margin: 0;
+}
+
+.my-account-page__detail-label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b5c48;
+}
+
+.my-account-page__detail-value {
+  margin: 0;
+  font-size: 15px;
+  color: #3a3228;
+}
+
+.my-account-page__placeholder,
+.my-account-page__settings-item {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a4034;
+}
+
+.my-account-page__settings-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.my-account-page__logout {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: #6b4f2a;
+  border: 1px solid #5a4020;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.my-account-page__logout:hover {
+  background: #5a4020;
+}

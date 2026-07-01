@@ -470,6 +470,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 10, 21 |
 | **Expected result** | Sections for profile info, subscription status (static placeholder), settings links |
 | **Acceptance criteria** | Logout control present; no real billing integration |
+| **Completion date** | 2026-07-01 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `MyAccountPage.jsx` with profile section (mock `username` and `email` from `useAuth()`), subscription free-plan placeholder, and settings coming-soon placeholders
+- Updated `WorkspaceRouter.jsx` so `/account` renders `MyAccountPage`; added scoped `my-account-page*` styles in `styles.css`
+- Page **Log out** button calls mock `logout()`, clears locked-module state, and navigates to `/login`; sidebar logout retained
+- Manual verification passed; no profile editing or billing/backend integration; `npm run build` and `npm run test` succeeded (19 tests)
 
 ---
 
