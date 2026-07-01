@@ -491,6 +491,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 22 |
 | **Expected result** | Renders profile stub; logout works |
 | **Acceptance criteria** | `npm run test` passes |
+| **Completion date** | 2026-07-01 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `MyAccountPage.test.jsx` with four tests using `MemoryRouter` + `WorkspaceRouter` at `/account` and seeded `sessionStorage`
+- Verifies mock profile username/email, subscription placeholder, and settings placeholder text
+- Verifies account-page logout clears session and returns to guest login mode with locked navigation restored
+- No production source changes required; `npm run test` passed (23 tests)
 
 ---
 
