@@ -407,6 +407,16 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 18 |
 | **Expected result** | Tests: login unlocks nav; logout re-locks modules; session restore works |
 | **Acceptance criteria** | `npm run test` passes |
+| **Completion date** | 2026-07-01 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `AuthFlow.test.jsx` with three smoke tests using `MemoryRouter` + `WorkspaceRouter` and `sessionStorage` setup/teardown
+- Login flow test: submit login form unlocks **New Project** navigation and shows **Log out**
+- Logout flow test: **Log out** re-locks navigation, returns to login page, and clears `hfzwood.mockAuth`
+- Session restoration test: pre-seeded `sessionStorage` restores authenticated nav without submitting login
+- No production source changes; `npm run test` passed (15 tests)
 
 ---
 

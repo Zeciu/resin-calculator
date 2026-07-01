@@ -1,0 +1,90 @@
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+import { beforeEach, describe, expect, it } from "vitest";
+import { ROUTES } from "../workspace/routes.js";
+import WorkspaceRouter from "../workspace/WorkspaceRouter.jsx";
+
+const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
+
+function renderWorkspace(initialPath = ROUTES.LOGIN) {
+  return render(
+    <MemoryRouter initialEntries={[initialPath]}>
+      <WorkspaceRouter />
+    </MemoryRouter>,
+  );
+}
+
+function expectNewProjectLocked() {
+  expect(screen.getByRole("button", { name: /New Project/i })).toBeInTheDocument();
+  expect(screen.queryByRole("link", { name: /New Project/i })).not.toBeInTheDocument();
+}
+
+function expectNewProjectUnlocked() {
+  expect(screen.getByRole("link", { name: /New Project/i })).toBeInTheDocument();
+  expect(screen.queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
+}
+
+function expectProjectsPlaceholder() {
+  const main = screen.getByRole("main");
+  expect(within(main).getByRole("heading", { name: /^Projects$/ })).toBeInTheDocument();
+}
+
+async function submitLoginForm(user, email = "user@example.com", password = "password123") {
+  await user.type(screen.getByRole("textbox", { name: /email or username/i }), email);
+  await user.type(screen.getByLabelText(/^password$/i), password);
+  await user.click(screen.getByRole("button", { name: /^log in$/i }));
+}
+
+describe("Auth flow", () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+  });
+
+  it("login unlocks navigation", async () => {
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.LOGIN);
+
+    expectNewProjectLocked();
+
+    await submitLoginForm(user);
+
+    expectProjectsPlaceholder();
+    expectNewProjectUnlocked();
+    expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
+  });
+
+  it("logout locks navigation again", async () => {
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.LOGIN);
+
+    await submitLoginForm(user);
+    expectNewProjectUnlocked();
+
+    await user.click(screen.getByRole("button", { name: /Log out/i }));
+
+    expect(screen.getByRole("heading", { name: /Log in to HFZWood/i })).toBeInTheDocument();
+    expectNewProjectLocked();
+    expect(screen.queryByRole("button", { name: /Log out/i })).not.toBeInTheDocument();
+    expect(sessionStorage.getItem(SESSION_STORAGE_KEY)).toBeNull();
+  });
+
+  it("restores authenticated navigation from sessionStorage", () => {
+    sessionStorage.setItem(
+      SESSION_STORAGE_KEY,
+      JSON.stringify({
+        user: {
+          id: "stub-user",
+          email: "restored@example.com",
+          username: "restored",
+        },
+      }),
+    );
+
+    renderWorkspace(ROUTES.PROJECTS);
+
+    expectProjectsPlaceholder();
+    expectNewProjectUnlocked();
+    expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
+  });
+});
