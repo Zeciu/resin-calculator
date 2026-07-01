@@ -535,6 +535,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 10, 20, 24 |
 | **Expected result** | Placeholder explaining future project list |
 | **Acceptance criteria** | Reachable only when authenticated |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `ProjectsPage.jsx` using `ModulePlaceholder` with Projects title and description of future saved resin estimation projects
+- Updated `WorkspaceRouter.jsx` so `/projects` renders `ProjectsPage` inside the workspace shell
+- No project list, save/load, persistence, or backend integration; manual verification passed; `npm run build` and `npm run test` succeeded (23 tests)
 
 ---
 
