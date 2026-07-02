@@ -617,6 +617,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | None (can parallelize after Task 1, but do before routing integration) |
 | **Expected result** | All existing calculator behavior unchanged; export `ResinCalculator` |
 | **Acceptance criteria** | `npm run build` succeeds; existing `App.test.jsx` still passes against extracted component |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Extracted calculator implementation from `App.jsx` into `frontend/src/calculator/ResinCalculator.jsx` and exported `ResinCalculator`
+- Updated `App.jsx` to a thin wrapper that imports and renders `ResinCalculator`
+- Applied minimal path adjustment for `AppHeader` import after extraction (`./AppHeader` to `../AppHeader`)
+- Calculator behavior was preserved with no intentional changes to UI flow, calculations, upload/save/import, or PDF export
 
 ---
 
