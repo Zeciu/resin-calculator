@@ -1,9 +1,8 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ROUTES } from "../workspace/routes.js";
-import WorkspaceRouter from "../workspace/WorkspaceRouter.jsx";
+import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -12,14 +11,6 @@ const MOCK_USER = {
   email: "account@example.com",
   username: "accountuser",
 };
-
-function renderWorkspace(initialPath = ROUTES.ACCOUNT) {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <WorkspaceRouter />
-    </MemoryRouter>,
-  );
-}
 
 function seedAuthenticatedSession(user = MOCK_USER) {
   sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ user }));
@@ -32,7 +23,7 @@ describe("My Account page", () => {
 
   it("renders mock profile information", () => {
     seedAuthenticatedSession();
-    renderWorkspace();
+    renderWorkspace(ROUTES.ACCOUNT);
 
     const main = screen.getByRole("main");
     expect(within(main).getByRole("heading", { name: "My Account" })).toBeInTheDocument();
@@ -42,7 +33,7 @@ describe("My Account page", () => {
 
   it("shows the subscription placeholder", () => {
     seedAuthenticatedSession();
-    renderWorkspace();
+    renderWorkspace(ROUTES.ACCOUNT);
 
     expect(
       screen.getByText(
@@ -53,7 +44,7 @@ describe("My Account page", () => {
 
   it("shows the settings placeholder", () => {
     seedAuthenticatedSession();
-    renderWorkspace();
+    renderWorkspace(ROUTES.ACCOUNT);
 
     expect(screen.getByText("Account preferences (coming soon)")).toBeInTheDocument();
     expect(screen.getByText("Notification settings (coming soon)")).toBeInTheDocument();
@@ -62,7 +53,7 @@ describe("My Account page", () => {
   it("logs out from the account page and returns to guest login mode", async () => {
     const user = userEvent.setup();
     seedAuthenticatedSession();
-    renderWorkspace();
+    renderWorkspace(ROUTES.ACCOUNT);
 
     const main = screen.getByRole("main");
     await user.click(within(main).getByRole("button", { name: /Log out/i }));

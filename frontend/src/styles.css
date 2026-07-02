@@ -1733,6 +1733,172 @@ button.workspace-sidebar__link {
   box-shadow: none;
 }
 
+/* ── Unsaved changes dialog (Task 46) ────────────────────────── */
+.unsaved-changes-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(43, 42, 36, 0.42);
+}
+
+.unsaved-changes-dialog {
+  width: min(100%, 460px);
+  padding: 20px;
+  background: #fbfaf6;
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(54, 45, 34, 0.18);
+}
+
+.unsaved-changes-dialog__title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #3a3228;
+}
+
+.unsaved-changes-dialog__body,
+.unsaved-changes-dialog__question {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #4a4034;
+}
+
+.unsaved-changes-dialog__question {
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.unsaved-changes-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.unsaved-changes-dialog__button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-warm);
+  background: var(--surface-ivory-soft);
+  color: #3a3228;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.unsaved-changes-dialog__button:hover {
+  background: var(--surface-ivory);
+}
+
+.unsaved-changes-dialog__button--primary {
+  background: #e7d3b1;
+  border-color: #9d6c3b;
+  color: #4b341f;
+}
+
+.unsaved-changes-dialog__button--danger {
+  background: #f6e8e8;
+  border-color: #c98f8f;
+  color: #6f2f2f;
+}
+
+/* ── Save project dialog (Task 47) ───────────────────────────── */
+.save-project-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(43, 42, 36, 0.42);
+}
+
+.save-project-dialog {
+  width: min(100%, 420px);
+  padding: 20px;
+  background: #fbfaf6;
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(54, 45, 34, 0.18);
+}
+
+.save-project-dialog__title {
+  margin: 0 0 14px;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #3a3228;
+}
+
+.save-project-dialog__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a4034;
+}
+
+.save-project-dialog__input {
+  padding: 8px 10px;
+  border: 1px solid var(--border-warm);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 15px;
+  color: #3a3228;
+}
+
+.save-project-dialog__input:focus {
+  outline: 2px solid #c9a66b;
+  outline-offset: 1px;
+}
+
+.save-project-dialog__error {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #8b2e2e;
+}
+
+.save-project-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.save-project-dialog__button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-warm);
+  background: var(--surface-ivory-soft);
+  color: #3a3228;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-project-dialog__button:hover:not(:disabled) {
+  background: var(--surface-ivory);
+}
+
+.save-project-dialog__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.save-project-dialog__button--primary {
+  background: #e7d3b1;
+  border-color: #9d6c3b;
+  color: #4b341f;
+}
+
 /* ── Guest intro (central workspace content) ─────────────────── */
 .guest-intro {
   display: flex;

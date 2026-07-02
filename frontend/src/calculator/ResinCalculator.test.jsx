@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import ResinCalculator from "./ResinCalculator.jsx";
+import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 
 // Canvas methods not implemented in jsdom
 HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
@@ -68,6 +69,18 @@ describe("ResinCalculator — header behavior", () => {
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
+  });
+
+  it("accepts HFZWood project files and legacy JSON project files for import", () => {
+    render(<ResinCalculator />);
+    const importInput = document.querySelector(
+      `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
+    );
+
+    expect(importInput).toBeInTheDocument();
+    expect(HFZ_PROJECT_IMPORT_ACCEPT).toContain(".hfzproject");
+    expect(HFZ_PROJECT_IMPORT_ACCEPT).toContain("application/json");
+    expect(HFZ_PROJECT_IMPORT_ACCEPT).toContain(".json");
   });
 });
 

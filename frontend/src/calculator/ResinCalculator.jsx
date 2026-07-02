@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { jsPDF } from "jspdf";
+import { computeProjectDirtyState } from "./projectDirtyState.js";
 import {
   CircleHelp,
   FileText,
@@ -14,6 +15,7 @@ import {
   ZoomOut,
 } from "lucide-react";
 import AppHeader from "../AppHeader";
+import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -525,7 +527,15 @@ function drawCanvas({
   );
 }
 
-export default function ResinCalculator({ showHeader = true, workspaceVariant }) {
+export default forwardRef(function ResinCalculator(
+  {
+    showHeader = true,
+    workspaceVariant,
+    onDirtyChange,
+    onSaveProjectRequest,
+  },
+  ref,
+) {
   const canvasRef = useRef(null);
   const workAreaRef = useRef(null);
   const imageRef = useRef(null);
@@ -588,6 +598,59 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
   const [result, setResult] = useState(null);
   const [resultOutdated, setResultOutdated] = useState(false);
   const [error, setError] = useState("");
+  const [importedProject, setImportedProject] = useState(false);
+  const buildProjectSnapshotRef = useRef(() => ({}));
+
+  useEffect(() => {
+    if (!onDirtyChange) {
+      return;
+    }
+
+    onDirtyChange(
+      computeProjectDirtyState({
+        referenceMeasurements,
+        draftReferencePoints,
+        polygonPoints,
+        moldBoundaryPoints,
+        woodBoundaryPolygons,
+        woodBoundaryPoints,
+        cavityPolygons,
+        currentCavityPoints,
+        projectNotes,
+        depthMm,
+        maxPourThicknessMm,
+        firstFillThicknessMm,
+        cavityDepthsMm,
+        result,
+        importedProject,
+        measurementsComplete,
+        moldBoundaryComplete,
+        woodBoundaryComplete,
+        cavitiesComplete,
+      }),
+    );
+  }, [
+    onDirtyChange,
+    referenceMeasurements,
+    draftReferencePoints,
+    polygonPoints,
+    moldBoundaryPoints,
+    woodBoundaryPolygons,
+    woodBoundaryPoints,
+    cavityPolygons,
+    currentCavityPoints,
+    projectNotes,
+    depthMm,
+    maxPourThicknessMm,
+    firstFillThicknessMm,
+    cavityDepthsMm,
+    result,
+    importedProject,
+    measurementsComplete,
+    moldBoundaryComplete,
+    woodBoundaryComplete,
+    cavitiesComplete,
+  ]);
 
   const markResultOutdated = () => {
     setResultOutdated((prev) => prev || Boolean(result));
@@ -907,6 +970,7 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
       img.onload = () => {
         const initialRotationDeg = img.height > img.width ? 90 : 0;
         imageRef.current = img;
+        setImportedProject(false);
         setImageDataUrl(dataUrl);
         setPolygonPoints([]);
         setUseImageBorderAsMold(false);
@@ -1324,6 +1388,12 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
     result,
   });
 
+  buildProjectSnapshotRef.current = buildProjectSnapshot;
+
+  useImperativeHandle(ref, () => ({
+    getProjectSnapshot: () => buildProjectSnapshotRef.current(),
+  }));
+
   const saveProject = () => {
     if (!imageDataUrl) {
       setError("Upload an image before saving a project.");
@@ -1344,6 +1414,15 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
     setError("");
+  };
+
+  const handleSaveProjectClick = () => {
+    if (workspaceVariant === "dedicated" && onSaveProjectRequest) {
+      onSaveProjectRequest();
+      return;
+    }
+
+    saveProject();
   };
 
   const restoreImportedProject = (project) => {
@@ -1389,6 +1468,7 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
       imageRef.current = img;
       dragRef.current = null;
       suppressNextClickRef.current = false;
+      setImportedProject(true);
 
       setImageDataUrl(project.image.dataUrl);
       setCalculationMode(ui.calculationMode || "standard");
@@ -2153,7 +2233,7 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
         <input
           ref={importFileInputRef}
           type="file"
-          accept="application/json,.json"
+          accept={HFZ_PROJECT_IMPORT_ACCEPT}
           className="hidden-file-input"
           onChange={importProject}
         />
@@ -3426,7 +3506,7 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
       <div className="bottom-project-actions">
         <h3>Project Actions</h3>
         <div className="bottom-project-actions-row">
-          <button className="project-action-button" onClick={saveProject}>
+          <button className="project-action-button" onClick={handleSaveProjectClick}>
             <Save size={15} aria-hidden="true" />
             Save Project
           </button>
@@ -3442,4 +3522,4 @@ export default function ResinCalculator({ showHeader = true, workspaceVariant })
       </div>
     </div>
   );
-}
+});

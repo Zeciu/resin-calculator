@@ -1,21 +1,12 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
-import WorkspaceRouter from "./WorkspaceRouter.jsx";
+import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const PROTECTED_NAV_ITEMS = WORKSPACE_NAV_ITEMS.filter((item) => item.requiresAuth);
-
-function renderWorkspace(initialPath = ROUTES.LOGIN) {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <WorkspaceRouter />
-    </MemoryRouter>,
-  );
-}
 
 function seedAuthenticatedSession() {
   sessionStorage.setItem(

@@ -1,16 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
-import WorkspaceRouter from "./WorkspaceRouter.jsx";
+import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
 function renderHomeRoute() {
-  return render(
-    <MemoryRouter initialEntries={["/"]}>
-      <WorkspaceRouter />
-    </MemoryRouter>,
-  );
+  return renderWorkspace("/");
 }
 
 function seedAuthenticatedSession() {

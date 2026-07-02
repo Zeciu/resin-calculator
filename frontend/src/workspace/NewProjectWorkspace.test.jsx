@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import NewProjectWorkspace from "./NewProjectWorkspace.jsx";
 
@@ -29,9 +30,18 @@ global.ResizeObserver = class {
   disconnect() {}
 };
 
+function renderNewProjectWorkspace() {
+  const router = createMemoryRouter(
+    [{ path: "/*", element: <NewProjectWorkspace /> }],
+    { initialEntries: ["/new-project"] },
+  );
+
+  return render(<RouterProvider router={router} />);
+}
+
 describe("NewProjectWorkspace", () => {
   it("renders the calculator without duplicate product title chrome", () => {
-    render(<NewProjectWorkspace />);
+    renderNewProjectWorkspace();
 
     expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
     expect(screen.getByText("References")).toBeInTheDocument();

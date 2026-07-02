@@ -1,19 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import GuestIntro from "./GuestIntro.jsx";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
-import WorkspaceRouter from "./WorkspaceRouter.jsx";
-
-function renderGuestWorkspace(initialPath = ROUTES.LOGIN) {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <WorkspaceRouter />
-    </MemoryRouter>,
-  );
-}
+import { renderWorkspace as renderGuestWorkspace } from "./renderWorkspaceRouter.jsx";
 
 describe("Guest Mode", () => {
   beforeEach(() => {

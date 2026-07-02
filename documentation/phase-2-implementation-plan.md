@@ -1,6 +1,6 @@
 # Phase 2 Implementation Plan
 
-Status: In Progress (Tasks 43–45 complete)
+Status: In Progress (Tasks 43–47 complete)
 
 Version: 1.0
 # Product Principles
@@ -174,6 +174,18 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 | Dependencies          | Task 45                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Expected result       | When a user attempts to leave the Application Workspace with unsaved changes, the application requires an explicit decision before allowing navigation.                                                                                                                                                                                                                                                                                          |
 | Acceptance criteria   | Attempting to navigate to Home or another module while the current project contains unsaved changes displays a confirmation dialog with the options **Save Project**, **Discard Changes**, and **Cancel**. **Save Project** continues to the project save flow. **Discard Changes** leaves the workspace without saving. **Cancel** returns the user to the Application Workspace. No project naming or persistence is implemented in this task. |
+| Completion date       | 2026-07-02                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Implementation status | Completed                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Verification status   | Passed                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
+**Implementation notes:**
+- Added `projectDirtyState.js` — dirty state reflects meaningful project work only (upload alone does not mark dirty)
+- Added `UnsavedChangesDialog.jsx` with Save Project, Discard Changes, and Cancel actions
+- Updated `NewProjectWorkspace.jsx` with `useBlocker` navigation guard and save-flow handoff via `saveProjectRequestRef`
+- Migrated `main.jsx` to `createBrowserRouter` + `RouterProvider` (required for `useBlocker`)
+- Added `renderWorkspaceRouter.jsx` test helper using `createMemoryRouter`
+- Added `UnsavedChangesDialog.test.jsx` and `UnsavedChangesProtection.test.jsx`
+- Updated router-dependent tests to use `RouterProvider`
 ## Task 47 — Save Project Flow
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                              |
@@ -183,6 +195,19 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 | Dependencies          | Task 46                                                                                                                                                                                                                                                                                                                                                                             |
 | Expected result       | The user can choose **Save Project** from the Application Workspace or from the unsaved changes dialog, enter a project name, save the project, and return to the Logged-in Home page after the save is completed.                                                                                                                                                                  |
 | Acceptance criteria   | A **Save Project** action is available in the Application Workspace. Saving requires a project name. The same save dialog is used when the user chooses **Save Project** from the unsaved changes dialog. After a successful save, the user is returned to the Logged-in Home page. The task does not implement the Projects list, reopening projects or advanced project metadata. |
+| Completion date       | 2026-07-02                                                                                                                                                                                                                                                                                                                                                                              |
+| Implementation status | Completed                                                                                                                                                                                                                                                                                                                                                                           |
+| Verification status   | Passed                                                                                                                                                                                                                                                                                                                                                                                |
+
+**Implementation notes:**
+- Added `SaveProjectDialog.jsx` — project name input with Cancel and Save only
+- Added `projectFileSave.js` and `projectFileTypes.js` — complete `.hfzproject` file generation, safe filename slug, native save picker with download fallback
+- Updated `NewProjectWorkspace.jsx` to own save orchestration: dialog, snapshot retrieval, file save, dirty clearing, and Home navigation
+- Updated `ResinCalculator.jsx` with `forwardRef` exposing `getProjectSnapshot()` only; dedicated workspace Save delegates to workspace via `onSaveProjectRequest`
+- Saved project files include full calculator snapshot with original image data; import-compatible with existing Import Project flow
+- Updated Import Project `accept` filter to include `.hfzproject`, `application/vnd.hfzwood.project+json`, and legacy `.json` / `application/json`
+- Added save-dialog and save-flow styles in `styles.css`
+- Added `SaveProjectDialog.test.jsx`, `SaveProjectFlow.test.jsx`, and `projectFileSave.test.js`; updated `ResinCalculator.test.jsx` and integration tests
 ## Task 48 — Projects Page and Project List
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -285,23 +310,20 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 | Acceptance criteria   | The application builds successfully without errors. All automated tests pass. Manual QA has been completed successfully. Project documentation and roadmap are synchronized with the implemented product. The repository is clean and synchronized with the main branch. A final Phase 2 commit and push have been completed. Phase 3 can begin without requiring additional Phase 2 work. |
 # Phase 2 Data Persistence Decision
 
-During Phase 2, saved projects will use browser localStorage as a temporary client-side persistence layer.
+During Phase 2 Task 47, **Save Project** writes a complete project file to the user's device (`.hfzproject` JSON format). The file includes project metadata, the full calculator snapshot, and the original uploaded image data so the user can reopen the project later via **Import Project** without re-uploading the image.
 
-This decision allows the project workflow to be implemented and tested without introducing production backend persistence too early.
+The native file save picker is used when supported; otherwise the browser falls back to a standard download.
 
-Saved project data should include, where available:
-- project id;
-- project name;
-- thumbnail;
-- status;
-- creation date;
-- last modified date;
-- uploaded image reference or serialized image data;
-- calibration data;
-- polygon data;
-- calculation state.
+Backend/database persistence, user-specific cloud storage, synchronization, and an in-app Projects library are intentionally deferred to later Phase 2 tasks and future phases.
 
-Backend/database persistence, user-specific cloud storage and synchronization are intentionally deferred to a future phase.
+A complete saved project file should include, where available:
+- project name and save timestamp;
+- original uploaded image data;
+- calibration/reference data;
+- polygon and boundary data;
+- mold, wood, and cavity data;
+- depth and calculation state;
+- results where available.
 # Out of Scope for Phase 2
 
 The following features have been intentionally excluded from Phase 2. Their absence is a deliberate product decision rather than an omission, and they are expected to be evaluated in future development phases.
@@ -331,5 +353,5 @@ Future phases may introduce any of these capabilities after the core user experi
 
 ---
 
-**Phase 2 status:** In progress (2026-07-02). Tasks 43–45 of 16 (Tasks 43–58) implemented and verified. Next: Task 46 — Unsaved Changes Protection.
+**Phase 2 status:** In progress (2026-07-02). Tasks 43–47 of 16 (Tasks 43–58) implemented and verified. Next: Task 48 — Projects Page and Project List.
 

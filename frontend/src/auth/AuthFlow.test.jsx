@@ -1,19 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ROUTES } from "../workspace/routes.js";
-import WorkspaceRouter from "../workspace/WorkspaceRouter.jsx";
+import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
-
-function renderWorkspace(initialPath = ROUTES.LOGIN) {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <WorkspaceRouter />
-    </MemoryRouter>,
-  );
-}
 
 function expectNewProjectLocked() {
   expect(screen.getByRole("button", { name: /New Project/i })).toBeInTheDocument();
