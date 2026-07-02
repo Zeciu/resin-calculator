@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import ResinCalculator from "../calculator/ResinCalculator.jsx";
 import GlossaryPage from "../modules/GlossaryPage.jsx";
 import KnowledgeBasePage from "../modules/KnowledgeBasePage.jsx";
 import ManualTutorialsPage from "../modules/ManualTutorialsPage.jsx";
@@ -31,9 +32,7 @@ function workspaceRoutePath(route) {
   return route.replace(/^\//, "");
 }
 
-const WORKSPACE_ROUTE_PLACEHOLDERS = [
-  { path: ROUTES.NEW_PROJECT, title: "New Project" },
-];
+const WORKSPACE_ROUTE_PLACEHOLDERS = [];
 
 export default function WorkspaceRouter() {
   return (
@@ -50,6 +49,10 @@ export default function WorkspaceRouter() {
         <Route path={workspaceRoutePath(ROUTES.MANUAL)} element={<ManualTutorialsPage />} />
         <Route path={workspaceRoutePath(ROUTES.GLOSSARY)} element={<GlossaryPage />} />
         <Route path={workspaceRoutePath(ROUTES.KNOWLEDGE_BASE)} element={<KnowledgeBasePage />} />
+        <Route
+          path={workspaceRoutePath(ROUTES.NEW_PROJECT)}
+          element={<ResinCalculator showHeader={false} />}
+        />
         {WORKSPACE_ROUTE_PLACEHOLDERS.map(({ path, title }) => (
           <Route
             key={path}

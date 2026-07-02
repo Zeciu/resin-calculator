@@ -35,6 +35,13 @@ function expectRoutePlaceholder(title) {
   expect(within(main).getByRole("heading", { name: title })).toBeInTheDocument();
 }
 
+function expectCalculatorRoute() {
+  const main = screen.getByRole("main");
+  expect(
+    within(main).getByText("River Table & Woodworking Resin Calculator"),
+  ).toBeInTheDocument();
+}
+
 describe("Authenticated Mode navigation", () => {
   beforeEach(() => {
     sessionStorage.clear();
@@ -89,14 +96,16 @@ describe("Authenticated Mode navigation", () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.PROJECTS);
 
-    const navigableModules = [
-      { label: "New Project", title: "New Project" },
+    await user.click(screen.getByRole("link", { name: "New Project" }));
+    expectCalculatorRoute();
+
+    const placeholderModules = [
       { label: "Manual & Tutorials", title: "Manual & Tutorials" },
       { label: "Glossary", title: "Glossary" },
       { label: "Knowledge Base", title: "Knowledge Base" },
     ];
 
-    for (const { label, title } of navigableModules) {
+    for (const { label, title } of placeholderModules) {
       await user.click(screen.getByRole("link", { name: label }));
       expectRoutePlaceholder(title);
     }

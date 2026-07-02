@@ -658,6 +658,15 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 20, 29, 30 |
 | **Expected result** | Authenticated user selecting New Project opens `ResinCalculator` in central area |
 | **Acceptance criteria** | Upload, draw, calculate, save/import, PDF export still work |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Integrated `ResinCalculator` into `WorkspaceRouter` so authenticated New Project navigation renders calculator in the workspace central area
+- Routed `/new-project` to `ResinCalculator` and replaced the previous New Project placeholder route
+- Rendered calculator with `showHeader={false}` to keep the workspace hero as the only top branding header
+- Preserved legacy root `/` behavior where `App.jsx` still renders calculator with its original header
 
 ---
 
