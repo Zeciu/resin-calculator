@@ -9,6 +9,7 @@ import {
   saveProjectFile,
   slugifyProjectFilename,
   supportsNativeProjectSavePicker,
+  updateProjectFile,
 } from "./projectFileSave.js";
 
 const TINY_PNG =
@@ -153,6 +154,42 @@ describe("projectFileSave", () => {
           snapshot: SAMPLE_SNAPSHOT,
         }),
       ).rejects.toBeInstanceOf(ProjectFileSaveCancelledError);
+    });
+  });
+
+  describe("updateProjectFile", () => {
+    it("writes through an existing file handle without opening a picker", async () => {
+      const write = vi.fn();
+      const close = vi.fn();
+      const createWritable = vi.fn(async () => ({ write, close }));
+      const fileHandle = {
+        getFile: vi.fn(),
+        createWritable,
+      };
+
+      const result = await updateProjectFile({
+        fileHandle,
+        projectName: "River Table",
+        snapshot: SAMPLE_SNAPSHOT,
+        fileName: "river-table.hfzproject",
+      });
+
+      expect(createWritable).toHaveBeenCalledTimes(1);
+      expect(write).toHaveBeenCalledTimes(1);
+      expect(close).toHaveBeenCalledTimes(1);
+      expect(result.payload.projectName).toBe("River Table");
+      expect(result.fileName).toBe("river-table.hfzproject");
+      expect(window.showSaveFilePicker).toBeUndefined();
+    });
+
+    it("rejects updates without a file handle", async () => {
+      await expect(
+        updateProjectFile({
+          fileHandle: null,
+          projectName: "River Table",
+          snapshot: SAMPLE_SNAPSHOT,
+        }),
+      ).rejects.toThrow(/file handle/i);
     });
   });
 

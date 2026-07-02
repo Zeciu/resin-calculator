@@ -2,7 +2,9 @@ import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 import { parseProjectFile, ProjectFileParseError } from "./projectFileParse.js";
 import {
   buildRecentProjectEntry,
+  refreshRecentProjectOnOpen,
   touchRecentProject,
+  updateRecentProjectOnSave,
   upsertRecentProject,
 } from "./recentProjectsIndex.js";
 import {
@@ -72,6 +74,19 @@ export async function loadProjectFromFile(file, handle = null) {
   return { project, entry };
 }
 
+export async function loadProjectIntoRecentEntry(entry, file, handle = null) {
+  const project = await parseProjectFile(file);
+  const refreshedEntry = refreshRecentProjectOnOpen(entry.id, project, {
+    fileName: file.name,
+  });
+
+  if (isFileSystemHandle(handle)) {
+    await storeRecentProjectHandle(entry.id, handle);
+  }
+
+  return { project, entry: refreshedEntry };
+}
+
 export async function loadRecentProject(entry) {
   const handle = await getRecentProjectHandle(entry.id);
   if (!handle) {
@@ -96,6 +111,23 @@ export async function loadRecentProject(entry) {
       entry,
       "This recent project could not be opened. Please locate the project file manually.",
     );
+  }
+}
+
+export async function recordUpdatedProjectInRecentIndex({
+  entryId,
+  payload,
+  fileName,
+  fileHandle = null,
+}) {
+  updateRecentProjectOnSave(entryId, {
+    projectName: payload.projectName,
+    savedAt: payload.savedAt,
+    lastKnownFileName: fileName,
+  });
+
+  if (isFileSystemHandle(fileHandle)) {
+    await storeRecentProjectHandle(entryId, fileHandle);
   }
 }
 

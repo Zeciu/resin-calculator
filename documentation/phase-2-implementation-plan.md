@@ -1,6 +1,6 @@
 # Phase 2 Implementation Plan
 
-Status: In Progress (Tasks 43–48 complete)
+Status: In Progress (Tasks 43–49 complete)
 
 Version: 1.0
 # Product Principles
@@ -236,13 +236,28 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 
 ## Task 49 — Update Existing Project
 
-| Field                 | Detail                                                                                                                                                                                                                                                                                                                                                             |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Objective             | Allow users to save changes made to an already existing project after it has been reopened.                                                                                                                                                                                                                                                                        |
-| Files likely modified | Application Workspace components, save project logic, project state utilities, project persistence utilities, routing/navigation logic if needed                                                                                                                                                                                                                   |
-| Dependencies          | Task 48                                                                                                                                                                                                                                                                                                                                                            |
-| Expected result       | When a user reopens a saved project, makes changes and saves again, the existing project is updated instead of creating an unintended duplicate.                                                                                                                                                                                                                   |
-| Acceptance criteria   | Reopened projects retain their project identity. Saving a reopened project updates the existing saved project. The project name, image thumbnail, calibration data, polygon data and calculation state are preserved after update. Unsaved changes protection still applies. The task does not implement version history, duplicate-as-new, archiving or deletion. |
+| Field                 | Detail |
+| --------------------- | ------ |
+| Objective             | Introduce the concept of a **Current Project** and make the existing **Save Project** command behave intelligently when a project has been reopened from Projects Hub. When a valid Current Project identity exists, saving updates the opened project file in place. Task 47 first-save behavior for brand-new projects remains unchanged. |
+| Files likely modified | Application Workspace components, save project logic, project state utilities, project persistence utilities, routing/navigation logic if needed |
+| Dependencies          | Task 48 |
+| Expected result       | When a user reopens a saved project, makes changes, and chooses **Save Project**, the application updates the same project file and the same Recent Projects entry instead of creating an unintended duplicate. Brand-new projects continue to use the existing Task 47 save flow unchanged. |
+| Acceptance criteria   | Task 49 introduces **Current Project** identity for reopened projects. When a valid Current Project identity exists, **Save Project** updates the currently opened project file with no project name dialog, no file picker, and a silent save operation; Current Project identity is preserved; the corresponding Recent Projects entry is updated; and the project becomes clean (not dirty). Reopened projects retain their project identity. The project name, image thumbnail, calibration data, polygon data and calculation state are preserved after update. Unsaved changes protection still applies. Task 47 behavior for brand-new projects remains completely unchanged. Task 49 does not introduce a Save As workflow, Save As user interface, version history, duplicate-as-new, archiving, or deletion. |
+| Completion date       | 2026-07-03 |
+| Implementation status | Completed |
+| Verification status   | Passed |
+
+**Implementation notes:**
+- For an already opened project, **Save Project** behaves like the Save command in a traditional desktop application.
+- Added `currentProject.js` — workspace-scoped **Current Project** identity (`new` vs `opened`) with recent entry id, project name, filename, and optional writable `FileSystemHandle`.
+- Added `updateProjectFile()` in `projectFileSave.js` — in-place write to a known handle; `saveProjectFile()` (Task 47) semantics unchanged.
+- Updated `NewProjectWorkspace.jsx` — save branching, Current Project hydration from IndexedDB, baseline snapshot dirty detection, silent save for bound opened projects.
+- Updated `ProjectsPage.jsx` — passes `openContext` when opening projects; **Locate Project File** rebinds the existing recent entry via `loadProjectIntoRecentEntry()` instead of creating a duplicate.
+- Added `projectSnapshotCompare.js` — baseline equality ignores volatile fields (`savedAt`, image dimensions) so restored projects start clean.
+- Added `updateRecentProjectOnSave()` and `refreshRecentProjectOnOpen()` in `recentProjectsIndex.js`; added `recordUpdatedProjectInRecentIndex()` and `loadProjectIntoRecentEntry()` in `projectFileOpen.js`.
+- Updated `ResinCalculator.jsx` with `onProjectRestored` callback; removed blanket `importedProject → dirty` from `projectDirtyState.js`.
+- Recent entries without a stored handle (older entries or download-only saves) still require manual locate once; after locate, the handle is stored and direct reopen works when the browser allows.
+- No Save As UI, cloud persistence, version history, or project management features were added.
 ## Task 50 — Manual and Tutorials Module
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                    |
@@ -362,5 +377,5 @@ Future phases may introduce any of these capabilities after the core user experi
 
 ---
 
-**Phase 2 status:** In progress (2026-07-02). Tasks 43–48 of 15 (Tasks 43–57) implemented and verified. Next: Task 49 — Update Existing Project.
+**Phase 2 status:** In progress (2026-07-03). Tasks 43–49 of 15 (Tasks 43–57) implemented and verified. Next: Task 50 — Manual and Tutorials Module.
 

@@ -47,8 +47,4 @@ describe("computeProjectDirtyState", () => {
     expect(computeProjectDirtyState({ depthMm: "12" })).toBe(true);
     expect(computeProjectDirtyState({ measurementsComplete: true })).toBe(true);
   });
-
-  it("returns true for imported project data", () => {
-    expect(computeProjectDirtyState({ importedProject: true })).toBe(true);
-  });
 });

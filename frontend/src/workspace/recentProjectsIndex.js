@@ -104,6 +104,58 @@ export function upsertRecentProject(entry) {
   return saveRecentProjects([sanitizedEntry, ...existing]);
 }
 
+export function updateRecentProjectOnSave(
+  entryId,
+  { projectName, savedAt, lastKnownFileName },
+) {
+  const existing = loadRecentProjects();
+  const match = existing.find((item) => item.id === entryId);
+  if (!match) {
+    throw new Error("Recent project entry not found.");
+  }
+
+  const updated = sanitizeRecentProjectEntry({
+    ...match,
+    projectName: projectName || match.projectName,
+    lastSavedAt: savedAt,
+    lastKnownFileName:
+      lastKnownFileName != null ? lastKnownFileName : match.lastKnownFileName,
+  });
+
+  if (!updated) {
+    throw new Error("Invalid recent project entry.");
+  }
+
+  const remainder = existing.filter((item) => item.id !== entryId);
+  return saveRecentProjects([updated, ...remainder]);
+}
+
+export function refreshRecentProjectOnOpen(entryId, project, { fileName = "" } = {}) {
+  const existing = loadRecentProjects();
+  const match = existing.find((item) => item.id === entryId);
+  if (!match) {
+    throw new Error("Recent project entry not found.");
+  }
+
+  const resolvedFileName = fileName || match.lastKnownFileName || "";
+  const updated = sanitizeRecentProjectEntry({
+    ...match,
+    projectName: getProjectDisplayName(project, resolvedFileName),
+    lastOpenedAt: new Date().toISOString(),
+    lastSavedAt: getProjectSavedAt(project) || match.lastSavedAt,
+    lastKnownFileName: resolvedFileName || null,
+    sourceFormat: detectProjectSourceFormat(resolvedFileName),
+  });
+
+  if (!updated) {
+    throw new Error("Invalid recent project entry.");
+  }
+
+  const remainder = existing.filter((item) => item.id !== entryId);
+  saveRecentProjects([updated, ...remainder]);
+  return updated;
+}
+
 export function touchRecentProject(entryId) {
   const existing = loadRecentProjects();
   const match = existing.find((item) => item.id === entryId);

@@ -20,6 +20,7 @@ vi.mock("./projectFileOpen.js", () => ({
   supportsNativeProjectOpenPicker: vi.fn(() => false),
   pickProjectFileWithHandle: vi.fn(async () => null),
   loadProjectFromFile: vi.fn(),
+  loadProjectIntoRecentEntry: vi.fn(),
   loadRecentProject: vi.fn(),
   RecentProjectUnavailableError: class RecentProjectUnavailableError extends Error {
     constructor(entry, message) {
@@ -31,6 +32,7 @@ vi.mock("./projectFileOpen.js", () => ({
 
 import {
   loadProjectFromFile,
+  loadProjectIntoRecentEntry,
   loadRecentProject,
   pickProjectFileWithHandle,
   RecentProjectUnavailableError,
@@ -54,6 +56,7 @@ describe("ProjectsPage", () => {
     localStorage.clear();
     navigateMock.mockReset();
     loadProjectFromFile.mockReset();
+    loadProjectIntoRecentEntry.mockReset();
     loadRecentProject.mockReset();
     supportsNativeProjectOpenPicker.mockReturnValue(false);
     pickProjectFileWithHandle.mockResolvedValue(null);
@@ -93,7 +96,12 @@ describe("ProjectsPage", () => {
         projectName: "River Table",
         image: { dataUrl: TINY_PNG },
       },
-      entry: { id: "recent-1" },
+      entry: {
+        id: "recent-1",
+        projectName: "River Table",
+        lastKnownFileName: "river-table.hfzproject",
+        lastOpenedAt: "2026-01-01T12:00:00.000Z",
+      },
     });
 
     renderProjectsPage();
@@ -108,6 +116,10 @@ describe("ProjectsPage", () => {
     expect(navigateMock).toHaveBeenCalledWith(ROUTES.NEW_PROJECT, {
       state: {
         pendingProjectRestore: expect.objectContaining({
+          projectName: "River Table",
+        }),
+        openContext: expect.objectContaining({
+          recentEntryId: "recent-1",
           projectName: "River Table",
         }),
       },
@@ -132,5 +144,43 @@ describe("ProjectsPage", () => {
 
     expect(screen.getByRole("alert")).toHaveTextContent(/locate the project file manually/i);
     expect(screen.getByRole("button", { name: "Locate Project File" })).toBeInTheDocument();
+  });
+
+  it("rebinds the unavailable recent entry when locating the project file", async () => {
+    const user = userEvent.setup();
+    const entry = upsertRecentProject(
+      buildRecentProjectEntry(
+        { projectName: "River Table", image: { dataUrl: TINY_PNG } },
+        { fileName: "river-table.hfzproject" },
+      ),
+    )[0];
+
+    loadRecentProject.mockRejectedValue(
+      new RecentProjectUnavailableError(entry, "Please locate the project file manually."),
+    );
+    supportsNativeProjectOpenPicker.mockReturnValue(true);
+    pickProjectFileWithHandle.mockResolvedValue({
+      file: new File(
+        [JSON.stringify({ projectName: "River Table", image: { dataUrl: TINY_PNG } })],
+        "river-table.hfzproject",
+        { type: "application/json" },
+      ),
+      handle: { getFile: vi.fn() },
+    });
+    loadProjectIntoRecentEntry.mockResolvedValue({
+      project: { projectName: "River Table", image: { dataUrl: TINY_PNG } },
+      entry,
+    });
+
+    renderProjectsPage();
+    await user.click(screen.getByRole("button", { name: /River Table/i }));
+    await user.click(screen.getByRole("button", { name: "Locate Project File" }));
+
+    expect(loadProjectIntoRecentEntry).toHaveBeenCalledWith(
+      expect.objectContaining({ id: entry.id }),
+      expect.any(File),
+      expect.objectContaining({ getFile: expect.any(Function) }),
+    );
+    expect(loadProjectFromFile).not.toHaveBeenCalled();
   });
 });

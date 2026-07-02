@@ -27,16 +27,11 @@ export function computeProjectDirtyState({
   firstFillThicknessMm = "",
   cavityDepthsMm = [],
   result = null,
-  importedProject = false,
   measurementsComplete = false,
   moldBoundaryComplete = false,
   woodBoundaryComplete = false,
   cavitiesComplete = false,
 }) {
-  if (importedProject) {
-    return true;
-  }
-
   if (referenceMeasurements.length > 0) {
     return true;
   }

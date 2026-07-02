@@ -533,6 +533,7 @@ export default forwardRef(function ResinCalculator(
     showHeader = true,
     workspaceVariant,
     onDirtyChange,
+    onProjectRestored,
     onSaveProjectRequest,
   },
   ref,
@@ -624,7 +625,6 @@ export default forwardRef(function ResinCalculator(
         firstFillThicknessMm,
         cavityDepthsMm,
         result,
-        importedProject,
         measurementsComplete,
         moldBoundaryComplete,
         woodBoundaryComplete,
@@ -647,7 +647,6 @@ export default forwardRef(function ResinCalculator(
     firstFillThicknessMm,
     cavityDepthsMm,
     result,
-    importedProject,
     measurementsComplete,
     moldBoundaryComplete,
     woodBoundaryComplete,
@@ -1521,6 +1520,9 @@ export default forwardRef(function ResinCalculator(
       setResultOutdated(false);
       setError("");
       resizeCanvasToWorkArea();
+      queueMicrotask(() => {
+        onProjectRestored?.();
+      });
     };
     img.onerror = () => {
       setError("Invalid project file: image data could not be loaded.");

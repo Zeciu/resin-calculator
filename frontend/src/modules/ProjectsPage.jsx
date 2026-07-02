@@ -6,6 +6,7 @@ import { ProjectFileParseError } from "../workspace/projectFileParse.js";
 import {
   HFZ_PROJECT_IMPORT_ACCEPT,
   loadProjectFromFile,
+  loadProjectIntoRecentEntry,
   loadRecentProject,
   pickProjectFileWithHandle,
   RecentProjectUnavailableError,
@@ -58,6 +59,7 @@ function RecentProjectCard({ entry, disabled, onOpen }) {
 export default function ProjectsPage() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
+  const locateEntryRef = useRef(null);
   const [recentProjects, setRecentProjects] = useState(() => loadRecentProjects());
   const [isOpening, setIsOpening] = useState(false);
   const [error, setError] = useState("");
@@ -72,9 +74,18 @@ export default function ProjectsPage() {
   }, [refreshRecentProjects]);
 
   const openProjectInWorkspace = useCallback(
-    (project) => {
+    (project, entry) => {
       navigate(ROUTES.NEW_PROJECT, {
-        state: { pendingProjectRestore: project },
+        state: {
+          pendingProjectRestore: project,
+          openContext: entry
+            ? {
+                recentEntryId: entry.id,
+                projectName: entry.projectName,
+                lastKnownFileName: entry.lastKnownFileName,
+              }
+            : null,
+        },
       });
     },
     [navigate],
@@ -87,9 +98,9 @@ export default function ProjectsPage() {
       setUnavailableEntry(null);
 
       try {
-        const { project } = await loader();
+        const { project, entry } = await loader();
         refreshRecentProjects();
-        openProjectInWorkspace(project);
+        openProjectInWorkspace(project, entry);
       } catch (loadError) {
         if (loadError instanceof RecentProjectUnavailableError) {
           setUnavailableEntry(loadError.entry);
@@ -137,6 +148,16 @@ export default function ProjectsPage() {
         return;
       }
 
+      const locateEntry = locateEntryRef.current;
+      locateEntryRef.current = null;
+
+      if (locateEntry) {
+        await handleProjectLoaded(async () =>
+          loadProjectIntoRecentEntry(locateEntry, file),
+        );
+        return;
+      }
+
       await handleProjectLoaded(async () => loadProjectFromFile(file));
     },
     [handleProjectLoaded],
@@ -149,11 +170,31 @@ export default function ProjectsPage() {
     [handleProjectLoaded],
   );
 
-  const handleLocateProject = useCallback(() => {
+  const handleLocateProject = useCallback(async () => {
+    const entryToRebind = unavailableEntry;
     setUnavailableEntry(null);
     setError("");
-    handleOpenProjectClick();
-  }, [handleOpenProjectClick]);
+
+    if (!entryToRebind) {
+      handleOpenProjectClick();
+      return;
+    }
+
+    if (supportsNativeProjectOpenPicker()) {
+      const nativePick = await pickProjectFileWithHandle();
+      if (!nativePick) {
+        return;
+      }
+
+      await handleProjectLoaded(async () =>
+        loadProjectIntoRecentEntry(entryToRebind, nativePick.file, nativePick.handle),
+      );
+      return;
+    }
+
+    locateEntryRef.current = entryToRebind;
+    fileInputRef.current?.click();
+  }, [handleOpenProjectClick, handleProjectLoaded, unavailableEntry]);
 
   return (
     <section className="projects-hub" aria-labelledby="projects-hub-title">

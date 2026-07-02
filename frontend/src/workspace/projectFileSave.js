@@ -4,6 +4,7 @@ import {
   HFZ_PROJECT_FORMAT_VERSION,
   HFZ_PROJECT_MIME_TYPE,
 } from "../projectFileTypes.js";
+import { isFileSystemHandle } from "./recentProjectHandles.js";
 
 export {
   HFZ_PROJECT_FILE_EXTENSION,
@@ -80,6 +81,30 @@ export function downloadProjectFile(blob, filename) {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+}
+
+export async function updateProjectFile({
+  fileHandle,
+  projectName,
+  snapshot,
+  fileName = null,
+}) {
+  if (!isFileSystemHandle(fileHandle)) {
+    throw new ProjectFileSaveError("Cannot update project file without a file handle.");
+  }
+
+  const payload = buildProjectFilePayload({ projectName, snapshot });
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: HFZ_PROJECT_MIME_TYPE });
+  const resolvedFileName =
+    fileName || `${slugifyProjectFilename(projectName)}${HFZ_PROJECT_FILE_EXTENSION}`;
+
+  try {
+    await writeBlobToFileHandle(fileHandle, blob);
+    return { payload, fileHandle, fileName: resolvedFileName };
+  } catch (error) {
+    throw new ProjectFileSaveError("Could not update project file.", error);
+  }
 }
 
 export async function saveProjectFile({ projectName, snapshot }) {

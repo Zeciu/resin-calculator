@@ -53,23 +53,25 @@ export async function getRecentProjectHandle(entryId) {
     return null;
   }
 
-  const database = await openHandleDatabase();
-
   try {
-    return await new Promise((resolve, reject) => {
-      const transaction = database.transaction(STORE_NAME, "readonly");
-      const store = transaction.objectStore(STORE_NAME);
-      const request = store.get(entryId);
+    const database = await openHandleDatabase();
 
-      request.onsuccess = () => {
-        const record = request.result;
-        resolve(isFileSystemHandle(record?.handle) ? record.handle : null);
-      };
-      request.onerror = () => reject(request.error ?? new Error("Could not read file handle."));
-    });
+    try {
+      return await new Promise((resolve, reject) => {
+        const transaction = database.transaction(STORE_NAME, "readonly");
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.get(entryId);
+
+        request.onsuccess = () => {
+          const record = request.result;
+          resolve(isFileSystemHandle(record?.handle) ? record.handle : null);
+        };
+        request.onerror = () => reject(request.error ?? new Error("Could not read file handle."));
+      });
+    } finally {
+      database.close();
+    }
   } catch {
     return null;
-  } finally {
-    database.close();
   }
 }

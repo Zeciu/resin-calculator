@@ -4,17 +4,29 @@ import ResinCalculator from "../calculator/ResinCalculator.jsx";
 import SaveProjectDialog from "./SaveProjectDialog.jsx";
 import UnsavedChangesDialog from "./UnsavedChangesDialog.jsx";
 import {
+  canUpdateCurrentProjectInPlace,
+  createNewCurrentProject,
+  createOpenedCurrentProject,
+} from "./currentProject.js";
+import { getRecentProjectHandle } from "./recentProjectHandles.js";
+import {
   ProjectFileSaveCancelledError,
   ProjectFileSaveError,
   saveProjectFile,
+  updateProjectFile,
 } from "./projectFileSave.js";
-import { recordSavedProjectInRecentIndex } from "./projectFileOpen.js";
+import {
+  recordSavedProjectInRecentIndex,
+  recordUpdatedProjectInRecentIndex,
+} from "./projectFileOpen.js";
+import { areProjectSnapshotsEqual } from "./projectSnapshotCompare.js";
 import { ROUTES } from "./routes.js";
 
 export default function NewProjectWorkspace() {
   const navigate = useNavigate();
   const location = useLocation();
   const calculatorRef = useRef(null);
+  const [currentProject, setCurrentProject] = useState(createNewCurrentProject);
   const [isProjectDirty, setIsProjectDirty] = useState(false);
   const [calculatorSessionKey, setCalculatorSessionKey] = useState(0);
   const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
@@ -22,9 +34,15 @@ export default function NewProjectWorkspace() {
   const [saveError, setSaveError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [pendingProjectRestore, setPendingProjectRestore] = useState(null);
+  const [baselineCaptureKey, setBaselineCaptureKey] = useState(0);
   const isProjectDirtyRef = useRef(isProjectDirty);
+  const baselineSnapshotRef = useRef(null);
+  const usesBaselineDirtyRef = useRef(false);
+  const pendingOpenContextRef = useRef(null);
+  const currentProjectRef = useRef(currentProject);
 
   isProjectDirtyRef.current = isProjectDirty;
+  currentProjectRef.current = currentProject;
 
   useEffect(() => {
     const project = location.state?.pendingProjectRestore;
@@ -32,9 +50,50 @@ export default function NewProjectWorkspace() {
       return;
     }
 
+    pendingOpenContextRef.current = location.state?.openContext ?? null;
     setPendingProjectRestore(project);
     navigate(ROUTES.NEW_PROJECT, { replace: true, state: {} });
   }, [location.state, navigate]);
+
+  const establishOpenedProjectContext = useCallback(async (openContext) => {
+    const handle = await getRecentProjectHandle(openContext.recentEntryId);
+    setCurrentProject(
+      createOpenedCurrentProject({
+        recentEntryId: openContext.recentEntryId,
+        projectName: openContext.projectName,
+        lastKnownFileName: openContext.lastKnownFileName,
+        fileHandle: handle,
+      }),
+    );
+  }, []);
+
+  const handleProjectRestored = useCallback(async () => {
+    const openContext = pendingOpenContextRef.current;
+
+    if (openContext?.recentEntryId) {
+      usesBaselineDirtyRef.current = true;
+      baselineSnapshotRef.current = null;
+      isProjectDirtyRef.current = false;
+      setIsProjectDirty(false);
+      await establishOpenedProjectContext(openContext);
+      pendingOpenContextRef.current = null;
+      setBaselineCaptureKey((key) => key + 1);
+      return;
+    }
+
+    usesBaselineDirtyRef.current = false;
+    baselineSnapshotRef.current = null;
+  }, [establishOpenedProjectContext]);
+
+  useEffect(() => {
+    if (!usesBaselineDirtyRef.current || !calculatorRef.current) {
+      return;
+    }
+
+    baselineSnapshotRef.current = calculatorRef.current.getProjectSnapshot();
+    isProjectDirtyRef.current = false;
+    setIsProjectDirty(false);
+  }, [baselineCaptureKey, calculatorSessionKey]);
 
   useLayoutEffect(() => {
     if (!pendingProjectRestore || !calculatorRef.current) {
@@ -45,13 +104,86 @@ export default function NewProjectWorkspace() {
     setPendingProjectRestore(null);
   }, [pendingProjectRestore, calculatorSessionKey]);
 
+  const handleDirtyChange = useCallback((calculatorDirty) => {
+    if (usesBaselineDirtyRef.current && calculatorRef.current) {
+      if (!baselineSnapshotRef.current) {
+        isProjectDirtyRef.current = false;
+        setIsProjectDirty(false);
+        return;
+      }
+
+      const currentSnapshot = calculatorRef.current.getProjectSnapshot();
+      const dirty = !areProjectSnapshotsEqual(baselineSnapshotRef.current, currentSnapshot);
+      isProjectDirtyRef.current = dirty;
+      setIsProjectDirty(dirty);
+      return;
+    }
+
+    isProjectDirtyRef.current = calculatorDirty;
+    setIsProjectDirty(calculatorDirty);
+  }, []);
+
+  const completeSuccessfulSave = useCallback(
+    (snapshot) => {
+      if (usesBaselineDirtyRef.current && snapshot) {
+        baselineSnapshotRef.current = snapshot;
+      }
+      isProjectDirtyRef.current = false;
+      setIsProjectDirty(false);
+      setShowSaveDialog(false);
+      setSaveError("");
+      navigate(ROUTES.HOME);
+    },
+    [navigate],
+  );
+
+  const performInPlaceSave = useCallback(async () => {
+    const calculator = calculatorRef.current;
+    const project = currentProjectRef.current;
+    if (!calculator || !canUpdateCurrentProjectInPlace(project)) {
+      return false;
+    }
+
+    setIsSaving(true);
+    setSaveError("");
+
+    try {
+      const snapshot = calculator.getProjectSnapshot();
+      const saveResult = await updateProjectFile({
+        fileHandle: project.fileHandle,
+        projectName: project.projectName,
+        snapshot,
+        fileName: project.lastKnownFileName,
+      });
+
+      await recordUpdatedProjectInRecentIndex({
+        entryId: project.recentEntryId,
+        payload: saveResult.payload,
+        fileName: saveResult.fileName,
+        fileHandle: project.fileHandle,
+      });
+
+      completeSuccessfulSave(snapshot);
+      return true;
+    } catch (error) {
+      const message =
+        error instanceof ProjectFileSaveError
+          ? error.message
+          : error instanceof Error
+            ? error.message
+            : "Could not update project file.";
+
+      setSaveError(message);
+      return true;
+    } finally {
+      setIsSaving(false);
+    }
+  }, [completeSuccessfulSave]);
+
   const openSaveProjectDialog = useCallback(() => {
     setSaveError("");
     setShowSaveDialog(true);
   }, []);
-
-  const saveProjectRequestRef = useRef(openSaveProjectDialog);
-  saveProjectRequestRef.current = openSaveProjectDialog;
 
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
@@ -60,22 +192,40 @@ export default function NewProjectWorkspace() {
       nextLocation.pathname !== ROUTES.NEW_PROJECT,
   );
 
+  const handleSaveProjectRequest = useCallback(async () => {
+    setShowUnsavedDialog(false);
+
+    if (canUpdateCurrentProjectInPlace(currentProjectRef.current)) {
+      await performInPlaceSave();
+      if (blocker.state === "blocked" && !isProjectDirtyRef.current) {
+        blocker.proceed();
+      } else if (blocker.state === "blocked") {
+        blocker.reset();
+      }
+      return;
+    }
+
+    openSaveProjectDialog();
+    if (blocker.state === "blocked") {
+      blocker.reset();
+    }
+  }, [blocker, openSaveProjectDialog, performInPlaceSave]);
+
+  const saveProjectRequestRef = useRef(handleSaveProjectRequest);
+  saveProjectRequestRef.current = handleSaveProjectRequest;
+
   useEffect(() => {
     if (blocker.state === "blocked") {
       setShowUnsavedDialog(true);
     }
   }, [blocker.state]);
 
-  const handleSaveProjectRequested = useCallback(() => {
-    setShowUnsavedDialog(false);
-    saveProjectRequestRef.current();
-    if (blocker.state === "blocked") {
-      blocker.reset();
-    }
-  }, [blocker]);
-
   const handleDiscardChanges = useCallback(() => {
     setShowUnsavedDialog(false);
+    usesBaselineDirtyRef.current = false;
+    baselineSnapshotRef.current = null;
+    pendingOpenContextRef.current = null;
+    setCurrentProject(createNewCurrentProject());
     isProjectDirtyRef.current = false;
     setIsProjectDirty(false);
     setCalculatorSessionKey((key) => key + 1);
@@ -120,10 +270,7 @@ export default function NewProjectWorkspace() {
           fileHandle: saveResult.fileHandle,
         });
 
-        isProjectDirtyRef.current = false;
-        setShowSaveDialog(false);
-        setIsProjectDirty(false);
-        navigate(ROUTES.HOME);
+        completeSuccessfulSave(snapshot);
       } catch (error) {
         if (error instanceof ProjectFileSaveCancelledError) {
           return;
@@ -141,22 +288,34 @@ export default function NewProjectWorkspace() {
         setIsSaving(false);
       }
     },
-    [navigate],
+    [completeSuccessfulSave],
   );
+
+  const handleCalculatorSaveProjectRequest = useCallback(() => {
+    void saveProjectRequestRef.current();
+  }, []);
 
   return (
     <div className="new-project-workspace">
+      {saveError && !showSaveDialog ? (
+        <p className="new-project-workspace__save-error" role="alert">
+          {saveError}
+        </p>
+      ) : null}
       <ResinCalculator
         ref={calculatorRef}
         key={calculatorSessionKey}
         showHeader={false}
         workspaceVariant="dedicated"
-        onDirtyChange={setIsProjectDirty}
-        onSaveProjectRequest={openSaveProjectDialog}
+        onDirtyChange={handleDirtyChange}
+        onProjectRestored={handleProjectRestored}
+        onSaveProjectRequest={handleCalculatorSaveProjectRequest}
       />
       {showUnsavedDialog ? (
         <UnsavedChangesDialog
-          onSaveProject={handleSaveProjectRequested}
+          onSaveProject={() => {
+            void saveProjectRequestRef.current();
+          }}
           onDiscardChanges={handleDiscardChanges}
           onCancel={handleCancel}
         />
