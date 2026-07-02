@@ -37,6 +37,7 @@ export default function WorkspaceSidebar() {
       <ul className="workspace-sidebar__list">
         {getVisibleWorkspaceNavItems(isAuthenticated).map((item) => {
           const isLocked = isNavItemLocked(item);
+          const isPrimaryAction = isAuthenticated && item.id === "new-project" && !isLocked;
 
           return (
             <li key={item.id} className="workspace-sidebar__item">
@@ -48,6 +49,7 @@ export default function WorkspaceSidebar() {
                   className={({ isActive }) =>
                     [
                       "workspace-sidebar__link",
+                      isPrimaryAction ? "workspace-sidebar__link--primary-action" : "",
                       isActive ? "workspace-sidebar__link--active" : "",
                     ]
                       .filter(Boolean)

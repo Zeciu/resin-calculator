@@ -817,6 +817,17 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 20 |
 | **Expected result** | New Project uses primary-action styling when authenticated |
 | **Acceptance criteria** | Visually distinct from other nav items |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Added primary-action styling for the authenticated New Project navigation item.
+- Primary styling is applied only when the user is authenticated and the item is not locked.
+- Guest mode remains unchanged and New Project stays locked.
+- Existing active-state behavior is preserved.
+- No routing, authentication, calculator, or backend behavior changed.
+- No future tasks implemented.
 
 ---
 

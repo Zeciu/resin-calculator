@@ -1486,6 +1486,23 @@ button.workspace-sidebar__link {
   border-color: var(--border-warm);
 }
 
+.workspace-sidebar__link--primary-action {
+  background: #e7d3b1;
+  border-color: #9d6c3b;
+  color: #4b341f;
+  box-shadow: 0 3px 10px rgba(122, 82, 44, 0.18);
+}
+
+.workspace-sidebar__link--primary-action:hover {
+  background: #e2c99f;
+  border-color: #8f5d2f;
+}
+
+.workspace-sidebar__link--primary-action.workspace-sidebar__link--active {
+  background: #ddbf8d;
+  border-color: #815126;
+}
+
 .workspace-sidebar__label {
   flex: 1 1 auto;
   min-width: 0;
