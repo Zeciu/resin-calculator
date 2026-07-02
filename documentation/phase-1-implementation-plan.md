@@ -749,6 +749,17 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 34 |
 | **Expected result** | `LandingPage` no longer primary entry; guest intro lives in workspace |
 | **Acceptance criteria** | No dead routes; no duplicate login UX |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Retired the legacy `LandingPage` by replacing it with a minimal stub component.
+- `LandingPage` now returns `null` and is clearly marked as a legacy component.
+- Removed the legacy embedded login UX while preserving file/module stability.
+- `LandingPage` is no longer reachable through the application entry or routing flow.
+- Workspace-first entry remains unchanged from Task 34.
+- No future tasks implemented.
 
 ---
 
