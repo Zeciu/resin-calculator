@@ -575,6 +575,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 10, 20, 24 |
 | **Expected result** | Placeholder page routed from sidebar |
 | **Acceptance criteria** | Authenticated route works |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `GlossaryPage.jsx` using `ModulePlaceholder` with Glossary title and description covering woodworking/resin terminology, material definitions, tool descriptions, and common HFZWood concepts
+- Updated `WorkspaceRouter.jsx` so `/glossary` renders `GlossaryPage` inside the workspace shell
+- No glossary entries, search, alphabetical navigation, filtering, or other glossary functionality; manual verification passed; `npm run build` and `npm run test` succeeded (23 tests)
 
 ---
 
