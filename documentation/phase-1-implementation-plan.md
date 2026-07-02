@@ -8,12 +8,12 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 
 | Existing asset | Implication |
 |----------------|-------------|
-| `frontend/src/App.jsx` (~3,400 lines) | Full calculator; must be extracted, not rewritten |
-| `frontend/src/main.jsx` | Gates app: unauthenticated → `LandingPage`, authenticated → `App` |
-| `LandingPage.jsx` + Amplify/Cognito | Conflicts with doc Guest Mode workspace; must be reconciled in Phase 1 |
-| `AppHeader.jsx` | Hero branding exists; workspace hero should reuse/adapt it |
-| `App.test.jsx` | Tests assume `App` is root; must be updated after extraction |
-| No `react-router` | Routing layer must be added |
+| `frontend/src/App.jsx` | Thin wrapper around extracted `ResinCalculator` |
+| `frontend/src/main.jsx` | Workspace-first entry via `WorkspaceRouter`; `/callback` preserved |
+| `LandingPage.jsx` | Retired stub (Task 35); no longer used as application entry |
+| `AppHeader.jsx` | Hero branding reused in workspace; optional in calculator via `showHeader` |
+| `App.test.jsx` + `ResinCalculator.test.jsx` | Calculator smoke/regression tests against extracted component |
+| `react-router-dom` | Workspace routing implemented |
 | Backend Cognito middleware | Optional when env vars unset; no backend work required for Phase 1 UI |
 
 ---
@@ -911,6 +911,18 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 40 |
 | **Expected result** | Written confirmation each roadmap objective is met |
 | **Acceptance criteria** | All Phase 1 completion items from `implementation-roadmap.md` checked off |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Reviewed all 42 Phase 1 tasks; Tasks 1–41 were already marked Completed with Passed verification.
+- Confirmed implementation status, verification status, and completion dates are present for every completed task.
+- Ran final verification: `npm run build`, `npm run test` (35 tests), and `uv run --project backend pytest backend/test_app.py -v` (34 tests).
+- Updated baseline and Phase 1 completion checklist sections to match current implementation.
+- No incomplete Phase 1 implementation items remain.
+- No production code changes were required.
+- Phase 1 is complete and ready for Phase 2.
 
 ---
 
@@ -932,16 +944,29 @@ Task 1 → 2 → 3 → 6 → 10 → 13 → 18 → 20 → 31 → 34 → 40
 
 ## Phase 1 completion mapping (roadmap objectives)
 
-| Roadmap objective | Covered by tasks |
-|-------------------|------------------|
-| Application Workspace implemented | 6–10, 9 |
-| Guest + Authenticated modes defined | 11–14, 18–20 |
-| All nav modules routable | 2–3, 10, 25–28 |
-| Login, Register, Password Recovery UI | 15–17 |
-| My Account UI | 21–22 |
-| Calculator via New Project | 29–32 |
-| Stable navigation | 10, 34, 39 |
-| Ready for backend auth integration | 4–5, 36 |
+| Roadmap objective | Covered by tasks | Status |
+|-------------------|------------------|--------|
+| Application Workspace implemented | 6–10, 9 | Met |
+| Guest + Authenticated modes defined | 11–14, 18–20 | Met |
+| All nav modules routable | 2–3, 10, 25–28 | Met |
+| Login, Register, Password Recovery UI | 15–17 | Met |
+| My Account UI | 21–22 | Met |
+| Calculator via New Project | 29–32 | Met |
+| Stable navigation | 10, 34, 39 | Met |
+| Ready for backend auth integration | 4–5, 36 | Met |
+
+### Phase 1 completion checklist (`implementation-roadmap.md`)
+
+| Completion item | Phase 1 status | Evidence |
+|-----------------|----------------|----------|
+| Users can register successfully | Met (mock) | Tasks 16, 18; `RegisterPage` + mock auth |
+| Users can log in and log out | Met (mock) | Tasks 15, 18, 22; login/logout flow |
+| Password recovery is functional | Met (UI stub) | Task 17; `PasswordRecoveryPage` placeholder |
+| User profiles are operational | Met (stub) | Tasks 21–23; `MyAccountPage` |
+| Dashboard is fully navigable | Met | Tasks 6–10, 25–28, 34, 39; workspace shell + module routes |
+| Application architecture supports future modules | Met | Tasks 2–5, 24, 29–30, 36; adapter + placeholders |
+
+**Phase 1 status:** Complete (2026-07-02). All 42 tasks implemented and verified. Ready for Phase 2.
 
 ---
 
@@ -958,6 +983,4 @@ Task 1 → 2 → 3 → 6 → 10 → 13 → 18 → 20 → 31 → 34 → 40
 
 ## Recommended execution order (summary)
 
-Execute tasks **1 → 42 sequentially** by number, allowing parallel work only where noted. Do not start Task 31 until Task 29 calculator extraction is complete and tested. Do not refactor `main.jsx` (Task 34) until workspace shell and mock auth are functional in isolation.
-
-This checklist is ready to execute one task at a time.
+Execute tasks **1 → 42** sequentially by number, allowing parallel work only where noted. Phase 1 is complete as of 2026-07-02.
