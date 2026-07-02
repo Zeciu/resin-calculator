@@ -886,6 +886,19 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Task 31 |
 | **Expected result** | `uv run --project backend pytest` (or existing test command) passes |
 | **Acceptance criteria** | Calculator API calls still work when auth middleware disabled locally |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Ran backend regression suite with `uv run --project backend pytest backend/test_app.py -v`.
+- Backend regression suite passed: 34 tests.
+- Verified frontend build and frontend tests still pass.
+- Confirmed calculator API paths and backend endpoints remain unchanged.
+- Confirmed mock auth/workspace routing changes do not affect backend communication.
+- Observed only a non-blocking FastAPI/Starlette/httpx deprecation warning.
+- No production code changes were required.
+- No future tasks implemented.
 
 ---
 
