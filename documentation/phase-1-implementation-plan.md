@@ -725,6 +725,18 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 10, 18 |
 | **Expected result** | No more `LandingPage` gate; `AuthProvider` + `WorkspaceRouter` at root |
 | **Acceptance criteria** | App loads workspace in guest mode by default |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Refactored `main.jsx` so the application is workspace-first.
+- Removed the legacy `LandingPage` authentication gate from `main.jsx`.
+- Preserved `AuthCallback` handling.
+- Added a minimal index route in `WorkspaceRouter` so `/` renders `GuestIntro` inside `ApplicationWorkspace`.
+- `LandingPage` remains unchanged and is no longer used by `main.jsx`.
+- No redirect from `/` to `/projects`.
+- No future tasks implemented.
 
 ---
 

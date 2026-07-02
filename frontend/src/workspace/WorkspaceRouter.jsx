@@ -10,6 +10,7 @@ import PasswordRecoveryPage from "../auth/PasswordRecoveryPage.jsx";
 import RegisterPage from "../auth/RegisterPage.jsx";
 import ApplicationWorkspace from "./ApplicationWorkspace.jsx";
 import AuthRouteGuard from "./AuthRouteGuard.jsx";
+import GuestIntro from "./GuestIntro.jsx";
 import RoutePlaceholder from "./RoutePlaceholder.jsx";
 import { ROUTES } from "./routes.js";
 
@@ -39,6 +40,7 @@ export default function WorkspaceRouter() {
   return (
     <Routes>
       <Route element={<ApplicationWorkspace />}>
+        <Route index element={<GuestIntro />} />
         <Route path={workspaceRoutePath(ROUTES.LOGIN)} element={<LoginPage />} />
         <Route path={workspaceRoutePath(ROUTES.REGISTER)} element={<RegisterPage />} />
         <Route
