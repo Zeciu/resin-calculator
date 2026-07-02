@@ -9,6 +9,7 @@ import LoginPage from "../auth/LoginPage.jsx";
 import PasswordRecoveryPage from "../auth/PasswordRecoveryPage.jsx";
 import RegisterPage from "../auth/RegisterPage.jsx";
 import ApplicationWorkspace from "./ApplicationWorkspace.jsx";
+import AuthRouteGuard from "./AuthRouteGuard.jsx";
 import RoutePlaceholder from "./RoutePlaceholder.jsx";
 import { ROUTES } from "./routes.js";
 
@@ -51,7 +52,11 @@ export default function WorkspaceRouter() {
         <Route path={workspaceRoutePath(ROUTES.KNOWLEDGE_BASE)} element={<KnowledgeBasePage />} />
         <Route
           path={workspaceRoutePath(ROUTES.NEW_PROJECT)}
-          element={<ResinCalculator showHeader={false} />}
+          element={
+            <AuthRouteGuard>
+              <ResinCalculator showHeader={false} />
+            </AuthRouteGuard>
+          }
         />
         {WORKSPACE_ROUTE_PLACEHOLDERS.map(({ path, title }) => (
           <Route

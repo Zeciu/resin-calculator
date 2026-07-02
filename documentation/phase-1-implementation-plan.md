@@ -679,6 +679,17 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 13, 31 |
 | **Expected result** | Guest navigating to calculator URL sees LockedModuleMessage or redirect |
 | **Acceptance criteria** | No calculator access without authentication |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `AuthRouteGuard.jsx`.
+- Protected the `/new-project` calculator route with `AuthRouteGuard`.
+- Guests accessing the calculator route directly now see `LockedModuleMessage`.
+- Authenticated users continue to access `ResinCalculator` with `showHeader={false}`.
+- No redirect logic introduced.
+- No future tasks implemented.
 
 ---
 
