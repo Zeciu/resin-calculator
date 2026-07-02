@@ -555,6 +555,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 10, 20, 24 |
 | **Expected result** | Placeholder with module description from docs |
 | **Acceptance criteria** | Authenticated route works |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Created `ManualTutorialsPage.jsx` using `ModulePlaceholder` with Manual & Tutorials title and description of future user manual, tutorials, learning resources, and best practices
+- Updated `WorkspaceRouter.jsx` so `/manual` renders `ManualTutorialsPage` inside the workspace shell
+- No manual content, tutorials, search, markdown rendering, or document loading; manual verification passed; `npm run build` and `npm run test` succeeded (23 tests)
 
 ---
 
