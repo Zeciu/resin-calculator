@@ -840,6 +840,17 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 25–31, 34 |
 | **Expected result** | Tests cover: guest locked modules, auth pages, authenticated module routes, calculator via New Project |
 | **Acceptance criteria** | `npm run test` passes |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Added `WorkspaceNavigation.test.jsx`.
+- Added full Phase 1 workspace navigation matrix coverage.
+- Covered guest locked navigation, Login/Register access, direct guest `/new-project` protection, authenticated module navigation, My Account, and New Project calculator access.
+- Verified New Project primary-action styling for authenticated users.
+- No production code changes were required.
+- No future tasks implemented.
 
 ---
 
