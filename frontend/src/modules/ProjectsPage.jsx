@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FolderOpen, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { FolderOpen } from "lucide-react";
 import { ROUTES } from "../workspace/routes.js";
 import { ProjectFileParseError } from "../workspace/projectFileParse.js";
 import {
@@ -9,6 +9,7 @@ import {
   loadRecentProject,
   pickProjectFileWithHandle,
   RecentProjectUnavailableError,
+  supportsNativeProjectOpenPicker,
 } from "../workspace/projectFileOpen.js";
 import { loadRecentProjects } from "../workspace/recentProjectsIndex.js";
 
@@ -112,8 +113,12 @@ export default function ProjectsPage() {
   );
 
   const handleOpenProjectClick = useCallback(async () => {
-    const nativePick = await pickProjectFileWithHandle();
-    if (nativePick) {
+    if (supportsNativeProjectOpenPicker()) {
+      const nativePick = await pickProjectFileWithHandle();
+      if (!nativePick) {
+        return;
+      }
+
       await handleProjectLoaded(async () =>
         loadProjectFromFile(nativePick.file, nativePick.handle),
       );
@@ -172,13 +177,6 @@ export default function ProjectsPage() {
           <FolderOpen size={18} aria-hidden="true" />
           Open Project
         </button>
-        <Link
-          to={ROUTES.NEW_PROJECT}
-          className="projects-hub__button projects-hub__button--secondary"
-        >
-          <Plus size={18} aria-hidden="true" />
-          New Project
-        </Link>
       </div>
 
       <input
@@ -217,8 +215,8 @@ export default function ProjectsPage() {
           <div className="projects-hub__empty-state">
             <p>No recent projects yet.</p>
             <p>
-              Use <strong>Open Project</strong> to select a saved <strong>.hfzproject</strong>{" "}
-              file, or start a <strong>New Project</strong>.
+              Use <strong>Open Project</strong> to select a saved <strong>.hfzproject</strong> file
+              from your device.
             </p>
           </div>
         ) : (

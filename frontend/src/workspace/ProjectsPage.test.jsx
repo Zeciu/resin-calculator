@@ -17,6 +17,7 @@ vi.mock("react-router-dom", async (importOriginal) => {
 
 vi.mock("./projectFileOpen.js", () => ({
   HFZ_PROJECT_IMPORT_ACCEPT: ".hfzproject,.json",
+  supportsNativeProjectOpenPicker: vi.fn(() => false),
   pickProjectFileWithHandle: vi.fn(async () => null),
   loadProjectFromFile: vi.fn(),
   loadRecentProject: vi.fn(),
@@ -31,7 +32,9 @@ vi.mock("./projectFileOpen.js", () => ({
 import {
   loadProjectFromFile,
   loadRecentProject,
+  pickProjectFileWithHandle,
   RecentProjectUnavailableError,
+  supportsNativeProjectOpenPicker,
 } from "./projectFileOpen.js";
 import { upsertRecentProject, buildRecentProjectEntry } from "./recentProjectsIndex.js";
 
@@ -52,19 +55,35 @@ describe("ProjectsPage", () => {
     navigateMock.mockReset();
     loadProjectFromFile.mockReset();
     loadRecentProject.mockReset();
+    supportsNativeProjectOpenPicker.mockReturnValue(false);
+    pickProjectFileWithHandle.mockResolvedValue(null);
   });
 
-  it("renders Open Project, New Project, and the empty state", () => {
+  it("renders Open Project and the empty state", () => {
     renderProjectsPage();
 
     expect(screen.getByRole("heading", { name: "Projects" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Open Project" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "New Project" })).toHaveAttribute(
-      "href",
-      ROUTES.NEW_PROJECT,
-    );
+    expect(screen.queryByRole("link", { name: "New Project" })).not.toBeInTheDocument();
     expect(screen.getByText(/No recent projects yet/i)).toBeInTheDocument();
     expect(screen.getByText(/Recent on this device only/i)).toBeInTheDocument();
+  });
+
+  it("does not open a fallback file picker when the native picker is cancelled", async () => {
+    const user = userEvent.setup();
+    const clickSpy = vi.spyOn(HTMLInputElement.prototype, "click");
+
+    supportsNativeProjectOpenPicker.mockReturnValue(true);
+    pickProjectFileWithHandle.mockResolvedValue(null);
+
+    renderProjectsPage();
+    await user.click(screen.getByRole("button", { name: "Open Project" }));
+
+    expect(pickProjectFileWithHandle).toHaveBeenCalledTimes(1);
+    expect(clickSpy).not.toHaveBeenCalled();
+    expect(loadProjectFromFile).not.toHaveBeenCalled();
+
+    clickSpy.mockRestore();
   });
 
   it("opens a selected project in the Application Workspace", async () => {
