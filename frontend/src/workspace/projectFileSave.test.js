@@ -97,15 +97,16 @@ describe("projectFileSave", () => {
       const createObjectURL = vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:project");
       const revokeObjectURL = vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
 
-      const payload = await saveProjectFile({
+      const result = await saveProjectFile({
         projectName: "River Table",
         snapshot: SAMPLE_SNAPSHOT,
       });
 
       expect(supportsNativeProjectSavePicker()).toBe(false);
-      expect(payload.projectName).toBe("River Table");
-      expect(payload.image.dataUrl).toBe(TINY_PNG);
-      expect(link.download).toBe(`river-table${HFZ_PROJECT_FILE_EXTENSION}`);
+      expect(result.payload.projectName).toBe("River Table");
+      expect(result.payload.image.dataUrl).toBe(TINY_PNG);
+      expect(result.fileHandle).toBeNull();
+      expect(result.fileName).toBe(`river-table${HFZ_PROJECT_FILE_EXTENSION}`);
       expect(click).toHaveBeenCalledTimes(1);
 
       createElement.mockRestore();
@@ -122,7 +123,7 @@ describe("projectFileSave", () => {
       const fileHandle = { createWritable };
       window.showSaveFilePicker = vi.fn(async () => fileHandle);
 
-      const payload = await saveProjectFile({
+      const result = await saveProjectFile({
         projectName: "River Table",
         snapshot: SAMPLE_SNAPSHOT,
       });
@@ -135,7 +136,9 @@ describe("projectFileSave", () => {
       expect(createWritable).toHaveBeenCalledTimes(1);
       expect(write).toHaveBeenCalledTimes(1);
       expect(close).toHaveBeenCalledTimes(1);
-      expect(payload.image.dataUrl).toBe(TINY_PNG);
+      expect(result.payload.image.dataUrl).toBe(TINY_PNG);
+      expect(result.fileHandle).toBe(fileHandle);
+      expect(result.fileName).toBe(`river-table${HFZ_PROJECT_FILE_EXTENSION}`);
     });
 
     it("throws a cancellation error when the native save picker is dismissed", async () => {

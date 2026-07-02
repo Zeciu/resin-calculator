@@ -118,25 +118,32 @@ describe("Workspace navigation matrix — authenticated", () => {
   it("navigates to other module routes from the Home hub sidebar", async () => {
     const user = userEvent.setup();
     renderWorkspace("/");
-    const main = screen.getByRole("main");
 
     await user.click(screen.getByRole("link", { name: "Projects" }));
-    expect(within(main).getByRole("heading", { name: "Projects" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Open Project" })).toBeInTheDocument();
+    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("link", { name: "Home" }));
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Manual & Tutorials" }));
-    expect(within(main).getByRole("heading", { name: "Manual & Tutorials" })).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("main")).getByRole("heading", { name: "Manual & Tutorials" }),
+    ).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Glossary" }));
-    expect(within(main).getByRole("heading", { name: "Glossary" })).toBeInTheDocument();
+    expect(within(screen.getByRole("main")).getByRole("heading", { name: "Glossary" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Knowledge Base" }));
-    expect(within(main).getByRole("heading", { name: "Knowledge Base" })).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("main")).getByRole("heading", { name: "Knowledge Base" }),
+    ).toBeInTheDocument();
   });
 
   it("still shows My Account on non-home authenticated routes", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/projects");
+    renderWorkspace("/manual");
 
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
 

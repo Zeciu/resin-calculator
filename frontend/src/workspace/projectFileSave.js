@@ -102,7 +102,7 @@ export async function saveProjectFile({ projectName, snapshot }) {
         ],
       });
       await writeBlobToFileHandle(fileHandle, blob);
-      return payload;
+      return { payload, fileHandle, fileName: filename };
     } catch (error) {
       if (error?.name === "AbortError") {
         throw new ProjectFileSaveCancelledError();
@@ -114,7 +114,7 @@ export async function saveProjectFile({ projectName, snapshot }) {
 
   try {
     downloadProjectFile(blob, filename);
-    return payload;
+    return { payload, fileHandle: null, fileName: filename };
   } catch (error) {
     throw new ProjectFileSaveError("Could not save project file.", error);
   }

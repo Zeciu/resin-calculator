@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import AppHeader from "../AppHeader";
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
+import { parseProjectFileText } from "../workspace/projectFileParse.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -600,6 +601,7 @@ export default forwardRef(function ResinCalculator(
   const [error, setError] = useState("");
   const [importedProject, setImportedProject] = useState(false);
   const buildProjectSnapshotRef = useRef(() => ({}));
+  const restoreImportedProjectRef = useRef(() => {});
 
   useEffect(() => {
     if (!onDirtyChange) {
@@ -1388,12 +1390,6 @@ export default forwardRef(function ResinCalculator(
     result,
   });
 
-  buildProjectSnapshotRef.current = buildProjectSnapshot;
-
-  useImperativeHandle(ref, () => ({
-    getProjectSnapshot: () => buildProjectSnapshotRef.current(),
-  }));
-
   const saveProject = () => {
     if (!imageDataUrl) {
       setError("Upload an image before saving a project.");
@@ -1532,6 +1528,14 @@ export default forwardRef(function ResinCalculator(
     img.src = project.image.dataUrl;
   };
 
+  buildProjectSnapshotRef.current = buildProjectSnapshot;
+  restoreImportedProjectRef.current = restoreImportedProject;
+
+  useImperativeHandle(ref, () => ({
+    getProjectSnapshot: () => buildProjectSnapshotRef.current(),
+    restoreProjectSnapshot: (project) => restoreImportedProjectRef.current(project),
+  }));
+
   const importProject = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -1539,11 +1543,7 @@ export default forwardRef(function ResinCalculator(
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const text = reader.result;
-        if (typeof text !== "string") {
-          throw new Error("Invalid project file.");
-        }
-        const project = JSON.parse(text);
+        const project = parseProjectFileText(reader.result);
         restoreImportedProject(project);
       } catch (err) {
         setError(err.message || "Invalid project file.");

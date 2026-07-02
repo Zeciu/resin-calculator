@@ -2,6 +2,7 @@ import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
+import { RECENT_PROJECTS_STORAGE_KEY } from "./recentProjectsIndex.js";
 import {
   ProjectFileSaveCancelledError,
   ProjectFileSaveError,
@@ -126,8 +127,13 @@ describe("Save Project flow", () => {
     restoreImage = installPersistentImageMock();
     saveProjectFileMock.mockReset();
     saveProjectFileMock.mockResolvedValue({
-      projectName: "River Table",
-      image: { dataUrl: TINY_PNG },
+      payload: {
+        projectName: "River Table",
+        savedAt: "2026-01-01T12:00:00.000Z",
+        image: { dataUrl: TINY_PNG },
+      },
+      fileHandle: null,
+      fileName: "river-table.hfzproject",
     });
   });
 
@@ -201,6 +207,10 @@ describe("Save Project flow", () => {
         }),
       }),
     );
+
+    const recentStore = localStorage.getItem(RECENT_PROJECTS_STORAGE_KEY);
+    expect(recentStore).toContain("River Table");
+    expect(recentStore).not.toContain(TINY_PNG);
   });
 
   it("keeps the workspace open when save fails", async () => {
