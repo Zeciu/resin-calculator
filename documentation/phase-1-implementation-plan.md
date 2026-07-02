@@ -795,6 +795,16 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 11, 18 |
 | **Expected result** | Guest → `GuestIntro`; Authenticated → `GuestIntro` or redirect to Projects (document choice: intro OK for Phase 1) |
 | **Acceptance criteria** | Consistent, predictable home behavior |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Confirmed `/` renders `GuestIntro` inside `ApplicationWorkspace` for both Guest and Authenticated users.
+- No production code changes were required.
+- Added `HomeRouteBehavior.test.jsx` covering guest and authenticated home behavior.
+- Confirmed no redirect from `/` to `/projects`.
+- No future tasks implemented.
 
 ---
 
