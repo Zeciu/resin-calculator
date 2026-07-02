@@ -58,3 +58,12 @@ export function getVisibleWorkspaceNavItems(isAuthenticated) {
     return true;
   });
 }
+
+export function getLoggedInHomeNavItems() {
+  return WORKSPACE_NAV_ITEMS.filter(
+    (item) =>
+      item.requiresAuth &&
+      item.id !== "my-account" &&
+      item.id !== "login-register",
+  );
+}

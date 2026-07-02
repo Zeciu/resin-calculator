@@ -34,7 +34,7 @@ export default function LoginPage() {
 
     setError("");
     login(credentialsFromLoginInput(username));
-    navigate(ROUTES.PROJECTS, { replace: true });
+    navigate(ROUTES.HOME, { replace: true });
   }
 
   return (

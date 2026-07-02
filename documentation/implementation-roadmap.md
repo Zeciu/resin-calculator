@@ -87,11 +87,20 @@ Before moving to Phase 2, the application should provide a stable, secure and re
 
 Every component introduced in this phase should be fully tested before additional functionality is implemented.
 
-# Phase 2 – Core Resin Calculator
+# Phase 2 – Logged-in Product Experience
+
+> Active Phase 2 scope and task tracking live in [`documentation/phase-2-implementation-plan.md`](phase-2-implementation-plan.md) (Tasks 43–58). The calculator workflow was delivered in Phase 1; Phase 2 builds the logged-in product shell, project workflow, and educational modules.
+
+## Progress (2026-07-02)
+
+| Task | Name | Status |
+|------|------|--------|
+| 43 | Logged-in Home Hub | Complete |
+| 44–58 | Remaining Phase 2 tasks | Pending |
 
 ## Objective
 
-The objective of Phase 2 is to implement the core resin volume calculation workflow.
+The objective of Phase 2 is to transform HFZWood from a completed application shell into a usable logged-in product experience.
 
 At the end of this phase, users should be able to create a project, upload an image, define reference measurements, draw resin areas and calculate the required resin volume.
 

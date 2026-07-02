@@ -74,16 +74,18 @@ describe("Workspace navigation matrix — authenticated", () => {
     seedAuthenticatedSession();
   });
 
-  it("shows unlocked module navigation and emphasizes New Project", () => {
+  it("shows unlocked module navigation and emphasizes New Project on the Home hub", () => {
     renderWorkspace("/");
 
     const newProjectLink = screen.getByRole("link", { name: "New Project" });
     expect(newProjectLink).toBeInTheDocument();
     expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
     expect(screen.queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });
 
-  it("navigates to all Phase 1 module routes", async () => {
+  it("navigates to Phase 1 module routes from the Home hub", async () => {
     const user = userEvent.setup();
     renderWorkspace("/");
     const main = screen.getByRole("main");
@@ -104,8 +106,17 @@ describe("Workspace navigation matrix — authenticated", () => {
 
     await user.click(screen.getByRole("link", { name: "Knowledge Base" }));
     expect(within(main).getByRole("heading", { name: "Knowledge Base" })).toBeInTheDocument();
+  });
+
+  it("still shows My Account on non-home authenticated routes", async () => {
+    const user = userEvent.setup();
+    renderWorkspace("/projects");
+
+    expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "My Account" }));
-    expect(within(main).getByRole("heading", { name: "My Account" })).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("main")).getByRole("heading", { name: "My Account" }),
+    ).toBeInTheDocument();
   });
 });

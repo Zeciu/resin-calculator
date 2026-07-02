@@ -65,7 +65,7 @@ export default function RegisterPage() {
       login({ email, username });
       event.currentTarget.reset();
       setErrors(INITIAL_ERRORS);
-      navigate(ROUTES.PROJECTS, { replace: true });
+      navigate(ROUTES.HOME, { replace: true });
     }
   }
 

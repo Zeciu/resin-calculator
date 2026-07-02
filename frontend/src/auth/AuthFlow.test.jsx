@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
@@ -25,9 +25,10 @@ function expectNewProjectUnlocked() {
   expect(screen.queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
 }
 
-function expectProjectsPlaceholder() {
-  const main = screen.getByRole("main");
-  expect(within(main).getByRole("heading", { name: /^Projects$/ })).toBeInTheDocument();
+function expectLoggedInHome() {
+  expect(
+    screen.getByText(/Welcome to HFZWood — your workspace for resin estimation/i),
+  ).toBeInTheDocument();
 }
 
 async function submitLoginForm(user, email = "user@example.com", password = "password123") {
@@ -49,7 +50,7 @@ describe("Auth flow", () => {
 
     await submitLoginForm(user);
 
-    expectProjectsPlaceholder();
+    expectLoggedInHome();
     expectNewProjectUnlocked();
     expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });
@@ -81,9 +82,9 @@ describe("Auth flow", () => {
       }),
     );
 
-    renderWorkspace(ROUTES.PROJECTS);
+    renderWorkspace(ROUTES.HOME);
 
-    expectProjectsPlaceholder();
+    expectLoggedInHome();
     expectNewProjectUnlocked();
     expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });

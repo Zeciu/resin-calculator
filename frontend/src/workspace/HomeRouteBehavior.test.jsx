@@ -43,16 +43,19 @@ describe("Workspace home route", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("renders GuestIntro for authenticated users at /", () => {
+  it("renders LoggedInHome for authenticated users at /", () => {
     seedAuthenticatedSession();
     renderHomeRoute();
 
     expect(
-      screen.getByText(/The first platform that gives woodworkers and resin enthusiasts/i),
+      screen.getByText(/Welcome to HFZWood — your workspace for resin estimation/i),
     ).toBeInTheDocument();
+    expect(screen.getByLabelText(/Platform overview video placeholder/i)).toBeInTheDocument();
     expect(
-      screen.queryByText(/River Table & Woodworking Resin Calculator/i),
+      screen.queryByText(/Create your free HFZWood account to unlock the complete platform/i),
     ).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Start New Project/i })).not.toBeInTheDocument();
   });
 });

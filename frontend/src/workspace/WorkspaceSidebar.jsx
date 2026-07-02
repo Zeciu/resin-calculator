@@ -1,7 +1,7 @@
 import { Lock } from "lucide-react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
-import { getVisibleWorkspaceNavItems } from "./navigation.js";
+import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
 
@@ -22,9 +22,15 @@ function LockedNavItem({ item, onShowLockedMessage }) {
 
 export default function WorkspaceSidebar() {
   const { isAuthenticated, logout } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
   const { isNavItemLocked, showLockedModuleMessage, clearLockedModuleMessage } =
     useWorkspaceNavigation();
+
+  const isLoggedInHome = isAuthenticated && location.pathname === ROUTES.HOME;
+  const navItems = isLoggedInHome
+    ? getLoggedInHomeNavItems()
+    : getVisibleWorkspaceNavItems(isAuthenticated);
 
   function handleLogout() {
     logout();
@@ -35,7 +41,7 @@ export default function WorkspaceSidebar() {
   return (
     <nav className="workspace-sidebar" aria-label="Workspace navigation">
       <ul className="workspace-sidebar__list">
-        {getVisibleWorkspaceNavItems(isAuthenticated).map((item) => {
+        {navItems.map((item) => {
           const isLocked = isNavItemLocked(item);
           const isPrimaryAction = isAuthenticated && item.id === "new-project" && !isLocked;
 
