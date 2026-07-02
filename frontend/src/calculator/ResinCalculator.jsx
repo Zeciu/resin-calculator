@@ -525,7 +525,7 @@ function drawCanvas({
   );
 }
 
-export default function ResinCalculator({ showHeader = true }) {
+export default function ResinCalculator({ showHeader = true, workspaceVariant }) {
   const canvasRef = useRef(null);
   const workAreaRef = useRef(null);
   const imageRef = useRef(null);
@@ -2106,9 +2106,11 @@ export default function ResinCalculator({ showHeader = true }) {
       {showHeader ? <AppHeader /> : null}
 
       <div className="calculation-mode-bar">
-        <span className="calculation-mode-label">
-          River Table & Woodworking Resin Calculator
-        </span>
+        {workspaceVariant !== "dedicated" ? (
+          <span className="calculation-mode-label">
+            River Table & Woodworking Resin Calculator
+          </span>
+        ) : null}
         <button
           className="project-action-button mode-import-action"
           onClick={() => importFileInputRef.current?.click()}

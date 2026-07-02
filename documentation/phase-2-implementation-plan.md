@@ -1,6 +1,6 @@
 # Phase 2 Implementation Plan
 
-Status: In Progress (Task 43 complete)
+Status: In Progress (Tasks 43–45 complete)
 
 Version: 1.0
 # Product Principles
@@ -136,6 +136,16 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 | Dependencies          | Task 43                                                                                                                                                                                                                                                                                                                     |
 | Expected result       | Dedicated modules such as New Project, Projects, Manual and Tutorials, Glossary and Knowledge Base open in their own focused layout instead of using the Home sidebar layout.                                                                                                                                               |
 | Acceptance criteria   | The main Home sidebar is not displayed inside dedicated modules. Each dedicated module has a clear and explicit Home navigation element. The layout provides maximum usable space for the active module. The pattern is reusable across all Phase 2 modules. No module-specific business logic is implemented in this task. |
+| Completion date       | 2026-07-02                                                                                                                                                                                                                                                                                                                |
+| Implementation status | Completed                                                                                                                                                                                                                                                                                                                 |
+| Verification status   | Passed                                                                                                                                                                                                                                                                                                                    |
+
+**Implementation notes:**
+- Added `DedicatedModuleLayout`, `ModuleHeader`, `ModuleHomeNav`, and `HomeHubLayout`; refactored `ApplicationWorkspace` to nest layout routes
+- Applied `DedicatedModuleLayout` **only** to `/new-project`; Projects, Manual, Glossary, Knowledge Base, and My Account remain on `HomeHubLayout`
+- Added `DEDICATED_MODULE_PATHS`, `DEDICATED_MODULE_TITLES`, and `getDedicatedModuleTitle()` in `navigation.js`
+- Compact module header (logo + product title + Home) replaces home sidebar inside dedicated modules
+- Updated `WorkspaceNavigation.test.jsx` and `AuthenticatedNav.test.jsx` for dedicated layout on New Project
 ## Task 45 — New Project Opens Application Workspace
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -145,6 +155,16 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 | Dependencies          | Task 44                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Expected result       | Selecting **New Project** from the Logged-in Home page opens the application's full-screen working environment. The user enters the existing resin estimation workspace directly, without any intermediate page.                                                                                                                                                                                                                    |
 | Acceptance criteria   | Selecting **New Project** immediately opens the application workspace. The Home sidebar is hidden and replaced by the dedicated module layout. The application workspace maximizes the available working area for image upload, calibration, polygon creation and volume estimation. A clear Home navigation element is available. Project saving, project naming and project management are intentionally excluded from this task. |
+| Completion date       | 2026-07-02                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Implementation status | Completed                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Verification status   | Passed                                                                                                                                                                                                                                                                                                                                                                                                                             |
+
+**Implementation notes:**
+- Added `NewProjectWorkspace.jsx` wrapper; `/new-project` renders calculator inside existing `DedicatedModuleLayout` from Task 44
+- Added `workspaceVariant="dedicated"` to `ResinCalculator` (presentation-only) to omit duplicate product title when `ModuleHeader` already identifies the workspace
+- Workspace CSS: full-width calculator (removes `.container` 1100px cap), widened shell (up to 1760px), reduced card-in-card nesting, progressive taller `.work-area` for the image canvas
+- Preserved all calculator workflow, logic, and Phase 1 Save/Import/PDF behavior unchanged
+- Added `NewProjectWorkspace.test.jsx`; updated `ResinCalculator.test.jsx`, `WorkspaceNavigation.test.jsx`, and `AuthenticatedNav.test.jsx`
 ## Task 46 — Unsaved Changes Protection
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -311,5 +331,5 @@ Future phases may introduce any of these capabilities after the core user experi
 
 ---
 
-**Phase 2 status:** In progress (2026-07-02). Task 43 of 16 (Tasks 43–58) implemented and verified. Next: Task 44 — Dedicated Module Layout Pattern.
+**Phase 2 status:** In progress (2026-07-02). Tasks 43–45 of 16 (Tasks 43–58) implemented and verified. Next: Task 46 — Unsaved Changes Protection.
 

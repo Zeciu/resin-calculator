@@ -37,9 +37,11 @@ function expectRoutePlaceholder(title) {
 
 function expectCalculatorRoute() {
   const main = screen.getByRole("main");
+  expect(within(main).getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
+  expect(within(main).getByText("References")).toBeInTheDocument();
   expect(
-    within(main).getByText("River Table & Woodworking Resin Calculator"),
-  ).toBeInTheDocument();
+    within(main).queryByText(/River Table & Woodworking Resin Calculator/i),
+  ).not.toBeInTheDocument();
 }
 
 describe("Authenticated Mode navigation", () => {
@@ -98,6 +100,14 @@ describe("Authenticated Mode navigation", () => {
 
     await user.click(screen.getByRole("link", { name: "New Project" }));
     expectCalculatorRoute();
+    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("link", { name: "Home" }));
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("link", { name: "Projects" }));
+    expectRoutePlaceholder("Projects");
 
     const placeholderModules = [
       { label: "Manual & Tutorials", title: "Manual & Tutorials" },

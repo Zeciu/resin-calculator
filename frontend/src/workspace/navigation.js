@@ -67,3 +67,23 @@ export function getLoggedInHomeNavItems() {
       item.id !== "login-register",
   );
 }
+
+/** Routes that use DedicatedModuleLayout instead of the home hub sidebar. */
+export const DEDICATED_MODULE_PATHS = [ROUTES.NEW_PROJECT];
+
+export function isDedicatedModulePath(pathname) {
+  return DEDICATED_MODULE_PATHS.includes(pathname);
+}
+
+/** Product title shown in the dedicated module header per route. */
+export const DEDICATED_MODULE_TITLES = {
+  [ROUTES.NEW_PROJECT]: "HFZWood Resin Calculator",
+  [ROUTES.PROJECTS]: "HFZWood",
+  [ROUTES.MANUAL]: "HFZWood",
+  [ROUTES.GLOSSARY]: "HFZWood",
+  [ROUTES.KNOWLEDGE_BASE]: "HFZWood",
+};
+
+export function getDedicatedModuleTitle(pathname) {
+  return DEDICATED_MODULE_TITLES[pathname] ?? "HFZWood";
+}

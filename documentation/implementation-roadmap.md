@@ -96,7 +96,9 @@ Every component introduced in this phase should be fully tested before additiona
 | Task | Name | Status |
 |------|------|--------|
 | 43 | Logged-in Home Hub | Complete |
-| 44–58 | Remaining Phase 2 tasks | Pending |
+| 44 | Dedicated Module Layout Pattern | Complete |
+| 45 | New Project Workspace | Complete |
+| 46–58 | Remaining Phase 2 tasks | Pending |
 
 ## Objective
 

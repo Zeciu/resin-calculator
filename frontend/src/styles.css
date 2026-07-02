@@ -1535,6 +1535,204 @@ button.workspace-sidebar__link {
   }
 }
 
+/* ── Dedicated module layout (Task 44) ───────────────────────── */
+.application-workspace:has(.dedicated-module-layout) {
+  max-width: min(100%, 1680px);
+  padding: 10px 10px 16px;
+}
+
+.dedicated-module-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: calc(100vh - 26px);
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 8px 14px;
+  background: var(--surface-ivory-soft);
+  border: 1px solid var(--border-warm);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(54, 45, 34, 0.05);
+}
+
+.module-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.module-header__logo {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.module-header__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #3a3228;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module-header__home {
+  flex: 0 0 auto;
+}
+
+.dedicated-module-layout__content {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: #fbfaf6;
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(54, 45, 34, 0.06);
+}
+
+.module-home-nav {
+  margin: 0;
+}
+
+.module-home-nav__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #4b341f;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  border: 1px solid #c9b08a;
+  background: #f3e8d4;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.module-home-nav__link:hover {
+  background: #ead9bc;
+  border-color: #9d6c3b;
+}
+
+.module-home-nav__link--active {
+  background: #e2c99f;
+  border-color: #8f5d2f;
+}
+
+@media (max-width: 767px) {
+  .application-workspace:has(.dedicated-module-layout) {
+    padding: 8px 8px 12px;
+  }
+
+  .module-header {
+    padding: 8px 10px;
+    gap: 10px;
+  }
+
+  .module-header__title {
+    font-size: 14px;
+  }
+
+  .dedicated-module-layout__content {
+    padding: 8px;
+  }
+
+  .dedicated-module-layout__content:has(.new-project-workspace) {
+    padding: 4px 6px 8px;
+  }
+
+  .new-project-workspace .work-area {
+    height: calc(100vh - 250px);
+    min-height: 340px;
+  }
+}
+
+/* ── New Project workspace (Task 45) ─────────────────────────── */
+.application-workspace:has(.new-project-workspace) {
+  max-width: min(100%, 1760px);
+  padding: 8px 8px 12px;
+}
+
+.dedicated-module-layout:has(.new-project-workspace) {
+  gap: 8px;
+  min-height: calc(100vh - 16px);
+}
+
+.dedicated-module-layout__content:has(.new-project-workspace) {
+  padding: 6px 8px 8px;
+  background: #fbfaf6;
+  border: 1px solid var(--border-warm);
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(54, 45, 34, 0.04);
+}
+
+.new-project-workspace {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 88px);
+}
+
+.new-project-workspace .container {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.new-project-workspace .calculation-mode-bar {
+  justify-content: flex-end;
+  margin-bottom: 6px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.new-project-workspace .controls {
+  margin-bottom: 6px;
+}
+
+.new-project-workspace .workflow-progress {
+  margin-bottom: 6px;
+}
+
+.new-project-workspace .work-area {
+  width: 100%;
+  height: calc(100vh - 175px);
+  min-height: 520px;
+}
+
+@media (min-height: 720px) {
+  .new-project-workspace .work-area {
+    height: calc(100vh - 150px);
+    min-height: 580px;
+  }
+}
+
+@media (min-height: 880px) {
+  .new-project-workspace .work-area {
+    height: calc(100vh - 120px);
+    min-height: 640px;
+  }
+}
+
+.new-project-workspace .bottom-project-actions {
+  margin-top: 8px;
+  padding: 8px 10px;
+  box-shadow: none;
+}
+
 /* ── Guest intro (central workspace content) ─────────────────── */
 .guest-intro {
   display: flex;

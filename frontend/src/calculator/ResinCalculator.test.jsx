@@ -61,6 +61,14 @@ describe("ResinCalculator — header behavior", () => {
     expect(screen.queryByText(/Epoxy Resin Volume Estimator/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
   });
+
+  it("omits duplicate product title when workspaceVariant is dedicated", () => {
+    render(<ResinCalculator showHeader={false} workspaceVariant="dedicated" />);
+    expect(
+      screen.queryByText(/River Table & Woodworking Resin Calculator/i),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
+  });
 });
 
 describe("ResinCalculator — UI state", () => {

@@ -28,6 +28,10 @@ function seedAuthenticatedSession() {
   );
 }
 
+function expectNoHomeHubSidebar() {
+  expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+}
+
 describe("Workspace navigation matrix — guest", () => {
   beforeEach(() => {
     sessionStorage.clear();
@@ -56,9 +60,14 @@ describe("Workspace navigation matrix — guest", () => {
     ).toBeInTheDocument();
   });
 
-  it("blocks direct /new-project URL access with LockedModuleMessage", () => {
+  it("blocks direct /new-project URL access with LockedModuleMessage in dedicated layout", () => {
     renderWorkspace("/new-project");
 
+    expectNoHomeHubSidebar();
+    expect(screen.getByRole("banner", { name: "Module header" })).toBeInTheDocument();
+    expect(screen.getByText("HFZWood Resin Calculator")).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(
       screen.getByText(/Create your free HFZWood account to unlock this section/i),
     ).toBeInTheDocument();
@@ -85,18 +94,44 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });
 
-  it("navigates to Phase 1 module routes from the Home hub", async () => {
+  it("opens New Project in the dedicated module layout with Home navigation", async () => {
+    const user = userEvent.setup();
+    renderWorkspace("/");
+
+    await user.click(screen.getByRole("link", { name: "New Project" }));
+
+    expectNoHomeHubSidebar();
+    expect(screen.getByRole("banner", { name: "Module header" })).toBeInTheDocument();
+    expect(screen.getByText("HFZWood Resin Calculator")).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
+    expect(screen.getByText("References")).toBeInTheDocument();
+    expect(
+      screen.queryByText(/River Table & Woodworking Resin Calculator/i),
+    ).not.toBeInTheDocument();
+  });
+
+  it("returns to the Home hub from New Project via Home navigation", async () => {
+    const user = userEvent.setup();
+    renderWorkspace("/new-project");
+
+    await user.click(screen.getByRole("link", { name: "Home" }));
+
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
+    expect(
+      screen.getByText(/Welcome to HFZWood — your workspace for resin estimation/i),
+    ).toBeInTheDocument();
+  });
+
+  it("navigates to other module routes from the Home hub sidebar", async () => {
     const user = userEvent.setup();
     renderWorkspace("/");
     const main = screen.getByRole("main");
 
-    await user.click(screen.getByRole("link", { name: "New Project" }));
-    expect(
-      within(main).getByText("River Table & Woodworking Resin Calculator"),
-    ).toBeInTheDocument();
-
     await user.click(screen.getByRole("link", { name: "Projects" }));
     expect(within(main).getByRole("heading", { name: "Projects" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Manual & Tutorials" }));
     expect(within(main).getByRole("heading", { name: "Manual & Tutorials" })).toBeInTheDocument();
