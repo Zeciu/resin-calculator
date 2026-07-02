@@ -525,7 +525,7 @@ function drawCanvas({
   );
 }
 
-export default function App() {
+export default function ResinCalculator({ showHeader = true }) {
   const canvasRef = useRef(null);
   const workAreaRef = useRef(null);
   const imageRef = useRef(null);
@@ -2103,7 +2103,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <AppHeader />
+      {showHeader ? <AppHeader /> : null}
 
       <div className="calculation-mode-bar">
         <span className="calculation-mode-label">

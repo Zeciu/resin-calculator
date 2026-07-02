@@ -638,6 +638,14 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 7, 29 |
 | **Expected result** | Calculator renders without top `AppHeader`; workspace hero provides branding |
 | **Acceptance criteria** | Calculator UI intact below workspace shell; no duplicate headers |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Added optional `showHeader` prop to `ResinCalculator` with default `true` so header rendering can be controlled per usage context
+- Preserved legacy calculator behavior at root by keeping default header-visible rendering through `App.jsx`
+- Prepared calculator for Task 31 workspace integration by allowing future usage with `showHeader={false}` to avoid duplicate headers without changing calculator logic
 
 ---
 
