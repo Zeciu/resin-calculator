@@ -702,6 +702,17 @@ This plan implements **Phase 1 – Foundation / Application Workspace** per the 
 | **Dependencies** | Tasks 29, 31 |
 | **Expected result** | Existing smoke tests pass against `ResinCalculator` |
 | **Acceptance criteria** | `npm run test` passes; key workflows (upload UI, save error, PDF disabled) covered |
+| **Completion date** | 2026-07-02 |
+| **Implementation status** | Completed |
+| **Verification status** | Passed |
+
+**Implementation notes:**
+- Added `frontend/src/calculator/ResinCalculator.test.jsx`.
+- Added regression tests for the extracted `ResinCalculator` component.
+- Verified calculator rendering, upload UI, workflow entry, Import Project, Save Project, Export PDF initial state, save-without-image validation, and AppHeader behavior.
+- `App.test.jsx` remained unchanged and continues to pass.
+- No production behavior changed.
+- No future tasks implemented.
 
 ---
 
