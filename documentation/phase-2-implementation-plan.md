@@ -1,6 +1,6 @@
 # Phase 2 Implementation Plan
 
-Status: In Progress (Tasks 43–51 complete)
+Status: In Progress (Tasks 43–52 complete)
 
 Version: 1.0
 # Product Principles
@@ -315,13 +315,27 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 - No glossary, Knowledge Base, search, CMS, or Task 52+ functionality was added.
 ## Task 52 — Glossary Module
 
-| Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Objective             | Build the dedicated Glossary module as a searchable reference for terminology used throughout HFZWood.                                                                                                                                                                                                                                                                                                                                            |
-| Files likely modified | Glossary page/component, search components, glossary list components, glossary entry components, shared module layout, routing, shared styles if needed                                                                                                                                                                                                                                                                                           |
-| Dependencies          | Task 44                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Expected result       | Selecting **Glossary** from the Logged-in Home page opens a dedicated reference page where users can quickly find definitions of technical terms used in the application and the manual.                                                                                                                                                                                                                                                          |
-| Acceptance criteria   | The Home sidebar is hidden. The dedicated module layout is used. A clear Home navigation element is visible. A prominent search field is displayed at the top of the page. Glossary entries are organized alphabetically and can be filtered using the search function. Each entry supports a term, definition and optional supporting media such as images or embedded videos. The task does not implement AI-powered search or semantic search. |
+| Field                 | Detail |
+| --------------------- | ------ |
+| Objective             | Implement the HFZWood Glossary as a dedicated reference module that behaves like a modern technical dictionary — fast lookup of woodworking, epoxy resin, and HFZWood terminology with the same calm visual language as the Manual module. |
+| Files likely modified | `GlossaryPage.jsx`, `glossary/glossaryContent.js`, `GlossarySearch.jsx`, `GlossaryAlphabetNav.jsx`, `GlossaryToolbar.jsx`, `GlossaryEntry.jsx`, `GlossaryEntryList.jsx`, `glossaryFilter.js`, `WorkspaceRouter.jsx`, `navigation.js`, `styles.css`, plus corresponding tests |
+| Dependencies          | Task 50, Task 51 |
+| Expected result       | The placeholder Glossary is replaced by a fully functional reference module with dedicated layout, sticky search, sticky A–Z navigation, alphabetically grouped entries, client-side instant filtering, expandable dictionary-style entries, optional supporting media, and calm textbook-inspired presentation. |
+| Acceptance criteria   | Uses `DedicatedModuleLayout` and `AuthRouteGuard`. Sticky search with immediate client-side case-insensitive substring filtering (no AI, semantic, fuzzy, or global search). Sticky A–Z index jumps to letter sections. Entries grouped alphabetically with letter headings; only visible groups remain after filtering. Collapsed entries show term and **+** / **−** indicator; single-expand accordion. Expanded entries support multi-paragraph definitions and optional image or YouTube video with captions. Preserves Manual visual philosophy. Content model uses stable ids and is forward-compatible with future related terms and cross-links (not implemented here). |
+| Completion date       | 2026-07-03 |
+| Implementation status | Completed |
+| Verification status   | Passed |
+
+**Implementation notes:**
+- Replaced `ModulePlaceholder` with full Glossary module: `GlossaryPage` orchestrates search, A–Z jump, and single-expand accordion state.
+- Added `glossary/glossaryContent.js` with 13 sample terms; optional image on Epoxy resin and video on Sealing.
+- Added `GlossaryToolbar` (sticky search + A–Z), `GlossarySearch`, `GlossaryAlphabetNav`, `GlossaryEntry`, and `GlossaryEntryList` components.
+- Added `glossaryFilter.js` — substring filter on term and definition, alphabetical grouping with `#` bucket for non-letter terms, term-priority first-match helper for Enter submit.
+- **Enter** in the search field expands and scrolls to the first matching entry (term matches preferred over definition-only matches).
+- Moved `/glossary` to `DedicatedModuleLayout` with `AuthRouteGuard`; added `ROUTES.GLOSSARY` to `DEDICATED_MODULE_PATHS`; module header title set to **Glossary**.
+- Added `.glossary-module*` styles: 62rem reading column (~19% wider than Manual), viewport-locked scroll chain on desktop, calm dictionary presentation, constrained media figures.
+- Added `glossaryFilter.test.js` and `GlossaryPage.test.jsx`; updated `WorkspaceNavigation.test.jsx` and `AuthenticatedNav.test.jsx`.
+- No Knowledge Base FAQ, global search, Manual integration, CMS, backend persistence, or Task 53+ functionality was added.
 ## Task 53 — Knowledge Base FAQ Module
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -414,5 +428,5 @@ Future phases may introduce any of these capabilities after the core user experi
 
 ---
 
-**Phase 2 status:** In progress (2026-07-03). Tasks 43–51 of 15 (Tasks 43–57) implemented and verified. Next: Task 52 — Glossary Module.
+**Phase 2 status:** In progress (2026-07-03). Tasks 43–52 of 15 (Tasks 43–57) implemented and verified. Next: Task 53 — Knowledge Base FAQ Module.
 

@@ -139,7 +139,16 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Glossary" }));
-    expect(within(screen.getByRole("main")).getByRole("heading", { name: "Glossary" })).toBeInTheDocument();
+    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+    expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Alphabetical index" })).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("main")).getByRole("heading", { name: "Glossary", level: 1 }),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("link", { name: "Home" }));
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Knowledge Base" }));
     expect(
@@ -149,7 +158,7 @@ describe("Workspace navigation matrix — authenticated", () => {
 
   it("still shows My Account on non-home authenticated hub routes", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/glossary");
+    renderWorkspace("/knowledge-base");
 
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
 

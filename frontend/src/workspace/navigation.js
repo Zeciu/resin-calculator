@@ -69,7 +69,7 @@ export function getLoggedInHomeNavItems() {
 }
 
 /** Routes that use DedicatedModuleLayout instead of the home hub sidebar. */
-export const DEDICATED_MODULE_PATHS = [ROUTES.NEW_PROJECT, ROUTES.PROJECTS, ROUTES.MANUAL];
+export const DEDICATED_MODULE_PATHS = [ROUTES.NEW_PROJECT, ROUTES.PROJECTS, ROUTES.MANUAL, ROUTES.GLOSSARY];
 
 export function isDedicatedModulePath(pathname) {
   return DEDICATED_MODULE_PATHS.includes(pathname);
@@ -80,7 +80,7 @@ export const DEDICATED_MODULE_TITLES = {
   [ROUTES.NEW_PROJECT]: "HFZWood Resin Calculator",
   [ROUTES.PROJECTS]: "Projects",
   [ROUTES.MANUAL]: "Manual & Tutorials",
-  [ROUTES.GLOSSARY]: "HFZWood",
+  [ROUTES.GLOSSARY]: "Glossary",
   [ROUTES.KNOWLEDGE_BASE]: "HFZWood",
 };
 

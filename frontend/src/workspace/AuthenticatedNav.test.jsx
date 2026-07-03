@@ -106,17 +106,17 @@ describe("Authenticated Mode navigation", () => {
     await user.click(screen.getByRole("link", { name: "Home" }));
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
-    const dedicatedModules = [{ label: "Manual & Tutorials" }];
-    const placeholderModules = [
-      { label: "Glossary", title: "Glossary" },
-      { label: "Knowledge Base", title: "Knowledge Base" },
+    const dedicatedModules = [
+      { label: "Manual & Tutorials", navName: "Table of contents" },
+      { label: "Glossary", navName: "Alphabetical index" },
     ];
+    const placeholderModules = [{ label: "Knowledge Base", title: "Knowledge Base" }];
 
-    for (const { label } of dedicatedModules) {
+    for (const { label, navName } of dedicatedModules) {
       await user.click(screen.getByRole("link", { name: label }));
       expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
       expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-      expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
+      expect(screen.getByRole("navigation", { name: navName })).toBeInTheDocument();
       expect(
         within(screen.getByRole("main")).getByRole("heading", { name: label, level: 1 }),
       ).toBeInTheDocument();
