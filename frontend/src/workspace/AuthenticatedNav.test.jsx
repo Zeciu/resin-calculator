@@ -109,26 +109,25 @@ describe("Authenticated Mode navigation", () => {
     const dedicatedModules = [
       { label: "Manual & Tutorials", navName: "Table of contents" },
       { label: "Glossary", navName: "Alphabetical index" },
+      { label: "Knowledge Base", searchName: "Search knowledge base" },
     ];
-    const placeholderModules = [{ label: "Knowledge Base", title: "Knowledge Base" }];
 
-    for (const { label, navName } of dedicatedModules) {
+    for (const { label, navName, searchName } of dedicatedModules) {
       await user.click(screen.getByRole("link", { name: label }));
       expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
       expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-      expect(screen.getByRole("navigation", { name: navName })).toBeInTheDocument();
+      if (navName) {
+        expect(screen.getByRole("navigation", { name: navName })).toBeInTheDocument();
+      }
+      if (searchName) {
+        expect(screen.getByRole("searchbox", { name: searchName })).toBeInTheDocument();
+      }
       expect(
         within(screen.getByRole("main")).getByRole("heading", { name: label, level: 1 }),
       ).toBeInTheDocument();
 
       await user.click(screen.getByRole("link", { name: "Home" }));
       expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
-    }
-
-    for (const { label, title } of placeholderModules) {
-      await user.click(screen.getByRole("link", { name: label }));
-      const main = screen.getByRole("main");
-      expect(within(main).getByRole("heading", { name: title })).toBeInTheDocument();
     }
   });
 });

@@ -69,7 +69,13 @@ export function getLoggedInHomeNavItems() {
 }
 
 /** Routes that use DedicatedModuleLayout instead of the home hub sidebar. */
-export const DEDICATED_MODULE_PATHS = [ROUTES.NEW_PROJECT, ROUTES.PROJECTS, ROUTES.MANUAL, ROUTES.GLOSSARY];
+export const DEDICATED_MODULE_PATHS = [
+  ROUTES.NEW_PROJECT,
+  ROUTES.PROJECTS,
+  ROUTES.MANUAL,
+  ROUTES.GLOSSARY,
+  ROUTES.KNOWLEDGE_BASE,
+];
 
 export function isDedicatedModulePath(pathname) {
   return DEDICATED_MODULE_PATHS.includes(pathname);
@@ -81,7 +87,7 @@ export const DEDICATED_MODULE_TITLES = {
   [ROUTES.PROJECTS]: "Projects",
   [ROUTES.MANUAL]: "Manual & Tutorials",
   [ROUTES.GLOSSARY]: "Glossary",
-  [ROUTES.KNOWLEDGE_BASE]: "HFZWood",
+  [ROUTES.KNOWLEDGE_BASE]: "Knowledge Base",
 };
 
 export function getDedicatedModuleTitle(pathname) {

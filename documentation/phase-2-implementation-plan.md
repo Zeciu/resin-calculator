@@ -1,6 +1,6 @@
 # Phase 2 Implementation Plan
 
-Status: In Progress (Tasks 43–52 complete)
+Status: In Progress (Tasks 43–53 complete)
 
 Version: 1.0
 # Product Principles
@@ -336,15 +336,34 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 - Added `.glossary-module*` styles: 62rem reading column (~19% wider than Manual), viewport-locked scroll chain on desktop, calm dictionary presentation, constrained media figures.
 - Added `glossaryFilter.test.js` and `GlossaryPage.test.jsx`; updated `WorkspaceNavigation.test.jsx` and `AuthenticatedNav.test.jsx`.
 - No Knowledge Base FAQ, global search, Manual integration, CMS, backend persistence, or Task 53+ functionality was added.
-## Task 53 — Knowledge Base FAQ Module
+## Task 53 — Knowledge Base Module
 
-| Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Objective             | Build the initial Knowledge Base as a structured FAQ-style module with expandable questions and answers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Files likely modified | Knowledge Base page/component, FAQ/accordion components, search components, content data/source file, shared module layout, routing, shared styles if needed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Dependencies          | Task 44                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Expected result       | Selecting **Knowledge Base** from the Logged-in Home page opens a dedicated reference module where users can browse practical questions and expand each question to read the answer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Acceptance criteria   | The Home sidebar is hidden. The dedicated module layout is used. A clear Home navigation element is visible. The page displays a list of practical questions such as resin curing problems, bubbles, sanding marks and other recurring issues. Clicking a question expands the answer below it. Content is stored in a simple editable source structure so new questions and answers can be added later without redesigning the module. A prominent search field is available at the top and is designed to search across Knowledge Base, Manual content and Glossary terms. No AI-powered question answering or semantic retrieval is implemented in this task. |
+| Field                 | Detail |
+| --------------------- | ------ |
+| Objective             | Build the HFZWood Knowledge Base as a structured troubleshooting and practical guidance module that helps users solve real workshop problems. The Knowledge Base behaves like a professional technical support library rather than a simple FAQ list. |
+| Files likely modified | `KnowledgeBasePage.jsx`, `knowledgeBase/knowledgeBaseContent.js`, `KnowledgeBaseSearch.jsx`, `KnowledgeBaseToolbar.jsx`, `KnowledgeBaseEntry.jsx`, `KnowledgeBaseEntryList.jsx`, `knowledgeBaseFilter.js`, `WorkspaceRouter.jsx`, `navigation.js`, `styles.css`, plus corresponding tests |
+| Dependencies          | Tasks 50–52 |
+| Expected result       | The placeholder Knowledge Base is replaced by a dedicated support module where users can quickly locate practical solutions to common woodworking, epoxy resin, and HFZWood workflow problems. |
+| Acceptance criteria   | Uses `DedicatedModuleLayout` and `AuthRouteGuard`. Sticky search performs immediate client-side filtering only within Knowledge Base entries. Entries are expandable troubleshooting items with single-expand accordion behavior. Each entry supports structured sections (Problem Summary, Symptoms, Possible Causes, Solution, Tips, Warnings) plus optional images and occasional embedded videos. Calm academic visual language aligned with Manual and Glossary. Static editable content with stable entry ids. |
+| Completion date       | 2026-07-03 |
+| Implementation status | Completed |
+| Verification status   | Passed |
+
+**Implementation notes:**
+- Replaced `ModulePlaceholder` with full Knowledge Base module: `KnowledgeBasePage` orchestrates search, single-expand accordion, and scroll positioning.
+- Added `knowledgeBase/knowledgeBaseContent.js` with 12 sample troubleshooting entries; internal `category` and `difficulty` metadata on every entry (not rendered, not searchable).
+- Added `KnowledgeBaseToolbar`, `KnowledgeBaseSearch`, `KnowledgeBaseEntry`, and `KnowledgeBaseEntryList` components using **Entry** terminology throughout.
+- Added `knowledgeBaseFilter.js` — KB-only case-insensitive substring search; title-priority first-match for Enter submit; metadata excluded from search scope.
+- **Enter** in search expands and scrolls to the first matching entry, keeps query and search focus.
+- Moved `/knowledge-base` to `DedicatedModuleLayout` with `AuthRouteGuard`; added `ROUTES.KNOWLEDGE_BASE` to `DEDICATED_MODULE_PATHS`.
+- Added `.knowledge-base-module*` styles: 78rem reading column, sticky search, responsive **three-column** expanded layout on large screens (Problem Summary/Symptoms | Causes/Solution | Tips/Warnings), single-column fallback on tablets and smaller.
+- **Scroll-on-expand:** `useLayoutEffect` scrolls newly expanded entries below the sticky toolbar after layout stabilizes; collapse does not scroll.
+- Added `knowledgeBaseFilter.test.js` and `KnowledgeBasePage.test.jsx`; updated `WorkspaceNavigation.test.jsx` and `AuthenticatedNav.test.jsx`.
+- No global documentation search, Manual/Glossary integration, AI, CMS, backend persistence, related articles, or Task 54+ functionality was added.
+
+**Product clarifications (retained):**
+- Knowledge Base is a problem-solving support library, not a FAQ — Manual teaches process, Glossary defines terms, Knowledge Base helps recovery when something goes wrong.
+- Search scope is strictly Knowledge Base entries only; global documentation search is deferred.
 ## Task 54 — Module Integration and Navigation Consistency
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                      |
@@ -428,5 +447,5 @@ Future phases may introduce any of these capabilities after the core user experi
 
 ---
 
-**Phase 2 status:** In progress (2026-07-03). Tasks 43–52 of 15 (Tasks 43–57) implemented and verified. Next: Task 53 — Knowledge Base FAQ Module.
+**Phase 2 status:** In progress (2026-07-03). Tasks 43–53 of 15 (Tasks 43–57) implemented and verified. Next: Task 54 — Module Integration and Navigation Consistency.
 

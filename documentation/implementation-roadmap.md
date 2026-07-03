@@ -105,7 +105,8 @@ Every component introduced in this phase should be fully tested before additiona
 | 50 | Manual and Tutorials Module | Complete |
 | 51 | Manual Reading Layout and Chapter Experience | Complete |
 | 52 | Glossary Module | Complete |
-| 53–57 | Remaining Phase 2 tasks | Pending |
+| 53 | Knowledge Base Module | Complete |
+| 54–57 | Remaining Phase 2 tasks | Pending |
 
 ## Objective
 

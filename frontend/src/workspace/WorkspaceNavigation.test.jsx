@@ -2,6 +2,7 @@ import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
+import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
@@ -151,14 +152,17 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Knowledge Base" }));
+    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+    expect(screen.getByRole("searchbox", { name: "Search knowledge base" })).toBeInTheDocument();
     expect(
-      within(screen.getByRole("main")).getByRole("heading", { name: "Knowledge Base" }),
+      within(screen.getByRole("main")).getByRole("heading", { name: "Knowledge Base", level: 1 }),
     ).toBeInTheDocument();
   });
 
   it("still shows My Account on non-home authenticated hub routes", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/knowledge-base");
+    renderWorkspace(ROUTES.ACCOUNT);
 
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
 
