@@ -102,7 +102,8 @@ Every component introduced in this phase should be fully tested before additiona
 | 47 | Save Project Flow | Complete |
 | 48 | Projects Hub and Open Project | Complete |
 | 49 | Update Existing Project | Complete |
-| 50–57 | Remaining Phase 2 tasks | Pending |
+| 50 | Manual and Tutorials Module | Complete |
+| 51–57 | Remaining Phase 2 tasks | Pending |
 
 ## Objective
 

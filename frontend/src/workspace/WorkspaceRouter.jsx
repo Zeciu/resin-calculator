@@ -51,7 +51,6 @@ export default function WorkspaceRouter() {
             element={<PasswordRecoveryPage />}
           />
           <Route path={workspaceRoutePath(ROUTES.ACCOUNT)} element={<MyAccountPage />} />
-          <Route path={workspaceRoutePath(ROUTES.MANUAL)} element={<ManualTutorialsPage />} />
           <Route path={workspaceRoutePath(ROUTES.GLOSSARY)} element={<GlossaryPage />} />
           <Route
             path={workspaceRoutePath(ROUTES.KNOWLEDGE_BASE)}
@@ -80,6 +79,14 @@ export default function WorkspaceRouter() {
             element={
               <AuthRouteGuard>
                 <ProjectsPage />
+              </AuthRouteGuard>
+            }
+          />
+          <Route
+            path={workspaceRoutePath(ROUTES.MANUAL)}
+            element={
+              <AuthRouteGuard>
+                <ManualTutorialsPage />
               </AuthRouteGuard>
             }
           />

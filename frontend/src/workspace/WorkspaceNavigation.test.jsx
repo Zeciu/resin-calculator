@@ -128,9 +128,15 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Manual & Tutorials" }));
+    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
     expect(
-      within(screen.getByRole("main")).getByRole("heading", { name: "Manual & Tutorials" }),
+      within(screen.getByRole("main")).getByRole("heading", { name: "Manual & Tutorials", level: 1 }),
     ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("link", { name: "Home" }));
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Glossary" }));
     expect(within(screen.getByRole("main")).getByRole("heading", { name: "Glossary" })).toBeInTheDocument();
@@ -141,9 +147,9 @@ describe("Workspace navigation matrix — authenticated", () => {
     ).toBeInTheDocument();
   });
 
-  it("still shows My Account on non-home authenticated routes", async () => {
+  it("still shows My Account on non-home authenticated hub routes", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/manual");
+    renderWorkspace("/glossary");
 
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
 

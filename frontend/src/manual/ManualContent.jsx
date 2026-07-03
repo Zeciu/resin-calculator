@@ -1,0 +1,64 @@
+/**
+ * Renders the continuous manual document from static section data.
+ */
+
+/**
+ * @param {{ sections: import("./manualContent.js").ManualSection[] }} props
+ */
+export default function ManualContent({ sections }) {
+  return (
+    <div className="manual-module__sections">
+      {sections.map((section) => (
+        <section
+          key={section.id}
+          id={section.id}
+          className="manual-module__section"
+          aria-labelledby={`${section.id}-heading`}
+        >
+          <h2 className="manual-module__section-title" id={`${section.id}-heading`}>
+            {section.title}
+          </h2>
+          {section.blocks.map((block, index) => (
+            <ManualBlock key={`${section.id}-${index}`} block={block} />
+          ))}
+        </section>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * @param {{ block: import("./manualContent.js").ManualBlock }} props
+ */
+function ManualBlock({ block }) {
+  if (block.type === "heading") {
+    const Tag = `h${block.level}`;
+    return <Tag className="manual-module__heading">{block.text}</Tag>;
+  }
+
+  if (block.type === "paragraph") {
+    return <p className="manual-module__paragraph">{block.text}</p>;
+  }
+
+  if (block.type === "video") {
+    return (
+      <figure className="manual-module__video">
+        <div className="manual-module__video-frame">
+          <iframe
+            src={block.embedUrl}
+            title={block.title}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+        {block.caption ? (
+          <figcaption className="manual-module__video-caption">{block.caption}</figcaption>
+        ) : null}
+      </figure>
+    );
+  }
+
+  return null;
+}
