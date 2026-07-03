@@ -29,6 +29,42 @@ The application is built around five fundamental principles:
 - Continuous improvement
 ---
 
+## 2.1 Current Release (Phase 2)
+
+The following describes the HFZWood product as implemented at the end of Phase 2 development tasks (Tasks 43–54). Later sections of this document describe the long-term vision; where they differ, this section reflects current product behavior.
+
+**Authentication and Home**
+
+After login, the user lands on the **logged-in Home hub** (the central navigation screen; referred to as the Dashboard in some long-term design sections). The Home sidebar provides access to New Project, Projects, Manual and Tutorials, Glossary, Knowledge Base, My Account, and Log out. Guests see a locked-module experience with a path to login.
+
+**Dedicated modules**
+
+New Project, Projects, Manual and Tutorials, Glossary, and Knowledge Base each open in a **dedicated module layout**: no Home sidebar, a consistent header (`← Home`, HFZWood branding, module title), and a focused working or reading area.
+
+**Project workflow**
+
+* **New Project** opens the resin estimation workspace (calculator delivered in Phase 1).
+* **Save Project** writes a complete `.hfzproject` file to the user's device.
+* **Projects** provides Open Project, Recent Projects (browser-stored metadata only), and New Project.
+* Reopened projects support **in-place update** when a file handle is available.
+* **Unsaved changes protection** prompts before leaving the workspace with unsaved work.
+
+Project files on disk are the source of truth. Cloud sync, account-backed project libraries, and automatic saving are not part of Phase 2.
+
+**Educational modules**
+
+* **Manual and Tutorials** — one continuous document with a left table of contents; inline images and embedded tutorial videos.
+* **Glossary** — searchable dictionary with A–Z navigation and expandable entries.
+* **Knowledge Base** — searchable troubleshooting entries with expandable structured sections.
+
+Search in Phase 2 is **module-local** (Glossary and Knowledge Base only). Global documentation search, cross-module linking, and AI-powered answers are deferred.
+
+**Intentionally deferred in Phase 2**
+
+See the out-of-scope list in [`documentation/phase-2-implementation-plan.md`](phase-2-implementation-plan.md), including: global documentation search, AI-powered Knowledge Base, cloud project synchronization, subscriptions and payments, content administration, and production Cognito integration (mock/session auth in current development).
+
+---
+
 # 3. User Journey
 
 Every user should follow a clear and intuitive workflow.
@@ -39,12 +75,13 @@ The recommended journey is:
 
 Landing Page
 → Log In / Sign Up
-→ Dashboard
+→ Home (logged-in hub)
 → Create or Open Project
 → Resin Calculator
 → Save Project
-→ Generate Report
-→ Access Knowledge Base whenever assistance is needed.
+→ Access Manual, Glossary, or Knowledge Base whenever assistance is needed.
+
+Optional in-workspace actions such as PDF export are available from the calculator workspace but are not separate navigation modules in Phase 2.
 
 The user should never feel lost or wonder what the next step is.
 
@@ -147,6 +184,8 @@ A project should remain editable at any time.
 ---
 
 # 6. Dashboard
+
+> **Phase 2 note:** The logged-in central hub is implemented as the **Home** page with left-sidebar navigation. The role described below matches the current Home hub.
 
 The Dashboard is the first screen the user sees after logging in.
 
@@ -276,6 +315,8 @@ Examples include:
 - Frequently Asked Questions (FAQ)
 
 ## Search
+
+> **Phase 2:** Search is implemented separately inside the Glossary and Knowledge Base modules only. The global search capabilities described below remain future scope.
 
 The Knowledge Base should include a powerful search function capable of finding articles, keywords and related topics.
 
@@ -653,6 +694,8 @@ Possible future modules include:
 * feature flags and experimental tools.
 
 # 13. Search System
+
+> **Phase 2:** Module-local search exists in the Glossary and Knowledge Base. Global search across Manual, Tutorials, Glossary, and Knowledge Base is not yet implemented.
 
 The HFZWood search system should help users quickly find relevant educational and technical information inside the platform.
 

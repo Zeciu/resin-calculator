@@ -66,7 +66,7 @@ From here, users should be able to:
 * view subscription status;
 * manage account settings.
 
-At this stage, some sections may still display placeholder content while future phases are under development.
+At the end of Phase 1, some module routes displayed placeholder content. Phase 2 (Tasks 50–53) replaced the Manual, Glossary, and Knowledge Base placeholders with functional modules.
 
 ## Objectives for Completion
 
@@ -93,6 +93,8 @@ Every component introduced in this phase should be fully tested before additiona
 
 ## Progress (2026-07-03)
 
+**Phase 2 status:** Complete (certified Task 57, 2026-07-03).
+
 | Task | Name | Status |
 |------|------|--------|
 | 43 | Logged-in Home Hub | Complete |
@@ -107,97 +109,46 @@ Every component introduced in this phase should be fully tested before additiona
 | 52 | Glossary Module | Complete |
 | 53 | Knowledge Base Module | Complete |
 | 54 | Phase 2 Integration Polish | Complete |
-| 55–57 | Remaining Phase 2 tasks | Pending |
+| 55 | Phase 2 Release Candidate Validation | Complete |
+| 56 | Documentation and Roadmap Alignment | Complete |
+| 57 | Phase 2 Release Certification | Complete |
 
 ## Objective
 
 The objective of Phase 2 is to transform HFZWood from a completed application shell into a usable logged-in product experience.
 
-At the end of this phase, users should be able to create a project, upload an image, define reference measurements, draw resin areas and calculate the required resin volume.
+The resin estimation calculator was delivered in Phase 1. Phase 2 adds the logged-in Home hub, dedicated module layouts, the full project file workflow, and the educational modules (Manual and Tutorials, Glossary, Knowledge Base).
 
-This phase focuses only on the essential calculator functionality.
-
-Advanced features such as Computer Vision, PDF reports, payments, admin tools and AI assistance are not included in this phase.
+Advanced features such as Computer Vision, cloud project sync, payments, admin tools, global documentation search, and AI assistance are not included in this phase. See the Phase 2 out-of-scope list in [`phase-2-implementation-plan.md`](phase-2-implementation-plan.md).
 
 ## Main Components
 
 Phase 2 includes:
 
-* create new project;
-* upload project image;
-* image display;
-* zoom and pan;
-* image rotation when needed;
-* reference measurements;
-* minimum four reference measurements;
-* polygon drawing;
-* multiple resin zones;
-* depth input;
-* different depths for different zones;
-* resin volume calculation;
-* basic result display.
-
-## Reference Measurements
-
-The user must provide a minimum of four reference measurements before the calculation can continue.
-
-The application should not allow the user to calculate resin volume until the required reference measurements are completed.
-
-Reference measurements are essential for converting image dimensions into real-world dimensions and improving calculation accuracy.
-
-## Polygon Drawing
-
-Users should be able to draw one or more polygons over the uploaded image.
-
-Each polygon represents a resin area.
-
-The user should be able to:
-
-* add polygon points;
-* adjust polygon points;
-* delete polygon points;
-* clear a polygon;
-* create multiple polygons;
-* assign depth to each polygon.
-
-## Depth Input
-
-The user must manually enter depth information.
-
-The application should support:
-
-* one main casting depth;
-* separate depths for different resin zones;
-* cavity depths when required.
-
-Computer Vision is not responsible for determining depth.
-
-## Calculation Results
-
-The application should calculate and display:
-
-* resin volume for each polygon;
-* total resin volume;
-* optional safety margin;
-* estimated final quantity.
-
-The result should be clear, easy to understand and ready for workshop use.
+* logged-in Home hub with primary navigation;
+* dedicated module layout for New Project, Projects, Manual and Tutorials, Glossary, and Knowledge Base;
+* New Project workspace (Phase 1 calculator in a focused layout);
+* unsaved changes protection;
+* Save Project to `.hfzproject` files on the user's device;
+* Projects hub with Open Project and Recent Projects (local metadata only);
+* update existing project (in-place save for reopened projects);
+* Manual and Tutorials as a continuous document with table of contents;
+* Glossary as a searchable dictionary with A–Z navigation;
+* Knowledge Base as a searchable troubleshooting library;
+* integration polish across module headers, navigation, search behavior, and empty states.
 
 ## Objectives for Completion
 
 Phase 2 is considered complete when:
 
-* a user can create a project;
-* a user can upload an image;
-* the image can be zoomed, moved and rotated;
-* the user can add at least four reference measurements;
-* the user can draw one or more resin polygons;
-* the user can enter depth values;
-* the application calculates resin volume correctly;
-* the result is displayed clearly.
+* an authenticated user can navigate the Home hub and all dedicated modules;
+* a user can create a project, save it, reopen it, update it, and return Home without losing work unexpectedly;
+* Manual, Glossary, and Knowledge Base are usable as integrated product modules;
+* Release Candidate validation (Task 55) and documentation alignment (Task 56) are complete;
+* the repository builds, tests pass, and Task 57 closure criteria are met.
 
 ## Success Criteria
 
-Before moving to Phase 3, the calculator workflow must be stable and usable from start to finish.
+Before moving beyond Phase 2, the logged-in product experience must feel like one coherent application from Home through project work and educational modules.
 
-A user should be able to complete a basic resin calculation without developer assistance.
+A user should be able to complete a basic project session and find help in the Manual, Glossary, or Knowledge Base without developer assistance.

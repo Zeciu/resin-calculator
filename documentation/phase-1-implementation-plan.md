@@ -2,6 +2,8 @@
 
 This plan implements **Phase 1 – Foundation / Application Workspace** per the finalized documentation. It wraps the existing calculator without replacing it, delivers Guest + Authenticated UI modes with **mock/session auth** (production Cognito wiring deferred), and uses the current stack: **React 18 + Vite + Vitest** frontend, **FastAPI** backend (unchanged for Phase 1 UI work).
 
+> **Phase 2 note:** Phase 1 is complete. Module placeholders created in Tasks 25–28 were replaced by functional modules in Phase 2 Tasks 50–53. See [`phase-2-implementation-plan.md`](phase-2-implementation-plan.md).
+
 ---
 
 ## Current baseline (relevant to sequencing)

@@ -1,8 +1,10 @@
-# ResinCalculator Project Status
+# HFZWood — Project Status
+
+> **Note (Phase 2):** Phase 2 is **complete** (certified 2026-07-03, Task 57). This document focuses on **calculator workspace behavior** (Phase 1). The logged-in product shell, project file workflow (`.hfzproject`), and educational modules (Manual, Glossary, Knowledge Base) are documented in [`documentation/phase-2-implementation-plan.md`](documentation/phase-2-implementation-plan.md) and [`documentation/application-design.md`](documentation/application-design.md) §2.1.
 
 ## Current Working Version
 
-ResinCalculator is a React + Flask prototype for estimating epoxy resin volume from manually traced photo measurements. The application currently supports two calculation workflows:
+HFZWood is a React + FastAPI application for estimating epoxy resin volume from manually traced photo measurements. The application currently supports two calculation workflows:
 
 - Standard Resin Area mode
 - Wood Boundary Mode
@@ -341,7 +343,7 @@ This is a simple prototype recommendation and does not yet account for staged po
 
 ### Standard Resin Area Workflow
 
-1. Start the Flask backend.
+1. Start the FastAPI backend.
 2. Start the React frontend.
 3. Open the frontend in the browser.
 4. Upload a photo.
@@ -365,7 +367,7 @@ This is a simple prototype recommendation and does not yet account for staged po
 
 ### Wood Boundary Mode Workflow
 
-1. Start the Flask backend.
+1. Start the FastAPI backend.
 2. Start the React frontend.
 3. Open the frontend in the browser.
 4. Upload a photo.

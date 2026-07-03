@@ -1,36 +1,44 @@
-# Resin Volume Calculator
+# HFZWood
 
-Web app for estimating epoxy resin volume from a photo.
+HFZWood is a browser application for estimating epoxy resin volume from photographs and supporting woodworkers through integrated educational content.
 
-## Features
+The resin estimation calculator (Standard Resin Area and Wood Boundary modes) was delivered in Phase 1. Phase 2 adds the logged-in Home hub, project file workflow, and educational modules. See [`documentation/phase-2-implementation-plan.md`](documentation/phase-2-implementation-plan.md) for scope.
+
+## Phase 2 product surface
+
+- Logged-in **Home hub** with navigation to all modules
+- **New Project** workspace (calculator)
+- **Projects** hub — Open Project, Recent Projects, `.hfzproject` files
+- **Manual and Tutorials**, **Glossary**, and **Knowledge Base** dedicated reading modules
+- Mock/session authentication (production Cognito wiring deferred)
+
+## Calculator features
 
 - Upload a photo in the browser
-- Draw a polygon manually over the resin area
-- Add multiple reference measurements by clicking two points per segment with a known real-world length
-- Enter resin depth in millimeters
-- Compute:
-  - selected area in square centimeters (cm²)
-  - estimated resin volume in liters (L)
+- Wood Boundary Mode and Standard Resin Area mode
+- Multiple reference measurements for calibration
+- Resin volume calculation with optional PDF export from the workspace
 
 No AI image recognition is used.
 
 ## Project structure
 
 ```
-resin-calculator/
+ResinCalculator/
   backend/
     app.py          # FastAPI server
     pyproject.toml  # Python dependencies (uv)
   frontend/
     src/
-      App.jsx       # React component
+      calculator/   # Resin estimation workspace
+      workspace/    # Home hub, routing, project workflow
+      modules/      # Manual, Glossary, Knowledge Base, Projects
       main.jsx      # Entry point
       styles.css    # Styles
     package.json    # Node dependencies
   deployment/
     README.md       # Deployment guide
-    cdk/            # AWS CDK Python app (infrastructure as code)
-    fargate/        # deploy.cmd (trigger ECS redeployment after image push)
+    cdk/            # AWS CDK TypeScript app (infrastructure as code)
 ```
 
 ## Prerequisites
@@ -68,6 +76,14 @@ After creating the venv, point your IDE at `backend/.venv/Scripts/python.exe`:
 
 ## Run locally (from project root)
 
+From the project root:
+
+```powershell
+.\dev.cmd
+```
+
+This starts the backend and frontend development servers. Alternatively:
+
 ### Start backend
 
 ```powershell
@@ -95,13 +111,16 @@ docker run -p 5000:5000 resin-calculator
 
 ## How to use
 
-1. Open frontend URL in browser.
+For the full logged-in product flow (Home hub, save/open projects, educational modules), run the app and sign in.
+
+**Calculator workflow (New Project):**
+
+1. Open the frontend URL and go to **New Project**.
 2. Upload an image.
-3. Click **Add Reference Measurement**, then click two points on the image for a segment with known real-world length.
-4. Enter that segment length in **cm** and save it. Repeat up to 5 times.
-5. Keep **Polygon Mode** active and click around the resin boundary.
-6. Enter resin depth in **mm**.
-7. Click **Calculate**.
+3. Add reference measurements, complete the workflow for your calculation mode, and calculate.
+4. Use **Save Project** to write a `.hfzproject` file.
+
+Wood Boundary Mode is the default workflow. Standard Resin Area mode remains available. See `PROJECT_STATUS.md` for detailed calculator behavior.
 
 ## Calculation details
 

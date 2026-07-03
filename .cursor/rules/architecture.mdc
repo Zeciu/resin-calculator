@@ -27,7 +27,7 @@ you must write tests for it. We want the tests to cover backend and frontend, bu
 time low, so using Selenium, for example, is discouraged.
 
 ## Infrastructure as Code
-We use AWS CDK (Python) in `deployment/cdk/` for all AWS resources. Every time a new AWS dependency is introduced,
+We use AWS CDK (TypeScript) in `deployment/cdk/` for all AWS resources. Every time a new AWS dependency is introduced,
 the CDK stack must be updated in the same change.
 
 # AI Assistant rules
