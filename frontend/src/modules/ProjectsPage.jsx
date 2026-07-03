@@ -253,9 +253,9 @@ export default function ProjectsPage() {
         </div>
 
         {recentProjects.length === 0 ? (
-          <div className="projects-hub__empty-state">
-            <p>No recent projects yet.</p>
-            <p>
+          <div className="module-empty-state">
+            <p className="module-empty-state__title">No recent projects yet.</p>
+            <p className="module-empty-state__hint">
               Use <strong>Open Project</strong> to select a saved <strong>.hfzproject</strong> file
               from your device.
             </p>

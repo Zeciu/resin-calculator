@@ -14,9 +14,10 @@ export default function ModuleHomeNav() {
             .filter(Boolean)
             .join(" ")
         }
+        aria-label="Home"
         onClick={clearLockedModuleMessage}
       >
-        Home
+        ← Home
       </NavLink>
     </nav>
   );

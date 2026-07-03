@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import GlossaryAlphabetNav from "./GlossaryAlphabetNav.jsx";
 import GlossarySearch from "./GlossarySearch.jsx";
 
@@ -14,16 +15,14 @@ import GlossarySearch from "./GlossarySearch.jsx";
  *   onSelectLetter: (letter: string) => void;
  * }} props
  */
-export default function GlossaryToolbar({
-  searchQuery,
-  onSearchChange,
-  onSearchSubmit,
-  activeLetters,
-  onSelectLetter,
-}) {
+const GlossaryToolbar = forwardRef(function GlossaryToolbar(
+  { searchQuery, onSearchChange, onSearchSubmit, activeLetters, onSelectLetter },
+  ref,
+) {
   return (
     <div className="glossary-toolbar">
       <GlossarySearch
+        ref={ref}
         value={searchQuery}
         onChange={onSearchChange}
         onSubmit={onSearchSubmit}
@@ -31,4 +30,6 @@ export default function GlossaryToolbar({
       <GlossaryAlphabetNav letters={activeLetters} onSelectLetter={onSelectLetter} />
     </div>
   );
-}
+});
+
+export default GlossaryToolbar;

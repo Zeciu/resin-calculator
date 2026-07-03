@@ -1,6 +1,6 @@
 # Phase 2 Implementation Plan
 
-Status: In Progress (Tasks 43–53 complete)
+Status: In Progress (Tasks 43–54 complete)
 
 Version: 1.0
 # Product Principles
@@ -364,15 +364,29 @@ It focuses on navigation, layout consistency, manual testing, cleanup and final 
 **Product clarifications (retained):**
 - Knowledge Base is a problem-solving support library, not a FAQ — Manual teaches process, Glossary defines terms, Knowledge Base helps recovery when something goes wrong.
 - Search scope is strictly Knowledge Base entries only; global documentation search is deferred.
-## Task 54 — Module Integration and Navigation Consistency
+## Task 54 — Phase 2 Integration Polish
 
-| Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Objective             | Integrate all Phase 2 modules into a single, consistent user experience with predictable navigation and behavior.                                                                                                                                                                                                                                                           |
-| Files likely modified | Shared navigation components, routing configuration, shared layouts, module wrappers, shared styles if needed                                                                                                                                                                                                                                                               |
-| Dependencies          | Tasks 43–53                                                                                                                                                                                                                                                                                                                                                                 |
-| Expected result       | All Phase 2 modules work together as a coherent product with consistent navigation, layout behavior and transitions between modules.                                                                                                                                                                                                                                        |
-| Acceptance criteria   | Navigation between Home, Application Workspace, Projects, Manual and Tutorials, Glossary and Knowledge Base is fully functional. Each module uses the correct dedicated layout. Every module provides an explicit Home navigation element. Layout transitions are consistent throughout the application. No duplicate navigation patterns or inconsistent behaviors remain. |
+| Field                 | Detail |
+| --------------------- | ------ |
+| Objective             | Perform a complete integration review of all Phase 2 modules and eliminate remaining inconsistencies in navigation, layout, interaction patterns, and visual language so the application feels like one product. |
+| Files likely modified | `GlossaryPage.jsx`, `GlossarySearch.jsx`, `GlossaryToolbar.jsx`, `GlossaryEntryList.jsx`, `KnowledgeBaseEntryList.jsx`, `ProjectsPage.jsx`, `LockedModuleMessage.jsx`, `ModuleHeader.jsx`, `ModuleHomeNav.jsx`, `navigation.js`, `styles.css`, plus corresponding tests |
+| Dependencies          | Tasks 43–53 |
+| Expected result       | The application feels like a single coherent product rather than a collection of independently developed modules. |
+| Acceptance criteria   | Approved integration polish only: consistent dedicated module headers, Home navigation, scroll/search/empty-state behavior, and terminology — without new features or scope creep into Task 55+. |
+| Completion date       | 2026-07-03 |
+| Implementation status | Completed |
+| Verification status   | Passed |
+
+**Implementation notes:**
+- **Phase 2 integration polish** — Implemented only the six audit-approved improvements; no redesign, no new features, no Task 55+ work.
+- **Glossary scroll-on-expand** — Ported Knowledge Base `useLayoutEffect` scroll positioning so click-expand scrolls below the sticky toolbar; collapse does not scroll.
+- **Glossary keyboard parity** — Enter expands first match, scrolls, keeps query, and refocuses the search field (aligned with Knowledge Base).
+- **Guest locked-state improvement** — `LockedModuleMessage` “Go to Login / Register” is now an actionable `NavLink` to `/login`.
+- **Shared empty-state visual language** — Added `.module-empty-state` pattern used by Projects (recent list), Glossary (search), and Knowledge Base (search).
+- **New Project header consistency** — `DEDICATED_MODULE_TITLES[NEW_PROJECT]` set to **New Project**, matching other dedicated module naming.
+- **Knowledge Base terminology** — User-facing empty-state copy uses “entries” instead of “articles.”
+- **Navigation consistency** — Module header order: `← Home` → HFZWood branding → current module title (left-aligned Home reduces pointer travel).
+- No global documentation search, Manual/Glossary integration, AI, CMS, backend persistence, shared search refactor, My Account redesign, Projects redesign, or Task 55+ functionality was added.
 ## Task 55 — Phase 2 Manual QA Checklist
 
 | Field                 | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -447,5 +461,5 @@ Future phases may introduce any of these capabilities after the core user experi
 
 ---
 
-**Phase 2 status:** In progress (2026-07-03). Tasks 43–53 of 15 (Tasks 43–57) implemented and verified. Next: Task 54 — Module Integration and Navigation Consistency.
+**Phase 2 status:** In progress (2026-07-03). Tasks 43–54 of 15 (Tasks 43–57) implemented and verified. Next: Task 55 — Phase 2 Manual QA Checklist.
 

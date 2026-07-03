@@ -10,9 +10,9 @@ import KnowledgeBaseEntry from "./KnowledgeBaseEntry.jsx";
 export default function KnowledgeBaseEntryList({ entries, expandedEntryId, onToggleEntry }) {
   if (entries.length === 0) {
     return (
-      <div className="knowledge-base-module__empty-state">
-        <p className="knowledge-base-module__empty-state-title">No matching articles found.</p>
-        <p className="knowledge-base-module__empty-state-hint">Try different keywords.</p>
+      <div className="module-empty-state">
+        <p className="module-empty-state__title">No matching entries found.</p>
+        <p className="module-empty-state__hint">Try different keywords.</p>
       </div>
     );
   }

@@ -107,6 +107,8 @@ describe("GlossaryPage", () => {
     const search = screen.getByRole("searchbox", { name: "Search glossary" });
     await user.type(search, "epoxy{Enter}");
 
+    expect(search).toHaveValue("epoxy");
+    expect(search).toHaveFocus();
     expect(screen.getByRole("button", { name: "Epoxy resin" })).toHaveAttribute(
       "aria-expanded",
       "true",
@@ -124,6 +126,7 @@ describe("GlossaryPage", () => {
     expect(
       screen.getByText(/Create your free HFZWood account to unlock this section/i),
     ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Go to Login / Register" })).toBeInTheDocument();
     expect(screen.queryByRole("searchbox", { name: "Search glossary" })).not.toBeInTheDocument();
   });
 });

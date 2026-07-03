@@ -1,3 +1,6 @@
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "./routes.js";
+
 export default function LockedModuleMessage() {
   return (
     <section className="locked-module-message">
@@ -9,7 +12,9 @@ export default function LockedModuleMessage() {
         free account gives you access to projects, manuals, tutorials, glossary,
         knowledge base and resin calculation tools.
       </p>
-      <p className="locked-module-message__action">Go to Login / Register</p>
+      <NavLink to={ROUTES.LOGIN} className="locked-module-message__action">
+        Go to Login / Register
+      </NavLink>
     </section>
   );
 }

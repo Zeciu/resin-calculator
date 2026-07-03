@@ -1,4 +1,4 @@
-﻿import { useCallback, useMemo, useRef, useState } from "react";
+﻿import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import GlossaryEntryList from "../glossary/GlossaryEntryList.jsx";
 import GlossaryToolbar from "../glossary/GlossaryToolbar.jsx";
 import { GLOSSARY_ENTRIES } from "../glossary/glossaryContent.js";
@@ -13,6 +13,7 @@ import {
 
 export default function GlossaryPage() {
   const scrollContainerRef = useRef(null);
+  const searchInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
 
@@ -31,10 +32,6 @@ export default function GlossaryPage() {
     setExpandedEntryId(null);
   }, []);
 
-  const handleToggleEntry = useCallback((entryId) => {
-    setExpandedEntryId((current) => (current === entryId ? null : entryId));
-  }, []);
-
   const scrollToEntry = useCallback((entryId) => {
     const container = scrollContainerRef.current;
     if (!container) {
@@ -46,29 +43,65 @@ export default function GlossaryPage() {
       return;
     }
 
-    target.scrollIntoView({ behavior: "auto", block: "start" });
+    if (typeof target.scrollIntoView === "function") {
+      target.scrollIntoView({ behavior: "auto", block: "start" });
+    }
   }, []);
 
-  const handleSearchSubmit = useCallback((queryOverride) => {
-    const query = (queryOverride ?? searchQuery).trim();
-    if (!query) {
+  const handleToggleEntry = useCallback((entryId) => {
+    setExpandedEntryId((current) => (current === entryId ? null : entryId));
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!expandedEntryId) {
       return;
     }
 
-    const groups = groupGlossaryEntriesByLetter(
-      filterGlossaryEntries(GLOSSARY_ENTRIES, query),
-    );
-    const firstEntry = getFirstFilteredGlossaryEntry(groups, query);
-    if (!firstEntry) {
-      return;
-    }
+    let cancelled = false;
+    let outerFrame = 0;
+    let innerFrame = 0;
 
-    setSearchQuery(queryOverride ?? searchQuery);
-    setExpandedEntryId(firstEntry.id);
-    requestAnimationFrame(() => {
-      scrollToEntry(firstEntry.id);
+    outerFrame = requestAnimationFrame(() => {
+      innerFrame = requestAnimationFrame(() => {
+        if (!cancelled) {
+          scrollToEntry(expandedEntryId);
+        }
+      });
     });
-  }, [searchQuery, scrollToEntry]);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(outerFrame);
+      cancelAnimationFrame(innerFrame);
+    };
+  }, [expandedEntryId, scrollToEntry]);
+
+  const handleSearchSubmit = useCallback(
+    (queryOverride) => {
+      const query = (queryOverride ?? searchQuery).trim();
+      if (!query) {
+        return;
+      }
+
+      const groups = groupGlossaryEntriesByLetter(
+        filterGlossaryEntries(GLOSSARY_ENTRIES, query),
+      );
+      const firstEntry = getFirstFilteredGlossaryEntry(groups, query);
+      if (!firstEntry) {
+        return;
+      }
+
+      if (queryOverride !== undefined) {
+        setSearchQuery(queryOverride);
+      }
+
+      setExpandedEntryId(firstEntry.id);
+      requestAnimationFrame(() => {
+        searchInputRef.current?.focus();
+      });
+    },
+    [searchQuery],
+  );
 
   const scrollToLetter = useCallback((letter) => {
     const container = scrollContainerRef.current;
@@ -96,6 +129,7 @@ export default function GlossaryPage() {
 
       <div className="glossary-module__scroll" ref={scrollContainerRef}>
         <GlossaryToolbar
+          ref={searchInputRef}
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}
           onSearchSubmit={handleSearchSubmit}

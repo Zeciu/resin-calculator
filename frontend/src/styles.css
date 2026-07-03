@@ -1568,7 +1568,7 @@ button.workspace-sidebar__link {
 .module-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   min-height: 48px;
   padding: 8px 14px;
@@ -1583,6 +1583,7 @@ button.workspace-sidebar__link {
   align-items: center;
   gap: 10px;
   min-width: 0;
+  flex: 0 0 auto;
 }
 
 .module-header__logo {
@@ -1593,7 +1594,7 @@ button.workspace-sidebar__link {
   flex: 0 0 auto;
 }
 
-.module-header__title {
+.module-header__product {
   margin: 0;
   font-size: 15px;
   font-weight: 700;
@@ -1601,8 +1602,19 @@ button.workspace-sidebar__link {
   letter-spacing: -0.01em;
   color: #3a3228;
   white-space: nowrap;
+}
+
+.module-header__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #6b5d4d;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .module-header__home {
@@ -1667,6 +1679,7 @@ button.workspace-sidebar__link {
     gap: 10px;
   }
 
+  .module-header__product,
   .module-header__title {
     font-size: 14px;
   }
@@ -2039,20 +2052,27 @@ button.workspace-sidebar__link {
   color: #6d6254;
 }
 
-.projects-hub__empty-state {
+/* ── Shared module empty state (Task 54) ─────────────────────── */
+.module-empty-state {
+  margin: 28px 0 0;
   padding: 18px;
   border: 1px dashed var(--border-warm);
   border-radius: 12px;
   background: #fbfaf6;
+}
+
+.module-empty-state__title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  line-height: 1.6;
   color: #4a4034;
 }
 
-.projects-hub__empty-state p {
-  margin: 0 0 8px;
-}
-
-.projects-hub__empty-state p:last-child {
-  margin-bottom: 0;
+.module-empty-state__hint {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #6b5d4d;
 }
 
 .projects-hub__recent-list {
@@ -2232,6 +2252,12 @@ button.workspace-sidebar__link {
   font-size: 15px;
   font-weight: 600;
   color: #5a4a32;
+  text-decoration: none;
+}
+
+.locked-module-message__action:hover {
+  color: #3a3228;
+  text-decoration: underline;
 }
 
 /* ── Login page (workspace central content) ──────────────────── */
@@ -3069,13 +3095,6 @@ button.workspace-sidebar__link {
   flex-direction: column;
 }
 
-.glossary-module__empty-state {
-  margin: 28px 0 0;
-  font-size: 17px;
-  line-height: 1.6;
-  color: #6b5d4d;
-}
-
 .glossary-entry {
   border-top: 1px solid #ebe4d8;
   scroll-margin-top: 132px;
@@ -3300,24 +3319,6 @@ button.workspace-sidebar__link {
   display: flex;
   flex-direction: column;
   padding-top: 8px;
-}
-
-.knowledge-base-module__empty-state {
-  margin: 28px 0 0;
-}
-
-.knowledge-base-module__empty-state-title {
-  margin: 0 0 8px;
-  font-size: 17px;
-  line-height: 1.6;
-  color: #4a4034;
-}
-
-.knowledge-base-module__empty-state-hint {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.6;
-  color: #6b5d4d;
 }
 
 .knowledge-base-entry {

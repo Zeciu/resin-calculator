@@ -83,7 +83,7 @@ export function isDedicatedModulePath(pathname) {
 
 /** Product title shown in the dedicated module header per route. */
 export const DEDICATED_MODULE_TITLES = {
-  [ROUTES.NEW_PROJECT]: "HFZWood Resin Calculator",
+  [ROUTES.NEW_PROJECT]: "New Project",
   [ROUTES.PROJECTS]: "Projects",
   [ROUTES.MANUAL]: "Manual & Tutorials",
   [ROUTES.GLOSSARY]: "Glossary",

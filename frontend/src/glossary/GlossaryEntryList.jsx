@@ -11,7 +11,10 @@ import { getGlossaryLetterSectionId } from "./glossaryFilter.js";
 export default function GlossaryEntryList({ groups, expandedEntryId, onToggleEntry }) {
   if (groups.length === 0) {
     return (
-      <p className="glossary-module__empty-state">No glossary terms match your search.</p>
+      <div className="module-empty-state">
+        <p className="module-empty-state__title">No glossary terms match your search.</p>
+        <p className="module-empty-state__hint">Try different keywords.</p>
+      </div>
     );
   }
 

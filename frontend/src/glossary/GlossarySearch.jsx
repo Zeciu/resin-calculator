@@ -2,6 +2,8 @@
  * Glossary search input.
  */
 
+import { forwardRef } from "react";
+
 /**
  * @param {{
  *   value: string;
@@ -9,11 +11,12 @@
  *   onSubmit?: (value: string) => void;
  * }} props
  */
-export default function GlossarySearch({ value, onChange, onSubmit }) {
+const GlossarySearch = forwardRef(function GlossarySearch({ value, onChange, onSubmit }, ref) {
   return (
     <label className="glossary-toolbar__search-label">
       <span className="glossary-toolbar__search-caption">Search glossary</span>
       <input
+        ref={ref}
         type="search"
         className="glossary-toolbar__search-input"
         value={value}
@@ -29,4 +32,6 @@ export default function GlossarySearch({ value, onChange, onSubmit }) {
       />
     </label>
   );
-}
+});
+
+export default GlossarySearch;

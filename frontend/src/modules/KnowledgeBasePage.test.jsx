@@ -65,7 +65,7 @@ describe("KnowledgeBasePage", () => {
       "zzzz-no-match",
     );
 
-    expect(screen.getByText("No matching articles found.")).toBeInTheDocument();
+    expect(screen.getByText("No matching entries found.")).toBeInTheDocument();
     expect(screen.getByText("Try different keywords.")).toBeInTheDocument();
   });
 

@@ -57,7 +57,7 @@ describe("Workspace navigation matrix — guest", () => {
 
     expectNoHomeHubSidebar();
     expect(screen.getByRole("banner", { name: "Module header" })).toBeInTheDocument();
-    expect(screen.getByText("HFZWood Resin Calculator")).toBeInTheDocument();
+    expect(screen.getByText("New Project")).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(
@@ -94,7 +94,7 @@ describe("Workspace navigation matrix — authenticated", () => {
 
     expectNoHomeHubSidebar();
     expect(screen.getByRole("banner", { name: "Module header" })).toBeInTheDocument();
-    expect(screen.getByText("HFZWood Resin Calculator")).toBeInTheDocument();
+    expect(screen.getByText("New Project")).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
