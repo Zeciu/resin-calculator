@@ -5,8 +5,9 @@
 
 /** @typedef {{ type: "heading", level: 2 | 3 | 4, text: string }} HeadingBlock */
 /** @typedef {{ type: "paragraph", text: string }} ParagraphBlock */
+/** @typedef {{ type: "image", src: string, alt: string, caption?: string }} ImageBlock */
 /** @typedef {{ type: "video", title: string, embedUrl: string, caption?: string }} VideoBlock */
-/** @typedef {HeadingBlock | ParagraphBlock | VideoBlock} ManualBlock */
+/** @typedef {HeadingBlock | ParagraphBlock | ImageBlock | VideoBlock} ManualBlock */
 
 /**
  * @typedef {{
@@ -39,6 +40,13 @@ export const MANUAL_SECTIONS = [
       {
         type: "paragraph",
         text: "A typical HFZWood project begins on the New Project workspace. You import or capture a photo of the piece you intend to fill with resin, then work through calibration, polygon drawing, and volume review in one continuous session.",
+      },
+      {
+        type: "image",
+        src: "/header-wood-epoxy.png",
+        alt: "Wood and epoxy resin in a workshop setting",
+        caption:
+          "Reference photographs anchor the workflow. The manual places supporting visuals directly beside the explanation they clarify.",
       },
       {
         type: "paragraph",

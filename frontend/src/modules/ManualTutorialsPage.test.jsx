@@ -55,6 +55,19 @@ describe("ManualTutorialsPage", () => {
     expect(within(main).getByText(/Review the pouring plan and safety margin/i)).toBeInTheDocument();
   });
 
+  it("renders inline figures for tutorial video and supporting images", () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.MANUAL);
+
+    expect(screen.getByTitle("Calibration walkthrough")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Wood and epoxy resin in a workshop setting" })).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Reference photographs anchor the workflow. The manual places supporting visuals directly beside the explanation they clarify./i,
+      ),
+    ).toBeInTheDocument();
+  });
+
   it("jumps directly to a section when a table-of-contents item is clicked", async () => {
     seedAuthenticatedSession();
     const scrollIntoView = vi.fn();

@@ -33,16 +33,31 @@ export default function ManualContent({ sections }) {
 function ManualBlock({ block }) {
   if (block.type === "heading") {
     const Tag = `h${block.level}`;
-    return <Tag className="manual-module__heading">{block.text}</Tag>;
+    return (
+      <Tag className={`manual-module__heading manual-module__heading--level-${block.level}`}>
+        {block.text}
+      </Tag>
+    );
   }
 
   if (block.type === "paragraph") {
     return <p className="manual-module__paragraph">{block.text}</p>;
   }
 
+  if (block.type === "image") {
+    return (
+      <figure className="manual-module__figure manual-module__figure--image">
+        <img className="manual-module__image" src={block.src} alt={block.alt} loading="lazy" />
+        {block.caption ? (
+          <figcaption className="manual-module__figure-caption">{block.caption}</figcaption>
+        ) : null}
+      </figure>
+    );
+  }
+
   if (block.type === "video") {
     return (
-      <figure className="manual-module__video">
+      <figure className="manual-module__figure manual-module__figure--video">
         <div className="manual-module__video-frame">
           <iframe
             src={block.embedUrl}
@@ -54,7 +69,7 @@ function ManualBlock({ block }) {
           />
         </div>
         {block.caption ? (
-          <figcaption className="manual-module__video-caption">{block.caption}</figcaption>
+          <figcaption className="manual-module__figure-caption">{block.caption}</figcaption>
         ) : null}
       </figure>
     );

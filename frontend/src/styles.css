@@ -2606,7 +2606,7 @@ button.workspace-sidebar__link {
   background: #5a4020;
 }
 
-/* ── Manual & Tutorials module (Task 50) ─────────────────────── */
+/* ── Manual & Tutorials module (Task 50–51) ──────────────────── */
 .manual-module {
   display: grid;
   grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
@@ -2639,11 +2639,11 @@ button.workspace-sidebar__link {
 }
 
 .manual-module__toc-title {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   flex: 0 0 auto;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #6b5d4d;
 }
@@ -2670,17 +2670,16 @@ button.workspace-sidebar__link {
   display: block;
   width: 100%;
   min-width: 0;
-  padding: 8px 10px;
+  padding: 7px 8px;
   border: 0;
   border-radius: 6px;
   background: transparent;
   color: #3a3228;
   font: inherit;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.45;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.12s ease, color 0.12s ease;
 }
 
 .manual-module__toc-label {
@@ -2708,7 +2707,7 @@ button.workspace-sidebar__link {
   background: #fffdf9;
   border: 1px solid #e8dfd0;
   border-radius: 10px;
-  padding: 28px 32px 56px;
+  padding: 40px 48px 72px;
 }
 
 .manual-module__document {
@@ -2719,55 +2718,80 @@ button.workspace-sidebar__link {
 }
 
 .manual-module__document-header {
-  margin-bottom: 28px;
-  padding-bottom: 20px;
+  margin-bottom: 48px;
+  padding-bottom: 28px;
   border-bottom: 1px solid #e4d9c8;
 }
 
 .manual-module__title {
-  margin: 0 0 10px;
-  font-size: 30px;
-  line-height: 1.2;
-  font-weight: 700;
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 600;
   color: #2f281f;
   letter-spacing: -0.02em;
 }
 
 .manual-module__lede {
   margin: 0;
-  font-size: 17px;
-  line-height: 1.6;
+  max-width: 38em;
+  font-size: 18px;
+  line-height: 1.7;
   color: #4a4034;
 }
 
 .manual-module__sections {
   display: flex;
   flex-direction: column;
-  gap: 36px;
 }
 
 .manual-module__section {
-  scroll-margin-top: 12px;
+  scroll-margin-top: 20px;
+  padding: 0 0 8px;
+}
+
+.manual-module__section + .manual-module__section {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid #ebe4d8;
 }
 
 .manual-module__section-title {
-  margin: 0 0 14px;
-  font-size: 22px;
-  line-height: 1.3;
-  font-weight: 700;
+  margin: 0 0 20px;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 600;
   color: #3a3228;
+  letter-spacing: -0.01em;
 }
 
 .manual-module__heading {
-  margin: 20px 0 10px;
-  line-height: 1.35;
+  margin: 1.75em 0 0.75em;
   color: #3a3228;
 }
 
-.manual-module__paragraph {
-  margin: 0 0 14px;
+.manual-module__heading--level-2 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.manual-module__heading--level-3 {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.manual-module__heading--level-4 {
   font-size: 16px;
-  line-height: 1.65;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.manual-module__paragraph {
+  margin: 0 0 1.25em;
+  font-size: 17px;
+  line-height: 1.75;
   color: #4a4034;
 }
 
@@ -2775,9 +2799,22 @@ button.workspace-sidebar__link {
   margin-bottom: 0;
 }
 
-.manual-module__video {
-  margin: 18px 0;
+.manual-module__figure {
+  margin: 1.75em 0;
+}
+
+.manual-module__figure--video {
   max-width: 50rem;
+}
+
+.manual-module__figure--image {
+  max-width: 44rem;
+}
+
+.manual-module__image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .manual-module__video-frame {
@@ -2785,7 +2822,7 @@ button.workspace-sidebar__link {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #1a1814;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -2797,10 +2834,10 @@ button.workspace-sidebar__link {
   border: 0;
 }
 
-.manual-module__video-caption {
-  margin: 8px 0 0;
-  font-size: 14px;
-  line-height: 1.5;
+.manual-module__figure-caption {
+  margin: 0.625em 0 0;
+  font-size: 15px;
+  line-height: 1.55;
   color: #6b5d4d;
 }
 
