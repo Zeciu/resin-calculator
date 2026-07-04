@@ -68,6 +68,49 @@ const MAIN_RESIN_DEPTH_HELP = {
     "Enter the average depth of the main resin area between the wood slabs. This value is used to calculate the volume of the large resin-filled section of the project.",
   examples: "Example: If the river section is approximately 50 mm deep, enter 50.",
 };
+const WORKSPACE_EDIT_COLORS = {
+  active: {
+    stroke: "#00e5ff",
+    fill: "rgba(0, 229, 255, 0.14)",
+    pointFill: "#ffffff",
+    pointStroke: "#111111",
+    lineWidth: 2.5,
+    pointRadius: 5,
+  },
+  completed: {
+    mold: {
+      stroke: "#bdbdbd",
+      fill: "rgba(180, 180, 180, 0.14)",
+      pointFill: "#eeeeee",
+      lineWidth: 2,
+    },
+    wood: {
+      stroke: "#f0b878",
+      fill: "rgba(240, 184, 120, 0.22)",
+      pointFill: "#ffe8c8",
+      lineWidth: 2,
+    },
+    cavity: {
+      stroke: "#c77dff",
+      fill: "rgba(199, 125, 255, 0.24)",
+      pointFill: "#e9c4ff",
+      lineWidth: 2,
+    },
+    standard: {
+      stroke: "#4fc3ff",
+      fill: "rgba(79, 195, 255, 0.22)",
+      pointFill: "#b8e7ff",
+      lineWidth: 2,
+    },
+  },
+  reference: {
+    stroke: "#ff8c42",
+    pointFill: "#ff8c42",
+    lineWidth: 2,
+    pointRadius: 5,
+  },
+};
+
 const WORKFLOW_HELP = {
   reference: {
     title: "Reference Measurements",
@@ -251,7 +294,11 @@ function getPourPlanRecommendedVolume(row, firstFillRecommendationMode) {
   return row.recommendedVolumeLiters;
 }
 
-function drawPolygonOnCanvas(ctx, screenPts, { stroke, fill, pointFill, lineWidth = 2 }) {
+function drawPolygonOnCanvas(
+  ctx,
+  screenPts,
+  { stroke, fill, pointFill, pointStroke, lineWidth = 2, pointRadius = 4 },
+) {
   if (screenPts.length === 0) return;
   ctx.beginPath();
   ctx.moveTo(screenPts[0].x, screenPts[0].y);
@@ -266,10 +313,34 @@ function drawPolygonOnCanvas(ctx, screenPts, { stroke, fill, pointFill, lineWidt
   }
   screenPts.forEach((p) => {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, pointRadius, 0, Math.PI * 2);
     ctx.fillStyle = pointFill;
     ctx.fill();
+    if (pointStroke) {
+      ctx.strokeStyle = pointStroke;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
   });
+}
+
+function drawReferenceAlignmentGrid(ctx, offsetX, offsetY, drawW, drawH) {
+  ctx.save();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.32)";
+  ctx.lineWidth = 1;
+  for (let i = 1; i <= 3; i += 1) {
+    const x = offsetX + (drawW * i) / 4;
+    const y = offsetY + (drawH * i) / 4;
+    ctx.beginPath();
+    ctx.moveTo(x, offsetY);
+    ctx.lineTo(x, offsetY + drawH);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(offsetX, y);
+    ctx.lineTo(offsetX + drawW, y);
+    ctx.stroke();
+  }
+  ctx.restore();
 }
 
 function drawCanvas({
@@ -289,8 +360,14 @@ function drawCanvas({
   mode,
   rotationDeg,
   zoomFactor,
+  measurementsComplete,
+  moldBoundaryComplete,
 }) {
   if (!canvas || !image) return;
+
+  const activeColors = WORKSPACE_EDIT_COLORS.active;
+  const completed = WORKSPACE_EDIT_COLORS.completed;
+  const referenceColors = WORKSPACE_EDIT_COLORS.reference;
 
   const ctx = canvas.getContext("2d");
   const viewW = canvas.width;
@@ -323,6 +400,10 @@ function drawCanvas({
   ctx.drawImage(image, 0, 0, image.width, image.height);
   ctx.restore();
 
+  if (!measurementsComplete) {
+    drawReferenceAlignmentGrid(ctx, offsetX, offsetY, drawW, drawH);
+  }
+
   const toScreen = (pt) => {
     const r = imagePointToRotated(pt, image.width, image.height, rotationDeg);
     return {
@@ -353,33 +434,23 @@ function drawCanvas({
 
   if (calculationMode === "standard" && polygonPoints.length > 0) {
     const screenPts = polygonPoints.map(toScreen);
-    drawPolygonOnCanvas(ctx, screenPts, {
-      stroke: "#00a2ff",
-      fill: "rgba(0, 162, 255, 0.2)",
-      pointFill: "#0073b8",
-    });
+    const polygonColors =
+      mode === "polygon" ? activeColors : completed.standard;
+    drawPolygonOnCanvas(ctx, screenPts, polygonColors);
   }
 
   if (calculationMode === "wood") {
     if (!useImageBorderAsMold && moldBoundaryPoints.length > 0) {
       const screenPts = moldBoundaryPoints.map(toScreen);
-      drawPolygonOnCanvas(ctx, screenPts, {
-        stroke: "#444",
-        fill: "rgba(80, 80, 80, 0.12)",
-        pointFill: "#222",
-        lineWidth: 2,
-      });
+      const moldColors =
+        !moldBoundaryComplete || mode === "mold" ? activeColors : completed.mold;
+      drawPolygonOnCanvas(ctx, screenPts, moldColors);
     }
 
     woodBoundaryPolygons.forEach((woodPolygon, idx) => {
       if (!woodPolygon || woodPolygon.length === 0) return;
       const screenPts = woodPolygon.map(toScreen);
-      drawPolygonOnCanvas(ctx, screenPts, {
-        stroke: "#8b4513",
-        fill: "rgba(139, 69, 19, 0.25)",
-        pointFill: "#5c2e0e",
-        lineWidth: 2,
-      });
+      drawPolygonOnCanvas(ctx, screenPts, completed.wood);
       if (screenPts.length >= 2) {
         const mid = {
           x: screenPts.reduce((s, p) => s + p.x, 0) / screenPts.length,
@@ -395,23 +466,13 @@ function drawCanvas({
 
     if (woodBoundaryPoints.length > 0) {
       const screenPts = woodBoundaryPoints.map(toScreen);
-      drawPolygonOnCanvas(ctx, screenPts, {
-        stroke: "#c46a1c",
-        fill: "rgba(196, 106, 28, 0.18)",
-        pointFill: "#8b4513",
-        lineWidth: 2,
-      });
+      drawPolygonOnCanvas(ctx, screenPts, activeColors);
     }
 
     cavityPolygons.forEach((cavity, idx) => {
       if (!cavity || cavity.length === 0) return;
       const screenPts = cavity.map(toScreen);
-      drawPolygonOnCanvas(ctx, screenPts, {
-        stroke: "#9b30ff",
-        fill: "rgba(155, 48, 255, 0.22)",
-        pointFill: "#6a1bb3",
-        lineWidth: 2,
-      });
+      drawPolygonOnCanvas(ctx, screenPts, completed.cavity);
       if (screenPts.length >= 2) {
         const mid = {
           x: screenPts.reduce((s, p) => s + p.x, 0) / screenPts.length,
@@ -427,12 +488,7 @@ function drawCanvas({
 
     if (currentCavityPoints.length > 0) {
       const screenPts = currentCavityPoints.map(toScreen);
-      drawPolygonOnCanvas(ctx, screenPts, {
-        stroke: "#00c4a7",
-        fill: "rgba(0, 196, 167, 0.18)",
-        pointFill: "#008f7a",
-        lineWidth: 2,
-      });
+      drawPolygonOnCanvas(ctx, screenPts, activeColors);
     }
 
     let selectedPoints = [];
@@ -447,18 +503,10 @@ function drawCanvas({
     if (selectedPoints.length > 0) {
       const screenPts = selectedPoints.map(toScreen);
       drawPolygonOnCanvas(ctx, screenPts, {
-        stroke: "#ffd400",
+        ...activeColors,
         fill: null,
-        pointFill: "#ffd400",
         lineWidth: 4,
-      });
-
-      screenPts.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 8, 0, Math.PI * 2);
-        ctx.strokeStyle = "#000";
-        ctx.lineWidth = 2;
-        ctx.stroke();
+        pointRadius: 8,
       });
     }
   }
@@ -468,8 +516,8 @@ function drawCanvas({
       const screenPts = (ref.calibrationPoints || []).map(toScreen);
       screenPts.forEach((p) => {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = "#ff6a00";
+        ctx.arc(p.x, p.y, referenceColors.pointRadius, 0, Math.PI * 2);
+        ctx.fillStyle = referenceColors.pointFill;
         ctx.fill();
       });
 
@@ -477,14 +525,16 @@ function drawCanvas({
         ctx.beginPath();
         ctx.moveTo(screenPts[0].x, screenPts[0].y);
         ctx.lineTo(screenPts[1].x, screenPts[1].y);
-        ctx.strokeStyle = "#ff6a00";
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = referenceColors.stroke;
+        ctx.lineWidth = referenceColors.lineWidth;
         ctx.stroke();
       }
 
-      // Tiny index label to help distinguish segments.
       if (screenPts.length === 2) {
-        const mid = { x: (screenPts[0].x + screenPts[1].x) / 2, y: (screenPts[0].y + screenPts[1].y) / 2 };
+        const mid = {
+          x: (screenPts[0].x + screenPts[1].x) / 2,
+          y: (screenPts[0].y + screenPts[1].y) / 2,
+        };
         ctx.fillStyle = "rgba(0,0,0,0.55)";
         ctx.fillRect(mid.x - 10, mid.y - 10, 20, 16);
         ctx.fillStyle = "#fff";
@@ -498,34 +548,23 @@ function drawCanvas({
     const screenPts = draftReferencePoints.map(toScreen);
     screenPts.forEach((p) => {
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = "#ffd400";
+      ctx.arc(p.x, p.y, activeColors.pointRadius, 0, Math.PI * 2);
+      ctx.fillStyle = activeColors.pointFill;
       ctx.fill();
+      ctx.strokeStyle = activeColors.pointStroke;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
     });
 
     if (screenPts.length === 2) {
       ctx.beginPath();
       ctx.moveTo(screenPts[0].x, screenPts[0].y);
       ctx.lineTo(screenPts[1].x, screenPts[1].y);
-      ctx.strokeStyle = "#ffd400";
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = activeColors.stroke;
+      ctx.lineWidth = activeColors.lineWidth;
       ctx.stroke();
     }
   }
-
-  ctx.fillStyle = "rgba(0,0,0,0.7)";
-  ctx.fillRect(10, 10, 420, 28);
-  ctx.fillStyle = "#fff";
-  ctx.font = "14px sans-serif";
-  const modeLabel =
-    calculationMode === "wood"
-      ? `Wood | ${mode} | Refs: ${referenceMeasurements.length}`
-      : `Std | ${mode} | Refs: ${referenceMeasurements.length}`;
-  ctx.fillText(
-    `${modeLabel} | Zoom: ${(zoomFactor * 100).toFixed(0)}% | Rot: ${rotationDeg}°`,
-    18,
-    29
-  );
 }
 
 export default forwardRef(function ResinCalculator(
@@ -540,6 +579,7 @@ export default forwardRef(function ResinCalculator(
 ) {
   const canvasRef = useRef(null);
   const workAreaRef = useRef(null);
+  const workspaceImagePanelRef = useRef(null);
   const imageRef = useRef(null);
   const importFileInputRef = useRef(null);
   const dragRef = useRef(null);
@@ -694,6 +734,8 @@ export default forwardRef(function ResinCalculator(
     mode,
     rotationDeg,
     zoomFactor,
+    measurementsComplete,
+    moldBoundaryComplete,
     ...overrides,
   });
 
@@ -856,6 +898,8 @@ export default forwardRef(function ResinCalculator(
     mode,
     rotationDeg,
     zoomFactor,
+    measurementsComplete,
+    moldBoundaryComplete,
   ]);
 
   useEffect(() => {
@@ -875,7 +919,25 @@ export default forwardRef(function ResinCalculator(
     mode,
     rotationDeg,
     zoomFactor,
+    measurementsComplete,
+    moldBoundaryComplete,
   ]);
+
+  useEffect(() => {
+    if (!imageDataUrl) return undefined;
+
+    const scrollTimer = window.setTimeout(() => {
+      resizeCanvasToWorkArea();
+      workspaceImagePanelRef.current?.scrollIntoView({
+        behavior: "auto",
+        block: "start",
+      });
+    }, 50);
+
+    return () => {
+      window.clearTimeout(scrollTimer);
+    };
+  }, [imageDataUrl]);
 
   useEffect(() => {
     if (pendingNewCavityIndex == null) return;
@@ -2353,35 +2415,8 @@ export default forwardRef(function ResinCalculator(
       )}
 
       {imageDataUrl && (
+        <>
         <div className="workspace-controls">
-          <div className="mode-buttons view-controls">
-          <span className="workflow-section-label">View & Navigation</span>
-          <button className="nav-tool-button" onClick={fitToScreen}>
-            <Maximize2 size={14} aria-hidden="true" />
-            Fit to Screen
-          </button>
-          <button className="nav-tool-button" onClick={zoomIn}>
-            <ZoomIn size={14} aria-hidden="true" />
-            Zoom In
-          </button>
-          <button className="nav-tool-button" onClick={zoomOut}>
-            <ZoomOut size={14} aria-hidden="true" />
-            Zoom Out
-          </button>
-          <button className="nav-tool-button" onClick={resetZoom}>
-            <RefreshCcw size={14} aria-hidden="true" />
-            Reset Zoom
-          </button>
-          <button className="nav-tool-button" onClick={rotateLeft}>
-            <RotateCcw size={14} aria-hidden="true" />
-            Rotate Left 90°
-          </button>
-          <button className="nav-tool-button" onClick={rotateRight}>
-            <RotateCw size={14} aria-hidden="true" />
-            Rotate Right 90°
-          </button>
-        </div>
-
         <div
           className="active-workflow-controls"
           ref={!measurementsComplete ? referenceControlsRef : null}
@@ -2953,19 +2988,60 @@ export default forwardRef(function ResinCalculator(
           )}
           </div>
         </div>
-      )}
 
-      <div ref={workAreaRef} className="work-area">
-        <canvas
-          ref={canvasRef}
-          className="canvas"
-          onClick={onCanvasClick}
-          onMouseDown={onCanvasMouseDown}
-          onMouseMove={onCanvasMouseMove}
-          onMouseUp={stopDragging}
-          onMouseLeave={stopDragging}
-        />
-      </div>
+        <div className="workspace-image-panel" ref={workspaceImagePanelRef}>
+          <div ref={workAreaRef} className="work-area">
+            <canvas
+              ref={canvasRef}
+              className="canvas"
+              onClick={onCanvasClick}
+              onMouseDown={onCanvasMouseDown}
+              onMouseMove={onCanvasMouseMove}
+              onMouseUp={stopDragging}
+              onMouseLeave={stopDragging}
+            />
+          </div>
+          <div className="workspace-image-footer">
+            <div className="canvas-status-bar" aria-live="polite">
+              {calculationMode === "wood"
+                ? `Wood | ${mode} | Refs: ${referenceMeasurements.length}`
+                : `Std | ${mode} | Refs: ${referenceMeasurements.length}`}
+              {" | "}
+              Zoom: {(zoomFactor * 100).toFixed(0)}%
+              {" | "}
+              Rot: {rotationDeg}°
+            </div>
+            <div className="mode-buttons view-controls">
+              <span className="workflow-section-label">View & Navigation</span>
+              <button className="nav-tool-button" onClick={fitToScreen}>
+                <Maximize2 size={14} aria-hidden="true" />
+                Fit to Screen
+              </button>
+              <button className="nav-tool-button" onClick={zoomIn}>
+                <ZoomIn size={14} aria-hidden="true" />
+                Zoom In
+              </button>
+              <button className="nav-tool-button" onClick={zoomOut}>
+                <ZoomOut size={14} aria-hidden="true" />
+                Zoom Out
+              </button>
+              <button className="nav-tool-button" onClick={resetZoom}>
+                <RefreshCcw size={14} aria-hidden="true" />
+                Reset Zoom
+              </button>
+              <button className="nav-tool-button" onClick={rotateLeft}>
+                <RotateCcw size={14} aria-hidden="true" />
+                Rotate Left 90°
+              </button>
+              <button className="nav-tool-button" onClick={rotateRight}>
+                <RotateCw size={14} aria-hidden="true" />
+                Rotate Right 90°
+              </button>
+            </div>
+          </div>
+        </div>
+        </>
+      )}
 
       {calculationMode === "wood" && woodBoundaryPolygons.length > 0 && (
         <div className="wood-island-list">
@@ -3259,6 +3335,7 @@ export default forwardRef(function ResinCalculator(
                     ref={firstFillThicknessInputRef}
                     type="number"
                     step="0.1"
+                    placeholder="Recommended: 3 mm"
                     value={firstFillThicknessMm}
                     onChange={(event) => {
                       setFirstFillThicknessMm(event.target.value);
