@@ -95,6 +95,8 @@ Although these modules share common editing principles, each receives its own de
 | Expected result | The Manual becomes an administrator-managed product. Chapters, sections, text, images and embedded tutorial videos can be maintained entirely through the administration interface while preserving the existing reading experience introduced in Phase 2. |
 | Acceptance criteria | Administrators can create, edit, delete and reorder chapters and sections. The reading experience of the Manual remains unchanged for end users. The administration interface provides a comfortable editing environment with live preview where appropriate. Images and embedded videos can be inserted into the content. The editor supports the semantic content blocks already established for the Manual (Important, Warning, Tip, Note, Quote, etc.). Manual content supports **Draft** and **Published** states. Administrators may freely edit Draft content without affecting end users. Only Published content is visible inside the Manual. Publishing immediately makes the new version available to users. |
 
+**Status:** Complete (2026-07-07).
+
 ### Product Clarifications
 
 The administrator edits the Manual itself, not HTML or source files.

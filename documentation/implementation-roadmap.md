@@ -159,12 +159,12 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Progress (2026-07-07)
 
-**Phase 3 status:** In progress (Task 58 complete and approved).
+**Phase 3 status:** In progress (Tasks 58 and 59 complete and approved).
 
 | Task | Name | Status |
 |------|------|--------|
 | 58 | Admin Panel Foundation | Complete |
-| 59 | Manual Content Management | Pending |
+| 59 | Manual Content Management | Complete |
 | 60 | Glossary Content Management | Pending |
 | 61 | Knowledge Base Content Management | Pending |
 | 62 | Shared Editorial Infrastructure | Pending |
@@ -175,12 +175,14 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Current baseline
 
-Task 58 is complete and approved. The repository baseline now includes:
+Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. The repository baseline now includes:
 
-* dedicated `/admin` route branch;
-* dedicated admin layout and sidebar;
-* placeholder admin sections for Manual, Glossary, Knowledge Base, and future areas;
-* administrator-only guard for admin routes;
-* standard user blocking on `/admin` with safe redirect to Home.
+* dedicated `/admin` route branch with administrator-only guard;
+* admin Manual workspace at `/admin/manual` with chapter list, TipTap chapter editor, EN/RO locale switching, and explicit Save/Publish controls (no autosave);
+* backend admin Manual API under `/api/admin/manual/chapters` with filesystem JSON persistence for local development;
+* per-locale draft save/load and publish with published snapshot generation;
+* static Phase 2 manual migration script and public Manual API (`/api/content/manual/{locale}`);
+* public `/manual` served from admin-published snapshots when available, with legacy static fallback only when no admin snapshot exists;
+* local manual image upload and public image serving for editor-inserted illustrations.
 
-The next implementation task is **Task 59 — Manual Content Management**.
+The next implementation step is **Task 60 — Glossary Content Management**.

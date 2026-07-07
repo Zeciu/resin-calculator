@@ -1,6 +1,7 @@
-import { screen, within } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { mockPublishedManualFetch } from "../manual/manualTestHelpers.js";
 import { getLoggedInHomeNavItems, WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
@@ -40,6 +41,8 @@ function expectCalculatorRoute() {
 describe("Authenticated Mode navigation", () => {
   beforeEach(() => {
     sessionStorage.clear();
+    vi.restoreAllMocks();
+    mockPublishedManualFetch();
   });
 
   it("keeps protected module items locked for guests", async () => {
@@ -117,7 +120,9 @@ describe("Authenticated Mode navigation", () => {
       expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
       expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
       if (navName) {
-        expect(screen.getByRole("navigation", { name: navName })).toBeInTheDocument();
+        await waitFor(() => {
+          expect(screen.getByRole("navigation", { name: navName })).toBeInTheDocument();
+        });
       }
       if (searchName) {
         expect(screen.getByRole("searchbox", { name: searchName })).toBeInTheDocument();

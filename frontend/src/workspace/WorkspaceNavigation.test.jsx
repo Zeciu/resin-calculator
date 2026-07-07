@@ -1,6 +1,7 @@
-import { screen, within } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { mockPublishedManualFetch } from "../manual/manualTestHelpers.js";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
@@ -73,6 +74,8 @@ describe("Workspace navigation matrix — authenticated", () => {
   beforeEach(() => {
     sessionStorage.clear();
     seedAuthenticatedSession();
+    vi.restoreAllMocks();
+    mockPublishedManualFetch();
   });
 
   it("shows unlocked module navigation and emphasizes New Project on the Home hub", () => {
@@ -131,7 +134,9 @@ describe("Workspace navigation matrix — authenticated", () => {
     await user.click(screen.getByRole("link", { name: "Manual & Tutorials" }));
     expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-    expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
+    });
     expect(
       within(screen.getByRole("main")).getByRole("heading", { name: "Manual & Tutorials", level: 1 }),
     ).toBeInTheDocument();

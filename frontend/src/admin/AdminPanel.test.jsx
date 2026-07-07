@@ -71,7 +71,7 @@ describe("Admin Panel foundation", () => {
       expect(screen.queryByRole("link", { name: "Admin Panel" })).not.toBeInTheDocument();
     });
 
-    it("renders a manual placeholder with the Task 59 message", async () => {
+    it("renders the manual management workspace", async () => {
       const user = userEvent.setup();
       seedAdministrator();
       renderWorkspace(ADMIN_ROUTES.ROOT);
@@ -79,10 +79,8 @@ describe("Admin Panel foundation", () => {
       const adminNav = screen.getByRole("navigation", { name: "Administration navigation" });
       await user.click(within(adminNav).getByRole("link", { name: "Manual & Tutorials" }));
 
-      expect(
-        screen.getByRole("heading", { name: "Manual & Tutorials management" }),
-      ).toBeInTheDocument();
-      expect(screen.getByText(/Manual content management begins in Task 59/i)).toBeInTheDocument();
+      expect(screen.getByRole("region", { name: "Manual management" })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeInTheDocument();
     });
   });
 

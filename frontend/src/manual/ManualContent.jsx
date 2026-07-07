@@ -1,5 +1,5 @@
 /**
- * Renders the continuous manual document from static section data.
+ * Renders the continuous manual document from published section data.
  */
 
 /**
@@ -34,14 +34,20 @@ function ManualBlock({ block }) {
   if (block.type === "heading") {
     const Tag = `h${block.level}`;
     return (
-      <Tag className={`manual-module__heading manual-module__heading--level-${block.level}`}>
-        {block.text}
-      </Tag>
+      <Tag
+        className={`manual-module__heading manual-module__heading--level-${block.level}`}
+        dangerouslySetInnerHTML={{ __html: block.text }}
+      />
     );
   }
 
   if (block.type === "paragraph") {
-    return <p className="manual-module__paragraph">{block.text}</p>;
+    return (
+      <p
+        className="manual-module__paragraph"
+        dangerouslySetInnerHTML={{ __html: block.text }}
+      />
+    );
   }
 
   if (block.type === "image") {
@@ -72,6 +78,19 @@ function ManualBlock({ block }) {
           <figcaption className="manual-module__figure-caption">{block.caption}</figcaption>
         ) : null}
       </figure>
+    );
+  }
+
+  if (block.type === "callout") {
+    return (
+      <aside
+        className={`manual-module__callout manual-module__callout--${block.variant}`}
+        aria-label={block.variant}
+      >
+        {block.blocks?.map((innerBlock, index) => (
+          <ManualBlock key={`${block.variant}-${index}`} block={innerBlock} />
+        ))}
+      </aside>
     );
   }
 

@@ -9,8 +9,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from jose import jwt, JWTError
 from jose.exceptions import ExpiredSignatureError
 
+from content.routers.admin_manual import router as admin_manual_router
+from content.routers.public_content import router as public_content_router
+from auth.dependencies import auth_mode
+
 
 app = FastAPI()
+app.include_router(admin_manual_router, prefix="/api")
+app.include_router(public_content_router, prefix="/api")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -45,6 +51,12 @@ async def _get_jwks() -> dict:
 @app.middleware("http")
 async def cognito_auth_middleware(request: Request, call_next):
     if not _AUTH_ENABLED or request.url.path in _UNPROTECTED_PATHS:
+        return await call_next(request)
+
+    if request.url.path.startswith("/api/content/"):
+        return await call_next(request)
+
+    if auth_mode() == "mock" and request.url.path.startswith("/api/admin"):
         return await call_next(request)
 
     auth_header = request.headers.get("Authorization", "")

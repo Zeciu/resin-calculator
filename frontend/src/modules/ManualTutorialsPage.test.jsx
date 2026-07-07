@@ -1,6 +1,7 @@
-import { screen, within } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { mockPublishedManualFetch } from "../manual/manualTestHelpers.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -31,14 +32,29 @@ describe("ManualTutorialsPage", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.restoreAllMocks();
+    mockPublishedManualFetch();
   });
 
-  it("renders the dedicated manual module for authenticated users", () => {
+  it("loads manual content from the public API", async () => {
+    const fetchMock = mockPublishedManualFetch();
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Introduction", level: 2 })).toBeInTheDocument();
+    });
+
+    expect(fetchMock).toHaveBeenCalledWith("/api/content/manual?locale=en");
+  });
+
+  it("renders the dedicated manual module for authenticated users", async () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.MANUAL);
 
     expectDedicatedManualShell();
-    expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
+    });
     expect(screen.getByRole("heading", { name: "Manual & Tutorials", level: 1 })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Introduction", level: 2 })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Polygons and Volume", level: 2 })).toBeInTheDocument();
@@ -46,20 +62,24 @@ describe("ManualTutorialsPage", () => {
     expect(screen.queryByText(/Coming in a future phase/i)).not.toBeInTheDocument();
   });
 
-  it("shows all manual sections in one continuous document", () => {
+  it("shows all manual sections in one continuous document", async () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.MANUAL);
 
     const main = screen.getByRole("main");
-    expect(within(main).getByText(/HFZWood helps woodworkers estimate epoxy resin volume/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(within(main).getByText(/HFZWood helps woodworkers estimate epoxy resin volume/i)).toBeInTheDocument();
+    });
     expect(within(main).getByText(/Review the pouring plan and safety margin/i)).toBeInTheDocument();
   });
 
-  it("renders inline figures for tutorial video and supporting images", () => {
+  it("renders inline figures for tutorial video and supporting images", async () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.MANUAL);
 
-    expect(screen.getByTitle("Calibration walkthrough")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTitle("Calibration walkthrough")).toBeInTheDocument();
+    });
     expect(screen.getByRole("img", { name: "Wood and epoxy resin in a workshop setting" })).toBeInTheDocument();
     expect(
       screen.getByText(
@@ -76,7 +96,8 @@ describe("ManualTutorialsPage", () => {
     const user = userEvent.setup();
     renderWorkspace(ROUTES.MANUAL);
 
-    await user.click(screen.getByRole("button", { name: "Polygons and Volume" }));
+    const tocButton = await screen.findByRole("button", { name: "Polygons and Volume" });
+    await user.click(tocButton);
 
     const section = document.getElementById("polygons-and-volume");
     expect(section).toBeTruthy();

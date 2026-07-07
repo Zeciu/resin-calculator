@@ -13,12 +13,11 @@ export default function AdminDashboard() {
           <li>Manual &amp; Tutorials — textbook content for end users</li>
           <li>Glossary — technical dictionary entries</li>
           <li>Knowledge Base — troubleshooting articles</li>
-          <li>Projects / Open Project — shortcut to the existing Projects hub</li>
           <li>Future content and administration sections — reserved for later phases</li>
         </ul>
         <p className="admin-dashboard__status">
-          Content editing is not available yet. Placeholder pages describe when
-          each area will be implemented.
+          Manual &amp; Tutorials editing is available now. Glossary and Knowledge
+          Base management will be added in upcoming tasks.
         </p>
       </div>
     </section>

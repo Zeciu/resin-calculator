@@ -1,7 +1,6 @@
-import { ROUTES } from "../workspace/routes.js";
 import { ADMIN_ROUTES } from "./adminRoutes.js";
 
-/** @typedef {"link" | "placeholder" | "external"} AdminNavItemKind */
+/** @typedef {"link" | "placeholder"} AdminNavItemKind */
 
 /**
  * @typedef {{
@@ -29,10 +28,7 @@ export const ADMIN_NAV_ITEMS = [
     id: "manual",
     label: "Manual & Tutorials",
     path: ADMIN_ROUTES.MANUAL,
-    kind: "placeholder",
-    placeholderTitle: "Manual & Tutorials management",
-    placeholderMessage: "Manual content management begins in Task 59.",
-    showEditorialNote: true,
+    kind: "link",
   },
   {
     id: "glossary",
@@ -51,12 +47,6 @@ export const ADMIN_NAV_ITEMS = [
     placeholderTitle: "Knowledge Base management",
     placeholderMessage: "Knowledge Base content management begins in Task 61.",
     showEditorialNote: true,
-  },
-  {
-    id: "projects",
-    label: "Projects / Open Project",
-    path: ROUTES.PROJECTS,
-    kind: "external",
   },
   {
     id: "future-content",

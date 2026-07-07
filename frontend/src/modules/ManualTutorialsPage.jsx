@@ -1,10 +1,45 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ManualContent from "../manual/ManualContent.jsx";
-import { MANUAL_SECTIONS } from "../manual/manualContent.js";
+import { fetchPublishedManual } from "../manual/manualApi.js";
 import ManualTableOfContents from "../manual/ManualTableOfContents.jsx";
+
+const DEFAULT_LOCALE = "en";
 
 export default function ManualTutorialsPage() {
   const readingPaneRef = useRef(null);
+  const [sections, setSections] = useState([]);
+  const [loadState, setLoadState] = useState("loading");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadManual() {
+      setLoadState("loading");
+      try {
+        const payload = await fetchPublishedManual(DEFAULT_LOCALE);
+        if (cancelled) {
+          return;
+        }
+        if (!payload.available) {
+          setSections([]);
+          setLoadState("error");
+          return;
+        }
+        setSections(payload.sections);
+        setLoadState("ready");
+      } catch {
+        if (!cancelled) {
+          setSections([]);
+          setLoadState("error");
+        }
+      }
+    }
+
+    loadManual();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const scrollToSection = useCallback((sectionId) => {
     const container = readingPaneRef.current;
@@ -23,7 +58,9 @@ export default function ManualTutorialsPage() {
   return (
     <section className="manual-module" aria-label="Manual and Tutorials">
       <aside className="manual-module__toc-panel">
-        <ManualTableOfContents sections={MANUAL_SECTIONS} onNavigate={scrollToSection} />
+        {loadState === "ready" ? (
+          <ManualTableOfContents sections={sections} onNavigate={scrollToSection} />
+        ) : null}
       </aside>
       <div className="manual-module__reading" ref={readingPaneRef}>
         <article className="manual-module__document">
@@ -34,7 +71,17 @@ export default function ManualTutorialsPage() {
               demonstrations where visual explanation helps.
             </p>
           </header>
-          <ManualContent sections={MANUAL_SECTIONS} />
+          {loadState === "loading" ? (
+            <p className="manual-module__status" role="status">
+              Loading manual...
+            </p>
+          ) : null}
+          {loadState === "error" ? (
+            <p className="manual-module__status manual-module__status--error" role="alert">
+              Manual content is unavailable right now.
+            </p>
+          ) : null}
+          {loadState === "ready" ? <ManualContent sections={sections} /> : null}
         </article>
       </div>
     </section>

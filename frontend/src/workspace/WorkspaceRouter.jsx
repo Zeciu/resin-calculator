@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import AdminDashboard from "../admin/AdminDashboard.jsx";
 import AdminLayout from "../admin/AdminLayout.jsx";
+import ManualManagementPage from "../admin/manual/ManualManagementPage.jsx";
 import AdminPlaceholderPage from "../admin/AdminPlaceholderPage.jsx";
 import AdminRouteGuard from "../admin/AdminRouteGuard.jsx";
 import { getAdminPlaceholderNavItems } from "../admin/adminNavigation.js";
@@ -118,6 +119,10 @@ export default function WorkspaceRouter() {
           }
         >
           <Route index element={<AdminDashboard />} />
+          <Route
+            path={ADMIN_ROUTES.MANUAL.replace(/^\/admin\//, "")}
+            element={<ManualManagementPage />}
+          />
           {getAdminPlaceholderNavItems().map((item) => (
             <Route
               key={item.id}
