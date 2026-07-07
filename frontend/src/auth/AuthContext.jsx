@@ -1,14 +1,10 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 import { mockAuthAdapter } from "./authAdapter.js";
 
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children, authAdapter = mockAuthAdapter }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    setUser(authAdapter.restoreSession());
-  }, [authAdapter]);
+  const [user, setUser] = useState(() => authAdapter.restoreSession());
 
   const login = useCallback(
     (credentials = {}) => {
@@ -26,6 +22,7 @@ export function AuthProvider({ children, authAdapter = mockAuthAdapter }) {
   const value = useMemo(
     () => ({
       isAuthenticated: user !== null,
+      isAdministrator: user?.role === "administrator",
       user,
       login,
       logout,

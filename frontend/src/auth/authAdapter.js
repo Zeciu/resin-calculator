@@ -6,7 +6,10 @@ function readStoredSession() {
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed?.user || typeof parsed.user !== "object") return null;
-    return parsed.user;
+    return {
+      ...parsed.user,
+      role: isMockAdminEnabled() ? "administrator" : normalizeRole(parsed.user.role),
+    };
   } catch {
     return null;
   }
@@ -18,6 +21,36 @@ function writeStoredSession(user) {
   } else {
     sessionStorage.removeItem(SESSION_STORAGE_KEY);
   }
+}
+
+const VALID_ROLES = new Set(["administrator", "user"]);
+
+function isMockAdminEnabled() {
+  const value = import.meta.env.VITE_MOCK_ADMIN;
+  if (value === true) {
+    return true;
+  }
+  if (typeof value !== "string") {
+    return false;
+  }
+  const normalized = value.trim().toLowerCase();
+  return normalized === "true" || normalized === "1";
+}
+
+function normalizeRole(role) {
+  return VALID_ROLES.has(role) ? role : "user";
+}
+
+function resolveRole(credentials = {}) {
+  if (isMockAdminEnabled()) {
+    return "administrator";
+  }
+
+  if (VALID_ROLES.has(credentials.role)) {
+    return credentials.role;
+  }
+
+  return "user";
 }
 
 function buildStubUser(credentials = {}) {
@@ -34,6 +67,7 @@ function buildStubUser(credentials = {}) {
     id: "stub-user",
     email,
     username,
+    role: resolveRole(credentials),
   };
 }
 

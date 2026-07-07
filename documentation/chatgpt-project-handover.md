@@ -503,3 +503,404 @@ Protect release discipline.
 If an improvement does not block the current milestone, defer it to the next appropriate phase.
 
 Prioritize shipping over perfection while maintaining professional quality.
+# Current Project Status
+
+HFZWood is currently in a stable post-Phase 2 state.
+
+Completed milestones:
+
+- Phase 1 — Complete
+- Phase 2 — Complete and Release Certified
+- Workspace Polish (Version 2.1) — Complete
+
+Workspace Polish delivered:
+
+- Automatic scroll to the uploaded/restored image.
+- View & Navigation controls moved below the image.
+- Temporary alignment grid during Reference Measurements.
+- Canvas status HUD moved outside the image.
+- High-contrast editing colors.
+- Recommendation placeholder for First Fill Seal Coat Thickness.
+
+Current repository state:
+
+- Phase 2 Release Certification:
+  Commit: 81ed9a0
+
+- Workspace Polish:
+  Commit: 39568e1
+
+Current product status:
+
+The calculator workspace is considered mature and stable.
+
+The following areas are considered complete:
+
+- Authentication
+- Home Hub
+- Dedicated Module Architecture
+- New Project Workspace
+- Save / Open / Update Project
+- .hfzproject persistence
+- Recent Projects
+- Manual
+- Glossary
+- Knowledge Base
+- Navigation consistency
+- Documentation alignment
+- Workspace usability polish
+
+Build, automated tests, manual QA and documentation are all synchronized.
+
+The repository is clean and pushed to origin/main.
+
+---
+
+# Next Milestone
+
+The next development stage is:
+
+# Phase 3 — Product Maturity
+
+Primary objective:
+
+Transform HFZWood from a developer-maintained application into a product whose educational content can be managed without modifying the source code.
+
+Planned Phase 3 scope:
+
+- Admin Panel
+- Manual management
+- Glossary management
+- Knowledge Base management
+- Content editing directly from the application
+- User preferences
+- Roles and permissions
+- Global documentation search
+
+Expected result:
+
+The Manual, Glossary and Knowledge Base become editable through an administrative interface rather than by editing project files.
+
+No calculator algorithm changes are planned unless a genuine product need is discovered.
+
+---
+
+# Long-term Roadmap
+
+Phase 3 — Product Maturity
+
+↓
+
+Phase 4 — Cloud Platform
+
+- Real authentication
+- Cloud project storage
+- Project synchronization
+- Online project library
+- Project sharing
+
+↓
+
+Phase 5 — Business Platform
+
+- Stripe
+- Subscriptions
+- Licensing
+- User management
+- Notifications
+- Emails
+
+↓
+
+Phase 6 — Intelligence
+
+This phase will likely be postponed until after the Business Platform is complete.
+
+Potential scope:
+
+- AI Knowledge Base
+- Semantic Search
+- Natural language questions
+- Intelligent assistant
+- AI-assisted cavity and defect recognition
+- Future AI-powered workflow assistance
+
+Development philosophy remains unchanged:
+
+Product Review
+→ Architecture Review
+→ Implementation
+→ Manual Verification
+→ QA
+→ Documentation Alignment
+→ Release Certification
+
+No implementation begins before the documentation for that milestone has been completed and approved.
+# HFZWood — Phase 3 Planning Completed
+
+## Current Status
+
+Phase 3 planning has been completed and approved.
+
+The following documents are now considered final:
+
+- documentation/phase-3-implementation-plan.md
+- documentation/phase-3-technical-architecture.md
+
+Both documents have been reviewed multiple times by ChatGPT and Cursor.
+
+The final technical architecture incorporates the last approved changes:
+
+- Manual migration preserves the Chapter → Section hierarchy.
+- Language fallback no longer switches automatically to English. Users see a localized "content unavailable" message and may explicitly choose to open the English version if it exists.
+
+Both documents are now frozen and should not be modified unless implementation reveals a real architectural problem.
+
+---
+
+# Phase 3 Final Task List
+
+Task 58 — Admin Panel Foundation
+
+Task 59 — Manual Content Management
+
+Task 60 — Glossary Content Management
+
+Task 61 — Knowledge Base Content Management
+
+Task 62 — Shared Editorial Infrastructure
+
+Task 63 — Application Preferences
+
+Task 64 — Roles & Permissions
+
+Task 65 — Phase 3 Integration, QA & Documentation Alignment
+
+Task 66 — Phase 3 Release Certification
+
+---
+
+# Important Product Decisions
+
+## Product Architecture and Technical Architecture are now separated
+
+From Phase 3 onward every phase follows this workflow:
+
+Roadmap
+
+↓
+
+Product Architecture
+
+↓
+
+Technical Architecture
+
+↓
+
+Implementation
+
+↓
+
+Integration QA
+
+↓
+
+Release Certification
+
+Implementation must always follow the approved Product Architecture.
+
+Technical Architecture defines HOW.
+
+Product Architecture defines WHAT.
+
+---
+
+## Global Documentation Search
+
+Originally planned for Phase 3.
+
+Decision:
+
+Removed from Phase 3.
+
+Moved to Phase 6 (AI / Intelligence).
+
+Reason:
+
+Manual, Glossary and Knowledge Base are independent workspaces.
+
+Users search only inside the module they are currently using.
+
+A future AI-powered semantic search will replace the original idea.
+
+---
+
+## Manual Structure
+
+The public Manual remains one continuous document.
+
+Internally:
+
+Chapter
+
+↓
+
+Section
+
+↓
+
+Content Blocks
+
+Migration preserves chapter hierarchy and section identifiers.
+
+---
+
+## Multilingual Philosophy
+
+Each logical content item owns all language variants.
+
+Each language has independent:
+
+- Draft
+- Published
+
+The administrator switches between language variants while editing.
+
+Users always experience one language across the application.
+
+Interface language and educational content remain synchronized.
+
+If a requested language is unavailable:
+
+- show localized unavailable message;
+- offer explicit "View English version" if English exists;
+- never switch languages automatically.
+
+---
+
+## Editorial Philosophy
+
+Manual
+
+=
+
+Book
+
+Glossary
+
+=
+
+Dictionary
+
+Knowledge Base
+
+=
+
+Troubleshooting Manual
+
+Each module preserves its own identity.
+
+No global documentation search in Phase 3.
+
+---
+
+## Shared Editorial Infrastructure
+
+Task 62 introduces the common editorial platform:
+
+- shared editor
+- media library
+- upload manager
+- asset manager
+- reusable assets
+- cross references
+- internal links
+- semantic blocks
+- asset reuse
+- asset protection
+- media metadata
+
+The goal is consistency rather than enterprise CMS complexity.
+
+---
+
+## Roles
+
+Phase 3 supports only:
+
+- User
+- Administrator
+
+Architecture is prepared for future roles.
+
+Administrative functionality remains completely invisible to standard users.
+
+---
+
+## Preferences
+
+Users may configure:
+
+- interface language
+- measurement units
+- volume units
+
+Internal calculations always use canonical units.
+
+Preferences affect presentation only.
+
+---
+
+## Workflow Decision
+
+Architecture discussions are finished.
+
+From now on implementation starts.
+
+New product ideas discovered during implementation should normally be added to future phases instead of modifying the approved Phase 3 documents.
+
+Only implementation blockers justify architectural changes.
+
+---
+
+# Next Session
+
+Start implementation.
+
+Task:
+
+Task 58 — Admin Panel Foundation
+
+Follow the existing implementation workflow:
+
+1. Read Task 58.
+2. Analyze existing code.
+3. Produce implementation plan.
+4. Implement.
+5. Build.
+6. Run complete test suite.
+7. Manual verification.
+8. Fix issues immediately.
+9. Commit.
+10. Push.
+11. Update documentation.
+12. Close the task.
+
+Only then continue with Task 59.
+
+---
+
+# Repository Status
+
+Phase 3 planning completed.
+
+Product Architecture approved.
+
+Technical Architecture approved.
+
+Repository synchronized.
+
+Task 58 is complete and approved.
+
+The next implementation task is Task 59 — Manual Content Management.

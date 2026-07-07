@@ -1,4 +1,10 @@
 import { Route, Routes } from "react-router-dom";
+import AdminDashboard from "../admin/AdminDashboard.jsx";
+import AdminLayout from "../admin/AdminLayout.jsx";
+import AdminPlaceholderPage from "../admin/AdminPlaceholderPage.jsx";
+import AdminRouteGuard from "../admin/AdminRouteGuard.jsx";
+import { getAdminPlaceholderNavItems } from "../admin/adminNavigation.js";
+import { ADMIN_ROUTES } from "../admin/adminRoutes.js";
 import GlossaryPage from "../modules/GlossaryPage.jsx";
 import KnowledgeBasePage from "../modules/KnowledgeBasePage.jsx";
 import ManualTutorialsPage from "../modules/ManualTutorialsPage.jsx";
@@ -101,6 +107,30 @@ export default function WorkspaceRouter() {
               </AuthRouteGuard>
             }
           />
+        </Route>
+
+        <Route
+          path="admin"
+          element={
+            <AdminRouteGuard>
+              <AdminLayout />
+            </AdminRouteGuard>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          {getAdminPlaceholderNavItems().map((item) => (
+            <Route
+              key={item.id}
+              path={item.path.replace(/^\/admin\//, "")}
+              element={
+                <AdminPlaceholderPage
+                  title={item.placeholderTitle}
+                  message={item.placeholderMessage}
+                  showEditorialNote={item.showEditorialNote}
+                />
+              }
+            />
+          ))}
         </Route>
       </Route>
     </Routes>
