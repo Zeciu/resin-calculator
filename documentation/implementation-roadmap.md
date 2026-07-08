@@ -205,7 +205,8 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * browser-language detection on first launch only (before first saved preference);
 * i18n infrastructure (`frontend/src/i18n/`) for high-visibility user surfaces;
 * display-unit conversion in the calculator (`frontend/src/units/conversion.js`) without changing canonical project data or backend calculations;
-* public Manual, Glossary, and Knowledge Base modules request content by interface language with localized unavailable messaging and explicit English fallback.
+* public Manual, Glossary, and Knowledge Base modules request content by interface language with localized unavailable messaging and explicit English fallback;
+* Application Preferences reachable by normal authenticated users — My Account is linked from the Home hub sidebar and from every dedicated module header — and interface language switching localizes navigation, Home, workspace hero, My Account, Preferences, dialogs, and the locked-module surface (Task 63 QA Fix Pass A).
 
 The next implementation step is **task 64 Roles & Permissions**.
 

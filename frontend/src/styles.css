@@ -1644,6 +1644,34 @@ button.workspace-sidebar__link {
   flex: 0 0 auto;
 }
 
+.module-header__account {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #4b341f;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  border: 1px solid #c9b08a;
+  background: #f3e8d4;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.module-header__account:hover {
+  background: #ead9bc;
+  border-color: #9d6c3b;
+}
+
+.module-header__account--active {
+  background: #e2c99f;
+  border-color: #8f5d2f;
+}
+
 .dedicated-module-layout__content {
   flex: 1 1 auto;
   min-width: 0;

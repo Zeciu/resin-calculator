@@ -87,7 +87,7 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(newProjectLink).toBeInTheDocument();
     expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
     expect(screen.queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });
 

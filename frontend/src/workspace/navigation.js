@@ -62,10 +62,7 @@ export function getVisibleWorkspaceNavItems(isAuthenticated) {
 
 export function getLoggedInHomeNavItems() {
   return WORKSPACE_NAV_ITEMS.filter(
-    (item) =>
-      item.requiresAuth &&
-      item.id !== "my-account" &&
-      item.id !== "login-register",
+    (item) => item.requiresAuth && item.id !== "login-register",
   );
 }
 

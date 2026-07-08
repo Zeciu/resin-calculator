@@ -6,6 +6,7 @@ import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { translate } from "../i18n/translate.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace as renderGuestWorkspace } from "./renderWorkspaceRouter.jsx";
+import { TestProviders } from "../test/TestProviders.jsx";
 
 describe("Guest Mode", () => {
   beforeEach(() => {
@@ -40,7 +41,11 @@ describe("Guest Mode", () => {
   });
 
   it("includes the guest intro platform overview video placeholder", () => {
-    render(<GuestIntro />);
+    render(
+      <TestProviders>
+        <GuestIntro />
+      </TestProviders>,
+    );
 
     expect(
       screen.getByLabelText(/Platform overview video placeholder/i),

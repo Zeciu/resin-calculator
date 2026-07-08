@@ -50,7 +50,7 @@ describe("Workspace home route", () => {
       screen.queryByText(/Create your free HFZWood account to unlock the complete platform/i),
     ).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Start New Project/i })).not.toBeInTheDocument();
   });
 });
