@@ -1,22 +1,57 @@
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { fetchPublishedKnowledgeBase } from "../knowledgeBase/knowledgeBaseApi.js";
 import KnowledgeBaseEntryList from "../knowledgeBase/KnowledgeBaseEntryList.jsx";
 import KnowledgeBaseToolbar from "../knowledgeBase/KnowledgeBaseToolbar.jsx";
-import { KNOWLEDGE_BASE_ENTRIES } from "../knowledgeBase/knowledgeBaseContent.js";
 import {
   filterKnowledgeBaseEntries,
   getFirstFilteredKnowledgeBaseEntry,
   getKnowledgeBaseEntryElementId,
 } from "../knowledgeBase/knowledgeBaseFilter.js";
 
+const DEFAULT_LOCALE = "en";
+
 export default function KnowledgeBasePage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
+  const [entries, setEntries] = useState([]);
+  const [loadState, setLoadState] = useState("loading");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadKnowledgeBase() {
+      setLoadState("loading");
+      try {
+        const payload = await fetchPublishedKnowledgeBase(DEFAULT_LOCALE);
+        if (cancelled) {
+          return;
+        }
+        if (!payload.available) {
+          setEntries([]);
+          setLoadState("error");
+          return;
+        }
+        setEntries(payload.entries);
+        setLoadState("ready");
+      } catch {
+        if (!cancelled) {
+          setEntries([]);
+          setLoadState("error");
+        }
+      }
+    }
+
+    loadKnowledgeBase();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const filteredEntries = useMemo(
-    () => filterKnowledgeBaseEntries(KNOWLEDGE_BASE_ENTRIES, searchQuery),
-    [searchQuery],
+    () => filterKnowledgeBaseEntries(entries, searchQuery),
+    [entries, searchQuery],
   );
 
   const handleSearchChange = useCallback((value) => {
@@ -45,6 +80,13 @@ export default function KnowledgeBasePage() {
   const handleToggleEntry = useCallback((entryId) => {
     setExpandedEntryId((current) => (current === entryId ? null : entryId));
   }, []);
+
+  const handleNavigateToEntry = useCallback((entryId) => {
+    setExpandedEntryId(entryId);
+    requestAnimationFrame(() => {
+      scrollToEntry(entryId);
+    });
+  }, [scrollToEntry]);
 
   useLayoutEffect(() => {
     if (!expandedEntryId) {
@@ -77,7 +119,7 @@ export default function KnowledgeBasePage() {
         return;
       }
 
-      const firstEntry = getFirstFilteredKnowledgeBaseEntry(KNOWLEDGE_BASE_ENTRIES, query);
+      const firstEntry = getFirstFilteredKnowledgeBaseEntry(entries, query);
       if (!firstEntry) {
         return;
       }
@@ -91,7 +133,7 @@ export default function KnowledgeBasePage() {
         searchInputRef.current?.focus();
       });
     },
-    [searchQuery],
+    [entries, searchQuery],
   );
 
   return (
@@ -105,17 +147,32 @@ export default function KnowledgeBasePage() {
       </header>
 
       <div className="knowledge-base-module__scroll" ref={scrollContainerRef}>
-        <KnowledgeBaseToolbar
-          ref={searchInputRef}
-          searchQuery={searchQuery}
-          onSearchChange={handleSearchChange}
-          onSearchSubmit={handleSearchSubmit}
-        />
-        <KnowledgeBaseEntryList
-          entries={filteredEntries}
-          expandedEntryId={expandedEntryId}
-          onToggleEntry={handleToggleEntry}
-        />
+        {loadState === "loading" ? (
+          <p className="knowledge-base-module__status" role="status">
+            Loading knowledge base...
+          </p>
+        ) : null}
+        {loadState === "error" ? (
+          <p className="knowledge-base-module__status knowledge-base-module__status--error" role="alert">
+            Knowledge Base content is not available right now.
+          </p>
+        ) : null}
+        {loadState === "ready" ? (
+          <>
+            <KnowledgeBaseToolbar
+              ref={searchInputRef}
+              searchQuery={searchQuery}
+              onSearchChange={handleSearchChange}
+              onSearchSubmit={handleSearchSubmit}
+            />
+            <KnowledgeBaseEntryList
+              entries={filteredEntries}
+              expandedEntryId={expandedEntryId}
+              onToggleEntry={handleToggleEntry}
+              onNavigateToEntry={handleNavigateToEntry}
+            />
+          </>
+        ) : null}
       </div>
     </section>
   );

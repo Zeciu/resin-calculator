@@ -40,10 +40,7 @@ export const ADMIN_NAV_ITEMS = [
     id: "knowledge-base",
     label: "Knowledge Base",
     path: ADMIN_ROUTES.KNOWLEDGE_BASE,
-    kind: "placeholder",
-    placeholderTitle: "Knowledge Base management",
-    placeholderMessage: "Knowledge Base content management begins in Task 61.",
-    showEditorialNote: true,
+    kind: "link",
   },
   {
     id: "future-content",

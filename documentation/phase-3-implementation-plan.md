@@ -284,6 +284,8 @@ This task does not implement:
 | Expected result | The Knowledge Base becomes an administrator-managed support library where troubleshooting articles can be created, maintained and published while preserving the structured problem-solving experience introduced in Phase 2. |
 | Acceptance criteria | Administrators can create, edit, delete and organize Knowledge Base entries. Each entry supports structured troubleshooting sections, images, embedded videos and cross-references to related product content. Entries support **Draft** and **Published** states. Draft entries remain visible only to administrators until published. The public Knowledge Base immediately reflects newly published content while preserving the existing user experience. |
 
+**Status:** Complete (2026-07-08).
+
 ### Product Clarifications
 
 The administrator edits Knowledge Base articles directly rather than modifying source files.

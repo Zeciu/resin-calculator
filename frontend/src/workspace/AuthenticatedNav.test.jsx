@@ -1,7 +1,7 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { mockPublishedGlossaryFetch } from "../glossary/glossaryTestHelpers.js";
+import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
 import { getLoggedInHomeNavItems, WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
@@ -42,7 +42,7 @@ describe("Authenticated Mode navigation", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.restoreAllMocks();
-    mockPublishedGlossaryFetch();
+    mockPublishedKnowledgeBaseFetch();
   });
 
   it("keeps protected module items locked for guests", async () => {

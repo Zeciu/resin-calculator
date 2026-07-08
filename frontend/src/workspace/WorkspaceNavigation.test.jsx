@@ -1,7 +1,7 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { mockPublishedGlossaryFetch } from "../glossary/glossaryTestHelpers.js";
+import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
@@ -75,7 +75,7 @@ describe("Workspace navigation matrix — authenticated", () => {
     sessionStorage.clear();
     seedAuthenticatedSession();
     vi.restoreAllMocks();
-    mockPublishedGlossaryFetch();
+    mockPublishedKnowledgeBaseFetch();
   });
 
   it("shows unlocked module navigation and emphasizes New Project on the Home hub", () => {

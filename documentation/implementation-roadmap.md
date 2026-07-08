@@ -175,7 +175,7 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Current baseline
 
-Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. The repository baseline now includes:
+Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. The repository baseline now includes:
 
 * dedicated `/admin` route branch with administrator-only guard;
 * admin Manual workspace at `/admin/manual` with chapter list, TipTap chapter editor, EN/RO locale switching, and explicit Save/Publish controls (no autosave);
@@ -188,6 +188,12 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * backend admin Glossary API under `/api/admin/glossary/entries` with filesystem JSON persistence, relationship validation, and published snapshot rebuild on delete;
 * static Phase 2 glossary migration script and public Glossary API (`/api/content/glossary?locale=`);
 * public `/glossary` served from admin-published snapshots when available, with legacy static fallback only when no admin snapshot exists;
-* local glossary image upload and discreet public rendering of related terms, synonyms, and see-also references.
+* local glossary image upload and discreet public rendering of related terms, synonyms, and see-also references;
+* admin Knowledge Base workspace at `/admin/knowledge-base` with entry list, structured troubleshooting template editor (list fields per section), relationship pickers, EN/RO locale switching, and explicit Save/Publish controls;
+* backend admin Knowledge Base API under `/api/admin/knowledge-base/entries` with filesystem JSON persistence, category/difficulty metadata on ContentItem, relationship validation, and published snapshot rebuild on delete;
+* static Phase 2 knowledge base migration script and public Knowledge Base API (`/api/content/knowledge-base?locale=`);
+* public `/knowledge-base` served from admin-published snapshots when available, with legacy static fallback only when no admin snapshot exists;
+* local knowledge base image upload, search-keyword discoverability (keywords never displayed publicly), and discreet public rendering of related articles, glossary terms, and manual chapters;
+* category and difficulty remain administrator-only metadata (not exposed in the public Knowledge Base interface).
 
-The next implementation step is **Task 61 — Knowledge Base Content Management**.
+The next implementation step is **Task 62 — Shared Editorial Infrastructure**.

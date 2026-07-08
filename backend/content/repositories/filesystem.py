@@ -8,6 +8,7 @@ from typing import Any
 
 CONTENT_TYPE_MANUAL_CHAPTER = "manual_chapter"
 CONTENT_TYPE_GLOSSARY_ENTRY = "glossary_entry"
+CONTENT_TYPE_KB_ENTRY = "kb_entry"
 DEFAULT_SECTION_ID = "main"
 DEFAULT_LOCALE = "en"
 
@@ -45,6 +46,10 @@ def make_order_key(sort_order: int) -> str:
 
 def make_glossary_order_key(sort_order: int) -> str:
     return f"INDEX#glossary|ORDER#{sort_order:06d}"
+
+
+def make_kb_order_key(sort_order: int) -> str:
+    return f"INDEX#kb|ORDER#{sort_order:06d}"
 
 
 class FilesystemContentRepository:
@@ -512,6 +517,244 @@ class FilesystemContentRepository:
 
     def read_legacy_glossary_document(self, locale: str) -> dict[str, Any] | None:
         snapshot_path = self._root / f"legacy/glossary/{locale}/entries.json"
+        if not snapshot_path.exists():
+            return None
+        with snapshot_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+
+    def _next_kb_sort_order(self, records: dict[str, Any]) -> int:
+        orders = []
+        for key in records:
+            if key.startswith("INDEX#kb|ORDER#"):
+                orders.append(int(key.rsplit("#", 1)[-1]))
+        return (max(orders) if orders else 0) + 100
+
+    def list_kb_entry_ids(self) -> list[str]:
+        records = self._read_store()
+        ordered: list[tuple[int, str]] = []
+        for key, value in records.items():
+            if not key.startswith("INDEX#kb|ORDER#"):
+                continue
+            sort_order = int(key.rsplit("#", 1)[-1])
+            ordered.append((sort_order, value["contentId"]))
+        ordered.sort(key=lambda item: item[0])
+        return [content_id for _, content_id in ordered]
+
+    def get_kb_entry_meta(self, content_id: str) -> dict[str, Any] | None:
+        records = self._read_store()
+        meta = self._get_record(records, make_meta_key(content_id))
+        if not meta or meta.get("contentType") != CONTENT_TYPE_KB_ENTRY:
+            return None
+        return meta
+
+    def get_kb_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
+        records = self._read_store()
+        meta = self._get_record(records, make_meta_key(content_id))
+        if not meta or meta.get("contentType") != CONTENT_TYPE_KB_ENTRY:
+            return None
+        return self._get_record(records, make_variant_key(content_id, locale))
+
+    def create_kb_entry(
+        self,
+        title: str,
+        category: str,
+        difficulty: str,
+        content_id: str | None = None,
+    ) -> dict[str, Any]:
+        records = self._read_store()
+        entry_id = content_id or self._allocate_content_id(records, title)
+        if make_meta_key(entry_id) in records:
+            raise ValueError(f"Knowledge Base entry already exists: {entry_id}")
+
+        now = utc_now()
+        sort_order = self._next_kb_sort_order(records)
+        meta = {
+            "pk": f"CONTENT#{entry_id}",
+            "sk": "META",
+            "contentId": entry_id,
+            "contentType": CONTENT_TYPE_KB_ENTRY,
+            "category": category,
+            "difficulty": difficulty,
+            "sortOrder": sort_order,
+            "createdAt": isoformat(now),
+            "updatedAt": isoformat(now),
+        }
+        variant = {
+            "pk": f"CONTENT#{entry_id}",
+            "sk": f"VARIANT#{DEFAULT_LOCALE}",
+            "contentId": entry_id,
+            "locale": DEFAULT_LOCALE,
+            "status": "draft",
+            "draftBody": self._empty_kb_variant_body(title.strip()),
+            "updatedAt": isoformat(now),
+            "publishedAt": None,
+            "snapshotKey": None,
+        }
+        order = {
+            "pk": "INDEX#kb",
+            "sk": f"ORDER#{sort_order:06d}",
+            "contentId": entry_id,
+        }
+
+        records[make_meta_key(entry_id)] = meta
+        records[make_variant_key(entry_id, DEFAULT_LOCALE)] = variant
+        records[make_kb_order_key(sort_order)] = order
+        self._write_store(records)
+        return deepcopy(meta)
+
+    @staticmethod
+    def _empty_kb_variant_body(title: str = "") -> dict[str, Any]:
+        return {
+            "title": title,
+            "problemSummary": "",
+            "symptoms": [],
+            "possibleCauses": [],
+            "solution": [],
+            "prevention": [],
+            "tips": [],
+            "warnings": [],
+            "searchKeywords": [],
+            "estimatedRepairTime": None,
+            "requiredTools": [],
+            "requiredMaterials": [],
+            "bodyBlocks": [],
+            "media": [],
+            "relatedKbEntryIds": [],
+            "relatedGlossaryEntryIds": [],
+            "relatedManualChapterIds": [],
+        }
+
+    def save_kb_variant(
+        self,
+        content_id: str,
+        locale: str,
+        body: dict[str, Any],
+        category: str,
+        difficulty: str,
+    ) -> dict[str, Any]:
+        records = self._read_store()
+        meta_key = make_meta_key(content_id)
+        if meta_key not in records or records[meta_key].get("contentType") != CONTENT_TYPE_KB_ENTRY:
+            raise KeyError(content_id)
+
+        now = utc_now()
+        variant_key = make_variant_key(content_id, locale)
+        existing = records.get(variant_key)
+        variant = {
+            "pk": f"CONTENT#{content_id}",
+            "sk": f"VARIANT#{locale}",
+            "contentId": content_id,
+            "locale": locale,
+            "status": existing["status"] if existing else "draft",
+            "draftBody": body,
+            "updatedAt": isoformat(now),
+            "publishedAt": existing.get("publishedAt") if existing else None,
+            "snapshotKey": existing.get("snapshotKey") if existing else None,
+        }
+        records[variant_key] = variant
+        records[meta_key]["category"] = category
+        records[meta_key]["difficulty"] = difficulty
+        records[meta_key]["updatedAt"] = isoformat(now)
+        self._write_store(records)
+        return deepcopy(variant)
+
+    def publish_kb_variant(self, content_id: str, locale: str) -> dict[str, Any]:
+        records = self._read_store()
+        variant_key = make_variant_key(content_id, locale)
+        if variant_key not in records:
+            raise KeyError(content_id)
+        now = utc_now()
+        variant = records[variant_key]
+        variant["status"] = "published"
+        variant["publishedAt"] = isoformat(now)
+        variant["updatedAt"] = isoformat(now)
+        variant["snapshotKey"] = f"published/knowledge-base/{locale}/entries.json"
+        records[variant_key] = variant
+        records[make_meta_key(content_id)]["updatedAt"] = isoformat(now)
+        self._write_store(records)
+        return deepcopy(variant)
+
+    def unpublish_kb_variant(self, content_id: str, locale: str) -> dict[str, Any]:
+        records = self._read_store()
+        variant_key = make_variant_key(content_id, locale)
+        if variant_key not in records:
+            raise KeyError(content_id)
+        now = utc_now()
+        variant = records[variant_key]
+        variant["status"] = "draft"
+        variant["updatedAt"] = isoformat(now)
+        records[variant_key] = variant
+        records[make_meta_key(content_id)]["updatedAt"] = isoformat(now)
+        self._write_store(records)
+        return deepcopy(variant)
+
+    def delete_kb_entry(self, content_id: str) -> None:
+        records = self._read_store()
+        meta_key = make_meta_key(content_id)
+        if meta_key not in records or records[meta_key].get("contentType") != CONTENT_TYPE_KB_ENTRY:
+            raise KeyError(content_id)
+
+        keys_to_delete = [key for key in records if key.startswith(f"CONTENT#{content_id}|")]
+        order_keys = [
+            key
+            for key, value in records.items()
+            if key.startswith("INDEX#kb|ORDER#") and value.get("contentId") == content_id
+        ]
+        for key in [*keys_to_delete, *order_keys]:
+            records.pop(key, None)
+        self._write_store(records)
+
+    def purge_kb_entries_if_present(self, content_ids: list[str]) -> list[str]:
+        removed: list[str] = []
+        for content_id in content_ids:
+            meta = self.get_kb_entry_meta(content_id)
+            if not meta:
+                continue
+            self.delete_kb_entry(content_id)
+            removed.append(content_id)
+        return removed
+
+    def write_kb_snapshot(self, locale: str, document: dict[str, Any]) -> str:
+        snapshot_key = f"published/knowledge-base/{locale}/entries.json"
+        snapshot_path = self._root / snapshot_key
+        snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+        with snapshot_path.open("w", encoding="utf-8") as handle:
+            json.dump(document, handle, indent=2, sort_keys=True)
+        return snapshot_key
+
+    def read_kb_snapshot(self, locale: str) -> dict[str, Any] | None:
+        snapshot_path = self._root / f"published/knowledge-base/{locale}/entries.json"
+        if not snapshot_path.exists():
+            return None
+        with snapshot_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+
+    def delete_admin_kb_snapshot(self, locale: str) -> None:
+        snapshot_path = self._root / f"published/knowledge-base/{locale}/entries.json"
+        if snapshot_path.exists():
+            snapshot_path.unlink()
+
+    def save_kb_image(self, filename: str, data: bytes) -> str:
+        images_dir = self._root / "knowledge-base" / "images"
+        images_dir.mkdir(parents=True, exist_ok=True)
+        image_path = images_dir / filename
+        image_path.write_bytes(data)
+        return f"/api/content/knowledge-base/images/{filename}"
+
+    def get_kb_image_path(self, filename: str) -> Path | None:
+        image_path = self._root / "knowledge-base" / "images" / filename
+        return image_path if image_path.is_file() else None
+
+    def write_legacy_kb_document(self, locale: str, document: dict[str, Any]) -> str:
+        snapshot_key = f"legacy/knowledge-base/{locale}/entries.json"
+        snapshot_path = self._root / snapshot_key
+        snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+        with snapshot_path.open("w", encoding="utf-8") as handle:
+            json.dump(document, handle, indent=2, sort_keys=True)
+        return snapshot_key
+
+    def read_legacy_kb_document(self, locale: str) -> dict[str, Any] | None:
+        snapshot_path = self._root / f"legacy/knowledge-base/{locale}/entries.json"
         if not snapshot_path.exists():
             return None
         with snapshot_path.open("r", encoding="utf-8") as handle:

@@ -1,6 +1,7 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -27,15 +28,30 @@ function expectDedicatedKnowledgeBaseShell() {
   expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
 }
 
+async function waitForKnowledgeBaseReady() {
+  await waitFor(() => {
+    expect(screen.getByRole("searchbox", { name: "Search knowledge base" })).toBeInTheDocument();
+  });
+}
+
 describe("KnowledgeBasePage", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.restoreAllMocks();
+    mockPublishedKnowledgeBaseFetch();
   });
 
-  it("renders the dedicated knowledge base module for authenticated users", () => {
+  it("shows a loading state before entries are ready", () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    expect(screen.getByRole("status")).toHaveTextContent(/Loading knowledge base/i);
+  });
+
+  it("renders the dedicated knowledge base module for authenticated users", async () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+
+    await waitForKnowledgeBaseReady();
 
     expectDedicatedKnowledgeBaseShell();
     expect(screen.getByRole("heading", { name: "Knowledge Base", level: 1 })).toBeInTheDocument();
@@ -48,6 +64,7 @@ describe("KnowledgeBasePage", () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
 
     await user.type(screen.getByRole("searchbox", { name: "Search knowledge base" }), "sticky");
 
@@ -59,6 +76,7 @@ describe("KnowledgeBasePage", () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
 
     await user.type(
       screen.getByRole("searchbox", { name: "Search knowledge base" }),
@@ -73,6 +91,7 @@ describe("KnowledgeBasePage", () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
 
     const toggle = screen.getByRole("button", { name: "Resin remains sticky" });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
@@ -100,6 +119,7 @@ describe("KnowledgeBasePage", () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
 
     await user.click(screen.getByRole("button", { name: "Sanding scratches visible through finish" }));
     expect(
@@ -119,6 +139,7 @@ describe("KnowledgeBasePage", () => {
 
     const user = userEvent.setup();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
 
     const search = screen.getByRole("searchbox", { name: "Search knowledge base" });
     await user.type(search, "cloudy{Enter}");
@@ -133,6 +154,47 @@ describe("KnowledgeBasePage", () => {
     await waitFor(() => {
       expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "auto", block: "start" });
     });
+  });
+
+  it("renders discreet relationship links inside expanded entries", async () => {
+    mockPublishedKnowledgeBaseFetch([
+      {
+        id: "sticky-resin-after-cure",
+        title: "Resin remains sticky",
+        problemSummary: "Surface stays tacky.",
+        symptoms: [],
+        possibleCauses: [],
+        solution: ["Check mixing ratio."],
+        prevention: [],
+        tips: [],
+        warnings: [],
+        relatedKbArticles: [{ id: "cloudy-epoxy", label: "Cloudy epoxy" }],
+        relatedGlossaryTerms: [{ id: "pot-life", label: "Pot life" }],
+        relatedManualChapters: [{ id: "mixing-basics", label: "Mixing basics" }],
+      },
+      {
+        id: "cloudy-epoxy",
+        title: "Cloudy epoxy",
+        problemSummary: "Hazy finish.",
+        symptoms: [],
+        possibleCauses: [],
+        solution: ["Warm the resin."],
+        prevention: [],
+        tips: [],
+        warnings: [],
+      },
+    ]);
+
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    await user.click(screen.getByRole("button", { name: "Resin remains sticky" }));
+    const expandedEntry = document.getElementById("knowledge-base-entry-sticky-resin-after-cure");
+    expect(within(expandedEntry).getByRole("button", { name: "Cloudy epoxy" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Pot life" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Mixing basics" })).toBeInTheDocument();
   });
 
   it("blocks guest access in the dedicated module layout", () => {

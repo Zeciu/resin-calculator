@@ -15,6 +15,29 @@ describe("knowledgeBaseFilter", () => {
     expect(symptomMatch.some((entry) => entry.id === "fish-eyes-in-finish")).toBe(true);
   });
 
+  it("matches entries by search keywords without exposing category or difficulty", () => {
+    const entries = [
+      {
+        id: "hidden-keyword-entry",
+        title: "Surface defect",
+        category: "Finishing",
+        difficulty: "Professional",
+        problemSummary: "",
+        symptoms: [],
+        possibleCauses: [],
+        solution: [],
+        prevention: [],
+        tips: [],
+        warnings: [],
+        searchKeywords: ["fish-eyes"],
+      },
+    ];
+
+    expect(filterKnowledgeBaseEntries(entries, "fish-eyes")).toHaveLength(1);
+    expect(filterKnowledgeBaseEntries(entries, "Professional")).toHaveLength(0);
+    expect(filterKnowledgeBaseEntries(entries, "Finishing")).toHaveLength(0);
+  });
+
   it("does not match category or difficulty metadata", () => {
     expect(filterKnowledgeBaseEntries(KNOWLEDGE_BASE_ENTRIES, "Professional")).toHaveLength(0);
     expect(filterKnowledgeBaseEntries(KNOWLEDGE_BASE_ENTRIES, "Intermediate")).toHaveLength(0);

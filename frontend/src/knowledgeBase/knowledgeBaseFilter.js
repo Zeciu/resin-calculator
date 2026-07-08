@@ -10,11 +10,13 @@ function getSearchableTextValues(entry) {
   return [
     entry.title,
     entry.problemSummary,
-    ...entry.symptoms,
-    ...entry.possibleCauses,
-    ...entry.solution,
-    ...entry.tips,
-    ...entry.warnings,
+    ...(entry.symptoms ?? []),
+    ...(entry.possibleCauses ?? []),
+    ...(entry.solution ?? []),
+    ...(entry.prevention ?? []),
+    ...(entry.tips ?? []),
+    ...(entry.warnings ?? []),
+    ...(entry.searchKeywords ?? []),
   ];
 }
 
