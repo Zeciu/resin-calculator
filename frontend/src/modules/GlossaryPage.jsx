@@ -1,7 +1,7 @@
-﻿import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import GlossaryEntryList from "../glossary/GlossaryEntryList.jsx";
 import GlossaryToolbar from "../glossary/GlossaryToolbar.jsx";
-import { GLOSSARY_ENTRIES } from "../glossary/glossaryContent.js";
+import { fetchPublishedGlossary } from "../glossary/glossaryApi.js";
 import {
   filterGlossaryEntries,
   getActiveGlossaryLetters,
@@ -11,16 +11,51 @@ import {
   groupGlossaryEntriesByLetter,
 } from "../glossary/glossaryFilter.js";
 
+const DEFAULT_LOCALE = "en";
+
 export default function GlossaryPage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
+  const [entries, setEntries] = useState([]);
+  const [loadState, setLoadState] = useState("loading");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadGlossary() {
+      setLoadState("loading");
+      try {
+        const payload = await fetchPublishedGlossary(DEFAULT_LOCALE);
+        if (cancelled) {
+          return;
+        }
+        if (!payload.available) {
+          setEntries([]);
+          setLoadState("error");
+          return;
+        }
+        setEntries(payload.entries);
+        setLoadState("ready");
+      } catch {
+        if (!cancelled) {
+          setEntries([]);
+          setLoadState("error");
+        }
+      }
+    }
+
+    loadGlossary();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const filteredGroups = useMemo(() => {
-    const filtered = filterGlossaryEntries(GLOSSARY_ENTRIES, searchQuery);
+    const filtered = filterGlossaryEntries(entries, searchQuery);
     return groupGlossaryEntriesByLetter(filtered);
-  }, [searchQuery]);
+  }, [entries, searchQuery]);
 
   const activeLetters = useMemo(
     () => getActiveGlossaryLetters(filteredGroups),
@@ -51,6 +86,13 @@ export default function GlossaryPage() {
   const handleToggleEntry = useCallback((entryId) => {
     setExpandedEntryId((current) => (current === entryId ? null : entryId));
   }, []);
+
+  const handleNavigateToEntry = useCallback((entryId) => {
+    setExpandedEntryId(entryId);
+    requestAnimationFrame(() => {
+      scrollToEntry(entryId);
+    });
+  }, [scrollToEntry]);
 
   useLayoutEffect(() => {
     if (!expandedEntryId) {
@@ -83,9 +125,7 @@ export default function GlossaryPage() {
         return;
       }
 
-      const groups = groupGlossaryEntriesByLetter(
-        filterGlossaryEntries(GLOSSARY_ENTRIES, query),
-      );
+      const groups = groupGlossaryEntriesByLetter(filterGlossaryEntries(entries, query));
       const firstEntry = getFirstFilteredGlossaryEntry(groups, query);
       if (!firstEntry) {
         return;
@@ -100,7 +140,7 @@ export default function GlossaryPage() {
         searchInputRef.current?.focus();
       });
     },
-    [searchQuery],
+    [entries, searchQuery],
   );
 
   const scrollToLetter = useCallback((letter) => {
@@ -128,19 +168,34 @@ export default function GlossaryPage() {
       </header>
 
       <div className="glossary-module__scroll" ref={scrollContainerRef}>
-        <GlossaryToolbar
-          ref={searchInputRef}
-          searchQuery={searchQuery}
-          onSearchChange={handleSearchChange}
-          onSearchSubmit={handleSearchSubmit}
-          activeLetters={activeLetters}
-          onSelectLetter={scrollToLetter}
-        />
-        <GlossaryEntryList
-          groups={filteredGroups}
-          expandedEntryId={expandedEntryId}
-          onToggleEntry={handleToggleEntry}
-        />
+        {loadState === "loading" ? (
+          <p className="glossary-module__status" role="status">
+            Loading glossary...
+          </p>
+        ) : null}
+        {loadState === "error" ? (
+          <p className="glossary-module__status glossary-module__status--error" role="alert">
+            Glossary content is not available right now.
+          </p>
+        ) : null}
+        {loadState === "ready" ? (
+          <>
+            <GlossaryToolbar
+              ref={searchInputRef}
+              searchQuery={searchQuery}
+              onSearchChange={handleSearchChange}
+              onSearchSubmit={handleSearchSubmit}
+              activeLetters={activeLetters}
+              onSelectLetter={scrollToLetter}
+            />
+            <GlossaryEntryList
+              groups={filteredGroups}
+              expandedEntryId={expandedEntryId}
+              onToggleEntry={handleToggleEntry}
+              onNavigateToEntry={handleNavigateToEntry}
+            />
+          </>
+        ) : null}
       </div>
     </section>
   );

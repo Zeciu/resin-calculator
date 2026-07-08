@@ -183,6 +183,8 @@ This task does not implement:
 | Expected result | The Glossary becomes an administrator-managed reference library. Terms, definitions, images and supporting media can be maintained entirely through the administration interface while preserving the fast dictionary-style experience introduced in Phase 2. |
 | Acceptance criteria | Administrators can create, edit, delete and organize glossary entries. Each entry supports a title, rich-text definition, optional images and optional embedded videos. Entries support **Draft** and **Published** states. Draft entries remain visible only to administrators until published. The public Glossary immediately reflects newly published entries while preserving the existing user experience. |
 
+**Status:** Complete (2026-07-08).
+
 ### Product Clarifications
 
 The administrator edits glossary entries directly rather than modifying source files.

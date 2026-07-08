@@ -7,9 +7,31 @@ import {
   getGlossaryLetter,
   getGlossaryLetterSectionId,
   groupGlossaryEntriesByLetter,
+  normalizeSearchText,
 } from "./glossaryFilter.js";
 
 describe("glossaryFilter", () => {
+  it("normalizes spaces, hyphens, and underscores for search matching", () => {
+    expect(normalizeSearchText("pot life")).toBe("potlife");
+    expect(normalizeSearchText("pot-life")).toBe("potlife");
+    expect(normalizeSearchText("pot_life")).toBe("potlife");
+  });
+  it("filters by synonym terms", () => {
+    const filtered = filterGlossaryEntries(
+      [
+        {
+          id: "a",
+          term: "Pot life",
+          definition: ["Working time."],
+          synonyms: [{ id: "b", term: "Open time" }],
+        },
+      ],
+      "open time",
+    );
+    expect(filtered).toHaveLength(1);
+    expect(filtered[0].id).toBe("a");
+  });
+
   it("groups entries alphabetically with a hash bucket for non-letter terms", () => {
     const groups = groupGlossaryEntriesByLetter([
       { id: "b", term: "Bubble removal", definition: ["One"] },

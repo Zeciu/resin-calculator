@@ -6,9 +6,15 @@ import { getGlossaryLetterSectionId } from "./glossaryFilter.js";
  *   groups: { letter: string; entries: import("./glossaryContent.js").GlossaryEntry[] }[];
  *   expandedEntryId: string | null;
  *   onToggleEntry: (entryId: string) => void;
+ *   onNavigateToEntry?: (entryId: string) => void;
  * }} props
  */
-export default function GlossaryEntryList({ groups, expandedEntryId, onToggleEntry }) {
+export default function GlossaryEntryList({
+  groups,
+  expandedEntryId,
+  onToggleEntry,
+  onNavigateToEntry,
+}) {
   if (groups.length === 0) {
     return (
       <div className="module-empty-state">
@@ -40,6 +46,7 @@ export default function GlossaryEntryList({ groups, expandedEntryId, onToggleEnt
                 entry={entry}
                 isExpanded={expandedEntryId === entry.id}
                 onToggle={onToggleEntry}
+                onNavigateToEntry={onNavigateToEntry}
               />
             ))}
           </div>

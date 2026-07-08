@@ -3,6 +3,16 @@
  */
 
 /**
+ * @param {string} value
+ * @returns {string}
+ */
+export function normalizeSearchText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[\s_-]+/g, "");
+}
+
+/**
  * @param {string} term
  * @returns {string}
  */
@@ -24,10 +34,30 @@ export function getGlossaryLetterSectionId(letter) {
 
 /**
  * @param {import("./glossaryContent.js").GlossaryEntry[]} entries
+ * @param {string} [locale]
  * @returns {import("./glossaryContent.js").GlossaryEntry[]}
  */
-export function sortGlossaryEntries(entries) {
-  return [...entries].sort((left, right) => left.term.localeCompare(right.term, "en"));
+export function sortGlossaryEntries(entries, locale = "en") {
+  return [...entries].sort((left, right) => left.term.localeCompare(right.term, locale, { sensitivity: "base" }));
+}
+
+/**
+ * @param {import("./glossaryContent.js").GlossaryEntry} entry
+ * @returns {string[]}
+ */
+function entrySearchTerms(entry) {
+  const terms = [entry.term, ...(entry.synonyms?.map((item) => item.term) ?? [])];
+  return terms.filter(Boolean);
+}
+
+/**
+ * @param {import("./glossaryContent.js").GlossaryEntry} entry
+ * @returns {string}
+ */
+function entrySearchableText(entry) {
+  const definitionText = (entry.definition ?? []).join(" ");
+  const synonymText = (entry.synonyms ?? []).map((item) => item.term).join(" ");
+  return `${entry.term} ${definitionText} ${synonymText}`;
 }
 
 /**
@@ -36,26 +66,26 @@ export function sortGlossaryEntries(entries) {
  * @returns {import("./glossaryContent.js").GlossaryEntry[]}
  */
 export function filterGlossaryEntries(entries, query) {
-  const normalized = query.trim().toLowerCase();
+  const normalized = normalizeSearchText(query);
   if (!normalized) {
     return entries;
   }
 
   return entries.filter((entry) => {
-    if (entry.term.toLowerCase().includes(normalized)) {
+    if (entrySearchTerms(entry).some((term) => normalizeSearchText(term).includes(normalized))) {
       return true;
     }
-
-    return entry.definition.some((paragraph) => paragraph.toLowerCase().includes(normalized));
+    return normalizeSearchText(entrySearchableText(entry)).includes(normalized);
   });
 }
 
 /**
  * @param {import("./glossaryContent.js").GlossaryEntry[]} entries
+ * @param {string} [locale]
  * @returns {{ letter: string, entries: import("./glossaryContent.js").GlossaryEntry[] }[]}
  */
-export function groupGlossaryEntriesByLetter(entries) {
-  const sorted = sortGlossaryEntries(entries);
+export function groupGlossaryEntriesByLetter(entries, locale = "en") {
+  const sorted = sortGlossaryEntries(entries, locale);
   /** @type {Map<string, import("./glossaryContent.js").GlossaryEntry[]>} */
   const groups = new Map();
 
@@ -91,16 +121,19 @@ export function getGlossaryEntryElementId(entryId) {
 /**
  * @param {{ letter: string, entries: import("./glossaryContent.js").GlossaryEntry[] }[]} groups
  * @param {string} query
+ * @param {string} [locale]
  * @returns {import("./glossaryContent.js").GlossaryEntry | null}
  */
-export function getFirstFilteredGlossaryEntry(groups, query) {
-  const normalized = query.trim().toLowerCase();
+export function getFirstFilteredGlossaryEntry(groups, query, locale = "en") {
+  const normalized = normalizeSearchText(query);
   const entries = groups.flatMap((group) => group.entries);
   if (entries.length === 0) {
     return null;
   }
 
-  const termMatches = entries.filter((entry) => entry.term.toLowerCase().includes(normalized));
+  const termMatches = entries.filter((entry) =>
+    entrySearchTerms(entry).some((term) => normalizeSearchText(term).includes(normalized)),
+  );
   const pool = termMatches.length > 0 ? termMatches : entries;
-  return sortGlossaryEntries(pool)[0] ?? null;
+  return sortGlossaryEntries(pool, locale)[0] ?? null;
 }

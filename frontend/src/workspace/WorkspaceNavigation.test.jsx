@@ -1,7 +1,7 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { mockPublishedManualFetch } from "../manual/manualTestHelpers.js";
+import { mockPublishedGlossaryFetch } from "../glossary/glossaryTestHelpers.js";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
@@ -75,7 +75,7 @@ describe("Workspace navigation matrix — authenticated", () => {
     sessionStorage.clear();
     seedAuthenticatedSession();
     vi.restoreAllMocks();
-    mockPublishedManualFetch();
+    mockPublishedGlossaryFetch();
   });
 
   it("shows unlocked module navigation and emphasizes New Project on the Home hub", () => {
@@ -147,7 +147,9 @@ describe("Workspace navigation matrix — authenticated", () => {
     await user.click(screen.getByRole("link", { name: "Glossary" }));
     expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-    expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    });
     expect(screen.getByRole("navigation", { name: "Alphabetical index" })).toBeInTheDocument();
     expect(
       within(screen.getByRole("main")).getByRole("heading", { name: "Glossary", level: 1 }),

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminDashboard from "../admin/AdminDashboard.jsx";
 import AdminLayout from "../admin/AdminLayout.jsx";
 import ManualManagementPage from "../admin/manual/ManualManagementPage.jsx";
+import GlossaryManagementPage from "../admin/glossary/GlossaryManagementPage.jsx";
 import AdminPlaceholderPage from "../admin/AdminPlaceholderPage.jsx";
 import AdminRouteGuard from "../admin/AdminRouteGuard.jsx";
 import { getAdminPlaceholderNavItems } from "../admin/adminNavigation.js";
@@ -122,6 +123,10 @@ export default function WorkspaceRouter() {
           <Route
             path={ADMIN_ROUTES.MANUAL.replace(/^\/admin\//, "")}
             element={<ManualManagementPage />}
+          />
+          <Route
+            path={ADMIN_ROUTES.GLOSSARY.replace(/^\/admin\//, "")}
+            element={<GlossaryManagementPage />}
           />
           {getAdminPlaceholderNavItems().map((item) => (
             <Route

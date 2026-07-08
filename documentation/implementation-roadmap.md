@@ -157,15 +157,15 @@ A user should be able to complete a basic project session and find help in the M
 
 > Active Phase 3 scope and task tracking live in [`documentation/phase-3-implementation-plan.md`](phase-3-implementation-plan.md) (Tasks 58–66). Technical implementation guidance is defined in [`documentation/phase-3-technical-architecture.md`](phase-3-technical-architecture.md).
 
-## Progress (2026-07-07)
+## Progress (2026-07-08)
 
-**Phase 3 status:** In progress (Tasks 58 and 59 complete and approved).
+**Phase 3 status:** In progress (Tasks 58, 59, and 60 complete and approved).
 
 | Task | Name | Status |
 |------|------|--------|
 | 58 | Admin Panel Foundation | Complete |
 | 59 | Manual Content Management | Complete |
-| 60 | Glossary Content Management | Pending |
+| 60 | Glossary Content Management | Complete |
 | 61 | Knowledge Base Content Management | Pending |
 | 62 | Shared Editorial Infrastructure | Pending |
 | 63 | Application Preferences | Pending |
@@ -175,7 +175,7 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Current baseline
 
-Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. The repository baseline now includes:
+Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. The repository baseline now includes:
 
 * dedicated `/admin` route branch with administrator-only guard;
 * admin Manual workspace at `/admin/manual` with chapter list, TipTap chapter editor, EN/RO locale switching, and explicit Save/Publish controls (no autosave);
@@ -183,6 +183,11 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * per-locale draft save/load and publish with published snapshot generation;
 * static Phase 2 manual migration script and public Manual API (`/api/content/manual/{locale}`);
 * public `/manual` served from admin-published snapshots when available, with legacy static fallback only when no admin snapshot exists;
-* local manual image upload and public image serving for editor-inserted illustrations.
+* local manual image upload and public image serving for editor-inserted illustrations;
+* admin Glossary workspace at `/admin/glossary` with entry list, TipTap definition editor, relationship pickers, EN/RO locale switching, and explicit Save/Publish controls;
+* backend admin Glossary API under `/api/admin/glossary/entries` with filesystem JSON persistence, relationship validation, and published snapshot rebuild on delete;
+* static Phase 2 glossary migration script and public Glossary API (`/api/content/glossary?locale=`);
+* public `/glossary` served from admin-published snapshots when available, with legacy static fallback only when no admin snapshot exists;
+* local glossary image upload and discreet public rendering of related terms, synonyms, and see-also references.
 
-The next implementation step is **Task 60 — Glossary Content Management**.
+The next implementation step is **Task 61 — Knowledge Base Content Management**.

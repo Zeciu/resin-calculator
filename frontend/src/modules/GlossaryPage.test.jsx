@@ -1,6 +1,7 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { mockPublishedGlossaryFetch } from "../glossary/glossaryTestHelpers.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -31,15 +32,18 @@ describe("GlossaryPage", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.restoreAllMocks();
+    mockPublishedGlossaryFetch();
   });
 
-  it("renders the dedicated glossary module for authenticated users", () => {
+  it("renders the dedicated glossary module for authenticated users", async () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.GLOSSARY);
 
     expectDedicatedGlossaryShell();
     expect(screen.getByRole("heading", { name: "Glossary", level: 1 })).toBeInTheDocument();
-    expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    });
     expect(screen.getByRole("navigation", { name: "Alphabetical index" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
     expect(screen.queryByText(/Coming in a future phase/i)).not.toBeInTheDocument();
@@ -49,6 +53,10 @@ describe("GlossaryPage", () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
     renderWorkspace(ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
+    });
 
     await user.type(screen.getByRole("searchbox", { name: "Search glossary" }), "bubble");
 
@@ -60,6 +68,10 @@ describe("GlossaryPage", () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
     renderWorkspace(ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
+    });
 
     const epoxyToggle = screen.getByRole("button", { name: "Epoxy resin" });
     expect(epoxyToggle).toHaveAttribute("aria-expanded", "false");
@@ -90,6 +102,10 @@ describe("GlossaryPage", () => {
     const user = userEvent.setup();
     renderWorkspace(ROUTES.GLOSSARY);
 
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "F" })).toBeInTheDocument();
+    });
+
     await user.click(screen.getByRole("button", { name: "F" }));
 
     expect(document.getElementById("glossary-letter-f")).toBeTruthy();
@@ -104,6 +120,10 @@ describe("GlossaryPage", () => {
     const user = userEvent.setup();
     renderWorkspace(ROUTES.GLOSSARY);
 
+    await waitFor(() => {
+      expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    });
+
     const search = screen.getByRole("searchbox", { name: "Search glossary" });
     await user.type(search, "epoxy{Enter}");
 
@@ -117,6 +137,64 @@ describe("GlossaryPage", () => {
     await waitFor(() => {
       expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "auto", block: "start" });
     });
+  });
+
+  it("shows a loading state before glossary content is available", () => {
+    seedAuthenticatedSession();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => new Promise(() => {})),
+    );
+    renderWorkspace(ROUTES.GLOSSARY);
+
+    expect(screen.getByText(/Loading glossary/i)).toBeInTheDocument();
+  });
+
+  it("renders discreet relationship rows when expanded", async () => {
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    mockPublishedGlossaryFetch([
+      {
+        id: "resin",
+        term: "Resin",
+        definition: ["Base polymer component."],
+        media: [],
+        relatedTerms: [{ id: "hardener", term: "Hardener" }],
+        synonyms: [{ id: "epoxy-resin", term: "Epoxy resin" }],
+        seeAlso: [
+          {
+            targetType: "manual_chapter",
+            targetId: "mixing",
+            label: "Mixing basics",
+            href: "/manual#mixing",
+          },
+        ],
+      },
+      {
+        id: "hardener",
+        term: "Hardener",
+        definition: ["Curing agent."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
+    ]);
+
+    renderWorkspace(ROUTES.GLOSSARY);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Resin" })).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole("button", { name: "Resin" }));
+
+    expect(screen.getByText(/Also called:/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
+    expect(screen.getByText(/Related:/i)).toBeInTheDocument();
+    const resinEntry = document.getElementById("glossary-entry-resin");
+    expect(within(resinEntry).getByRole("button", { name: "Hardener" })).toBeInTheDocument();
+    expect(screen.getByText(/See also:/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Mixing basics" })).toHaveAttribute("href", "/manual#mixing");
   });
 
   it("blocks guest access in the dedicated module layout", () => {

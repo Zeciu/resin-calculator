@@ -3226,6 +3226,42 @@ button.workspace-sidebar__link {
   color: #6b5d4d;
 }
 
+.glossary-entry__meta {
+  margin: 0.75em 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b5d4d;
+}
+
+.glossary-entry__meta-label {
+  color: #8a7a66;
+}
+
+.glossary-entry__meta-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #7a5c36;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.glossary-entry__meta-link:hover {
+  color: #5a4020;
+}
+
+.glossary-module__status {
+  margin: 0 0 16px;
+  color: #6b5d4d;
+  font-size: 15px;
+}
+
+.glossary-module__status--error {
+  color: #9a3412;
+}
+
 @media (max-width: 900px) {
   .application-workspace:has(.glossary-module) {
     height: auto;
@@ -4187,4 +4223,140 @@ button.workspace-sidebar__link {
     grid-template-columns: 1fr;
     min-height: auto;
   }
+}
+
+/* ── Glossary admin (Task 60) ─────────────────────────────────── */
+.glossary-admin__relationships {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.glossary-admin__relationship-picker {
+  display: grid;
+  gap: 8px;
+}
+
+.glossary-admin__field-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a4a32;
+}
+
+.glossary-admin__relationship-selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.glossary-admin__relationship-empty {
+  margin: 0;
+  color: #8a7a66;
+  font-size: 14px;
+}
+
+.glossary-admin__relationship-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f5efe6;
+  color: #5a4a32;
+  font-size: 13px;
+}
+
+.glossary-admin__relationship-chip button {
+  border: 0;
+  background: none;
+  color: #8a7a66;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.glossary-admin__relationship-search {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d8cbb8;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: #3f3428;
+}
+
+.glossary-admin__relationship-status {
+  margin: 0;
+  color: #8a7a66;
+  font-size: 13px;
+}
+
+.glossary-admin__relationship-options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #e8dfd0;
+  border-radius: 8px;
+  background: #fffdf8;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.glossary-admin__relationship-options li + li {
+  border-top: 1px solid #efe6d8;
+}
+
+.glossary-admin__relationship-options button {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: #3f3428;
+  cursor: pointer;
+}
+
+.glossary-admin__relationship-options button:hover {
+  background: #f8f2ea;
+}
+
+.glossary-admin__relationship-option-detail {
+  color: #8a7a66;
+  font-size: 12px;
+}
+
+.glossary-admin__media-panel {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e8dfd0;
+}
+
+.glossary-admin__media-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.glossary-admin__media-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.glossary-admin__media-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.glossary-admin__media-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid #efe6d8;
 }

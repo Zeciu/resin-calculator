@@ -2,16 +2,26 @@
  * Single glossary dictionary entry with calm expand/collapse behavior.
  */
 
+import { Link } from "react-router-dom";
 import { getGlossaryEntryElementId } from "./glossaryFilter.js";
 
 /**
  * @param {{
- *   entry: import("./glossaryContent.js").GlossaryEntry;
+ *   entry: {
+ *     id: string;
+ *     term: string;
+ *     definition: string[];
+ *     media?: import("./glossaryContent.js").GlossaryMediaBlock[];
+ *     relatedTerms?: { id: string; term: string }[];
+ *     synonyms?: { id: string; term: string }[];
+ *     seeAlso?: { targetType: string; targetId: string; label: string; href: string }[];
+ *   };
  *   isExpanded: boolean;
  *   onToggle: (entryId: string) => void;
+ *   onNavigateToEntry?: (entryId: string) => void;
  * }} props
  */
-export default function GlossaryEntry({ entry, isExpanded, onToggle }) {
+export default function GlossaryEntry({ entry, isExpanded, onToggle, onNavigateToEntry }) {
   const indicator = isExpanded ? "−" : "+";
 
   return (
@@ -39,6 +49,53 @@ export default function GlossaryEntry({ entry, isExpanded, onToggle }) {
           {entry.media?.map((block, index) => (
             <GlossaryEntryMedia key={`${entry.id}-media-${index}`} block={block} />
           ))}
+          {entry.synonyms?.length > 0 ? (
+            <p className="glossary-entry__meta">
+              <span className="glossary-entry__meta-label">Also called:</span>{" "}
+              {entry.synonyms.map((item, index) => (
+                <span key={item.id}>
+                  {index > 0 ? ", " : null}
+                  <button
+                    type="button"
+                    className="glossary-entry__meta-link"
+                    onClick={() => onNavigateToEntry?.(item.id)}
+                  >
+                    {item.term}
+                  </button>
+                </span>
+              ))}
+            </p>
+          ) : null}
+          {entry.relatedTerms?.length > 0 ? (
+            <p className="glossary-entry__meta">
+              <span className="glossary-entry__meta-label">Related:</span>{" "}
+              {entry.relatedTerms.map((item, index) => (
+                <span key={item.id}>
+                  {index > 0 ? ", " : null}
+                  <button
+                    type="button"
+                    className="glossary-entry__meta-link"
+                    onClick={() => onNavigateToEntry?.(item.id)}
+                  >
+                    {item.term}
+                  </button>
+                </span>
+              ))}
+            </p>
+          ) : null}
+          {entry.seeAlso?.length > 0 ? (
+            <p className="glossary-entry__meta">
+              <span className="glossary-entry__meta-label">See also:</span>{" "}
+              {entry.seeAlso.map((item, index) => (
+                <span key={`${item.targetType}-${item.targetId}`}>
+                  {index > 0 ? ", " : null}
+                  <Link className="glossary-entry__meta-link" to={item.href}>
+                    {item.label}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          ) : null}
         </div>
       ) : null}
     </article>

@@ -34,10 +34,7 @@ export const ADMIN_NAV_ITEMS = [
     id: "glossary",
     label: "Glossary",
     path: ADMIN_ROUTES.GLOSSARY,
-    kind: "placeholder",
-    placeholderTitle: "Glossary management",
-    placeholderMessage: "Glossary content management begins in Task 60.",
-    showEditorialNote: true,
+    kind: "link",
   },
   {
     id: "knowledge-base",
