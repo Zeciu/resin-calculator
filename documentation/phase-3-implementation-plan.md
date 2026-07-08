@@ -729,7 +729,7 @@ Subscriptions, payments, billing, Stripe, checkout, token purchasing, subscriber
 
 ### Audit outcome
 
-Release audit confirmed: all Tasks 58–64 features pass automated regression tests (81 backend, 234 frontend); production build succeeds; documentation synchronized; minor hygiene cleanup applied (debug `console.log` removal, dead placeholder note, unused capability helpers). No functional regressions found. Phase 3 is production-ready for the current mock-auth / filesystem-storage deployment model. Task 66 formal certification remains before Phase 4.
+Release audit confirmed: all Tasks 58–64 features pass automated regression tests (81 backend, 234 frontend); production build succeeds; documentation synchronized; minor hygiene cleanup applied (debug `console.log` removal, dead placeholder note, unused capability helpers). No functional regressions found. Phase 3 is production-ready for the current mock-auth / filesystem-storage deployment model.
 
 ### Product Clarifications
 
@@ -792,6 +792,8 @@ This task does not introduce:
 - future roadmap features.
 ## Task 66 — Phase 3 Release Certification
 
+**Status:** Complete (certified 2026-07-08; baseline `e1fe554` on `main`).
+
 | Field | Detail |
 |-------|--------|
 | Objective | Officially certify the successful completion of Phase 3 by validating that all implementation, testing, documentation and release requirements have been satisfied. Establish Phase 3 as the new stable baseline for future development. |
@@ -799,39 +801,6 @@ This task does not introduce:
 | Expected result | Phase 3 is formally completed, certified and documented. The project repository is clean, stable and fully synchronized with the implementation. The application is ready to become the official starting point for Phase 4 development. |
 | Acceptance criteria | All Phase 3 tasks are completed and verified. All planned functionality has been implemented according to the approved specifications. Integration and regression testing have been successfully completed. Documentation accurately reflects the implemented product. The repository is clean. The final release commit is created. Phase 3 is officially marked as completed and becomes the new development baseline. |
 
-### Product Clarifications
+### Certification outcome
 
-This task introduces no new functionality.
-
-Its purpose is to formally close Phase 3 and certify that the product is stable, maintainable and ready for future development.
-
-Release certification should confirm:
-
-- successful completion of Tasks 58–65;
-- successful integration of all Phase 3 components;
-- completion of integration testing;
-- completion of regression testing;
-- successful production build;
-- synchronized project documentation;
-- clean repository state;
-- final release commit;
-- updated implementation roadmap;
-- establishment of Phase 3 as the official project baseline.
-
-No new implementation work should begin until Phase 3 has been formally certified and accepted.
-
-The certification process confirms both technical quality and product quality.
-
-The completion of Phase 3 authorizes the project to begin planning and implementation of Phase 4.
-
-### Out of Scope
-
-This task does not implement:
-
-- new product features;
-- UI improvements;
-- architectural redesign;
-- future roadmap items;
-- Phase 4 planning;
-- AI functionality;
-- postponed backlog items.
+Product Owner approved Task 65 release audit. Phase 3 is officially complete. Official development baseline: commit `e1fe554` on `main`. Phase 4 planning may begin.

@@ -159,7 +159,7 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Progress (2026-07-08)
 
-**Phase 3 status:** **COMPLETE** (Tasks 58–65 complete and approved; Task 66 formal release certification pending).
+**Phase 3 status:** **COMPLETE** (certified 2026-07-08; baseline commit `e1fe554`).
 
 | Task | Name | Status |
 |------|------|--------|
@@ -170,8 +170,8 @@ A user should be able to complete a basic project session and find help in the M
 | 62 | Shared Editorial Infrastructure | Complete |
 | 63 | Application Preferences | Complete (accepted) |
 | 64 | Roles, Authorization & Product Capability Foundation | Complete (accepted) |
-| 65 | Phase 3 Integration, QA & Documentation Alignment | Complete |
-| 66 | Phase 3 Release Certification | Pending |
+| 65 | Phase 3 Integration, QA & Documentation Alignment | Complete (accepted) |
+| 66 | Phase 3 Release Certification | Complete |
 
 ## Current baseline
 
@@ -214,4 +214,45 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * backend-owned product capability catalog (`free`, `subscriber`, `administrator_unlimited`) with `GET /api/me/capabilities`;
 * frontend `CapabilitiesProvider` with `useCapability()` / `useCapabilityLimit()` — infrastructure only, no visible commercial gating.
 
-The next step is **Task 66 — Phase 3 Release Certification** (formal baseline sign-off before Phase 4).
+**Official baseline:** `e1fe554` on `main` (Task 65 release audit). All Phase 3 development builds on this commit.
+
+---
+
+# Phase 4 – Cloud Platform
+
+> Phase 4 scope is defined at a high level in [`documentation/chatgpt-project-handover.md`](chatgpt-project-handover.md). A detailed Phase 4 implementation plan will be created before implementation begins.
+
+## Status
+
+**Phase 4 status:** Not started (planning baseline established 2026-07-08).
+
+## Objective
+
+Move HFZWood from the Phase 3 local-development model (mock auth, filesystem CMS storage) to a production cloud platform while preserving all Phase 3 product behavior.
+
+## Expected scope (high level)
+
+* real Cognito authentication on the frontend;
+* cloud project storage and synchronization;
+* online project library;
+* project sharing;
+* DynamoDB persistence for CMS content, preferences, and entitlements (replacing filesystem dev repos);
+* AWS CDK updates for new data stores and services.
+
+## Out of scope for Phase 4
+
+Subscriptions, Stripe, billing, commercial capability gating UI, AI, and semantic search remain in Phase 5+ per the long-term roadmap.
+
+## Phase 3 foundation to preserve
+
+* single calculator philosophy;
+* single CMS / editorial platform;
+* role vs access-tier separation;
+* product capability catalog (`free` / `subscriber` / `administrator_unlimited`);
+* Draft / Live editorial workflow;
+* EN / RO independent locale variants;
+* Application Preferences and Quick Preferences.
+
+## Next step
+
+Product Owner approval of Phase 4 scope, followed by Phase 4 Product Architecture and Technical Architecture documents before any implementation.
