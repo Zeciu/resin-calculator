@@ -1,28 +1,8 @@
-import { useRef } from "react";
+import EditorialMediaPanel from "../../editorial/EditorialMediaPanel.jsx";
 import { uploadKnowledgeBaseImage } from "./knowledgeBaseAdminApi.js";
 import { KB_CATEGORIES, KB_DIFFICULTIES } from "./knowledgeBaseEditorAdapter.js";
 import KeywordListEditor from "./KeywordListEditor.jsx";
 import StringListEditor from "./StringListEditor.jsx";
-import { deriveVideoTitle, normalizeVideoEmbedUrl } from "../manual/videoEmbed.js";
-
-const IMAGE_INPUT_ACCEPT = "image/jpeg,image/png,image/gif,image/webp";
-
-function promptValue(label, defaultValue = "") {
-  const value = window.prompt(label, defaultValue);
-  if (value === null) {
-    return null;
-  }
-  return value.trim();
-}
-
-function defaultAltText(file) {
-  const stem = file.name.replace(/\.[^.]+$/, "").trim();
-  return stem || "Knowledge base illustration";
-}
-
-function isImageFile(file) {
-  return file?.type?.startsWith("image/") ?? false;
-}
 
 /**
  * @param {{
@@ -32,90 +12,12 @@ function isImageFile(file) {
  * }} props
  */
 export default function KnowledgeBaseEntryEditor({ editorState, onChange, disabled = false }) {
-  const fileInputRef = useRef(null);
-
   function patch(next) {
     onChange(next);
   }
 
-  async function insertUploadedImage(file) {
-    if (!isImageFile(file)) {
-      window.alert("Only image files can be uploaded.");
-      return;
-    }
-
-    try {
-      const { url } = await uploadKnowledgeBaseImage(file);
-      const alt = promptValue("Alt text", defaultAltText(file)) ?? defaultAltText(file);
-      const caption = promptValue("Caption (optional)") ?? "";
-      patch({
-        media: [
-          ...(editorState.media ?? []),
-          {
-            type: "image",
-            src: url,
-            alt,
-            ...(caption ? { caption } : {}),
-          },
-        ],
-      });
-    } catch (error) {
-      window.alert(error.message || "Image upload failed.");
-    }
-  }
-
-  function openImagePicker() {
-    fileInputRef.current?.click();
-  }
-
-  async function handleImageInputChange(event) {
-    const file = event.target.files?.[0];
-    event.target.value = "";
-    if (!file) {
-      return;
-    }
-    await insertUploadedImage(file);
-  }
-
-  function insertVideo() {
-    const url = promptValue("Video URL (YouTube, Vimeo, or embed URL)");
-    if (!url) {
-      return;
-    }
-    const embedUrl = normalizeVideoEmbedUrl(url);
-    const title = deriveVideoTitle(url, embedUrl);
-    const caption = promptValue("Caption (optional)") ?? "";
-    patch({
-      media: [
-        ...(editorState.media ?? []),
-        {
-          type: "video",
-          title,
-          embedUrl,
-          ...(caption ? { caption } : {}),
-        },
-      ],
-    });
-  }
-
-  function removeMedia(index) {
-    patch({
-      media: (editorState.media ?? []).filter((_, itemIndex) => itemIndex !== index),
-    });
-  }
-
   return (
     <div className="kb-admin__structured-editor" aria-label="Knowledge base entry fields">
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept={IMAGE_INPUT_ACCEPT}
-        className="manual-admin-editor__file-input"
-        tabIndex={-1}
-        aria-hidden="true"
-        onChange={handleImageInputChange}
-      />
-
       <div className="kb-admin__field-row">
         <label className="kb-admin__field">
           <span className="kb-admin__field-label">Category</span>
@@ -229,33 +131,13 @@ export default function KnowledgeBaseEntryEditor({ editorState, onChange, disabl
         disabled={disabled}
       />
 
-      <div className="kb-admin__media-panel" aria-label="Knowledge base media">
-        <div className="kb-admin__media-toolbar">
-          <span className="kb-admin__field-label">Media</span>
-          <div className="kb-admin__media-actions">
-            <button type="button" onClick={openImagePicker} disabled={disabled}>
-              Add image
-            </button>
-            <button type="button" onClick={insertVideo} disabled={disabled}>
-              Add video
-            </button>
-          </div>
-        </div>
-        {(editorState.media ?? []).length === 0 ? (
-          <p className="kb-admin__relationship-empty">No media attached.</p>
-        ) : (
-          <ul className="kb-admin__media-list">
-            {(editorState.media ?? []).map((block, index) => (
-              <li key={`${block.type}-${index}`} className="kb-admin__media-item">
-                <span>{block.type === "image" ? block.alt || "Image" : block.title || "Video"}</span>
-                <button type="button" onClick={() => removeMedia(index)} disabled={disabled}>
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <EditorialMediaPanel
+        media={editorState.media ?? []}
+        onMediaChange={(media) => patch({ media })}
+        onUploadImage={uploadKnowledgeBaseImage}
+        disabled={disabled}
+        ariaLabel="Knowledge base media"
+      />
     </div>
   );
 }

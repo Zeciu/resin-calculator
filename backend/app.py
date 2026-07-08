@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from jose import jwt, JWTError
 from jose.exceptions import ExpiredSignatureError
 
+from content.routers.admin_editorial import router as admin_editorial_router
 from content.routers.admin_glossary import router as admin_glossary_router
 from content.routers.admin_knowledge_base import router as admin_knowledge_base_router
 from content.routers.admin_manual import router as admin_manual_router
@@ -18,6 +19,7 @@ from auth.dependencies import auth_mode
 
 app = FastAPI()
 app.include_router(admin_manual_router, prefix="/api")
+app.include_router(admin_editorial_router, prefix="/api")
 app.include_router(admin_glossary_router, prefix="/api")
 app.include_router(admin_knowledge_base_router, prefix="/api")
 app.include_router(public_content_router, prefix="/api")

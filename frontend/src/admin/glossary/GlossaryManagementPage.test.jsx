@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
+import { handleGlobalReferenceSearch, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 vi.mock("./GlossaryEntryEditor.jsx", () => ({
   default: function MockGlossaryEntryEditor({ onDocumentChange }) {
@@ -28,8 +29,8 @@ vi.mock("./GlossaryEntryEditor.jsx", () => ({
   },
 }));
 
-vi.mock("./RelationshipPicker.jsx", () => ({
-  default: function MockRelationshipPicker({ label }) {
+vi.mock("../../editorial/CrossReferencePicker.jsx", () => ({
+  default: function MockCrossReferencePicker({ label }) {
     return <div aria-label={label}>Relationship picker</div>;
   },
 }));
@@ -179,7 +180,17 @@ function createInMemoryGlossaryApi() {
             }),
           });
         }
-        return Promise.resolve({ ok: true, status: 200, json: async () => ({ ...variant, exists: true }) });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () =>
+            withEditorialVisibility({
+              ...variant,
+              exists: true,
+              updatedAt: variant.updatedAt ?? "2026-01-01T00:00:00+00:00",
+              publishedAt: variant.publishedAt ?? null,
+            }),
+        });
       }
 
       if (variantMatch && method === "PUT") {
@@ -192,9 +203,15 @@ function createInMemoryGlossaryApi() {
           status: existing?.status || "draft",
           exists: true,
           body: payload.body,
+          updatedAt: "2026-01-02T00:00:00+00:00",
+          publishedAt: existing?.publishedAt ?? null,
         };
         variants.set(variantKey(contentId, locale), saved);
-        return Promise.resolve({ ok: true, status: 200, json: async () => saved });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => withEditorialVisibility(saved),
+        });
       }
 
       const publishMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/publish$/);
@@ -219,7 +236,8 @@ function createInMemoryGlossaryApi() {
         const published = {
           ...variant,
           status: "published",
-          publishedAt: "2026-01-01T00:00:00+00:00",
+          publishedAt: "2026-01-03T00:00:00+00:00",
+          updatedAt: "2026-01-03T00:00:00+00:00",
         };
         variants.set(variantKey(contentId, locale), published);
         return Promise.resolve({
@@ -258,7 +276,13 @@ describe("Glossary management workspace (Task 60)", () => {
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
-      vi.fn((url, init) => memoryApi.handler(url, init?.method || "GET", init || {})),
+      vi.fn((url, init) => {
+        const global = handleGlobalReferenceSearch(url);
+        if (global) {
+          return global;
+        }
+        return memoryApi.handler(url, init?.method || "GET", init || {});
+      }),
     );
     vi.spyOn(window, "prompt").mockImplementation(() => "Calibration");
     vi.spyOn(window, "confirm").mockReturnValue(true);
@@ -291,14 +315,14 @@ describe("Glossary management workspace (Task 60)", () => {
     });
 
     await user.click(screen.getByRole("button", { name: "Simulate definition edit" }));
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
     await waitFor(() => {
       expect(screen.queryByText(/Unsaved changes/i)).not.toBeInTheDocument();
     });
 
     await user.click(screen.getByRole("button", { name: "Publish" }));
     await waitFor(() => {
-      expect(screen.getByText(/Published \(EN\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)/i)).toBeInTheDocument();
     });
   });
 
@@ -346,7 +370,7 @@ describe("Glossary management workspace (Task 60)", () => {
     });
 
     await user.click(screen.getByRole("button", { name: "RO" }));
-    expect(screen.getByText(/Published \(RO\)|Draft \(RO\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Live \(RO\)|Draft \(RO\)|Draft changes \(RO\)|No RO content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related terms")).toBeInTheDocument();
   });
 });
@@ -359,7 +383,13 @@ describe("Admin navigation", () => {
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
-      vi.fn((url, init) => memoryApi.handler(url, init?.method || "GET", init || {})),
+      vi.fn((url, init) => {
+        const global = handleGlobalReferenceSearch(url);
+        if (global) {
+          return global;
+        }
+        return memoryApi.handler(url, init?.method || "GET", init || {});
+      }),
     );
   });
 

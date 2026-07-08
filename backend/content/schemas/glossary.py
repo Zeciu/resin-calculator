@@ -4,6 +4,7 @@ from typing import Literal
 from pydantic import BaseModel, Field, field_validator
 
 from .common import ContentStatus, LocaleCode, VALID_LOCALES
+from .editorial import EditorialVisibility
 from .manual import ImageBlock, ManualBlock, VideoBlock, parse_locale
 
 GlossaryMediaBlock = ImageBlock | VideoBlock
@@ -74,6 +75,7 @@ class GlossaryVariantResponse(BaseModel):
     contentId: str
     locale: LocaleCode
     status: ContentStatus
+    editorialVisibility: EditorialVisibility
     body: GlossaryVariantBody
     exists: bool = True
     updatedAt: datetime | None = None

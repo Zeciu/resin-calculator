@@ -4,6 +4,7 @@ from typing import Annotated, Any, Literal, Union
 from pydantic import BaseModel, Field, field_validator
 
 from .common import ContentStatus, LocaleCode, VALID_LOCALES
+from .editorial import EditorialVisibility
 
 
 class ParagraphBlock(BaseModel):
@@ -124,6 +125,7 @@ class ManualVariantResponse(BaseModel):
     contentId: str
     locale: LocaleCode
     status: ContentStatus
+    editorialVisibility: EditorialVisibility
     body: ManualVariantBody
     exists: bool = True
     updatedAt: datetime | None = None

@@ -16,6 +16,7 @@ export function emptyEditorState() {
     synonymTermIds: [],
     seeAlso: [],
     status: "draft",
+    editorialVisibility: "empty",
     exists: true,
   };
 }
@@ -34,6 +35,7 @@ export function variantToEditor(variant) {
       targetType: reference.targetType,
     })),
     status: variant?.status ?? "draft",
+    editorialVisibility: variant?.editorialVisibility ?? "empty",
     exists: variant?.exists !== false,
   };
 }

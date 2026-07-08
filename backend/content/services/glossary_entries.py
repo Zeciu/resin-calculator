@@ -2,6 +2,7 @@ import re
 
 from ..repositories.filesystem import DEFAULT_LOCALE, parse_iso
 from ..schemas.common import ContentStatus
+from ..schemas.editorial import EditorialVisibility
 from ..schemas.glossary import (
     GlossaryEntryListItem,
     GlossaryEntryMeta,
@@ -11,6 +12,9 @@ from ..schemas.glossary import (
     GlossaryVariantSummary,
     parse_locale,
 )
+from .editorial_identity import entry_identity_term
+from .editorial_status import compute_editorial_visibility
+from .reference_search import ReferenceSearchService
 
 
 def empty_variant_body(term: str = "") -> dict:
@@ -22,17 +26,6 @@ def empty_variant_body(term: str = "") -> dict:
         "synonymTermIds": [],
         "seeAlso": [],
     }
-
-
-def entry_identity_term(repository, content_id: str) -> str:
-    for variant_locale in ("en", "ro"):
-        variant = repository.get_glossary_variant(content_id, variant_locale)
-        if not variant:
-            continue
-        term = variant.get("draftBody", {}).get("term", "").strip()
-        if term:
-            return term
-    return ""
 
 
 def variant_has_publishable_body(body: GlossaryVariantBody) -> bool:
@@ -116,77 +109,65 @@ class GlossaryEntryService:
         for locale in ("en", "ro"):
             publish_service.rebuild_published_snapshot(locale)
 
-    def get_variant(self, content_id: str, locale: str) -> GlossaryVariantResponse:
+    def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> GlossaryVariantResponse:
         parsed_locale = parse_locale(locale)
-        if not self._repository.get_glossary_entry_meta(content_id):
-            raise KeyError(content_id)
-        variant = self._repository.get_glossary_variant(content_id, parsed_locale)
         if not variant:
             return GlossaryVariantResponse(
                 contentId=content_id,
                 locale=parsed_locale,
                 status=ContentStatus.DRAFT,
+                editorialVisibility=EditorialVisibility.EMPTY,
                 body=GlossaryVariantBody.model_validate(empty_variant_body()),
                 exists=False,
                 updatedAt=None,
                 publishedAt=None,
             )
+        status = ContentStatus(variant["status"])
+        updated_at = parse_iso(variant.get("updatedAt"))
+        published_at = parse_iso(variant.get("publishedAt"))
         return GlossaryVariantResponse(
             contentId=content_id,
             locale=parsed_locale,
-            status=ContentStatus(variant["status"]),
+            status=status,
+            editorialVisibility=compute_editorial_visibility(
+                exists=True,
+                status=status,
+                updated_at=updated_at,
+                published_at=published_at,
+            ),
             body=GlossaryVariantBody.model_validate(variant["draftBody"]),
             exists=True,
-            updatedAt=parse_iso(variant.get("updatedAt")),
-            publishedAt=parse_iso(variant.get("publishedAt")),
+            updatedAt=updated_at,
+            publishedAt=published_at,
         )
+
+    def get_variant(self, content_id: str, locale: str) -> GlossaryVariantResponse:
+        parsed_locale = parse_locale(locale)
+        if not self._repository.get_glossary_entry_meta(content_id):
+            raise KeyError(content_id)
+        variant = self._repository.get_glossary_variant(content_id, parsed_locale)
+        return self._variant_response(content_id, parsed_locale, variant)
 
     def save_variant(self, content_id: str, locale: str, body: GlossaryVariantBody) -> GlossaryVariantResponse:
         parsed_locale = parse_locale(locale)
         if not body.term.strip():
             raise ValueError("Glossary term cannot be empty.")
         saved = self._repository.save_glossary_variant(content_id, parsed_locale, body.model_dump())
-        return GlossaryVariantResponse(
-            contentId=content_id,
-            locale=parsed_locale,
-            status=ContentStatus(saved["status"]),
-            body=GlossaryVariantBody.model_validate(saved["draftBody"]),
-            exists=True,
-            updatedAt=parse_iso(saved.get("updatedAt")),
-            publishedAt=parse_iso(saved.get("publishedAt")),
-        )
+        return self._variant_response(content_id, parsed_locale, saved)
 
     def search_references(self, query: str = "", locale: str = DEFAULT_LOCALE) -> list[GlossaryReferenceOption]:
-        parse_locale(locale)
-        normalized = query.strip().lower()
-        options: list[GlossaryReferenceOption] = []
-
-        for content_id in self._repository.list_glossary_entry_ids():
-            term = entry_identity_term(self._repository, content_id)
-            if normalized and normalized not in term.lower() and normalized not in content_id.lower():
-                continue
-            options.append(
-                GlossaryReferenceOption(
-                    contentId=content_id,
-                    contentType="glossary_entry",
-                    label=term or content_id,
-                    detail="Glossary entry",
-                )
+        options = ReferenceSearchService(self._repository).search_references(query, locale)
+        filtered = [
+            option
+            for option in options
+            if option.contentType in {"glossary_entry", "manual_chapter"}
+        ]
+        return [
+            GlossaryReferenceOption(
+                contentId=option.contentId,
+                contentType=option.contentType,
+                label=option.label,
+                detail=option.detail,
             )
-
-        for content_id in self._repository.list_manual_chapter_ids():
-            from .manual_chapters import chapter_identity_title
-
-            title = chapter_identity_title(self._repository, content_id)
-            if normalized and normalized not in title.lower() and normalized not in content_id.lower():
-                continue
-            options.append(
-                GlossaryReferenceOption(
-                    contentId=content_id,
-                    contentType="manual_chapter",
-                    label=title or content_id,
-                    detail="Manual chapter",
-                )
-            )
-
-        return sorted(options, key=lambda item: item.label.lower())
+            for option in filtered
+        ]

@@ -25,6 +25,7 @@ export function emptyEditorState() {
     relatedGlossarySelected: [],
     relatedManualSelected: [],
     status: "draft",
+    editorialVisibility: "empty",
     exists: true,
   };
 }
@@ -68,6 +69,7 @@ export function variantToEditor(variant) {
       label: contentId,
     })),
     status: variant?.status ?? "draft",
+    editorialVisibility: variant?.editorialVisibility ?? "empty",
     exists: variant?.exists !== false,
   };
 }

@@ -1,23 +1,25 @@
 import { useEffect, useId, useState } from "react";
-import { searchKnowledgeBaseReferences } from "./knowledgeBaseAdminApi.js";
+import { searchEditorialReferences } from "./editorialAdminApi.js";
 
 /**
  * @param {{
  *   label: string;
- *   selected: Array<{ contentId: string; label: string; contentType?: string }>;
- *   onChange: (next: Array<{ contentId: string; label: string; contentType?: string }>) => void;
+ *   selected: Array<{ contentId: string; label: string; contentType?: string; targetType?: string }>;
+ *   onChange: (next: Array<{ contentId: string; label: string; contentType?: string; targetType?: string }>) => void;
  *   locale?: string;
  *   excludeIds?: string[];
  *   allowTypes?: string[];
+ *   seeAlsoMode?: boolean;
  * }} props
  */
-export default function KnowledgeBaseRelationshipPicker({
+export default function CrossReferencePicker({
   label,
   selected,
   onChange,
   locale = "en",
   excludeIds = [],
   allowTypes,
+  seeAlsoMode = false,
 }) {
   const listId = useId();
   const [query, setQuery] = useState("");
@@ -29,7 +31,7 @@ export default function KnowledgeBaseRelationshipPicker({
     const handle = window.setTimeout(async () => {
       setIsLoading(true);
       try {
-        const results = await searchKnowledgeBaseReferences(query, locale);
+        const results = await searchEditorialReferences(query, locale);
         if (cancelled) {
           return;
         }
@@ -64,7 +66,19 @@ export default function KnowledgeBaseRelationshipPicker({
   }, [query, locale, excludeIds, allowTypes, selected]);
 
   function addOption(option) {
-    onChange([...selected, { contentId: option.contentId, label: option.label, contentType: option.contentType }]);
+    if (seeAlsoMode) {
+      onChange([
+        ...selected,
+        {
+          contentId: option.contentId,
+          label: option.label,
+          contentType: option.contentType,
+          targetType: option.contentType,
+        },
+      ]);
+    } else {
+      onChange([...selected, { contentId: option.contentId, label: option.label, contentType: option.contentType }]);
+    }
     setQuery("");
   }
 
@@ -73,16 +87,16 @@ export default function KnowledgeBaseRelationshipPicker({
   }
 
   return (
-    <div className="kb-admin__relationship-picker">
-      <label className="kb-admin__field-label" htmlFor={`${listId}-search`}>
+    <div className="editorial-reference-picker">
+      <label className="editorial-reference-picker__label" htmlFor={`${listId}-search`}>
         {label}
       </label>
-      <div className="kb-admin__relationship-selected">
+      <div className="editorial-reference-picker__selected">
         {selected.length === 0 ? (
-          <p className="kb-admin__relationship-empty">None selected.</p>
+          <p className="editorial-reference-picker__empty">None selected.</p>
         ) : (
           selected.map((item) => (
-            <span key={item.contentId} className="kb-admin__relationship-chip">
+            <span key={item.contentId} className="editorial-reference-picker__chip">
               {item.label}
               <button type="button" onClick={() => removeOption(item.contentId)} aria-label={`Remove ${item.label}`}>
                 ×
@@ -94,19 +108,19 @@ export default function KnowledgeBaseRelationshipPicker({
       <input
         id={`${listId}-search`}
         type="search"
-        className="kb-admin__relationship-search"
+        className="editorial-reference-picker__search"
         placeholder="Search to add..."
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      {isLoading ? <p className="kb-admin__relationship-status">Searching...</p> : null}
+      {isLoading ? <p className="editorial-reference-picker__status">Searching...</p> : null}
       {options.length > 0 ? (
-        <ul className="kb-admin__relationship-options" aria-label={`${label} options`}>
+        <ul className="editorial-reference-picker__options" aria-label={`${label} options`}>
           {options.map((option) => (
             <li key={`${option.contentType}-${option.contentId}`}>
               <button type="button" onClick={() => addOption(option)}>
                 <span>{option.label}</span>
-                <span className="kb-admin__relationship-option-detail">{option.detail}</span>
+                <span className="editorial-reference-picker__option-detail">{option.detail}</span>
               </button>
             </li>
           ))}

@@ -261,6 +261,7 @@ export function variantToEditor(variant) {
     title: variant?.body?.title ?? "",
     document: blocksToDocument(chapterBlocks(variant)),
     status: variant?.status ?? "draft",
+    editorialVisibility: variant?.editorialVisibility ?? "empty",
     exists: variant?.exists !== false,
   };
 }

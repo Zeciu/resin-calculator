@@ -167,7 +167,7 @@ A user should be able to complete a basic project session and find help in the M
 | 59 | Manual Content Management | Complete |
 | 60 | Glossary Content Management | Complete |
 | 61 | Knowledge Base Content Management | Pending |
-| 62 | Shared Editorial Infrastructure | Pending |
+| 62 | Shared Editorial Infrastructure | Complete |
 | 63 | Application Preferences | Pending |
 | 64 | Roles & Permissions | Pending |
 | 65 | Phase 3 Integration, QA & Documentation Alignment | Pending |
@@ -175,7 +175,7 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Current baseline
 
-Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. The repository baseline now includes:
+Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. Task 62 (Editorial Infrastructure) is complete and approved. The repository baseline now includes:
 
 * dedicated `/admin` route branch with administrator-only guard;
 * admin Manual workspace at `/admin/manual` with chapter list, TipTap chapter editor, EN/RO locale switching, and explicit Save/Publish controls (no autosave);
@@ -194,6 +194,13 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * static Phase 2 knowledge base migration script and public Knowledge Base API (`/api/content/knowledge-base?locale=`);
 * public `/knowledge-base` served from admin-published snapshots when available, with legacy static fallback only when no admin snapshot exists;
 * local knowledge base image upload, search-keyword discoverability (keywords never displayed publicly), and discreet public rendering of related articles, glossary terms, and manual chapters;
-* category and difficulty remain administrator-only metadata (not exposed in the public Knowledge Base interface).
+* category and difficulty remain administrator-only metadata (not exposed in the public Knowledge Base interface);
+* shared editorial platform (`frontend/src/editorial/`) used by all three admin content modules: management shell, top toolbar, sidebar, locale switcher, status banner, unsaved-changes dialog, cross-reference picker, media panel, and workspace state hook;
+* consistent editorial status model across Manual, Glossary and Knowledge Base: Unsaved, Draft, Live, and Draft changes (stale), with **Save draft** and **Publish** / **Update public** controls that never conflate draft save with public update;
+* `editorialVisibility` field on admin variant API responses, computed server-side from `status`, `updatedAt`, and `publishedAt`;
+* shared backend editorial services: image upload validation, global reference search (`GET /api/admin/references/search`), cross-reference validation, snapshot publish helpers, and editorial identity helpers;
+* module-specific editors (TipTap manual, glossary definition, KB structured template) unchanged; only management pages consolidated onto the shared shell.
 
-The next implementation step is **Task 62 — Shared Editorial Infrastructure**.
+The next implementation step is **task 63 Application Preferences**.
+
+Task 62 consolidated the proven editorial infrastructure shared by the Manual, Glossary and Knowledge Base modules. It did not introduce asset library, usage tracking, preferences, roles, AI, translation, or semantic/global search — those belong to later tasks.

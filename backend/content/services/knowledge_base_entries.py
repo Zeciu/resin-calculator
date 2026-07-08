@@ -1,5 +1,6 @@
 from ..repositories.filesystem import DEFAULT_LOCALE, parse_iso
 from ..schemas.common import ContentStatus
+from ..schemas.editorial import EditorialVisibility
 from ..schemas.knowledge_base import (
     KnowledgeBaseEntryListItem,
     KnowledgeBaseEntryMeta,
@@ -9,6 +10,9 @@ from ..schemas.knowledge_base import (
     KnowledgeBaseVariantSummary,
     parse_locale,
 )
+from .editorial_identity import entry_identity_title
+from .editorial_status import compute_editorial_visibility
+from .reference_search import ReferenceSearchService
 
 
 def empty_variant_body(title: str = "") -> dict:
@@ -31,17 +35,6 @@ def empty_variant_body(title: str = "") -> dict:
         "relatedGlossaryEntryIds": [],
         "relatedManualChapterIds": [],
     }
-
-
-def entry_identity_title(repository, content_id: str) -> str:
-    for variant_locale in ("en", "ro"):
-        variant = repository.get_kb_variant(content_id, variant_locale)
-        if not variant:
-            continue
-        title = variant.get("draftBody", {}).get("title", "").strip()
-        if title:
-            return title
-    return ""
 
 
 def variant_has_publishable_body(body: KnowledgeBaseVariantBody) -> bool:
@@ -123,12 +116,14 @@ class KnowledgeBaseEntryService:
         for locale in ("en", "ro"):
             publish_service.rebuild_published_snapshot(locale)
 
-    def get_variant(self, content_id: str, locale: str) -> KnowledgeBaseVariantResponse:
+    def _variant_response(
+        self,
+        content_id: str,
+        locale: str,
+        variant: dict | None,
+        meta: dict,
+    ) -> KnowledgeBaseVariantResponse:
         parsed_locale = parse_locale(locale)
-        meta = self._repository.get_kb_entry_meta(content_id)
-        if not meta:
-            raise KeyError(content_id)
-        variant = self._repository.get_kb_variant(content_id, parsed_locale)
         if not variant:
             return KnowledgeBaseVariantResponse(
                 contentId=content_id,
@@ -136,22 +131,40 @@ class KnowledgeBaseEntryService:
                 category=meta["category"],
                 difficulty=meta["difficulty"],
                 status=ContentStatus.DRAFT,
+                editorialVisibility=EditorialVisibility.EMPTY,
                 body=KnowledgeBaseVariantBody.model_validate(empty_variant_body()),
                 exists=False,
                 updatedAt=None,
                 publishedAt=None,
             )
+        status = ContentStatus(variant["status"])
+        updated_at = parse_iso(variant.get("updatedAt"))
+        published_at = parse_iso(variant.get("publishedAt"))
         return KnowledgeBaseVariantResponse(
             contentId=content_id,
             locale=parsed_locale,
             category=meta["category"],
             difficulty=meta["difficulty"],
-            status=ContentStatus(variant["status"]),
+            status=status,
+            editorialVisibility=compute_editorial_visibility(
+                exists=True,
+                status=status,
+                updated_at=updated_at,
+                published_at=published_at,
+            ),
             body=KnowledgeBaseVariantBody.model_validate(variant["draftBody"]),
             exists=True,
-            updatedAt=parse_iso(variant.get("updatedAt")),
-            publishedAt=parse_iso(variant.get("publishedAt")),
+            updatedAt=updated_at,
+            publishedAt=published_at,
         )
+
+    def get_variant(self, content_id: str, locale: str) -> KnowledgeBaseVariantResponse:
+        parsed_locale = parse_locale(locale)
+        meta = self._repository.get_kb_entry_meta(content_id)
+        if not meta:
+            raise KeyError(content_id)
+        variant = self._repository.get_kb_variant(content_id, parsed_locale)
+        return self._variant_response(content_id, parsed_locale, variant, meta)
 
     def save_variant(
         self,
@@ -183,64 +196,16 @@ class KnowledgeBaseEntryService:
             difficulty,
         )
         meta = self._repository.get_kb_entry_meta(content_id)
-        return KnowledgeBaseVariantResponse(
-            contentId=content_id,
-            locale=parsed_locale,
-            category=meta["category"],
-            difficulty=meta["difficulty"],
-            status=ContentStatus(saved["status"]),
-            body=KnowledgeBaseVariantBody.model_validate(saved["draftBody"]),
-            exists=True,
-            updatedAt=parse_iso(saved.get("updatedAt")),
-            publishedAt=parse_iso(saved.get("publishedAt")),
-        )
+        return self._variant_response(content_id, parsed_locale, saved, meta)
 
     def search_references(self, query: str = "", locale: str = DEFAULT_LOCALE) -> list[KnowledgeBaseReferenceOption]:
-        parse_locale(locale)
-        normalized = query.strip().lower()
-        options: list[KnowledgeBaseReferenceOption] = []
-
-        for content_id in self._repository.list_kb_entry_ids():
-            title = entry_identity_title(self._repository, content_id)
-            if normalized and normalized not in title.lower() and normalized not in content_id.lower():
-                continue
-            options.append(
-                KnowledgeBaseReferenceOption(
-                    contentId=content_id,
-                    contentType="kb_entry",
-                    label=title or content_id,
-                    detail="Knowledge Base article",
-                )
+        options = ReferenceSearchService(self._repository).search_references(query, locale)
+        return [
+            KnowledgeBaseReferenceOption(
+                contentId=option.contentId,
+                contentType=option.contentType,
+                label=option.label,
+                detail=option.detail,
             )
-
-        for content_id in self._repository.list_glossary_entry_ids():
-            from .glossary_entries import entry_identity_term
-
-            term = entry_identity_term(self._repository, content_id)
-            if normalized and normalized not in term.lower() and normalized not in content_id.lower():
-                continue
-            options.append(
-                KnowledgeBaseReferenceOption(
-                    contentId=content_id,
-                    contentType="glossary_entry",
-                    label=term or content_id,
-                    detail="Glossary entry",
-                )
-            )
-
-        for content_id in self._repository.list_manual_chapter_ids():
-            from .manual_chapters import chapter_identity_title
-
-            title = chapter_identity_title(self._repository, content_id)
-            if normalized and normalized not in title.lower() and normalized not in content_id.lower():
-                continue
-            options.append(
-                KnowledgeBaseReferenceOption(
-                    contentId=content_id,
-                    contentType="manual_chapter",
-                    label=title or content_id,
-                    detail="Manual chapter",
-                )
-            )
-
-        return sorted(options, key=lambda item: item.label.lower())
+            for option in options
+        ]

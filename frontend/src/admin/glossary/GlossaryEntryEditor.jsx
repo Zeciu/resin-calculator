@@ -1,32 +1,13 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import { useEffect, useRef, useState } from "react";
+import EditorialMediaPanel from "../../editorial/EditorialMediaPanel.jsx";
 import { documentsSemanticallyEqual } from "./glossaryEditorAdapter.js";
 import { uploadGlossaryImage } from "./glossaryAdminApi.js";
 import { CALLOUT_VARIANTS } from "../manual/tiptap/manualCalloutExtension.js";
-import { deriveVideoTitle, normalizeVideoEmbedUrl } from "../manual/videoEmbed.js";
 import {
   createGlossaryEditorExtensions,
   GLOSSARY_TEXT_ALIGNMENTS,
 } from "./glossaryEditorExtensions.js";
-
-const IMAGE_INPUT_ACCEPT = "image/jpeg,image/png,image/gif,image/webp";
-
-function promptValue(label, defaultValue = "") {
-  const value = window.prompt(label, defaultValue);
-  if (value === null) {
-    return null;
-  }
-  return value.trim();
-}
-
-function defaultAltText(file) {
-  const stem = file.name.replace(/\.[^.]+$/, "").trim();
-  return stem || "Glossary illustration";
-}
-
-function isImageFile(file) {
-  return file?.type?.startsWith("image/") ?? false;
-}
 
 function preventToolbarFocusLoss(event) {
   event.preventDefault();
@@ -50,7 +31,6 @@ export default function GlossaryEntryEditor({
 }) {
   const isApplyingContent = useRef(true);
   const baselineDocumentRef = useRef(document);
-  const fileInputRef = useRef(null);
   const [historyState, setHistoryState] = useState({ canUndo: false, canRedo: false });
 
   const editor = useEditor({
@@ -124,75 +104,15 @@ export default function GlossaryEntryEditor({
 
   function insertLink() {
     const previousUrl = editor.getAttributes("link").href ?? "";
-    const url = promptValue("Link URL", previousUrl);
+    const url = window.prompt("Link URL", previousUrl);
     if (url === null) {
       return;
     }
-    if (url === "") {
+    if (url.trim() === "") {
       editor.chain().focus().extendMarkRange("link").unsetLink().run();
       return;
     }
-    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
-  }
-
-  async function insertUploadedImage(file) {
-    if (!isImageFile(file)) {
-      window.alert("Only image files can be uploaded.");
-      return;
-    }
-
-    try {
-      const { url } = await uploadGlossaryImage(file);
-      const alt = promptValue("Alt text", defaultAltText(file)) ?? defaultAltText(file);
-      const caption = promptValue("Caption (optional)") ?? "";
-      onMediaChange?.([
-        ...media,
-        {
-          type: "image",
-          src: url,
-          alt,
-          ...(caption ? { caption } : {}),
-        },
-      ]);
-    } catch (error) {
-      window.alert(error.message || "Image upload failed.");
-    }
-  }
-
-  function openImagePicker() {
-    fileInputRef.current?.click();
-  }
-
-  async function handleImageInputChange(event) {
-    const file = event.target.files?.[0];
-    event.target.value = "";
-    if (!file) {
-      return;
-    }
-    await insertUploadedImage(file);
-  }
-
-  function insertVideo() {
-    const url = promptValue("Video URL (YouTube, Vimeo, or embed URL)");
-    if (!url) {
-      return;
-    }
-    const embedUrl = normalizeVideoEmbedUrl(url);
-    const title = deriveVideoTitle(url, embedUrl);
-    const caption = promptValue("Caption (optional)") ?? "";
-    onMediaChange?.([
-      ...media,
-      {
-        type: "video",
-        title,
-        embedUrl,
-        ...(caption ? { caption } : {}),
-      },
-    ]);
-  }
-
-  function removeMedia(index) {
-    onMediaChange?.(media.filter((_, itemIndex) => itemIndex !== index));
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
   }
 
   function insertCallout(variant) {
@@ -220,15 +140,6 @@ export default function GlossaryEntryEditor({
 
   return (
     <div className="manual-admin-editor glossary-admin-editor" aria-label="Glossary definition">
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept={IMAGE_INPUT_ACCEPT}
-        className="manual-admin-editor__file-input"
-        tabIndex={-1}
-        aria-hidden="true"
-        onChange={handleImageInputChange}
-      />
       <div className="manual-admin-editor__toolbar" role="toolbar" aria-label="Formatting">
         <button
           type="button"
@@ -334,35 +245,13 @@ export default function GlossaryEntryEditor({
         <EditorContent editor={editor} />
       </div>
 
-      <div className="glossary-admin__media-panel" aria-label="Glossary media">
-        <div className="glossary-admin__media-toolbar">
-          <span className="glossary-admin__field-label">Media</span>
-          <div className="glossary-admin__media-actions">
-            <button type="button" onClick={openImagePicker} disabled={disabled}>
-              Add image
-            </button>
-            <button type="button" onClick={insertVideo} disabled={disabled}>
-              Add video
-            </button>
-          </div>
-        </div>
-        {media.length === 0 ? (
-          <p className="glossary-admin__relationship-empty">No media attached.</p>
-        ) : (
-          <ul className="glossary-admin__media-list">
-            {media.map((block, index) => (
-              <li key={`${block.type}-${index}`} className="glossary-admin__media-item">
-                <span>
-                  {block.type === "image" ? block.alt || "Image" : block.title || "Video"}
-                </span>
-                <button type="button" onClick={() => removeMedia(index)} disabled={disabled}>
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <EditorialMediaPanel
+        media={media}
+        onMediaChange={onMediaChange}
+        onUploadImage={uploadGlossaryImage}
+        disabled={disabled}
+        ariaLabel="Glossary media"
+      />
     </div>
   );
 }

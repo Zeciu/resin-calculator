@@ -393,7 +393,7 @@ This task does not implement:
 - author management;
 - automatic translation;
 - roles and permissions beyond the administrator access established in Task 58.
-## Task 62 — Shared Editorial Infrastructure
+## Task 62 — Editorial Infrastructure
 
 | Field | Detail |
 |-------|--------|
@@ -401,6 +401,38 @@ This task does not implement:
 | Dependencies | Tasks 59, 60, 61 |
 | Expected result | Administrators have a clear, unified editorial system for managing text, images, videos, reusable assets, internal links, tags and cross-references without confusion. The system should reduce the risk of incorrect content appearing in the user-facing Manual, Glossary or Knowledge Base. |
 | Acceptance criteria | Manual, Glossary and Knowledge Base content management use shared editorial tools instead of separate inconsistent editors. Administrators can insert existing media, upload new media, tag assets, manage captions and alt text, create semantic content blocks, add internal cross-references and understand where each asset or reference is used. The workflow is clear, predictable and easy to navigate. |
+
+**Status:** Complete (2026-07-08).
+
+### Editorial Status Model
+
+All three admin editors (Manual, Glossary, Knowledge Base) share one editorial visibility model. The UI always makes clear whether public content has been updated.
+
+| State | Meaning | Public site |
+|-------|---------|-------------|
+| **Unsaved** | The editor has local changes that have not been saved to the server. | Unchanged (previous draft or published version on disk). |
+| **Draft** | Content is saved as a draft (`status: draft`) or has never been published for this locale. | This locale variant is **not** visible publicly. |
+| **Live** | Content is published and the draft matches the last publication (`updatedAt ≤ publishedAt`). | This locale variant **is** what users see. |
+| **Draft changes** (stale) | Content was published before, but the draft was saved again afterward (`updatedAt > publishedAt`). | Users still see the **previous** published version until the administrator updates public content. |
+
+**Controls:**
+
+- **Save draft** — persists the current editor state only. Never updates the public site. After saving, the status banner confirms draft-only storage (or draft changes waiting for publication when stale).
+- **Publish** / **Update public** — saves the draft, validates content, rebuilds the locale snapshot, and updates the public site. The button reads **Publish** for never-published variants and **Update public** when a live or stale variant is selected.
+
+**Publish workflow:** edit → **Save draft** (optional but recommended for draft-only work) → **Publish** or **Update public**. Saving alone never changes what end users see.
+
+### Implementation Notes
+
+Consolidation only — no redesign of repositories, storage, or module-specific editors.
+
+**Shared frontend** (`frontend/src/editorial/`): management shell, top toolbar, sidebar, locale switcher, status banner, unsaved-changes dialog, cross-reference picker, media panel, workspace hook, shared API helpers, and editorial CSS.
+
+**Shared backend** (`backend/content/services/`): `editorial_status`, `editorial_identity`, `editorial_images`, `reference_search`, `cross_reference_validator`, `snapshot_publish`; global reference search at `GET /api/admin/references/search`.
+
+Module-specific editors (TipTap manual, glossary definition, KB structured template) remain unchanged in behavior; only their management pages use the shared shell.
+
+**Deferred to later tasks (not implemented in Task 62):** asset library, asset registry, media manager, usage tracking, delete guards, preferences (Task 63), roles (Task 64), AI, automatic translation, semantic search, global search.
 
 ### Product Clarifications
 

@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
+import { handleGlobalReferenceSearch, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 const { getNextDocumentText, setNextDocumentText } = vi.hoisted(() => {
   let nextDocumentText = "Edited chapter body.";
@@ -242,7 +243,13 @@ function createInMemoryManualApi() {
         return Promise.resolve({
           ok: true,
           status: 200,
-          json: async () => ({ ...variant, exists: true }),
+          json: async () =>
+            withEditorialVisibility({
+              ...variant,
+              exists: true,
+              updatedAt: variant.updatedAt ?? "2026-01-01T00:00:00+00:00",
+              publishedAt: variant.publishedAt ?? null,
+            }),
         });
       }
 
@@ -256,9 +263,15 @@ function createInMemoryManualApi() {
           status: existing?.status || "draft",
           exists: true,
           body: payload.body,
+          updatedAt: "2026-01-02T00:00:00+00:00",
+          publishedAt: existing?.publishedAt ?? null,
         };
         variants.set(variantKey(contentId, locale), saved);
-        return Promise.resolve({ ok: true, status: 200, json: async () => saved });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => withEditorialVisibility(saved),
+        });
       }
 
       const publishMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/publish$/);
@@ -296,7 +309,8 @@ function createInMemoryManualApi() {
         const published = {
           ...variant,
           status: "published",
-          publishedAt: "2026-01-01T00:00:00+00:00",
+          publishedAt: "2026-01-03T00:00:00+00:00",
+          updatedAt: "2026-01-03T00:00:00+00:00",
         };
         variants.set(variantKey(contentId, locale), published);
         return Promise.resolve({
@@ -336,7 +350,13 @@ describe("Manual management workspace (Task 59B)", () => {
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
-      vi.fn((url, init) => memoryApi.handler(url, init?.method || "GET", init || {})),
+      vi.fn((url, init) => {
+        const global = handleGlobalReferenceSearch(url);
+        if (global) {
+          return global;
+        }
+        return memoryApi.handler(url, init?.method || "GET", init || {});
+      }),
     );
   });
 
@@ -514,7 +534,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await screen.findByRole("button", { name: "Sample Chapter" });
     await editDocument(user, "Saved on Save click.");
 
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
 
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
@@ -539,7 +559,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Publish" }));
 
     await waitFor(() => {
-      expect(screen.getByText("Published (EN)")).toBeInTheDocument();
+      expect(screen.getByText("Live (EN)")).toBeInTheDocument();
     });
 
     const publishCalls = global.fetch.mock.calls.filter(
@@ -568,7 +588,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
     expect(screen.queryByRole("dialog", { name: "You have unsaved changes." })).not.toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: "Chapter document" })).toHaveValue("Unsaved text.");
-    expect(screen.getByRole("button", { name: "Chapter One" })).toHaveClass("manual-admin__chapter-button--active");
+    expect(screen.getByRole("button", { name: "Chapter One" })).toHaveClass("editorial-sidebar__item--active");
   });
 
   it("continues navigation after Discard is chosen in the unsaved changes dialog", async () => {
@@ -591,7 +611,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Chapter Two" })).toHaveClass(
-        "manual-admin__chapter-button--active",
+        "editorial-sidebar__item--active",
       );
     });
     expect(screen.getByRole("textbox", { name: "Chapter document" })).not.toHaveValue("Unsaved text.");
@@ -613,12 +633,12 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Chapter Two" }));
 
     const dialog = getUnsavedChangesDialog();
-    await user.click(within(dialog).getByRole("button", { name: "Save" }));
+    await user.click(within(dialog).getByRole("button", { name: "Save draft" }));
 
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
       expect(screen.getByRole("button", { name: "Chapter Two" })).toHaveClass(
-        "manual-admin__chapter-button--active",
+        "editorial-sidebar__item--active",
       );
     });
 
@@ -643,7 +663,7 @@ describe("Manual management workspace (Task 59B)", () => {
     const dialog = getUnsavedChangesDialog();
     await user.click(within(dialog).getByRole("button", { name: "Cancel" }));
 
-    expect(screen.getByRole("button", { name: "EN" })).toHaveClass("manual-admin__locale-button--active");
+    expect(screen.getByRole("button", { name: "EN" })).toHaveClass("editorial-topbar__locale-button--active");
     expect(screen.getByRole("textbox", { name: "Chapter document" })).toHaveValue("Locale content.");
   });
 
@@ -659,7 +679,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "English Chapter" });
     await editDocument(user, "English body.");
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
     });
@@ -686,7 +706,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "English Chapter" });
     await editDocument(user, "English body.");
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
     });
@@ -715,7 +735,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "Chapter One" });
     await editDocument(user, "Saved body.");
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
 
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
@@ -748,7 +768,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
 
     const dialog = getUnsavedChangesDialog();
-    await user.click(within(dialog).getByRole("button", { name: "Save" }));
+    await user.click(within(dialog).getByRole("button", { name: "Save draft" }));
 
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
@@ -786,7 +806,7 @@ describe("Manual management workspace (Task 59B)", () => {
     expect(screen.queryByRole("dialog", { name: "You have unsaved changes." })).not.toBeInTheDocument();
     expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Chapter Two" })).toHaveClass(
-      "manual-admin__chapter-button--active",
+      "editorial-sidebar__item--active",
     );
   });
 
@@ -802,7 +822,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "Only Chapter" });
     await editDocument(user, "Saved once.");
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
 
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
@@ -835,7 +855,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await waitFor(() => {
       expect(screen.queryByRole("button", { name: "Chapter One" })).not.toBeInTheDocument();
       expect(screen.getByRole("button", { name: "Chapter Two" })).toHaveClass(
-        "manual-admin__chapter-button--active",
+        "editorial-sidebar__item--active",
       );
     });
   });
@@ -872,7 +892,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
     setNextDocumentText("Intro only.");
     await editDocument(user, "Intro only.");
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
 
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();

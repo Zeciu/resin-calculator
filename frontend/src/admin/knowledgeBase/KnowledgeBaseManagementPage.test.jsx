@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
+import { handleGlobalReferenceSearch, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
-vi.mock("./KnowledgeBaseRelationshipPicker.jsx", () => ({
-  default: function MockKnowledgeBaseRelationshipPicker({ label }) {
+vi.mock("../../editorial/CrossReferencePicker.jsx", () => ({
+  default: function MockCrossReferencePicker({ label }) {
     return <div aria-label={label}>Relationship picker</div>;
   },
 }));
@@ -189,7 +190,17 @@ function createInMemoryKnowledgeBaseApi() {
             }),
           });
         }
-        return Promise.resolve({ ok: true, status: 200, json: async () => ({ ...variant, exists: true }) });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () =>
+            withEditorialVisibility({
+              ...variant,
+              exists: true,
+              updatedAt: variant.updatedAt ?? "2026-01-01T00:00:00+00:00",
+              publishedAt: variant.publishedAt ?? null,
+            }),
+        });
       }
 
       if (variantMatch && method === "PUT") {
@@ -209,9 +220,15 @@ function createInMemoryKnowledgeBaseApi() {
           status: existing?.status || "draft",
           exists: true,
           body: payload.body,
+          updatedAt: "2026-01-02T00:00:00+00:00",
+          publishedAt: existing?.publishedAt ?? null,
         };
         variants.set(variantKey(contentId, locale), saved);
-        return Promise.resolve({ ok: true, status: 200, json: async () => saved });
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => withEditorialVisibility(saved),
+        });
       }
 
       const publishMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/publish$/);
@@ -235,7 +252,8 @@ function createInMemoryKnowledgeBaseApi() {
         const published = {
           ...variant,
           status: "published",
-          publishedAt: "2026-01-01T00:00:00+00:00",
+          publishedAt: "2026-01-03T00:00:00+00:00",
+          updatedAt: "2026-01-03T00:00:00+00:00",
         };
         variants.set(variantKey(contentId, locale), published);
         return Promise.resolve({
@@ -274,7 +292,13 @@ describe("Knowledge base management workspace (Task 61)", () => {
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
-      vi.fn((url, init) => memoryApi.handler(url, init?.method || "GET", init || {})),
+      vi.fn((url, init) => {
+        const global = handleGlobalReferenceSearch(url);
+        if (global) {
+          return global;
+        }
+        return memoryApi.handler(url, init?.method || "GET", init || {});
+      }),
     );
     vi.spyOn(window, "prompt").mockImplementation(() => "Sticky resin test");
     vi.spyOn(window, "confirm").mockReturnValue(true);
@@ -310,14 +334,14 @@ describe("Knowledge base management workspace (Task 61)", () => {
     await user.selectOptions(screen.getByLabelText("Difficulty"), "Intermediate");
     await user.type(screen.getByLabelText("Problem summary"), "Resin stays tacky after cure.");
     await user.type(screen.getByLabelText("Solution row 1"), "Check mixing ratio.");
-    await user.click(screen.getByRole("button", { name: "Save" }));
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
     await waitFor(() => {
       expect(screen.queryByText(/Unsaved changes/i)).not.toBeInTheDocument();
     });
 
     await user.click(screen.getByRole("button", { name: "Publish" }));
     await waitFor(() => {
-      expect(screen.getByText(/Published \(EN\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/Live \(EN\)|Draft changes \(EN\)/i)).toBeInTheDocument();
     });
   });
 
@@ -365,7 +389,7 @@ describe("Knowledge base management workspace (Task 61)", () => {
     });
 
     await user.click(screen.getByRole("button", { name: "RO" }));
-    expect(screen.getByText(/Published \(RO\)|Draft \(RO\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Live \(RO\)|Draft \(RO\)|Draft changes \(RO\)|No RO content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related Knowledge Base Articles")).toBeInTheDocument();
   });
 });
@@ -378,7 +402,13 @@ describe("Admin navigation", () => {
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
-      vi.fn((url, init) => memoryApi.handler(url, init?.method || "GET", init || {})),
+      vi.fn((url, init) => {
+        const global = handleGlobalReferenceSearch(url);
+        if (global) {
+          return global;
+        }
+        return memoryApi.handler(url, init?.method || "GET", init || {});
+      }),
     );
   });
 
