@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useBlocker, useLocation, useNavigate } from "react-router-dom";
 import ResinCalculator from "../calculator/ResinCalculator.jsx";
+import QuickPreferences from "../preferences/QuickPreferences.jsx";
 import SaveProjectDialog from "./SaveProjectDialog.jsx";
 import UnsavedChangesDialog from "./UnsavedChangesDialog.jsx";
 import {
@@ -297,6 +298,7 @@ export default function NewProjectWorkspace() {
 
   return (
     <div className="new-project-workspace">
+      <QuickPreferences variant="workspace" />
       {saveError && !showSaveDialog ? (
         <p className="new-project-workspace__save-error" role="alert">
           {saveError}

@@ -4920,6 +4920,63 @@ button.workspace-sidebar__link {
   line-height: 1;
 }
 
+.quick-preferences {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e0d3ba;
+  border-radius: 10px;
+  background: #fbf6ec;
+}
+
+.quick-preferences__title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7a6a52;
+}
+
+.quick-preferences__field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.quick-preferences__label {
+  font-size: 12px;
+  color: #6b5a48;
+}
+
+.quick-preferences__select {
+  padding: 5px 8px;
+  font-size: 13px;
+  border: 1px solid #d0bd9c;
+  border-radius: 7px;
+  background: #fffdf8;
+  color: #3f342a;
+}
+
+.quick-preferences--workspace {
+  flex-flow: row wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+  max-width: 640px;
+  margin-bottom: 16px;
+}
+
+.quick-preferences--workspace .quick-preferences__title {
+  flex-basis: 100%;
+}
+
+.editorial-sidebar__empty {
+  margin: 8px 4px;
+  font-size: 13px;
+  color: #7a6a52;
+}
+
 .my-account-page__settings-item--future {
   color: #6b5a48;
 }

@@ -54,13 +54,14 @@ class ManualChapterService:
         self._repository = repository
 
     def list_chapters(self, locale: str = DEFAULT_LOCALE) -> list[ManualChapterListItem]:
-        parse_locale(locale)
+        parsed_locale = parse_locale(locale)
         items: list[ManualChapterListItem] = []
         for content_id in self._repository.list_manual_chapter_ids():
             meta = self._repository.get_manual_chapter_meta(content_id)
             if not meta:
                 continue
             variants: dict[str, ManualVariantSummary] = {}
+            active_variant: dict | None = None
             for variant_locale in ("en", "ro"):
                 variant = self._repository.get_manual_variant(content_id, variant_locale)
                 if not variant:
@@ -70,10 +71,16 @@ class ManualChapterService:
                     updatedAt=parse_iso(variant.get("updatedAt")),
                     publishedAt=parse_iso(variant.get("publishedAt")),
                 )
+                if variant_locale == parsed_locale:
+                    active_variant = variant
+            # Only list chapters that have a saved variant in the active locale.
+            if active_variant is None:
+                continue
+            active_title = active_variant.get("draftBody", {}).get("title", "").strip()
             items.append(
                 ManualChapterListItem(
                     contentId=content_id,
-                    title=chapter_identity_title(self._repository, content_id),
+                    title=active_title or chapter_identity_title(self._repository, content_id),
                     sortOrder=meta["sortOrder"],
                     variants=variants,
                 )

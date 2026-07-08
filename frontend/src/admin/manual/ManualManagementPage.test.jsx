@@ -161,11 +161,13 @@ function createInMemoryManualApi() {
         const locale = parsed.searchParams.get("locale") || "en";
         const items = [...chapters.values()]
           .sort((a, b) => a.sortOrder - b.sortOrder)
+          // Only chapters with a saved variant in the active locale appear.
+          .filter((chapter) => variants.has(variantKey(chapter.contentId, locale)))
           .map((chapter) => {
-            const variant = variants.get(variantKey(chapter.contentId, locale));
+            const activeVariant = variants.get(variantKey(chapter.contentId, locale));
             return {
               contentId: chapter.contentId,
-              title: chapterListTitle(chapter.contentId),
+              title: activeVariant?.body?.title?.trim() || chapterListTitle(chapter.contentId),
               sortOrder: chapter.sortOrder,
               variants: {
                 en: { status: variants.get(variantKey(chapter.contentId, "en"))?.status || "draft" },
@@ -695,7 +697,7 @@ describe("Manual management workspace (Task 59B)", () => {
     expect(screen.queryByText(/English body/i)).not.toBeInTheDocument();
   });
 
-  it("shows the same chapter identity in the RO chapter list", async () => {
+  it("hides EN-only chapters from the RO sidebar and shows an empty state", async () => {
     const user = userEvent.setup();
     seedAdministrator();
     vi.spyOn(window, "prompt").mockReturnValueOnce("English Chapter");
@@ -714,10 +716,12 @@ describe("Manual management workspace (Task 59B)", () => {
 
     await user.click(screen.getByRole("button", { name: "RO" }));
 
+    // The EN-only chapter must not appear in the RO sidebar.
+    const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: "English Chapter" })).toBeInTheDocument();
+      expect(within(sidebar).queryByRole("button", { name: "English Chapter" })).not.toBeInTheDocument();
     });
-    expect(screen.queryByText("Untitled chapter")).not.toBeInTheDocument();
+    expect(within(sidebar).getByText("No Romanian chapters yet.")).toBeInTheDocument();
   });
 
   it("does not ask to save again after Save when adding a new chapter", async () => {
@@ -924,18 +928,22 @@ describe("Manual management workspace (Task 59B)", () => {
     await screen.findByRole("button", { name: "Capitol Nou" });
     expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("Capitol Nou");
 
+    // The RO chapter is listed in the RO sidebar.
+    const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
+    expect(within(sidebar).getByRole("button", { name: "Capitol Nou" })).toBeInTheDocument();
+
     // The create request targeted the RO locale.
     const createCall = global.fetch.mock.calls.find(
       ([url, init]) => init?.method === "POST" && String(url).endsWith("/api/admin/manual/chapters"),
     );
     expect(JSON.parse(createCall[1].body).locale).toBe("ro");
 
-    // EN did not receive the text.
+    // EN did not receive the text, and the chapter is absent from the EN sidebar.
     await user.click(screen.getByRole("button", { name: "EN" }));
     await waitFor(() => {
-      expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("");
-      expect(screen.getByRole("textbox", { name: "Chapter document" })).toHaveValue("");
+      expect(within(sidebar).queryByRole("button", { name: "Capitol Nou" })).not.toBeInTheDocument();
     });
+    expect(within(sidebar).getByText("No English chapters yet.")).toBeInTheDocument();
   });
 
   it("creates the EN variant (not RO) when adding a chapter on the EN tab", async () => {
@@ -961,6 +969,11 @@ describe("Manual management workspace (Task 59B)", () => {
     await waitFor(() => {
       expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("");
     });
+    const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
+    expect(
+      within(sidebar).queryByRole("button", { name: "English Only Chapter" }),
+    ).not.toBeInTheDocument();
+    expect(within(sidebar).getByText("No Romanian chapters yet.")).toBeInTheDocument();
   });
 
   it("warns that deleting a chapter removes it in all languages", async () => {

@@ -46,6 +46,7 @@
   "preferences.save": "Save preferences",
   "preferences.saved": "Preferences saved.",
   "preferences.saveFailed": "Could not save preferences.",
+  "quickPreferences.title": "Quick preferences",
   "locked.title": "Create your free HFZWood account to unlock this section.",
   "locked.body": "The complete HFZWood workspace becomes available after authentication. Your free account gives you access to projects, manuals, tutorials, glossary, knowledge base and resin calculation tools.",
   "locked.action": "Go to Login / Register",

@@ -2,6 +2,7 @@ import { Lock } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
+import QuickPreferences from "../preferences/QuickPreferences.jsx";
 import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
@@ -76,6 +77,11 @@ export default function WorkspaceSidebar() {
             </li>
           );
         })}
+        {isLoggedInHome ? (
+          <li className="workspace-sidebar__item workspace-sidebar__item--quick-preferences">
+            <QuickPreferences variant="sidebar" />
+          </li>
+        ) : null}
         {isAuthenticated ? (
           <li className="workspace-sidebar__item">
             <button

@@ -286,7 +286,7 @@ export function useEditorialWorkspace(config) {
         setLocale(nextLocale);
         setIsSaving(true);
         try {
-          await refreshItems();
+          await refreshItems(nextLocale);
           if (selectedItemId) {
             await loadVariant(selectedItemId, nextLocale);
           } else {

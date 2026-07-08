@@ -60,7 +60,7 @@ export default function ManualManagementPage() {
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
-      hasSelection={Boolean(workspace.selectedItem)}
+      hasSelection={Boolean(workspace.selectedItemId)}
       canSave={Boolean(workspace.selectedItemId)}
       canPublish={Boolean(workspace.selectedItemId)}
       errorMessage={workspace.errorMessage}
@@ -78,6 +78,11 @@ export default function ManualManagementPage() {
           items={workspace.sidebarItems}
           selectedId={workspace.selectedItemId}
           isSaving={workspace.isSaving}
+          emptyLabel={
+            workspace.locale === "ro"
+              ? "No Romanian chapters yet."
+              : "No English chapters yet."
+          }
           onAdd={workspace.handleAddItem}
           onSelect={workspace.handleSelectItem}
         />
@@ -87,7 +92,7 @@ export default function ManualManagementPage() {
         <div className="manual-admin__empty">
           <p>Loading manual chapters...</p>
         </div>
-      ) : workspace.selectedItem ? (
+      ) : workspace.selectedItemId ? (
         <>
           <div className="manual-admin__title-row">
             <div className="manual-admin__field manual-admin__field--title">
