@@ -2,14 +2,10 @@ import { useI18n } from "../i18n/I18nContext.jsx";
 import { usePreferences } from "./usePreferences.js";
 import {
   INTERFACE_LANGUAGES,
+  INTERFACE_LANGUAGE_LABELS,
   LENGTH_UNITS,
   VOLUME_UNITS,
 } from "./preferencesConstants.js";
-
-const LANGUAGE_LABELS = {
-  en: "English",
-  ro: "Română",
-};
 
 /**
  * Compact preference controls that reuse the shared PreferencesProvider.
@@ -43,7 +39,7 @@ export default function QuickPreferences({ variant = "sidebar" }) {
         >
           {INTERFACE_LANGUAGES.map((language) => (
             <option key={language} value={language}>
-              {LANGUAGE_LABELS[language] ?? language}
+              {INTERFACE_LANGUAGE_LABELS[language] ?? language}
             </option>
           ))}
         </select>

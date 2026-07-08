@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
+import { mockStatefulPreferencesFetch } from "../preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -13,26 +14,6 @@ function seedAuthenticatedSession() {
       user: { id: "stub-user", email: "user@example.com", username: "user" },
     }),
   );
-}
-
-/**
- * Stateful mock for the preferences API so a PUT (save) is reflected by the
- * next render, exactly like the real backend.
- */
-function mockStatefulPreferencesFetch(initial) {
-  let stored = { interfaceLanguage: "en", lengthUnit: "mm", volumeUnit: "L", exists: true, ...initial };
-  const fetchMock = vi.fn(async (url, options) => {
-    const requestUrl = String(url);
-    if (requestUrl.includes("/api/preferences")) {
-      if (options?.method === "PUT") {
-        stored = { ...stored, ...JSON.parse(options.body), exists: true };
-      }
-      return { ok: true, json: async () => stored };
-    }
-    return { ok: false, status: 404, json: async () => ({}) };
-  });
-  vi.stubGlobal("fetch", fetchMock);
-  return fetchMock;
 }
 
 describe("Preferences reachability and language switching", () => {
@@ -47,17 +28,17 @@ describe("Preferences reachability and language switching", () => {
     mockStatefulPreferencesFetch({ interfaceLanguage: "en" });
     renderWorkspace(ROUTES.HOME);
 
-    // Fix 1: My Account is discoverable from the authenticated Home screen.
+    // My Account is reachable from the authenticated Home screen.
     const myAccountLink = await screen.findByRole("link", { name: "My Account" });
     await user.click(myAccountLink);
 
-    // Fix 2: My Account -> Application Preferences.
+    // Application Preferences is linked from My Account.
     await user.click(await screen.findByRole("link", { name: "Application Preferences" }));
     expect(
       await screen.findByRole("heading", { name: "Application Preferences" }),
     ).toBeInTheDocument();
 
-    // Fix 3: change interface language to Romanian and save.
+    // Change interface language to Romanian and save.
     const languageSelect = screen.getAllByRole("combobox")[0];
     await user.selectOptions(languageSelect, "ro");
     await user.click(screen.getByRole("button", { name: /Save preferences/i }));

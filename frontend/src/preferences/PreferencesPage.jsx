@@ -4,15 +4,11 @@ import { useI18n } from "../i18n/I18nContext.jsx";
 import { usePreferences } from "./usePreferences.js";
 import {
   INTERFACE_LANGUAGES,
+  INTERFACE_LANGUAGE_LABELS,
   LENGTH_UNITS,
   VOLUME_UNITS,
 } from "./preferencesConstants.js";
 import { ROUTES } from "../workspace/routes.js";
-
-const LANGUAGE_LABELS = {
-  en: "English",
-  ro: "Română",
-};
 
 export default function PreferencesPage() {
   const { t } = useI18n();
@@ -62,7 +58,7 @@ export default function PreferencesPage() {
           >
             {INTERFACE_LANGUAGES.map((language) => (
               <option key={language} value={language}>
-                {LANGUAGE_LABELS[language]}
+                {INTERFACE_LANGUAGE_LABELS[language]}
               </option>
             ))}
           </select>

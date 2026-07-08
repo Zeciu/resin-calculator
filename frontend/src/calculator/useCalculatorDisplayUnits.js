@@ -29,7 +29,6 @@ export function useCalculatorDisplayUnits() {
       parseReferenceLengthToCm: (value) => lengthToCm(value, lengthUnit),
       parseDepthToMm: (value) => lengthToMm(value, lengthUnit),
       parseVolumeToLiters: (value) => volumeToLiters(value, volumeUnit),
-      t,
       referenceLengthError: () =>
         t("calculator.referenceLengthPositive", {
           unit: LENGTH_UNIT_LABELS[lengthUnit] ?? lengthUnit,

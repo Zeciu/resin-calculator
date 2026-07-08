@@ -4879,11 +4879,6 @@ button.workspace-sidebar__link {
   border-top: 1px solid #efe6d8;
 }
 
-.my-account-page__settings-link {
-  color: #5a3d20;
-  text-decoration: underline;
-}
-
 .my-account-page__preferences {
   border: 1px solid #d8c4a2;
   background: #fbf4e7;

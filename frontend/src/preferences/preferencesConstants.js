@@ -1,5 +1,10 @@
 export const INTERFACE_LANGUAGES = ["en", "ro"];
 
+export const INTERFACE_LANGUAGE_LABELS = {
+  en: "English",
+  ro: "Română",
+};
+
 export const LENGTH_UNITS = ["mm", "cm", "m", "in", "ft"];
 
 export const VOLUME_UNITS = ["ml", "L", "fl_oz", "pt", "qt", "gal"];
