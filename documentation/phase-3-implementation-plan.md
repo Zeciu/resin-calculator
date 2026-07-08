@@ -536,23 +536,35 @@ This task does not implement:
 | Expected result | Authenticated users can configure personal application preferences that are automatically remembered between sessions. The preferences system supports interface language, measurement units and future user-specific settings. |
 | Acceptance criteria | Users can access an Application Preferences page from their account. Users can select their preferred interface language, preferred length unit and preferred volume unit. Preferences are stored per user and automatically applied when the user signs in. The system is designed to support additional personal preferences in future versions without requiring architectural changes. |
 
-**Status:** Complete (2026-07-08).
+**Status:** Complete and accepted (2026-07-08). Product Owner manual QA passed after QA repair passes A–C.
 
 ### Implementation Notes
 
-**Backend:** `GET/PUT /api/preferences` with per-user filesystem storage (`backend/data/preferences/<userId>.json`) via `FilesystemPreferencesRepository`; repository interface is DynamoDB-ready (`USER#<userId>` / `PREFS`). Defaults: `en`, `mm`, `L`. Response includes `exists` flag.
+**Backend:** `GET/PUT /api/preferences` with per-user filesystem storage (`backend/data/preferences/<userId>.json`) via `FilesystemPreferencesRepository`; repository interface is DynamoDB-ready (`USER#<userId>` / `PREFS`). Defaults: `en`, `mm`, `L`. Response includes `exists` flag. `PUT` accepts partial updates (single-field changes from quick controls).
 
-**Frontend:** `PreferencesProvider` (separate from `AuthContext`) loads preferences after login/session restore and resets on logout. Application Preferences page at `/account/preferences`, linked from My Account (Profile, Application Preferences, Subscription, Security placeholder).
+**Frontend:** `PreferencesProvider` (separate from `AuthContext`) loads preferences after login/session restore and resets on logout. Application Preferences page at `/account/preferences`, linked from My Account as a prominent card (Profile, Application Preferences, Subscription, Security placeholder). `QuickPreferences` component reuses `updatePreferences` for immediate save from the authenticated Home sidebar and the New Project workspace.
 
 **Browser language (first launch only):** when `exists: false`, the client applies `navigator.language` (`en` or `ro`) for interface language until the user saves preferences; after first save, stored preference is always respected.
 
-**i18n:** `frontend/src/i18n/en.json` and `ro.json` with infrastructure in `I18nProvider`; high-visibility surfaces translated (navigation, account, preferences, locked module, unsaved dialog, content unavailable). Admin panel remains English.
+**i18n:** `frontend/src/i18n/en.json` and `ro.json` with infrastructure in `I18nProvider`; high-visibility surfaces translated (navigation, account, preferences, locked module, unsaved dialog, content unavailable, Home hero). Admin panel remains English.
 
-**Units:** `frontend/src/units/conversion.js` converts display only; canonical values unchanged in API calls, calculator state, and `.hfzproject` files (cm, mm, liters).
+**Units:** `frontend/src/units/conversion.js` and `useCalculatorDisplayUnits` convert display only; canonical values unchanged in API calls, calculator state, and `.hfzproject` files (cm, mm, liters).
 
 **Content language:** Manual, Glossary, and Knowledge Base request `preferences.interfaceLanguage`; unavailable locale shows localized message plus explicit **View English version** when `englishAvailable`; never auto-switch.
 
+**Manual admin (locale isolation):** chapter create accepts `locale` and writes the initial variant in the admin's active locale. Admin chapter list (`GET /api/admin/manual/chapters?locale=`) returns only chapters with a saved variant in that locale; per-locale empty state in the sidebar. Delete remains global across all languages with an explicit confirmation warning.
+
 **Out of scope (deferred):** roles (Task 64), subscriptions, themes, notifications, automatic translation, CMS workflow changes.
+
+### QA repair passes (accepted)
+
+| Pass | Focus | Outcome |
+|------|-------|---------|
+| A | Navigation and preferences reachability | My Account visible from Home sidebar and module headers; Application Preferences linked from My Account; high-visibility Home/hero strings localized |
+| B | Runtime usability | Preferences discoverability (prominent card); locale-aware manual chapter create; delete-all-languages warning; calculator volume unit label fix |
+| C | Quick controls and manual sidebar | `QuickPreferences` on Home sidebar and New Project workspace; manual admin sidebar filtered by active locale with empty state |
+
+Product Owner manual QA passed on commit `3523321`. No further Task 63 implementation work remains.
 
 ### Product Clarifications
 

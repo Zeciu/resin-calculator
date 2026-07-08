@@ -601,6 +601,18 @@ Defaults: `en`, `mm`, `L`.
 - DynamoDB `USER#<cognitoSub|mockId>` / `PREFS`.
 - Loaded on session restore after login; applied globally.
 
+### 15.4 Quick preferences (accepted UX)
+
+- `QuickPreferences` (`frontend/src/preferences/QuickPreferences.jsx`) exposes interface language, length unit, and volume unit as compact selects.
+- Mounted on the authenticated Home sidebar (below My Account, above Log out) and at the top of the New Project workspace.
+- Each change calls `updatePreferences` with a partial patch (same API as the full Application Preferences page); no duplicate preference logic.
+- Full settings remain at `/account/preferences`.
+
+### 15.5 Manual admin locale list (Task 59/63 QA)
+
+- `GET /api/admin/manual/chapters?locale=` returns only chapters that have a saved variant in the requested locale.
+- Sidebar shows a per-locale empty state when none exist; chapter create writes the initial variant in the admin's active locale only.
+
 ---
 
 ## 16. Project Structure
@@ -641,6 +653,7 @@ frontend/src/
     conversion.js
   preferences/
     PreferencesPage.jsx
+    QuickPreferences.jsx
     preferencesApi.js
   manual/                         # public reader (API-backed)
   glossary/

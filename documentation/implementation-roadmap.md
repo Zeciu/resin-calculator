@@ -159,7 +159,7 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Progress (2026-07-08)
 
-**Phase 3 status:** In progress (Tasks 58, 59, and 60 complete and approved).
+**Phase 3 status:** In progress (Tasks 58–63 complete and approved; Task 63 accepted after Product Owner manual QA).
 
 | Task | Name | Status |
 |------|------|--------|
@@ -168,14 +168,14 @@ A user should be able to complete a basic project session and find help in the M
 | 60 | Glossary Content Management | Complete |
 | 61 | Knowledge Base Content Management | Complete |
 | 62 | Shared Editorial Infrastructure | Complete |
-| 63 | Application Preferences | Complete |
+| 63 | Application Preferences | Complete (accepted) |
 | 64 | Roles & Permissions | Pending |
 | 65 | Phase 3 Integration, QA & Documentation Alignment | Pending |
 | 66 | Phase 3 Release Certification | Pending |
 
 ## Current baseline
 
-Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. Task 62 (Editorial Infrastructure) is complete and approved. Task 63 (Application Preferences) is complete and approved. The repository baseline now includes:
+Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. Task 62 (Editorial Infrastructure) is complete and approved. Task 63 (Application Preferences) is complete, passed Product Owner manual QA, and is accepted. The repository baseline now includes:
 
 * dedicated `/admin` route branch with administrator-only guard;
 * admin Manual workspace at `/admin/manual` with chapter list, TipTap chapter editor, EN/RO locale switching, and explicit Save/Publish controls (no autosave);
@@ -206,10 +206,11 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * i18n infrastructure (`frontend/src/i18n/`) for high-visibility user surfaces;
 * display-unit conversion in the calculator (`frontend/src/units/conversion.js`) without changing canonical project data or backend calculations;
 * public Manual, Glossary, and Knowledge Base modules request content by interface language with localized unavailable messaging and explicit English fallback;
-* Application Preferences reachable by normal authenticated users — My Account is linked from the Home hub sidebar and from every dedicated module header, and surfaces Application Preferences as a prominent card — and interface language switching localizes navigation, Home, workspace hero, My Account, Preferences, dialogs, and the locked-module surface (Task 63 QA Fix Pass A/B);
-* Manual chapter creation writes the variant in the admin's active locale (EN or RO) instead of always English, and deleting a chapter warns that it removes the chapter in all languages; the calculator volume unit label renders the selected unit correctly (Task 63/62 QA repair pass);
-* compact quick-preference controls (interface language, length unit, volume unit) reuse the shared PreferencesProvider and appear on the authenticated Home sidebar and the New Project workspace; the Manual admin sidebar lists only chapters that have a saved variant in the active locale, with a clear per-locale empty state (Task 63 QA Fix Pass C).
+* Application Preferences reachable by normal authenticated users — My Account is linked from the Home hub sidebar and from every dedicated module header, and surfaces Application Preferences as a prominent card — and interface language switching localizes navigation, Home, workspace hero, My Account, Preferences, dialogs, and the locked-module surface;
+* compact quick-preference controls (interface language, length unit, volume unit) on the authenticated Home sidebar and the New Project workspace, reusing the shared `PreferencesProvider` and persisting immediately via `updatePreferences`;
+* Manual admin chapter creation writes the variant in the admin's active locale (EN or RO); the admin sidebar lists only chapters with a saved variant in the active locale, with a per-locale empty state; deleting a chapter warns that it removes the chapter in all languages;
+* calculator display units (length and volume labels, inputs, and outputs) reflect user preferences without changing canonical project data.
 
 The next implementation step is **task 64 Roles & Permissions**.
 
-Task 63 introduced per-user preferences for interface language and display units. It did not implement roles, subscriptions, themes, notifications, automatic translation, or CMS workflow changes — those belong to later tasks.
+Task 63 introduced per-user preferences for interface language and display units. QA repair passes A–C addressed navigation discoverability, locale-aware manual admin behavior, quick controls, and calculator unit display. It did not implement roles, subscriptions, themes, notifications, automatic translation, or CMS workflow changes — those belong to later tasks.
