@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Header, Request
+from fastapi import APIRouter, Depends, Header
 
 from auth.dependencies import get_current_user
 from content.repositories.entitlements import EntitlementsRepository, FilesystemEntitlementsRepository
@@ -20,12 +20,8 @@ def get_capability_resolver(
 
 @router.get("/capabilities", response_model=CapabilitiesResponse)
 def get_my_capabilities(
-    request: Request,
     user: dict = Depends(get_current_user),
     resolver: CapabilityResolver = Depends(get_capability_resolver),
     x_mock_access_tier: str | None = Header(default=None, alias="X-Mock-Access-Tier"),
 ) -> CapabilitiesResponse:
-    mock_access_tier = x_mock_access_tier
-    if mock_access_tier is None:
-        mock_access_tier = request.headers.get("X-Mock-Access-Tier")
-    return resolver.resolve(user["id"], user["role"], mock_access_tier=mock_access_tier)
+    return resolver.resolve(user["id"], user["role"], mock_access_tier=x_mock_access_tier)

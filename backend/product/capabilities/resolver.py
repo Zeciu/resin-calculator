@@ -1,11 +1,10 @@
 import os
-from typing import Any
 
 from auth.dependencies import auth_mode
 from content.repositories.entitlements import EntitlementsRepository
 
 from .catalog import catalog_for_tier
-from .schema import CATALOG_VERSION, VALID_ACCESS_TIERS, CapabilitiesResponse
+from .schema import CATALOG_VERSION, CapabilitiesResponse
 
 COMMERCIAL_ACCESS_TIERS = frozenset({"free", "subscriber"})
 
@@ -64,14 +63,3 @@ class CapabilityResolver:
 
         stored = self._entitlements.get_access_tier(user_id)
         return normalize_commercial_access_tier(stored)
-
-
-def as_capability_bool(capabilities: dict[str, Any], key: str) -> bool:
-    return bool(capabilities.get(key))
-
-
-def as_capability_limit(capabilities: dict[str, Any], key: str) -> int | None:
-    value = capabilities.get(key)
-    if value is None:
-        return None
-    return int(value)

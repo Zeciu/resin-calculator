@@ -159,7 +159,7 @@ A user should be able to complete a basic project session and find help in the M
 
 ## Progress (2026-07-08)
 
-**Phase 3 status:** In progress (Tasks 58–63 complete and approved; Task 63 accepted after Product Owner manual QA).
+**Phase 3 status:** **COMPLETE** (Tasks 58–65 complete and approved; Task 66 formal release certification pending).
 
 | Task | Name | Status |
 |------|------|--------|
@@ -169,8 +169,8 @@ A user should be able to complete a basic project session and find help in the M
 | 61 | Knowledge Base Content Management | Complete |
 | 62 | Shared Editorial Infrastructure | Complete |
 | 63 | Application Preferences | Complete (accepted) |
-| 64 | Roles & Permissions | Pending |
-| 65 | Phase 3 Integration, QA & Documentation Alignment | Pending |
+| 64 | Roles, Authorization & Product Capability Foundation | Complete (accepted) |
+| 65 | Phase 3 Integration, QA & Documentation Alignment | Complete |
 | 66 | Phase 3 Release Certification | Pending |
 
 ## Current baseline
@@ -209,8 +209,9 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * Application Preferences reachable by normal authenticated users — My Account is linked from the Home hub sidebar and from every dedicated module header, and surfaces Application Preferences as a prominent card — and interface language switching localizes navigation, Home, workspace hero, My Account, Preferences, dialogs, and the locked-module surface;
 * compact quick-preference controls (interface language, length unit, volume unit) on the authenticated Home sidebar and the New Project workspace, reusing the shared `PreferencesProvider` and persisting immediately via `updatePreferences`;
 * Manual admin chapter creation writes the variant in the admin's active locale (EN or RO); the admin sidebar lists only chapters with a saved variant in the active locale, with a per-locale empty state; deleting a chapter warns that it removes the chapter in all languages;
-* calculator display units (length and volume labels, inputs, and outputs) reflect user preferences without changing canonical project data.
+* calculator display units (length and volume labels, inputs, and outputs) reflect user preferences without changing canonical project data;
+* secure administrator authorization (`user` / `administrator` roles; Cognito `administrators` group);
+* backend-owned product capability catalog (`free`, `subscriber`, `administrator_unlimited`) with `GET /api/me/capabilities`;
+* frontend `CapabilitiesProvider` with `useCapability()` / `useCapabilityLimit()` — infrastructure only, no visible commercial gating.
 
-The next implementation step is **task 65 Phase 3 Integration, QA & Documentation Alignment**.
-
-**Task 64** added secure administrator authorization (`user` / `administrator` roles; Cognito `administrators` group), a backend-owned product capability catalog (`free`, `subscriber`, `administrator_unlimited`), `GET /api/me/capabilities`, and frontend `CapabilitiesProvider` with `useCapability()` / `useCapabilityLimit()`. Role and access tier remain independent. No subscriptions, payments, billing, Stripe, or visible commercial gating UI were implemented.
+The next step is **Task 66 — Phase 3 Release Certification** (formal baseline sign-off before Phase 4).

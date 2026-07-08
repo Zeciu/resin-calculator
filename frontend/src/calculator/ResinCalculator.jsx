@@ -1961,7 +1961,6 @@ export default forwardRef(function ResinCalculator(
       });
 
       const data = await response.json();
-      console.log("Raw /calculate-wood response:", data);
       if (!response.ok) {
         throw new Error(data.error || "Calculation failed.");
       }

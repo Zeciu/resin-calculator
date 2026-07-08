@@ -718,12 +718,18 @@ Administrators always resolve to `administrator_unlimited` capabilities (bypass)
 Subscriptions, payments, billing, Stripe, checkout, token purchasing, subscriber management UI, visible upgrade prompts, pricing UI, commercial gating UI, AI functionality, user management, audit logs, permission matrix, per-document permissions.
 ## Task 65 — Phase 3 Integration, QA & Documentation Alignment
 
+**Status:** Complete (release audit, 2026-07-08).
+
 | Field | Detail |
 |-------|--------|
 | Objective | Validate, integrate and finalize all Phase 3 functionality into a stable, coherent and production-ready product. Ensure that all newly introduced modules work together consistently and that the project documentation accurately reflects the implemented solution. |
 | Dependencies | Tasks 58–64 |
 | Expected result | All Phase 3 modules operate as a unified system. Editorial workflows, multilingual content management, permissions, shared infrastructure and user preferences are fully integrated, thoroughly tested and accurately documented. |
 | Acceptance criteria | All Phase 3 functionality passes integration testing. Editorial workflows operate correctly from Draft to Published. Multilingual content behaves consistently across the application. Shared editorial infrastructure functions correctly in every module. Roles and permissions are enforced consistently. Project documentation is synchronized with the final implementation. All identified issues are resolved before Phase 3 is certified as complete. |
+
+### Audit outcome
+
+Release audit confirmed: all Tasks 58–64 features pass automated regression tests (81 backend, 234 frontend); production build succeeds; documentation synchronized; minor hygiene cleanup applied (debug `console.log` removal, dead placeholder note, unused capability helpers). No functional regressions found. Phase 3 is production-ready for the current mock-auth / filesystem-storage deployment model. Task 66 formal certification remains before Phase 4.
 
 ### Product Clarifications
 

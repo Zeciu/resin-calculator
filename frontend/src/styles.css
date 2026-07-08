@@ -3796,8 +3796,7 @@ button.workspace-sidebar__link {
   color: #3a3228;
 }
 
-.admin-placeholder-page__message,
-.admin-placeholder-page__note {
+.admin-placeholder-page__message {
   margin: 0 0 12px;
   font-size: 16px;
   line-height: 1.65;

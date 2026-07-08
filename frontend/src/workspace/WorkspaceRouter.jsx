@@ -158,7 +158,6 @@ export default function WorkspaceRouter() {
                 <AdminPlaceholderPage
                   title={item.placeholderTitle}
                   message={item.placeholderMessage}
-                  showEditorialNote={item.showEditorialNote}
                 />
               }
             />

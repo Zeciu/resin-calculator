@@ -2,6 +2,8 @@
 
 This document defines **how** Phase 3 will be implemented. The approved product architecture is defined in [phase-3-implementation-plan.md](./phase-3-implementation-plan.md) (Tasks 58–66). All product decisions in that document are final; this document derives the technical implementation required to satisfy them.
 
+**Phase 3 implementation status:** Complete (Tasks 58–65). Task 66 release certification pending.
+
 ---
 
 ## 1. Scope and Principles

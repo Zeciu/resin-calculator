@@ -11,7 +11,6 @@ import { ADMIN_ROUTES } from "./adminRoutes.js";
  *   end?: boolean;
  *   placeholderTitle?: string;
  *   placeholderMessage?: string;
- *   showEditorialNote?: boolean;
  * }} AdminNavItem
  */
 
