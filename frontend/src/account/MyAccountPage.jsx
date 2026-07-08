@@ -41,6 +41,24 @@ export default function MyAccountPage() {
       </section>
 
       <section
+        className="my-account-page__section my-account-page__preferences"
+        aria-labelledby="my-account-preferences-heading"
+      >
+        <h3 className="my-account-page__section-title" id="my-account-preferences-heading">
+          {t("account.applicationPreferences")}
+        </h3>
+        <p className="my-account-page__placeholder">
+          {t("account.applicationPreferencesDescription")}
+        </p>
+        <Link to={ROUTES.PREFERENCES} className="my-account-page__preferences-cta">
+          <span>{t("account.applicationPreferences")}</span>
+          <span className="my-account-page__preferences-cta-arrow" aria-hidden="true">
+            →
+          </span>
+        </Link>
+      </section>
+
+      <section
         className="my-account-page__section"
         aria-labelledby="my-account-subscription-heading"
       >
@@ -55,11 +73,6 @@ export default function MyAccountPage() {
           {t("account.settings")}
         </h3>
         <ul className="my-account-page__settings-list">
-          <li className="my-account-page__settings-item">
-            <Link to={ROUTES.PREFERENCES} className="my-account-page__settings-link">
-              {t("account.applicationPreferences")}
-            </Link>
-          </li>
           <li className="my-account-page__settings-item my-account-page__settings-item--future">
             {t("account.security")} — {t("account.securityPlaceholder")}
           </li>

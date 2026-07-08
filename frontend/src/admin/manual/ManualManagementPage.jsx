@@ -30,7 +30,7 @@ export default function ManualManagementPage() {
     saveItem: (contentId, locale, editorState) =>
       saveManualVariant(contentId, locale, editorToVariantBody(editorState.title, editorState.document)),
     publishItem: (contentId, locale) => publishManualVariant(contentId, locale),
-    createItem: (title) => createManualChapter(title),
+    createItem: (title, locale) => createManualChapter(title, locale),
     deleteItem: deleteManualChapter,
     createPromptLabel: "Enter the chapter title",
     variantToEditor,
@@ -39,6 +39,8 @@ export default function ManualManagementPage() {
     emptyEditorState,
     getDeleteLabel: (editorState, selectedItem) =>
       editorState.title.trim() || selectedItem?.title || "this chapter",
+    getDeleteConfirmMessage: (label) =>
+      `Delete "${label}"? This deletes this chapter in all languages. This cannot be undone.`,
     messages: {
       loadList: "Failed to load manual chapters.",
       loadVariant: "Failed to load chapter.",

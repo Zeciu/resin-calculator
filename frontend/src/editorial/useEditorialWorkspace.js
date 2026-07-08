@@ -144,7 +144,7 @@ export function useEditorialWorkspace(config) {
     setErrorMessage("");
     setIsSaving(true);
     try {
-      const created = await config.createItem(trimmed);
+      const created = await config.createItem(trimmed, locale);
       const nextItems = await refreshItems();
       const createdItem = nextItems.find((item) => item.contentId === created.contentId) ?? created;
       setSelectedItemId(createdItem.contentId);
@@ -162,7 +162,10 @@ export function useEditorialWorkspace(config) {
     }
 
     const deleteLabel = config.getDeleteLabel(editorState, selectedItem, items);
-    const confirmed = window.confirm(`Delete "${deleteLabel}"? This cannot be undone.`);
+    const confirmMessage = config.getDeleteConfirmMessage
+      ? config.getDeleteConfirmMessage(deleteLabel)
+      : `Delete "${deleteLabel}"? This cannot be undone.`;
+    const confirmed = window.confirm(confirmMessage);
     if (!confirmed) {
       return;
     }

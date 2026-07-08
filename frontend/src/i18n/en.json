@@ -29,6 +29,7 @@
   "account.subscriptionPlaceholder": "Free plan — billing and subscription management will be added in a later phase.",
   "account.settings": "Settings",
   "account.applicationPreferences": "Application Preferences",
+  "account.applicationPreferencesDescription": "Choose your interface language and preferred length and volume units. These settings only change how things are shown to you.",
   "account.security": "Security",
   "account.securityPlaceholder": "Password and security settings will be added in a later phase.",
   "account.notifications": "Notification settings",

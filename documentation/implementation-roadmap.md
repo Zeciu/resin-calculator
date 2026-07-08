@@ -206,7 +206,8 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * i18n infrastructure (`frontend/src/i18n/`) for high-visibility user surfaces;
 * display-unit conversion in the calculator (`frontend/src/units/conversion.js`) without changing canonical project data or backend calculations;
 * public Manual, Glossary, and Knowledge Base modules request content by interface language with localized unavailable messaging and explicit English fallback;
-* Application Preferences reachable by normal authenticated users — My Account is linked from the Home hub sidebar and from every dedicated module header — and interface language switching localizes navigation, Home, workspace hero, My Account, Preferences, dialogs, and the locked-module surface (Task 63 QA Fix Pass A).
+* Application Preferences reachable by normal authenticated users — My Account is linked from the Home hub sidebar and from every dedicated module header, and surfaces Application Preferences as a prominent card — and interface language switching localizes navigation, Home, workspace hero, My Account, Preferences, dialogs, and the locked-module surface (Task 63 QA Fix Pass A/B);
+* Manual chapter creation writes the variant in the admin's active locale (EN or RO) instead of always English, and deleting a chapter warns that it removes the chapter in all languages; the calculator volume unit label renders the selected unit correctly (Task 63/62 QA repair pass).
 
 The next implementation step is **task 64 Roles & Permissions**.
 

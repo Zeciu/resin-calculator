@@ -29,6 +29,7 @@
   "account.subscriptionPlaceholder": "Plan gratuit — gestionarea abonamentului va fi adăugată într-o fază viitoare.",
   "account.settings": "Setări",
   "account.applicationPreferences": "Preferințe aplicație",
+  "account.applicationPreferencesDescription": "Alege limba interfeței și unitățile preferate de lungime și volum. Aceste setări schimbă doar modul în care îți sunt afișate lucrurile.",
   "account.security": "Securitate",
   "account.securityPlaceholder": "Setările de parolă și securitate vor fi adăugate într-o fază viitoare.",
   "account.notifications": "Notificări",

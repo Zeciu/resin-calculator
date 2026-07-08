@@ -80,8 +80,9 @@ class ManualChapterService:
             )
         return items
 
-    def create_chapter(self, title: str) -> ManualChapterMeta:
-        meta = self._repository.create_manual_chapter(title)
+    def create_chapter(self, title: str, locale: str = DEFAULT_LOCALE) -> ManualChapterMeta:
+        parsed_locale = parse_locale(locale)
+        meta = self._repository.create_manual_chapter(title, locale=parsed_locale)
         return ManualChapterMeta(
             contentId=meta["contentId"],
             sortOrder=meta["sortOrder"],

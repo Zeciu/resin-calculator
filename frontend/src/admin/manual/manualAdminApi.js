@@ -6,10 +6,10 @@ export function listManualChapters(locale = "en") {
   return client.request(`?locale=${encodeURIComponent(locale)}`);
 }
 
-export function createManualChapter(title) {
+export function createManualChapter(title, locale = "en") {
   return client.request("", {
     method: "POST",
-    body: JSON.stringify({ title }),
+    body: JSON.stringify({ title, locale }),
   });
 }
 

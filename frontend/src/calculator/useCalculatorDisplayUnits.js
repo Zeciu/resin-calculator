@@ -54,10 +54,6 @@ export function useCalculatorDisplayUnits() {
         t("calculator.depthLabel", {
           unit: LENGTH_UNIT_LABELS[lengthUnit] ?? lengthUnit,
         }),
-      volumeLabel: () =>
-        t("calculator.volumeLabel", {
-          unit: VOLUME_UNIT_LABELS[volumeUnit] ?? volumeUnit,
-        }),
     }),
     [lengthUnit, volumeUnit, t],
   );

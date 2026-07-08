@@ -71,7 +71,7 @@ def create_chapter(
     _: dict = Depends(require_administrator),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> ManualChapterMeta:
-    return service.create_chapter(payload.title)
+    return service.create_chapter(payload.title, payload.locale)
 
 
 @router.post("/reorder", status_code=204)

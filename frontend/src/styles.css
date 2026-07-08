@@ -4884,6 +4884,42 @@ button.workspace-sidebar__link {
   text-decoration: underline;
 }
 
+.my-account-page__preferences {
+  border: 1px solid #d8c4a2;
+  background: #fbf4e7;
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.my-account-page__preferences-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #5a3d20;
+  color: #fdf7ec;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid #4a3119;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.my-account-page__preferences-cta:hover {
+  background: #4a3119;
+}
+
+.my-account-page__preferences-cta:active {
+  transform: translateY(1px);
+}
+
+.my-account-page__preferences-cta-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
 .my-account-page__settings-item--future {
   color: #6b5a48;
 }

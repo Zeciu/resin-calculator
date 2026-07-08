@@ -94,6 +94,34 @@ describe("Preferences reachability and language switching", () => {
     expect(within(sidebar).getByRole("link", { name: "Contul meu" })).toBeInTheDocument();
   });
 
+  it("saves length and volume unit preferences and persists them", async () => {
+    const user = userEvent.setup();
+    seedAuthenticatedSession();
+    const fetchMock = mockStatefulPreferencesFetch({ lengthUnit: "mm", volumeUnit: "L" });
+    renderWorkspace(ROUTES.PREFERENCES);
+
+    await screen.findByRole("heading", { name: "Application Preferences" });
+
+    const [, lengthSelect, volumeSelect] = screen.getAllByRole("combobox");
+    await user.selectOptions(lengthSelect, "cm");
+    await user.selectOptions(volumeSelect, "ml");
+    await user.click(screen.getByRole("button", { name: /Save preferences/i }));
+
+    await waitFor(() => {
+      const putCall = fetchMock.mock.calls.find(([, init]) => init?.method === "PUT");
+      expect(putCall).toBeTruthy();
+      const body = JSON.parse(putCall[1].body);
+      expect(body.lengthUnit).toBe("cm");
+      expect(body.volumeUnit).toBe("ml");
+    });
+
+    // Selected units remain reflected after the save round-trip.
+    await waitFor(() => {
+      expect(screen.getAllByRole("combobox")[1]).toHaveValue("cm");
+      expect(screen.getAllByRole("combobox")[2]).toHaveValue("ml");
+    });
+  });
+
   it("keeps My Account reachable from a dedicated module page", async () => {
     seedAuthenticatedSession();
     mockStatefulPreferencesFetch({ interfaceLanguage: "en" });

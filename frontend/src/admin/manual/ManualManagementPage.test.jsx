@@ -178,6 +178,7 @@ function createInMemoryManualApi() {
 
       if (path === "/" && method === "POST") {
         const payload = JSON.parse(init.body);
+        const createLocale = payload.locale || "en";
         const contentId = payload.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
         sortOrder += 100;
         chapters.set(contentId, {
@@ -185,9 +186,9 @@ function createInMemoryManualApi() {
           title: payload.title,
           sortOrder,
         });
-        variants.set(variantKey(contentId, "en"), {
+        variants.set(variantKey(contentId, createLocale), {
           contentId,
-          locale: "en",
+          locale: createLocale,
           status: "draft",
           body: emptyVariantBody(payload.title),
         });
@@ -904,5 +905,83 @@ describe("Manual management workspace (Task 59B)", () => {
     );
     expect(postCalls).toHaveLength(0);
     expect(screen.getAllByRole("button", { name: "Media Chapter" })).toHaveLength(1);
+  });
+
+  it("creates the RO variant (not EN) when adding a chapter on the RO tab", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    vi.spyOn(window, "prompt").mockReturnValueOnce("Capitol Nou");
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
+    });
+
+    await user.click(screen.getByRole("button", { name: "RO" }));
+    await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
+
+    // RO editor is populated with the created title.
+    await screen.findByRole("button", { name: "Capitol Nou" });
+    expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("Capitol Nou");
+
+    // The create request targeted the RO locale.
+    const createCall = global.fetch.mock.calls.find(
+      ([url, init]) => init?.method === "POST" && String(url).endsWith("/api/admin/manual/chapters"),
+    );
+    expect(JSON.parse(createCall[1].body).locale).toBe("ro");
+
+    // EN did not receive the text.
+    await user.click(screen.getByRole("button", { name: "EN" }));
+    await waitFor(() => {
+      expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("");
+      expect(screen.getByRole("textbox", { name: "Chapter document" })).toHaveValue("");
+    });
+  });
+
+  it("creates the EN variant (not RO) when adding a chapter on the EN tab", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    vi.spyOn(window, "prompt").mockReturnValueOnce("English Only Chapter");
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
+    });
+
+    await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
+    await screen.findByRole("button", { name: "English Only Chapter" });
+    expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("English Only Chapter");
+
+    const createCall = global.fetch.mock.calls.find(
+      ([url, init]) => init?.method === "POST" && String(url).endsWith("/api/admin/manual/chapters"),
+    );
+    expect(JSON.parse(createCall[1].body).locale).toBe("en");
+
+    await user.click(screen.getByRole("button", { name: "RO" }));
+    await waitFor(() => {
+      expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("");
+    });
+  });
+
+  it("warns that deleting a chapter removes it in all languages", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    vi.spyOn(window, "prompt").mockReturnValueOnce("Deletable Chapter");
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(false);
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
+    });
+    await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
+    await screen.findByRole("button", { name: "Deletable Chapter" });
+
+    await user.click(screen.getByRole("button", { name: "Delete Chapter" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(
+      expect.stringContaining("This deletes this chapter in all languages."),
+    );
+    // Cancelled (confirm returned false) — chapter remains.
+    expect(screen.getByRole("button", { name: "Deletable Chapter" })).toBeInTheDocument();
   });
 });

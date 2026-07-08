@@ -105,7 +105,9 @@ class FilesystemContentRepository:
         records = self._read_store()
         return self._get_record(records, make_variant_key(content_id, locale))
 
-    def create_manual_chapter(self, title: str, content_id: str | None = None) -> dict[str, Any]:
+    def create_manual_chapter(
+        self, title: str, content_id: str | None = None, locale: str = DEFAULT_LOCALE
+    ) -> dict[str, Any]:
         records = self._read_store()
         chapter_id = content_id or self._allocate_content_id(records, title)
         if make_meta_key(chapter_id) in records:
@@ -124,9 +126,9 @@ class FilesystemContentRepository:
         }
         variant = {
             "pk": f"CONTENT#{chapter_id}",
-            "sk": f"VARIANT#{DEFAULT_LOCALE}",
+            "sk": f"VARIANT#{locale}",
             "contentId": chapter_id,
-            "locale": DEFAULT_LOCALE,
+            "locale": locale,
             "status": "draft",
             "draftBody": {
                 "title": title.strip(),
@@ -149,7 +151,7 @@ class FilesystemContentRepository:
         }
 
         records[make_meta_key(chapter_id)] = meta
-        records[make_variant_key(chapter_id, DEFAULT_LOCALE)] = variant
+        records[make_variant_key(chapter_id, locale)] = variant
         records[make_order_key(sort_order)] = order
         self._write_store(records)
         return deepcopy(meta)
