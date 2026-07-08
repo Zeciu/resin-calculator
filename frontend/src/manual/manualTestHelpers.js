@@ -23,6 +23,17 @@ export function mockPublishedManualFetch(sections = MANUAL_SECTIONS) {
         json: async () => buildPublishedManualResponse(sections),
       };
     }
+    if (requestUrl.includes("/api/preferences")) {
+      return {
+        ok: true,
+        json: async () => ({
+          interfaceLanguage: "en",
+          lengthUnit: "mm",
+          volumeUnit: "L",
+          exists: true,
+        }),
+      };
+    }
     return {
       ok: false,
       status: 404,

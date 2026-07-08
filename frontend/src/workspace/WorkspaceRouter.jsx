@@ -13,6 +13,7 @@ import KnowledgeBasePage from "../modules/KnowledgeBasePage.jsx";
 import ManualTutorialsPage from "../modules/ManualTutorialsPage.jsx";
 import ProjectsPage from "../modules/ProjectsPage.jsx";
 import MyAccountPage from "../account/MyAccountPage.jsx";
+import PreferencesPage from "../preferences/PreferencesPage.jsx";
 import LoginPage from "../auth/LoginPage.jsx";
 import PasswordRecoveryPage from "../auth/PasswordRecoveryPage.jsx";
 import RegisterPage from "../auth/RegisterPage.jsx";
@@ -30,6 +31,7 @@ export const WORKSPACE_ROUTE_PATHS = [
   ROUTES.REGISTER,
   ROUTES.PASSWORD_RECOVERY,
   ROUTES.ACCOUNT,
+  ROUTES.PREFERENCES,
   ROUTES.PROJECTS,
   ROUTES.MANUAL,
   ROUTES.GLOSSARY,
@@ -59,7 +61,22 @@ export default function WorkspaceRouter() {
             path={workspaceRoutePath(ROUTES.PASSWORD_RECOVERY)}
             element={<PasswordRecoveryPage />}
           />
-          <Route path={workspaceRoutePath(ROUTES.ACCOUNT)} element={<MyAccountPage />} />
+          <Route
+            path={workspaceRoutePath(ROUTES.ACCOUNT)}
+            element={
+              <AuthRouteGuard>
+                <MyAccountPage />
+              </AuthRouteGuard>
+            }
+          />
+          <Route
+            path={workspaceRoutePath(ROUTES.PREFERENCES)}
+            element={
+              <AuthRouteGuard>
+                <PreferencesPage />
+              </AuthRouteGuard>
+            }
+          />
           {WORKSPACE_ROUTE_PLACEHOLDERS.map(({ path, title }) => (
             <Route
               key={path}

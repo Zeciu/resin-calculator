@@ -9,6 +9,7 @@ export const ROUTES = {
   REGISTER: "/register",
   PASSWORD_RECOVERY: "/password-recovery",
   ACCOUNT: "/account",
+  PREFERENCES: "/account/preferences",
   PROJECTS: "/projects",
   MANUAL: "/manual",
   GLOSSARY: "/glossary",

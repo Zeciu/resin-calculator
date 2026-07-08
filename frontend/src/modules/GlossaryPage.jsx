@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+﻿import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import GlossaryEntryList from "../glossary/GlossaryEntryList.jsx";
 import GlossaryToolbar from "../glossary/GlossaryToolbar.jsx";
 import { fetchPublishedGlossary } from "../glossary/glossaryApi.js";
@@ -10,47 +10,18 @@ import {
   getGlossaryLetterSectionId,
   groupGlossaryEntriesByLetter,
 } from "../glossary/glossaryFilter.js";
-
-const DEFAULT_LOCALE = "en";
+import ContentUnavailableMessage from "../content/ContentUnavailableMessage.jsx";
+import { usePublishedContent } from "../content/usePublishedContent.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 
 export default function GlossaryPage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
+  const { t } = useI18n();
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
-  const [entries, setEntries] = useState([]);
-  const [loadState, setLoadState] = useState("loading");
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadGlossary() {
-      setLoadState("loading");
-      try {
-        const payload = await fetchPublishedGlossary(DEFAULT_LOCALE);
-        if (cancelled) {
-          return;
-        }
-        if (!payload.available) {
-          setEntries([]);
-          setLoadState("error");
-          return;
-        }
-        setEntries(payload.entries);
-        setLoadState("ready");
-      } catch {
-        if (!cancelled) {
-          setEntries([]);
-          setLoadState("error");
-        }
-      }
-    }
-
-    loadGlossary();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedGlossary);
+  const entries = payload?.entries ?? [];
 
   const filteredGroups = useMemo(() => {
     const filtered = filterGlossaryEntries(entries, searchQuery);
@@ -160,23 +131,21 @@ export default function GlossaryPage() {
   return (
     <section className="glossary-module" aria-label="Glossary">
       <header className="glossary-module__header">
-        <h1 className="glossary-module__title">Glossary</h1>
-        <p className="glossary-module__lede">
-          A technical dictionary of woodworking, epoxy resin, and HFZWood terminology for quick
-          reference while you work.
-        </p>
+        <h1 className="glossary-module__title">{t("content.glossaryTitle")}</h1>
       </header>
 
       <div className="glossary-module__scroll" ref={scrollContainerRef}>
         {loadState === "loading" ? (
           <p className="glossary-module__status" role="status">
-            Loading glossary...
+            {t("content.loadingGlossary")}
           </p>
         ) : null}
-        {loadState === "error" ? (
-          <p className="glossary-module__status glossary-module__status--error" role="alert">
-            Glossary content is not available right now.
-          </p>
+        {loadState === "unavailable" || loadState === "error" ? (
+          <ContentUnavailableMessage
+            unavailableKey="content.unavailableGlossary"
+            englishAvailable={Boolean(payload?.englishAvailable)}
+            onViewEnglish={viewEnglishVersion}
+          />
         ) : null}
         {loadState === "ready" ? (
           <>

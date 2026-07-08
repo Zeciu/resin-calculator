@@ -1,8 +1,12 @@
+import { useI18n } from "../i18n/I18nContext.jsx";
+
 export default function UnsavedChangesDialog({
   onSaveProject,
   onDiscardChanges,
   onCancel,
 }) {
+  const { t } = useI18n();
+
   function handleBackdropClick(event) {
     if (event.target === event.currentTarget) {
       onCancel();
@@ -29,33 +33,33 @@ export default function UnsavedChangesDialog({
         aria-describedby="unsaved-changes-dialog-body"
       >
         <h2 id="unsaved-changes-dialog-title" className="unsaved-changes-dialog__title">
-          You have unsaved changes.
+          {t("unsaved.title")}
         </h2>
         <p id="unsaved-changes-dialog-body" className="unsaved-changes-dialog__body">
-          If you leave this workspace now, your current project work will be lost.
+          {t("unsaved.body")}
         </p>
-        <p className="unsaved-changes-dialog__question">What would you like to do?</p>
+        <p className="unsaved-changes-dialog__question">{t("unsaved.question")}</p>
         <div className="unsaved-changes-dialog__actions">
           <button
             type="button"
             className="unsaved-changes-dialog__button unsaved-changes-dialog__button--primary"
             onClick={onSaveProject}
           >
-            Save Project
+            {t("unsaved.saveProject")}
           </button>
           <button
             type="button"
             className="unsaved-changes-dialog__button unsaved-changes-dialog__button--danger"
             onClick={onDiscardChanges}
           >
-            Discard Changes
+            {t("unsaved.discard")}
           </button>
           <button
             type="button"
             className="unsaved-changes-dialog__button"
             onClick={onCancel}
           >
-            Cancel
+            {t("common.cancel")}
           </button>
         </div>
       </div>

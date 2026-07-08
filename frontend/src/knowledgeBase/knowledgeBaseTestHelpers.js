@@ -55,6 +55,17 @@ export function mockPublishedKnowledgeBaseFetch(entries = KNOWLEDGE_BASE_ENTRIES
         json: async () => buildPublishedManualResponse(),
       };
     }
+    if (requestUrl.includes("/api/preferences")) {
+      return {
+        ok: true,
+        json: async () => ({
+          interfaceLanguage: "en",
+          lengthUnit: "mm",
+          volumeUnit: "L",
+          exists: true,
+        }),
+      };
+    }
     return {
       ok: false,
       status: 404,

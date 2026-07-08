@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
 import { WORKSPACE_NAV_ITEMS } from "./navigation.js";
+import { translate } from "../i18n/translate.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 
@@ -35,12 +36,13 @@ describe("Workspace navigation matrix — guest", () => {
     renderWorkspace("/");
 
     for (const item of WORKSPACE_NAV_ITEMS) {
+      const label = translate("en", item.labelKey);
       if (item.requiresAuth) {
         expect(
-          screen.getByRole("button", { name: new RegExp(item.label, "i") }),
+          screen.getByRole("button", { name: new RegExp(label, "i") }),
         ).toBeInTheDocument();
       } else {
-        expect(screen.getByRole("link", { name: item.label })).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
       }
     }
 

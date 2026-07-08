@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { fetchPublishedKnowledgeBase } from "../knowledgeBase/knowledgeBaseApi.js";
 import KnowledgeBaseEntryList from "../knowledgeBase/KnowledgeBaseEntryList.jsx";
 import KnowledgeBaseToolbar from "../knowledgeBase/KnowledgeBaseToolbar.jsx";
@@ -7,47 +7,18 @@ import {
   getFirstFilteredKnowledgeBaseEntry,
   getKnowledgeBaseEntryElementId,
 } from "../knowledgeBase/knowledgeBaseFilter.js";
-
-const DEFAULT_LOCALE = "en";
+import ContentUnavailableMessage from "../content/ContentUnavailableMessage.jsx";
+import { usePublishedContent } from "../content/usePublishedContent.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 
 export default function KnowledgeBasePage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
+  const { t } = useI18n();
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
-  const [entries, setEntries] = useState([]);
-  const [loadState, setLoadState] = useState("loading");
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function loadKnowledgeBase() {
-      setLoadState("loading");
-      try {
-        const payload = await fetchPublishedKnowledgeBase(DEFAULT_LOCALE);
-        if (cancelled) {
-          return;
-        }
-        if (!payload.available) {
-          setEntries([]);
-          setLoadState("error");
-          return;
-        }
-        setEntries(payload.entries);
-        setLoadState("ready");
-      } catch {
-        if (!cancelled) {
-          setEntries([]);
-          setLoadState("error");
-        }
-      }
-    }
-
-    loadKnowledgeBase();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedKnowledgeBase);
+  const entries = payload?.entries ?? [];
 
   const filteredEntries = useMemo(
     () => filterKnowledgeBaseEntries(entries, searchQuery),
@@ -139,23 +110,21 @@ export default function KnowledgeBasePage() {
   return (
     <section className="knowledge-base-module" aria-label="Knowledge Base">
       <header className="knowledge-base-module__header">
-        <h1 className="knowledge-base-module__title">Knowledge Base</h1>
-        <p className="knowledge-base-module__lede">
-          Practical troubleshooting for woodworking, epoxy resin, and HFZWood workflow problems.
-          Find a symptom, review the likely causes, and follow the recommended solution.
-        </p>
+        <h1 className="knowledge-base-module__title">{t("content.knowledgeBaseTitle")}</h1>
       </header>
 
       <div className="knowledge-base-module__scroll" ref={scrollContainerRef}>
         {loadState === "loading" ? (
           <p className="knowledge-base-module__status" role="status">
-            Loading knowledge base...
+            {t("content.loadingKnowledgeBase")}
           </p>
         ) : null}
-        {loadState === "error" ? (
-          <p className="knowledge-base-module__status knowledge-base-module__status--error" role="alert">
-            Knowledge Base content is not available right now.
-          </p>
+        {loadState === "unavailable" || loadState === "error" ? (
+          <ContentUnavailableMessage
+            unavailableKey="content.unavailableKnowledgeBase"
+            englishAvailable={Boolean(payload?.englishAvailable)}
+            onViewEnglish={viewEnglishVersion}
+          />
         ) : null}
         {loadState === "ready" ? (
           <>

@@ -1,6 +1,7 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { mockPreferencesFetch } from "../preferences/testHelpers.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -19,9 +20,11 @@ function seedAuthenticatedSession(user = MOCK_USER) {
 describe("My Account page", () => {
   beforeEach(() => {
     sessionStorage.clear();
+    vi.restoreAllMocks();
+    mockPreferencesFetch({ interfaceLanguage: "en", lengthUnit: "mm", volumeUnit: "L", exists: true });
   });
 
-  it("renders mock profile information", () => {
+  it("renders mock profile information", async () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.ACCOUNT);
 
@@ -42,12 +45,14 @@ describe("My Account page", () => {
     ).toBeInTheDocument();
   });
 
-  it("shows the settings placeholder", () => {
+  it("links to application preferences", () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.ACCOUNT);
 
-    expect(screen.getByText("Account preferences (coming soon)")).toBeInTheDocument();
-    expect(screen.getByText("Notification settings (coming soon)")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Application Preferences" })).toHaveAttribute(
+      "href",
+      ROUTES.PREFERENCES,
+    );
   });
 
   it("logs out from the account page and returns to guest login mode", async () => {

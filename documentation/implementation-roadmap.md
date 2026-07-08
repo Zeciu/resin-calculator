@@ -166,16 +166,16 @@ A user should be able to complete a basic project session and find help in the M
 | 58 | Admin Panel Foundation | Complete |
 | 59 | Manual Content Management | Complete |
 | 60 | Glossary Content Management | Complete |
-| 61 | Knowledge Base Content Management | Pending |
+| 61 | Knowledge Base Content Management | Complete |
 | 62 | Shared Editorial Infrastructure | Complete |
-| 63 | Application Preferences | Pending |
+| 63 | Application Preferences | Complete |
 | 64 | Roles & Permissions | Pending |
 | 65 | Phase 3 Integration, QA & Documentation Alignment | Pending |
 | 66 | Phase 3 Release Certification | Pending |
 
 ## Current baseline
 
-Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. Task 62 (Editorial Infrastructure) is complete and approved. The repository baseline now includes:
+Task 58 is complete and approved. Task 59 (Manual Content Management) is complete and approved. Task 60 (Glossary Content Management) is complete and approved. Task 61 (Knowledge Base Content Management) is complete and approved. Task 62 (Editorial Infrastructure) is complete and approved. Task 63 (Application Preferences) is complete and approved. The repository baseline now includes:
 
 * dedicated `/admin` route branch with administrator-only guard;
 * admin Manual workspace at `/admin/manual` with chapter list, TipTap chapter editor, EN/RO locale switching, and explicit Save/Publish controls (no autosave);
@@ -199,8 +199,14 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * consistent editorial status model across Manual, Glossary and Knowledge Base: Unsaved, Draft, Live, and Draft changes (stale), with **Save draft** and **Publish** / **Update public** controls that never conflate draft save with public update;
 * `editorialVisibility` field on admin variant API responses, computed server-side from `status`, `updatedAt`, and `publishedAt`;
 * shared backend editorial services: image upload validation, global reference search (`GET /api/admin/references/search`), cross-reference validation, snapshot publish helpers, and editorial identity helpers;
-* module-specific editors (TipTap manual, glossary definition, KB structured template) unchanged; only management pages consolidated onto the shared shell.
+* module-specific editors (TipTap manual, glossary definition, KB structured template) unchanged; only management pages consolidated onto the shared shell;
+* per-user application preferences API (`GET/PUT /api/preferences`) with filesystem storage for local development and DynamoDB-ready repository interface;
+* `PreferencesProvider` and Application Preferences page (`/account/preferences`) for interface language (en/ro), length unit, and volume unit;
+* browser-language detection on first launch only (before first saved preference);
+* i18n infrastructure (`frontend/src/i18n/`) for high-visibility user surfaces;
+* display-unit conversion in the calculator (`frontend/src/units/conversion.js`) without changing canonical project data or backend calculations;
+* public Manual, Glossary, and Knowledge Base modules request content by interface language with localized unavailable messaging and explicit English fallback.
 
-The next implementation step is **task 63 Application Preferences**.
+The next implementation step is **task 64 Roles & Permissions**.
 
-Task 62 consolidated the proven editorial infrastructure shared by the Manual, Glossary and Knowledge Base modules. It did not introduce asset library, usage tracking, preferences, roles, AI, translation, or semantic/global search — those belong to later tasks.
+Task 63 introduced per-user preferences for interface language and display units. It did not implement roles, subscriptions, themes, notifications, automatic translation, or CMS workflow changes — those belong to later tasks.

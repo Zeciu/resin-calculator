@@ -432,7 +432,7 @@ Consolidation only — no redesign of repositories, storage, or module-specific 
 
 Module-specific editors (TipTap manual, glossary definition, KB structured template) remain unchanged in behavior; only their management pages use the shared shell.
 
-**Deferred to later tasks (not implemented in Task 62):** asset library, asset registry, media manager, usage tracking, delete guards, preferences (Task 63), roles (Task 64), AI, automatic translation, semantic search, global search.
+**Deferred to later tasks (not implemented in Task 62):** asset library, asset registry, media manager, usage tracking, delete guards, roles (Task 64), AI, automatic translation, semantic search, global search. Preferences were implemented in Task 63.
 
 ### Product Clarifications
 
@@ -535,6 +535,24 @@ This task does not implement:
 | Dependencies | Task 58 |
 | Expected result | Authenticated users can configure personal application preferences that are automatically remembered between sessions. The preferences system supports interface language, measurement units and future user-specific settings. |
 | Acceptance criteria | Users can access an Application Preferences page from their account. Users can select their preferred interface language, preferred length unit and preferred volume unit. Preferences are stored per user and automatically applied when the user signs in. The system is designed to support additional personal preferences in future versions without requiring architectural changes. |
+
+**Status:** Complete (2026-07-08).
+
+### Implementation Notes
+
+**Backend:** `GET/PUT /api/preferences` with per-user filesystem storage (`backend/data/preferences/<userId>.json`) via `FilesystemPreferencesRepository`; repository interface is DynamoDB-ready (`USER#<userId>` / `PREFS`). Defaults: `en`, `mm`, `L`. Response includes `exists` flag.
+
+**Frontend:** `PreferencesProvider` (separate from `AuthContext`) loads preferences after login/session restore and resets on logout. Application Preferences page at `/account/preferences`, linked from My Account (Profile, Application Preferences, Subscription, Security placeholder).
+
+**Browser language (first launch only):** when `exists: false`, the client applies `navigator.language` (`en` or `ro`) for interface language until the user saves preferences; after first save, stored preference is always respected.
+
+**i18n:** `frontend/src/i18n/en.json` and `ro.json` with infrastructure in `I18nProvider`; high-visibility surfaces translated (navigation, account, preferences, locked module, unsaved dialog, content unavailable). Admin panel remains English.
+
+**Units:** `frontend/src/units/conversion.js` converts display only; canonical values unchanged in API calls, calculator state, and `.hfzproject` files (cm, mm, liters).
+
+**Content language:** Manual, Glossary, and Knowledge Base request `preferences.interfaceLanguage`; unavailable locale shows localized message plus explicit **View English version** when `englishAvailable`; never auto-switch.
+
+**Out of scope (deferred):** roles (Task 64), subscriptions, themes, notifications, automatic translation, CMS workflow changes.
 
 ### Product Clarifications
 

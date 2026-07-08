@@ -1,18 +1,19 @@
 import { Lock } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
 
-function LockedNavItem({ item, onShowLockedMessage }) {
+function LockedNavItem({ item, label, onShowLockedMessage }) {
   return (
     <button
       type="button"
       className="workspace-sidebar__link workspace-sidebar__link--locked"
       onClick={onShowLockedMessage}
     >
-      <span className="workspace-sidebar__label">{item.label}</span>
+      <span className="workspace-sidebar__label">{label}</span>
       <span className="workspace-sidebar__lock" aria-label="Locked feature">
         <Lock size={14} strokeWidth={1.8} aria-hidden="true" />
       </span>
@@ -22,6 +23,7 @@ function LockedNavItem({ item, onShowLockedMessage }) {
 
 export default function WorkspaceSidebar() {
   const { isAuthenticated, logout } = useAuth();
+  const { t } = useI18n();
   const location = useLocation();
   const navigate = useNavigate();
   const { isNavItemLocked, showLockedModuleMessage, clearLockedModuleMessage } =
@@ -42,13 +44,18 @@ export default function WorkspaceSidebar() {
     <nav className="workspace-sidebar" aria-label="Workspace navigation">
       <ul className="workspace-sidebar__list">
         {navItems.map((item) => {
+          const label = t(item.labelKey);
           const isLocked = isNavItemLocked(item);
           const isPrimaryAction = isAuthenticated && item.id === "new-project" && !isLocked;
 
           return (
             <li key={item.id} className="workspace-sidebar__item">
               {isLocked ? (
-                <LockedNavItem item={item} onShowLockedMessage={showLockedModuleMessage} />
+                <LockedNavItem
+                  item={item}
+                  label={label}
+                  onShowLockedMessage={showLockedModuleMessage}
+                />
               ) : (
                 <NavLink
                   to={item.path}
@@ -63,7 +70,7 @@ export default function WorkspaceSidebar() {
                   }
                   onClick={clearLockedModuleMessage}
                 >
-                  <span className="workspace-sidebar__label">{item.label}</span>
+                  <span className="workspace-sidebar__label">{label}</span>
                 </NavLink>
               )}
             </li>
@@ -76,7 +83,7 @@ export default function WorkspaceSidebar() {
               className="workspace-sidebar__link workspace-sidebar__logout"
               onClick={handleLogout}
             >
-              <span className="workspace-sidebar__label">Log out</span>
+              <span className="workspace-sidebar__label">{t("nav.logout")}</span>
             </button>
           </li>
         ) : null}

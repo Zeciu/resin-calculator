@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
 import { getLoggedInHomeNavItems, WORKSPACE_NAV_ITEMS } from "./navigation.js";
+import { translate } from "../i18n/translate.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 
@@ -50,8 +51,9 @@ describe("Authenticated Mode navigation", () => {
     renderWorkspace(ROUTES.LOGIN);
 
     for (const item of PROTECTED_NAV_ITEMS) {
+      const label = translate("en", item.labelKey);
       expect(
-        screen.getByRole("button", { name: new RegExp(item.label, "i") }),
+        screen.getByRole("button", { name: new RegExp(label, "i") }),
       ).toBeInTheDocument();
     }
 
@@ -71,9 +73,10 @@ describe("Authenticated Mode navigation", () => {
     renderWorkspace(ROUTES.HOME);
 
     for (const item of HOME_HUB_NAV_ITEMS) {
-      expect(screen.getByRole("link", { name: item.label })).toBeInTheDocument();
+      const label = translate("en", item.labelKey);
+      expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
       expect(
-        screen.queryByRole("button", { name: new RegExp(item.label, "i") }),
+        screen.queryByRole("button", { name: new RegExp(label, "i") }),
       ).not.toBeInTheDocument();
     }
 

@@ -3,48 +3,49 @@
  * Single source of truth for nav labels, paths, and auth requirements.
  */
 
+import { getDedicatedModuleTitle as getDedicatedModuleTitleFromI18n } from "../i18n/translate.js";
 import { ROUTES } from "./routes.js";
 
 export const WORKSPACE_NAV_ITEMS = [
   {
     id: "new-project",
-    label: "New Project",
+    labelKey: "nav.newProject",
     path: ROUTES.NEW_PROJECT,
     requiresAuth: true,
   },
   {
     id: "projects",
-    label: "Projects",
+    labelKey: "nav.projects",
     path: ROUTES.PROJECTS,
     requiresAuth: true,
   },
   {
     id: "manual-tutorials",
-    label: "Manual & Tutorials",
+    labelKey: "nav.manualTutorials",
     path: ROUTES.MANUAL,
     requiresAuth: true,
   },
   {
     id: "glossary",
-    label: "Glossary",
+    labelKey: "nav.glossary",
     path: ROUTES.GLOSSARY,
     requiresAuth: true,
   },
   {
     id: "knowledge-base",
-    label: "Knowledge Base",
+    labelKey: "nav.knowledgeBase",
     path: ROUTES.KNOWLEDGE_BASE,
     requiresAuth: true,
   },
   {
     id: "login-register",
-    label: "Login / Register",
+    labelKey: "nav.loginRegister",
     path: ROUTES.LOGIN,
     requiresAuth: false,
   },
   {
     id: "my-account",
-    label: "My Account",
+    labelKey: "nav.myAccount",
     path: ROUTES.ACCOUNT,
     requiresAuth: true,
   },
@@ -81,15 +82,6 @@ export function isDedicatedModulePath(pathname) {
   return DEDICATED_MODULE_PATHS.includes(pathname);
 }
 
-/** Product title shown in the dedicated module header per route. */
-export const DEDICATED_MODULE_TITLES = {
-  [ROUTES.NEW_PROJECT]: "New Project",
-  [ROUTES.PROJECTS]: "Projects",
-  [ROUTES.MANUAL]: "Manual & Tutorials",
-  [ROUTES.GLOSSARY]: "Glossary",
-  [ROUTES.KNOWLEDGE_BASE]: "Knowledge Base",
-};
-
-export function getDedicatedModuleTitle(pathname) {
-  return DEDICATED_MODULE_TITLES[pathname] ?? "HFZWood";
+export function getDedicatedModuleTitle(pathname, language = "en") {
+  return getDedicatedModuleTitleFromI18n(language, pathname);
 }

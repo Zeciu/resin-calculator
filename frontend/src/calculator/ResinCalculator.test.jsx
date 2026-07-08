@@ -2,6 +2,11 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import ResinCalculator from "./ResinCalculator.jsx";
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
+import { TestProviders } from "../test/TestProviders.jsx";
+
+function renderCalculator(ui) {
+  return render(<TestProviders>{ui}</TestProviders>);
+}
 
 // Canvas methods not implemented in jsdom
 HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
@@ -35,7 +40,7 @@ Element.prototype.scrollIntoView = vi.fn();
 
 describe("ResinCalculator — smoke", () => {
   it("renders without crashing and shows upload controls", () => {
-    render(<ResinCalculator />);
+    renderCalculator(<ResinCalculator />);
     const fileInput = document.querySelector("input[type='file'][accept='image/*']");
     expect(fileInput).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
@@ -44,7 +49,7 @@ describe("ResinCalculator — smoke", () => {
   });
 
   it("keeps project action controls in safe initial state", () => {
-    render(<ResinCalculator />);
+    renderCalculator(<ResinCalculator />);
     expect(screen.getByText(/Save Project/i)).toBeInTheDocument();
     const pdfBtn = screen.getByText(/Export PDF/i).closest("button");
     expect(pdfBtn).toBeDisabled();
@@ -53,18 +58,18 @@ describe("ResinCalculator — smoke", () => {
 
 describe("ResinCalculator — header behavior", () => {
   it("renders legacy AppHeader by default", () => {
-    render(<ResinCalculator />);
+    renderCalculator(<ResinCalculator />);
     expect(screen.getByText(/Epoxy Resin Volume Estimator/i)).toBeInTheDocument();
   });
 
   it("hides legacy AppHeader when showHeader is false", () => {
-    render(<ResinCalculator showHeader={false} />);
+    renderCalculator(<ResinCalculator showHeader={false} />);
     expect(screen.queryByText(/Epoxy Resin Volume Estimator/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
   });
 
   it("omits duplicate product title when workspaceVariant is dedicated", () => {
-    render(<ResinCalculator showHeader={false} workspaceVariant="dedicated" />);
+    renderCalculator(<ResinCalculator showHeader={false} workspaceVariant="dedicated" />);
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
@@ -72,7 +77,7 @@ describe("ResinCalculator — header behavior", () => {
   });
 
   it("accepts HFZWood project files and legacy JSON project files for import", () => {
-    render(<ResinCalculator />);
+    renderCalculator(<ResinCalculator />);
     const importInput = document.querySelector(
       `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
     );
@@ -86,7 +91,7 @@ describe("ResinCalculator — header behavior", () => {
 
 describe("ResinCalculator — UI state", () => {
   it("shows save error when no image exists", async () => {
-    render(<ResinCalculator />);
+    renderCalculator(<ResinCalculator />);
     fireEvent.click(screen.getByText(/Save Project/i));
     await waitFor(() => {
       expect(document.querySelector(".error")).toBeInTheDocument();
@@ -100,7 +105,7 @@ describe("ResinCalculator — /calculate-wood fetch errors", () => {
   });
 
   it("keeps initial workflow visible when no image is provided", () => {
-    render(<ResinCalculator />);
+    renderCalculator(<ResinCalculator />);
     expect(screen.getByText(/Step 1/i)).toBeInTheDocument();
   });
 });

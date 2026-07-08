@@ -1,6 +1,15 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import App from "./App";
+import { TestProviders } from "./test/TestProviders.jsx";
+
+function renderApp() {
+  return render(
+    <TestProviders>
+      <App />
+    </TestProviders>,
+  );
+}
 
 // Canvas methods not implemented in jsdom
 HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
@@ -38,18 +47,18 @@ Element.prototype.scrollIntoView = vi.fn();
 
 describe("App — smoke", () => {
   it("renders the page heading", () => {
-    render(<App />);
+    renderApp();
     expect(screen.getByText(/Epoxy Resin Volume Estimator/i)).toBeInTheDocument();
   });
 
   it("renders the file input for photo upload", () => {
-    render(<App />);
+    renderApp();
     const fileInput = document.querySelector("input[type='file'][accept='image/*']");
     expect(fileInput).toBeInTheDocument();
   });
 
   it("shows workflow progress steps", () => {
-    render(<App />);
+    renderApp();
     expect(screen.getByText("References")).toBeInTheDocument();
     expect(screen.getByText("Calculate")).toBeInTheDocument();
   });
@@ -61,23 +70,23 @@ describe("App — smoke", () => {
 
 describe("App — UI state", () => {
   it("no error message shown on initial render", () => {
-    render(<App />);
+    renderApp();
     expect(document.querySelector(".error")).toBeNull();
   });
 
   it("Export PDF button is disabled before any result", () => {
-    render(<App />);
+    renderApp();
     const pdfBtn = screen.getByText(/Export PDF/i).closest("button");
     expect(pdfBtn).toBeDisabled();
   });
 
   it("Save Project button is present", () => {
-    render(<App />);
+    renderApp();
     expect(screen.getByText(/Save Project/i)).toBeInTheDocument();
   });
 
   it("clicking Save Project without an image shows an error", async () => {
-    render(<App />);
+    renderApp();
     fireEvent.click(screen.getByText(/Save Project/i));
     await waitFor(() => {
       expect(document.querySelector(".error")).toBeInTheDocument();
@@ -95,7 +104,7 @@ describe("App — /calculate-wood fetch errors", () => {
   });
 
   it("shows network error when fetch rejects during wood calculation", async () => {
-    render(<App />);
+    renderApp();
 
     // Inject a fake image so the guard check passes
     const canvas = document.querySelector("canvas");
@@ -122,7 +131,7 @@ describe("App — /calculate-wood with mocked image", () => {
       })
     );
 
-    render(<App />);
+    renderApp();
 
     // Inject a fake image into the component's imageRef by dispatching a
     // successful load event on the hidden file input

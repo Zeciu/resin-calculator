@@ -32,6 +32,17 @@ export function mockPublishedGlossaryFetch(entries = GLOSSARY_ENTRIES) {
         json: async () => buildPublishedGlossaryResponse(entries),
       };
     }
+    if (requestUrl.includes("/api/preferences")) {
+      return {
+        ok: true,
+        json: async () => ({
+          interfaceLanguage: "en",
+          lengthUnit: "mm",
+          volumeUnit: "L",
+          exists: true,
+        }),
+      };
+    }
     if (requestUrl.includes("/api/content/manual")) {
       return {
         ok: true,

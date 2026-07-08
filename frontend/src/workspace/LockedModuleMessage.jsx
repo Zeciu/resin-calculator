@@ -1,19 +1,16 @@
 import { NavLink } from "react-router-dom";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { ROUTES } from "./routes.js";
 
 export default function LockedModuleMessage() {
+  const { t } = useI18n();
+
   return (
     <section className="locked-module-message">
-      <h2 className="locked-module-message__title">
-        Create your free HFZWood account to unlock this section.
-      </h2>
-      <p className="locked-module-message__text">
-        The complete HFZWood workspace becomes available after authentication. Your
-        free account gives you access to projects, manuals, tutorials, glossary,
-        knowledge base and resin calculation tools.
-      </p>
+      <h2 className="locked-module-message__title">{t("locked.title")}</h2>
+      <p className="locked-module-message__text">{t("locked.body")}</p>
       <NavLink to={ROUTES.LOGIN} className="locked-module-message__action">
-        Go to Login / Register
+        {t("locked.action")}
       </NavLink>
     </section>
   );

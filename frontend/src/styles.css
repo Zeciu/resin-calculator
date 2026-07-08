@@ -4850,3 +4850,80 @@ button.workspace-sidebar__link {
   padding: 8px 0;
   border-top: 1px solid #efe6d8;
 }
+
+.my-account-page__settings-link {
+  color: #5a3d20;
+  text-decoration: underline;
+}
+
+.my-account-page__settings-item--future {
+  color: #6b5a48;
+}
+
+.preferences-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.preferences-page__back {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #5a3d20;
+}
+
+.preferences-page__title {
+  margin: 0 0 8px;
+}
+
+.preferences-page__intro {
+  margin: 0 0 20px;
+  color: #4a4035;
+}
+
+.preferences-page__form {
+  display: grid;
+  gap: 16px;
+}
+
+.preferences-page__field {
+  display: grid;
+  gap: 6px;
+}
+
+.preferences-page__label {
+  font-weight: 600;
+}
+
+.preferences-page__help {
+  color: #6b5a48;
+  font-size: 0.92rem;
+}
+
+.preferences-page__submit {
+  justify-self: start;
+  padding: 10px 16px;
+}
+
+.preferences-page__status {
+  color: #2f6b2f;
+}
+
+.preferences-page__error {
+  color: #8b1e1e;
+}
+
+.content-unavailable {
+  padding: 20px;
+  border: 1px solid #e8d9c3;
+  border-radius: 8px;
+  background: #fffaf2;
+}
+
+.content-unavailable__message {
+  margin: 0 0 12px;
+}
+
+.content-unavailable__action {
+  padding: 8px 14px;
+}

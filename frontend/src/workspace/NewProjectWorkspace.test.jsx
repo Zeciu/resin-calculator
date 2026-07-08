@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { TestProviders } from "../test/TestProviders.jsx";
 import NewProjectWorkspace from "./NewProjectWorkspace.jsx";
 
 HTMLCanvasElement.prototype.getContext = () => ({
@@ -36,7 +37,11 @@ function renderNewProjectWorkspace() {
     { initialEntries: ["/new-project"] },
   );
 
-  return render(<RouterProvider router={router} />);
+  return render(
+    <TestProviders>
+      <RouterProvider router={router} />
+    </TestProviders>,
+  );
 }
 
 describe("NewProjectWorkspace", () => {

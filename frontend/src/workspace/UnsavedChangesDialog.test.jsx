@@ -1,17 +1,24 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
+import { TestProviders } from "../test/TestProviders.jsx";
 import UnsavedChangesDialog from "./UnsavedChangesDialog.jsx";
+
+function renderDialog(props) {
+  return render(
+    <TestProviders>
+      <UnsavedChangesDialog {...props} />
+    </TestProviders>,
+  );
+}
 
 describe("UnsavedChangesDialog", () => {
   it("renders the required copy and actions", () => {
-    render(
-      <UnsavedChangesDialog
-        onSaveProject={() => {}}
-        onDiscardChanges={() => {}}
-        onCancel={() => {}}
-      />,
-    );
+    renderDialog({
+      onSaveProject: () => {},
+      onDiscardChanges: () => {},
+      onCancel: () => {},
+    });
 
     expect(screen.getByRole("dialog", { name: /You have unsaved changes/i })).toBeInTheDocument();
     expect(
@@ -29,13 +36,11 @@ describe("UnsavedChangesDialog", () => {
     const onDiscardChanges = vi.fn();
     const onCancel = vi.fn();
 
-    render(
-      <UnsavedChangesDialog
-        onSaveProject={onSaveProject}
-        onDiscardChanges={onDiscardChanges}
-        onCancel={onCancel}
-      />,
-    );
+    renderDialog({
+      onSaveProject,
+      onDiscardChanges,
+      onCancel,
+    });
 
     await user.click(screen.getByRole("button", { name: "Save Project" }));
     await user.click(screen.getByRole("button", { name: "Discard Changes" }));
