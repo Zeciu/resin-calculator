@@ -523,12 +523,33 @@ Backend reads role from:
 
 Future roles (Editor, Reviewer, etc.) map to additional Cognito groups without schema changes.
 
-### 11.3 Task sequencing vs security
+### 11.3 Authorization (Task 64 complete)
 
-- Task 58: minimal admin gate (mock admin acceptable).
-- Task 64: harden — backend role checks on every admin route, frontend guards, admin UI hidden for users, security-focused tests added to Task 65.
+- All `/api/admin/**` routes use `require_administrator`.
+- Frontend `/admin/**` routes use `AdminRouteGuard`; admin navigation hidden from standard users.
+- Cognito JWT middleware attaches decoded claims to `request.state.jwt_claims`; `get_current_user` maps `administrators` group to `administrator` role.
+- Mock dev: `X-Mock-Role`, `X-Mock-User-Id`, optional `X-Mock-Access-Tier` when `AUTH_MODE=mock`.
 
 Unauthorized admin access: HTTP 403 from API; frontend redirect to Home without permission banners in user workflows.
+
+### 11.4 Product capabilities (Task 64)
+
+Role and access tier are independent:
+
+| Concept | Values | Resolved by |
+|---------|--------|-------------|
+| Role | `user`, `administrator` | Cognito group / mock headers |
+| Access tier | `free`, `subscriber`, `administrator_unlimited` | Stored entitlement (default `free`) or administrator bypass |
+
+`GET /api/me/capabilities` returns `role`, `accessTier`, `catalogVersion`, and resolved `capabilities`. Feature code must query capability keys only — never `accessTier` or tier names in feature logic.
+
+Backend catalog lives in `backend/product/capabilities/`. Frontend loads via `CapabilitiesProvider` (parallel to `PreferencesProvider`). Local dev may override commercial tier with `CAPABILITY_DEV_ACCESS_TIER=subscriber` when `AUTH_MODE=mock`.
+
+No subscriptions, payments, billing, or visible commercial gating UI in Task 64.
+
+### 11.5 Future role expansion
+
+Future editorial roles (Editor, Reviewer, etc.) may map to additional Cognito groups without changing the capability model.
 
 ---
 

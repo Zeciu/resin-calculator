@@ -62,6 +62,12 @@ export class InfraStack extends cdk.Stack {
       cognitoDomain: { domainPrefix: `resin-calculator-${this.account}` },
     });
 
+    new cognito.CfnUserPoolGroup(this, 'AdministratorsGroup', {
+      userPoolId: this.userPool.userPoolId,
+      groupName: 'administrators',
+      description: 'HFZWood product administrators with full CMS and admin API access.',
+    });
+
     // Outputs
     new cdk.CfnOutput(this, 'EcrUri', { value: this.repository.repositoryUri });
     new cdk.CfnOutput(this, 'UserPoolId', { value: this.userPool.userPoolId });

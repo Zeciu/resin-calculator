@@ -211,6 +211,6 @@ Task 58 is complete and approved. Task 59 (Manual Content Management) is complet
 * Manual admin chapter creation writes the variant in the admin's active locale (EN or RO); the admin sidebar lists only chapters with a saved variant in the active locale, with a per-locale empty state; deleting a chapter warns that it removes the chapter in all languages;
 * calculator display units (length and volume labels, inputs, and outputs) reflect user preferences without changing canonical project data.
 
-The next implementation step is **task 64 Roles & Permissions**.
+The next implementation step is **task 65 Phase 3 Integration, QA & Documentation Alignment**.
 
-Task 63 introduced per-user preferences for interface language and display units. QA repair passes A–C addressed navigation discoverability, locale-aware manual admin behavior, quick controls, and calculator unit display. It did not implement roles, subscriptions, themes, notifications, automatic translation, or CMS workflow changes — those belong to later tasks.
+**Task 64** added secure administrator authorization (`user` / `administrator` roles; Cognito `administrators` group), a backend-owned product capability catalog (`free`, `subscriber`, `administrator_unlimited`), `GET /api/me/capabilities`, and frontend `CapabilitiesProvider` with `useCapability()` / `useCapabilityLimit()`. Role and access tier remain independent. No subscriptions, payments, billing, Stripe, or visible commercial gating UI were implemented.

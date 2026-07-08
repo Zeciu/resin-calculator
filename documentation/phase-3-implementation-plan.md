@@ -675,83 +675,47 @@ This task does not implement:
 
 
 
-## Task 64 — Roles & Permissions
+## Task 64 — Roles, Authorization & Product Capability Foundation
+
+**Status:** Complete.
 
 | Field | Detail |
 |-------|--------|
-| Objective | Introduce a secure and scalable Roles & Permissions system that protects administrative functionality while providing a simple and seamless experience for end users. |
+| Objective | Secure administrator authorization and backend-owned product capability infrastructure for future Free vs Subscriber gating — without commercial checkout or visible upgrade UI. |
 | Dependencies | Tasks 58, 59, 60, 61, 62, 63 |
-| Expected result | HFZWood distinguishes between standard users and administrators. Administrative functionality is protected consistently across the application while remaining completely hidden from users who do not have permission to access it. The authorization architecture is designed to support future expansion without increasing complexity in Phase 3. |
-| Acceptance criteria | The application supports role-based authorization. Standard users can access the complete user-facing product but cannot access administrative functionality. Administrators can access the Admin Panel and all content management tools. Authorization is enforced consistently across navigation, protected routes and administrative actions. Unauthorized access attempts are handled safely without exposing administrative functionality or internal implementation details. |
+| Expected result | HFZWood distinguishes **role** (can this user access administration?) from **access tier** (what product capabilities does this user have?). Administrators receive `administrator_unlimited` capabilities regardless of stored tier. Standard users default to `free`. Subscriber tier exists in the catalog and resolver for future entitlement grants. |
+| Acceptance criteria | Administrator APIs and routes are protected. `GET /api/me/capabilities` returns role, access tier, catalog version, and resolved capabilities. Frontend loads capabilities after authentication via `CapabilitiesProvider`. Feature code queries capability keys only. No Premium / Professional / Enterprise terminology. No subscriptions, payments, or billing implemented. |
 
-### Product Clarifications
+### Role vs access tier
 
-The authorization system exists to protect product administration while keeping the user experience simple.
+| Concept | Values | Purpose |
+|---------|--------|---------|
+| **Role** | `user`, `administrator` | Authorization — admin panel, CMS, `/api/admin/**` |
+| **Access tier** | `free`, `subscriber`, `administrator_unlimited` | Product capabilities — calculator limits, export, saved projects, educational limits, future AI limits |
 
-The initial role model intentionally remains minimal:
+Administrators always resolve to `administrator_unlimited` capabilities (bypass), independent of any stored commercial tier.
 
-- User
-- Administrator
+### Capability catalog (v1)
 
-A standard User can access:
+| Key | Free | Subscriber | Administrator unlimited |
+|-----|------|------------|-------------------------|
+| `calculator.maxPolygonPoints` | 4 | unlimited (`null`) | unlimited |
+| `calculator.pdfExport` | `false` | `true` | `true` |
+| `calculator.exportFormat` | `none` | `pdf_and_csv` | `pdf_and_csv` |
+| `calculator.layerCalculation` | `false` | `true` | `true` |
+| `calculator.formworkMode` | `rectangle` | `advanced` | `advanced` |
+| `calculator.advancedReports` | `false` | `true` | `true` |
+| `projects.maxSavedProjects` | 3 | unlimited | unlimited |
+| `knowledgeBase.maxArticles` | 5 | unlimited | unlimited |
+| `tutorial.maxVideos` | 5 | unlimited | unlimited |
+| `ai.enabled` | `false` | `true` | `true` |
+| `ai.maxRequestsPerDay` | 0 | 50 (placeholder) | unlimited |
 
-- Home
-- New Project
-- Projects
-- Manual
-- Glossary
-- Knowledge Base
-- Application Preferences
+`calculator.formworkMode` is enum-style: `rectangle` (simple four-point workflow) or `advanced` (full formwork). `calculator.pdfExport` (boolean) and `calculator.exportFormat` (enum) remain separate.
 
-A standard User cannot access:
+### Out of scope (deferred)
 
-- Admin Panel
-- Manual Content Management
-- Glossary Content Management
-- Knowledge Base Content Management
-- Shared Editorial Infrastructure
-- Media Library
-- Asset Management
-- Publishing tools
-- Product administration features
-
-Administrators have access to all user functionality together with all administration tools.
-
-Administrative functionality should remain invisible to users who do not have permission to access it.
-
-Users should never see disabled administration controls or unnecessary permission warnings during normal product usage.
-
-Navigation, menus and available actions should automatically adapt to the current user's role.
-
-Authorization must protect both the user interface and the application routes.
-
-Direct navigation attempts (for example by manually entering an administrative URL) must always be validated and blocked when the current user does not have sufficient permissions.
-
-The system should always fail securely while providing a clear and user-friendly response.
-
-The authorization architecture should support future expansion to additional roles such as:
-
-- Editor
-- Reviewer
-- Translator
-- Support
-- Owner
-
-without requiring a redesign of the authorization system.
-
-### Out of Scope
-
-This task does not implement:
-
-- advanced permission matrices;
-- per-document permissions;
-- editorial approval workflows;
-- user management;
-- organization or team management;
-- audit logs;
-- activity history;
-- billing permissions;
-- multi-tenant administration.
+Subscriptions, payments, billing, Stripe, checkout, token purchasing, subscriber management UI, visible upgrade prompts, pricing UI, commercial gating UI, AI functionality, user management, audit logs, permission matrix, per-document permissions.
 ## Task 65 — Phase 3 Integration, QA & Documentation Alignment
 
 | Field | Detail |

@@ -1,17 +1,9 @@
-import { mockAuthAdapter } from "../auth/authAdapter.js";
+import { buildAuthHeaders } from "../auth/authHeaders.js";
 
 const API_BASE_URL = "";
 
 export function adminHeaders(includeJsonContentType = true) {
-  const user = mockAuthAdapter.restoreSession();
-  const headers = {
-    "X-Mock-User-Id": user?.id ?? "stub-user",
-    "X-Mock-Role": user?.role ?? "user",
-  };
-  if (includeJsonContentType) {
-    headers["Content-Type"] = "application/json";
-  }
-  return headers;
+  return buildAuthHeaders({ includeJsonContentType });
 }
 
 export async function parseAdminError(response) {

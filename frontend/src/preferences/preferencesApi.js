@@ -1,15 +1,10 @@
-import { mockAuthAdapter } from "../auth/authAdapter.js";
+import { buildAuthHeaders } from "../auth/authHeaders.js";
 import { normalizePreferences } from "./preferencesConstants.js";
 
 const API_BASE_URL = "";
 
 export function preferencesHeaders() {
-  const user = mockAuthAdapter.restoreSession();
-  return {
-    "Content-Type": "application/json",
-    "X-Mock-User-Id": user?.id ?? "stub-user",
-    "X-Mock-Role": user?.role ?? "user",
-  };
+  return buildAuthHeaders();
 }
 
 async function parseError(response) {

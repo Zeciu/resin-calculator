@@ -1,7 +1,9 @@
 import os
 from typing import Any
 
-from fastapi import HTTPException, Request
+from fastapi import HTTPException, Request, status
+
+from auth.cognito import role_from_claims, user_id_from_claims
 
 VALID_ROLES = frozenset({"administrator", "user"})
 
@@ -19,13 +21,16 @@ def get_current_user(request: Request) -> dict[str, Any]:
             role = "user"
         return {"id": user_id, "role": role}
 
-    auth_header = request.headers.get("Authorization", "")
-    if not auth_header.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Unauthorized")
-
-    # Cognito group mapping is completed in Task 64. Until then, authenticated users
-    # may access admin routes only when mock headers are used in local development.
-    return {"id": "cognito-user", "role": "user"}
+    claims = getattr(request.state, "jwt_claims", None)
+    if not claims:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required.",
+        )
+    return {
+        "id": user_id_from_claims(claims),
+        "role": role_from_claims(claims),
+    }
 
 
 def require_administrator(request: Request) -> dict[str, Any]:
