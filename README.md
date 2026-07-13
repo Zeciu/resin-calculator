@@ -76,29 +76,135 @@ After creating the venv, point your IDE at `backend/.venv/Scripts/python.exe`:
 
 ## Run locally (from project root)
 
-From the project root:
+Run all commands in this section from the **repository root**.
+
+### Authoritative startup
+
+The authoritative project-root startup command is:
 
 ```powershell
 .\dev.cmd
 ```
 
-This starts the backend and frontend development servers. Alternatively:
+The committed `dev.cmd` script:
 
-### Start backend
+- resolves the project root;
+- installs frontend dependencies;
+- runs the frontend production build;
+- starts the backend in a separate terminal window;
+- starts the Vite frontend development server in another terminal window.
+
+When startup completes, the backend is available at `http://localhost:5000` and the frontend at `http://localhost:5173`.
+
+### Manual startup
+
+Use these commands when you need to start services manually. Run each command from the repository root in a **separate terminal**.
+
+Backend:
 
 ```powershell
 uv run --project backend uvicorn app:app --app-dir backend --host 0.0.0.0 --port 5000 --reload
 ```
 
-Backend runs at `http://127.0.0.1:5000`.
-
-### Start frontend (in another terminal)
+Frontend:
 
 ```powershell
 npm run dev --prefix frontend
 ```
 
-Vite will print a local URL (usually `http://127.0.0.1:5173`). Open this in your browser.
+### Ports and startup order
+
+- **Backend:** port `5000` (`http://127.0.0.1:5000`)
+- **Frontend:** port `5173` under the current Vite development configuration; verified local URL: `http://localhost:5173`
+
+The backend should be available before API-dependent frontend functionality is used.
+
+### Frontend-to-backend communication
+
+In local development, the frontend uses **relative API paths** (for example `/api/...` and `/calculate`).
+
+The Vite development server proxies these paths to `http://127.0.0.1:5000`:
+
+- `/api`
+- `/health`
+- `/calculate`
+
+If the backend is not running, requests to proxied paths may fail with a development proxy connection error rather than a normal API response.
+
+### Backend health verification
+
+Verify that the backend is running:
+
+`http://127.0.0.1:5000/health`
+
+Expected successful result:
+
+- HTTP `200`
+- `{"status":"ok"}`
+
+PowerShell example:
+
+```powershell
+Invoke-WebRequest -Uri 'http://127.0.0.1:5000/health' -UseBasicParsing
+```
+
+You can also open the health URL in a browser.
+
+### Environment variables
+
+The current local development baseline uses mock-first authentication by default.
+
+| Variable | Scope | Notes |
+|---|---|---|
+| `AUTH_MODE` | Backend | Defaults to `mock` for local development. |
+| `VITE_AUTH_MODE` | Frontend | Unset or non-`cognito` values use the mock authentication path. |
+| `VITE_MOCK_ADMIN` | Frontend | `true` enables local mock administrator behavior after login or session restoration. |
+| `CAPABILITY_DEV_ACCESS_TIER` | Backend | When `AUTH_MODE=mock`, may override the local development commercial tier (`free` or `subscriber`) where supported. |
+| `VITE_COGNITO_USER_POOL_ID` | Frontend | Cognito-related names belong to the future/production authentication path. |
+| `VITE_COGNITO_CLIENT_ID` | Frontend | Not evidence that production authentication is complete. |
+| `VITE_COGNITO_DOMAIN` | Frontend | |
+| `VITE_COGNITO_REDIRECT_URI` | Frontend | |
+| `COGNITO_USER_POOL_ID` | Backend | |
+| `COGNITO_REGION` | Backend | |
+
+Local frontend-only configuration can be placed in an untracked `frontend/.env.local` file. Restart the Vite development server after relevant environment changes.
+
+Do not commit secrets, tokens, or private credentials.
+
+### Local mock authentication
+
+The current local development model is **mock-first**.
+
+- Developers still enter through the normal login flow; authentication is not automatic.
+- The mock adapter does not provide production credential validation.
+- Mock session state is browser-session based.
+- Backend `AUTH_MODE` defaults to `mock` unless configured otherwise.
+- Production Cognito integration belongs to a later milestone.
+
+### Local administrator access
+
+Local administrator access is **development-only** and is not production administrator security.
+
+- `VITE_MOCK_ADMIN=true` gives the mock user the `administrator` role after login or session restoration.
+- Administrator pages are available under `/admin` and related routes.
+- The normal workspace navigation does not expose an administrator sidebar entry; direct local access may be used.
+- Frontend route guards require the administrator role.
+- Backend administrator API routes independently enforce administrator authorization.
+
+### Known startup failure conditions
+
+- Backend unavailable while the frontend calls proxied backend paths.
+- Port `5000` or `5173` already in use.
+- Required runtime tooling (`uv`, Node.js) or project dependencies unavailable.
+- Incomplete setup (for example, missing `uv sync` or `npm install`).
+- Vite environment changes requiring a frontend development server restart.
+- Missing local mock-admin configuration (`VITE_MOCK_ADMIN`) causing non-administrator behavior.
+
+For automated validation commands, see **Automated validation** below.
+
+### Repository safety
+
+Automated implementation work must not delete, revert, clean, stage, or commit unrelated tracked or untracked user work without explicit approval.
 
 ## Automated validation
 
