@@ -5,7 +5,7 @@ set ROOT=%ROOT:~0,-1%
 set FAILED=0
 
 echo === Backend tests (pytest) ===
-call uv run --project "%ROOT%\backend" pytest "%ROOT%\backend\test_app.py" -v
+call uv run --project "%ROOT%\backend" pytest "%ROOT%\backend" -v
 if errorlevel 1 set FAILED=1
 
 echo.
