@@ -5368,3 +5368,428 @@ No blocker was identified involving:
 * staging isolation.
 
 Documentation Baseline B may proceed to explicit-path staging, staged-diff verification, isolated commit, push, and post-commit verification.
+#### 10.10.19 Commit and Push
+
+Documentation Baseline B was committed in isolation.
+
+Commit:
+
+`9a95987 — Add authoritative Phase 6 implementation plan baseline`
+
+Commit contents:
+
+* `documentation/phase-6-implementation-plan.md` only;
+* 5,370 insertions;
+* one new tracked documentation file.
+
+No other file entered the commit.
+
+The commit was pushed successfully to:
+
+`main`
+
+No force-push was used.
+
+#### 10.10.20 Post-Commit Repository State
+
+After commit and push:
+
+* `documentation/phase-6-implementation-plan.md` became tracked;
+* no uncommitted Documentation Baseline B change remained;
+* the Documentation Baseline B commit existed at repository `HEAD`;
+* Documentation Baseline A files remained tracked and unchanged;
+* all unrelated pre-existing tracked and untracked work remained untouched;
+* Milestone 1 had not begun.
+
+The repository remained globally non-clean because of known pre-existing work.
+
+This does not affect Documentation Baseline B closure.
+
+For Documentation Baseline B, repository cleanliness means:
+
+* no uncommitted Baseline B change remains;
+* no unrelated file entered the commit;
+* no secret value entered the commit;
+* unrelated pre-existing work remains untouched.
+
+These conditions were satisfied.
+
+#### 10.10.21 Documentation Baseline A Preservation
+
+The following Documentation Baseline A files remained tracked and unchanged:
+
+* `documentation/phase-4-concept-exploration-and-product-vision.md`;
+* `documentation/phase-4-product-architecture.md`;
+* `documentation/product-architecture-decisions.md`;
+* `documentation/phase-5-technical-architecture.md`.
+
+No Documentation Baseline A file was staged, modified, or included in the Documentation Baseline B commit.
+
+#### 10.10.22 Unrelated Repository Work Preservation
+
+The following pre-existing work remained outside Documentation Baseline B:
+
+* modified `dev.cmd`;
+* deleted `documentation/chatgpt-project-handover.md`;
+* modified `documentation/implementation-roadmap.md`;
+* untracked `documentation/Arthur-project-handover.md`;
+* untracked `documentation/external-architecture-review.md`;
+* untracked `frontend/.env.local`.
+
+None of these files was staged, committed, reverted, restored, deleted, or modified during Documentation Baseline B closure.
+
+#### 10.10.23 Secret-Safety Confirmation
+
+The Documentation Baseline B commit contains no:
+
+* password;
+* client secret;
+* AWS access key;
+* API key;
+* JWT;
+* session token;
+* private credential;
+* actual environment secret value.
+
+The committed file contains governance, architecture, task-history, security-policy, and repository-safety documentation only.
+
+#### 10.10.24 Closure
+
+Documentation Baseline B is officially complete.
+
+The authoritative Phase 6 implementation plan is now preserved in Git history.
+
+Commit:
+
+`9a95987 — Add authoritative Phase 6 implementation plan baseline`
+
+The document now serves as the tracked authoritative source for:
+
+* Phase 6 purpose and scope;
+* relationship with Phase 5 Technical Architecture;
+* implementation principles;
+* task decomposition rules;
+* milestone sequence;
+* release-readiness criteria;
+* task execution workflow;
+* Milestone 0 investigation;
+* M0.1, M0.2, and M0.3 implementation history;
+* Milestone 0 Pre-Closure Review;
+* Documentation Baseline A;
+* Documentation Baseline B.
+
+No unrelated file entered the commit.
+
+No secret value entered the commit.
+
+Milestone 0 has now completed:
+
+* Task M0.1;
+* Task M0.2;
+* Task M0.3;
+* Documentation Baseline A;
+* Documentation Baseline B.
+
+Before Milestone 0 may be formally closed, the final post-baseline verification and Milestone 0 Closure Review must be completed.
+
+Milestone 1 must not begin before formal Milestone 0 closure.
+### 10.11 Final Milestone 0 Closure Verification and Formal Closure
+
+**Status: Milestone 0 formally closed.**
+
+#### 10.11.1 Purpose
+
+This section records the final post-baseline verification and formal closure of Milestone 0.
+
+The final verification was performed only after completion of:
+
+* Task M0.1 — Complete Backend Test Execution in Unified Validation;
+* Task M0.2 — Authoritative Validation Workflow Documentation;
+* Task M0.3 — Development Environment Baseline Documentation;
+* Documentation Baseline A — Phase 4 and Phase 5 Architecture;
+* Documentation Baseline B — Phase 6 Implementation Plan.
+
+The purpose of this verification was to determine whether the repository had reached the verified, reproducible, trustworthy implementation baseline required before Milestone 1 planning and subsequent architectural migration.
+
+#### 10.11.2 Completed Milestone 0 Commits
+
+The final verification confirmed the following five approved commits on `main`:
+
+* `020fa95 — Phase 6 M0.1: run complete backend test suite`;
+* `c67cc25 — Phase 6 M0.2: document authoritative validation workflow`;
+* `92ea47f — Phase 6 M0.3: document development environment baseline`;
+* `3dc77d3 — Add authoritative Phase 4 and Phase 5 architecture baseline`;
+* `9a95987 — Add authoritative Phase 6 implementation plan baseline`.
+
+All five commits were pushed successfully.
+
+Each commit preserved its approved isolation boundary.
+
+No unrelated file entered any Milestone 0 implementation or documentation-baseline commit.
+
+#### 10.11.3 Final Unified Validation
+
+A fresh complete unified validation run was performed using:
+
+`.\test.cmd`
+
+Result:
+
+* exit code: `0`;
+* backend: 115 tests passed;
+* frontend: 234 tests passed across 49 test files;
+* total observational automated-test count: 349;
+* final result:
+  `RESULT: All tests passed.`
+
+The final verification confirmed that:
+
+* the complete backend test suite is executed;
+* the complete frontend test suite is executed;
+* failure aggregation remains intact;
+* a failure in either suite produces a non-zero final result;
+* the README documents the authoritative validation workflow accurately.
+
+The counts:
+
+* 115 backend;
+* 234 frontend;
+* 349 total
+
+remain observational only and are not permanent contracts.
+
+#### 10.11.4 Final Frontend Production Build Verification
+
+A fresh frontend production build was performed using:
+
+`npm run build --prefix frontend`
+
+Result:
+
+* exit code: `0`;
+* build completed successfully;
+* 2,778 modules transformed;
+* build time: approximately 12.49 seconds.
+
+The build produced a non-failing Vite chunk-size advisory.
+
+This advisory does not block Milestone 0 closure.
+
+#### 10.11.5 Development Baseline Verification
+
+The final verification confirmed that the tracked `README.md` accurately documents the committed development baseline, including:
+
+* authoritative startup through `.\dev.cmd`;
+* manual backend startup;
+* manual frontend startup;
+* backend port `5000`;
+* frontend port `5173`;
+* verified frontend URL:
+  `http://localhost:5173`;
+* frontend proxy paths:
+  `/api`, `/health`, and `/calculate`;
+* backend health endpoint;
+* relevant environment-variable names and safe semantics;
+* local mock-authentication behavior;
+* development-only administrator access;
+* repository-safety expectations.
+
+The pre-existing working-tree modification to `dev.cmd` remains outside the committed baseline and does not block Milestone 0 closure.
+
+#### 10.11.6 Architecture and Governance Tracking
+
+The final verification confirmed that the following authoritative architecture and governance documents exist at `HEAD` and are tracked:
+
+* `documentation/phase-4-concept-exploration-and-product-vision.md`;
+* `documentation/phase-4-product-architecture.md`;
+* `documentation/product-architecture-decisions.md`;
+* `documentation/phase-5-technical-architecture.md`;
+* `documentation/phase-6-implementation-plan.md`.
+
+Documentation Baseline A is preserved through:
+
+`3dc77d3 — Add authoritative Phase 4 and Phase 5 architecture baseline`
+
+Documentation Baseline B is preserved through:
+
+`9a95987 — Add authoritative Phase 6 implementation plan baseline`
+
+No authoritative Phase 4–6 baseline document remains untracked.
+
+#### 10.11.7 Known Warnings and Non-Blocking Findings
+
+The final verification observed or reconfirmed the following known warnings:
+
+* `tool.uv.dev-dependencies` deprecation warning;
+* missing `requires-python` declaration;
+* Starlette `httpx` deprecation warning;
+* npm `devdir` warning;
+* Vite production-build chunk-size advisory.
+
+These findings are classified as:
+
+* non-blocking known issues;
+* later-task candidates where justified;
+* not reasons to expand Milestone 0 scope.
+
+The pre-existing uncommitted `dev.cmd` health-wait behavior also remains non-blocking for Milestone 0 closure.
+
+No known warning requires corrective implementation merely to close Milestone 0.
+
+#### 10.11.8 Unrelated Repository Work Preservation
+
+The final verification confirmed the following unrelated pre-existing repository work:
+
+* modified `dev.cmd`;
+* deleted `documentation/chatgpt-project-handover.md`;
+* modified `documentation/implementation-roadmap.md`;
+* untracked `documentation/Arthur-project-handover.md`;
+* untracked `documentation/external-architecture-review.md`;
+* untracked `frontend/.env.local`.
+
+This work:
+
+* is unrelated to Milestone 0 technical completion;
+* remained outside all Milestone 0 implementation and documentation-baseline commits;
+* was not modified during final closure verification;
+* does not block Milestone 0 closure.
+
+The repository is therefore not globally clean.
+
+For Milestone 0 closure, repository cleanliness means:
+
+* no uncommitted M0.1 implementation change remains;
+* no uncommitted M0.2 implementation change remains;
+* no uncommitted M0.3 implementation change remains;
+* no uncommitted Documentation Baseline A change remains;
+* no unrelated file entered a Milestone 0 commit;
+* known unrelated pre-existing work remains untouched.
+
+The only current Milestone 0-scoped working-tree modification is this Phase 6 plan update containing:
+
+* Documentation Baseline B post-commit history;
+* final post-baseline verification evidence;
+* formal Milestone 0 closure record.
+
+This update must be committed separately as the final Milestone 0 closure commit.
+
+#### 10.11.9 Milestone 0 Completion Criteria
+
+The final verification confirmed that all substantive Milestone 0 completion criteria are satisfied.
+
+Confirmed:
+
+* repository state was investigated;
+* real development startup workflow was verified;
+* frontend and backend startup commands and ports were verified;
+* local authentication and administrator-development behavior were documented;
+* authoritative validation commands were established;
+* complete backend automated test execution was established;
+* complete frontend automated test execution was preserved;
+* the false-complete unified validation defect was corrected;
+* authoritative validation workflow documentation was established;
+* authoritative development environment baseline documentation was established;
+* preservation boundaries were identified;
+* safety-net gaps were classified;
+* no later-milestone architecture was implemented prematurely;
+* Documentation Baseline A entered Git history;
+* Documentation Baseline B entered Git history;
+* fresh unified validation passed;
+* fresh frontend production build passed;
+* final post-baseline verification was completed;
+* no technical, validation, architecture, documentation-baseline, or repository-contamination blocker remains.
+
+The final governance requirement is the isolated commit and push of this closure record.
+
+#### 10.11.10 Closure Blocker Review
+
+The final review found no remaining blocker involving:
+
+* incomplete automated tests;
+* false-complete validation;
+* missing operational documentation;
+* missing tracked architecture;
+* missing tracked Phase 6 governance;
+* inaccurate task history;
+* secret exposure;
+* repository contamination;
+* architectural contradiction;
+* premature Milestone 1 implementation.
+
+No technical blocker remains.
+
+No architecture-baseline blocker remains.
+
+No validation blocker remains.
+
+No release-baseline blocker remains within Milestone 0 scope.
+
+#### 10.11.11 Formal Closure Decision
+
+The final Milestone 0 closure decision is:
+
+**MILESTONE 0 FORMALLY CLOSED**
+
+Milestone 0 has achieved its approved objective:
+
+> Establish a verified, reproducible, and trustworthy implementation baseline before major Phase 6 architectural migration begins.
+
+The repository now has:
+
+* trustworthy complete unified automated validation;
+* authoritative validation documentation;
+* authoritative development-environment documentation;
+* preserved Product Architecture;
+* preserved Product Architecture Decisions;
+* preserved Technical Architecture;
+* a tracked authoritative Phase 6 Implementation Plan;
+* isolated rollback boundaries for all Milestone 0 implementation and documentation-baseline work;
+* fresh successful final validation and production-build evidence.
+
+Milestone 0 is therefore formally closed.
+
+#### 10.11.12 Transition to Milestone 1
+
+Milestone 1 planning may begin only after this formal closure record is committed and pushed successfully.
+
+Milestone 1 implementation must not begin automatically.
+
+Before implementation, Milestone 1 must follow the approved Phase 6 workflow:
+
+1. inspect the authoritative milestone obligations;
+2. perform repository investigation;
+3. build the dependency map;
+4. decompose the milestone into small, controlled, independently verifiable tasks;
+5. define task acceptance criteria;
+6. perform Pre-Implementation Analysis for the first approved task;
+7. implement only after explicit approval.
+
+Milestone 1 will address:
+
+**Project File v2 and Canonical Project Model**
+
+No Milestone 1 implementation work occurred during Milestone 0 closure.
+
+#### 10.11.13 Final Closure Commit Strategy
+
+The final Milestone 0 closure commit must contain exactly:
+
+`documentation/phase-6-implementation-plan.md`
+
+The commit must include:
+
+* Sections 10.10.19–10.10.24 — Documentation Baseline B post-commit history and closure;
+* Section 10.11 — Final Milestone 0 Closure Verification and Formal Closure.
+
+No other file may enter the commit.
+
+Approved commit message:
+
+`Phase 6 M0: record formal Milestone 0 closure`
+
+After the commit is pushed successfully:
+
+* Milestone 0 closure is preserved in Git history;
+* no uncommitted Milestone 0-scoped work should remain;
+* Milestone 1 planning may begin;
+* Milestone 1 implementation remains subject to the approved task workflow.
