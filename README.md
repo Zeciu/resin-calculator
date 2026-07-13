@@ -100,6 +100,65 @@ npm run dev --prefix frontend
 
 Vite will print a local URL (usually `http://127.0.0.1:5173`). Open this in your browser.
 
+## Automated validation
+
+Run all commands in this section from the **repository root**.
+
+### Complete unified validation
+
+The authoritative complete automated validation command for the current repository is:
+
+```powershell
+.\test.cmd
+```
+
+This runs the complete backend automated test suite first, then the complete frontend automated test suite. The script reports failure and exits with a non-zero code if either required suite fails.
+
+### Complete backend and frontend test suites
+
+Use these when you need to run one suite in isolation:
+
+```powershell
+uv run --project backend pytest -q
+npm test --prefix frontend
+```
+
+### Production build validation
+
+Production build validation is distinct from automated test execution. It verifies that the frontend production bundle can be created successfully:
+
+```powershell
+npm run build --prefix frontend
+```
+
+### Targeted validation
+
+During implementation, targeted validation may be used for faster feedback on a specific changed area. Examples:
+
+```powershell
+uv run --project backend pytest backend/test_app.py -q
+uv run --project backend pytest backend/tests/content/test_preferences_api.py -q
+npm test --prefix frontend -- src/workspace/projectFileSave.test.js
+```
+
+Targeted validation does not replace complete unified validation when broader regression validation is required for task closure, milestone closure, or higher-risk changes.
+
+### Validation levels
+
+- **Targeted validation** — focused feedback during implementation on a specific test file or module.
+- **Complete unified validation** — complete backend and frontend automated suites through `.\test.cmd`.
+- **Production build validation** — verifies that the frontend production bundle builds successfully.
+
+### Current observational baseline
+
+As verified through Phase 6 Milestone 0 Task M0.1, the current observational baseline is:
+
+- 115 backend tests;
+- 234 frontend tests across 49 test files;
+- 349 automated tests in total through the unified validation workflow.
+
+These counts are observational only. They are not permanent contracts and are expected to change as legitimate tests are added, removed, reorganized, or replaced.
+
 ## Deploy (Docker)
 
 A multi-stage Dockerfile builds the frontend and packages everything into a single Python image — no Node.js in production.
