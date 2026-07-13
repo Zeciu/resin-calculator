@@ -5793,3 +5793,4930 @@ After the commit is pushed successfully:
 * no uncommitted Milestone 0-scoped work should remain;
 * Milestone 1 planning may begin;
 * Milestone 1 implementation remains subject to the approved task workflow.
+## 11. Milestone 1 — Canonical Project Model and `.hfzproject` v2 Foundation
+
+**Status: Planning in progress. Implementation not started.**
+
+### 11.1 Milestone Objective
+
+The objective of Milestone 1 is to establish the authoritative canonical Project model and the `.hfzproject` v2 foundation required by the approved HFZWood Technical Architecture.
+
+This milestone must transform the current Project snapshot and Project-file persistence foundation into a formally defined, validated, and internally consistent Project representation without unnecessarily rewriting the existing working Project workflow.
+
+The resulting canonical Project model must provide the stable technical foundation required for later implementation of:
+
+* authenticated Project ownership;
+* foreign-owned Project read-only behavior;
+* Product Capability enforcement;
+* the Project Structural Capability Snapshot;
+* complete Local Workspace behavior;
+* future cloud Project representations;
+* future synchronization and divergence detection;
+* safe Project persistence, restoration, and validation.
+
+Milestone 1 must establish the authoritative rules and implementation foundation for:
+
+* `.hfzproject` format version 2;
+* canonical Project structure;
+* Project identity;
+* Project ownership metadata;
+* technical Project version identity;
+* direct version ancestry;
+* technical and metadata modification timestamps;
+* Project creation-threshold semantics;
+* first persistent-version semantics;
+* classification of technical metadata, technical Project content, descriptive metadata, and derived metadata;
+* technical-change versioning;
+* metadata-only persistence;
+* mixed technical and metadata persistence;
+* no-change Save behavior;
+* strict validation of Project files during Open;
+* safe rejection of malformed, incomplete, unsupported, or architecturally invalid Project representations.
+
+Milestone 1 must preserve the validated existing Project snapshot, Save, Open, Update, restore, dirty-state, unsaved-changes, and file-I/O foundations wherever they remain compatible with the approved architecture.
+
+It must not treat the current implementation as disposable legacy code.
+
+Milestone 1 does not by itself complete:
+
+* evidence-based image-import limits;
+* complete primary-image input validation and performance boundaries;
+* production authentication;
+* authoritative ownership enforcement;
+* foreign-owned Project user experience;
+* complete Product Capability enforcement;
+* complete Local Workspace functionality;
+* operational Cloud Workspace;
+* synchronization;
+* conflict-resolution workflows.
+
+Those responsibilities belong to later milestones, although Milestone 1 must establish the canonical Project fields and boundaries on which they depend.
+
+The authoritative `.hfzproject` v2 model must be established directly.
+
+Compatibility, migration, or automatic upgrading of disposable pre-launch `.hfzproject` v1 development files is not required.
+
+No Milestone 1 implementation task may begin until:
+
+1. the complete architectural obligations have been extracted from the approved architecture;
+2. the relevant repository state has been investigated read-only;
+3. architecture has been compared with repository reality;
+4. dependencies, preservation boundaries, migration boundaries, risks, and safety-net requirements have been identified;
+5. the milestone has been decomposed into small, independently verifiable tasks;
+6. the Milestone 1 plan has been reviewed and explicitly approved by the Product Owner.
+
+The authoritative rule is:
+
+**Milestone 1 establishes one canonical, validated, portable, and version-aware `.hfzproject` v2 Project representation that preserves compatible existing behavior and provides the stable foundation required by all later Project-related Phase 6 milestones, without prematurely implementing those later responsibilities.**
+
+### 11.2 Authoritative Architectural Sources
+
+Milestone 1 must be planned and implemented exclusively from approved architectural sources, the authoritative Phase 6 implementation workflow, and verified repository evidence.
+
+The following sources are authoritative for Milestone 1.
+
+#### 11.2.1 Phase 5 Technical Architecture
+
+The approved `documentation/phase-5-technical-architecture.md` document is the primary technical source of truth for Milestone 1.
+
+The architectural obligations relevant to this milestone must be extracted comprehensively from all applicable sections of that document, including, but not limited to, the sections governing:
+
+* current Project persistence and existing Project architecture gaps;
+* Project identity;
+* Project version identity and direct ancestry;
+* authenticated Project ownership metadata;
+* primary-image metadata and integrity foundations required by the canonical Project model;
+* Project data separation and technical versioning rules;
+* Project creation-threshold semantics;
+* first persistent-version semantics;
+* canonical Project representation;
+* `.hfzproject` format and schema versioning;
+* Save semantics;
+* metadata-only changes;
+* mixed technical and metadata changes;
+* no-change Save behavior;
+* strict Project validation;
+* safe handling of invalid or unsupported Project files;
+* migration and compatibility policy for disposable pre-launch `.hfzproject` v1 development files;
+* implementation sequencing, preservation, testing, reversibility, and migration constraints relevant to the canonical Project foundation.
+
+Section numbers alone must not be treated as sufficient architectural extraction.
+
+Milestone 1 planning must inspect the complete approved Technical Architecture for cross-cutting obligations, dependencies, preservation requirements, security boundaries, future-compatibility requirements, and implementation constraints that materially affect the canonical Project model.
+
+#### 11.2.2 Phase 6 Implementation Plan
+
+The current `documentation/phase-6-implementation-plan.md` document is authoritative for:
+
+* Phase 6 purpose and scope;
+* the relationship between Phase 5 architecture and Phase 6 implementation;
+* implementation principles;
+* task-decomposition rules;
+* the approved milestone sequence;
+* Milestone 1 scope and position within that sequence;
+* Task Execution Workflow;
+* investigation requirements;
+* acceptance-criteria requirements;
+* automated and manual verification requirements;
+* rollback discipline;
+* repository discipline;
+* documentation alignment;
+* stop conditions;
+* task and milestone closure requirements.
+
+Milestone 1 planning and implementation must follow this workflow without bypassing Pre-Implementation Analysis, Product Owner review, explicit implementation authorization, verification, documentation alignment, commit discipline, or formal closure evidence.
+
+#### 11.2.3 Approved Phase 4 Product Architecture Sources
+
+The approved Phase 4 Product Architecture and Product Architecture Decisions remain authoritative for underlying product behavior.
+
+They must be consulted where necessary to ensure that Milestone 1 does not accidentally redefine:
+
+* what constitutes a valid Project;
+* when a Project comes into existence;
+* the role and immutability of the primary image;
+* authenticated Project ownership;
+* the distinction between Project identity and Project version;
+* the distinction between technical Project content and descriptive or organizational information;
+* Local-First behavior;
+* Project portability;
+* the relationship between local and future cloud representations of the same logical Project.
+
+Milestone 1 must not reopen approved product decisions.
+
+If repository investigation or implementation reveals a genuine contradiction, missing product decision, or technical impossibility affecting an approved product rule, work must stop at that boundary and the issue must be escalated explicitly.
+
+#### 11.2.4 Verified Repository Evidence
+
+The actual repository state is authoritative for determining how the approved architecture can be implemented safely in the existing application.
+
+Repository investigation must establish facts concerning:
+
+* the current `.hfzproject` representation;
+* current Project snapshot structure;
+* current Save behavior;
+* current Open behavior;
+* current Update Existing Project behavior;
+* current restore behavior;
+* current dirty-state detection;
+* current unsaved-changes protection;
+* current primary-image serialization;
+* current Project metadata;
+* current Recent Projects metadata;
+* current IndexedDB file-handle persistence;
+* current frontend state ownership;
+* current tests covering Project persistence and restoration;
+* current dependencies that must be preserved or migrated;
+* existing behavior that already satisfies part of the approved architecture;
+* existing behavior that conflicts with or falls short of the approved architecture.
+
+Repository evidence may determine implementation details, dependency order, preservation boundaries, migration boundaries, test requirements, and safe task decomposition.
+
+Repository evidence must not independently override approved Product Architecture or Technical Architecture.
+
+#### 11.2.5 Source Precedence and Conflict Rule
+
+The authoritative precedence for Milestone 1 is:
+
+1. approved Product Architecture for product meaning and behavior;
+2. approved Phase 5 Technical Architecture for technical guarantees and architectural rules;
+3. Phase 6 Implementation Plan for implementation sequencing, workflow, verification, and closure discipline;
+4. verified repository evidence for current implementation reality and repository-specific implementation details.
+
+These sources serve different responsibilities and should normally complement rather than compete with one another.
+
+If verified repository reality differs from the approved target architecture, the difference must be treated as an implementation gap to investigate and plan.
+
+If a repository-specific implementation detail is not defined by the approved architecture, it may be decided during Phase 6 only when it:
+
+* preserves approved product behavior;
+* does not contradict the Technical Architecture;
+* does not weaken data integrity, Project identity, ownership, versioning, portability, validation, security, recovery, or future compatibility;
+* remains proportionate to the actual implementation need;
+* avoids speculative complexity.
+
+If two approved architectural sources appear genuinely contradictory, or if implementation would require silently changing an approved architectural guarantee, work must stop at that boundary until the contradiction is explicitly resolved.
+
+The authoritative rule is:
+
+**Milestone 1 must be derived from approved product meaning, approved technical guarantees, the disciplined Phase 6 implementation workflow, and verified repository reality. Architecture defines what must be true; repository evidence determines how to reach that state safely without unnecessary rewrites or invented behavior.**
+### 11.3 Complete Architectural Obligations
+
+Milestone 1 must establish the complete canonical Project foundation required by the approved Technical Architecture.
+
+The obligations below define what must become true through Milestone 1.
+
+They do not yet define implementation tasks, repository-specific module boundaries, file changes, or implementation order.
+
+Those decisions must be made only after read-only repository investigation and dependency analysis.
+
+#### 11.3.1 Canonical `.hfzproject` v2 Representation
+
+Milestone 1 must establish `.hfzproject` v2 as the authoritative persisted Project format for the launch-ready HFZWood product.
+
+The canonical Project representation must:
+
+* use `formatVersion: 2`;
+* remain a single portable JSON file;
+* contain sufficient information to reconstruct a valid locally persisted Project without cloud availability;
+* preserve the complete Project state required for opening, inspection, restoration, and continued editing when later ownership and authentication rules permit;
+* evolve the existing validated Project snapshot and restore mechanisms rather than unnecessarily replacing working calculator domain logic or persistence foundations.
+
+The canonical representation must preserve, directly or through a clearly defined internal structure:
+
+* Project identity;
+* ownership metadata;
+* technical version identity;
+* direct version ancestry;
+* complete known technical ancestry where required;
+* Project creation and modification timestamps;
+* the primary image;
+* primary-image integrity metadata;
+* reference measurements;
+* geometry;
+* calculation inputs;
+* calculation results where applicable;
+* technical Project parameters;
+* descriptive and organizational metadata;
+* free-form notes;
+* Project Structural Capability Snapshot;
+* any other information required by the approved canonical Project schema.
+
+The exact serialized schema must preserve the approved architectural distinctions and must not collapse technically different data categories into ambiguous undifferentiated state.
+
+#### 11.3.2 Permanent Project Identity
+
+Every valid HFZWood Project must have one unique and permanent `projectId`.
+
+The `projectId`:
+
+* identifies the logical Project;
+* is generated locally using a standard UUID mechanism;
+* must not depend on server availability;
+* remains unchanged throughout the Project lifecycle;
+* is independent of Project name, file name, file path, device, storage location, and current Project version;
+* travels with the Project inside the `.hfzproject` representation;
+* must be preserved when the Project is moved, copied, restored, reopened, or later represented in cloud storage.
+
+The authoritative identity rule is:
+
+**Same `projectId` means the same logical Project. Different `projectId` means a different Project.**
+
+Manual copying of a `.hfzproject` file must not create a new logical Project.
+
+#### 11.3.3 Project Creation Threshold
+
+A Project becomes technically valid only when both approved threshold conditions are satisfied:
+
+* one primary image exists;
+* at least one reference measurement exists.
+
+At the moment the threshold is first satisfied, the Project must receive:
+
+* `projectId`;
+* `ownerId`;
+* `primaryImageHash`;
+* `createdAt`.
+
+The Project then exists as a valid Project in application memory.
+
+Reaching the creation threshold must not automatically and silently create a `.hfzproject` file on the user's filesystem.
+
+Initial local persistence requires an explicit successful Save operation initiated by the user.
+
+#### 11.3.4 Valid but Unsaved Project State
+
+A valid Project may exist temporarily in application memory without yet having a persisted `.hfzproject` representation.
+
+In this state:
+
+* `projectId` exists;
+* `ownerId` exists;
+* `primaryImageHash` exists;
+* `createdAt` exists;
+* no persistent `versionId` exists yet;
+* no persistent `parentVersionId` exists yet;
+* no persistent technical ancestry exists yet.
+
+A valid but unsaved Project must remain protected against accidental abandonment through the applicable unsaved-changes behavior.
+
+Milestone 1 must establish the canonical state semantics required for this lifecycle distinction without prematurely implementing later Local Workspace responsibilities beyond the scope necessary for the v2 foundation.
+
+#### 11.3.5 Ownership Metadata Foundation
+
+Every valid Project must contain one stable `ownerId`.
+
+Within Milestone 1, `ownerId` is part of the canonical Project metadata foundation.
+
+The field must:
+
+* be created when the Project first becomes valid;
+* be stored persistently in `.hfzproject` v2;
+* remain associated with the Project across Save, Open, move, copy, restore, and future cloud representations;
+* not depend on username, display name, email address, Project name, file name, file path, or device identity.
+
+Milestone 1 establishes the canonical `ownerId` field and its persistence boundary.
+
+It does not complete production identity derivation, authoritative ownership enforcement, foreign-owned Project read-only behavior, or protected backend authorization, which belong to later milestones.
+
+Local `ownerId` metadata must not be treated as authoritative proof of authorization.
+
+#### 11.3.6 Primary-Image Integrity Metadata Foundation
+
+The canonical Project representation must include:
+
+* the authoritative stored primary image;
+* `primaryImageHash`.
+
+The `primaryImageHash` must be based on the authoritative stored primary-image representation and must be associated permanently with the Project identity.
+
+Milestone 1 must establish the canonical field and persistence boundary required by this architecture.
+
+The complete evidence-based image-import policy, supported-format boundaries, source-file-size limits, decoded-dimension limits, malformed-image validation, realistic phone-photo testing, browser-memory testing, and full primary-image integrity enforcement belong to Milestone 2.
+
+Milestone 1 must not prematurely invent those limits.
+
+#### 11.3.7 Technical Version Identity
+
+Each successfully persisted technical Project version must have a unique `versionId`.
+
+The distinction must remain explicit:
+
+* `projectId` identifies the logical Project;
+* `versionId` identifies one exact persisted technical version of that Project.
+
+A `versionId`:
+
+* is generated locally using a standard UUID mechanism;
+* must not depend on server availability;
+* changes only when a successful Save persists a real technical Project-content change;
+* must not change solely because descriptive, organizational, display, or other non-technical metadata changes.
+
+A valid Project that has never been successfully persisted does not yet have a persistent `versionId`.
+
+#### 11.3.8 Direct and Complete Known Ancestry
+
+Each persisted technical Project version must preserve the ancestry information required by the approved architecture.
+
+This includes:
+
+* `parentVersionId` for direct ancestry;
+* `ancestorVersionIds` for complete known technical branch ancestry where required by the approved version-relationship architecture.
+
+For the first successfully persisted technical version:
+
+* `parentVersionId = null`;
+* `ancestorVersionIds = []`.
+
+When a new technical version is created from an existing persisted version:
+
+* the previous `versionId` becomes the new `parentVersionId`;
+* the new version inherits the parent's complete known ancestry;
+* the direct parent's `versionId` is appended to `ancestorVersionIds`.
+
+Conceptually:
+
+`newVersion.ancestorVersionIds = parentVersion.ancestorVersionIds + [parentVersion.versionId]`
+
+Milestone 1 must preserve sufficient ancestry information for later succession and divergence reasoning without implementing full version-control behavior or permanent storage of every historical Project-content snapshot.
+
+Ancestry must not be arbitrarily truncated merely to optimize a theoretical scale problem.
+
+No ancestry pruning, checkpointing, compression, or compaction mechanism is required unless repository evidence or realistic testing demonstrates a concrete technical need.
+
+#### 11.3.9 Project Timestamps
+
+The canonical Project model must preserve the distinct meanings of:
+
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`.
+
+`createdAt` records Project creation at the moment the approved creation threshold is first satisfied.
+
+`lastModifiedAt` records the persistence time of the current technical Project version.
+
+`metadataModifiedAt` records successful persistence of descriptive, organizational, or applicable technical-metadata changes that do not independently create a new technical version.
+
+These timestamps must not be treated as interchangeable.
+
+Timestamps provide context.
+
+They must not independently determine:
+
+* Project identity;
+* technical version identity;
+* ancestry;
+* succession;
+* divergence;
+* conflict resolution;
+* overwrite permission.
+
+#### 11.3.10 Project Data Classification
+
+The canonical Project model must preserve a clear architectural distinction between:
+
+* technical Project metadata;
+* technical Project content;
+* descriptive and organizational Project information;
+* derived metadata.
+
+Technical Project metadata includes, where applicable:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* `primaryImageHash`;
+* Project Structural Capability Snapshot;
+* Project format and schema version information.
+
+Technical Project content consists of persistent data whose modification changes the technical state of the Project, including:
+
+* reference measurement points;
+* reference measurement values;
+* formwork geometry;
+* wood geometry;
+* cavity geometry;
+* depth information;
+* pour-layer configuration;
+* calculation inputs;
+* calculation-affecting parameters;
+* mix ratio;
+* other future Project Tool data used for calculation, technical validation, or execution-related technical behavior.
+
+Descriptive and organizational information includes, where applicable:
+
+* `projectName`;
+* free-form notes;
+* descriptive material information;
+* resin product description when it does not affect calculation logic;
+* pigment or color information;
+* wood species;
+* other organizational information not consumed as technical Project input.
+
+Derived metadata includes information such as thumbnails that may be regenerated from authoritative Project data.
+
+The classification of a field must depend on its architectural function, not merely on its UI representation or data type.
+
+#### 11.3.11 Technical Version Boundary
+
+A new `versionId` must be generated only when a successful Save persists a real change to technical Project content.
+
+Examples include changes to:
+
+* reference measurements;
+* reference measurement values;
+* geometry;
+* depth information;
+* pour-layer configuration;
+* calculation inputs;
+* mix ratio;
+* other persistent data used for calculation, technical validation, or execution-related technical behavior.
+
+Descriptive, organizational, display, and free-form informational changes must not by themselves generate a new technical `versionId`.
+
+This boundary must be explicit and testable.
+
+#### 11.3.12 Project Structural Capability Snapshot Foundation
+
+The Project Structural Capability Snapshot is technical Project metadata.
+
+Milestone 1 must establish its canonical place in `.hfzproject` v2 and preserve the approved persistence and versioning boundaries.
+
+A change to the Project Structural Capability Snapshot:
+
+* must be persisted only through a successful explicit Save;
+* does not by itself generate a new `versionId`;
+* does not by itself update `lastModifiedAt`;
+* updates `metadataModifiedAt`;
+* must still be recognized as a persistent metadata change by the Save pipeline.
+
+If the same Save also persists a real technical Project-content change, normal technical-versioning rules apply.
+
+Milestone 1 establishes this canonical persistence foundation.
+
+Complete effective-capability resolution, upgrade behavior, downgrade behavior, offline capability windows, and authoritative capability enforcement belong to Milestone 5.
+
+#### 11.3.13 First Successful Save Semantics
+
+The first successful explicit Save creates the first persistent technical version of the Project.
+
+At that moment:
+
+* a new `versionId` is generated;
+* `parentVersionId` is `null`;
+* `ancestorVersionIds` is empty;
+* `lastModifiedAt` is established;
+* the complete canonical Project representation is persisted.
+
+The first `versionId` must not be generated merely because the Project became valid in application memory.
+
+A `versionId` represents a successfully persisted technical Project version.
+
+Failed persistence must never be represented as a successful Save.
+
+#### 11.3.14 Subsequent Save with Technical Changes
+
+When a previously persisted Project is successfully saved after technical Project content has changed:
+
+* a new `versionId` is generated;
+* the previous `versionId` becomes the new `parentVersionId`;
+* complete known ancestry is carried forward according to the approved ancestry construction rule;
+* `lastModifiedAt` is updated;
+* changed technical Project content is persisted.
+
+The previous persisted technical identity must not be discarded before successful persistence of the new representation is confirmed.
+
+#### 11.3.15 Save with Metadata-Only Changes
+
+When a Save persists only descriptive, organizational, or applicable technical-metadata changes:
+
+* `projectId` remains unchanged;
+* `versionId` remains unchanged;
+* `parentVersionId` remains unchanged;
+* `ancestorVersionIds` remains unchanged;
+* `lastModifiedAt` remains unchanged;
+* metadata changes are persisted;
+* `metadataModifiedAt` is updated.
+
+Metadata-only differences must not be incorrectly represented as technical Project divergence.
+
+#### 11.3.16 Save with Mixed Technical and Metadata Changes
+
+A single Save may persist both technical Project-content changes and metadata changes.
+
+In this case:
+
+* a new `versionId` is generated;
+* ancestry advances according to the approved technical-versioning rules;
+* `lastModifiedAt` is updated;
+* `metadataModifiedAt` is updated when applicable;
+* all successfully persisted changes are represented atomically by the resulting canonical Project state.
+
+The Save pipeline must not lose or misclassify either category of change.
+
+#### 11.3.17 Save with No Persistent Changes
+
+A Save operation with no real persistent change must not create artificial Project history.
+
+When no technical Project content, descriptive metadata, organizational metadata, applicable technical metadata, or Project Structural Capability Snapshot change requires persistence:
+
+* no new `versionId` is generated;
+* `parentVersionId` does not change;
+* `ancestorVersionIds` does not change;
+* `lastModifiedAt` does not change;
+* `metadataModifiedAt` does not change merely because Save was invoked.
+
+The application must not create false versions or misleading modification timestamps.
+
+#### 11.3.18 Persistence Success Boundary
+
+Version and timestamp transitions must represent successfully persisted reality.
+
+The implementation must not permanently adopt a newly generated `versionId`, advanced ancestry, or updated modification timestamp as authoritative Project state when persistence fails.
+
+A failed Save must not:
+
+* masquerade as successful;
+* create false persisted history;
+* leave canonical in-memory state falsely claiming that unsuccessful persistence occurred.
+
+The exact repository-specific implementation mechanism must be determined only after investigation of the current Save pipeline.
+
+#### 11.3.19 Strict Validation on Open
+
+HFZWood must validate a Project file before adopting it as active Project state.
+
+A malformed, corrupted, incomplete, structurally invalid, or unsupported Project file must fail safely.
+
+The application must:
+
+* reject the invalid file;
+* not partially load invalid Project state into the active workspace;
+* not silently repair or reinterpret unknown structures;
+* not overwrite or modify the original invalid file;
+* preserve the currently active valid Project state, if one exists;
+* display a clear user-facing error explaining that the Project could not be opened.
+
+A failed Open operation must never leave the application in an ambiguous partially loaded state.
+
+#### 11.3.20 Unsupported Format Handling
+
+Every canonical Project file must contain an explicit `formatVersion`.
+
+For Milestone 1, the authoritative supported Project format is:
+
+`formatVersion: 2`
+
+If the application encounters an unsupported format version, including a future version it does not understand, it must reject the file safely rather than guess how to interpret it.
+
+Unknown Project structures must fail closed.
+
+#### 11.3.21 Pre-Launch `.hfzproject` v1 Policy
+
+Existing pre-launch `.hfzproject` v1 development files are explicitly disposable.
+
+Milestone 1 does not require:
+
+* v1 backward compatibility;
+* v1 opening support;
+* v1 editing support;
+* v1-to-v2 automatic migration;
+* v1 identity assignment;
+* parallel v1 and v2 persistence authorities;
+* preservation of existing v1 development artifacts.
+
+Phase 6 may transition directly to `.hfzproject` v2.
+
+Existing disposable v1 Projects may be discarded and recreated as new v2 Projects where required.
+
+The absence of v1 migration support is an explicit approved architecture decision and must not be treated as missing functionality or technical debt.
+
+This policy applies only to disposable pre-launch development files.
+
+It does not establish permission to discard real production user data in future format transitions.
+
+#### 11.3.22 Preservation Obligations
+
+Milestone 1 must preserve existing validated behavior and implementation foundations wherever compatible with the approved architecture.
+
+Particular preservation candidates include:
+
+* existing Project file I/O abstractions;
+* existing Project snapshot construction;
+* existing Project restoration;
+* existing Save workflow;
+* existing Open workflow;
+* existing Update Existing Project behavior;
+* existing dirty-state detection;
+* existing unsaved-changes protection;
+* existing primary-image serialization;
+* existing Recent Projects metadata behavior where not made authoritative;
+* existing IndexedDB file-handle retention;
+* validated Resin Calculator algorithms;
+* existing automated tests covering Project persistence and restoration.
+
+These are preservation candidates, not assumptions that every current implementation detail is already correct.
+
+Repository investigation must determine:
+
+* what can remain unchanged;
+* what can be extended;
+* what requires migration;
+* what conflicts with the approved architecture;
+* what may become obsolete only after verified replacement.
+
+No working foundation may be rewritten merely for architectural preference.
+
+#### 11.3.23 Milestone Boundary with Later Responsibilities
+
+Milestone 1 must establish the canonical Project foundation without prematurely implementing later milestone responsibilities.
+
+In particular, Milestone 1 must not expand into full implementation of:
+
+* evidence-based image-import boundaries and performance limits belonging to Milestone 2;
+* production authentication and stable production identity derivation belonging to Milestone 3;
+* authoritative ownership enforcement and foreign-owned read-only UX belonging to Milestone 4;
+* complete Product Capability resolution and enforcement belonging to Milestone 5;
+* complete Local Workspace behavior belonging to Milestone 6;
+* operational Cloud Workspace;
+* synchronization;
+* user-facing conflict resolution.
+
+Where canonical fields are required now for those future responsibilities, Milestone 1 must establish the minimum correct foundation without activating incomplete future product behavior.
+
+#### 11.3.24 Architectural Stop Conditions
+
+Milestone 1 planning or implementation must stop if repository evidence reveals that:
+
+* an approved architectural obligation is technically impossible;
+* two approved architectural rules are genuinely contradictory;
+* the canonical v2 model cannot be implemented without weakening Project integrity;
+* Save semantics cannot safely distinguish successful persistence from failed persistence;
+* current state ownership makes version or timestamp transitions ambiguous;
+* strict Open validation cannot preserve the active valid Project on failure;
+* implementation would require inventing unresolved product behavior;
+* implementation would materially expand into a later milestone without explicit justification and approval.
+
+Such findings must be documented and resolved explicitly rather than silently worked around in code.
+
+#### 11.3.25 Authoritative Milestone 1 Architectural Rule
+
+The authoritative rule is:
+
+**Milestone 1 must establish one canonical, portable, validated, version-aware `.hfzproject` v2 representation in which Project identity, ownership metadata, technical version identity, ancestry, timestamps, Project data classification, capability-snapshot metadata, Save semantics, and validation behavior are explicit and internally consistent. The implementation must preserve compatible working foundations, create no false persistence history, fail closed on invalid input, avoid unnecessary v1 compatibility, and establish only the minimum correct foundation required by later milestones without prematurely implementing them.**
+### 11.4 Preservation Boundaries
+
+Milestone 1 must evolve the existing HFZWood Project persistence architecture without treating the current working implementation as disposable legacy code.
+
+The repository already contains validated Project workflows, persistence mechanisms, restoration behavior, state-management foundations, and automated tests that represent substantial implementation value.
+
+These foundations must be preserved wherever they remain compatible with the approved Product Architecture and Phase 5 Technical Architecture.
+
+Preservation does not mean that existing implementation is automatically authoritative or exempt from change.
+
+It means that existing working behavior must not be rewritten, replaced, deleted, or materially altered without a concrete reason established through approved architecture and verified repository evidence.
+
+#### 11.4.1 Existing Project File I/O Foundation
+
+The existing Project file I/O layer is a primary preservation boundary.
+
+Repository investigation must identify:
+
+* the current `.hfzproject` serialization path;
+* the current file-writing mechanism;
+* the current file-reading mechanism;
+* native filesystem behavior where supported;
+* browser-download fallback behavior;
+* file-handle retention;
+* update-in-place behavior;
+* error handling;
+* relevant abstractions and helpers;
+* existing automated tests.
+
+The existing file I/O foundation must be extended rather than replaced where it can safely support `.hfzproject` v2.
+
+Replacement is justified only if repository evidence demonstrates that the current implementation:
+
+* cannot support the approved canonical v2 model;
+* creates a concrete data-integrity risk;
+* prevents strict validation;
+* prevents reliable persistence-success semantics;
+* prevents safe rollback or testing;
+* contains verified duplication or obsolete behavior that materially obstructs implementation.
+
+Architectural preference alone is not sufficient justification for replacement.
+
+#### 11.4.2 Existing Project Snapshot Construction
+
+The current Project snapshot mechanism is a preservation boundary.
+
+Repository investigation must identify:
+
+* where the current Project snapshot is constructed;
+* which persistent fields it contains;
+* how technical Project content is collected;
+* how descriptive information is collected;
+* how the primary image is represented;
+* whether calculation results are persisted;
+* how snapshot equality or dirty-state comparison currently works;
+* which consumers depend on the existing snapshot shape.
+
+Milestone 1 should evolve the current snapshot into or toward the canonical v2 representation where safe.
+
+Validated Project content must not be omitted, silently reclassified, or reconstructed differently without explicit architectural justification and verification.
+
+#### 11.4.3 Existing Project Restoration Behavior
+
+The existing Project restoration mechanism is a preservation boundary.
+
+Repository investigation must identify:
+
+* how opened Project data is restored into application state;
+* which providers, contexts, components, hooks, or services receive restored data;
+* restoration order dependencies;
+* primary-image restoration behavior;
+* reference-measurement restoration;
+* geometry restoration;
+* calculator-state restoration;
+* notes and descriptive-data restoration;
+* error behavior when restoration fails.
+
+Milestone 1 must preserve complete restoration of valid Project state.
+
+Strict v2 validation must occur before invalid data is adopted as active Project state.
+
+A failed Open must not partially mutate or corrupt the currently active valid Project.
+
+#### 11.4.4 Existing Save Workflow
+
+The current Save workflow is a critical preservation boundary.
+
+Repository investigation must determine:
+
+* how Save is initiated;
+* how Project state is collected;
+* when persistence is attempted;
+* when in-memory state is considered saved;
+* when dirty state is cleared;
+* how success and failure are detected;
+* how file handles are created or reused;
+* how browser-download fallback behaves;
+* how Recent Projects metadata is updated;
+* whether state transitions occur before or after persistence success is known.
+
+Milestone 1 must preserve validated Save behavior while introducing the approved v2 identity, versioning, ancestry, timestamp, metadata, and validation semantics.
+
+No implementation may create false persisted history by permanently adopting a new `versionId`, ancestry state, timestamp, or saved-state marker when persistence has failed.
+
+#### 11.4.5 Existing Open Workflow
+
+The current Open workflow is a critical preservation boundary.
+
+Repository investigation must determine:
+
+* how a Project file is selected;
+* how file content is read;
+* how JSON parsing occurs;
+* what validation currently exists;
+* when active Project state begins to change;
+* how restoration is triggered;
+* how file handles are retained;
+* how Recent Projects metadata is updated;
+* what happens when parsing, validation, or restoration fails.
+
+Milestone 1 must preserve successful opening of valid supported Projects while introducing strict v2 validation and fail-closed behavior.
+
+Invalid, malformed, incomplete, corrupted, or unsupported Project files must not be partially adopted as active Project state.
+
+#### 11.4.6 Existing Update Existing Project Behavior
+
+The existing Update Existing Project workflow is a preservation boundary.
+
+Repository investigation must identify:
+
+* how an existing writable Project representation is recognized;
+* how a valid file handle is associated with the active Project;
+* how update-in-place behavior works;
+* how persistence success is determined;
+* how fallback behavior works when direct update is unavailable;
+* how dirty state and Recent Projects metadata are affected.
+
+Milestone 1 must not break validated update-in-place behavior while establishing canonical v2 Save semantics.
+
+Later Local Workspace responsibilities must not be prematurely implemented merely because they interact with the same persistence foundation.
+
+#### 11.4.7 Existing Dirty-State Detection
+
+The existing dirty-state mechanism is a preservation boundary.
+
+Repository investigation must identify:
+
+* what state is currently compared;
+* what snapshot or baseline is treated as last saved;
+* how technical changes are detected;
+* how notes or descriptive changes are detected;
+* whether primary-image state participates;
+* how dirty state is reset after Save or Open;
+* how no-change Save behavior currently works;
+* which UI protections depend on dirty state.
+
+Milestone 1 may need to distinguish technical changes from metadata-only changes in order to implement correct versioning semantics.
+
+However, existing validated unsaved-change detection must not be weakened.
+
+A change that requires persistence must not become invisible merely because it does not generate a new technical `versionId`.
+
+#### 11.4.8 Existing Unsaved-Changes Protection
+
+Existing protection against accidental loss of unsaved Project work is a preservation boundary.
+
+Repository investigation must identify:
+
+* navigation protections;
+* Project-switch protections;
+* browser-close or unload behavior where applicable;
+* confirmation dialogs;
+* interaction with dirty state;
+* behavior for valid but never-persisted Projects;
+* behavior after failed Save attempts.
+
+Milestone 1 must preserve protection against accidental abandonment of unsaved work.
+
+The introduction of v2 lifecycle semantics must not create a gap in which a valid but unsaved Project can be lost without appropriate warning.
+
+#### 11.4.9 Existing Primary-Image Serialization
+
+The existing primary-image serialization mechanism is a preservation boundary.
+
+Repository investigation must determine:
+
+* the current serialized representation;
+* where image encoding occurs;
+* where image decoding occurs;
+* whether the representation is JSON-safe;
+* whether the saved Project is independent of the original image path;
+* how restoration works;
+* what tests exist;
+* whether any known size, memory, portability, or integrity limitations are already documented or observable.
+
+Milestone 1 must preserve the current image representation where it remains compatible with the canonical v2 model.
+
+A new image-encoding mechanism must not be introduced merely for preference or theoretical elegance.
+
+Evidence-based image-import limits, realistic phone-photo performance, decoded-dimension boundaries, malformed-image validation, and complete image-integrity enforcement remain responsibilities of Milestone 2.
+
+#### 11.4.10 Existing Recent Projects Metadata
+
+Existing Recent Projects behavior is a preservation boundary where it remains a convenience layer rather than canonical Project persistence.
+
+Repository investigation must determine:
+
+* what metadata is stored;
+* where it is stored;
+* how entries are created and updated;
+* whether thumbnails are stored;
+* how file handles relate to Recent Projects;
+* how stale or unavailable entries are handled;
+* whether any current metadata duplicates information that will become canonical inside `.hfzproject` v2.
+
+Milestone 1 must not accidentally promote Recent Projects metadata into an authoritative source for Project identity, ownership, technical versioning, ancestry, or canonical Project content.
+
+Changes to complete Local Workspace behavior belong to Milestone 6 unless a minimal adjustment is strictly required for the canonical v2 foundation.
+
+#### 11.4.11 Existing IndexedDB File-Handle Retention
+
+Existing IndexedDB-based native file-handle retention is a preservation boundary where supported by the browser environment.
+
+Repository investigation must identify:
+
+* how handles are stored;
+* how they are retrieved;
+* how they are associated with Recent Projects or active Projects;
+* how invalid, stale, moved, deleted, or inaccessible handles are treated;
+* which browsers or APIs support the current behavior;
+* what fallback behavior exists.
+
+Milestone 1 must avoid unnecessary changes to this mechanism unless required by the canonical v2 foundation.
+
+Complete handling of moved, deleted, unavailable, or inaccessible local files belongs primarily to Local Workspace completion in Milestone 6.
+
+#### 11.4.12 Validated Resin Calculator Domain Logic
+
+Validated Resin Calculator algorithms are a strict preservation boundary.
+
+Milestone 1 must not rewrite, redesign, optimize, or materially alter calculation algorithms merely because the canonical Project representation changes.
+
+Repository investigation must identify the boundary between:
+
+* Project persistence representation;
+* frontend calculator state;
+* backend calculation logic;
+* calculation inputs;
+* calculation results;
+* restore behavior.
+
+Any change affecting validated calculation behavior requires explicit justification, dedicated regression verification, and scope review.
+
+The canonical Project migration must adapt around validated domain logic wherever practical rather than forcing unnecessary domain rewrites.
+
+#### 11.4.13 Existing Frontend State Ownership
+
+The existing frontend provider, context, hook, component, and local-state structure must be treated as a preservation boundary until repository investigation establishes where canonical Project state is currently owned.
+
+Milestone 1 must not introduce a new global state-management framework merely to implement `.hfzproject` v2.
+
+Repository investigation must determine:
+
+* where Project lifecycle state is owned;
+* where calculator state is owned;
+* where primary-image state is owned;
+* where references and geometry are owned;
+* where notes and descriptive metadata are owned;
+* where file-handle state is owned;
+* where last-saved baselines are owned;
+* how Save and Open coordinate across these boundaries.
+
+Existing state-management foundations should be extended where sufficient.
+
+New abstractions are justified only when a concrete canonical-model, testability, data-integrity, or migration requirement cannot be safely satisfied otherwise.
+
+#### 11.4.14 Existing Automated Test Safety Net
+
+Existing automated tests covering Project behavior are a strict preservation boundary.
+
+Repository investigation must identify tests covering, where applicable:
+
+* Project Save;
+* Project Open;
+* Project Update Existing Project;
+* Recent Projects;
+* file-handle persistence;
+* browser-download fallback;
+* dirty-state detection;
+* unsaved-changes protection;
+* Project snapshot construction;
+* Project restoration;
+* primary-image persistence;
+* calculation-state restoration;
+* invalid-file handling.
+
+Existing tests must not be weakened, deleted, skipped, or rewritten merely to make new implementation pass.
+
+A test may be changed only when:
+
+* approved architecture intentionally changes the behavior it verifies;
+* the old expectation is demonstrably obsolete;
+* the new expected behavior is explicitly documented;
+* equivalent or stronger regression protection remains.
+
+Milestone 1 must add targeted automated coverage for new v2 behavior rather than relying solely on existing tests.
+
+#### 11.4.15 Unrelated Repository Work
+
+Unrelated pre-existing repository work is outside the Milestone 1 preservation and implementation scope and must remain untouched unless explicitly authorized.
+
+The currently known unrelated repository state includes:
+
+* modified `dev.cmd`;
+* deleted `documentation/chatgpt-project-handover.md`;
+* modified `documentation/implementation-roadmap.md`;
+* untracked `documentation/Arthur-project-handover.md`;
+* untracked `documentation/external-architecture-review.md`;
+* untracked `frontend/.env.local`.
+
+Milestone 1 investigation and implementation must not:
+
+* modify;
+* revert;
+* restore;
+* delete;
+* clean;
+* rename;
+* stage;
+* commit
+
+these unrelated files or states without explicit approval.
+
+Repository-wide cleanup commands must not be used in a way that risks altering unrelated work.
+
+Wildcard staging must not be used where isolated explicit-path staging is required.
+
+#### 11.4.16 Conditions for Changing Preserved Foundations
+
+A preserved foundation may be changed only when repository evidence demonstrates a concrete reason, including:
+
+* incompatibility with an approved architectural obligation;
+* data-integrity risk;
+* inability to support canonical v2 validation;
+* inability to distinguish successful from failed persistence;
+* inability to support correct versioning or metadata semantics;
+* security weakness;
+* verified duplication that creates implementation risk;
+* obsolete behavior after successful replacement;
+* maintainability or testability problems that materially block safe implementation.
+
+Any such change must:
+
+* remain proportionate to the concrete problem;
+* preserve unaffected validated behavior;
+* receive explicit task scope;
+* define acceptance criteria;
+* define regression verification;
+* define rollback boundaries;
+* avoid unrelated refactoring.
+
+#### 11.4.17 No Premature Preservation Assumptions
+
+The preservation boundaries above do not establish that every current implementation detail is correct or must remain unchanged.
+
+Before repository investigation, Milestone 1 must not assume:
+
+* the current snapshot shape is suitable as the final v2 schema;
+* the current Save pipeline has correct persistence-success boundaries;
+* current dirty-state logic already distinguishes technical and metadata changes;
+* current Open behavior is fail-closed;
+* current image serialization is fully compatible with all future integrity requirements;
+* current Recent Projects metadata is free from duplicated authority;
+* current state ownership is sufficient for canonical version transitions;
+* current tests cover every required failure mode.
+
+These questions must be answered through read-only repository investigation.
+
+The preservation principle is therefore:
+
+**Preserve verified value, not accidental structure.**
+
+#### 11.4.18 Authoritative Preservation Rule
+
+The authoritative rule is:
+
+**Milestone 1 must preserve validated HFZWood Project behavior, persistence foundations, restoration mechanisms, domain logic, state-management structures, and automated tests wherever they remain compatible with the approved architecture. Existing code must not be rewritten, replaced, weakened, or deleted without concrete repository evidence and architectural justification. Preservation must protect working value without turning current implementation accidents into permanent constraints, and unrelated repository work must remain untouched unless explicitly authorized.**
+### 11.5 Repository Investigation Requirements
+
+Before Milestone 1 may be decomposed into implementation tasks, the actual HFZWood repository must be investigated strictly read-only.
+
+The purpose of this investigation is to establish verified repository facts required to compare the approved architecture with the current implementation reality.
+
+The investigation must determine:
+
+* what already exists and should be preserved;
+* what partially satisfies the approved architecture;
+* what conflicts with the approved architecture;
+* what is missing;
+* what dependencies constrain safe implementation order;
+* what migration boundaries exist;
+* what safety-net gaps must be closed before data-integrity-sensitive changes;
+* what repository-specific implementation details may be decided safely during Phase 6;
+* whether any genuine architectural contradiction, impossibility, or missing decision requires escalation before implementation.
+
+The investigation must not modify repository content.
+
+It must not:
+
+* edit files;
+* create files;
+* delete files;
+* rename files;
+* format files;
+* generate production code;
+* generate migration code;
+* update documentation;
+* stage changes;
+* commit;
+* push;
+* clean unrelated repository state;
+* restore unrelated files;
+* run destructive commands;
+* implement any Milestone 1 behavior.
+
+Commands that only read repository state, inspect files, search code, inspect Git history, or run existing tests without modifying tracked source files may be used where appropriate.
+
+If any command could modify repository content, generated artifacts, lockfiles, caches, environment files, persistent local data, or unrelated working-tree state, it must not be used without explicit approval.
+
+#### 11.5.1 Repository State Verification
+
+The investigation must begin by verifying and reporting the current repository state.
+
+It must identify:
+
+* current branch;
+* current HEAD commit;
+* tracked modified files;
+* tracked deleted files;
+* untracked files;
+* staged changes, if any;
+* whether the known unrelated pre-existing repository work remains present and untouched.
+
+The known unrelated repository state that must be protected includes:
+
+* modified `dev.cmd`;
+* deleted `documentation/chatgpt-project-handover.md`;
+* modified `documentation/implementation-roadmap.md`;
+* untracked `documentation/Arthur-project-handover.md`;
+* untracked `documentation/external-architecture-review.md`;
+* untracked `frontend/.env.local`.
+
+If the actual repository state differs materially from the expected state, the discrepancy must be reported before implementation planning proceeds.
+
+No unrelated repository work may be modified, reverted, restored, deleted, cleaned, staged, or committed.
+
+#### 11.5.2 Current `.hfzproject` Representation
+
+The investigation must identify the complete current `.hfzproject` representation.
+
+It must determine:
+
+* where the Project snapshot is constructed;
+* the exact current top-level structure;
+* all persisted fields;
+* nested structures;
+* current format or schema markers, if any;
+* whether a format version already exists;
+* how the primary image is represented;
+* how reference measurements are represented;
+* how formwork geometry is represented;
+* how wood geometry is represented;
+* how cavity geometry is represented;
+* how depth and layer information are represented;
+* how calculator inputs are represented;
+* how calculation results are represented;
+* how notes and descriptive information are represented;
+* whether Project name exists;
+* whether any current identity, ownership, version, ancestry, timestamp, integrity, or capability-snapshot fields already exist;
+* which parts of the representation are authoritative Project data and which are convenience or derived metadata.
+
+The investigation must identify all code paths that create, consume, validate, transform, compare, or restore this representation.
+
+#### 11.5.3 Project Snapshot Construction
+
+The investigation must trace the complete current Project snapshot construction path.
+
+It must identify:
+
+* entry point;
+* responsible function or functions;
+* source state for every persisted field;
+* provider, context, hook, component, service, or helper dependencies;
+* calculation-state dependencies;
+* primary-image dependencies;
+* reference-measurement dependencies;
+* geometry dependencies;
+* notes and descriptive-data dependencies;
+* whether snapshot construction has side effects;
+* whether snapshot construction can fail;
+* how failures are handled;
+* whether multiple competing snapshot-construction paths exist.
+
+The investigation must determine whether the existing snapshot mechanism can be safely evolved into the canonical `.hfzproject` v2 representation or whether a more explicit canonical-model boundary is required.
+
+No recommendation to replace the existing mechanism may be made without concrete evidence.
+
+#### 11.5.4 Current Project Lifecycle and State Ownership
+
+The investigation must establish the actual current Project lifecycle from initial workflow entry through creation, persistence, reopening, modification, and replacement.
+
+It must determine:
+
+* when the application currently considers a Project to exist;
+* whether any Project identity exists today;
+* when primary image selection occurs;
+* when reference measurements become available;
+* whether the approved creation threshold is currently represented anywhere;
+* where active Project state is owned;
+* where current file-handle state is owned;
+* where Project metadata is owned;
+* where the last-saved baseline is owned;
+* how a new Project replaces or resets previous Project state;
+* how an opened Project becomes the active Project;
+* whether active Project state is centralized or distributed;
+* which state transitions are synchronous and which are asynchronous;
+* which lifecycle transitions may affect Save, Open, dirty state, or unsaved-changes protection.
+
+The investigation must identify any current state-ownership pattern that could make canonical Project identity, version transitions, timestamps, or persistence-success semantics ambiguous.
+
+#### 11.5.5 Save Workflow and Persistence-Success Boundary
+
+The complete Save workflow must be traced from user action to confirmed persistence outcome.
+
+The investigation must determine:
+
+* all Save entry points;
+* how the Project snapshot is obtained;
+* how the target file or download path is selected;
+* how native filesystem persistence works;
+* how browser-download fallback works;
+* when a file handle is created or reused;
+* when persistence is considered successful;
+* how persistence failure is detected;
+* how cancellation is distinguished from failure where applicable;
+* when in-memory Project state changes;
+* when dirty state is cleared;
+* when the last-saved baseline is updated;
+* when Recent Projects metadata is updated;
+* whether any state is mutated before persistence success is known;
+* whether failed persistence can currently leave the application falsely believing that data was saved.
+
+The investigation must explicitly answer whether the current Save pipeline can safely support:
+
+* first persistent `versionId` creation;
+* technical-change version advancement;
+* ancestry advancement;
+* `lastModifiedAt` updates;
+* metadata-only persistence;
+* `metadataModifiedAt` updates;
+* mixed technical and metadata changes;
+* no-change Save behavior;
+* rollback of proposed in-memory version metadata when persistence fails.
+
+If the answer is no or uncertain, the exact gap must be identified.
+
+#### 11.5.6 First Save, Subsequent Save, and No-Change Save
+
+The investigation must separately trace and compare:
+
+* first Save of a newly created Project;
+* Save of a previously persisted Project after technical changes;
+* Save after metadata-only changes;
+* Save after mixed technical and metadata changes;
+* Save when no persistent changes exist.
+
+It must determine whether the current implementation distinguishes these cases.
+
+The investigation must identify:
+
+* current state transitions;
+* current dirty-state behavior;
+* current persistence behavior;
+* current timestamp behavior, if any;
+* current baseline updates;
+* current user-visible behavior;
+* relevant automated tests.
+
+No assumption may be made that one generic Save path automatically satisfies all approved v2 semantics.
+
+#### 11.5.7 Update Existing Project Workflow
+
+The investigation must trace the complete Update Existing Project path.
+
+It must determine:
+
+* how the application recognizes an existing writable Project;
+* how a file handle is associated with the active Project;
+* how update-in-place persistence works;
+* whether the same snapshot-construction path is used as ordinary Save;
+* how success and failure are determined;
+* when dirty state is cleared;
+* when the last-saved baseline changes;
+* when Recent Projects metadata changes;
+* what happens when the existing handle is invalid, stale, unavailable, or no longer writable;
+* what fallback behavior exists;
+* which automated tests cover this workflow.
+
+The investigation must identify whether canonical v2 Save semantics can be shared safely across first Save and Update Existing Project without breaking existing validated behavior.
+
+#### 11.5.8 Open Workflow, Parsing, Validation, and State Adoption
+
+The complete Open workflow must be traced from file selection to active Project restoration.
+
+The investigation must determine:
+
+* all Open entry points;
+* how a file is selected;
+* how file content is read;
+* where JSON parsing occurs;
+* what structural validation currently exists;
+* what semantic validation currently exists;
+* whether format-version validation exists;
+* whether unknown fields are tolerated, ignored, transformed, or rejected;
+* whether missing fields are defaulted;
+* when active Project state begins to change;
+* whether validation occurs before or after state mutation;
+* how restoration is triggered;
+* whether restoration can partially succeed;
+* what happens if parsing fails;
+* what happens if validation fails;
+* what happens if restoration fails;
+* whether the previously active valid Project remains intact after failed Open;
+* whether the invalid source file remains untouched;
+* how user-facing errors are presented;
+* when file handles are retained;
+* when Recent Projects metadata is updated.
+
+The investigation must explicitly determine whether current Open behavior is fail-closed.
+
+If it is not, the exact partial-state-adoption or mutation risk must be documented.
+
+#### 11.5.9 Current Validation Model
+
+The investigation must inventory all current Project-file validation behavior.
+
+It must identify:
+
+* schema validators;
+* runtime type guards;
+* manual property checks;
+* default-value insertion;
+* compatibility logic;
+* format-version checks;
+* image-presence checks;
+* reference-measurement checks;
+* geometry validation;
+* calculator-state validation;
+* corrupted-input handling;
+* unsupported-format handling;
+* error types and user-facing messages.
+
+The investigation must distinguish between:
+
+* JSON syntax validity;
+* structural schema validity;
+* Project creation-threshold validity;
+* canonical metadata validity;
+* technical-content validity;
+* semantic consistency;
+* supported-format validity.
+
+It must identify the minimum validation boundary required before a Project may safely become active state.
+
+#### 11.5.10 Current Dirty-State Detection
+
+The investigation must trace the complete dirty-state mechanism.
+
+It must determine:
+
+* where dirty state is calculated;
+* whether it is explicit or derived;
+* what current state is compared;
+* what baseline is used;
+* how the baseline is established;
+* how the baseline is updated;
+* whether primary-image changes participate;
+* whether reference changes participate;
+* whether geometry changes participate;
+* whether calculator inputs participate;
+* whether notes participate;
+* whether descriptive metadata participates;
+* whether Project naming participates;
+* whether current equality comparison is shallow, deep, serialized, selective, or custom;
+* whether derived data creates false dirty states;
+* whether persistent changes can escape detection;
+* how dirty state behaves after failed Save;
+* how dirty state behaves after successful Save;
+* how dirty state behaves after Open.
+
+The investigation must determine whether the current mechanism can support separate classification of:
+
+* technical Project-content changes;
+* metadata-only changes;
+* Project Structural Capability Snapshot changes;
+* mixed changes;
+* no persistent changes.
+
+#### 11.5.11 Unsaved-Changes Protection
+
+The investigation must inventory all protections against accidental loss of unsaved Project work.
+
+It must identify:
+
+* route-change protection;
+* navigation protection;
+* Project-switch protection;
+* New Project protection;
+* Open Project protection;
+* browser unload protection where applicable;
+* confirmation dialogs;
+* modal behavior;
+* cancellation behavior;
+* interaction with dirty state;
+* behavior for a valid but never-persisted Project;
+* behavior after failed Save;
+* behavior after successful Save.
+
+The investigation must determine whether introducing the valid-but-unsaved v2 Project lifecycle creates any safety gap.
+
+#### 11.5.12 Primary-Image Serialization Foundation
+
+The investigation must identify the exact existing primary-image persistence mechanism.
+
+It must determine:
+
+* accepted source representation;
+* image-selection path;
+* encoding path;
+* serialized representation;
+* JSON-safety;
+* decoding and restoration path;
+* whether the Project remains valid when the original image file is moved, renamed, or deleted;
+* whether image data is duplicated in multiple state locations;
+* whether thumbnails exist;
+* whether image serialization participates in dirty-state comparison;
+* known size or memory behavior;
+* existing validation;
+* existing tests.
+
+The investigation must not invent image-format, file-size, decoded-dimension, compression, or performance limits.
+
+Those evidence-based decisions belong primarily to Milestone 2.
+
+For Milestone 1, the investigation must determine only whether the existing serialization foundation is compatible with the canonical v2 model and what minimal changes, if any, are required.
+
+#### 11.5.13 Recent Projects Metadata
+
+The investigation must trace the complete Recent Projects mechanism.
+
+It must determine:
+
+* storage location;
+* stored fields;
+* identity key currently used;
+* relationship with file names;
+* relationship with file paths;
+* relationship with native file handles;
+* thumbnail behavior;
+* update timing;
+* removal behavior;
+* stale-entry behavior;
+* duplicate behavior;
+* behavior after Save;
+* behavior after Update Existing Project;
+* behavior after Open;
+* whether any Recent Projects field currently acts as an accidental authority for Project state.
+
+The investigation must identify any duplication of future canonical v2 fields and determine whether that duplication is harmless convenience metadata or creates conflicting authority.
+
+Complete Local Workspace redesign must not be proposed within Milestone 1 unless a minimal dependency is unavoidable.
+
+#### 11.5.14 IndexedDB File-Handle Retention
+
+The investigation must identify the complete IndexedDB file-handle mechanism.
+
+It must determine:
+
+* database and store names;
+* keying strategy;
+* write path;
+* read path;
+* deletion path;
+* relationship with Recent Projects;
+* relationship with active Project state;
+* permission handling;
+* stale-handle behavior;
+* inaccessible-file behavior;
+* browser-support assumptions;
+* fallback behavior;
+* relevant tests.
+
+The investigation must identify whether introducing permanent `projectId` changes any necessary association strategy.
+
+It must not prematurely redesign Local Workspace file discovery or unavailable-file handling beyond Milestone 1 requirements.
+
+#### 11.5.15 Project Name and Descriptive Metadata
+
+The investigation must determine whether current Project state or persistence already contains:
+
+* Project name;
+* notes;
+* resin description;
+* pigment or color information;
+* wood species;
+* other descriptive or organizational fields.
+
+For each field, the investigation must identify:
+
+* current owner of state;
+* current persisted representation;
+* dirty-state behavior;
+* Save behavior;
+* restoration behavior;
+* tests.
+
+The investigation must compare actual field function with the approved technical-versus-metadata classification.
+
+A field must not be classified merely by name or UI presentation if repository evidence shows that it affects calculation, validation, or technical execution.
+
+#### 11.5.16 Calculation Inputs, Results, and Domain Boundaries
+
+The investigation must identify the boundary between canonical Project persistence and validated Resin Calculator behavior.
+
+It must determine:
+
+* which persisted fields are calculation inputs;
+* which fields affect technical validation;
+* which fields affect execution-related technical behavior;
+* which fields are derived calculation results;
+* whether derived results are persisted;
+* whether restored results are trusted directly or recalculated;
+* where calculation logic resides;
+* which calculator behaviors are frontend-owned;
+* which are backend-owned;
+* what tests protect validated algorithms.
+
+The investigation must identify technical Project-content fields based on actual architectural function.
+
+It must not propose rewriting validated calculator algorithms unless a concrete Milestone 1 requirement makes such a change unavoidable.
+
+#### 11.5.17 Existing Identity, Version, Timestamp, and Capability Metadata
+
+The investigation must search the repository comprehensively for any existing concepts or fields corresponding to:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* `primaryImageHash`;
+* `formatVersion`;
+* schema version;
+* Project Structural Capability Snapshot;
+* equivalent fields under different names.
+
+For each discovered field or concept, the investigation must determine:
+
+* where it is defined;
+* where it is generated;
+* where it is persisted;
+* where it is read;
+* whether it is authoritative;
+* whether it is partial, transitional, obsolete, or unrelated;
+* whether existing tests cover it.
+
+Existing names must not be assumed to satisfy approved semantics merely because they resemble the target architecture.
+
+#### 11.5.18 Existing Project Tests
+
+The investigation must inventory all automated tests relevant to Milestone 1.
+
+The inventory must cover, where applicable:
+
+* Project snapshot construction;
+* Save;
+* first Save;
+* Update Existing Project;
+* browser-download fallback;
+* Open;
+* restoration;
+* Recent Projects;
+* IndexedDB file handles;
+* dirty-state detection;
+* unsaved-changes protection;
+* primary-image persistence;
+* invalid JSON;
+* malformed Project structures;
+* missing required fields;
+* unsupported format versions;
+* persistence failure;
+* cancellation;
+* partial restoration failure;
+* calculation-state restoration.
+
+For each relevant test area, the investigation must identify:
+
+* test file;
+* behavior protected;
+* important assertions;
+* whether the test represents current behavior that must be preserved;
+* whether approved architecture intentionally requires changed expectations;
+* missing coverage relevant to data integrity.
+
+The investigation must not recommend weakening or deleting existing tests merely to ease migration.
+
+#### 11.5.19 Dependency Map Requirements
+
+The investigation report must produce an explicit dependency map for Milestone 1.
+
+The map must show the actual relationships between, where applicable:
+
+* Project workflow entry;
+* active Project state;
+* primary image;
+* reference measurements;
+* geometry state;
+* calculator state;
+* snapshot construction;
+* canonical Project representation;
+* Save;
+* Update Existing Project;
+* Open;
+* validation;
+* restoration;
+* dirty state;
+* unsaved-changes protection;
+* Recent Projects;
+* IndexedDB file handles;
+* tests.
+
+The dependency map must identify:
+
+* foundational dependencies;
+* downstream consumers;
+* shared code paths;
+* duplicated paths;
+* circular or ambiguous dependencies;
+* state-transition boundaries;
+* migration-sensitive boundaries;
+* places where one change could unintentionally affect multiple workflows.
+
+The dependency map must be based on actual repository evidence rather than architectural expectation.
+
+#### 11.5.20 Architecture-to-Repository Gap Analysis
+
+The investigation report must compare the complete Milestone 1 architectural obligations with current repository reality.
+
+For every major obligation, it must classify the current state as one of:
+
+* already satisfied;
+* partially satisfied;
+* missing;
+* conflicting with approved architecture;
+* unclear and requiring further evidence.
+
+The comparison must include at least:
+
+* canonical v2 format;
+* `formatVersion`;
+* Project creation threshold;
+* valid-but-unsaved Project state;
+* `projectId`;
+* `ownerId`;
+* `primaryImageHash` foundation;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* Project data classification;
+* Project Structural Capability Snapshot foundation;
+* first Save semantics;
+* technical-change Save semantics;
+* metadata-only Save semantics;
+* mixed-change Save semantics;
+* no-change Save semantics;
+* persistence-success boundary;
+* strict Open validation;
+* fail-closed behavior;
+* unsupported-format rejection;
+* disposable v1 policy;
+* preservation of compatible existing behavior.
+
+Every classification must cite concrete repository evidence.
+
+#### 11.5.21 Migration Boundary Analysis
+
+The investigation must identify every Milestone 1 migration boundary.
+
+For each boundary, it must state:
+
+* current behavior;
+* target behavior;
+* affected modules or files;
+* dependencies;
+* temporary coexistence requirements, if any;
+* whether dual authority would exist temporarily;
+* cutover condition;
+* cleanup condition;
+* rollback boundary;
+* relevant tests;
+* risk of data corruption or regression.
+
+Particular attention must be given to migration from the current Project snapshot representation to canonical `.hfzproject` v2.
+
+The investigation must prefer extension and controlled migration over unnecessary replacement.
+
+#### 11.5.22 Safety-Net Gap Analysis
+
+The investigation must identify missing regression protection that should be established before or during data-integrity-sensitive implementation.
+
+Potential safety-net gaps include, but are not limited to:
+
+* persistence failure before in-memory version adoption;
+* failed Open preserving the current valid Project;
+* malformed JSON;
+* structurally invalid v2;
+* missing required canonical metadata;
+* unsupported format version;
+* first Save version semantics;
+* technical-only change;
+* metadata-only change;
+* mixed change;
+* no-change Save;
+* ancestry construction;
+* failed update-in-place;
+* browser-download fallback uncertainty;
+* valid-but-unsaved Project abandonment protection.
+
+The investigation must distinguish between:
+
+* tests required before risky implementation begins;
+* tests that naturally belong inside the implementation task that introduces the new behavior.
+
+It must not create tests or modify code during the read-only investigation.
+
+#### 11.5.23 Blockers and Stop Conditions
+
+The investigation must explicitly identify any blocker that prevents safe Milestone 1 task decomposition.
+
+A blocker exists if evidence shows, for example:
+
+* an approved architectural rule is technically impossible in the current application structure;
+* two approved architectural rules are contradictory;
+* current Save behavior cannot reliably distinguish success from failure;
+* current state ownership makes version transitions unsafe or ambiguous;
+* failed Open can irreversibly destroy current active Project state and no controlled migration path is apparent;
+* a major product decision is missing;
+* a later milestone must unexpectedly be implemented first;
+* rollback safety cannot be reasonably established;
+* unrelated repository state prevents isolated implementation.
+
+If no blocker exists, the report must state this explicitly.
+
+A risk, inconvenience, refactoring need, or missing test is not automatically a blocker.
+
+#### 11.5.24 Future-Scope Boundary Check
+
+The investigation must identify any temptation to expand Milestone 1 into later milestone scope.
+
+It must explicitly prevent premature implementation of:
+
+* evidence-based image limits and full image hardening from Milestone 2;
+* production identity integration from Milestone 3;
+* ownership enforcement and foreign-owned read-only UX from Milestone 4;
+* full capability resolution and enforcement from Milestone 5;
+* complete Local Workspace behavior from Milestone 6;
+* operational Cloud Workspace;
+* synchronization;
+* conflict resolution.
+
+If a minimal later-milestone dependency is genuinely unavoidable, the investigation must explain:
+
+* why it is unavoidable;
+* the minimum required scope;
+* why deferral would make Milestone 1 unsafe or impossible;
+* whether explicit architectural or Product Owner approval is required.
+
+#### 11.5.25 Required Investigation Report Structure
+
+The read-only repository investigation report must use a structured format containing at least:
+
+1. Executive Summary;
+2. Repository State Verification;
+3. Current `.hfzproject` Representation;
+4. Project Snapshot Construction;
+5. Current Project Lifecycle and State Ownership;
+6. Save and Persistence-Success Analysis;
+7. First, Subsequent, Metadata-Only, Mixed, and No-Change Save Analysis;
+8. Update Existing Project Analysis;
+9. Open, Validation, and State-Adoption Analysis;
+10. Dirty-State Analysis;
+11. Unsaved-Changes Protection Analysis;
+12. Primary-Image Serialization Analysis;
+13. Recent Projects Analysis;
+14. IndexedDB File-Handle Analysis;
+15. Project Metadata and Data-Classification Analysis;
+16. Calculator and Domain-Boundary Analysis;
+17. Existing Identity, Version, Timestamp, Hash, Format, and Capability Metadata;
+18. Existing Test Inventory;
+19. Dependency Map;
+20. Architecture-to-Repository Gap Matrix;
+21. Migration Boundaries;
+22. Safety-Net Gaps;
+23. Risks;
+24. Blockers and Stop Conditions;
+25. Future-Scope Boundary Check;
+26. Recommended Milestone 1 Task Decomposition Inputs.
+
+The final section must provide inputs for later task decomposition.
+
+It must not prematurely invent or authorize the final Milestone 1 task list before the investigation evidence has been reviewed.
+
+#### 11.5.26 Evidence Standard
+
+Every important repository claim must be supported by concrete evidence.
+
+Evidence should identify, where applicable:
+
+* file path;
+* function, class, hook, component, service, schema, or test name;
+* relevant line or code region where practical;
+* observed behavior;
+* relationship to the approved architectural obligation.
+
+The report must clearly distinguish:
+
+* verified fact;
+* inference;
+* recommendation;
+* unresolved question.
+
+Uncertainty must be stated explicitly.
+
+Repository evidence must not be overstated.
+
+#### 11.5.27 Investigation Completion Criteria
+
+The Milestone 1 repository investigation is complete only when:
+
+* current repository state is verified;
+* unrelated repository work is confirmed protected;
+* the complete current Project persistence workflow is mapped;
+* Save success and failure boundaries are understood;
+* Open validation and state-adoption boundaries are understood;
+* current Project lifecycle and state ownership are understood;
+* snapshot construction and restoration are understood;
+* dirty-state and unsaved-changes behavior are understood;
+* primary-image serialization is understood sufficiently for Milestone 1;
+* Recent Projects and IndexedDB handle dependencies are understood;
+* relevant automated tests are inventoried;
+* the dependency map is complete;
+* every major Milestone 1 architectural obligation is compared against repository reality;
+* migration boundaries are identified;
+* safety-net gaps are identified;
+* blockers are identified or explicitly ruled out;
+* later-milestone scope boundaries are protected;
+* sufficient evidence exists to perform safe Milestone 1 task decomposition.
+
+#### 11.5.28 Authoritative Investigation Rule
+
+The authoritative rule is:
+
+**Milestone 1 task decomposition must be based on verified repository reality rather than assumptions. The investigation must remain strictly read-only, protect unrelated repository work, trace the complete Project persistence lifecycle, identify dependencies and migration boundaries, compare every major architectural obligation with actual implementation, expose safety-net gaps and blockers, and provide sufficient evidence for the smallest safe sequence of independently verifiable implementation tasks without prematurely implementing or inventing them.**
+### 11.6 Repository Investigation Findings
+
+The Milestone 1 read-only repository investigation has been completed.
+
+The investigation examined the actual HFZWood repository against:
+
+* the approved Phase 4 Product Architecture;
+* the approved Phase 5 Technical Architecture;
+* the Phase 6 implementation principles and Task Execution Workflow;
+* the Milestone 1 objective;
+* the complete Milestone 1 architectural obligations;
+* the approved preservation boundaries;
+* the repository-investigation requirements defined in Section 11.5.
+
+The investigation remained read-only.
+
+No Milestone 1 implementation was started.
+
+No production code was created or modified.
+
+No documentation was modified by the investigation.
+
+No files were staged, committed, or pushed.
+
+The repository evidence is sufficient to continue Milestone 1 planning.
+
+No blocker has been identified that prevents dependency mapping, safety-net analysis, or evidence-based task decomposition.
+
+#### 11.6.1 Repository State at Investigation Time
+
+At the time of investigation:
+
+* the active branch was `main`;
+* HEAD was `1b5ae97` — `Phase 6 M0: record formal Milestone 0 closure`;
+* no staged changes were present.
+
+The known unrelated pre-existing repository work remained present and untouched:
+
+* modified `dev.cmd`;
+* deleted `documentation/chatgpt-project-handover.md`;
+* modified `documentation/implementation-roadmap.md`;
+* untracked `documentation/Arthur-project-handover.md`;
+* untracked `documentation/external-architecture-review.md`;
+* untracked `frontend/.env.local`.
+
+The investigation also identified one expected additional tracked modification:
+
+* modified `documentation/phase-6-implementation-plan.md`.
+
+This additional modification contains the current local Milestone 1 planning work introduced after formal Milestone 0 closure.
+
+It is therefore expected planning state rather than an unexplained repository discrepancy.
+
+This file must remain isolated from unrelated repository work and must be handled explicitly according to the approved Phase 6 documentation and commit discipline.
+
+#### 11.6.2 Existing Project Persistence Foundation
+
+The repository contains a substantial working Project persistence foundation that must be evolved rather than unnecessarily replaced.
+
+The principal existing foundations include:
+
+* Project snapshot construction in `frontend/src/calculator/ResinCalculator.jsx`;
+* Save and Update Existing Project orchestration in `frontend/src/workspace/NewProjectWorkspace.jsx`;
+* Project Open entry behavior in `frontend/src/workspace/ProjectsPage.jsx`;
+* Project file persistence in `frontend/src/workspace/projectFileSave.js`;
+* Project file parsing in `frontend/src/workspace/projectFileParse.js`;
+* current Project lifecycle representation in `frontend/src/workspace/currentProject.js`;
+* dirty-state logic;
+* Project snapshot comparison;
+* unsaved-changes protection;
+* Recent Projects metadata;
+* IndexedDB-backed native file-handle retention;
+* primary-image serialization and restoration;
+* validated Resin Calculator domain logic;
+* substantial automated test coverage across Project Save, Open, Update, restoration, dirty-state, Recent Projects, file handles, and unsaved-changes behavior.
+
+The repository evidence supports the architectural preservation principle:
+
+**Milestone 1 should extend existing validated Project persistence foundations rather than replace them with a parallel architecture or unnecessary rewrite.**
+
+#### 11.6.3 Current `.hfzproject` Format
+
+The current persisted Project format is explicitly version 1.
+
+The repository defines:
+
+`HFZ_PROJECT_FORMAT_VERSION = 1`
+
+The current Project payload contains:
+
+* `format`;
+* `formatVersion`;
+* `projectName`;
+* `savedAt`;
+* a flat spread of calculator snapshot fields.
+
+The current calculator snapshot contains, among other data:
+
+* application version information;
+* primary image data;
+* UI state;
+* calibration and reference measurements;
+* standard resin-area data;
+* wood-boundary, mold, cavity, depth, layer, and mix-ratio data;
+* Project notes;
+* calculation result data.
+
+The primary image is currently embedded in the Project file as `image.dataUrl`.
+
+The current v1 format does not contain the canonical metadata required by Milestone 1, including:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* `primaryImageHash`;
+* Project Structural Capability Snapshot.
+
+The current representation therefore provides useful persistence content but does not satisfy the approved canonical `.hfzproject` v2 architecture.
+
+#### 11.6.4 Current Project Snapshot Construction
+
+The current Project snapshot is constructed by `buildProjectSnapshot()` in `ResinCalculator.jsx`.
+
+This snapshot is already the common source for the principal Project Save paths and is consumed by:
+
+* new Project Save;
+* Update Existing Project;
+* Project file payload construction;
+* dirty-state comparison for opened Projects;
+* Project restoration-related workflows.
+
+Repository evidence indicates that this existing snapshot mechanism is a strong preservation candidate and likely extension point.
+
+However, the current snapshot is not itself the complete canonical Project model.
+
+Milestone 1 must not assume that simply adding fields ad hoc to the existing flat snapshot is sufficient.
+
+The canonical v2 boundary must preserve the existing validated calculator-state collection while making Project identity, ownership metadata, technical versioning, ancestry, timestamps, data classification, capability-snapshot metadata, and validation semantics explicit.
+
+#### 11.6.5 Current Project Lifecycle and Creation Threshold Gap
+
+The current application does not implement the approved canonical Project creation threshold.
+
+Today:
+
+* a new workspace begins without permanent Project identity;
+* no `projectId` exists;
+* no Project-level `ownerId` exists;
+* no `createdAt` exists;
+* no `primaryImageHash` exists;
+* Project validity is primarily enforced at Save time;
+* the current Save workflow requires a primary image and Project name.
+
+The approved architecture requires a Project to become technically valid when:
+
+* one primary image exists;
+* at least one reference measurement exists.
+
+At the first moment this threshold is satisfied, the canonical Project must receive:
+
+* `projectId`;
+* `ownerId`;
+* `primaryImageHash`;
+* `createdAt`.
+
+A valid Project may then exist in application memory before its first successful persistence.
+
+The current repository therefore lacks:
+
+* creation-threshold detection for canonical Project identity;
+* valid-but-unsaved canonical Project state;
+* persistent identity before first Save;
+* the distinction between Project creation and first successful persistence.
+
+This is a major Milestone 1 implementation gap.
+
+#### 11.6.6 Current State Ownership
+
+Current Project-related state is distributed across several existing layers.
+
+`ResinCalculator.jsx` owns substantial calculator and session state, including:
+
+* primary image;
+* geometry;
+* calibration;
+* reference measurements;
+* notes;
+* calculation result.
+
+`NewProjectWorkspace.jsx` owns important orchestration state, including:
+
+* dirty state;
+* Save and Open orchestration;
+* current Project context;
+* baseline snapshot handling;
+* unsaved-changes behavior.
+
+`currentProject.js` currently represents the active Project primarily as:
+
+* a new Project; or
+* an opened Project associated with Recent Projects metadata and, where available, a file handle.
+
+Recent Projects and IndexedDB file handles provide device-local convenience and update-in-place behavior.
+
+They are not canonical Project identity.
+
+Repository evidence shows that Milestone 1 must introduce canonical Project identity and version metadata without conflating them with:
+
+* Recent Projects entry IDs;
+* file names;
+* file paths;
+* native file handles;
+* device-local convenience metadata.
+
+The existing distributed state structure does not itself constitute a blocker.
+
+However, implementation must establish an unambiguous owner for canonical Project lifecycle metadata so that identity, version, ancestry, timestamp, and persistence-success transitions remain internally consistent.
+
+#### 11.6.7 Current Save Foundation
+
+The existing Save foundation is substantial and should be preserved.
+
+The repository currently supports:
+
+* first Save;
+* native File System Access API persistence where supported;
+* browser-download fallback;
+* Update Existing Project through a retained writable file handle;
+* Save from unsaved-changes protection;
+* Recent Projects updates;
+* dirty-state clearing after successful Save workflow completion.
+
+The existing native file-write path has an important positive property:
+
+**The application completes successful-Save handling only after the native persistence promise resolves successfully.**
+
+This provides a useful foundation for later canonical version and timestamp transitions.
+
+However, the current Save pipeline does not yet distinguish:
+
+* first persistent Save;
+* technical-content Save;
+* metadata-only Save;
+* mixed technical and metadata Save;
+* no-change Save.
+
+It also does not implement:
+
+* `versionId`;
+* ancestry advancement;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* canonical no-change semantics.
+
+These are expected Milestone 1 gaps.
+
+#### 11.6.8 Browser-Download Fallback Conflict
+
+The repository investigation identified one direct conflict between current behavior and the approved Technical Architecture.
+
+When the native File System Access API is unavailable, the current browser-download fallback:
+
+* initiates a browser download;
+* immediately returns a successful result to the application;
+* allows successful-Save completion;
+* clears dirty state;
+* adopts a new saved baseline.
+
+The browser does not provide technical confirmation that the user actually retained the downloaded file.
+
+The approved architecture requires that download initiation alone must not be treated as confirmed persistence.
+
+Therefore, the current browser-download fallback conflicts with the approved persistence-success boundary.
+
+Milestone 1 must resolve this conflict without weakening existing unsaved-work protection.
+
+The exact repository-specific implementation mechanism must be determined through task-level Pre-Implementation Analysis.
+
+No unconfirmed browser download may permanently advance canonical Project version state, ancestry, timestamps, or saved baseline as if persistence had been technically confirmed.
+
+#### 11.6.9 Current Save Classification Gap
+
+The current implementation treats the Project snapshot as one persistence unit.
+
+It does not distinguish between:
+
+* technical Project-content changes;
+* descriptive or organizational metadata changes;
+* Project Structural Capability Snapshot changes;
+* mixed changes;
+* no persistent changes.
+
+The current dirty-state mechanism can detect broad Project differences, but it does not provide the approved technical-versus-metadata versioning semantics.
+
+As a result, the repository does not yet support the required rules:
+
+* technical change → new `versionId`;
+* metadata-only change → same `versionId`, unchanged technical ancestry, updated `metadataModifiedAt`;
+* capability-snapshot-only change → metadata persistence without technical version advancement;
+* mixed change → technical version advancement plus applicable metadata timestamp update;
+* no persistent change → no artificial version, ancestry, or timestamp change.
+
+This distinction must become explicit and testable.
+
+#### 11.6.10 Current No-Change Save Behavior
+
+The current Update Existing Project path may rewrite the Project file when Save is invoked even if no persistent Project data has changed.
+
+The existing snapshot-equality mechanism is used for dirty-state detection but is not currently an authoritative Save-classification engine.
+
+The approved architecture requires that a no-change Save must not create artificial Project history.
+
+Milestone 1 must ensure that invoking Save without a real persistent change does not:
+
+* generate a new `versionId`;
+* advance ancestry;
+* update `lastModifiedAt`;
+* update `metadataModifiedAt` merely because Save was invoked.
+
+Whether the physical file write itself should always be skipped in every no-change case is an implementation detail to be determined from repository evidence and task-level analysis.
+
+The architectural requirement is that no false canonical history may be created.
+
+#### 11.6.11 Current Open and Validation Foundation
+
+The current Open workflow provides a useful but incomplete foundation.
+
+Today, Project Open includes:
+
+* file selection;
+* file reading;
+* JSON parsing;
+* limited validation;
+* Recent Projects interaction;
+* navigation into the workspace;
+* Project restoration.
+
+Current validation checks primarily:
+
+* that the file contains a valid JSON object;
+* that `image.dataUrl` exists as a non-empty string.
+
+The current implementation does not strictly validate:
+
+* supported Project format;
+* `formatVersion`;
+* canonical v2 metadata;
+* Project identity;
+* ownership metadata;
+* version identity;
+* ancestry;
+* required timestamps;
+* capability-snapshot metadata;
+* complete canonical structure;
+* semantic consistency.
+
+Therefore, strict canonical v2 validation is missing.
+
+#### 11.6.12 Fail-Closed Open Status
+
+Current Open behavior is partially fail-closed.
+
+Positive existing behavior includes:
+
+* parsing failure can prevent navigation;
+* an image-loading error does not complete the normal successful restoration path.
+
+However, the investigation identified important uncertainty and risk around:
+
+* incomplete schema validation;
+* restoration-time failures;
+* potential synchronous exceptions during restoration;
+* whether every failure path preserves the previously active valid Project without partial mutation.
+
+Milestone 1 must establish the authoritative rule:
+
+**A Project file must be fully accepted as a supported and valid canonical v2 representation before it is adopted as active Project state.**
+
+A failed Open must not:
+
+* partially replace active valid Project state;
+* leave an ambiguous mixed state;
+* modify the invalid source file;
+* silently reinterpret unsupported structures.
+
+Targeted safety-net coverage is required before or during implementation of this boundary.
+
+#### 11.6.13 Current Dirty-State Foundation
+
+The existing dirty-state system is a valuable preservation boundary.
+
+It currently supports:
+
+* meaningful-work detection;
+* opened-Project baseline comparison;
+* unsaved-changes protection;
+* dirty-state clearing after successful Save;
+* restoration-related baseline behavior.
+
+Existing tests already protect important behavior, including:
+
+* image upload alone does not make the Project dirty;
+* meaningful Project work does;
+* notes and technical changes can participate in dirty detection;
+* opened Projects become dirty after subsequent changes.
+
+However, current dirty-state detection does not classify changes according to canonical v2 versioning semantics.
+
+Milestone 1 must preserve existing unsaved-change protection while adding sufficient classification to distinguish:
+
+* technical changes;
+* metadata-only changes;
+* capability-snapshot metadata changes;
+* mixed changes;
+* no persistent changes.
+
+A change may require persistence even when it does not generate a new technical `versionId`.
+
+#### 11.6.14 Existing Unsaved-Changes Protection
+
+The current application contains tested unsaved-changes protection based on dirty state and route blocking.
+
+Existing verified behavior includes:
+
+* meaningful unsaved work triggers protection;
+* Cancel keeps the user in the workspace;
+* Discard resets or abandons the current work as intended;
+* Save routes through the applicable Save workflow;
+* failed Save keeps the workspace open.
+
+This is a strong preservation boundary.
+
+The introduction of valid-but-unsaved canonical Project state must not weaken this protection.
+
+The investigation did not find an explicit browser-tab-close or `beforeunload` protection mechanism in the relevant workspace code.
+
+This absence is not currently classified as a Milestone 1 blocker.
+
+Its exact scope must be evaluated separately and must not be allowed to expand Milestone 1 without architectural justification.
+
+#### 11.6.15 Primary-Image Persistence Foundation
+
+The current Project snapshot stores the primary image as embedded `image.dataUrl` data.
+
+The existing implementation already provides:
+
+* JSON-safe image serialization;
+* Project portability independent of the original source image path;
+* image restoration from persisted Project data.
+
+This is a valuable preservation foundation.
+
+The current repository does not implement `primaryImageHash`.
+
+Milestone 1 must establish the canonical `primaryImageHash` foundation required by the approved architecture.
+
+However, Milestone 1 must not prematurely expand into:
+
+* evidence-based source-file-size limits;
+* decoded-dimension limits;
+* supported-format policy;
+* realistic phone-photo performance limits;
+* complete image-import hardening.
+
+Those responsibilities remain primarily in Milestone 2.
+
+#### 11.6.16 Recent Projects and File-Handle Foundations
+
+The current Recent Projects mechanism is device-local convenience metadata.
+
+It currently stores information including:
+
+* Recent entry ID;
+* Project name;
+* last-opened timestamp;
+* last-saved timestamp;
+* last-known file name;
+* source format.
+
+The current Recent entry ID is not and must not become canonical `projectId`.
+
+IndexedDB stores native file handles keyed to Recent entry IDs and supports Update Existing Project where a writable handle remains available.
+
+These mechanisms are useful preservation foundations.
+
+Milestone 1 must avoid conflating:
+
+* canonical Project identity;
+* Recent Projects identity;
+* native file-handle identity;
+* file name;
+* file path.
+
+Complete Local Workspace behavior remains a later milestone responsibility.
+
+Milestone 1 should make only the minimum changes required to preserve compatibility with canonical v2 persistence.
+
+#### 11.6.17 Current Project Data Classification Findings
+
+The repository currently persists Project state largely as one flat snapshot without an explicit architectural classification layer.
+
+Repository evidence supports the following current classifications:
+
+Technical Project content includes, at minimum:
+
+* reference measurements;
+* reference measurement values;
+* formwork geometry;
+* wood geometry;
+* cavity geometry;
+* depth information;
+* pour-layer configuration;
+* resin mix ratio;
+* calculation-affecting parameters.
+
+Descriptive or organizational metadata includes, at minimum:
+
+* Project name;
+* free-form Project notes, unless a future Project Tool consumes them as technical input;
+* descriptive material information that does not affect calculation logic.
+
+Calculation results are currently persisted as part of the snapshot.
+
+UI rotation and zoom are also currently persisted.
+
+The exact canonical classification of:
+
+* persisted calculation results;
+* UI rotation;
+* UI zoom;
+* other display-state fields
+
+requires explicit technical resolution before final canonical schema implementation.
+
+These are technical classification questions unless they reveal a genuine product-behavior trade-off.
+
+They should not be delegated to the Product Owner merely as low-level implementation choices.
+
+#### 11.6.18 Existing Identity and Metadata Findings
+
+The current repository does not contain canonical Project-level implementations of:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* `primaryImageHash`;
+* Project Structural Capability Snapshot.
+
+The repository does contain:
+
+* `formatVersion`, currently set to version 1;
+* device-local Recent Projects entry IDs;
+* account/session-level capability information;
+* an existing mock authentication user identity.
+
+These existing concepts must not be assumed to satisfy canonical v2 semantics merely because similar data exists elsewhere in the application.
+
+#### 11.6.19 `ownerId` Sequencing Constraint
+
+The repository contains an existing mock authentication user ID that could technically provide an interim identity value.
+
+However, Milestone 1 must not automatically establish a disposable mock identifier such as `"stub-user"` as permanent canonical Project ownership without explicit technical justification.
+
+The approved architecture requires:
+
+* one stable `ownerId` per valid Project;
+* persistent ownership metadata in `.hfzproject`;
+* later production identity derivation from the approved authentication architecture.
+
+Production identity integration belongs to Milestone 3.
+
+Therefore, Milestone 1 task decomposition must explicitly resolve how the canonical `ownerId` field is introduced without:
+
+* creating accidental permanent dependence on mock identity;
+* inventing a second production identity system;
+* prematurely implementing Milestone 3;
+* weakening the approved ownership architecture.
+
+This sequencing constraint is not currently a blocker for Milestone 1 planning.
+
+It is a technical dependency that must be resolved before the relevant implementation task is authorized.
+
+#### 11.6.20 Project Structural Capability Snapshot Foundation
+
+The current repository contains account/session-level capability information but no Project-level Structural Capability Snapshot.
+
+Milestone 1 must establish the canonical Project metadata field and persistence boundary required by the approved architecture.
+
+Milestone 1 must not implement complete capability enforcement.
+
+The required foundation must preserve the distinction between:
+
+* current account capabilities;
+* Project Structural Capability Snapshot;
+* later effective-capability resolution.
+
+Complete Product Capability enforcement remains a Milestone 5 responsibility.
+
+#### 11.6.21 Existing Automated Test Foundation
+
+The repository contains substantial Project-related automated coverage.
+
+Existing tests protect, among other areas:
+
+* Project payload construction;
+* native Save;
+* browser-download fallback;
+* Update Existing Project;
+* Save cancellation;
+* basic Project parsing;
+* missing-image rejection;
+* snapshot equality;
+* dirty-state rules;
+* in-place update eligibility;
+* Recent Projects behavior;
+* Project Open;
+* file-handle rebind behavior;
+* Save success and failure;
+* workspace restoration;
+* unsaved-changes protection.
+
+These tests are a strict preservation boundary.
+
+They must not be weakened or deleted merely to simplify v2 migration.
+
+Where approved architecture intentionally changes behavior, tests may be updated only with explicit justification and equivalent or stronger regression protection.
+
+#### 11.6.22 Safety-Net Gaps
+
+The repository investigation identified important safety-net gaps relevant to Milestone 1.
+
+High-priority gaps include:
+
+* browser-download fallback currently treated as confirmed successful persistence;
+* no strict `formatVersion: 2` enforcement;
+* no canonical v2 schema-validation tests;
+* no identity, version, or ancestry tests;
+* no technical-versus-metadata Save classification tests;
+* no persistence-failure-before-version-adoption tests;
+* no explicit ancestry-construction tests.
+
+Additional gaps include:
+
+* no explicit failed-Open preservation test proving that an active valid Project remains intact;
+* limited malformed-input coverage;
+* no no-change Save semantics tests;
+* no creation-threshold identity tests;
+* no valid-but-unsaved canonical Project lifecycle tests;
+* no explicit browser-tab-close protection identified.
+
+These gaps do not all require one preliminary safety-net task.
+
+Task decomposition must distinguish between:
+
+* regression tests that must exist before a risky implementation begins;
+* tests that naturally belong inside the task introducing new behavior.
+
+#### 11.6.23 Migration Boundaries
+
+The investigation identified the principal Milestone 1 migration boundaries:
+
+* Project format version: v1 → v2;
+* current flat Project payload → canonical v2 representation;
+* no canonical identity → threshold-created Project identity;
+* `savedAt` semantics → distinct canonical timestamps;
+* no technical versioning → `versionId` and ancestry;
+* minimal Open validation → strict v2 validation;
+* monolithic dirty-state comparison → persistence-aware change classification;
+* browser-download initiation treated as Save success → architecture-compliant persistence confirmation;
+* current v1-oriented test fixtures → canonical v2 test coverage.
+
+The approved pre-launch policy allows direct cutover to v2.
+
+Milestone 1 does not require:
+
+* v1 backward compatibility;
+* v1 automatic migration;
+* parallel v1 and v2 persistence authorities.
+
+The migration should preserve compatible working foundations and avoid unnecessary dual authority.
+
+#### 11.6.24 Dependency Findings
+
+Repository evidence identifies several foundational dependency relationships.
+
+The existing Project snapshot construction feeds:
+
+* new Project Save;
+* Update Existing Project;
+* Project payload construction;
+* opened-Project dirty-state comparison.
+
+The Project parsing path feeds all Project Open workflows.
+
+The current Save and Update workflows share the same payload-construction foundation.
+
+Dirty state and baseline management affect:
+
+* Save behavior;
+* Update behavior;
+* unsaved-changes protection;
+* navigation protection.
+
+Recent Projects and IndexedDB file handles affect:
+
+* reopening;
+* Update Existing Project eligibility;
+* device-local Project continuity.
+
+The most migration-sensitive boundaries are:
+
+* canonical Project state ownership;
+* Project creation-threshold identity assignment;
+* payload construction;
+* persistence-success adoption;
+* Save change classification;
+* Open validation before state adoption;
+* post-Save baseline establishment.
+
+These dependencies must determine task order.
+
+Task order must not be based merely on document order or convenience.
+
+#### 11.6.25 Unresolved Technical Questions
+
+The investigation identified four unresolved questions requiring explicit resolution before or during task decomposition:
+
+1. the exact canonical v2 JSON schema layout;
+2. whether persisted calculation `result` remains authoritative persisted data or is treated as derived data;
+3. the canonical classification of persisted UI rotation and zoom state;
+4. whether browser-tab-close or `beforeunload` protection belongs within Milestone 1 scope.
+
+These questions are not currently blockers.
+
+The first three are primarily technical architecture questions and should be resolved from:
+
+* approved product meaning;
+* approved technical guarantees;
+* repository evidence;
+* data integrity;
+* portability;
+* restoration behavior;
+* versioning semantics;
+* preservation requirements.
+
+They should not be delegated to the Product Owner unless a genuine product-behavior trade-off emerges.
+
+The fourth question must be evaluated against existing unsaved-work protection and milestone scope.
+
+It must not expand Milestone 1 automatically.
+
+#### 11.6.26 Risks
+
+The principal Milestone 1 risks identified by repository evidence are:
+
+* schema creep caused by adding v2 fields ad hoc without one explicit canonical representation;
+* accidental dual authority between canonical `projectId` and Recent Projects entry IDs;
+* versioning errors caused by insufficient technical-versus-metadata change classification;
+* false persisted history if version metadata is adopted before persistence success;
+* loss of unsaved-work protection through browser-download fallback;
+* partial or ambiguous state adoption during failed Open;
+* excessive test-fixture churn;
+* accidental expansion into Milestones 2–6;
+* accidental dependence on mock identity for permanent Project ownership;
+* unnecessary rewriting of validated Project persistence or calculator foundations.
+
+These risks are manageable through controlled task decomposition, targeted safety nets, explicit persistence boundaries, and isolated implementation.
+
+#### 11.6.27 Blocker Assessment
+
+The read-only repository investigation identified no blocker preventing continued Milestone 1 planning or safe task decomposition.
+
+The following findings are implementation gaps, not blockers:
+
+* missing canonical v2 fields;
+* missing Project identity;
+* missing versioning and ancestry;
+* missing timestamp semantics;
+* missing Project Structural Capability Snapshot;
+* weak current Open validation;
+* browser-download fallback conflict;
+* missing safety-net coverage;
+* current v1-oriented test fixtures.
+
+The unresolved technical questions identified in Section 11.6.25 do not currently prevent planning from continuing.
+
+If later task-level analysis reveals a genuine architectural contradiction, unsafe state-ownership boundary, unresolved production-identity dependency, or inability to preserve data integrity, work must stop at that boundary.
+
+#### 11.6.28 Future-Scope Boundary
+
+Milestone 1 must not expand into:
+
+* Milestone 2 image-import limits and complete image hardening;
+* Milestone 3 production authentication;
+* Milestone 4 authoritative ownership enforcement and foreign-owned read-only UX;
+* Milestone 5 complete Product Capability resolution and enforcement;
+* Milestone 6 complete Local Workspace behavior;
+* operational Cloud Workspace;
+* synchronization;
+* user-facing conflict resolution.
+
+Minimal foundations required by the canonical Project model may be introduced only where explicitly justified.
+
+A future-milestone concept being represented as canonical metadata does not authorize implementation of that future milestone's complete behavior.
+
+#### 11.6.29 Planning Consequence
+
+The repository investigation provides sufficient evidence to proceed to dependency mapping.
+
+Milestone 1 task decomposition must not yet be derived directly from the investigation report's suggested A–K implementation inputs.
+
+Those inputs are evidence-based recommendations, not approved tasks.
+
+Before final task decomposition, Milestone 1 planning must:
+
+1. establish the authoritative dependency map;
+2. resolve or correctly sequence unresolved technical questions;
+3. identify which safety-net gaps require protection before risky implementation;
+4. identify the smallest safe migration sequence;
+5. preserve existing validated behavior;
+6. isolate the `ownerId` sequencing dependency;
+7. prevent premature expansion into later milestones;
+8. then decompose implementation into small, independently verifiable tasks with explicit acceptance criteria and rollback boundaries.
+
+#### 11.6.30 Authoritative Investigation Conclusion
+
+The authoritative conclusion is:
+
+**The existing HFZWood repository contains a substantial, tested, and reusable Project persistence foundation. Milestone 1 does not require a rewrite. It requires a controlled migration from the current v1 persistence model to one canonical `.hfzproject` v2 representation with explicit Project identity, ownership metadata, technical versioning, ancestry, timestamps, Project data classification, capability-snapshot metadata, strict validation, and architecture-compliant persistence-success semantics. The principal risks are concentrated at canonical state ownership, creation-threshold identity, Save classification, persistence-success adoption, browser-download fallback, strict Open validation, and the sequencing of ownership metadata before production identity. No blocker prevents continued planning. Dependency mapping must now determine the smallest safe implementation order before task decomposition begins.**
+### 11.7 Dependency Map
+
+The Milestone 1 dependency map is derived from:
+
+* the approved Product Architecture;
+* the approved Phase 5 Technical Architecture;
+* the Milestone 1 architectural obligations;
+* the preservation boundaries;
+* the completed read-only repository investigation;
+* the architecture-to-repository gap analysis.
+
+Its purpose is to establish the actual implementation dependency order before task decomposition begins.
+
+The dependency map does not itself define final implementation tasks.
+
+It identifies:
+
+* foundational concepts that must exist before downstream behavior can be implemented safely;
+* repository paths shared by multiple workflows;
+* migration-sensitive boundaries;
+* safety-net dependencies;
+* technical questions that must be resolved before dependent implementation begins;
+* later-milestone boundaries that must not be crossed prematurely.
+
+The authoritative dependency principle is:
+
+**Implementation order must follow data integrity, state ownership, persistence, validation, and rollback dependencies rather than document order, UI convenience, or superficial code locality.**
+
+#### 11.7.1 Existing Repository Dependency Chain
+
+The current Project persistence workflow can be represented conceptually as:
+
+`Project workflow entry`
+
+→ `ResinCalculator session state`
+
+→ `buildProjectSnapshot()`
+
+→ `Project payload construction`
+
+→ `Save / Update Existing Project persistence`
+
+→ `successful-Save completion`
+
+→ `dirty-state baseline adoption`
+
+→ `Recent Projects update`
+
+The current Open workflow can be represented conceptually as:
+
+`Project file selection`
+
+→ `file reading`
+
+→ `JSON parsing`
+
+→ `minimal current validation`
+
+→ `Recent Projects interaction`
+
+→ `navigation into workspace`
+
+→ `Project restoration`
+
+→ `active Project state adoption`
+
+→ `opened-Project baseline establishment`
+
+The current unsaved-work protection chain is:
+
+`Project state changes`
+
+→ `dirty-state detection or snapshot comparison`
+
+→ `isProjectDirty`
+
+→ `navigation blocker`
+
+→ `Unsaved Changes dialog`
+
+→ `Save / Discard / Cancel behavior`
+
+The current Update Existing Project chain is:
+
+`opened Project`
+
+→ `Recent Projects entry`
+
+→ `IndexedDB-retained file handle`
+
+→ `writable-handle eligibility`
+
+→ `Project snapshot construction`
+
+→ `updateProjectFile()`
+
+→ `successful-Save completion`
+
+→ `baseline adoption`
+
+These existing chains must be preserved where compatible with the approved architecture.
+
+#### 11.7.2 Canonical Schema Is a Foundational Dependency
+
+The canonical `.hfzproject` v2 representation is foundational.
+
+Before downstream v2 persistence behavior can be implemented safely, the repository must have one explicit canonical definition of:
+
+* `formatVersion`;
+* Project identity metadata;
+* ownership metadata;
+* technical version metadata;
+* ancestry metadata;
+* timestamps;
+* primary-image integrity metadata;
+* Project Structural Capability Snapshot;
+* technical Project content;
+* descriptive and organizational metadata;
+* derived metadata where persisted;
+* the relationship between canonical metadata and the existing calculator snapshot.
+
+The exact canonical schema must be defined before:
+
+* v2 Save payload assembly;
+* strict v2 Open validation;
+* v2 round-trip testing;
+* technical-versus-metadata change classification;
+* version advancement;
+* ancestry construction;
+* canonical timestamp transitions.
+
+No downstream implementation should add v2 fields independently in multiple modules before one canonical representation exists.
+
+This prevents schema creep and competing definitions of Project state.
+
+#### 11.7.3 Data Classification Precedes Save Versioning
+
+The approved Save semantics depend on knowing whether a persistent change is:
+
+* technical;
+* metadata-only;
+* Project Structural Capability Snapshot metadata;
+* mixed;
+* nonexistent.
+
+Therefore, canonical Project data classification must be resolved before the Save pipeline can correctly implement:
+
+* new `versionId` generation;
+* unchanged `versionId` for metadata-only changes;
+* ancestry advancement;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* mixed-change behavior;
+* no-change Save behavior.
+
+The unresolved classification of:
+
+* calculation `result`;
+* UI rotation;
+* UI zoom;
+* other persisted display-state fields
+
+must be resolved before those fields participate in authoritative change classification.
+
+The classification decision should be derived technically from actual field function.
+
+A field that affects calculation, technical validation, or execution-related behavior must be treated as technical content.
+
+A field that is purely descriptive, organizational, or display-oriented must not create technical Project history merely because it is persisted.
+
+#### 11.7.4 Canonical State Ownership Precedes Lifecycle Transitions
+
+The current repository distributes Project-related state across:
+
+* `ResinCalculator.jsx`;
+* `NewProjectWorkspace.jsx`;
+* `currentProject.js`;
+* Recent Projects metadata;
+* IndexedDB file-handle storage.
+
+Milestone 1 must establish an unambiguous owner for canonical Project lifecycle metadata before implementing transitions involving:
+
+* `projectId`;
+* `ownerId`;
+* `primaryImageHash`;
+* `createdAt`;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* Project Structural Capability Snapshot.
+
+This does not require replacing existing calculator state ownership.
+
+The dependency requirement is narrower:
+
+**Canonical lifecycle metadata must have one authoritative in-memory owner so that identity, versioning, ancestry, timestamps, and persistence-success transitions cannot diverge across competing state locations.**
+
+The exact repository-specific ownership mechanism must be determined through task-level Pre-Implementation Analysis.
+
+No new global state-management framework is justified merely by this requirement.
+
+#### 11.7.5 Creation Threshold Depends on Canonical State Ownership
+
+Creation-threshold behavior depends on the existence of an authoritative canonical Project lifecycle state.
+
+The approved threshold is:
+
+* one primary image exists;
+* at least one reference measurement exists.
+
+When this threshold is first satisfied, the Project must receive:
+
+* `projectId`;
+* `ownerId`;
+* `primaryImageHash`;
+* `createdAt`.
+
+Therefore, creation-threshold implementation depends on:
+
+1. canonical metadata definition;
+2. canonical in-memory state ownership;
+3. a reliable signal that the threshold has been crossed;
+4. stable local UUID generation;
+5. a resolved ownership-metadata strategy;
+6. a defined primary-image hash representation.
+
+Creation-threshold implementation must not depend on first Save.
+
+Project creation and first persistence are separate lifecycle events.
+
+#### 11.7.6 `ownerId` Has an Explicit Sequencing Dependency
+
+Canonical Project creation requires `ownerId`.
+
+Production identity derivation belongs to Milestone 3.
+
+The repository currently exposes a mock authentication identity, but Milestone 1 must not accidentally establish a disposable mock value as permanent production ownership without a controlled architectural boundary.
+
+Therefore, the `ownerId` dependency must be resolved before creation-threshold identity assignment is implemented.
+
+The resolution must satisfy all of the following:
+
+* Milestone 1 establishes the canonical `ownerId` field;
+* Milestone 1 does not invent a second production identity system;
+* Milestone 1 does not prematurely implement production authentication;
+* temporary development identity must not silently become irreversible production ownership;
+* Milestone 3 must retain a safe path to authoritative production identity derivation.
+
+If this cannot be satisfied through a narrow technical boundary, work must stop before the relevant implementation task.
+
+This is a sequencing constraint, not currently a Milestone 1 blocker.
+
+#### 11.7.7 `primaryImageHash` Depends on One Authoritative Image Representation
+
+The current Project representation persists the primary image as `image.dataUrl`.
+
+Before `primaryImageHash` is implemented, the authoritative input to hashing must be defined.
+
+The hash must be deterministic for the same authoritative stored primary-image representation.
+
+Therefore, hash implementation depends on:
+
+* preserving or explicitly defining the authoritative stored image representation;
+* defining deterministic hash input;
+* ensuring the hash can be generated locally;
+* ensuring the hash does not depend on original file path, file name, or external source availability.
+
+Milestone 1 must not expand this dependency into Milestone 2 image-limit policy.
+
+The hash foundation must remain separate from:
+
+* source-file-size limits;
+* decoded-dimension limits;
+* supported-format restrictions;
+* compression policy;
+* realistic phone-photo performance limits.
+
+#### 11.7.8 First Persistent Version Depends on Valid Canonical Project State
+
+The first persistent `versionId` must not exist merely because the Project crossed the creation threshold.
+
+First persistent version creation depends on:
+
+1. a valid canonical in-memory Project;
+2. explicit user Save initiation;
+3. canonical v2 payload construction;
+4. successful persistence according to the applicable persistence boundary.
+
+Only after successful persistence may the Project authoritatively adopt:
+
+* first `versionId`;
+* `parentVersionId = null`;
+* `ancestorVersionIds = []`;
+* first `lastModifiedAt`.
+
+This dependency prevents Project creation from being conflated with persistence.
+
+#### 11.7.9 Save Classification Precedes Version Transition
+
+A proposed Save must be classified before canonical version metadata is advanced.
+
+The Save pipeline must determine whether the Save contains:
+
+* first persistence;
+* technical changes;
+* metadata-only changes;
+* capability-snapshot-only changes;
+* mixed changes;
+* no persistent changes.
+
+Only after classification can the application correctly propose:
+
+* a new `versionId`;
+* unchanged `versionId`;
+* new `parentVersionId`;
+* updated `ancestorVersionIds`;
+* new `lastModifiedAt`;
+* new `metadataModifiedAt`;
+* no canonical transition.
+
+Therefore, version transition logic depends on:
+
+* canonical schema;
+* canonical data classification;
+* current persisted baseline;
+* current canonical state;
+* reliable comparison semantics.
+
+No version transition may be based merely on a generic dirty boolean.
+
+#### 11.7.10 Proposed Version State Must Precede Persistence, but Authoritative Adoption Must Follow Success
+
+The application may need to construct a candidate v2 payload containing proposed:
+
+* `versionId`;
+* ancestry;
+* timestamps;
+* metadata changes.
+
+However, candidate state must not become authoritative persisted state merely because payload construction succeeded.
+
+The dependency sequence is:
+
+`Current authoritative canonical state`
+
+→ `Change classification`
+
+→ `Candidate canonical persisted state`
+
+→ `Persistence attempt`
+
+→ `Confirmed persistence success`
+
+→ `Authoritative in-memory adoption`
+
+→ `Saved baseline update`
+
+→ `Dirty-state reconciliation`
+
+If persistence fails or is cancelled:
+
+* candidate version state must not become authoritative;
+* ancestry must not advance;
+* timestamps must not falsely claim persistence;
+* dirty state must remain correct;
+* unsaved-work protection must remain active where applicable.
+
+This is one of the most critical Milestone 1 dependency boundaries.
+
+#### 11.7.11 Native Persistence and Browser-Download Fallback Have Different Confirmation Boundaries
+
+Native writable-file persistence can provide technical completion through the successful resolution of the write operation.
+
+Browser-download fallback does not provide equivalent technical confirmation that the user retained the file.
+
+Therefore, the two persistence paths must not automatically share identical post-persistence adoption semantics.
+
+Native persistence may follow:
+
+`write succeeds`
+
+→ `persistence confirmed`
+
+→ `canonical state adoption`
+
+Browser-download fallback requires an architecture-compliant confirmation boundary before:
+
+* version state is adopted;
+* timestamps are adopted;
+* saved baseline is replaced;
+* dirty state is cleared.
+
+The exact fallback mechanism must be resolved through task-level analysis.
+
+The dependency rule is:
+
+**No downstream state transition may assume that download initiation equals confirmed persistence.**
+
+#### 11.7.12 Baseline Adoption Depends on Successful Canonical State Adoption
+
+The current dirty-state system relies on a saved baseline.
+
+Under v2 semantics, the baseline must correspond to the canonical state that was actually accepted as persisted.
+
+Therefore:
+
+* baseline adoption depends on confirmed persistence;
+* dirty-state clearing depends on baseline adoption;
+* unsaved-changes protection depends on correct dirty state.
+
+The sequence must remain:
+
+`Confirmed persistence`
+
+→ `Authoritative canonical state adoption`
+
+→ `Saved baseline adoption`
+
+→ `Dirty-state reconciliation`
+
+The baseline must not be advanced independently from canonical Project version state.
+
+Otherwise, the application could believe that unsaved work is safe when the canonical Project history says otherwise.
+
+#### 11.7.13 Strict Validation Precedes Open State Adoption
+
+The current Open path performs only limited validation.
+
+Canonical v2 Open requires the following dependency sequence:
+
+`File selection`
+
+→ `File read`
+
+→ `JSON parse`
+
+→ `Supported format validation`
+
+→ `Canonical structural validation`
+
+→ `Required metadata validation`
+
+→ `Semantic consistency validation where required`
+
+→ `Safe restoration preparation`
+
+→ `Active Project state adoption`
+
+No invalid or unsupported Project may become active state before these validation boundaries succeed.
+
+This means strict validation must be implemented before v2 Open can be considered complete.
+
+Open state adoption must not be the mechanism by which validity is discovered.
+
+#### 11.7.14 Failed-Open Preservation Is a Safety Dependency
+
+Before sensitive Open-path changes are considered complete, regression protection must prove that a failed Open does not destroy or partially replace an already active valid Project.
+
+This protection is especially important because the current repository contains:
+
+* distributed calculator state;
+* asynchronous image restoration;
+* navigation-based pending restore state;
+* potential restoration-time failure paths.
+
+The exact implementation order may place the regression test:
+
+* before the risky Open migration; or
+* inside the task that introduces strict Open validation and safe adoption.
+
+However, the behavior must be protected before the relevant migration is closed.
+
+#### 11.7.15 v2 Round-Trip Integrity Depends on Both Save and Open Foundations
+
+A canonical v2 Project is not complete merely because it can be serialized.
+
+The canonical model must support:
+
+`Valid in-memory canonical Project`
+
+→ `v2 serialization`
+
+→ `successful persistence`
+
+→ `v2 parse`
+
+→ `strict validation`
+
+→ `restoration`
+
+→ `equivalent valid Project state`
+
+Therefore, v2 round-trip verification depends on both:
+
+* canonical Save representation;
+* canonical Open validation and restoration.
+
+Round-trip tests must verify that required Project information is neither lost nor silently reclassified.
+
+#### 11.7.16 Recent Projects Must Remain Downstream of Canonical Project Identity
+
+Recent Projects is a device-local convenience layer.
+
+It must not become an authority for:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* ancestry;
+* canonical timestamps;
+* technical Project content.
+
+The dependency direction must be:
+
+`Canonical Project`
+
+→ `Recent Projects convenience metadata`
+
+not:
+
+`Recent Projects entry`
+
+→ `Canonical Project identity`
+
+The existing Recent entry ID may continue to serve internal device-local purposes.
+
+Any optional addition of `projectId` to Recent Projects must remain a derived convenience reference, not a competing identity authority.
+
+#### 11.7.17 File-Handle Retention Remains a Persistence Convenience Dependency
+
+IndexedDB-retained file handles support:
+
+* reopening;
+* Update Existing Project;
+* direct write-back where available.
+
+They do not define canonical Project identity.
+
+The dependency direction must remain:
+
+`Canonical Project / Recent entry context`
+
+→ `Optional retained file handle`
+
+A missing, stale, moved, deleted, inaccessible, or unsupported file handle must not invalidate the canonical meaning of a `.hfzproject` file.
+
+Complete unavailable-file behavior remains primarily a Milestone 6 responsibility.
+
+#### 11.7.18 Capability Snapshot Foundation Depends on Canonical Metadata but Not Full Capability Enforcement
+
+The Project Structural Capability Snapshot must have a canonical place in `.hfzproject` v2.
+
+Its implementation depends on:
+
+* canonical metadata definition;
+* access to current account/session capability information;
+* explicit snapshot semantics;
+* metadata-only persistence classification.
+
+It does not depend on complete Milestone 5 capability enforcement.
+
+Milestone 1 must establish only the minimum persistence foundation required for later capability behavior.
+
+The dependency must not be reversed by implementing complete effective-capability resolution prematurely.
+
+#### 11.7.19 Existing Tests Are Upstream Safety Dependencies
+
+Existing automated tests are not merely final verification.
+
+They are upstream safety dependencies for migration.
+
+Before modifying a preserved workflow, the relevant existing tests must be identified and understood.
+
+Where existing coverage is insufficient for a risky boundary, targeted regression protection may need to be established before or during the relevant implementation task.
+
+Particular high-risk dependencies include:
+
+* persistence failure before canonical version adoption;
+* browser-download fallback confirmation;
+* failed Open preserving active valid state;
+* technical-versus-metadata classification;
+* ancestry construction;
+* no-change Save semantics;
+* creation-threshold identity.
+
+Tests must follow the behavior boundary they protect.
+
+A single giant preliminary test task is not automatically required.
+
+#### 11.7.20 Migration Must Avoid Dual Canonical Authority
+
+Milestone 1 must migrate directly from the disposable pre-launch v1 format to canonical v2.
+
+The approved policy does not require:
+
+* v1 backward compatibility;
+* v1 automatic migration;
+* simultaneous v1 and v2 canonical persistence;
+* dual Project identity systems.
+
+The migration dependency should therefore prefer:
+
+`Existing working persistence foundation`
+
+→ `Canonical v2 definition`
+
+→ `Controlled v2 integration`
+
+→ `v2 Save/Open cutover`
+
+→ `v1 rejection`
+
+rather than prolonged coexistence of competing authorities.
+
+Temporary implementation scaffolding may exist only where necessary and must not create ambiguous persisted truth.
+
+#### 11.7.21 Unresolved Technical Questions and Their Dependency Positions
+
+The four unresolved technical questions identified by repository investigation have different dependency positions.
+
+**Canonical v2 JSON schema layout**
+
+Must be resolved before:
+
+* v2 payload construction;
+* strict v2 validation;
+* v2 round-trip fixtures;
+* downstream versioning integration.
+
+**Persisted calculation `result` classification**
+
+Must be resolved before:
+
+* final canonical data classification;
+* authoritative technical-change comparison;
+* v2 round-trip expectations.
+
+**UI rotation and zoom classification**
+
+Must be resolved before:
+
+* final change-classification rules;
+* technical-versus-metadata Save semantics;
+* no-change comparison behavior.
+
+**Browser-tab-close / `beforeunload` scope**
+
+Does not block canonical schema or core versioning work.
+
+It should be evaluated separately against:
+
+* existing unsaved-work protection;
+* valid-but-unsaved Project lifecycle;
+* Milestone 1 scope;
+* later workspace responsibilities.
+
+It must not delay unrelated foundational work unless concrete evidence shows a data-loss gap introduced by Milestone 1.
+
+#### 11.7.22 Critical Dependency Path
+
+Based on approved architecture and verified repository evidence, the critical Milestone 1 dependency path is:
+
+1. preserve and understand the existing test-backed persistence foundation;
+2. resolve canonical v2 schema and Project data classification;
+3. establish one authoritative canonical lifecycle-metadata owner;
+4. resolve the `ownerId` sequencing boundary;
+5. define deterministic primary-image hash input;
+6. establish creation-threshold canonical identity;
+7. establish candidate-state and persistence-success semantics;
+8. implement Save change classification;
+9. implement first, technical, metadata-only, mixed, and no-change version semantics;
+10. resolve browser-download persistence confirmation;
+11. establish strict v2 validation before Open state adoption;
+12. protect failed-Open preservation;
+13. verify complete v2 round-trip integrity;
+14. preserve Recent Projects and file-handle compatibility without creating competing authority;
+15. complete targeted regression coverage and milestone-level validation.
+
+This sequence expresses dependency order.
+
+It does not imply that each numbered dependency becomes exactly one implementation task.
+
+Some dependencies may require multiple tasks.
+
+Some may be safely combined.
+
+Final task boundaries must be determined by reversibility, verification scope, rollback safety, and repository evidence.
+
+#### 11.7.23 Parallelizable or Partially Independent Work
+
+Not every Milestone 1 dependency is strictly linear.
+
+After the canonical v2 schema and classification rules are established, some work may be partially independent, including:
+
+* strict parser and validator foundations;
+* primary-image hash utility;
+* targeted test fixtures;
+* Recent Projects compatibility analysis;
+* file-handle compatibility verification.
+
+However, parallelizability must not create premature integration.
+
+A component may be implemented independently only when:
+
+* its inputs are already stable;
+* it does not require unresolved lifecycle semantics;
+* it can be verified independently;
+* it does not create a second authority;
+* rollback remains isolated.
+
+#### 11.7.24 Dependency-Based Stop Conditions
+
+Planning or implementation must stop at the relevant boundary if:
+
+* canonical schema remains ambiguous before dependent persistence work;
+* data classification remains ambiguous before versioning work;
+* canonical state ownership remains ambiguous before lifecycle transitions;
+* `ownerId` cannot be introduced without unsafe mock-to-production identity consequences;
+* hash input is nondeterministic;
+* Save success cannot be distinguished from failure or cancellation;
+* candidate version state cannot be prevented from becoming authoritative after failed persistence;
+* strict Open validation cannot precede active-state adoption;
+* failed Open cannot preserve the current valid Project;
+* a proposed task requires premature implementation of a later milestone;
+* rollback boundaries cannot be reasonably isolated.
+
+These are dependency failures, not reasons to silently weaken architecture.
+
+#### 11.7.25 Dependency Map Conclusion
+
+The authoritative dependency conclusion is:
+
+**Milestone 1 must begin from one explicit canonical `.hfzproject` v2 schema and one unambiguous canonical lifecycle-metadata authority. Project creation-threshold identity depends on that state foundation and on a safe ownership-metadata boundary. Save versioning depends on explicit Project data classification and must distinguish candidate persisted state from authoritative state adopted only after confirmed persistence. Dirty-state baselines and unsaved-work protection are downstream of that success boundary. Strict validation must precede Open state adoption, and failed Open must preserve valid active state. Recent Projects, file handles, capability metadata, and future cloud behavior must remain downstream consumers of canonical Project truth rather than competing authorities. Final task decomposition must follow these dependencies and the smallest safe reversible migration sequence.**
+### 11.8 Safety-Net Requirements
+
+Milestone 1 changes Project identity, persistence, versioning, validation, and lifecycle semantics.
+
+These areas are data-integrity-sensitive.
+
+The purpose of the Milestone 1 safety net is not to maximize test count.
+
+Its purpose is to ensure that:
+
+* validated existing behavior is not silently broken;
+* risky migrations are protected before destructive or difficult-to-diagnose regressions can occur;
+* new architectural guarantees are introduced together with targeted automated verification;
+* persistence failures cannot create false Project history;
+* invalid Project files cannot corrupt active valid state;
+* Save classification remains deterministic;
+* migration to `.hfzproject` v2 remains reversible and independently verifiable.
+
+Safety-net requirements are divided into three categories:
+
+1. pre-change safety nets;
+2. implementation-coupled tests;
+3. milestone-level validation.
+
+The authoritative principle is:
+
+**Tests must be placed at the boundary where they provide the most useful protection. Existing behavior should be protected before risky modification; new behavior should normally be tested in the same task that introduces it; complete system coherence should be verified at milestone closure.**
+
+#### 11.8.1 Existing Test Baseline Must Remain Green
+
+Before each Milestone 1 implementation task begins, the relevant existing automated baseline must be known.
+
+The authoritative unified validation command remains:
+
+`test.cmd`
+
+At the formal Milestone 0 closure baseline:
+
+* backend: 115 tests passed;
+* frontend: 234 tests passed across 49 test files;
+* total observational automated-test count: 349;
+* final result: `RESULT: All tests passed.`
+
+These counts are observational evidence, not permanent contracts.
+
+Milestone 1 implementation must not assume that exact counts remain fixed as legitimate tests are added, removed, renamed, reorganized, or intentionally updated.
+
+The invariant is:
+
+**The complete authoritative validation suite must pass unless an explicitly approved architectural change intentionally requires a documented test expectation change.**
+
+Existing tests must not be:
+
+* weakened;
+* skipped;
+* deleted;
+* bypassed;
+* rewritten merely to make new implementation pass.
+
+Any intentional change to an existing expectation must be justified by approved architecture and retain equivalent or stronger regression protection.
+
+#### 11.8.2 Pre-Change Safety-Net Rule
+
+A pre-change safety net is required when Milestone 1 will modify a working behavior whose failure could:
+
+* lose unsaved Project work;
+* create false persistence history;
+* corrupt canonical Project identity;
+* partially replace active valid Project state;
+* break existing Save, Open, Update, or restoration workflows;
+* make rollback difficult;
+* produce a regression not reliably detected by existing tests.
+
+Pre-change tests must protect the existing behavior boundary before the risky implementation changes it.
+
+A separate preliminary test task is not automatically required.
+
+Where practical, the safety-net addition may be the first controlled step inside the same implementation task, provided:
+
+* the test is written against existing behavior before production behavior is changed;
+* the test passes before the implementation change;
+* the implementation report records this sequence;
+* rollback remains clear.
+
+#### 11.8.3 Existing Save Workflow Preservation
+
+Before modifying the existing Save pipeline, the relevant existing tests must be identified and confirmed.
+
+The existing safety net already covers important behavior including:
+
+* Project payload construction;
+* native Save;
+* browser-download fallback;
+* Save cancellation;
+* Save failure;
+* Save dialog behavior;
+* navigation after Save;
+* Update Existing Project;
+* opened-Project dirty baseline behavior.
+
+Milestone 1 must preserve these behaviors where they remain compatible with approved architecture.
+
+The browser-download fallback is an explicit exception because current behavior conflicts with the approved persistence-success boundary.
+
+Tests that currently encode download initiation as confirmed successful persistence may require intentional expectation changes.
+
+Such changes must:
+
+* be explicitly tied to the approved architecture;
+* preserve unsaved-work safety;
+* verify the new confirmation boundary;
+* not silently weaken Save behavior.
+
+#### 11.8.4 Persistence-Failure Safety Net
+
+Before or during implementation of canonical version transitions, automated protection must verify that failed persistence cannot create false canonical history.
+
+At minimum, a failed persistence attempt must not permanently adopt:
+
+* a new `versionId`;
+* a new `parentVersionId`;
+* advanced `ancestorVersionIds`;
+* a new `lastModifiedAt`;
+* a new `metadataModifiedAt`;
+* a new saved baseline;
+* a false clean dirty-state condition.
+
+Where a candidate canonical state is constructed before persistence, tests must prove that:
+
+* failure preserves the previously authoritative canonical state;
+* cancellation preserves the previously authoritative canonical state;
+* unsaved changes remain represented correctly.
+
+This protection must exist before the relevant versioning task is considered complete.
+
+#### 11.8.5 Browser-Download Fallback Safety Net
+
+The browser-download fallback requires dedicated automated protection because current repository behavior conflicts with the approved architecture.
+
+Tests must verify that download initiation alone does not automatically:
+
+* prove persistence;
+* advance authoritative canonical version state;
+* advance ancestry;
+* update canonical persistence timestamps;
+* replace the saved baseline;
+* clear dirty state.
+
+The exact confirmation mechanism must be determined through task-level Pre-Implementation Analysis.
+
+Once chosen, tests must verify:
+
+* initiation behavior;
+* confirmation behavior;
+* cancellation or non-confirmation behavior;
+* dirty-state behavior;
+* canonical state adoption;
+* unsaved-changes protection.
+
+This safety net must be introduced with the task that resolves the browser-download persistence boundary.
+
+#### 11.8.6 Creation-Threshold Identity Tests
+
+The implementation task that introduces canonical Project creation must include targeted automated tests for the approved threshold:
+
+* primary image exists;
+* at least one reference measurement exists.
+
+Tests must verify that:
+
+* image alone does not create a canonical Project;
+* reference measurement without a primary image does not create a canonical Project;
+* the first moment both threshold conditions are satisfied creates canonical Project identity;
+* `projectId` is generated once;
+* `projectId` remains stable after subsequent Project edits;
+* `createdAt` is generated once;
+* `createdAt` remains stable;
+* `primaryImageHash` is associated with the authoritative stored primary image;
+* `ownerId` follows the approved Milestone 1 ownership-metadata boundary;
+* crossing the creation threshold does not itself generate a persistent `versionId`;
+* crossing the creation threshold does not itself write a `.hfzproject` file.
+
+These tests belong with the implementation that introduces the lifecycle behavior.
+
+They are not required as a separate speculative preliminary test task.
+
+#### 11.8.7 Canonical Identity Stability Tests
+
+Canonical identity must be protected explicitly.
+
+Tests must verify that `projectId` remains unchanged when a valid Project is:
+
+* edited;
+* saved;
+* saved again;
+* moved;
+* copied;
+* reopened;
+* restored from a valid canonical `.hfzproject` v2 representation.
+
+A manually copied `.hfzproject` file must preserve the same `projectId`.
+
+Tests must also verify that a genuinely new Project receives a different `projectId`.
+
+Where file movement or copying depends on browser APIs outside practical unit-test boundaries, equivalent serialization-and-reopen tests may be used to protect the canonical identity guarantee.
+
+#### 11.8.8 `ownerId` Foundation Tests
+
+The implementation task that introduces canonical `ownerId` metadata must verify:
+
+* every valid canonical Project has one `ownerId`;
+* the field is persisted in `.hfzproject` v2;
+* Save does not arbitrarily replace it;
+* Open restores it from canonical Project data;
+* file name, file path, Project name, Recent Projects entry ID, and device-local file handle do not define or mutate it.
+
+Tests must reflect the approved Milestone 1 ownership-metadata strategy.
+
+They must not accidentally encode a disposable mock identifier as a permanent production architecture contract.
+
+Production identity derivation and authoritative ownership enforcement remain later-milestone responsibilities.
+
+#### 11.8.9 Primary-Image Hash Tests
+
+The implementation that introduces `primaryImageHash` must include targeted deterministic tests.
+
+At minimum, tests must verify:
+
+* identical authoritative stored image representations produce identical hashes;
+* different authoritative stored image representations produce different hashes with practical test inputs;
+* the hash is generated locally;
+* the hash is persisted in canonical v2 metadata;
+* the hash survives Save/Open round-trip.
+
+If Milestone 1 validates the stored hash on Open, tests must also verify that a mismatch fails closed.
+
+Tests must not introduce speculative Milestone 2 image-size, decoded-dimension, compression, or supported-format policy.
+
+#### 11.8.10 Canonical v2 Schema Tests
+
+The canonical `.hfzproject` v2 schema must have direct automated protection.
+
+Tests must verify at minimum:
+
+* `format` is correct;
+* `formatVersion` is exactly the supported value;
+* required canonical metadata exists;
+* required Project content exists;
+* required field types are valid;
+* required arrays and nested structures satisfy their structural contracts;
+* unsupported format versions are rejected;
+* disposable v1 files are rejected;
+* malformed JSON is rejected;
+* structurally invalid v2 files are rejected;
+* missing required canonical fields are rejected.
+
+Tests must distinguish between:
+
+* JSON syntax validity;
+* supported-format validity;
+* canonical structural validity;
+* semantic validity where required.
+
+The validator must fail closed rather than guess how to interpret unknown unsupported structures.
+
+#### 11.8.11 First Persistent Save Tests
+
+The implementation that introduces first persistent version semantics must verify:
+
+* a valid but unsaved Project has no persistent `versionId`;
+* the first successful Save generates one `versionId`;
+* `parentVersionId` is `null`;
+* `ancestorVersionIds` is empty;
+* `lastModifiedAt` is established;
+* Project identity remains unchanged;
+* failed first Save does not permanently adopt a persistent `versionId`;
+* cancelled first Save does not permanently adopt a persistent `versionId`;
+* crossing the Project creation threshold alone does not create the first persistent version.
+
+#### 11.8.12 Technical-Change Save Tests
+
+The implementation of technical version advancement must verify that a real technical Project-content change followed by successful Save:
+
+* preserves `projectId`;
+* preserves `ownerId`;
+* generates a new `versionId`;
+* sets the previous `versionId` as `parentVersionId`;
+* carries forward complete known ancestry;
+* appends the direct parent to `ancestorVersionIds`;
+* updates `lastModifiedAt`;
+* persists changed technical content.
+
+Tests should cover representative technical changes rather than every individual technical field when equivalent classification logic is shared.
+
+Representative cases should include fields from materially different technical categories where useful, such as:
+
+* reference measurement;
+* geometry;
+* calculation-affecting parameter.
+
+#### 11.8.13 Metadata-Only Save Tests
+
+The implementation of metadata-only persistence must verify that a successful Save containing only metadata changes:
+
+* preserves `projectId`;
+* preserves `ownerId`;
+* preserves `versionId`;
+* preserves `parentVersionId`;
+* preserves `ancestorVersionIds`;
+* preserves `lastModifiedAt`;
+* persists the metadata change;
+* updates `metadataModifiedAt`.
+
+Representative metadata-only cases should be selected from the final approved canonical classification.
+
+The test suite must not assume that every non-geometric field is metadata.
+
+Classification must follow architectural function.
+
+#### 11.8.14 Project Structural Capability Snapshot Tests
+
+The implementation of the Project Structural Capability Snapshot foundation must verify that:
+
+* the snapshot has one canonical place in `.hfzproject` v2;
+* it is persisted;
+* it is restored;
+* a snapshot-only persistent change does not generate a new technical `versionId`;
+* it does not advance technical ancestry;
+* it does not update `lastModifiedAt`;
+* it updates `metadataModifiedAt` after successful persistence;
+* it is not confused with current account/session capability state.
+
+These tests must not prematurely implement complete effective-capability resolution or enforcement.
+
+#### 11.8.15 Mixed-Change Save Tests
+
+The implementation of mixed Save semantics must verify that one successful Save containing both technical and metadata changes:
+
+* generates a new `versionId`;
+* advances ancestry correctly;
+* updates `lastModifiedAt`;
+* updates `metadataModifiedAt` where applicable;
+* persists both categories of change;
+* does not lose one category because the other is present.
+
+A representative mixed-change scenario is sufficient when the shared classification and transition logic is directly tested.
+
+#### 11.8.16 No-Change Save Tests
+
+The implementation of no-change Save semantics must verify that invoking Save without any real persistent change does not:
+
+* generate a new `versionId`;
+* change `parentVersionId`;
+* change `ancestorVersionIds`;
+* update `lastModifiedAt`;
+* update `metadataModifiedAt` merely because Save was invoked;
+* create false Project history.
+
+If the final implementation skips physical persistence entirely for a no-change Save, that behavior should be tested.
+
+If physical persistence remains possible for a justified implementation reason, tests must still prove that canonical history remains unchanged.
+
+#### 11.8.17 Ancestry Construction Tests
+
+Technical ancestry requires direct unit-level protection.
+
+Tests must verify:
+
+For the first persisted version:
+
+* `parentVersionId = null`;
+* `ancestorVersionIds = []`.
+
+For the second technical version:
+
+* the first `versionId` becomes `parentVersionId`;
+* `ancestorVersionIds` contains the first `versionId`.
+
+For a later technical version:
+
+* complete known ancestry is preserved;
+* the direct parent is appended exactly once;
+* ancestry order remains deterministic.
+
+Metadata-only Saves must not alter ancestry.
+
+Failed or cancelled Saves must not alter ancestry.
+
+No arbitrary ancestry truncation should be introduced.
+
+#### 11.8.18 Dirty-State and Change-Classification Tests
+
+The existing dirty-state safety net must be preserved.
+
+New tests must verify the distinction between:
+
+* technical dirty state;
+* metadata-only dirty state;
+* capability-snapshot metadata change;
+* mixed change;
+* no persistent change.
+
+The implementation must preserve the rule that:
+
+**A change may require persistence even when it does not generate a new technical `versionId`.**
+
+Tests must also verify that:
+
+* successful confirmed persistence establishes the correct baseline;
+* failed persistence does not establish a false baseline;
+* cancelled persistence does not establish a false baseline;
+* metadata-only Save can return the Project to a clean state without advancing technical version history.
+
+#### 11.8.19 Strict Open Validation Tests
+
+Strict Open validation must include targeted negative tests.
+
+At minimum, the suite must cover:
+
+* malformed JSON;
+* non-object root;
+* wrong `format`;
+* missing `formatVersion`;
+* `formatVersion: 1`;
+* unsupported future `formatVersion`;
+* missing required Project identity metadata;
+* missing ownership metadata;
+* missing required version metadata for a persisted Project;
+* invalid ancestry structure;
+* invalid timestamps where required;
+* missing primary image;
+* missing `primaryImageHash`;
+* missing required technical Project content;
+* invalid capability-snapshot structure where applicable.
+
+The exact fixture set should remain proportionate.
+
+Equivalent structural failures do not require repetitive tests for every possible field when one validator branch protects the same behavior class.
+
+#### 11.8.20 Failed-Open Preservation Tests
+
+Before strict Open migration is considered complete, automated protection must prove that attempting to open an invalid or unsupported Project does not corrupt or partially replace an already active valid Project.
+
+Tests must verify, where applicable:
+
+* current valid Project identity remains unchanged;
+* current calculator state remains unchanged;
+* current primary image remains unchanged;
+* current baseline remains unchanged;
+* current dirty-state meaning remains correct;
+* invalid Project data is not partially adopted;
+* no successful Recent Projects state is created from a failed Open where that would falsely imply success.
+
+Restoration-time failures must also be handled safely where practical to test.
+
+This is a high-value data-integrity safety net.
+
+#### 11.8.21 v2 Save/Open Round-Trip Tests
+
+Milestone 1 must include end-to-end frontend-level verification of canonical v2 round-trip behavior.
+
+A representative valid canonical Project must be:
+
+1. constructed from valid application state;
+2. serialized as `.hfzproject` v2;
+3. persisted or passed through the applicable test persistence boundary;
+4. parsed;
+5. strictly validated;
+6. restored;
+7. compared against expected equivalent Project state.
+
+The round-trip must protect, where applicable:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* ancestry;
+* timestamps;
+* primary image;
+* `primaryImageHash`;
+* reference measurements;
+* geometry;
+* calculation-affecting inputs;
+* descriptive metadata;
+* Project Structural Capability Snapshot;
+* other canonical persisted state.
+
+Derived values may be compared according to their final approved canonical classification.
+
+#### 11.8.22 Recent Projects Compatibility Tests
+
+Milestone 1 must preserve Recent Projects as a device-local convenience layer.
+
+Tests should verify that:
+
+* canonical `projectId` is not replaced by Recent entry ID;
+* Recent entry identity does not become canonical Project identity;
+* Save and Open continue updating Recent Projects correctly;
+* Update Existing Project remains compatible with retained file handles;
+* any optional stored `projectId` remains a convenience reference rather than competing authority.
+
+Complete Local Workspace behavior must not be pulled into these tests.
+
+#### 11.8.23 File-Handle Compatibility Tests
+
+Where Milestone 1 changes affect Update Existing Project or canonical persistence, relevant file-handle tests must verify:
+
+* valid retained writable handle still enables update-in-place;
+* successful update follows canonical versioning semantics;
+* failed update does not adopt false version history;
+* missing handle does not corrupt canonical Project identity;
+* file-handle identity does not define `projectId`.
+
+Moved, deleted, inaccessible, or unavailable-file UX beyond the minimum affected behavior remains primarily Milestone 6 scope.
+
+#### 11.8.24 Regression Protection for Validated Calculator Logic
+
+Milestone 1 must not rewrite validated Resin Calculator algorithms.
+
+The complete existing automated suite must continue to protect calculation behavior.
+
+If any Milestone 1 implementation touches code paths that also influence:
+
+* reference measurements;
+* geometry;
+* calculation inputs;
+* resin mix ratio;
+* depth;
+* layer configuration;
+* calculation results;
+* restoration of technical state,
+
+the relevant existing tests must be run and reviewed.
+
+Additional calculator-domain tests are required only if Milestone 1 introduces a concrete new regression risk not already covered.
+
+#### 11.8.25 Browser-Tab-Close Protection Assessment
+
+The repository investigation did not identify explicit `beforeunload` protection for browser-tab or browser-window closure.
+
+This is not currently a Milestone 1 blocker.
+
+Before Milestone 1 closure, the issue must be classified as one of:
+
+* required for Milestone 1 because the new valid-but-unsaved lifecycle introduces or exposes a concrete data-loss gap;
+* already sufficiently mitigated by existing behavior for Milestone 1 scope;
+* explicitly deferred to a later workspace milestone.
+
+This classification must be evidence-based.
+
+Milestone 1 must not expand automatically into general browser-lifecycle hardening.
+
+#### 11.8.26 Test Fixture Migration
+
+Existing Project-related tests currently use v1-shaped fixtures and expectations.
+
+Migration to v2 must be controlled.
+
+Test fixtures should:
+
+* use one reusable canonical v2 fixture foundation where practical;
+* avoid duplicated ad hoc canonical payload definitions across many tests;
+* preserve readability;
+* make required metadata explicit;
+* support targeted invalid-fixture mutations for negative tests.
+
+The migration must not create a parallel test-only Project schema that diverges from production validation rules.
+
+Where possible, fixtures should derive from or be validated against the same canonical schema contract used by production code.
+
+#### 11.8.27 Safety-Net Sequencing
+
+The authoritative safety-net sequence is:
+
+1. identify the preserved behavior affected by the next implementation task;
+2. identify existing tests already protecting it;
+3. identify any high-risk unprotected regression boundary;
+4. add pre-change protection only where necessary;
+5. implement the approved behavior;
+6. add implementation-coupled tests for the new guarantee;
+7. run targeted tests;
+8. run the complete authoritative validation suite;
+9. perform required manual verification;
+10. review discrepancies before commit or closure.
+
+This sequence applies task by task.
+
+Milestone 1 must not postpone all testing until the end.
+
+#### 11.8.28 Milestone-Level Validation Requirements
+
+Before Milestone 1 may be formally closed, validation must demonstrate the coherent operation of the complete canonical Project foundation.
+
+At minimum, milestone-level verification must establish:
+
+* new valid Project creation at the approved threshold;
+* stable `projectId`;
+* correct `ownerId` foundation;
+* deterministic `primaryImageHash`;
+* valid-but-unsaved Project behavior;
+* first persistent version semantics;
+* subsequent technical version advancement;
+* ancestry preservation;
+* metadata-only Save semantics;
+* Project Structural Capability Snapshot persistence semantics;
+* mixed Save semantics;
+* no-change Save semantics;
+* persistence-failure rollback;
+* architecture-compliant browser-download fallback;
+* strict v2 Open validation;
+* v1 rejection;
+* unsupported future-version rejection;
+* failed-Open preservation;
+* v2 Save/Open round-trip integrity;
+* Recent Projects compatibility;
+* Update Existing Project compatibility;
+* IndexedDB file-handle compatibility;
+* unsaved-changes protection;
+* preserved Resin Calculator behavior;
+* complete authoritative automated validation passing;
+* required manual verification completed.
+
+Exact test counts remain observational.
+
+The milestone closes on verified behavior, not on a fixed number of tests.
+
+#### 11.8.29 Safety-Net Stop Conditions
+
+Implementation must stop at the relevant boundary if:
+
+* an existing validated behavior is being changed without adequate regression protection;
+* a persistence failure can adopt false canonical history;
+* a failed Open can partially corrupt active valid Project state;
+* technical-versus-metadata classification cannot be tested deterministically;
+* ancestry behavior is ambiguous;
+* browser-download initiation is still treated as confirmed persistence contrary to architecture;
+* test expectations are weakened merely to make implementation pass;
+* v2 fixtures diverge from production schema rules;
+* rollback cannot restore a known good state;
+* full-suite failures are dismissed without root-cause analysis.
+
+No Milestone 1 task may be closed while a known data-integrity regression remains unresolved.
+
+#### 11.8.30 Authoritative Safety-Net Rule
+
+The authoritative rule is:
+
+**Milestone 1 safety nets must protect the boundaries where Project identity, persistence, versioning, ancestry, timestamps, validation, dirty-state baselines, and active Project state could become false, corrupted, or ambiguous. Existing validated behavior must be protected before risky modification where necessary; new architectural guarantees must normally be tested in the same task that introduces them; and complete v2 coherence must be demonstrated at milestone closure. The objective is not maximum test count, but sufficient targeted evidence that canonical Project history reflects successfully persisted reality, invalid input fails closed, unsaved work remains protected, and the migration preserves compatible working foundations.**
+### 11.9 Technical Resolution Points
+
+The completed Milestone 1 repository investigation identified four technical questions requiring explicit resolution before final task decomposition.
+
+These questions were analyzed against:
+
+* the approved Phase 4 Product Architecture;
+* the approved Phase 5 Technical Architecture;
+* the actual repository evidence;
+* the Milestone 1 architectural obligations;
+* the dependency map;
+* the safety-net requirements;
+* data-integrity, reversibility, validation, and preservation principles.
+
+All four technical resolution points are now resolved and approved.
+
+These resolutions are authoritative for Milestone 1 planning and future implementation.
+
+They do not authorize implementation by themselves.
+
+#### 11.9.1 Canonical `.hfzproject` v2 JSON Structure
+
+**Status: RESOLVED AND APPROVED**
+
+The canonical `.hfzproject` v2 representation shall use one explicit envelope.
+
+The root level shall contain:
+
+* `format`;
+* `formatVersion`.
+
+The canonical Project representation shall then be divided into four explicit sections:
+
+* `projectMetadata`;
+* `technicalContent`;
+* `descriptiveMetadata`;
+* `derivedData`.
+
+The conceptual structure is:
+
+```json
+{
+  "format": "hfzwood-project",
+  "formatVersion": 2,
+  "projectMetadata": {},
+  "technicalContent": {},
+  "descriptiveMetadata": {},
+  "derivedData": {}
+}
+```
+
+`format` and `formatVersion` remain at the root so that a Project file can be identified and its supported format version determined before deeper interpretation.
+
+`projectMetadata` is the authoritative location for Project lifecycle, identity, ownership, integrity, versioning, ancestry, timestamp, and structural-capability metadata, including as applicable:
+
+* `projectId`;
+* `ownerId`;
+* `versionId`;
+* `parentVersionId`;
+* `ancestorVersionIds`;
+* `createdAt`;
+* `lastModifiedAt`;
+* `metadataModifiedAt`;
+* `primaryImageHash`;
+* Project Structural Capability Snapshot.
+
+`technicalContent` contains authoritative Project data that defines technical Project meaning and calculation-affecting state.
+
+This includes the immutable primary-image representation and the validated calculator-state structures required for:
+
+* calibration;
+* reference measurements;
+* geometry;
+* cavities;
+* depth;
+* pour layers;
+* resin mix ratio;
+* other calculation-affecting inputs.
+
+Existing validated calculator structures should be preserved where compatible rather than unnecessarily rewritten for cosmetic schema elegance.
+
+`descriptiveMetadata` contains persistent non-technical Project information that does not independently define technical Project history.
+
+This includes, as applicable:
+
+* Project name;
+* free-form Project notes, unless later consumed as technical input;
+* descriptive or organizational information;
+* persistent display metadata approved by this section.
+
+`derivedData` contains regenerable information produced from authoritative Project state.
+
+Derived data may be persisted for restoration speed, continuity, diagnostics, or user experience, but it does not become a competing technical source of truth.
+
+The canonical v2 structure must not be implemented by continuing to add unrelated fields ad hoc to the existing flat v1 payload.
+
+The purpose of the explicit four-section structure is to support:
+
+* one canonical Project representation;
+* deterministic Save classification;
+* strict validation;
+* technical versioning;
+* metadata-only persistence;
+* safe restoration;
+* future cloud compatibility without implementing Cloud Workspace now.
+
+No separate `schemaVersion` field is required for Milestone 1.
+
+For the initial canonical implementation, `formatVersion: 2` defines the complete supported v2 schema.
+
+A separate schema-version axis may be introduced only if future evidence demonstrates a concrete need.
+
+#### 11.9.2 Persisted Calculation Result Classification
+
+**Status: RESOLVED AND APPROVED**
+
+Persisted calculation results shall be stored under:
+
+`derivedData`
+
+They shall not be classified as authoritative `technicalContent`.
+
+The authoritative source of Project technical truth remains the technical input state from which the calculation result is produced.
+
+This includes, as applicable:
+
+* reference measurements;
+* calibration;
+* geometry;
+* cavities;
+* depth;
+* layer configuration;
+* resin mix ratio;
+* other calculation-affecting inputs.
+
+The calculation result may be persisted because doing so supports:
+
+* restoration speed;
+* continuity of existing behavior;
+* immediate display of the last valid known result;
+* diagnostics;
+* avoidance of unnecessary recalculation during Open.
+
+However:
+
+**A persisted calculation result must not become a second technical source of truth competing with the technical inputs that produced it.**
+
+A calculation result must not independently:
+
+* generate a new `versionId`;
+* advance `parentVersionId`;
+* advance `ancestorVersionIds`;
+* update `lastModifiedAt` as if technical Project content had changed.
+
+If technical content changes and no corresponding successful recalculation exists, the previous calculation result must not be represented as the current valid result for the changed technical state.
+
+The implementation may:
+
+* store no current result;
+* use `null`;
+* otherwise represent absence according to the final canonical schema.
+
+Milestone 1 must not introduce an unnecessarily complex derived-result state machine unless actual repository evidence requires one.
+
+A missing or invalid derived calculation result must not automatically invalidate an otherwise valid canonical Project when the authoritative technical content remains complete and valid.
+
+Such a result may be:
+
+* ignored;
+* discarded;
+* regenerated.
+
+If useful and technically justified during task-level analysis, persisted calculation results may contain minimal provenance information such as:
+
+* calculator or application version;
+* calculation timestamp.
+
+Such provenance must not create a second version-history system.
+
+The final authoritative rule is:
+
+**Technical inputs define Project truth. Calculation results are derived from that truth and may be persisted for continuity, but they do not independently define technical Project history.**
+
+#### 11.9.3 UI Rotation and Zoom Classification
+
+**Status: RESOLVED AND APPROVED**
+
+UI rotation and zoom do not constitute authoritative technical Project content.
+
+They must not independently generate a new technical `versionId`.
+
+##### Rotation
+
+Rotation may be persisted as display metadata only when it represents a reversible view transformation over the immutable canonical primary image.
+
+A display-only rotation must not:
+
+* rewrite primary-image pixels;
+* replace the canonical primary image;
+* change `primaryImageHash`;
+* rewrite canonical geometry merely because the display orientation changed;
+* independently generate a new technical `versionId`;
+* advance technical ancestry;
+* update `lastModifiedAt`.
+
+Where persisted, rotation belongs under descriptive display metadata, conceptually:
+
+```json
+{
+  "descriptiveMetadata": {
+    "workspaceView": {
+      "rotation": 90
+    }
+  }
+}
+```
+
+A rotation-only Save is a metadata-only Save.
+
+After confirmed successful persistence, it may update:
+
+`metadataModifiedAt`
+
+It must not update technical version history.
+
+Canonical technical coordinates must remain independent of display rotation.
+
+The rendering and interaction layer must preserve a stable canonical coordinate system and apply reversible view transformation as required.
+
+Any operation that materially transforms the stored primary image is not merely UI rotation.
+
+Such an operation must not silently continue the same Project identity contrary to the immutable-primary-image rule.
+
+##### Zoom
+
+Zoom shall remain session-only UI state.
+
+Zoom shall not be persisted in canonical `.hfzproject` v2.
+
+Changing zoom shall not:
+
+* generate a new `versionId`;
+* advance ancestry;
+* update `lastModifiedAt`;
+* update `metadataModifiedAt`;
+* mark the Project persistently dirty;
+* trigger unsaved-changes protection;
+* trigger browser `beforeunload` protection.
+
+This prevents ordinary viewing interaction from creating false Project history or unnecessary Save prompts.
+
+The authoritative rule is:
+
+**Rotation may be persistent display metadata when it is a reversible view transformation. Zoom is ephemeral session state. Neither constitutes technical Project content, and neither may independently generate technical Project history.**
+
+#### 11.9.4 Browser `beforeunload` Protection
+
+**Status: RESOLVED AND APPROVED**
+
+Milestone 1 shall include narrowly scoped browser `beforeunload` protection for persistent unsaved Project work.
+
+This protection is required because Milestone 1 introduces the explicit canonical lifecycle state:
+
+**valid Project, but not yet successfully persisted.**
+
+Under the approved Project creation threshold, a Project becomes technically valid when:
+
+* one primary image exists;
+* at least one reference measurement exists.
+
+A valid canonical Project may therefore exist in memory before its first successful Save.
+
+Closing or refreshing the browser tab at that point may destroy valid unsaved Project work.
+
+Conditional `beforeunload` protection shall therefore be active when persistent Project work is at genuine risk, including as applicable:
+
+* a valid canonical Project has never been successfully persisted;
+* persistent technical changes remain unsaved;
+* persistent metadata changes remain unsaved;
+* persistence has failed;
+* persistence has been cancelled where unsaved work remains;
+* persistence has been initiated but remains unconfirmed;
+* browser-download fallback has not reached the approved persistence-confirmation boundary.
+
+The protection must not be permanently active.
+
+It must not activate merely because of:
+
+* zoom;
+* passive viewing;
+* session-only UI interaction;
+* an unchanged successfully persisted Project;
+* other non-persistent ephemeral state.
+
+For internal HFZWood navigation, the existing application-controlled unsaved-changes workflow remains authoritative and should continue to provide, where applicable:
+
+* Save;
+* Discard;
+* Cancel.
+
+For browser-controlled boundaries such as:
+
+* tab close;
+* page refresh;
+* browser close;
+* external navigation,
+
+HFZWood shall use the browser-native `beforeunload` confirmation mechanism.
+
+Modern browsers control the content and available actions of this native confirmation dialog.
+
+Milestone 1 must not depend on custom Save/Discard/Cancel text or controls being available inside that browser-native dialog.
+
+The purpose of this requirement is to give the user a final opportunity to remain on the page and save valid unsaved work.
+
+This requirement does not authorize Milestone 1 to expand into:
+
+* autosave;
+* crash recovery;
+* power-loss recovery;
+* browser-process recovery;
+* operating-system shutdown recovery;
+* general browser-lifecycle hardening;
+* cloud backup;
+* synchronization.
+
+The authoritative rule is:
+
+**Milestone 1 shall protect persistent unsaved Project work at browser-exit boundaries through conditional `beforeunload` behavior, while preserving the existing richer Save/Discard/Cancel workflow for internal application navigation. This is a targeted data-loss protection required by the valid-but-unsaved canonical Project lifecycle, not a general recovery system.**
+
+#### 11.9.5 Combined Technical Resolution Consequences
+
+The four approved resolutions establish the following authoritative Milestone 1 rules:
+
+1. `.hfzproject` v2 has one canonical envelope with `format` and `formatVersion` at the root.
+
+2. Canonical Project state is divided into:
+
+   * `projectMetadata`;
+   * `technicalContent`;
+   * `descriptiveMetadata`;
+   * `derivedData`.
+
+3. Project identity, ownership, versioning, ancestry, timestamps, image integrity metadata, and Project Structural Capability Snapshot belong to `projectMetadata`.
+
+4. Calculation-affecting authoritative state belongs to `technicalContent`.
+
+5. Persistent descriptive and organizational information belongs to `descriptiveMetadata`.
+
+6. Regenerable calculation results belong to `derivedData` and do not independently define technical Project history.
+
+7. Display-only rotation may be persistent descriptive metadata.
+
+8. Zoom remains session-only state and is excluded from canonical `.hfzproject` v2 persistence.
+
+9. Neither display rotation nor zoom independently generates a technical `versionId`.
+
+10. A valid canonical Project may exist before first successful persistence.
+
+11. Persistent unsaved Project work must receive conditional browser `beforeunload` protection.
+
+12. Internal application navigation continues to use the richer application-controlled Save/Discard/Cancel workflow.
+
+13. Browser-exit protection does not authorize autosave, crash recovery, synchronization, or general lifecycle expansion.
+
+#### 11.9.6 Effect on Dependency Mapping and Task Decomposition
+
+The four technical resolution points remove the principal schema and classification ambiguities identified during repository investigation.
+
+Final task decomposition may now rely on the following resolved foundations:
+
+* one explicit canonical v2 schema shape;
+* one explicit separation between technical, descriptive, derived, and lifecycle metadata;
+* calculation results classified as derived;
+* display rotation classified as persistent metadata when applicable;
+* zoom classified as session-only state;
+* browser-exit protection confirmed as narrowly scoped Milestone 1 responsibility.
+
+Task decomposition must still respect unresolved implementation-specific questions that require repository-level Pre-Implementation Analysis, including:
+
+* the exact repository module that should own canonical Project lifecycle metadata;
+* the exact `ownerId` sequencing mechanism before Milestone 3 production authentication;
+* the deterministic `primaryImageHash` input and implementation boundary;
+* the exact browser-download persistence-confirmation mechanism;
+* the exact canonical validator implementation structure;
+* the smallest safe sequence for v1-to-v2 cutover.
+
+These are implementation-design questions.
+
+They do not invalidate the approved technical resolutions above.
+
+They must be resolved at the appropriate dependency or task boundary rather than delegated to the Product Owner unless a genuine product trade-off emerges.
+
+#### 11.9.7 Authoritative Technical Resolution Conclusion
+
+The authoritative conclusion is:
+
+**Milestone 1 shall establish one canonical `.hfzproject` v2 representation built from explicit lifecycle metadata, authoritative technical content, persistent descriptive metadata, and regenerable derived data. Calculation results shall remain persisted derived data rather than technical source of truth. Display-only rotation may persist as metadata without creating technical history, while zoom remains session-only. Valid unsaved Project work shall receive narrowly scoped browser-exit protection through conditional `beforeunload` behavior. These decisions resolve the principal schema, classification, and browser-exit questions identified by repository investigation and provide a stable foundation for final evidence-based task decomposition.**
+### 11.10 Milestone 1 Task Decomposition
+
+Milestone 1 shall be implemented through eight controlled tasks.
+
+This decomposition follows the approved architecture, verified repository evidence, dependency map, safety-net requirements, and technical resolutions established in Sections 11.1–11.9.
+
+The task structure is intentionally pragmatic.
+
+It avoids both:
+
+* oversized implementation tasks that combine unrelated risk boundaries;
+* artificial fragmentation that creates process overhead without meaningful gains in safety, verification, reversibility, or continuity.
+
+Each task shall follow the approved Phase 6 Task Execution Workflow.
+
+Detailed Pre-Implementation Analysis shall be performed only when the relevant task is ready to begin and shall use the actual repository state at that time.
+
+The sections below define implementation boundaries. They do not authorize implementation automatically.
+
+#### M1.1 — Canonical Project v2 Schema and Lifecycle Foundation
+
+**Objective**
+
+Establish one canonical `.hfzproject` v2 schema and one unambiguous in-memory authority for canonical Project lifecycle metadata.
+
+**Scope**
+
+* define the canonical v2 envelope established in Section 11.9;
+* establish `projectMetadata`, `technicalContent`, `descriptiveMetadata`, and `derivedData`;
+* define required canonical fields and structural contracts;
+* establish the repository ownership boundary for canonical lifecycle metadata;
+* create reusable canonical v2 test fixtures where appropriate.
+
+**Dependencies**
+
+Sections 11.3, 11.7, 11.8, and 11.9.
+
+**Acceptance criteria**
+
+* one canonical v2 representation exists;
+* canonical lifecycle metadata has one authoritative in-memory ownership boundary;
+* no competing Project schema or lifecycle authority is introduced;
+* existing validated calculator structures are preserved where compatible;
+* targeted tests pass;
+* the complete authoritative test suite remains green.
+
+**Explicit exclusions**
+
+* creation-threshold behavior;
+* full `ownerId` production integration;
+* technical version advancement;
+* Save/Open cutover;
+* cloud behavior.
+
+**Rollback boundary**
+
+The schema and lifecycle foundation must remain sufficiently isolated to be reverted without requiring a rewrite of validated calculator logic or unrelated repository behavior.
+
+#### M1.2 — Project Creation Threshold, Identity, and Primary Image Hash
+
+**Objective**
+
+Implement canonical Project creation when the approved validity threshold is first satisfied.
+
+**Scope**
+
+* detect the first moment when one primary image and at least one reference measurement exist;
+* generate and preserve stable `projectId`;
+* establish `createdAt`;
+* establish deterministic `primaryImageHash`;
+* implement the approved narrow `ownerId` foundation without prematurely implementing Milestone 3 production authentication;
+* preserve valid-but-unsaved canonical Project state.
+
+**Dependencies**
+
+M1.1.
+
+**Acceptance criteria**
+
+* image alone does not create a canonical Project;
+* reference measurement without an image does not create one;
+* crossing the complete threshold creates canonical identity exactly once;
+* `projectId` and `createdAt` remain stable;
+* `primaryImageHash` is deterministic;
+* threshold creation does not itself create a persistent `versionId` or write a Project file;
+* the `ownerId` sequencing boundary is technically safe and documented;
+* targeted and full-suite validation pass.
+
+**Explicit exclusions**
+
+* production authentication;
+* authoritative ownership enforcement;
+* complete image-import hardening.
+
+**Rollback boundary**
+
+Creation-threshold logic and identity generation must be independently revertible without damaging existing calculator state.
+
+#### M1.3 — Change Classification and Version Transition Semantics
+
+**Objective**
+
+Establish deterministic Project change classification and canonical version-transition rules.
+
+**Scope**
+
+* classify technical, metadata-only, Structural Capability Snapshot, mixed, and no-change states;
+* preserve the approved derived-data classification;
+* preserve rotation as metadata and zoom as session-only state;
+* implement candidate transitions for first persistence, technical Save, metadata-only Save, mixed Save, and no-change Save;
+* implement `versionId`, parent, ancestry, and timestamp semantics.
+
+**Dependencies**
+
+M1.1 and M1.2.
+
+**Acceptance criteria**
+
+* classification is deterministic and testable;
+* technical changes generate technical version advancement;
+* metadata-only changes preserve technical version history;
+* mixed changes update both applicable histories correctly;
+* no-change Save creates no false history;
+* ancestry remains complete and deterministic;
+* candidate transitions do not yet become authoritative merely because they were calculated;
+* targeted and full-suite validation pass.
+
+**Explicit exclusions**
+
+* persistence-success adoption;
+* browser-download confirmation;
+* Save/Open cutover.
+
+**Rollback boundary**
+
+Classification and transition logic must be isolated sufficiently to revert without corrupting previously persisted Project data.
+
+#### M1.4 — Confirmed Persistence, Save Integration, and Browser-Download Safety
+
+**Objective**
+
+Integrate canonical v2 Save behavior and ensure canonical history advances only after confirmed persistence.
+
+**Scope**
+
+* integrate candidate canonical transitions with Save and Update Existing Project;
+* adopt version state, ancestry, timestamps, baseline, and clean state only after confirmed persistence;
+* preserve authoritative state after failure or cancellation;
+* resolve the browser-download fallback conflict;
+* make canonical `.hfzproject` v2 the direct pre-launch persistence authority;
+* reject accidental dual v1/v2 authority.
+
+**Dependencies**
+
+M1.1–M1.3.
+
+**Acceptance criteria**
+
+* first successful Save establishes first persistent version correctly;
+* subsequent technical, metadata-only, mixed, and no-change Saves follow approved semantics;
+* failure and cancellation create no false history;
+* browser-download initiation alone is not treated as confirmed persistence;
+* dirty state and saved baseline remain correct;
+* Update Existing Project remains functional;
+* targeted and full-suite validation pass.
+
+**Explicit exclusions**
+
+* v1 migration;
+* v1 backward compatibility;
+* cloud persistence;
+* synchronization.
+
+**Rollback boundary**
+
+The Save migration must preserve a clear last-known-good state and must not require weakening existing unsaved-work protection.
+
+#### M1.5 — Strict v2 Validation and Safe Open/Restore
+
+**Objective**
+
+Ensure only supported valid canonical v2 Projects become active state and failed Open attempts preserve existing valid work.
+
+**Scope**
+
+* implement strict v2 parsing and validation;
+* reject malformed JSON, invalid structures, v1, and unsupported future versions;
+* validate required canonical metadata and Project content;
+* treat invalid regenerable derived data proportionately;
+* integrate safe v2 Open and restoration;
+* preserve active valid Project state after failed Open.
+
+**Dependencies**
+
+M1.1 and M1.4.
+
+**Acceptance criteria**
+
+* unsupported or invalid Project files fail closed;
+* validation precedes active-state adoption;
+* failed Open does not partially replace or corrupt active valid state;
+* valid v2 Projects restore correctly;
+* invalid regenerable derived results do not automatically invalidate otherwise valid canonical Projects;
+* targeted and full-suite validation pass.
+
+**Explicit exclusions**
+
+* v1 migration;
+* automatic repair of unsupported Project files;
+* general recovery systems.
+
+**Rollback boundary**
+
+Parser, validator, and Open integration must remain sufficiently isolated to restore the last known working Open path if required during implementation.
+
+#### M1.6 — Canonical v2 Round-Trip and Workspace Compatibility
+
+**Objective**
+
+Demonstrate complete canonical v2 Save/Open/Restore integrity while preserving compatible local workspace foundations.
+
+**Scope**
+
+* verify canonical Save → Open → Restore round-trip;
+* preserve stable Project identity;
+* verify Recent Projects compatibility;
+* verify Update Existing Project compatibility;
+* verify IndexedDB file-handle compatibility;
+* ensure convenience-layer identities do not compete with canonical `projectId`.
+
+**Dependencies**
+
+M1.1–M1.5.
+
+**Acceptance criteria**
+
+* representative canonical Project data survives round-trip without silent loss or reclassification;
+* Project identity remains stable;
+* Recent Projects remains a device-local convenience layer;
+* file handles do not define canonical identity;
+* existing compatible workspace behavior remains functional;
+* targeted and full-suite validation pass.
+
+**Explicit exclusions**
+
+* complete Milestone 6 Local Workspace behavior;
+* unavailable-file UX beyond directly affected compatibility;
+* cloud behavior.
+
+**Rollback boundary**
+
+Compatibility changes must remain separable from the canonical Project model and must not create competing persistence authority.
+
+#### M1.7 — Conditional Browser `beforeunload` Protection
+
+**Objective**
+
+Protect persistent unsaved Project work at browser-controlled exit boundaries.
+
+**Scope**
+
+* activate conditional `beforeunload` protection when persistent unsaved Project work is genuinely at risk;
+* include valid-but-never-persisted Projects and unsaved persistent changes;
+* preserve existing internal Save/Discard/Cancel navigation behavior;
+* exclude zoom and other session-only state.
+
+**Dependencies**
+
+M1.2–M1.4.
+
+**Acceptance criteria**
+
+* valid unsaved Project work activates browser-exit protection;
+* unsaved technical or persistent metadata changes activate protection;
+* confirmed clean persisted Projects do not;
+* zoom and ephemeral UI state do not;
+* existing internal navigation protection remains functional;
+* targeted and full-suite validation pass.
+
+**Explicit exclusions**
+
+* autosave;
+* crash recovery;
+* power-loss recovery;
+* general browser-lifecycle hardening.
+
+**Rollback boundary**
+
+The browser-exit protection must be independently removable without affecting canonical Project persistence or internal navigation protection.
+
+#### M1.8 — Milestone 1 Integration Validation and Formal Closure
+
+**Objective**
+
+Verify the complete Milestone 1 implementation and record formal closure evidence.
+
+**Scope**
+
+* run complete authoritative automated validation;
+* perform required targeted and manual verification;
+* verify the complete canonical v2 lifecycle;
+* confirm preservation boundaries and milestone exclusions;
+* record final evidence and relevant commit hashes;
+* formally close Milestone 1 only after all required criteria pass.
+
+**Dependencies**
+
+M1.1–M1.7 complete.
+
+**Acceptance criteria**
+
+Milestone-level verification confirms, as applicable:
+
+* canonical v2 schema;
+* creation threshold;
+* identity stability;
+* `ownerId` foundation;
+* deterministic primary-image hash;
+* valid-but-unsaved lifecycle;
+* first persistent version;
+* technical version advancement;
+* metadata-only, mixed, and no-change Save semantics;
+* complete ancestry;
+* persistence-failure rollback;
+* browser-download safety;
+* strict v2 validation;
+* v1 and unsupported-version rejection;
+* failed-Open preservation;
+* Save/Open/Restore round-trip;
+* Recent Projects and file-handle compatibility;
+* conditional `beforeunload` protection;
+* preserved calculator behavior;
+* complete authoritative validation passing.
+
+Exact test counts remain observational rather than permanent contracts.
+
+**Explicit exclusions**
+
+No new feature implementation may be added merely to close the milestone.
+
+**Rollback boundary**
+
+Milestone closure records evidence only and must not hide unresolved implementation discrepancies.
+
+#### 11.10.1 Approved Implementation Order
+
+The approved Milestone 1 task order is:
+
+`M1.1 → M1.2 → M1.3 → M1.4 → M1.5 → M1.6 → M1.7 → M1.8`
+
+No task begins automatically.
+
+Before each implementation task:
+
+1. perform task-specific Pre-Implementation Analysis against the current repository state;
+2. review the analysis;
+3. resolve blockers or discrepancies;
+4. obtain explicit Product Owner authorization;
+5. implement only the approved scope.
+
+#### 11.10.2 Milestone 1 Documentation Stop Boundary
+
+After formal closure of M1.8:
+
+**STOP.**
+
+Do not begin Milestone 2 planning or implementation automatically.
+
+Before Milestone 2 begins, evaluate and explicitly approve a new Phase 6 documentation structure.
+
+The current `documentation/phase-6-implementation-plan.md` has become sufficiently large that continuing all later milestone detail in the same file may reduce usability, auditability, navigability, and context efficiency.
+
+The likely future model is:
+
+* the current Phase 6 plan remains the authoritative master overview and historical record;
+* later milestones may receive dedicated planning and implementation documents.
+
+The exact post-Milestone-1 documentation structure must be decided only after Milestone 1 is formally closed.
+
+#### 11.10.3 Authoritative Task-Decomposition Conclusion
+
+Milestone 1 shall be implemented through eight controlled tasks.
+
+The decomposition preserves real technical risk boundaries without artificial fragmentation.
+
+The authoritative sequence is:
+
+**define the canonical Project foundation → create stable Project identity → classify changes and version transitions → persist safely → validate and restore safely → prove round-trip and workspace compatibility → protect browser exit → validate and formally close the milestone.**
+
+No Milestone 1 implementation is authorized merely by this task decomposition.
+**Implementation status: COMPLETED**
+
+**Implementation evidence**
+
+* canonical `.hfzproject` v2 contract introduced;
+* canonical lifecycle metadata contract and factory introduced;
+* pure inactive calculator-snapshot-to-v2 mapper introduced;
+* reusable v2 test foundation introduced;
+* live v1 Save/Open behavior remained unchanged;
+* lifecycle runtime wiring remains deferred to M1.2;
+* targeted tests: 8 passed;
+* complete validation: backend 115 passed, frontend 242 passed across 50 files;
+* total observational automated-test count: 357;
+* frontend production build passed with 2,778 modules transformed;
+* implementation commit: `43e9d57 — Phase 6 M1.1: add canonical project v2 foundation`.
+
+**Closure**
+
+M1.1 is complete and verified.
+
+No M1.2 implementation has begun.
