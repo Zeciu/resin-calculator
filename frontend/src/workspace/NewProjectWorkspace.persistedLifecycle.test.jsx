@@ -9,11 +9,11 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
-import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
+import { buildV2ProjectFileJsonForOwner, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 import { parseProjectFileText } from "./projectFileParse.js";
 
 const OPEN_PARSED = parseProjectFileText(
-  buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT }),
+  buildV2ProjectFileJsonForOwner("stub-user", { snapshot: VALID_CALCULATOR_SNAPSHOT }),
 );
 
 const EXISTING_LIFECYCLE = OPEN_PARSED.persistedLifecycle;

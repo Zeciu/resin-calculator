@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import ProjectsPage from "../modules/ProjectsPage.jsx";
+import { TestProviders } from "../test/TestProviders.jsx";
 import { ROUTES } from "./routes.js";
 
 const navigateMock = vi.fn();
@@ -46,7 +47,9 @@ import { TINY_PNG } from "../project/canonicalProjectV2.test.js";
 function renderProjectsPage() {
   return render(
     <MemoryRouter>
-      <ProjectsPage />
+      <TestProviders>
+        <ProjectsPage />
+      </TestProviders>
     </MemoryRouter>,
   );
 }
@@ -54,6 +57,12 @@ function renderProjectsPage() {
 describe("ProjectsPage", () => {
   beforeEach(() => {
     localStorage.clear();
+    sessionStorage.setItem(
+      "hfzwood.mockAuth",
+      JSON.stringify({
+        user: { id: "stub-user", email: "user@example.com", username: "user", role: "user" },
+      }),
+    );
     navigateMock.mockReset();
     loadProjectFromFile.mockReset();
     loadProjectIntoRecentEntry.mockReset();
@@ -114,7 +123,11 @@ describe("ProjectsPage", () => {
 
     await user.upload(input, file);
 
-    expect(loadProjectFromFile).toHaveBeenCalled();
+    expect(loadProjectFromFile).toHaveBeenCalledWith(
+      expect.any(File),
+      null,
+      expect.objectContaining({ user: expect.objectContaining({ id: expect.any(String) }) }),
+    );
     expect(navigateMock).toHaveBeenCalledWith(ROUTES.NEW_PROJECT, {
       state: {
         pendingProjectRestore: expect.objectContaining({

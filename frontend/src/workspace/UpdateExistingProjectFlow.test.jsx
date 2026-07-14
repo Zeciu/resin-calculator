@@ -15,7 +15,7 @@ const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
 import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
-import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
+import { buildV2ProjectFileJson, buildV2ProjectFileJsonForOwner, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 import { parseProjectFileText } from "./projectFileParse.js";
 
 const saveProjectFileMock = vi.fn();
@@ -143,7 +143,10 @@ describe("Update existing project flow", () => {
 
     recentEntry = upsertRecentProject(
       buildRecentProjectEntry(
-        buildPersistedV2OpenEnvelope({ snapshot: VALID_CALCULATOR_SNAPSHOT }),
+        buildPersistedV2OpenEnvelope({
+          snapshot: VALID_CALCULATOR_SNAPSHOT,
+          identity: { ownerId: "stub-user" },
+        }),
         {
           fileName: "river-table.hfzproject",
         },
@@ -158,7 +161,7 @@ describe("Update existing project flow", () => {
 
   async function openRestoredProject(router) {
     const parsed = parseProjectFileText(
-      buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT }),
+      buildV2ProjectFileJsonForOwner("stub-user", { snapshot: VALID_CALCULATOR_SNAPSHOT }),
     );
 
     await router.navigate(ROUTES.NEW_PROJECT, {

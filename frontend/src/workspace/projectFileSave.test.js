@@ -12,6 +12,7 @@ import {
   supportsNativeProjectSavePicker,
   updateProjectFile,
 } from "./projectFileSave.js";
+import { PROJECT_OWNERSHIP_MODE, PROJECT_WRITE_FORBIDDEN_MESSAGE } from "../project/projectOwnership.js";
 
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
@@ -270,6 +271,23 @@ describe("projectFileSave", () => {
           persistedLifecycle: EXISTING_LIFECYCLE,
         }),
       ).rejects.toThrow(ProjectFileSaveError);
+    });
+
+    it("rejects foreign read-only ownership mode before writing", async () => {
+      const fileHandle = {
+        createWritable: vi.fn(),
+      };
+
+      await expect(
+        saveProjectFile({
+          projectName: "River Table",
+          snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
+          ownershipMode: PROJECT_OWNERSHIP_MODE.FOREIGN_READ_ONLY,
+        }),
+      ).rejects.toThrow(PROJECT_WRITE_FORBIDDEN_MESSAGE);
+
+      expect(fileHandle.createWritable).not.toHaveBeenCalled();
     });
   });
 

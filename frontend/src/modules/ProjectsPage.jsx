@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FolderOpen } from "lucide-react";
+import { useAuth } from "../auth/useAuth.js";
 import { ROUTES } from "../workspace/routes.js";
+import { getProjectDisplayName } from "../workspace/projectFileParse.js";
 import { ProjectFileParseError } from "../workspace/projectFileParse.js";
 import {
   HFZ_PROJECT_IMPORT_ACCEPT,
@@ -58,6 +60,7 @@ function RecentProjectCard({ entry, disabled, onOpen }) {
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const fileInputRef = useRef(null);
   const locateEntryRef = useRef(null);
   const [recentProjects, setRecentProjects] = useState(() => loadRecentProjects());
@@ -74,18 +77,20 @@ export default function ProjectsPage() {
   }, [refreshRecentProjects]);
 
   const openProjectInWorkspace = useCallback(
-    (parsed, entry) => {
+    (parsed, entry, fileName = "") => {
+      const resolvedFileName = entry?.lastKnownFileName || fileName || "";
+      const projectName =
+        entry?.projectName ?? getProjectDisplayName(parsed.envelope, resolvedFileName);
+
       navigate(ROUTES.NEW_PROJECT, {
         state: {
           pendingProjectRestore: parsed.snapshot,
-          openContext: entry
-            ? {
-                recentEntryId: entry.id,
-                projectName: entry.projectName,
-                lastKnownFileName: entry.lastKnownFileName,
-                persistedLifecycle: parsed.persistedLifecycle,
-              }
-            : null,
+          openContext: {
+            recentEntryId: entry?.id ?? null,
+            projectName,
+            lastKnownFileName: resolvedFileName || null,
+            persistedLifecycle: parsed.persistedLifecycle,
+          },
         },
       });
     },
@@ -101,7 +106,7 @@ export default function ProjectsPage() {
       try {
         const loaded = await loader();
         refreshRecentProjects();
-        openProjectInWorkspace(loaded, loaded.entry);
+        openProjectInWorkspace(loaded, loaded.entry, loaded.fileName ?? "");
       } catch (loadError) {
         if (loadError instanceof RecentProjectUnavailableError) {
           setUnavailableEntry(loadError.entry);
@@ -132,7 +137,7 @@ export default function ProjectsPage() {
       }
 
       await handleProjectLoaded(async () =>
-        loadProjectFromFile(nativePick.file, nativePick.handle),
+        loadProjectFromFile(nativePick.file, nativePick.handle, { user }),
       );
       return;
     }
@@ -159,14 +164,14 @@ export default function ProjectsPage() {
         return;
       }
 
-      await handleProjectLoaded(async () => loadProjectFromFile(file));
+      await handleProjectLoaded(async () => loadProjectFromFile(file, null, { user }));
     },
     [handleProjectLoaded],
   );
 
   const handleRecentOpen = useCallback(
     async (entry) => {
-      await handleProjectLoaded(async () => loadRecentProject(entry));
+      await handleProjectLoaded(async () => loadRecentProject(entry, { user }));
     },
     [handleProjectLoaded],
   );

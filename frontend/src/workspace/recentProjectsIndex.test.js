@@ -1,6 +1,9 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
 import {
   buildRecentProjectEntry,
+  extractCanonicalProjectId,
+  findRecentProjectByProjectId,
   loadRecentProjects,
   RECENT_PROJECTS_STORAGE_KEY,
   refreshRecentProjectOnOpen,
@@ -85,5 +88,95 @@ describe("recentProjectsIndex", () => {
     expect(refreshed.id).toBe(entry.id);
     expect(refreshed.lastSavedAt).toBe("2026-02-01T12:00:00.000Z");
     expect(loadRecentProjects()).toHaveLength(1);
+  });
+
+  it("stores canonical projectId on recent entries", () => {
+    const envelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-abc" },
+    });
+
+    const [entry] = upsertRecentProject(
+      buildRecentProjectEntry(envelope, { fileName: "river-table.hfzproject" }),
+    );
+
+    expect(entry.projectId).toBe("project-abc");
+    expect(extractCanonicalProjectId(envelope)).toBe("project-abc");
+    expect(findRecentProjectByProjectId("project-abc")?.id).toBe(entry.id);
+  });
+
+  it("reuses the same recent entry when upserting the same projectId", () => {
+    const envelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-abc" },
+    });
+
+    const [first] = upsertRecentProject(
+      buildRecentProjectEntry(envelope, { fileName: "river-table.hfzproject" }),
+    );
+    const [second] = upsertRecentProject(
+      buildRecentProjectEntry(envelope, { fileName: "river-table-copy.hfzproject" }),
+    );
+
+    expect(loadRecentProjects()).toHaveLength(1);
+    expect(second.id).toBe(first.id);
+    expect(second.projectId).toBe("project-abc");
+    expect(second.lastKnownFileName).toBe("river-table-copy.hfzproject");
+  });
+
+  it("keeps separate recent entries for different projectIds with the same name", () => {
+    const firstEnvelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-a" },
+    });
+    const secondEnvelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-b" },
+    });
+
+    upsertRecentProject(
+      buildRecentProjectEntry(firstEnvelope, { fileName: "river-table.hfzproject" }),
+    );
+    upsertRecentProject(
+      buildRecentProjectEntry(secondEnvelope, { fileName: "river-table.hfzproject" }),
+    );
+
+    expect(loadRecentProjects()).toHaveLength(2);
+  });
+
+  it("updates lastOpenedAt when the same projectId is opened again", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-01-01T12:00:00.000Z"));
+
+    const envelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-abc" },
+    });
+    const [first] = upsertRecentProject(
+      buildRecentProjectEntry(envelope, { fileName: "river-table.hfzproject" }),
+    );
+
+    vi.setSystemTime(new Date("2026-02-01T12:00:00.000Z"));
+    const [second] = upsertRecentProject(
+      buildRecentProjectEntry(envelope, { fileName: "river-table.hfzproject" }),
+    );
+
+    expect(second.id).toBe(first.id);
+    expect(second.lastOpenedAt).toBe("2026-02-01T12:00:00.000Z");
+    vi.useRealTimers();
+  });
+
+  it("preserves the same recent entry id on save updates", () => {
+    const envelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-abc" },
+    });
+    const [entry] = upsertRecentProject(
+      buildRecentProjectEntry(envelope, { fileName: "river-table.hfzproject" }),
+    );
+
+    const updated = updateRecentProjectOnSave(entry.id, {
+      projectName: "River Table",
+      savedAt: "2026-03-01T12:00:00.000Z",
+      lastKnownFileName: "river-table.hfzproject",
+    });
+
+    expect(updated).toHaveLength(1);
+    expect(updated[0].id).toBe(entry.id);
+    expect(updated[0].projectId).toBe("project-abc");
   });
 });

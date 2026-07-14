@@ -611,3 +611,118 @@ Passed: v2 Save, direct Open, Update Existing Project, round-trip data preservat
 ### Next step
 
 **Block 2 — Production Identity, Ownership, and Commercial Access** (production authentication, Project ownership, capability enforcement, subscription foundations).
+## 13. Block 2 Execution Decision
+
+Repository analysis confirmed that Block 2 is primarily a wiring and enforcement phase, not a greenfield architecture phase.
+
+Existing foundations already include:
+
+- frontend authentication adapter and mock authentication;
+- login, registration, recovery, logout, and route guards;
+- Cognito CDK infrastructure and backend JWT middleware;
+- canonical v2 `ownerId` persistence and restoration;
+- backend capability catalog and resolver;
+- frontend `CapabilitiesProvider`;
+- `EntitlementsRepository` abstraction.
+
+Block 2 will therefore use the smallest implementation sequence:
+
+1. **Task 2.1 — Local Project Ownership Enforcement** — CLOSED (see §14)
+2. **Task 2.2 — Production Cognito Authentication**
+3. **Task 2.3 — Product Capability Enforcement**
+
+### Task 2.1 — Ownership rule
+
+For canonical v2 Projects:
+
+- `authenticated user.id === Project ownerId` → normal editable Project;
+- `authenticated user.id !== Project ownerId` → foreign-owned read-only Project.
+
+Foreign-owned Projects may be opened and inspected but may not be edited, updated, overwritten, saved as a new Project, or have ownership changed.
+
+No sharing, collaboration, ownership transfer, duplication, cloud permissions, or migration is introduced.
+
+### Task 2.2 — Cognito boundary
+
+Production Cognito authentication will extend the existing authentication adapter rather than create a new identity system.
+
+The target production identity is the immutable Cognito `sub`, exposed as canonical `user.id`.
+
+Mock authentication remains available for local development and tests.
+
+Final production activation depends on actual Cognito infrastructure and environment configuration. A task must not be declared fully production-validated without real end-to-end authentication verification.
+
+### Task 2.3 — Capability enforcement
+
+Existing Product Capability foundations will be reused and enforced.
+
+The application will consume resolved tiers and capabilities through the existing capability boundary.
+
+Do not introduce speculative billing infrastructure.
+
+Specifically deferred:
+
+- Stripe integration;
+- Stripe webhook stubs;
+- new entitlement admin APIs without a current consumer;
+- manual entitlement write tooling unless concretely required for testing or release;
+- DynamoDB entitlement storage;
+- `structuralCapabilitySnapshot` population;
+- Cloud Workspace capability enforcement.
+
+Backend capability enforcement will be added only where a real protected server-side resource or paid computation can otherwise be bypassed directly through the API.
+
+### Development Project files
+
+Pre-production `.hfzproject` files with development owner IDs such as `stub-user` are disposable development artifacts.
+
+Under real Cognito identity, non-matching files open as foreign-owned read-only.
+
+No migration or ownership rewrite system will be built.
+
+### Governing rule
+
+**Reuse existing foundations. Enforce real current product rules. Do not build billing, cloud, migration, or future infrastructure before it has a concrete operational consumer.**
+
+---
+
+## 14. Block 2 Task 2.1 — Local Project Ownership Enforcement
+
+**Task 2.1 status:** CLOSED (approved Keep All; Product Owner manual QA passed)
+
+### Ownership rule
+
+For canonical v2 Projects:
+
+- `authenticated user.id === Project ownerId` → normal editable Project workflow;
+- `authenticated user.id !== Project ownerId` → foreign-owned read-only inspection mode.
+
+Foreign-owned Projects may be opened and inspected but may not be edited, deleted from, saved, updated in place, duplicated, reassigned, or indexed into the authenticated user's Recent Projects.
+
+Administrator role does not bypass ownership.
+
+### Delivered
+
+* **Ownership resolution:** `projectOwnership.js` derives `owned` vs `foreign_read_only` from authenticated `user.id` and persisted `projectMetadata.ownerId`.
+* **Read-only workspace:** foreign-owned notice; single `readOnly` authority through calculator and workspace; persistent delete/clear/remove/reset paths guarded at handler level.
+* **Save/Update enforcement:** authoritative guards in workspace and `projectFileSave.js`; blocked writes do not open Save dialog, write files, or mutate Recent Projects.
+* **Recent Projects:** deduplication by canonical `projectMetadata.projectId`; foreign-owned direct Open excluded from new index entries and IndexedDB handle storage; owned Open/Save/Update/locate/rebind reuse one entry per `projectId`.
+* **Read permission:** existing `ensureFileHandleReadPermission` behavior preserved for owned Recent Projects.
+
+### Product Owner manual QA
+
+Passed: owned Project editable; foreign-owned read-only with notice; Save/Update blocked; reference/cavity/wood/mold delete and clear blocked; vertex edit blocked; session-only zoom/pan/fit available; foreign Projects not newly indexed; repeated owned Open does not duplicate Recent cards.
+
+### Validation
+
+* Backend: 115 passed
+* Frontend: 475 passed (59 files)
+* Frontend production build: success
+
+### Implementation commit
+
+`TBD`
+
+### Next step
+
+**Task 2.2 — Production Cognito Authentication**

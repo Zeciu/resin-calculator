@@ -572,12 +572,14 @@ export default forwardRef(function ResinCalculator(
   {
     showHeader = true,
     workspaceVariant,
+    readOnly = false,
     onDirtyChange,
     onProjectRestored,
     onSaveProjectRequest,
   },
   ref,
 ) {
+  const isReadOnly = Boolean(readOnly);
   const canvasRef = useRef(null);
   const workAreaRef = useRef(null);
   const workspaceImagePanelRef = useRef(null);
@@ -651,6 +653,11 @@ export default forwardRef(function ResinCalculator(
       return;
     }
 
+    if (isReadOnly) {
+      onDirtyChange(false);
+      return;
+    }
+
     onDirtyChange(
       computeProjectDirtyState({
         referenceMeasurements,
@@ -693,6 +700,7 @@ export default forwardRef(function ResinCalculator(
     moldBoundaryComplete,
     woodBoundaryComplete,
     cavitiesComplete,
+    isReadOnly,
   ]);
 
   const markResultOutdated = () => {
@@ -985,7 +993,23 @@ export default forwardRef(function ResinCalculator(
     };
   }, [mode, draftReferencePoints.length]);
 
+  const deleteReferenceMeasurement = (idx) => {
+    if (isReadOnly) return;
+    setReferenceMeasurements((prev) => {
+      const next = prev.filter((_, i) => i !== idx);
+      if (next.length === 0) {
+        setMeasurementsComplete(false);
+        setReferencesExpanded(true);
+        setMode("reference");
+      }
+      return next;
+    });
+    setResult(null);
+    setError("");
+  };
+
   const saveReferenceMeasurement = () => {
+    if (isReadOnly) return;
     const valCm = displayUnits.parseReferenceLengthToCm(draftKnownLengthCm);
     if (!Number.isFinite(valCm) || valCm <= 0) {
       setError(displayUnits.referenceLengthError());
@@ -1020,6 +1044,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const onImageUpload = (event) => {
+    if (isReadOnly) return;
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -1188,6 +1213,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const updateSelectedVertex = (vertexIndex, point) => {
+    if (isReadOnly) return;
     if (!selectedShape || vertexIndex == null || !point) return;
 
     if (selectedShape.type === "mold") {
@@ -1232,6 +1258,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const confirmCavityDepth = (index) => {
+    if (isReadOnly) return;
     const depthMm = displayUnits.parseDepthToMm(cavityDepthsMm[index]);
     if (!Number.isFinite(depthMm) || depthMm <= 0) {
       setError(displayUnits.cavityDepthError());
@@ -1308,6 +1335,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const onCanvasMouseDown = (event) => {
+    if (isReadOnly) return;
     if (calculationMode !== "wood" || !selectedShape) return;
     const point = getCanvasCoordinates(event);
     const vertexIndex = findSelectedVertexAt(point);
@@ -1322,6 +1350,7 @@ export default forwardRef(function ResinCalculator(
     const point = getCanvasCoordinates(event);
 
     if (dragRef.current) {
+      if (isReadOnly) return;
       updateSelectedVertex(dragRef.current.vertexIndex, point);
       return;
     }
@@ -1338,6 +1367,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const onCanvasClick = (event) => {
+    if (isReadOnly) return;
     if (suppressNextClickRef.current) {
       suppressNextClickRef.current = false;
       return;
@@ -1380,7 +1410,91 @@ export default forwardRef(function ResinCalculator(
   };
 
   const clearPolygon = () => {
+    if (isReadOnly) return;
     setPolygonPoints([]);
+    markResultOutdated();
+    setError("");
+  };
+
+  const clearMoldBoundary = () => {
+    if (isReadOnly) return;
+    setMoldBoundaryPoints([]);
+    setWoodBoundaryPolygons([]);
+    setWoodBoundaryPoints([]);
+    setCavityPolygons([]);
+    setCavityDepthsMm([]);
+    setCurrentCavityPoints([]);
+    setMoldBoundaryComplete(false);
+    setWoodBoundaryComplete(false);
+    setCavitiesComplete(false);
+    setSelectedShape((prev) =>
+      prev?.type === "mold" || prev?.type === "wood" || prev?.type === "cavity" ? null : prev,
+    );
+    markResultOutdated();
+    setError("");
+  };
+
+  const clearWoodIslands = () => {
+    if (isReadOnly) return;
+    setWoodBoundaryPolygons([]);
+    setWoodBoundaryPoints([]);
+    setCavityPolygons([]);
+    setCavityDepthsMm([]);
+    setCurrentCavityPoints([]);
+    setWoodBoundaryComplete(false);
+    setCavitiesComplete(false);
+    setSelectedShape((prev) =>
+      prev?.type === "wood" || prev?.type === "cavity" ? null : prev,
+    );
+    markResultOutdated();
+    setError("");
+  };
+
+  const clearAllCavities = () => {
+    if (isReadOnly) return;
+    setCavityPolygons([]);
+    setCavityDepthsMm([]);
+    setCurrentCavityPoints([]);
+    setEditingCavityDepthIndex(null);
+    setCavitiesComplete(false);
+    setSelectedShape((prev) => (prev?.type === "cavity" ? null : prev));
+    markResultOutdated();
+    setError("");
+  };
+
+  const deleteWoodIslandAtIndex = (idx) => {
+    if (isReadOnly) return;
+    setWoodBoundaryPolygons((prev) => prev.filter((__, woodIdx) => woodIdx !== idx));
+    setSelectedShape((prev) => {
+      if (prev?.type !== "wood") return prev;
+      if (prev.index === idx) return null;
+      if (prev.index > idx) return { type: "wood", index: prev.index - 1 };
+      return prev;
+    });
+    setWoodBoundaryComplete(false);
+    setCavitiesComplete(false);
+    markResultOutdated();
+    setError("");
+  };
+
+  const deleteCavityAtIndex = (idx) => {
+    if (isReadOnly) return;
+    setCavityPolygons((prev) => prev.filter((__, i) => i !== idx));
+    setCavityDepthsMm((prev) => prev.filter((__, i) => i !== idx));
+    setEditingCavityDepthIndex((prev) => {
+      if (prev == null) return prev;
+      if (prev === idx) return null;
+      if (prev > idx) return prev - 1;
+      return prev;
+    });
+    setSelectedShape((prev) => {
+      if (prev?.type !== "cavity") return prev;
+      if (prev.index === idx) return null;
+      if (prev.index > idx) {
+        return { type: "cavity", index: prev.index - 1 };
+      }
+      return prev;
+    });
     markResultOutdated();
     setError("");
   };
@@ -1394,6 +1508,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const undoLastPoint = () => {
+    if (isReadOnly) return;
     if (calculationMode !== "wood") return;
 
     if (mode === "mold") {
@@ -1481,6 +1596,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const handleSaveProjectClick = () => {
+    if (isReadOnly) return;
     if (workspaceVariant === "dedicated" && onSaveProjectRequest) {
       onSaveProjectRequest();
       return;
@@ -1608,6 +1724,7 @@ export default forwardRef(function ResinCalculator(
   }));
 
   const importProject = (event) => {
+    if (isReadOnly) return;
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -1878,16 +1995,19 @@ export default forwardRef(function ResinCalculator(
   };
 
   const rotateLeft = () => {
+    if (isReadOnly) return;
     setRotationDeg((prev) => ROTATIONS[(ROTATIONS.indexOf(prev) + 3) % 4]);
     setZoomFactor(1);
   };
 
   const rotateRight = () => {
+    if (isReadOnly) return;
     setRotationDeg((prev) => ROTATIONS[(ROTATIONS.indexOf(prev) + 1) % 4]);
     setZoomFactor(1);
   };
 
   const calculate = async () => {
+    if (isReadOnly) return;
     setError("");
     setResult(null);
     setResultOutdated(false);
@@ -1915,6 +2035,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const calculateWood = async () => {
+    if (isReadOnly) return;
     setError("");
     setResult(null);
     setResultOutdated(false);
@@ -1984,6 +2105,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const calculatePourLayers = async () => {
+    if (isReadOnly) return;
     const mainDepth = parseFloat(mainDepthInputRef.current?.value ?? depthMm);
     const maxPourThickness = parseFloat(maxPourThicknessInputRef.current?.value ?? maxPourThicknessMm);
     const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
@@ -2075,6 +2197,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const calculateFirstFillVolume = async () => {
+    if (isReadOnly) return;
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
     const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
     const firstFillThickness = parseFloat(firstFillThicknessValue);
@@ -2122,6 +2245,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const finishWoodIsland = () => {
+    if (isReadOnly) return;
     if (woodBoundaryPoints.length < 3) {
       setError("A wood island needs at least 3 points.");
       return;
@@ -2138,6 +2262,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const deleteSelectedWoodIsland = () => {
+    if (isReadOnly) return;
     if (selectedShape?.type !== "wood") return;
     const index = selectedShape.index;
     setWoodBoundaryPolygons((prev) => prev.filter((_, idx) => idx !== index));
@@ -2149,6 +2274,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const finishCavity = () => {
+    if (isReadOnly) return;
     if (currentCavityPoints.length < 3) {
       setError("A cavity needs at least 3 points.");
       return;
@@ -2252,7 +2378,7 @@ export default forwardRef(function ResinCalculator(
         ];
 
   return (
-    <div className="container">
+    <div className={`container${isReadOnly ? " container--read-only" : ""}`}>
       {showHeader ? <AppHeader /> : null}
 
       <div className="calculation-mode-bar">
@@ -2261,18 +2387,20 @@ export default forwardRef(function ResinCalculator(
             River Table & Woodworking Resin Calculator
           </span>
         ) : null}
-        <button
-          className="project-action-button mode-import-action"
-          onClick={() => importFileInputRef.current?.click()}
-          title="Import Project"
-          aria-label="Import Project"
-        >
-          <Upload size={15} aria-hidden="true" />
-          Import Project
-        </button>
+        {!isReadOnly ? (
+          <button
+            className="project-action-button mode-import-action"
+            onClick={() => importFileInputRef.current?.click()}
+            title="Import Project"
+            aria-label="Import Project"
+          >
+            <Upload size={15} aria-hidden="true" />
+            Import Project
+          </button>
+        ) : null}
       </div>
 
-      <div className="controls">
+      <div className={`controls${isReadOnly ? " controls--read-only" : ""}`}>
         <div className="workflow-row">
           <span className="workflow-section-label">Upload Photo:</span>
           <label
@@ -2399,19 +2527,8 @@ export default forwardRef(function ResinCalculator(
                 </div>
                 <button
                   className="delete-ref"
-                  onClick={() => {
-                    setReferenceMeasurements((prev) => {
-                      const next = prev.filter((_, i) => i !== idx);
-                      if (next.length === 0) {
-                        setMeasurementsComplete(false);
-                        setReferencesExpanded(true);
-                        setMode("reference");
-                      }
-                      return next;
-                    });
-                    setResult(null);
-                    setError("");
-                  }}
+                  disabled={isReadOnly}
+                  onClick={() => deleteReferenceMeasurement(idx)}
                 >
                   Delete
                 </button>
@@ -2514,7 +2631,7 @@ export default forwardRef(function ResinCalculator(
               >
                 Polygon Mode
               </button>
-              <button className="secondary-action" onClick={clearPolygon}>
+              <button className="secondary-action" onClick={clearPolygon} disabled={isReadOnly}>
                 Clear Polygon
               </button>
               <label>
@@ -2578,22 +2695,8 @@ export default forwardRef(function ResinCalculator(
                   </button>
                   <button
                     className="secondary-action"
-                    onClick={() => {
-                      setMoldBoundaryPoints([]);
-                      setWoodBoundaryPolygons([]);
-                      setWoodBoundaryPoints([]);
-                      setCavityPolygons([]);
-                      setCavityDepthsMm([]);
-                      setCurrentCavityPoints([]);
-                      setMoldBoundaryComplete(false);
-                      setWoodBoundaryComplete(false);
-                      setCavitiesComplete(false);
-                      setSelectedShape((prev) =>
-                        prev?.type === "mold" ? null : prev
-                      );
-                      markResultOutdated();
-                      setError("");
-                    }}
+                    onClick={clearMoldBoundary}
+                    disabled={isReadOnly}
                   >
                     Clear Mold Boundary
                   </button>
@@ -2645,30 +2748,14 @@ export default forwardRef(function ResinCalculator(
                       setSelectedShape({ type: "mold" });
                       setDraftReferencePoints([]);
                     }}
-                    disabled={moldBoundaryPoints.length < 3}
+                    disabled={moldBoundaryPoints.length < 3 || isReadOnly}
                   >
                     Edit Mold Boundary
                   </button>
                   <button
                     className="secondary-action"
-                    onClick={() => {
-                      setMoldBoundaryPoints([]);
-                      setWoodBoundaryPolygons([]);
-                      setWoodBoundaryPoints([]);
-                      setCavityPolygons([]);
-                      setCavityDepthsMm([]);
-                      setCurrentCavityPoints([]);
-                      setMoldBoundaryComplete(false);
-                      setWoodBoundaryComplete(false);
-                      setCavitiesComplete(false);
-                      setSelectedShape((prev) =>
-                        prev?.type === "mold" || prev?.type === "wood" || prev?.type === "cavity"
-                          ? null
-                          : prev
-                      );
-                      markResultOutdated();
-                      setError("");
-                    }}
+                    onClick={clearMoldBoundary}
+                    disabled={isReadOnly}
                   >
                     Clear Mold Boundary
                   </button>
@@ -2716,7 +2803,7 @@ export default forwardRef(function ResinCalculator(
                     <button
                       className="secondary-action"
                       onClick={deleteSelectedWoodIsland}
-                      disabled={selectedShape?.type !== "wood"}
+                      disabled={selectedShape?.type !== "wood" || isReadOnly}
                     >
                       Delete Selected Wood Island
                     </button>
@@ -2767,26 +2854,14 @@ export default forwardRef(function ResinCalculator(
                     <button
                       className="secondary-action"
                       onClick={undoLastPoint}
-                      disabled={getActiveWoodDrawingPointCount() === 0}
+                      disabled={getActiveWoodDrawingPointCount() === 0 || isReadOnly}
                     >
                       Undo Last Point
                     </button>
                     <button
                       className="secondary-action"
-                      onClick={() => {
-                        setWoodBoundaryPolygons([]);
-                        setWoodBoundaryPoints([]);
-                        setCavityPolygons([]);
-                        setCavityDepthsMm([]);
-                        setCurrentCavityPoints([]);
-                        setWoodBoundaryComplete(false);
-                        setCavitiesComplete(false);
-                        setSelectedShape((prev) =>
-                          prev?.type === "wood" ? null : prev
-                        );
-                        markResultOutdated();
-                        setError("");
-                      }}
+                      onClick={clearWoodIslands}
+                      disabled={isReadOnly}
                     >
                       Clear Wood Islands
                     </button>
@@ -2823,26 +2898,14 @@ export default forwardRef(function ResinCalculator(
                   <button
                     className="secondary-action"
                     onClick={deleteSelectedWoodIsland}
-                    disabled={selectedShape?.type !== "wood"}
+                    disabled={selectedShape?.type !== "wood" || isReadOnly}
                   >
                     Delete Selected Wood Island
                   </button>
                   <button
                     className="secondary-action"
-                    onClick={() => {
-                      setWoodBoundaryPolygons([]);
-                      setWoodBoundaryPoints([]);
-                      setCavityPolygons([]);
-                      setCavityDepthsMm([]);
-                      setCurrentCavityPoints([]);
-                      setWoodBoundaryComplete(false);
-                      setCavitiesComplete(false);
-                      setSelectedShape((prev) =>
-                        prev?.type === "wood" || prev?.type === "cavity" ? null : prev
-                      );
-                      markResultOutdated();
-                      setError("");
-                    }}
+                    onClick={clearWoodIslands}
+                    disabled={isReadOnly}
                   >
                     Clear Wood Islands
                   </button>
@@ -2899,18 +2962,8 @@ export default forwardRef(function ResinCalculator(
                     </button>
                     <button
                       className="secondary-action"
-                      onClick={() => {
-                        setCavityPolygons([]);
-                        setCavityDepthsMm([]);
-                        setCurrentCavityPoints([]);
-                        setEditingCavityDepthIndex(null);
-                        setCavitiesComplete(false);
-                        setSelectedShape((prev) =>
-                          prev?.type === "cavity" ? null : prev
-                        );
-                        markResultOutdated();
-                        setError("");
-                      }}
+                      onClick={clearAllCavities}
+                      disabled={isReadOnly}
                     >
                       Clear All Cavities
                     </button>
@@ -2980,18 +3033,8 @@ export default forwardRef(function ResinCalculator(
                   </button>
                   <button
                     className="secondary-action"
-                    onClick={() => {
-                      setCavityPolygons([]);
-                      setCavityDepthsMm([]);
-                      setCurrentCavityPoints([]);
-                      setEditingCavityDepthIndex(null);
-                      setCavitiesComplete(false);
-                      setSelectedShape((prev) =>
-                        prev?.type === "cavity" ? null : prev
-                      );
-                      markResultOutdated();
-                      setError("");
-                    }}
+                    onClick={clearAllCavities}
+                    disabled={isReadOnly}
                   >
                     Clear All Cavities
                   </button>
@@ -3043,11 +3086,11 @@ export default forwardRef(function ResinCalculator(
                 <RefreshCcw size={14} aria-hidden="true" />
                 Reset Zoom
               </button>
-              <button className="nav-tool-button" onClick={rotateLeft}>
+              <button className="nav-tool-button" onClick={rotateLeft} disabled={isReadOnly}>
                 <RotateCcw size={14} aria-hidden="true" />
                 Rotate Left 90°
               </button>
-              <button className="nav-tool-button" onClick={rotateRight}>
+              <button className="nav-tool-button" onClick={rotateRight} disabled={isReadOnly}>
                 <RotateCw size={14} aria-hidden="true" />
                 Rotate Right 90°
               </button>
@@ -3080,21 +3123,10 @@ export default forwardRef(function ResinCalculator(
                 className="icon-delete-button"
                 aria-label={`Delete Wood Island ${idx + 1}`}
                 title={`Delete Wood Island ${idx + 1}`}
+                disabled={isReadOnly}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setWoodBoundaryPolygons((prev) =>
-                    prev.filter((__, woodIdx) => woodIdx !== idx)
-                  );
-                  setSelectedShape((prev) => {
-                    if (prev?.type !== "wood") return prev;
-                    if (prev.index === idx) return null;
-                    if (prev.index > idx) return { type: "wood", index: prev.index - 1 };
-                    return prev;
-                  });
-                  setWoodBoundaryComplete(false);
-                  setCavitiesComplete(false);
-                  markResultOutdated();
-                  setError("");
+                  deleteWoodIslandAtIndex(idx);
                 }}
               >
                 <Trash2 size={14} aria-hidden="true" />
@@ -3221,26 +3253,10 @@ export default forwardRef(function ResinCalculator(
                 className="icon-delete-button"
                 aria-label={`Delete ${cavity.name}`}
                 title={`Delete ${cavity.name}`}
+                disabled={isReadOnly}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setCavityPolygons((prev) => prev.filter((__, i) => i !== idx));
-                  setCavityDepthsMm((prev) => prev.filter((__, i) => i !== idx));
-                  setEditingCavityDepthIndex((prev) => {
-                    if (prev == null) return prev;
-                    if (prev === idx) return null;
-                    if (prev > idx) return prev - 1;
-                    return prev;
-                  });
-                  setSelectedShape((prev) => {
-                    if (prev?.type !== "cavity") return prev;
-                    if (prev.index === idx) return null;
-                    if (prev.index > idx) {
-                      return { type: "cavity", index: prev.index - 1 };
-                    }
-                    return prev;
-                  });
-                  markResultOutdated();
-                  setError("");
+                  deleteCavityAtIndex(idx);
                 }}
               >
                 <Trash2 size={14} aria-hidden="true" />
@@ -3318,6 +3334,7 @@ export default forwardRef(function ResinCalculator(
                   value={projectNotes}
                   maxLength={1000}
                   rows={5}
+                  readOnly={isReadOnly}
                   onChange={(event) => setProjectNotes(event.target.value)}
                   placeholder="Client requests black pigment. Pour in two stages..."
                 />
@@ -3347,6 +3364,7 @@ export default forwardRef(function ResinCalculator(
                   value={projectNotes}
                   maxLength={1000}
                   rows={5}
+                  readOnly={isReadOnly}
                   onChange={(event) => setProjectNotes(event.target.value)}
                   placeholder="Client requests black pigment. Pour in two stages..."
                 />
@@ -3619,10 +3637,12 @@ export default forwardRef(function ResinCalculator(
       <div className="bottom-project-actions">
         <h3>Project Actions</h3>
         <div className="bottom-project-actions-row">
-          <button className="project-action-button" onClick={handleSaveProjectClick}>
-            <Save size={15} aria-hidden="true" />
-            Save Project
-          </button>
+          {!isReadOnly ? (
+            <button className="project-action-button" onClick={handleSaveProjectClick}>
+              <Save size={15} aria-hidden="true" />
+              Save Project
+            </button>
+          ) : null}
           <button
             className="project-action-button"
             onClick={exportPdf}

@@ -1,5 +1,9 @@
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 import { getRecentIndexFieldsFromSavedPayload } from "../project/buildPersistableCanonicalV2.js";
+import {
+  isForeignReadOnlyOwnershipMode,
+  resolveProjectOwnershipMode,
+} from "../project/projectOwnership.js";
 import { parseProjectFile, ProjectFileParseError } from "./projectFileParse.js";
 import {
   buildRecentProjectEntry,
@@ -61,19 +65,29 @@ export async function pickProjectFileWithHandle() {
   }
 }
 
-export async function loadProjectFromFile(file, handle = null) {
+function isForeignOwnedProject(user, persistedLifecycle) {
+  return isForeignReadOnlyOwnershipMode(
+    resolveProjectOwnershipMode(user, persistedLifecycle),
+  );
+}
+
+export async function loadProjectFromFile(file, handle = null, { user = null } = {}) {
   const parsed = await parseProjectFile(file);
+
+  if (isForeignOwnedProject(user, parsed.persistedLifecycle)) {
+    return { ...parsed, entry: null, fileName: file.name };
+  }
+
   const entry = buildRecentProjectEntry(parsed.envelope, {
     fileName: file.name,
   });
-
-  upsertRecentProject(entry);
+  const [savedEntry] = upsertRecentProject(entry);
 
   if (isFileSystemHandle(handle)) {
-    await storeRecentProjectHandle(entry.id, handle);
+    await storeRecentProjectHandle(savedEntry.id, handle);
   }
 
-  return { ...parsed, entry };
+  return { ...parsed, entry: savedEntry, fileName: file.name };
 }
 
 export async function loadProjectIntoRecentEntry(entry, file, handle = null) {
@@ -89,7 +103,7 @@ export async function loadProjectIntoRecentEntry(entry, file, handle = null) {
   return { ...parsed, entry: refreshedEntry };
 }
 
-export async function loadRecentProject(entry) {
+export async function loadRecentProject(entry, { user = null } = {}) {
   const handle = await getRecentProjectHandle(entry.id);
   if (!handle) {
     throw new RecentProjectUnavailableError(
@@ -109,8 +123,13 @@ export async function loadRecentProject(entry) {
   try {
     const file = await handle.getFile();
     const parsed = await parseProjectFile(file);
-    touchRecentProject(entry.id);
-    await storeRecentProjectHandle(entry.id, handle);
+    const isForeign = isForeignOwnedProject(user, parsed.persistedLifecycle);
+
+    if (!isForeign) {
+      touchRecentProject(entry.id);
+      await storeRecentProjectHandle(entry.id, handle);
+    }
+
     return { ...parsed, entry };
   } catch (error) {
     if (error instanceof ProjectFileParseError) {
@@ -144,22 +163,14 @@ export async function recordUpdatedProjectInRecentIndex({
 }
 
 export async function recordSavedProjectInRecentIndex({ payload, fileName, fileHandle = null }) {
-  const { projectName, savedAt } = getRecentIndexFieldsFromSavedPayload(payload);
-  const entry = buildRecentProjectEntry(
-    {
-      projectName,
-      savedAt,
-    },
-    { fileName },
-  );
-
-  upsertRecentProject(entry);
+  const entry = buildRecentProjectEntry(payload, { fileName });
+  const [savedEntry] = upsertRecentProject(entry);
 
   if (isFileSystemHandle(fileHandle)) {
-    await storeRecentProjectHandle(entry.id, fileHandle);
+    await storeRecentProjectHandle(savedEntry.id, fileHandle);
   }
 
-  return entry;
+  return savedEntry;
 }
 
 export { HFZ_PROJECT_IMPORT_ACCEPT };

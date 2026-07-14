@@ -6,6 +6,7 @@ import {
   BuildPersistableCanonicalV2Error,
   buildPersistableCanonicalV2,
 } from "../project/buildPersistableCanonicalV2.js";
+import { assertProjectWritableByMode, PROJECT_WRITE_FORBIDDEN_MESSAGE } from "../project/projectOwnership.js";
 import { isFileSystemHandle } from "./recentProjectHandles.js";
 
 export {
@@ -85,6 +86,18 @@ export function downloadProjectFile(blob, filename) {
   URL.revokeObjectURL(url);
 }
 
+function rejectIfProjectReadOnly(ownershipMode) {
+  try {
+    assertProjectWritableByMode(ownershipMode);
+  } catch (error) {
+    if (error?.name === "ProjectWriteForbiddenError") {
+      throw new ProjectFileSaveError(PROJECT_WRITE_FORBIDDEN_MESSAGE);
+    }
+
+    throw error;
+  }
+}
+
 export async function updateProjectFile({
   fileHandle,
   projectName,
@@ -92,7 +105,9 @@ export async function updateProjectFile({
   user,
   persistedLifecycle = null,
   fileName = null,
+  ownershipMode = null,
 }) {
+  rejectIfProjectReadOnly(ownershipMode);
   if (!isFileSystemHandle(fileHandle)) {
     throw new ProjectFileSaveError("Cannot update project file without a file handle.");
   }
@@ -122,7 +137,15 @@ export async function updateProjectFile({
   }
 }
 
-export async function saveProjectFile({ projectName, snapshot, user, persistedLifecycle = null }) {
+export async function saveProjectFile({
+  projectName,
+  snapshot,
+  user,
+  persistedLifecycle = null,
+  ownershipMode = null,
+}) {
+  rejectIfProjectReadOnly(ownershipMode);
+
   const { payload, persistedLifecycle: nextPersistedLifecycle } =
     await buildProjectFilePayload({
       projectName,

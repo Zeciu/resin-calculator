@@ -9,7 +9,7 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
-import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
+import { buildV2ProjectFileJsonForOwner, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 
 HTMLCanvasElement.prototype.getContext = () => ({
   clearRect: () => {},
@@ -97,7 +97,7 @@ describe("Open Project flow", () => {
 
     const input = document.querySelector("input[type='file']");
     const file = new File(
-      [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT })],
+      [buildV2ProjectFileJsonForOwner("stub-user", { snapshot: VALID_CALCULATOR_SNAPSHOT })],
       "river-table.hfzproject",
       {
         type: "application/json",

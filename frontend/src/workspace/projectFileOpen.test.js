@@ -2,11 +2,14 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
 import {
   buildV2ProjectFileJson,
+  buildV2ProjectFileJsonForOwner,
   VALID_CALCULATOR_SNAPSHOT,
 } from "../project/projectFileTestFixtures.js";
 import {
+  loadProjectFromFile,
   loadProjectIntoRecentEntry,
   loadRecentProject,
+  recordSavedProjectInRecentIndex,
 } from "./projectFileOpen.js";
 import { ProjectFileParseError } from "./projectFileParse.js";
 import {
@@ -30,16 +33,17 @@ vi.mock("./recentProjectHandles.js", async (importOriginal) => {
 
 function buildRecentEntry() {
   return upsertRecentProject(
-    buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
-      fileName: "river-table.hfzproject",
-    }),
+    buildRecentProjectEntry(
+      buildPersistedV2OpenEnvelope({ identity: { ownerId: "stub-user" } }),
+      { fileName: "river-table.hfzproject" },
+    ),
   )[0];
 }
 
 function buildValidProjectFile() {
   return new File(
     [
-      buildV2ProjectFileJson({
+      buildV2ProjectFileJsonForOwner("stub-user", {
         snapshot: VALID_CALCULATOR_SNAPSHOT,
         identity: { lastModifiedAt: "2026-02-01T12:00:00.000Z" },
       }),
@@ -70,6 +74,80 @@ function buildPermissionHandle({
   return handle;
 }
 
+describe("loadProjectFromFile", () => {
+  beforeEach(() => {
+    localStorage.clear();
+    storeRecentProjectHandleMock.mockClear();
+  });
+
+  it("creates one recent entry with projectId on first owned open", async () => {
+    const file = buildValidProjectFile();
+
+    const result = await loadProjectFromFile(file, null, { user: { id: "stub-user" } });
+
+    expect(result.entry?.projectId).toBe("project-1");
+    expect(loadRecentProjects()).toHaveLength(1);
+    expect(loadRecentProjects()[0].id).toBe(result.entry?.id);
+  });
+
+  it("reuses the same recent entry when opening the same owned projectId again", async () => {
+    const file = buildValidProjectFile();
+    const first = await loadProjectFromFile(file, null, { user: { id: "stub-user" } });
+    const second = await loadProjectFromFile(file, null, { user: { id: "stub-user" } });
+
+    expect(loadRecentProjects()).toHaveLength(1);
+    expect(second.entry?.id).toBe(first.entry?.id);
+  });
+
+  it("does not add foreign-owned projects to recent projects", async () => {
+    const file = new File(
+      [buildV2ProjectFileJsonForOwner("other-owner", { snapshot: VALID_CALCULATOR_SNAPSHOT })],
+      "foreign-table.hfzproject",
+      { type: "application/json" },
+    );
+
+    const result = await loadProjectFromFile(file, null, { user: { id: "stub-user" } });
+
+    expect(result.entry).toBeNull();
+    expect(loadRecentProjects()).toHaveLength(0);
+    expect(storeRecentProjectHandleMock).not.toHaveBeenCalled();
+  });
+
+  it("does not store a file handle for foreign-owned projects", async () => {
+    const file = new File(
+      [buildV2ProjectFileJsonForOwner("other-owner", { snapshot: VALID_CALCULATOR_SNAPSHOT })],
+      "foreign-table.hfzproject",
+      { type: "application/json" },
+    );
+    const handle = buildPermissionHandle({ file, includePermissionMethods: false });
+
+    await loadProjectFromFile(file, handle, { user: { id: "stub-user" } });
+
+    expect(storeRecentProjectHandleMock).not.toHaveBeenCalled();
+  });
+});
+
+describe("recordSavedProjectInRecentIndex", () => {
+  beforeEach(() => {
+    localStorage.clear();
+    storeRecentProjectHandleMock.mockClear();
+  });
+
+  it("creates one recent entry with projectId on first save", async () => {
+    const envelope = buildPersistedV2OpenEnvelope({
+      identity: { projectId: "project-save-1", ownerId: "stub-user" },
+    });
+
+    const entry = await recordSavedProjectInRecentIndex({
+      payload: envelope,
+      fileName: "river-table.hfzproject",
+    });
+
+    expect(entry.projectId).toBe("project-save-1");
+    expect(loadRecentProjects()).toHaveLength(1);
+  });
+});
+
 describe("loadProjectIntoRecentEntry", () => {
   beforeEach(() => {
     localStorage.clear();
@@ -99,6 +177,24 @@ describe("loadRecentProject", () => {
     getRecentProjectHandleMock.mockReset();
   });
 
+  it("does not touch a foreign-owned recent entry on reopen", async () => {
+    const entry = buildRecentEntry();
+    const file = new File(
+      [buildV2ProjectFileJsonForOwner("other-owner", { snapshot: VALID_CALCULATOR_SNAPSHOT })],
+      "river-table.hfzproject",
+      { type: "application/json" },
+    );
+    const originalLastOpenedAt = entry.lastOpenedAt;
+    const handle = buildPermissionHandle({ file });
+
+    getRecentProjectHandleMock.mockResolvedValue(handle);
+
+    await loadRecentProject(entry, { user: { id: "stub-user" } });
+
+    expect(loadRecentProjects()[0].lastOpenedAt).toBe(originalLastOpenedAt);
+    expect(storeRecentProjectHandleMock).not.toHaveBeenCalled();
+  });
+
   it("opens when queryPermission is already granted without requesting again", async () => {
     const entry = buildRecentEntry();
     const file = buildValidProjectFile();
@@ -114,7 +210,7 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    const result = await loadRecentProject(entry);
+    const result = await loadRecentProject(entry, { user: { id: "stub-user" } });
 
     expect(queryPermission).toHaveBeenCalledWith({ mode: "read" });
     expect(requestPermission).not.toHaveBeenCalled();
@@ -138,7 +234,7 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    const result = await loadRecentProject(entry);
+    const result = await loadRecentProject(entry, { user: { id: "stub-user" } });
 
     expect(requestPermission).toHaveBeenCalledWith({ mode: "read" });
     expect(getFile).toHaveBeenCalled();
@@ -160,7 +256,7 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    const result = await loadRecentProject(entry);
+    const result = await loadRecentProject(entry, { user: { id: "stub-user" } });
 
     expect(requestPermission).toHaveBeenCalledWith({ mode: "read" });
     expect(getFile).toHaveBeenCalled();
@@ -180,7 +276,7 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    await expect(loadRecentProject(entry)).rejects.toMatchObject({
+    await expect(loadRecentProject(entry, { user: { id: "stub-user" } })).rejects.toMatchObject({
       name: "RecentProjectUnavailableError",
       entry,
       message:
@@ -202,7 +298,7 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    const result = await loadRecentProject(entry);
+    const result = await loadRecentProject(entry, { user: { id: "stub-user" } });
 
     expect(getFile).toHaveBeenCalled();
     expect(result.snapshot.projectNotes).toBe("Round-trip notes");
@@ -220,7 +316,7 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    await expect(loadRecentProject(entry)).rejects.toMatchObject({
+    await expect(loadRecentProject(entry, { user: { id: "stub-user" } })).rejects.toMatchObject({
       name: "RecentProjectUnavailableError",
       entry,
       message:
@@ -241,8 +337,10 @@ describe("loadRecentProject", () => {
 
     getRecentProjectHandleMock.mockResolvedValue(handle);
 
-    await expect(loadRecentProject(entry)).rejects.toBeInstanceOf(ProjectFileParseError);
-    await expect(loadRecentProject(entry)).rejects.toMatchObject({
+    await expect(loadRecentProject(entry, { user: { id: "stub-user" } })).rejects.toBeInstanceOf(
+      ProjectFileParseError,
+    );
+    await expect(loadRecentProject(entry, { user: { id: "stub-user" } })).rejects.toMatchObject({
       message: "Invalid project file.",
     });
   });

@@ -54,4 +54,14 @@ describe("mockAuthAdapter roles", () => {
 
     expect(user.role).toBe("user");
   });
+
+  it("preserves an explicit mock user id when provided", () => {
+    const user = mockAuthAdapter.login({
+      id: "user-b",
+      email: "user@example.com",
+      username: "user",
+    });
+
+    expect(user.id).toBe("user-b");
+  });
 });

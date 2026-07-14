@@ -10,6 +10,7 @@ export const MAX_RECENT_PROJECTS = 10;
 
 const ALLOWED_RECENT_FIELDS = new Set([
   "id",
+  "projectId",
   "projectName",
   "lastOpenedAt",
   "lastSavedAt",
@@ -20,6 +21,34 @@ const ALLOWED_RECENT_FIELDS = new Set([
 export function createRecentProjectId() {
   const suffix = Math.random().toString(36).slice(2, 8);
   return `${Date.now()}-${suffix}`;
+}
+
+/**
+ * @param {unknown} project
+ * @returns {string | null}
+ */
+export function extractCanonicalProjectId(project) {
+  const projectId = project?.projectMetadata?.projectId;
+  if (typeof projectId === "string" && projectId.trim()) {
+    return projectId.trim();
+  }
+
+  return null;
+}
+
+/**
+ * @param {string | null | undefined} projectId
+ * @returns {import("./recentProjectsIndex.js").RecentProjectEntry | null}
+ */
+export function findRecentProjectByProjectId(projectId) {
+  if (typeof projectId !== "string" || !projectId.trim()) {
+    return null;
+  }
+
+  const normalizedProjectId = projectId.trim();
+  return (
+    loadRecentProjects().find((item) => item.projectId === normalizedProjectId) ?? null
+  );
 }
 
 export function sanitizeRecentProjectEntry(entry) {
@@ -81,11 +110,13 @@ export function saveRecentProjects(projects) {
   return sanitized;
 }
 
-export function buildRecentProjectEntry(project, { fileName = "", sourceFormat } = {}) {
+export function buildRecentProjectEntry(project, { fileName = "", sourceFormat, entryId = null } = {}) {
   const now = new Date().toISOString();
+  const projectId = extractCanonicalProjectId(project);
 
   return sanitizeRecentProjectEntry({
-    id: createRecentProjectId(),
+    id: entryId || createRecentProjectId(),
+    projectId,
     projectName: getProjectDisplayName(project, fileName),
     lastOpenedAt: now,
     lastSavedAt: getProjectSavedAt(project),
@@ -100,8 +131,28 @@ export function upsertRecentProject(entry) {
     throw new Error("Invalid recent project entry.");
   }
 
-  const existing = loadRecentProjects().filter((item) => item.id !== sanitizedEntry.id);
-  return saveRecentProjects([sanitizedEntry, ...existing]);
+  const existing = loadRecentProjects();
+  const matchByProjectId = sanitizedEntry.projectId
+    ? existing.find((item) => item.projectId === sanitizedEntry.projectId)
+    : null;
+  const preservedId = matchByProjectId?.id ?? sanitizedEntry.id;
+
+  const merged = sanitizeRecentProjectEntry({
+    ...matchByProjectId,
+    ...sanitizedEntry,
+    id: preservedId,
+  });
+
+  if (!merged) {
+    throw new Error("Invalid recent project entry.");
+  }
+
+  const remainder = existing.filter(
+    (item) =>
+      item.id !== preservedId &&
+      (!merged.projectId || item.projectId !== merged.projectId),
+  );
+  return saveRecentProjects([merged, ...remainder]);
 }
 
 export function updateRecentProjectOnSave(
@@ -140,6 +191,7 @@ export function refreshRecentProjectOnOpen(entryId, project, { fileName = "" } =
   const resolvedFileName = fileName || match.lastKnownFileName || "";
   const updated = sanitizeRecentProjectEntry({
     ...match,
+    projectId: extractCanonicalProjectId(project) || match.projectId || null,
     projectName: getProjectDisplayName(project, resolvedFileName),
     lastOpenedAt: new Date().toISOString(),
     lastSavedAt: getProjectSavedAt(project) || match.lastSavedAt,

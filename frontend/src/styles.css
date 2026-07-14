@@ -1774,6 +1774,46 @@ button.workspace-sidebar__link {
   min-height: calc(100vh - 88px);
 }
 
+.new-project-workspace__read-only-notice {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #c9d4e3;
+  border-radius: 8px;
+  background: #f5f8fc;
+  color: #334155;
+}
+
+.controls--read-only input,
+.controls--read-only textarea,
+.controls--read-only select,
+.controls--read-only button:not(.nav-tool-button) {
+  pointer-events: none;
+}
+
+.controls--read-only input,
+.controls--read-only textarea,
+.controls--read-only select {
+  opacity: 0.85;
+}
+
+.container--read-only input,
+.container--read-only textarea,
+.container--read-only select,
+.container--read-only button.primary-action,
+.container--read-only button.secondary-action,
+.container--read-only button.calculate-primary-button,
+.container--read-only button.delete-ref,
+.container--read-only .icon-delete-button,
+.container--read-only .upload-control {
+  pointer-events: none;
+}
+
+.container--read-only input,
+.container--read-only textarea,
+.container--read-only select {
+  opacity: 0.85;
+}
+
 .new-project-workspace__save-error {
   margin: 0 0 1rem;
   padding: 0.75rem 1rem;

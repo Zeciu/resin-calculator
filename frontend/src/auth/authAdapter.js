@@ -64,7 +64,10 @@ function buildStubUser(credentials = {}) {
       : email.split("@")[0];
 
   return {
-    id: "stub-user",
+    id:
+      typeof credentials.id === "string" && credentials.id.trim()
+        ? credentials.id.trim()
+        : "stub-user",
     email,
     username,
     role: resolveRole(credentials),

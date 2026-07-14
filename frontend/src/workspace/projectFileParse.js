@@ -161,6 +161,11 @@ export function getProjectDisplayName(project, fileName = "") {
     }
   }
 
+  const descriptiveName = project?.descriptiveMetadata?.projectName;
+  if (typeof descriptiveName === "string" && descriptiveName.trim()) {
+    return descriptiveName.trim();
+  }
+
   if (project?.projectName?.trim()) {
     return project.projectName.trim();
   }
@@ -178,6 +183,11 @@ export function getProjectSavedAt(project) {
     if (typeof lastModifiedAt === "string") {
       return lastModifiedAt;
     }
+  }
+
+  const lastModifiedAt = project?.projectMetadata?.lastModifiedAt;
+  if (typeof lastModifiedAt === "string") {
+    return lastModifiedAt;
   }
 
   return typeof project?.savedAt === "string" ? project.savedAt : null;

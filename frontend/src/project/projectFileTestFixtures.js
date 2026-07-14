@@ -37,6 +37,16 @@ export function buildV2ProjectFileJson(options = {}) {
   return JSON.stringify(buildPersistedV2OpenEnvelope(options));
 }
 
+export function buildV2ProjectFileJsonForOwner(ownerId, options = {}) {
+  return buildV2ProjectFileJson({
+    ...options,
+    identity: {
+      ownerId,
+      ...(options.identity ?? {}),
+    },
+  });
+}
+
 export async function buildSavedV2EnvelopeFromSnapshot(
   snapshot,
   user = { id: "stub-user" },

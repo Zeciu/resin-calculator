@@ -10,6 +10,13 @@ import {
   createNewCurrentProject,
   createOpenedCurrentProject,
 } from "./currentProject.js";
+import {
+  assertCurrentProjectWritable,
+  isCurrentProjectReadOnly,
+  PROJECT_READ_ONLY_NOTICE_MESSAGE,
+  PROJECT_WRITE_FORBIDDEN_MESSAGE,
+  resolveProjectOwnershipMode,
+} from "../project/projectOwnership.js";
 import { getRecentProjectHandle } from "./recentProjectHandles.js";
 import {
   ProjectFileSaveCancelledError,
@@ -58,24 +65,31 @@ export default function NewProjectWorkspace() {
     navigate(ROUTES.NEW_PROJECT, { replace: true, state: {} });
   }, [location.state, navigate]);
 
-  const establishOpenedProjectContext = useCallback(async (openContext) => {
-    const handle = await getRecentProjectHandle(openContext.recentEntryId);
-    setCurrentProject(
-      createOpenedCurrentProject({
-        recentEntryId: openContext.recentEntryId,
-        projectName: openContext.projectName,
-        lastKnownFileName: openContext.lastKnownFileName,
-        fileHandle: handle,
-        persistedLifecycle: openContext.persistedLifecycle ?? null,
-      }),
-    );
-  }, []);
+  const establishOpenedProjectContext = useCallback(
+    async (openContext) => {
+      const handle = openContext.recentEntryId
+        ? await getRecentProjectHandle(openContext.recentEntryId)
+        : null;
+      const ownershipMode = resolveProjectOwnershipMode(user, openContext.persistedLifecycle);
+      setCurrentProject(
+        createOpenedCurrentProject({
+          recentEntryId: openContext.recentEntryId ?? null,
+          projectName: openContext.projectName,
+          lastKnownFileName: openContext.lastKnownFileName,
+          fileHandle: handle,
+          persistedLifecycle: openContext.persistedLifecycle ?? null,
+          ownershipMode,
+        }),
+      );
+    },
+    [user],
+  );
 
   const handleProjectRestored = useCallback(async () => {
     const openContext = pendingOpenContextRef.current;
 
-    if (openContext?.recentEntryId) {
-      usesBaselineDirtyRef.current = true;
+    if (openContext?.persistedLifecycle) {
+      usesBaselineDirtyRef.current = Boolean(openContext.recentEntryId);
       baselineSnapshotRef.current = null;
       isProjectDirtyRef.current = false;
       setIsProjectDirty(false);
@@ -148,6 +162,13 @@ export default function NewProjectWorkspace() {
       return false;
     }
 
+    try {
+      assertCurrentProjectWritable(project);
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : PROJECT_WRITE_FORBIDDEN_MESSAGE);
+      return true;
+    }
+
     setIsSaving(true);
     setSaveError("");
 
@@ -160,6 +181,7 @@ export default function NewProjectWorkspace() {
         user,
         persistedLifecycle: project.persistedLifecycle,
         fileName: project.lastKnownFileName,
+        ownershipMode: project.ownershipMode,
       });
 
       await recordUpdatedProjectInRecentIndex({
@@ -192,6 +214,11 @@ export default function NewProjectWorkspace() {
   }, [completeSuccessfulSave, user]);
 
   const openSaveProjectDialog = useCallback(() => {
+    if (isCurrentProjectReadOnly(currentProjectRef.current)) {
+      setSaveError(PROJECT_WRITE_FORBIDDEN_MESSAGE);
+      return;
+    }
+
     setSaveError("");
     setShowSaveDialog(true);
   }, []);
@@ -199,11 +226,17 @@ export default function NewProjectWorkspace() {
   const blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
       isProjectDirtyRef.current &&
+      !isCurrentProjectReadOnly(currentProjectRef.current) &&
       currentLocation.pathname === ROUTES.NEW_PROJECT &&
       nextLocation.pathname !== ROUTES.NEW_PROJECT,
   );
 
   const handleSaveProjectRequest = useCallback(async () => {
+    if (isCurrentProjectReadOnly(currentProjectRef.current)) {
+      setSaveError(PROJECT_WRITE_FORBIDDEN_MESSAGE);
+      return;
+    }
+
     setShowUnsavedDialog(false);
 
     if (canUpdateCurrentProjectInPlace(currentProjectRef.current)) {
@@ -268,6 +301,13 @@ export default function NewProjectWorkspace() {
         return;
       }
 
+      try {
+        assertCurrentProjectWritable(currentProjectRef.current);
+      } catch (error) {
+        setSaveError(error instanceof Error ? error.message : PROJECT_WRITE_FORBIDDEN_MESSAGE);
+        return;
+      }
+
       setIsSaving(true);
       setSaveError("");
 
@@ -277,6 +317,7 @@ export default function NewProjectWorkspace() {
           projectName,
           snapshot,
           user,
+          ownershipMode: currentProjectRef.current?.ownershipMode ?? null,
         });
 
         await recordSavedProjectInRecentIndex({
@@ -307,12 +348,24 @@ export default function NewProjectWorkspace() {
   );
 
   const handleCalculatorSaveProjectRequest = useCallback(() => {
+    if (isCurrentProjectReadOnly(currentProjectRef.current)) {
+      setSaveError(PROJECT_WRITE_FORBIDDEN_MESSAGE);
+      return;
+    }
+
     void saveProjectRequestRef.current();
   }, []);
+
+  const isReadOnlyProject = isCurrentProjectReadOnly(currentProject);
 
   return (
     <div className="new-project-workspace">
       <QuickPreferences variant="workspace" />
+      {isReadOnlyProject ? (
+        <p className="new-project-workspace__read-only-notice" role="status">
+          {PROJECT_READ_ONLY_NOTICE_MESSAGE}
+        </p>
+      ) : null}
       {saveError && !showSaveDialog ? (
         <p className="new-project-workspace__save-error" role="alert">
           {saveError}
@@ -323,6 +376,7 @@ export default function NewProjectWorkspace() {
         key={calculatorSessionKey}
         showHeader={false}
         workspaceVariant="dedicated"
+        readOnly={isReadOnlyProject}
         onDirtyChange={handleDirtyChange}
         onProjectRestored={handleProjectRestored}
         onSaveProjectRequest={handleCalculatorSaveProjectRequest}
