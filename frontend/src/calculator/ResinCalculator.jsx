@@ -573,6 +573,7 @@ export default forwardRef(function ResinCalculator(
     showHeader = true,
     workspaceVariant,
     onDirtyChange,
+    onCreationThresholdInputsChange,
     onProjectRestored,
     onSaveProjectRequest,
   },
@@ -694,6 +695,17 @@ export default forwardRef(function ResinCalculator(
     woodBoundaryComplete,
     cavitiesComplete,
   ]);
+
+  useEffect(() => {
+    if (!onCreationThresholdInputsChange) {
+      return;
+    }
+
+    onCreationThresholdInputsChange({
+      imageDataUrl,
+      referenceMeasurements,
+    });
+  }, [onCreationThresholdInputsChange, imageDataUrl, referenceMeasurements]);
 
   const markResultOutdated = () => {
     setResultOutdated((prev) => prev || Boolean(result));
@@ -1605,6 +1617,10 @@ export default forwardRef(function ResinCalculator(
   useImperativeHandle(ref, () => ({
     getProjectSnapshot: () => buildProjectSnapshotRef.current(),
     restoreProjectSnapshot: (project) => restoreImportedProjectRef.current(project),
+    getCreationThresholdInputs: () => ({
+      imageDataUrl,
+      referenceMeasurements,
+    }),
   }));
 
   const importProject = (event) => {
