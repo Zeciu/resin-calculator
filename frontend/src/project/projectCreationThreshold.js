@@ -1,5 +1,3 @@
-import { createEmptyProjectMetadata } from "./canonicalProjectV2.js";
-
 /** @typedef {import("./canonicalProjectLifecycle.js").CanonicalProjectLifecycle} CanonicalProjectLifecycle */
 
 /**
@@ -79,39 +77,4 @@ export function resolveAuthenticatedOwnerId(user) {
  */
 export function hasCanonicalProjectIdentity(lifecycle) {
   return Boolean(lifecycle?.projectMetadata?.projectId);
-}
-
-/**
- * @param {CanonicalProjectLifecycle} lifecycle
- * @param {{
- *   projectId: string;
- *   ownerId: string;
- *   primaryImageHash: string;
- *   createdAt: string;
- * }} identity
- */
-export function adoptCanonicalProjectIdentity(lifecycle, identity) {
-  const metadata = lifecycle?.projectMetadata ?? createEmptyProjectMetadata();
-
-  if (metadata.projectId) {
-    return {
-      lifecycle,
-      adopted: false,
-    };
-  }
-
-  return {
-    lifecycle: {
-      ...lifecycle,
-      projectMetadata: {
-        ...metadata,
-        projectId: identity.projectId,
-        ownerId: identity.ownerId,
-        primaryImageHash: identity.primaryImageHash,
-        createdAt: identity.createdAt,
-      },
-      persistence: lifecycle?.persistence ?? { status: "never-persisted" },
-    },
-    adopted: true,
-  };
 }

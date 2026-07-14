@@ -1,3 +1,5 @@
+import { isCanonicalProjectV2Envelope } from "../project/canonicalProjectV2.js";
+
 export class ProjectFileParseError extends Error {
   constructor(message) {
     super(message);
@@ -45,6 +47,13 @@ export async function parseProjectFile(file) {
 }
 
 export function getProjectDisplayName(project, fileName = "") {
+  if (isCanonicalProjectV2Envelope(project)) {
+    const name = project.descriptiveMetadata?.projectName;
+    if (typeof name === "string" && name.trim()) {
+      return name.trim();
+    }
+  }
+
   if (project?.projectName?.trim()) {
     return project.projectName.trim();
   }
@@ -57,6 +66,13 @@ export function getProjectDisplayName(project, fileName = "") {
 }
 
 export function getProjectSavedAt(project) {
+  if (isCanonicalProjectV2Envelope(project)) {
+    const lastModifiedAt = project.projectMetadata?.lastModifiedAt;
+    if (typeof lastModifiedAt === "string") {
+      return lastModifiedAt;
+    }
+  }
+
   return typeof project?.savedAt === "string" ? project.savedAt : null;
 }
 

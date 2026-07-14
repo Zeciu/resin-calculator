@@ -5,7 +5,7 @@ import { createEmptyProjectMetadata } from "./canonicalProjectV2.js";
  */
 
 /**
- * @typedef {"never-persisted"} CanonicalPersistenceStatus
+ * @typedef {"never-persisted" | "persisted"} CanonicalPersistenceStatus
  */
 
 /**
@@ -25,5 +25,23 @@ export function createEmptyCanonicalLifecycle() {
   return {
     projectMetadata: createEmptyProjectMetadata(),
     persistence: { status: "never-persisted" },
+  };
+}
+
+/**
+ * @param {import("./canonicalProjectV2.js").CanonicalProjectV2Envelope} envelope
+ * @returns {CanonicalProjectLifecycle}
+ */
+export function createPersistedLifecycleFromEnvelope(envelope) {
+  const metadata = envelope.projectMetadata;
+
+  return {
+    projectMetadata: {
+      ...metadata,
+      ancestorVersionIds: Array.isArray(metadata.ancestorVersionIds)
+        ? [...metadata.ancestorVersionIds]
+        : [],
+    },
+    persistence: { status: "persisted" },
   };
 }

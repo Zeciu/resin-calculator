@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { HFZ_PROJECT_CANONICAL_FORMAT_VERSION } from "../projectFileTypes.js";
 import {
   HFZ_PROJECT_FILE_EXTENSION,
   HFZ_PROJECT_FORMAT,
@@ -15,6 +16,8 @@ import {
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
+const STUB_USER = { id: "stub-user" };
+
 const SAMPLE_SNAPSHOT = {
   appVersion: "1.0",
   savedAt: "2026-01-01T00:00:00.000Z",
@@ -24,7 +27,15 @@ const SAMPLE_SNAPSHOT = {
     height: 80,
   },
   calibration: {
-    referenceMeasurements: [{ knownLengthCm: 10, calibrationPoints: [] }],
+    referenceMeasurements: [
+      {
+        knownLengthCm: 10,
+        calibrationPoints: [
+          { x: 0, y: 0 },
+          { x: 10, y: 0 },
+        ],
+      },
+    ],
   },
   woodBoundaryMode: {
     woodBoundaryPolygons: [],
@@ -32,6 +43,22 @@ const SAMPLE_SNAPSHOT = {
   },
   projectNotes: "Notes",
   result: { totalVolumeLiters: 1.2 },
+};
+
+const EXISTING_LIFECYCLE = {
+  projectMetadata: {
+    projectId: "project-1",
+    ownerId: "stub-user",
+    primaryImageHash: "hash-1",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    versionId: "version-1",
+    parentVersionId: null,
+    ancestorVersionIds: [],
+    lastModifiedAt: "2026-01-01T00:00:00.000Z",
+    metadataModifiedAt: null,
+    structuralCapabilitySnapshot: null,
+  },
+  persistence: { status: "persisted" },
 };
 
 describe("projectFileSave", () => {
@@ -54,37 +81,45 @@ describe("projectFileSave", () => {
   });
 
   describe("buildProjectFilePayload", () => {
-    it("includes metadata and the full snapshot with original image data", () => {
-      const payload = buildProjectFilePayload({
+    it("builds a canonical v2 envelope with persisted lifecycle metadata", async () => {
+      const result = await buildProjectFilePayload({
         projectName: "River Table",
         snapshot: SAMPLE_SNAPSHOT,
+        user: STUB_USER,
       });
 
-      expect(payload.format).toBe(HFZ_PROJECT_FORMAT);
-      expect(payload.projectName).toBe("River Table");
-      expect(payload.image.dataUrl).toBe(TINY_PNG);
-      expect(payload.calibration).toEqual(SAMPLE_SNAPSHOT.calibration);
-      expect(payload.woodBoundaryMode).toEqual(SAMPLE_SNAPSHOT.woodBoundaryMode);
-      expect(payload.result).toEqual(SAMPLE_SNAPSHOT.result);
-      expect(payload.savedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+      expect(result.payload.format).toBe(HFZ_PROJECT_FORMAT);
+      expect(result.payload.formatVersion).toBe(HFZ_PROJECT_CANONICAL_FORMAT_VERSION);
+      expect(result.payload.descriptiveMetadata.projectName).toBe("River Table");
+      expect(result.payload.technicalContent.image.dataUrl).toBe(TINY_PNG);
+      expect(result.payload.projectMetadata.projectId).toBeTruthy();
+      expect(result.payload.projectMetadata.versionId).toBeTruthy();
+      expect(result.persistedLifecycle.persistence).toEqual({ status: "persisted" });
     });
 
-    it("rejects an empty project name", () => {
-      expect(() =>
+    it("rejects an empty project name", async () => {
+      await expect(
         buildProjectFilePayload({
           projectName: "   ",
           snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
         }),
-      ).toThrow(ProjectFileSaveError);
+      ).rejects.toThrow(ProjectFileSaveError);
     });
 
-    it("rejects an incomplete project without image data", () => {
-      expect(() =>
+    it("rejects an incomplete project without a completed reference measurement", async () => {
+      await expect(
         buildProjectFilePayload({
           projectName: "River Table",
-          snapshot: { ...SAMPLE_SNAPSHOT, image: { dataUrl: null } },
+          snapshot: {
+            ...SAMPLE_SNAPSHOT,
+            calibration: {
+              referenceMeasurements: [{ knownLengthCm: 10, calibrationPoints: [] }],
+            },
+          },
+          user: STUB_USER,
         }),
-      ).toThrow(/Upload an image before saving/i);
+      ).rejects.toThrow(/reference measurement/i);
     });
   });
 
@@ -101,11 +136,14 @@ describe("projectFileSave", () => {
       const result = await saveProjectFile({
         projectName: "River Table",
         snapshot: SAMPLE_SNAPSHOT,
+        user: STUB_USER,
       });
 
       expect(supportsNativeProjectSavePicker()).toBe(false);
-      expect(result.payload.projectName).toBe("River Table");
-      expect(result.payload.image.dataUrl).toBe(TINY_PNG);
+      expect(result.payload.formatVersion).toBe(HFZ_PROJECT_CANONICAL_FORMAT_VERSION);
+      expect(result.payload.descriptiveMetadata.projectName).toBe("River Table");
+      expect(result.payload.technicalContent.image.dataUrl).toBe(TINY_PNG);
+      expect(result.persistedLifecycle.projectMetadata.projectId).toBeTruthy();
       expect(result.fileHandle).toBeNull();
       expect(result.fileName).toBe(`river-table${HFZ_PROJECT_FILE_EXTENSION}`);
       expect(click).toHaveBeenCalledTimes(1);
@@ -127,6 +165,7 @@ describe("projectFileSave", () => {
       const result = await saveProjectFile({
         projectName: "River Table",
         snapshot: SAMPLE_SNAPSHOT,
+        user: STUB_USER,
       });
 
       expect(window.showSaveFilePicker).toHaveBeenCalledWith(
@@ -137,7 +176,8 @@ describe("projectFileSave", () => {
       expect(createWritable).toHaveBeenCalledTimes(1);
       expect(write).toHaveBeenCalledTimes(1);
       expect(close).toHaveBeenCalledTimes(1);
-      expect(result.payload.image.dataUrl).toBe(TINY_PNG);
+      expect(result.payload.technicalContent.image.dataUrl).toBe(TINY_PNG);
+      expect(result.persistedLifecycle.persistence).toEqual({ status: "persisted" });
       expect(result.fileHandle).toBe(fileHandle);
       expect(result.fileName).toBe(`river-table${HFZ_PROJECT_FILE_EXTENSION}`);
     });
@@ -152,6 +192,21 @@ describe("projectFileSave", () => {
         saveProjectFile({
           projectName: "River Table",
           snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
+        }),
+      ).rejects.toBeInstanceOf(ProjectFileSaveCancelledError);
+    });
+
+    it("does not return persisted lifecycle when save is cancelled", async () => {
+      window.showSaveFilePicker = vi.fn(async () => {
+        throw new DOMException("User cancelled", "AbortError");
+      });
+
+      await expect(
+        saveProjectFile({
+          projectName: "River Table",
+          snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
         }),
       ).rejects.toBeInstanceOf(ProjectFileSaveCancelledError);
     });
@@ -171,13 +226,19 @@ describe("projectFileSave", () => {
         fileHandle,
         projectName: "River Table",
         snapshot: SAMPLE_SNAPSHOT,
+        user: STUB_USER,
+        persistedLifecycle: EXISTING_LIFECYCLE,
         fileName: "river-table.hfzproject",
       });
 
       expect(createWritable).toHaveBeenCalledTimes(1);
       expect(write).toHaveBeenCalledTimes(1);
       expect(close).toHaveBeenCalledTimes(1);
-      expect(result.payload.projectName).toBe("River Table");
+      expect(result.payload.descriptiveMetadata.projectName).toBe("River Table");
+      expect(result.payload.projectMetadata.projectId).toBe("project-1");
+      expect(result.payload.projectMetadata.versionId).toBe("version-1");
+      expect(result.payload.projectMetadata.lastModifiedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+      expect(result.persistedLifecycle.projectMetadata.projectId).toBe("project-1");
       expect(result.fileName).toBe("river-table.hfzproject");
       expect(window.showSaveFilePicker).toBeUndefined();
     });
@@ -188,8 +249,27 @@ describe("projectFileSave", () => {
           fileHandle: null,
           projectName: "River Table",
           snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
         }),
       ).rejects.toThrow(/file handle/i);
+    });
+
+    it("does not return persisted lifecycle when the write fails", async () => {
+      const fileHandle = {
+        createWritable: vi.fn(async () => {
+          throw new Error("disk full");
+        }),
+      };
+
+      await expect(
+        updateProjectFile({
+          fileHandle,
+          projectName: "River Table",
+          snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
+          persistedLifecycle: EXISTING_LIFECYCLE,
+        }),
+      ).rejects.toThrow(ProjectFileSaveError);
     });
   });
 

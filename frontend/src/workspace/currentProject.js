@@ -12,6 +12,7 @@ export function createOpenedCurrentProject({
   projectName,
   lastKnownFileName = null,
   fileHandle = null,
+  persistedLifecycle = null,
 }) {
   return {
     kind: CURRENT_PROJECT_KIND.OPENED,
@@ -19,6 +20,7 @@ export function createOpenedCurrentProject({
     projectName,
     lastKnownFileName,
     fileHandle,
+    persistedLifecycle,
   };
 }
 

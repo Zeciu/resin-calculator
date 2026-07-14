@@ -1,14 +1,9 @@
-import { screen, waitFor, act } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 import { ROUTES } from "./routes.js";
-import {
-  buildRecentProjectEntry,
-  loadRecentProjects,
-  RECENT_PROJECTS_STORAGE_KEY,
-  upsertRecentProject,
-} from "./recentProjectsIndex.js";
+import { ProjectFileSaveError } from "./projectFileSave.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
@@ -34,7 +29,22 @@ const PROJECT_PAYLOAD = {
   projectNotes: "Original notes",
 };
 
-const saveProjectFileMock = vi.fn();
+const EXISTING_LIFECYCLE = {
+  projectMetadata: {
+    projectId: "project-1",
+    ownerId: "stub-user",
+    primaryImageHash: "hash-1",
+    createdAt: "2026-01-01T00:00:00.000Z",
+    versionId: "version-1",
+    parentVersionId: null,
+    ancestorVersionIds: [],
+    lastModifiedAt: "2026-01-01T00:00:00.000Z",
+    metadataModifiedAt: null,
+    structuralCapabilitySnapshot: null,
+  },
+  persistence: { status: "persisted" },
+};
+
 const updateProjectFileMock = vi.fn();
 const getRecentProjectHandleMock = vi.fn();
 
@@ -43,7 +53,6 @@ vi.mock("./projectFileSave.js", async (importOriginal) => {
 
   return {
     ...actual,
-    saveProjectFile: (...args) => saveProjectFileMock(...args),
     updateProjectFile: (...args) => updateProjectFileMock(...args),
   };
 });
@@ -115,9 +124,8 @@ function seedAuthenticatedSession() {
   );
 }
 
-describe("Update existing project flow", () => {
+describe("NewProjectWorkspace persisted lifecycle", () => {
   let restoreImage;
-  let recentEntry;
   const fileHandle = {
     getFile: vi.fn(),
     createWritable: vi.fn(async () => ({
@@ -131,23 +139,42 @@ describe("Update existing project flow", () => {
     localStorage.clear();
     seedAuthenticatedSession();
     restoreImage = installPersistentImageMock();
-    saveProjectFileMock.mockReset();
     updateProjectFileMock.mockReset();
     getRecentProjectHandleMock.mockReset();
     getRecentProjectHandleMock.mockResolvedValue(fileHandle);
+  });
+
+  afterEach(() => {
+    restoreImage();
+    vi.restoreAllMocks();
+  });
+
+  it("does not expose removed pre-save canonical lifecycle DOM attributes", () => {
+    renderWorkspace(ROUTES.NEW_PROJECT);
+
+    expect(screen.queryByTestId("canonical-project-lifecycle")).not.toBeInTheDocument();
+  });
+
+  it("passes persisted lifecycle to update and adopts only after successful write", async () => {
+    const user = userEvent.setup();
+    const { router } = renderWorkspace(ROUTES.NEW_PROJECT);
+
     updateProjectFileMock.mockResolvedValue({
       payload: {
         format: "hfzwood-project",
         formatVersion: 2,
         descriptiveMetadata: { projectName: "River Table" },
-        projectMetadata: { lastModifiedAt: "2026-02-01T12:00:00.000Z" },
-        technicalContent: { image: { dataUrl: TINY_PNG } },
+        projectMetadata: {
+          projectId: "project-1",
+          versionId: "version-1",
+          lastModifiedAt: "2026-02-01T12:00:00.000Z",
+        },
+        technicalContent: {},
         derivedData: {},
       },
       persistedLifecycle: {
         projectMetadata: {
           projectId: "project-1",
-          ownerId: "stub-user",
           versionId: "version-1",
           lastModifiedAt: "2026-02-01T12:00:00.000Z",
         },
@@ -157,26 +184,14 @@ describe("Update existing project flow", () => {
       fileName: "river-table.hfzproject",
     });
 
-    recentEntry = upsertRecentProject(
-      buildRecentProjectEntry(PROJECT_PAYLOAD, {
-        fileName: "river-table.hfzproject",
-      }),
-    )[0];
-  });
-
-  afterEach(() => {
-    restoreImage();
-    vi.restoreAllMocks();
-  });
-
-  async function openRestoredProject(router) {
     await router.navigate(ROUTES.NEW_PROJECT, {
       state: {
         pendingProjectRestore: PROJECT_PAYLOAD,
         openContext: {
-          recentEntryId: recentEntry.id,
-          projectName: recentEntry.projectName,
-          lastKnownFileName: recentEntry.lastKnownFileName,
+          recentEntryId: "recent-1",
+          projectName: "River Table",
+          lastKnownFileName: "river-table.hfzproject",
+          persistedLifecycle: EXISTING_LIFECYCLE,
         },
       },
     });
@@ -185,44 +200,48 @@ describe("Update existing project flow", () => {
       expect(screen.getByText(/Photo uploaded/i)).toBeInTheDocument();
     });
 
-    await act(async () => {
-      await Promise.resolve();
-      await Promise.resolve();
-    });
-  }
-
-  it("keeps a reopened project clean until the user edits it", async () => {
-    const user = userEvent.setup();
-    const { router } = renderWorkspace(ROUTES.NEW_PROJECT);
-
-    await openRestoredProject(router);
-    await user.click(screen.getByRole("link", { name: "Home" }));
-
-    await waitFor(() => {
-      expect(router.state.location.pathname).toBe("/");
-    });
-    expect(screen.queryByRole("dialog", { name: /You have unsaved changes/i })).not.toBeInTheDocument();
-  });
-
-  it("silently updates the opened project and recent entry without dialogs", async () => {
-    const user = userEvent.setup();
-    const { router } = renderWorkspace(ROUTES.NEW_PROJECT);
-
-    await openRestoredProject(router);
     await user.click(screen.getByRole("button", { name: "Save Project" }));
 
     await waitFor(() => {
-      expect(router.state.location.pathname).toBe("/");
+      expect(updateProjectFileMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          persistedLifecycle: EXISTING_LIFECYCLE,
+          user: expect.objectContaining({ id: "stub-user" }),
+        }),
+      );
+    });
+  });
+
+  it("does not navigate home when update fails", async () => {
+    const user = userEvent.setup();
+    const { router } = renderWorkspace(ROUTES.NEW_PROJECT);
+
+    updateProjectFileMock.mockRejectedValue(
+      new ProjectFileSaveError("Could not update project file."),
+    );
+
+    await router.navigate(ROUTES.NEW_PROJECT, {
+      state: {
+        pendingProjectRestore: PROJECT_PAYLOAD,
+        openContext: {
+          recentEntryId: "recent-1",
+          projectName: "River Table",
+          lastKnownFileName: "river-table.hfzproject",
+          persistedLifecycle: EXISTING_LIFECYCLE,
+        },
+      },
     });
 
-    expect(screen.queryByRole("dialog", { name: "Save Project" })).not.toBeInTheDocument();
-    expect(updateProjectFileMock).toHaveBeenCalledTimes(1);
-    expect(saveProjectFileMock).not.toHaveBeenCalled();
+    await waitFor(() => {
+      expect(screen.getByText(/Photo uploaded/i)).toBeInTheDocument();
+    });
 
-    const recentProjects = loadRecentProjects();
-    expect(recentProjects).toHaveLength(1);
-    expect(recentProjects[0].id).toBe(recentEntry.id);
-    expect(recentProjects[0].lastSavedAt).toBe("2026-02-01T12:00:00.000Z");
-    expect(localStorage.getItem(RECENT_PROJECTS_STORAGE_KEY)).not.toContain(TINY_PNG);
+    await user.click(screen.getByRole("button", { name: "Save Project" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("alert")).toHaveTextContent(/Could not update project file/i);
+    });
+
+    expect(router.state.location.pathname).toBe("/new-project");
   });
 });

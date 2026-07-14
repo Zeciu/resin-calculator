@@ -128,9 +128,12 @@ describe("Save Project flow", () => {
     saveProjectFileMock.mockReset();
     saveProjectFileMock.mockResolvedValue({
       payload: {
-        projectName: "River Table",
-        savedAt: "2026-01-01T12:00:00.000Z",
-        image: { dataUrl: TINY_PNG },
+        format: "hfzwood-project",
+        formatVersion: 2,
+        descriptiveMetadata: { projectName: "River Table" },
+        projectMetadata: { lastModifiedAt: "2026-01-01T12:00:00.000Z" },
+        technicalContent: { image: { dataUrl: TINY_PNG } },
+        derivedData: {},
       },
       fileHandle: null,
       fileName: "river-table.hfzproject",
@@ -200,6 +203,7 @@ describe("Save Project flow", () => {
     expect(saveProjectFileMock).toHaveBeenCalledWith(
       expect.objectContaining({
         projectName: "River Table",
+        user: expect.objectContaining({ id: "stub-user" }),
         snapshot: expect.objectContaining({
           image: expect.objectContaining({
             dataUrl: TINY_PNG,

@@ -1,4 +1,5 @@
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
+import { getRecentIndexFieldsFromSavedPayload } from "../project/buildPersistableCanonicalV2.js";
 import { parseProjectFile, ProjectFileParseError } from "./projectFileParse.js";
 import {
   buildRecentProjectEntry,
@@ -120,9 +121,11 @@ export async function recordUpdatedProjectInRecentIndex({
   fileName,
   fileHandle = null,
 }) {
+  const { projectName, savedAt } = getRecentIndexFieldsFromSavedPayload(payload);
+
   updateRecentProjectOnSave(entryId, {
-    projectName: payload.projectName,
-    savedAt: payload.savedAt,
+    projectName,
+    savedAt,
     lastKnownFileName: fileName,
   });
 
@@ -132,10 +135,11 @@ export async function recordUpdatedProjectInRecentIndex({
 }
 
 export async function recordSavedProjectInRecentIndex({ payload, fileName, fileHandle = null }) {
+  const { projectName, savedAt } = getRecentIndexFieldsFromSavedPayload(payload);
   const entry = buildRecentProjectEntry(
     {
-      projectName: payload.projectName,
-      savedAt: payload.savedAt,
+      projectName,
+      savedAt,
     },
     { fileName },
   );

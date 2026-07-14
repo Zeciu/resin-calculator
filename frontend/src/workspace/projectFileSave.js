@@ -1,9 +1,11 @@
 import {
   HFZ_PROJECT_FILE_EXTENSION,
-  HFZ_PROJECT_FORMAT,
-  HFZ_PROJECT_FORMAT_VERSION,
   HFZ_PROJECT_MIME_TYPE,
 } from "../projectFileTypes.js";
+import {
+  BuildPersistableCanonicalV2Error,
+  buildPersistableCanonicalV2,
+} from "../project/buildPersistableCanonicalV2.js";
 import { isFileSystemHandle } from "./recentProjectHandles.js";
 
 export {
@@ -41,25 +43,25 @@ export function slugifyProjectFilename(projectName) {
   return slug || "hfzwood-project";
 }
 
-export function buildProjectFilePayload({ projectName, snapshot }) {
-  const trimmedName = projectName.trim();
-  if (!trimmedName) {
-    throw new ProjectFileSaveError("Project name is required.");
+/**
+ * @param {{
+ *   projectName: string;
+ *   snapshot: Record<string, unknown>;
+ *   user: { id?: unknown } | null | undefined;
+ *   persistedLifecycle?: import("../project/canonicalProjectLifecycle.js").CanonicalProjectLifecycle | null;
+ * }} params
+ */
+export async function buildProjectFilePayload(params) {
+  try {
+    const { envelope, persistedLifecycle } = await buildPersistableCanonicalV2(params);
+    return { payload: envelope, persistedLifecycle };
+  } catch (error) {
+    if (error instanceof BuildPersistableCanonicalV2Error) {
+      throw new ProjectFileSaveError(error.message);
+    }
+
+    throw error;
   }
-
-  if (!snapshot?.image?.dataUrl || typeof snapshot.image.dataUrl !== "string") {
-    throw new ProjectFileSaveError("Upload an image before saving a project.");
-  }
-
-  const savedAt = new Date().toISOString();
-
-  return {
-    format: HFZ_PROJECT_FORMAT,
-    formatVersion: HFZ_PROJECT_FORMAT_VERSION,
-    projectName: trimmedName,
-    ...snapshot,
-    savedAt,
-  };
 }
 
 export function supportsNativeProjectSavePicker() {
@@ -87,13 +89,21 @@ export async function updateProjectFile({
   fileHandle,
   projectName,
   snapshot,
+  user,
+  persistedLifecycle = null,
   fileName = null,
 }) {
   if (!isFileSystemHandle(fileHandle)) {
     throw new ProjectFileSaveError("Cannot update project file without a file handle.");
   }
 
-  const payload = buildProjectFilePayload({ projectName, snapshot });
+  const { payload, persistedLifecycle: nextPersistedLifecycle } =
+    await buildProjectFilePayload({
+      projectName,
+      snapshot,
+      user,
+      persistedLifecycle,
+    });
   const json = JSON.stringify(payload, null, 2);
   const blob = new Blob([json], { type: HFZ_PROJECT_MIME_TYPE });
   const resolvedFileName =
@@ -101,14 +111,25 @@ export async function updateProjectFile({
 
   try {
     await writeBlobToFileHandle(fileHandle, blob);
-    return { payload, fileHandle, fileName: resolvedFileName };
+    return {
+      payload,
+      persistedLifecycle: nextPersistedLifecycle,
+      fileHandle,
+      fileName: resolvedFileName,
+    };
   } catch (error) {
     throw new ProjectFileSaveError("Could not update project file.", error);
   }
 }
 
-export async function saveProjectFile({ projectName, snapshot }) {
-  const payload = buildProjectFilePayload({ projectName, snapshot });
+export async function saveProjectFile({ projectName, snapshot, user, persistedLifecycle = null }) {
+  const { payload, persistedLifecycle: nextPersistedLifecycle } =
+    await buildProjectFilePayload({
+      projectName,
+      snapshot,
+      user,
+      persistedLifecycle,
+    });
   const json = JSON.stringify(payload, null, 2);
   const blob = new Blob([json], { type: HFZ_PROJECT_MIME_TYPE });
   const filename = `${slugifyProjectFilename(projectName)}${HFZ_PROJECT_FILE_EXTENSION}`;
@@ -127,7 +148,12 @@ export async function saveProjectFile({ projectName, snapshot }) {
         ],
       });
       await writeBlobToFileHandle(fileHandle, blob);
-      return { payload, fileHandle, fileName: filename };
+      return {
+        payload,
+        persistedLifecycle: nextPersistedLifecycle,
+        fileHandle,
+        fileName: filename,
+      };
     } catch (error) {
       if (error?.name === "AbortError") {
         throw new ProjectFileSaveCancelledError();
@@ -139,7 +165,12 @@ export async function saveProjectFile({ projectName, snapshot }) {
 
   try {
     downloadProjectFile(blob, filename);
-    return { payload, fileHandle: null, fileName: filename };
+    return {
+      payload,
+      persistedLifecycle: nextPersistedLifecycle,
+      fileHandle: null,
+      fileName: filename,
+    };
   } catch (error) {
     throw new ProjectFileSaveError("Could not save project file.", error);
   }

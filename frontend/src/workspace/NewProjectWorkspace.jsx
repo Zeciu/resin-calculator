@@ -2,8 +2,6 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { useBlocker, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
 import ResinCalculator from "../calculator/ResinCalculator.jsx";
-import { hasCanonicalProjectIdentity } from "../project/projectCreationThreshold.js";
-import { useCanonicalProjectIdentity } from "../project/useCanonicalProjectIdentity.js";
 import QuickPreferences from "../preferences/QuickPreferences.jsx";
 import SaveProjectDialog from "./SaveProjectDialog.jsx";
 import UnsavedChangesDialog from "./UnsavedChangesDialog.jsx";
@@ -32,7 +30,6 @@ export default function NewProjectWorkspace() {
   const { user } = useAuth();
   const calculatorRef = useRef(null);
   const [currentProject, setCurrentProject] = useState(createNewCurrentProject);
-  const [isNewProjectSession, setIsNewProjectSession] = useState(true);
   const [isProjectDirty, setIsProjectDirty] = useState(false);
   const [calculatorSessionKey, setCalculatorSessionKey] = useState(0);
   const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
@@ -46,15 +43,6 @@ export default function NewProjectWorkspace() {
   const usesBaselineDirtyRef = useRef(false);
   const pendingOpenContextRef = useRef(null);
   const currentProjectRef = useRef(currentProject);
-  const {
-    canonicalLifecycle,
-    identityError,
-    handleCreationThresholdInputsChange,
-    resetCanonicalProjectSession,
-  } = useCanonicalProjectIdentity({
-    user,
-    enabled: isNewProjectSession,
-  });
 
   isProjectDirtyRef.current = isProjectDirty;
   currentProjectRef.current = currentProject;
@@ -66,7 +54,6 @@ export default function NewProjectWorkspace() {
     }
 
     pendingOpenContextRef.current = location.state?.openContext ?? null;
-    setIsNewProjectSession(false);
     setPendingProjectRestore(project);
     navigate(ROUTES.NEW_PROJECT, { replace: true, state: {} });
   }, [location.state, navigate]);
@@ -79,12 +66,12 @@ export default function NewProjectWorkspace() {
         projectName: openContext.projectName,
         lastKnownFileName: openContext.lastKnownFileName,
         fileHandle: handle,
+        persistedLifecycle: openContext.persistedLifecycle ?? null,
       }),
     );
   }, []);
 
   const handleProjectRestored = useCallback(async () => {
-    setIsNewProjectSession(false);
     const openContext = pendingOpenContextRef.current;
 
     if (openContext?.recentEntryId) {
@@ -170,6 +157,8 @@ export default function NewProjectWorkspace() {
         fileHandle: project.fileHandle,
         projectName: project.projectName,
         snapshot,
+        user,
+        persistedLifecycle: project.persistedLifecycle,
         fileName: project.lastKnownFileName,
       });
 
@@ -179,6 +168,11 @@ export default function NewProjectWorkspace() {
         fileName: saveResult.fileName,
         fileHandle: project.fileHandle,
       });
+
+      setCurrentProject((previous) => ({
+        ...previous,
+        persistedLifecycle: saveResult.persistedLifecycle,
+      }));
 
       completeSuccessfulSave(snapshot);
       return true;
@@ -195,7 +189,7 @@ export default function NewProjectWorkspace() {
     } finally {
       setIsSaving(false);
     }
-  }, [completeSuccessfulSave]);
+  }, [completeSuccessfulSave, user]);
 
   const openSaveProjectDialog = useCallback(() => {
     setSaveError("");
@@ -242,8 +236,6 @@ export default function NewProjectWorkspace() {
     usesBaselineDirtyRef.current = false;
     baselineSnapshotRef.current = null;
     pendingOpenContextRef.current = null;
-    setIsNewProjectSession(true);
-    resetCanonicalProjectSession();
     setCurrentProject(createNewCurrentProject());
     isProjectDirtyRef.current = false;
     setIsProjectDirty(false);
@@ -251,7 +243,7 @@ export default function NewProjectWorkspace() {
     if (blocker.state === "blocked") {
       blocker.proceed();
     }
-  }, [blocker, resetCanonicalProjectSession]);
+  }, [blocker]);
 
   const handleCancel = useCallback(() => {
     setShowUnsavedDialog(false);
@@ -281,7 +273,11 @@ export default function NewProjectWorkspace() {
 
       try {
         const snapshot = calculator.getProjectSnapshot();
-        const saveResult = await saveProjectFile({ projectName, snapshot });
+        const saveResult = await saveProjectFile({
+          projectName,
+          snapshot,
+          user,
+        });
 
         await recordSavedProjectInRecentIndex({
           payload: saveResult.payload,
@@ -307,7 +303,7 @@ export default function NewProjectWorkspace() {
         setIsSaving(false);
       }
     },
-    [completeSuccessfulSave],
+    [completeSuccessfulSave, user],
   );
 
   const handleCalculatorSaveProjectRequest = useCallback(() => {
@@ -315,26 +311,8 @@ export default function NewProjectWorkspace() {
   }, []);
 
   return (
-    <div
-      className="new-project-workspace"
-      data-testid="canonical-project-lifecycle"
-      data-has-identity={
-        hasCanonicalProjectIdentity(canonicalLifecycle) ? "true" : "false"
-      }
-      data-project-id={canonicalLifecycle.projectMetadata.projectId ?? ""}
-      data-owner-id={canonicalLifecycle.projectMetadata.ownerId ?? ""}
-      data-primary-image-hash={
-        canonicalLifecycle.projectMetadata.primaryImageHash ?? ""
-      }
-      data-created-at={canonicalLifecycle.projectMetadata.createdAt ?? ""}
-      data-version-id={canonicalLifecycle.projectMetadata.versionId ?? ""}
-    >
+    <div className="new-project-workspace">
       <QuickPreferences variant="workspace" />
-      {identityError ? (
-        <p className="new-project-workspace__identity-error" role="alert">
-          {identityError}
-        </p>
-      ) : null}
       {saveError && !showSaveDialog ? (
         <p className="new-project-workspace__save-error" role="alert">
           {saveError}
@@ -346,7 +324,6 @@ export default function NewProjectWorkspace() {
         showHeader={false}
         workspaceVariant="dedicated"
         onDirtyChange={handleDirtyChange}
-        onCreationThresholdInputsChange={handleCreationThresholdInputsChange}
         onProjectRestored={handleProjectRestored}
         onSaveProjectRequest={handleCalculatorSaveProjectRequest}
       />
