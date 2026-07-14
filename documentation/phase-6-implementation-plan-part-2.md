@@ -72,7 +72,7 @@ No implementation begins before that focused analysis is reviewed.
 
 **Status:** CLOSED
 
-**Implementation commit:** pending
+**Implementation commit:** `86eabf8`
 
 ### Threshold behavior
 
