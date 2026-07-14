@@ -3,7 +3,7 @@ import { normalizePreferences } from "./preferencesConstants.js";
 
 const API_BASE_URL = "";
 
-export function preferencesHeaders() {
+export async function preferencesHeaders() {
   return buildAuthHeaders();
 }
 
@@ -21,7 +21,7 @@ async function parseError(response) {
 
 export async function fetchPreferences() {
   const response = await fetch(`${API_BASE_URL}/api/preferences`, {
-    headers: preferencesHeaders(),
+    headers: await preferencesHeaders(),
   });
   if (!response.ok) {
     throw new Error(await parseError(response));
@@ -33,7 +33,7 @@ export async function fetchPreferences() {
 export async function savePreferences(patch) {
   const response = await fetch(`${API_BASE_URL}/api/preferences`, {
     method: "PUT",
-    headers: preferencesHeaders(),
+    headers: await preferencesHeaders(),
     body: JSON.stringify(patch),
   });
   if (!response.ok) {

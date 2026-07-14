@@ -628,7 +628,7 @@ Existing foundations already include:
 Block 2 will therefore use the smallest implementation sequence:
 
 1. **Task 2.1 — Local Project Ownership Enforcement** — CLOSED (see §14)
-2. **Task 2.2 — Production Cognito Authentication**
+2. **Task 2.2 — Production Cognito Authentication** — CLOSED (see §15)
 3. **Task 2.3 — Product Capability Enforcement**
 
 ### Task 2.1 — Ownership rule
@@ -726,3 +726,88 @@ Passed: owned Project editable; foreign-owned read-only with notice; Save/Update
 ### Next step
 
 **Task 2.2 — Production Cognito Authentication**
+
+---
+
+## 15. Block 2 Task 2.2 — Production Cognito Authentication
+
+**Task 2.2 status:** CLOSED — implementation and automated validation complete
+
+**Release certification:** Implementation closed — live production Cognito validation pending before release certification.
+
+Live AWS Cognito end-to-end validation remains a release-certification requirement. Task 2.2 must not be described as fully production-ready until that validation passes.
+
+### Identity chain
+
+```text
+Cognito sub
+    ↓
+user.id
+    ↓
+projectMetadata.ownerId
+    ↓
+Task 2.1 ownership enforcement
+```
+
+Task 2.1 ownership files were not modified.
+
+### Delivered
+
+* real Cognito adapter through the existing authentication boundary;
+* direct Amplify-based login, registration, confirmation, password recovery/reset, session restoration, and logout;
+* existing HFZWood authentication UI preserved;
+* Cognito `sub` normalized to canonical `user.id`;
+* asynchronous `AuthContext`;
+* mock/Cognito adapter selection;
+* bearer-token API authentication;
+* frontend and backend production-mode configuration;
+* protection against production mock-auth leakage;
+* missing or empty Cognito `sub` rejection;
+* session-loading-aware route guards;
+* mock authentication preserved for development and tests;
+* Task 2.1 ownership behavior reused unchanged.
+
+### Validation
+
+* Backend: 123 passed
+* Frontend: 491 passed (66 files)
+* Frontend full suite: passed twice consecutively during repair pass; passed again at closure
+* Frontend production build (Cognito mode): passed
+* `dev.cmd` Cognito validation build: passed
+* Local backend mock mode with Cognito variables present: passed
+
+### Live validation remaining
+
+Release certification must still verify against deployed AWS Cognito:
+
+* registration;
+* email confirmation;
+* login and failed login;
+* session restoration;
+* live `user.id === Cognito sub`;
+* logout;
+* password recovery/reset;
+* token refresh and expiry behavior;
+* protected API requests;
+* missing/invalid token rejection;
+* owned Project editable;
+* foreign-owned Project read-only;
+* production deployment cannot activate mock authentication.
+
+These live checks are not marked as passed.
+
+### Deferred scope
+
+Task 2.2 did not implement:
+
+* Product Capability enforcement;
+* Stripe;
+* Cloud Workspace;
+* sharing;
+* ownership transfer;
+* migration of `stub-user` Projects;
+* MFA or advanced Cognito workflows.
+
+### Next task
+
+**Task 2.3 — Product Capability Enforcement**

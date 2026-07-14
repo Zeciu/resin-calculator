@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
-import { handleGlobalReferenceSearch, withEditorialVisibility } from "../test/editorialTestHelpers.js";
+import { handleGlobalReferenceSearch, isAdministratorFetchRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 vi.mock("./GlossaryEntryEditor.jsx", () => ({
   default: function MockGlossaryEntryEditor({ onDocumentChange }) {
@@ -104,7 +104,7 @@ function createInMemoryGlossaryApi() {
       const path = parsed.pathname.replace(API_ROOT, "") || "/";
       const headers = init.headers || {};
 
-      if (headers["X-Mock-Role"] !== "administrator") {
+      if (!isAdministratorFetchRequest(init)) {
         return Promise.resolve({ ok: false, status: 403, json: async () => ({ detail: "Forbidden" }) });
       }
 

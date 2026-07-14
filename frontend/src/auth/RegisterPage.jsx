@@ -49,24 +49,130 @@ function hasValidationErrors(errors) {
 }
 
 export default function RegisterPage() {
-  const { login } = useAuth();
+  const { login, register, confirmRegistration } = useAuth();
   const navigate = useNavigate();
   const [errors, setErrors] = useState(INITIAL_ERRORS);
+  const [formError, setFormError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [pendingConfirmation, setPendingConfirmation] = useState(null);
+  const [confirmationCode, setConfirmationCode] = useState("");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const nextErrors = validateRegistration(formData);
     setErrors(nextErrors);
+    setFormError("");
 
-    if (!hasValidationErrors(nextErrors)) {
-      const email = String(formData.get("email") ?? "").trim();
-      const username = String(formData.get("username") ?? "").trim();
-      login({ email, username });
+    if (hasValidationErrors(nextErrors)) {
+      return;
+    }
+
+    const email = String(formData.get("email") ?? "").trim();
+    const username = String(formData.get("username") ?? "").trim();
+    const password = String(formData.get("password") ?? "");
+
+    setIsSubmitting(true);
+    try {
+      const result = await register({ email, username, password });
+      if (result?.needsConfirmation) {
+        setPendingConfirmation({ email: result.email ?? email });
+        event.currentTarget.reset();
+        setErrors(INITIAL_ERRORS);
+        return;
+      }
+
+      await login({ email, username, password });
       event.currentTarget.reset();
       setErrors(INITIAL_ERRORS);
       navigate(ROUTES.HOME, { replace: true });
+    } catch (registerError) {
+      setFormError(
+        registerError instanceof Error
+          ? registerError.message
+          : "Registration failed. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
+  }
+
+  async function handleConfirmSubmit(event) {
+    event.preventDefault();
+    if (!pendingConfirmation?.email) {
+      return;
+    }
+
+    if (!confirmationCode.trim()) {
+      setFormError("Confirmation code is required.");
+      return;
+    }
+
+    setFormError("");
+    setIsSubmitting(true);
+    try {
+      await confirmRegistration({
+        email: pendingConfirmation.email,
+        confirmationCode: confirmationCode.trim(),
+      });
+      setPendingConfirmation(null);
+      setConfirmationCode("");
+      navigate(ROUTES.LOGIN, {
+        replace: true,
+        state: { confirmationComplete: true },
+      });
+    } catch (confirmError) {
+      setFormError(
+        confirmError instanceof Error
+          ? confirmError.message
+          : "Account confirmation failed. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  if (pendingConfirmation) {
+    return (
+      <section className="register-page">
+        <h2 className="register-page__title">Confirm your HFZWood account</h2>
+        <p className="register-page__intro">
+          Enter the confirmation code sent to <strong>{pendingConfirmation.email}</strong>.
+        </p>
+
+        <form className="register-page__form" onSubmit={handleConfirmSubmit} noValidate>
+          <label className="register-page__field">
+            <span className="register-page__label">Confirmation code</span>
+            <input
+              className="register-page__input"
+              type="text"
+              name="confirmationCode"
+              autoComplete="one-time-code"
+              value={confirmationCode}
+              onChange={(event) => setConfirmationCode(event.target.value)}
+              aria-invalid={formError ? "true" : undefined}
+              aria-describedby={formError ? "register-confirm-error" : undefined}
+            />
+          </label>
+
+          {formError ? (
+            <p className="register-page__error" id="register-confirm-error" role="alert">
+              {formError}
+            </p>
+          ) : null}
+
+          <button className="register-page__submit" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Confirming…" : "Confirm account"}
+          </button>
+        </form>
+
+        <div className="register-page__links">
+          <Link className="register-page__link" to={ROUTES.LOGIN}>
+            Already confirmed? Log in
+          </Link>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -156,8 +262,14 @@ export default function RegisterPage() {
           ) : null}
         </label>
 
-        <button className="register-page__submit" type="submit">
-          Create account
+        {formError ? (
+          <p className="register-page__error" role="alert">
+            {formError}
+          </p>
+        ) : null}
+
+        <button className="register-page__submit" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Creating account…" : "Create account"}
         </button>
       </form>
 

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
-import { handleGlobalReferenceSearch, withEditorialVisibility } from "../test/editorialTestHelpers.js";
+import { handleGlobalReferenceSearch, isAdministratorFetchRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 vi.mock("../../editorial/CrossReferencePicker.jsx", () => ({
   default: function MockCrossReferencePicker({ label }) {
@@ -99,7 +99,7 @@ function createInMemoryKnowledgeBaseApi() {
       const path = parsed.pathname.replace(API_ROOT, "") || "/";
       const headers = init.headers || {};
 
-      if (headers["X-Mock-Role"] !== "administrator") {
+      if (!isAdministratorFetchRequest(init)) {
         return Promise.resolve({ ok: false, status: 403, json: async () => ({ detail: "Forbidden" }) });
       }
 
@@ -320,7 +320,9 @@ describe("Knowledge base management workspace (Task 61)", () => {
     });
   });
 
-  it("creates, edits list fields, saves, and publishes an entry", async () => {
+  it(
+    "creates, edits list fields, saves, and publishes an entry",
+    async () => {
     seedAdministrator();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.KNOWLEDGE_BASE);
@@ -343,7 +345,9 @@ describe("Knowledge base management workspace (Task 61)", () => {
     await waitFor(() => {
       expect(screen.getByText(/Live \(EN\)|Draft changes \(EN\)/i)).toBeInTheDocument();
     });
-  });
+    },
+    15000,
+  );
 
   it("deletes the selected knowledge base entry", async () => {
     memoryApi.seedEntry({

@@ -9,4 +9,7 @@ def role_from_claims(claims: dict) -> str:
 
 
 def user_id_from_claims(claims: dict) -> str:
-    return str(claims.get("sub") or "cognito-user")
+    sub = claims.get("sub")
+    if not isinstance(sub, str) or not sub.strip():
+        raise ValueError("Missing Cognito sub claim.")
+    return sub.strip()

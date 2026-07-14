@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
+import { AuthProviderForTests } from "../auth/AuthContext.jsx";
 import WorkspaceRouter from "./WorkspaceRouter.jsx";
 
 export function renderWorkspace(initialPath = "/") {
@@ -10,6 +11,10 @@ export function renderWorkspace(initialPath = "/") {
 
   return {
     router,
-    ...render(<RouterProvider router={router} />),
+    ...render(
+      <AuthProviderForTests>
+        <RouterProvider router={router} />
+      </AuthProviderForTests>,
+    ),
   };
 }

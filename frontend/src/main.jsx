@@ -3,26 +3,27 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Amplify } from "aws-amplify";
 import amplifyConfig from "./amplify-config.js";
-import AuthCallback from "./AuthCallback";
+import { AppRoot, AuthCallbackRoute } from "./auth/AppRoot.jsx";
+import { assertProductionAuthConfig } from "./auth/authMode.js";
 import WorkspaceRouter from "./workspace/WorkspaceRouter.jsx";
 import "./styles.css";
 
+assertProductionAuthConfig();
 Amplify.configure(amplifyConfig);
 
 const router = createBrowserRouter([
   {
-    path: "/callback",
-    element: (
-      <AuthCallback
-        onAuthenticated={() => {
-          window.history.replaceState({}, "", "/");
-        }}
-      />
-    ),
-  },
-  {
-    path: "/*",
-    element: <WorkspaceRouter />,
+    element: <AppRoot />,
+    children: [
+      {
+        path: "/callback",
+        element: <AuthCallbackRoute />,
+      },
+      {
+        path: "/*",
+        element: <WorkspaceRouter />,
+      },
+    ],
   },
 ]);
 

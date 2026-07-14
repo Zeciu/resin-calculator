@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { Hub } from "aws-amplify/utils";
 import { getCurrentUser } from "aws-amplify/auth";
+import { useAuth } from "./auth/useAuth.js";
 
-// Rendered at /callback after the Cognito Hosted UI redirects back.
-// Amplify automatically exchanges the authorization code for tokens on load.
-// We listen for the auth Hub events to know when that completes, and also
-// check the existing session in case the exchange finished before we mounted.
+// Rendered at /callback after a Cognito OAuth redirect completes.
+// Amplify exchanges the authorization code for tokens on load.
 export default function AuthCallback({ onAuthenticated }) {
+  const { refreshSession } = useAuth();
   const [error, setError] = useState(null);
 
   useEffect(() => {
     let settled = false;
 
-    const succeed = () => {
+    const succeed = async () => {
       if (settled) return;
       settled = true;
+      await refreshSession();
       onAuthenticated();
     };
 
@@ -28,7 +29,7 @@ export default function AuthCallback({ onAuthenticated }) {
       switch (payload.event) {
         case "signInWithRedirect":
         case "signedIn":
-          succeed();
+          void succeed();
           break;
         case "signInWithRedirect_failure":
           fail();
@@ -38,18 +39,16 @@ export default function AuthCallback({ onAuthenticated }) {
       }
     });
 
-    // The token exchange may already be done by the time this mounts
-    // (e.g. on a fast reload), so check the current session directly.
     getCurrentUser()
-      .then(succeed)
+      .then(() => {
+        void succeed();
+      })
       .catch(() => {
-        // Not signed in yet — give the Hub-driven exchange a bounded window
-        // to complete before showing an error so the user is never stuck.
         setTimeout(fail, 10000);
       });
 
     return () => stopListening();
-  }, [onAuthenticated]);
+  }, [onAuthenticated, refreshSession]);
 
   if (error) {
     return (

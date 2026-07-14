@@ -5,7 +5,7 @@ setlocal
 set ROOT=%~dp0
 set ROOT=%ROOT:~0,-1%
 
-:: Cognito configuration (from InfraStack outputs)
+:: Cognito public configuration (from InfraStack outputs)
 set VITE_COGNITO_USER_POOL_ID=eu-central-1_cM7UmwtpB
 set VITE_COGNITO_CLIENT_ID=2kb538fbaa8udmh32ov0q7bm9
 set VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.eu-central-1.amazoncognito.com
@@ -17,7 +17,10 @@ echo Installing frontend dependencies...
 call npm install --prefix "%ROOT%\frontend"
 
 echo Building frontend...
+set VITE_AUTH_MODE=cognito
 call npm --prefix "%ROOT%\frontend" run build
+if errorlevel 1 exit /b 1
+set VITE_AUTH_MODE=
 
 echo Starting backend...
 start "Backend" cmd /k "cd /d "%ROOT%" && uv run --project backend uvicorn app:app --app-dir backend --host 0.0.0.0 --port 5000 --reload"

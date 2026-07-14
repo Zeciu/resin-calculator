@@ -1,15 +1,10 @@
+import { fetchAuthSession } from "aws-amplify/auth";
 import { mockAuthAdapter } from "./authAdapter.js";
+import { isMockAuthMode } from "./authMode.js";
 
 const MOCK_ACCESS_TIER_KEY = "hfzwood.mockAccessTier";
-const ACCESS_TOKEN_KEY = "hfzwood.accessToken";
 
-export function isMockAuthMode() {
-  const mode = import.meta.env.VITE_AUTH_MODE;
-  if (typeof mode === "string" && mode.trim().toLowerCase() === "cognito") {
-    return false;
-  }
-  return true;
-}
+export { isMockAuthMode } from "./authMode.js";
 
 function readMockAccessTier() {
   try {
@@ -23,16 +18,17 @@ function readMockAccessTier() {
   return null;
 }
 
-function readAccessToken() {
+async function readCognitoAccessToken() {
   try {
-    const token = sessionStorage.getItem(ACCESS_TOKEN_KEY);
+    const session = await fetchAuthSession();
+    const token = session.tokens?.accessToken?.toString();
     return typeof token === "string" && token.trim() ? token.trim() : null;
   } catch {
     return null;
   }
 }
 
-export function buildAuthHeaders({ includeJsonContentType = true } = {}) {
+export async function buildAuthHeaders({ includeJsonContentType = true } = {}) {
   const headers = {};
   if (includeJsonContentType) {
     headers["Content-Type"] = "application/json";
@@ -49,7 +45,7 @@ export function buildAuthHeaders({ includeJsonContentType = true } = {}) {
     return headers;
   }
 
-  const token = readAccessToken();
+  const token = await readCognitoAccessToken();
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }

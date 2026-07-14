@@ -95,6 +95,7 @@ POOL_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $R
 CLIENT_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $REGION --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
 
 docker build -t resin-calculator \
+  --build-arg VITE_AUTH_MODE=cognito \
   --build-arg VITE_COGNITO_USER_POOL_ID=$POOL_ID \
   --build-arg VITE_COGNITO_CLIENT_ID=$CLIENT_ID \
   --build-arg VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.$REGION.amazoncognito.com \
@@ -129,6 +130,7 @@ POOL_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $R
 CLIENT_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $REGION --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
 
 docker build -t resin-calculator \
+  --build-arg VITE_AUTH_MODE=cognito \
   --build-arg VITE_COGNITO_USER_POOL_ID=$POOL_ID \
   --build-arg VITE_COGNITO_CLIENT_ID=$CLIENT_ID \
   --build-arg VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.$REGION.amazoncognito.com \

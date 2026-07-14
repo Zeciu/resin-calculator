@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { AuthProvider } from "../auth/AuthContext.jsx";
+import { AuthProviderForTests } from "../auth/AuthContext.jsx";
 import { CapabilitiesProvider, useCapability, useCapabilityLimit } from "./CapabilitiesContext.jsx";
 import { CAPABILITY_KEYS } from "./capabilityKeys.js";
 import { GUEST_CAPABILITIES_RESPONSE } from "./capabilityDefaults.js";
@@ -35,13 +35,13 @@ function CapabilityProbe() {
 
 function renderCapabilitiesTree() {
   return render(
-    <AuthProvider>
+    <AuthProviderForTests>
       <CapabilitiesProvider>
         <PreferencesProvider>
           <CapabilityProbe />
         </PreferencesProvider>
       </CapabilitiesProvider>
-    </AuthProvider>,
+    </AuthProviderForTests>,
   );
 }
 
@@ -146,13 +146,13 @@ describe("CapabilitiesProvider", () => {
     }
 
     render(
-      <AuthProvider>
+      <AuthProviderForTests>
         <CapabilitiesProvider>
           <PreferencesProvider>
             <CombinedProbe />
           </PreferencesProvider>
         </CapabilitiesProvider>
-      </AuthProvider>,
+      </AuthProviderForTests>,
     );
 
     await waitFor(() => {

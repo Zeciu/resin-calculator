@@ -47,6 +47,11 @@ _JWKS_CACHE: dict | None = None
 _AUTH_ENABLED = bool(_COGNITO_USER_POOL_ID and _COGNITO_REGION)
 _UNPROTECTED_PATHS = {"/health", "/callback"}
 
+if auth_mode() == "cognito" and not _AUTH_ENABLED:
+    raise RuntimeError(
+        "AUTH_MODE=cognito requires COGNITO_USER_POOL_ID and COGNITO_REGION to be set."
+    )
+
 
 async def _get_jwks() -> dict:
     global _JWKS_CACHE

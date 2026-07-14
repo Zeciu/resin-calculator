@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { AuthProvider } from "../auth/AuthContext.jsx";
+import { AuthProviderForTests } from "../auth/AuthContext.jsx";
 import { I18nProvider } from "../i18n/I18nContext.jsx";
 import { PreferencesProvider, usePreferences } from "./PreferencesContext.jsx";
 import { mockPreferencesFetch } from "./testHelpers.js";
@@ -23,13 +23,13 @@ function PreferencesProbe() {
 
 function renderPreferencesTree() {
   return render(
-    <AuthProvider>
+    <AuthProviderForTests>
       <PreferencesProvider>
         <I18nProvider>
           <PreferencesProbe />
         </I18nProvider>
       </PreferencesProvider>
-    </AuthProvider>,
+    </AuthProviderForTests>,
   );
 }
 

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ROUTES } from "../workspace/routes.js";
@@ -41,7 +41,9 @@ describe("Auth flow", () => {
 
     await submitLoginForm(user);
 
-    expectLoggedInHome();
+    await waitFor(() => {
+      expectLoggedInHome();
+    });
     expectNewProjectUnlocked();
     expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });
@@ -51,7 +53,9 @@ describe("Auth flow", () => {
     renderWorkspace(ROUTES.LOGIN);
 
     await submitLoginForm(user);
-    expectNewProjectUnlocked();
+    await waitFor(() => {
+      expectNewProjectUnlocked();
+    });
 
     await user.click(screen.getByRole("button", { name: /Log out/i }));
 

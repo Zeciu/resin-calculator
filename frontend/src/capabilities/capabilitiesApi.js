@@ -16,7 +16,7 @@ async function parseError(response) {
 
 export async function fetchCapabilities() {
   const response = await fetch(`${API_BASE_URL}/api/me/capabilities`, {
-    headers: buildAuthHeaders(),
+    headers: await buildAuthHeaders(),
   });
   if (!response.ok) {
     throw new Error(await parseError(response));

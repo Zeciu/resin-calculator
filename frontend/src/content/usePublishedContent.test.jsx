@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { AuthProvider } from "../auth/AuthContext.jsx";
+import { AuthProviderForTests } from "../auth/AuthContext.jsx";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
 import { usePublishedContent } from "./usePublishedContent.js";
 
@@ -8,9 +8,9 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
 function wrapper({ children }) {
   return (
-    <AuthProvider>
+    <AuthProviderForTests>
       <PreferencesProvider>{children}</PreferencesProvider>
-    </AuthProvider>
+    </AuthProviderForTests>
   );
 }
 

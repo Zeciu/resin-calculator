@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { AuthProvider } from "../auth/AuthContext.jsx";
+import { AuthProviderForTests } from "../auth/AuthContext.jsx";
 import { I18nProvider } from "../i18n/I18nContext.jsx";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
@@ -42,13 +42,13 @@ function Probe() {
 
 function renderProbe() {
   return render(
-    <AuthProvider>
+    <AuthProviderForTests>
       <PreferencesProvider>
         <I18nProvider>
           <Probe />
         </I18nProvider>
       </PreferencesProvider>
-    </AuthProvider>,
+    </AuthProviderForTests>,
   );
 }
 

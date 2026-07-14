@@ -27,8 +27,15 @@ def get_current_user(request: Request) -> dict[str, Any]:
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Authentication required.",
         )
+    try:
+        user_id = user_id_from_claims(claims)
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required.",
+        ) from None
     return {
-        "id": user_id_from_claims(claims),
+        "id": user_id,
         "role": role_from_claims(claims),
     }
 

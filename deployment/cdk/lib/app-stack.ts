@@ -49,6 +49,7 @@ export class AppStack extends cdk.Stack {
       portMappings: [{ containerPort: 5000 }],
       logging: ecs.LogDrivers.awsLogs({ streamPrefix: 'ecs', logGroup }),
       environment: {
+        AUTH_MODE: "cognito",
         COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
         COGNITO_REGION: this.region,
       },

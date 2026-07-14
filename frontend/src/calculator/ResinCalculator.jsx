@@ -15,6 +15,7 @@ import {
   ZoomOut,
 } from "lucide-react";
 import AppHeader from "../AppHeader";
+import { buildAuthHeaders } from "../auth/authHeaders.js";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 import { parseProjectFileText } from "../workspace/projectFileParse.js";
@@ -2015,7 +2016,7 @@ export default forwardRef(function ResinCalculator(
     try {
       const response = await fetch(`${API_BASE_URL}/calculate`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: await buildAuthHeaders(),
         body: JSON.stringify({
           polygonPoints,
           referenceMeasurements,
@@ -2066,7 +2067,7 @@ export default forwardRef(function ResinCalculator(
     try {
       const response = await fetch(`${API_BASE_URL}/calculate-wood`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: await buildAuthHeaders(),
         body: JSON.stringify({
           imageWidth: image.width,
           imageHeight: image.height,
@@ -2145,7 +2146,7 @@ export default forwardRef(function ResinCalculator(
     try {
       const response = await fetch(`${API_BASE_URL}/calculate-pour-layers`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: await buildAuthHeaders(),
         body: JSON.stringify({
           mainDepthMm: mainDepth,
           maxPourThicknessMm: maxPourThickness,
@@ -2220,7 +2221,7 @@ export default forwardRef(function ResinCalculator(
     try {
       const response = await fetch(`${API_BASE_URL}/calculate-first-fill`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: await buildAuthHeaders(),
         body: JSON.stringify({ resinSurfaceAreaCm2, firstFillThicknessMm: firstFillThickness }),
       });
       const data = await response.json();

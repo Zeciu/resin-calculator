@@ -1,3 +1,6 @@
+import { isCognitoAuthMode } from "./authMode.js";
+import { cognitoAuthAdapter } from "./cognitoAuthAdapter.js";
+
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
 function readStoredSession() {
@@ -85,23 +88,29 @@ export const mockAuthAdapter = {
     return user;
   },
 
+  register(credentials = {}) {
+    return this.login(credentials);
+  },
+
+  confirmRegistration() {
+    return { confirmed: true };
+  },
+
+  initiatePasswordRecovery() {
+    return { codeSent: true };
+  },
+
+  confirmPasswordReset() {
+    return { completed: true };
+  },
+
   logout() {
     writeStoredSession(null);
   },
 };
 
-export const cognitoAuthAdapter = {
-  restoreSession() {
-    return null;
-  },
+export { cognitoAuthAdapter };
 
-  login() {
-    return Promise.reject(
-      new Error("Cognito authentication is not enabled in Phase 1"),
-    );
-  },
-
-  logout() {
-    // Stub only — Cognito wiring deferred to a later phase.
-  },
-};
+export function resolveAuthAdapter() {
+  return isCognitoAuthMode() ? cognitoAuthAdapter : mockAuthAdapter;
+}

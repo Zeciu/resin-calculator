@@ -2,7 +2,7 @@ import { buildAuthHeaders } from "../auth/authHeaders.js";
 
 const API_BASE_URL = "";
 
-export function adminHeaders(includeJsonContentType = true) {
+export async function adminHeaders(includeJsonContentType = true) {
   return buildAuthHeaders({ includeJsonContentType });
 }
 
@@ -29,7 +29,7 @@ export function createEditorialAdminClient(basePath) {
     const response = await fetch(`${API_BASE_URL}${basePath}${path}`, {
       ...options,
       headers: {
-        ...adminHeaders(),
+        ...(await adminHeaders()),
         ...options.headers,
       },
     });
@@ -51,7 +51,7 @@ export function createEditorialAdminClient(basePath) {
 
     const response = await fetch(`${API_BASE_URL}${basePath}/images`, {
       method: "POST",
-      headers: adminHeaders(false),
+      headers: await adminHeaders(false),
       body: formData,
     });
 
@@ -68,7 +68,7 @@ export function createEditorialAdminClient(basePath) {
 export async function searchEditorialReferences(query, locale = "en") {
   const params = new URLSearchParams({ q: query, locale });
   const response = await fetch(`${API_BASE_URL}/api/admin/references/search?${params.toString()}`, {
-    headers: adminHeaders(),
+    headers: await adminHeaders(),
   });
 
   if (!response.ok) {
