@@ -767,6 +767,8 @@ Task 2.1 ownership files were not modified.
 * mock authentication preserved for development and tests;
 * Task 2.1 ownership behavior reused unchanged.
 
+Backend authentication activation is controlled exclusively by `AUTH_MODE`. Incidental Cognito variables do not activate Cognito middleware in mock mode.
+
 ### Validation
 
 * Backend: 123 passed

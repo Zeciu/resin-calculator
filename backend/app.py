@@ -44,10 +44,11 @@ _COGNITO_ISSUER = (
 )
 _JWKS_CACHE: dict | None = None
 
-_AUTH_ENABLED = bool(_COGNITO_USER_POOL_ID and _COGNITO_REGION)
+_COGNITO_CONFIGURED = bool(_COGNITO_USER_POOL_ID and _COGNITO_REGION)
+_AUTH_ENABLED = auth_mode() == "cognito" and _COGNITO_CONFIGURED
 _UNPROTECTED_PATHS = {"/health", "/callback"}
 
-if auth_mode() == "cognito" and not _AUTH_ENABLED:
+if auth_mode() == "cognito" and not _COGNITO_CONFIGURED:
     raise RuntimeError(
         "AUTH_MODE=cognito requires COGNITO_USER_POOL_ID and COGNITO_REGION to be set."
     )
