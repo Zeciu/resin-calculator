@@ -9,6 +9,7 @@ import {
   upsertRecentProject,
 } from "./recentProjectsIndex.js";
 import {
+  ensureFileHandleReadPermission,
   getRecentProjectHandle,
   isFileSystemHandle,
   storeRecentProjectHandle,
@@ -61,8 +62,8 @@ export async function pickProjectFileWithHandle() {
 }
 
 export async function loadProjectFromFile(file, handle = null) {
-  const project = await parseProjectFile(file);
-  const entry = buildRecentProjectEntry(project, {
+  const parsed = await parseProjectFile(file);
+  const entry = buildRecentProjectEntry(parsed.envelope, {
     fileName: file.name,
   });
 
@@ -72,12 +73,12 @@ export async function loadProjectFromFile(file, handle = null) {
     await storeRecentProjectHandle(entry.id, handle);
   }
 
-  return { project, entry };
+  return { ...parsed, entry };
 }
 
 export async function loadProjectIntoRecentEntry(entry, file, handle = null) {
-  const project = await parseProjectFile(file);
-  const refreshedEntry = refreshRecentProjectOnOpen(entry.id, project, {
+  const parsed = await parseProjectFile(file);
+  const refreshedEntry = refreshRecentProjectOnOpen(entry.id, parsed.envelope, {
     fileName: file.name,
   });
 
@@ -85,7 +86,7 @@ export async function loadProjectIntoRecentEntry(entry, file, handle = null) {
     await storeRecentProjectHandle(entry.id, handle);
   }
 
-  return { project, entry: refreshedEntry };
+  return { ...parsed, entry: refreshedEntry };
 }
 
 export async function loadRecentProject(entry) {
@@ -97,12 +98,20 @@ export async function loadRecentProject(entry) {
     );
   }
 
+  const hasReadPermission = await ensureFileHandleReadPermission(handle);
+  if (!hasReadPermission) {
+    throw new RecentProjectUnavailableError(
+      entry,
+      "This recent project could not be opened. Please locate the project file manually.",
+    );
+  }
+
   try {
     const file = await handle.getFile();
-    const project = await parseProjectFile(file);
+    const parsed = await parseProjectFile(file);
     touchRecentProject(entry.id);
     await storeRecentProjectHandle(entry.id, handle);
-    return { project, entry };
+    return { ...parsed, entry };
   } catch (error) {
     if (error instanceof ProjectFileParseError) {
       throw error;

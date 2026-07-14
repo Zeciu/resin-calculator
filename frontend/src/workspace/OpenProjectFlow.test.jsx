@@ -9,24 +9,7 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
-const PROJECT_PAYLOAD = {
-  projectName: "River Table",
-  savedAt: "2026-01-01T12:00:00.000Z",
-  image: { dataUrl: TINY_PNG },
-  calibration: {
-    referenceMeasurements: [
-      {
-        knownLengthCm: 10,
-        calibrationPoints: [
-          { x: 0, y: 0 },
-          { x: 10, y: 0 },
-        ],
-      },
-    ],
-  },
-  ui: { calculationMode: "wood", selectedMode: "wood" },
-  woodBoundaryMode: { woodBoundaryPolygons: [] },
-};
+import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 
 HTMLCanvasElement.prototype.getContext = () => ({
   clearRect: () => {},
@@ -113,9 +96,13 @@ describe("Open Project flow", () => {
     const { router } = renderWorkspace("/projects");
 
     const input = document.querySelector("input[type='file']");
-    const file = new File([JSON.stringify(PROJECT_PAYLOAD)], "river-table.hfzproject", {
-      type: "application/json",
-    });
+    const file = new File(
+      [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT })],
+      "river-table.hfzproject",
+      {
+        type: "application/json",
+      },
+    );
 
     await user.upload(input, file);
 

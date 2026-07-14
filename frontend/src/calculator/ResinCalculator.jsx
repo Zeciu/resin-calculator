@@ -1614,8 +1614,8 @@ export default forwardRef(function ResinCalculator(
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const project = parseProjectFileText(reader.result);
-        restoreImportedProject(project);
+        const parsed = parseProjectFileText(reader.result);
+        restoreImportedProject(parsed.snapshot);
       } catch (err) {
         setError(err.message || "Invalid project file.");
       } finally {

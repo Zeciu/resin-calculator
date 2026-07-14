@@ -9,41 +9,14 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
-const PROJECT_PAYLOAD = {
-  projectName: "River Table",
-  savedAt: "2026-01-01T12:00:00.000Z",
-  image: { dataUrl: TINY_PNG },
-  calibration: {
-    referenceMeasurements: [
-      {
-        knownLengthCm: 10,
-        calibrationPoints: [
-          { x: 0, y: 0 },
-          { x: 10, y: 0 },
-        ],
-      },
-    ],
-  },
-  ui: { calculationMode: "wood", selectedMode: "wood" },
-  woodBoundaryMode: { woodBoundaryPolygons: [] },
-  projectNotes: "Original notes",
-};
+import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
+import { parseProjectFileText } from "./projectFileParse.js";
 
-const EXISTING_LIFECYCLE = {
-  projectMetadata: {
-    projectId: "project-1",
-    ownerId: "stub-user",
-    primaryImageHash: "hash-1",
-    createdAt: "2026-01-01T00:00:00.000Z",
-    versionId: "version-1",
-    parentVersionId: null,
-    ancestorVersionIds: [],
-    lastModifiedAt: "2026-01-01T00:00:00.000Z",
-    metadataModifiedAt: null,
-    structuralCapabilitySnapshot: null,
-  },
-  persistence: { status: "persisted" },
-};
+const OPEN_PARSED = parseProjectFileText(
+  buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT }),
+);
+
+const EXISTING_LIFECYCLE = OPEN_PARSED.persistedLifecycle;
 
 const updateProjectFileMock = vi.fn();
 const getRecentProjectHandleMock = vi.fn();
@@ -186,7 +159,7 @@ describe("NewProjectWorkspace persisted lifecycle", () => {
 
     await router.navigate(ROUTES.NEW_PROJECT, {
       state: {
-        pendingProjectRestore: PROJECT_PAYLOAD,
+        pendingProjectRestore: OPEN_PARSED.snapshot,
         openContext: {
           recentEntryId: "recent-1",
           projectName: "River Table",
@@ -222,7 +195,7 @@ describe("NewProjectWorkspace persisted lifecycle", () => {
 
     await router.navigate(ROUTES.NEW_PROJECT, {
       state: {
-        pendingProjectRestore: PROJECT_PAYLOAD,
+        pendingProjectRestore: OPEN_PARSED.snapshot,
         openContext: {
           recentEntryId: "recent-1",
           projectName: "River Table",

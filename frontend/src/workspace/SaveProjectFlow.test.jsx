@@ -13,24 +13,7 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
-const IMPORT_PROJECT = {
-  appVersion: "1",
-  image: { dataUrl: TINY_PNG },
-  calibration: {
-    referenceMeasurements: [
-      {
-        knownLengthCm: 10,
-        calibrationPoints: [
-          { x: 0, y: 0 },
-          { x: 10, y: 0 },
-        ],
-      },
-    ],
-  },
-  ui: { calculationMode: "wood", selectedMode: "wood" },
-  woodBoundaryMode: { woodBoundaryPolygons: [] },
-  projectNotes: "Imported notes",
-};
+import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 
 const saveProjectFileMock = vi.fn();
 
@@ -104,9 +87,13 @@ async function importProjectWithWork(user) {
   const input = document.querySelector(
     `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
   );
-  const file = new File([JSON.stringify(IMPORT_PROJECT)], "project.json", {
-    type: "application/json",
-  });
+  const file = new File(
+    [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT, projectName: "Imported" })],
+    "project.hfzproject",
+    {
+      type: "application/json",
+    },
+  );
   await user.upload(input, file);
   await waitFor(() => {
     expect(screen.getByText(/Photo uploaded/i)).toBeInTheDocument();

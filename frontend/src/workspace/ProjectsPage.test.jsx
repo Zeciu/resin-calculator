@@ -40,8 +40,8 @@ import {
 } from "./projectFileOpen.js";
 import { upsertRecentProject, buildRecentProjectEntry } from "./recentProjectsIndex.js";
 
-const TINY_PNG =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
+import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
+import { TINY_PNG } from "../project/canonicalProjectV2.test.js";
 
 function renderProjectsPage() {
   return render(
@@ -92,10 +92,12 @@ describe("ProjectsPage", () => {
   it("opens a selected project in the Application Workspace", async () => {
     const user = userEvent.setup();
     loadProjectFromFile.mockResolvedValue({
-      project: {
-        projectName: "River Table",
-        image: { dataUrl: TINY_PNG },
+      snapshot: { image: { dataUrl: TINY_PNG } },
+      persistedLifecycle: {
+        projectMetadata: { projectId: "project-1", versionId: "version-1" },
+        persistence: { status: "persisted" },
       },
+      envelope: buildPersistedV2OpenEnvelope(),
       entry: {
         id: "recent-1",
         projectName: "River Table",
@@ -116,11 +118,14 @@ describe("ProjectsPage", () => {
     expect(navigateMock).toHaveBeenCalledWith(ROUTES.NEW_PROJECT, {
       state: {
         pendingProjectRestore: expect.objectContaining({
-          projectName: "River Table",
+          image: expect.objectContaining({ dataUrl: TINY_PNG }),
         }),
         openContext: expect.objectContaining({
           recentEntryId: "recent-1",
           projectName: "River Table",
+          persistedLifecycle: expect.objectContaining({
+            projectMetadata: expect.objectContaining({ projectId: "project-1" }),
+          }),
         }),
       },
     });
@@ -129,10 +134,9 @@ describe("ProjectsPage", () => {
   it("shows a locate action when a recent project is unavailable", async () => {
     const user = userEvent.setup();
     const entry = upsertRecentProject(
-      buildRecentProjectEntry(
-        { projectName: "River Table", image: { dataUrl: TINY_PNG } },
-        { fileName: "river-table.hfzproject" },
-      ),
+      buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+        fileName: "river-table.hfzproject",
+      }),
     )[0];
 
     loadRecentProject.mockRejectedValue(
@@ -149,10 +153,9 @@ describe("ProjectsPage", () => {
   it("rebinds the unavailable recent entry when locating the project file", async () => {
     const user = userEvent.setup();
     const entry = upsertRecentProject(
-      buildRecentProjectEntry(
-        { projectName: "River Table", image: { dataUrl: TINY_PNG } },
-        { fileName: "river-table.hfzproject" },
-      ),
+      buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+        fileName: "river-table.hfzproject",
+      }),
     )[0];
 
     loadRecentProject.mockRejectedValue(
@@ -168,7 +171,12 @@ describe("ProjectsPage", () => {
       handle: { getFile: vi.fn() },
     });
     loadProjectIntoRecentEntry.mockResolvedValue({
-      project: { projectName: "River Table", image: { dataUrl: TINY_PNG } },
+      snapshot: { image: { dataUrl: TINY_PNG } },
+      persistedLifecycle: {
+        projectMetadata: { projectId: "project-1" },
+        persistence: { status: "persisted" },
+      },
+      envelope: buildPersistedV2OpenEnvelope(),
       entry,
     });
 

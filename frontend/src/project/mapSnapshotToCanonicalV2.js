@@ -14,8 +14,8 @@ import {
 
 /**
  * Pure mapping from the current calculator snapshot shape to the canonical v2 envelope.
- * Used at Save time by `buildPersistableCanonicalV2.js`. Canonical v2 Open restore
- * remains deferred to Block 1 Checkpoint C.
+ * Used at Save time by `buildPersistableCanonicalV2.js` and restored at Open time
+ * through `mapCanonicalV2ToCalculatorSnapshot.js`.
  *
  * @param {Record<string, unknown> | null | undefined} snapshot
  * @param {MapSnapshotToCanonicalV2Options} [options]

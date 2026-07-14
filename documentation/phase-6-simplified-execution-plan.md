@@ -299,36 +299,9 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-No new product implementation begins yet.
+**Block 2 — Production Identity, Ownership, and Commercial Access**
 
-The immediate next action is:
-
-**Focused M1.1–M1.2 Code Audit**
-
-The audit will inspect the actual implemented code and determine:
-
-* total production code added;
-* total test code added;
-* what is actively used by current runtime behavior;
-* what is required for imminent `.hfzproject` v2 Save/Open;
-* what exists only for justified future cloud preparation;
-* what, if anything, is unused, unnecessarily abstract, duplicated, or disproportionate;
-* whether M1.1 and M1.2 should be retained unchanged, simplified, partially removed, or integrated differently.
-
-The audit must be evidence-based.
-
-It must not assume that code is justified merely because tests pass.
-
-It must also not assume that code is unnecessary merely because it prepares a future requirement.
-
-After the audit, a clear decision will be recorded for every relevant M1.1–M1.2 production component:
-
-* **Retain unchanged**
-* **Simplify**
-* **Remove**
-* **Integrate into immediate v2 Save/Open work**
-
-Only after this audit is reviewed and approved will Block 1 continue.
+See §201 for scope. Block 1 canonical v2 Save/Open cutover is complete (§12).
 
 ---
 
@@ -603,4 +576,38 @@ The governing implementation rule is:
 
 ### Next step
 
-**Checkpoint C — Canonical v2 Open and round-trip** (v2 restore, v1 rejection on Open, full Save → Open → Update → Open integrity).
+**Checkpoint C — Canonical v2 Open and round-trip** (completed; see §12).
+
+---
+
+## 12. Block 1 Checkpoint C and Block 1 Closure
+
+**Block 1 status:** CLOSED (approved Keep All)
+
+**Checkpoint C status:** CLOSED (approved Keep All)
+
+### Delivered
+
+* **Canonical v2 Open:** strict v2-only parse via shared `projectFileParse.js`; identity validation; v1 flat payloads rejected with `unsupported format version`.
+* **Reverse mapping:** `mapCanonicalV2ToCalculatorSnapshot.js` restores calculator snapshot (session zoom omitted).
+* **Persisted lifecycle restoration:** Open returns `persistedLifecycle` for workspace adoption on Update Existing Project.
+* **Direct Open and Recent Projects:** Projects hub, locate/rebind, and in-workspace import use the shared parser; Recent Projects read-permission handling via `ensureFileHandleReadPermission` before `getFile()`.
+* **Round-trip integrity:** Save → Open → Update → Open verified by automated tests and Product Owner manual QA.
+
+### Product Owner manual QA
+
+Passed: v2 Save, direct Open, Update Existing Project, round-trip data preservation, v1 rejection, Recent Projects metadata, Recent Projects direct-open after permission fix, in-app unsaved-changes protection.
+
+### Validation
+
+* Backend: 115 passed
+* Frontend: 406 passed (57 files)
+* Frontend production build: success
+
+### Implementation commit
+
+*(recorded after commit)*
+
+### Next step
+
+**Block 2 — Production Identity, Ownership, and Commercial Access** (production authentication, Project ownership, capability enforcement, subscription foundations).

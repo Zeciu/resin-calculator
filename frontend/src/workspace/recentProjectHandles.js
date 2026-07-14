@@ -27,6 +27,39 @@ export function isFileSystemHandle(handle) {
   return Boolean(handle && typeof handle.getFile === "function");
 }
 
+/**
+ * Ensures read permission on a stored File System Access handle before getFile().
+ * When permission APIs are unavailable, returns true so existing getFile behavior is preserved.
+ *
+ * @param {unknown} handle
+ * @returns {Promise<boolean>}
+ */
+export async function ensureFileHandleReadPermission(handle) {
+  if (!isFileSystemHandle(handle)) {
+    return false;
+  }
+
+  if (typeof handle.queryPermission !== "function") {
+    return true;
+  }
+
+  try {
+    const current = await handle.queryPermission({ mode: "read" });
+    if (current === "granted") {
+      return true;
+    }
+
+    if (typeof handle.requestPermission !== "function") {
+      return false;
+    }
+
+    const requested = await handle.requestPermission({ mode: "read" });
+    return requested === "granted";
+  } catch {
+    return false;
+  }
+}
+
 export async function storeRecentProjectHandle(entryId, handle) {
   if (!entryId || !isFileSystemHandle(handle)) {
     return;

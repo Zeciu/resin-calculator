@@ -14,25 +14,9 @@ const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
 
-const PROJECT_PAYLOAD = {
-  projectName: "River Table",
-  savedAt: "2026-01-01T12:00:00.000Z",
-  image: { dataUrl: TINY_PNG },
-  calibration: {
-    referenceMeasurements: [
-      {
-        knownLengthCm: 10,
-        calibrationPoints: [
-          { x: 0, y: 0 },
-          { x: 10, y: 0 },
-        ],
-      },
-    ],
-  },
-  ui: { calculationMode: "wood", selectedMode: "wood" },
-  woodBoundaryMode: { woodBoundaryPolygons: [] },
-  projectNotes: "Original notes",
-};
+import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
+import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
+import { parseProjectFileText } from "./projectFileParse.js";
 
 const saveProjectFileMock = vi.fn();
 const updateProjectFileMock = vi.fn();
@@ -158,9 +142,12 @@ describe("Update existing project flow", () => {
     });
 
     recentEntry = upsertRecentProject(
-      buildRecentProjectEntry(PROJECT_PAYLOAD, {
-        fileName: "river-table.hfzproject",
-      }),
+      buildRecentProjectEntry(
+        buildPersistedV2OpenEnvelope({ snapshot: VALID_CALCULATOR_SNAPSHOT }),
+        {
+          fileName: "river-table.hfzproject",
+        },
+      ),
     )[0];
   });
 
@@ -170,13 +157,18 @@ describe("Update existing project flow", () => {
   });
 
   async function openRestoredProject(router) {
+    const parsed = parseProjectFileText(
+      buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT }),
+    );
+
     await router.navigate(ROUTES.NEW_PROJECT, {
       state: {
-        pendingProjectRestore: PROJECT_PAYLOAD,
+        pendingProjectRestore: parsed.snapshot,
         openContext: {
           recentEntryId: recentEntry.id,
           projectName: recentEntry.projectName,
           lastKnownFileName: recentEntry.lastKnownFileName,
+          persistedLifecycle: parsed.persistedLifecycle,
         },
       },
     });

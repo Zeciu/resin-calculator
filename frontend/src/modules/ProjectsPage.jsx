@@ -74,15 +74,16 @@ export default function ProjectsPage() {
   }, [refreshRecentProjects]);
 
   const openProjectInWorkspace = useCallback(
-    (project, entry) => {
+    (parsed, entry) => {
       navigate(ROUTES.NEW_PROJECT, {
         state: {
-          pendingProjectRestore: project,
+          pendingProjectRestore: parsed.snapshot,
           openContext: entry
             ? {
                 recentEntryId: entry.id,
                 projectName: entry.projectName,
                 lastKnownFileName: entry.lastKnownFileName,
+                persistedLifecycle: parsed.persistedLifecycle,
               }
             : null,
         },
@@ -98,9 +99,9 @@ export default function ProjectsPage() {
       setUnavailableEntry(null);
 
       try {
-        const { project, entry } = await loader();
+        const loaded = await loader();
         refreshRecentProjects();
-        openProjectInWorkspace(project, entry);
+        openProjectInWorkspace(loaded, loaded.entry);
       } catch (loadError) {
         if (loadError instanceof RecentProjectUnavailableError) {
           setUnavailableEntry(loadError.entry);

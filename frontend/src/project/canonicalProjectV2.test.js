@@ -73,6 +73,38 @@ export function buildCanonicalV2TestFixture(overrides = {}) {
   };
 }
 
+/**
+ * @param {{
+ *   snapshot?: Record<string, unknown>;
+ *   projectName?: string;
+ *   identity?: Record<string, unknown>;
+ * }} [options]
+ */
+export function buildPersistedV2OpenEnvelope(options = {}) {
+  const snapshot = options.snapshot ?? SAMPLE_CALCULATOR_SNAPSHOT;
+  const projectName = options.projectName ?? "River Table";
+
+  return mapCalculatorSnapshotToCanonicalV2(snapshot, {
+    projectName,
+    lifecycle: {
+      projectMetadata: {
+        projectId: "project-1",
+        ownerId: "owner-1",
+        primaryImageHash: "hash-1",
+        createdAt: "2026-01-01T00:00:00.000Z",
+        versionId: "version-1",
+        lastModifiedAt: "2026-01-01T12:00:00.000Z",
+        parentVersionId: null,
+        ancestorVersionIds: [],
+        metadataModifiedAt: null,
+        structuralCapabilitySnapshot: null,
+        ...(options.identity ?? {}),
+      },
+      persistence: { status: "persisted" },
+    },
+  });
+}
+
 describe("canonicalProjectV2", () => {
   it("creates an empty canonical v2 envelope", () => {
     const envelope = createEmptyCanonicalProjectV2();
