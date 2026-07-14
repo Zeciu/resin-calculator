@@ -606,7 +606,7 @@ Passed: v2 Save, direct Open, Update Existing Project, round-trip data preservat
 
 ### Implementation commit
 
-*(recorded after commit)*
+`1610c79`
 
 ### Next step
 
