@@ -9,6 +9,7 @@ import {
   canUpdateCurrentProjectInPlace,
   createNewCurrentProject,
   createOpenedCurrentProject,
+  CURRENT_PROJECT_KIND,
 } from "./currentProject.js";
 import {
   assertCurrentProjectWritable,
@@ -30,6 +31,7 @@ import {
 } from "./projectFileOpen.js";
 import { areProjectSnapshotsEqual } from "./projectSnapshotCompare.js";
 import { ROUTES } from "./routes.js";
+import { useCapabilities } from "../capabilities/CapabilitiesContext.jsx";
 
 export default function NewProjectWorkspace() {
   const navigate = useNavigate();
@@ -44,6 +46,9 @@ export default function NewProjectWorkspace() {
   const [saveError, setSaveError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [pendingProjectRestore, setPendingProjectRestore] = useState(null);
+  const [calculatorSessionEstablished, setCalculatorSessionEstablished] = useState(
+    () => currentProject.kind === CURRENT_PROJECT_KIND.OPENED,
+  );
   const [baselineCaptureKey, setBaselineCaptureKey] = useState(0);
   const isProjectDirtyRef = useRef(isProjectDirty);
   const baselineSnapshotRef = useRef(null);
@@ -86,6 +91,7 @@ export default function NewProjectWorkspace() {
   );
 
   const handleProjectRestored = useCallback(async () => {
+    setCalculatorSessionEstablished(true);
     const openContext = pendingOpenContextRef.current;
 
     if (openContext?.persistedLifecycle) {
@@ -270,6 +276,7 @@ export default function NewProjectWorkspace() {
     baselineSnapshotRef.current = null;
     pendingOpenContextRef.current = null;
     setCurrentProject(createNewCurrentProject());
+    setCalculatorSessionEstablished(false);
     isProjectDirtyRef.current = false;
     setIsProjectDirty(false);
     setCalculatorSessionKey((key) => key + 1);
@@ -357,6 +364,14 @@ export default function NewProjectWorkspace() {
   }, []);
 
   const isReadOnlyProject = isCurrentProjectReadOnly(currentProject);
+  const { isLoading: capabilitiesLoading } = useCapabilities();
+  const requiresCapabilityInitialization =
+    currentProject.kind === CURRENT_PROJECT_KIND.NEW &&
+    !calculatorSessionEstablished &&
+    !pendingProjectRestore &&
+    !isReadOnlyProject;
+  const enforceAccountCapabilities =
+    requiresCapabilityInitialization && !capabilitiesLoading;
 
   return (
     <div className="new-project-workspace">
@@ -371,16 +386,23 @@ export default function NewProjectWorkspace() {
           {saveError}
         </p>
       ) : null}
+      {requiresCapabilityInitialization && capabilitiesLoading ? (
+        <p className="new-project-workspace__status" role="status">
+          Loading workspace...
+        </p>
+      ) : (
       <ResinCalculator
         ref={calculatorRef}
         key={calculatorSessionKey}
         showHeader={false}
         workspaceVariant="dedicated"
         readOnly={isReadOnlyProject}
+        enforceAccountCapabilities={enforceAccountCapabilities}
         onDirtyChange={handleDirtyChange}
         onProjectRestored={handleProjectRestored}
         onSaveProjectRequest={handleCalculatorSaveProjectRequest}
       />
+      )}
       {showUnsavedDialog ? (
         <UnsavedChangesDialog
           onSaveProject={() => {

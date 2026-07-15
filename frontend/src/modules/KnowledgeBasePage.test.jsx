@@ -2,6 +2,7 @@ import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
+import { FREE_CAPABILITIES } from "../capabilities/capabilityDefaults.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -58,6 +59,34 @@ describe("KnowledgeBasePage", () => {
     expect(screen.getByRole("searchbox", { name: "Search knowledge base" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Bubbles after curing" })).toBeInTheDocument();
     expect(screen.queryByText(/Coming in a future phase/i)).not.toBeInTheDocument();
+  });
+
+  it("limits visible articles for free accounts", async () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    expect(screen.getByRole("button", { name: "Sanding scratches visible through finish" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Pour overheating" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows unlimited articles for subscriber accounts", async () => {
+    seedAuthenticatedSession();
+    mockPublishedKnowledgeBaseFetch(undefined, {
+      role: "user",
+      accessTier: "subscriber",
+      catalogVersion: 1,
+      capabilities: {
+        ...FREE_CAPABILITIES,
+        "knowledgeBase.maxArticles": null,
+      },
+    });
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    expect(screen.getByRole("button", { name: "Pour overheating" })).toBeInTheDocument();
   });
 
   it("filters entries immediately from the search field", async () => {
@@ -117,6 +146,15 @@ describe("KnowledgeBasePage", () => {
 
   it("renders optional image and video media inside expanded entries", async () => {
     seedAuthenticatedSession();
+    mockPublishedKnowledgeBaseFetch(undefined, {
+      role: "user",
+      accessTier: "subscriber",
+      catalogVersion: 1,
+      capabilities: {
+        ...FREE_CAPABILITIES,
+        "knowledgeBase.maxArticles": null,
+      },
+    });
     const user = userEvent.setup();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
     await waitForKnowledgeBaseReady();

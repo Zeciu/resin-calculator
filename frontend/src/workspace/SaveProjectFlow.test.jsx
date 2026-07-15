@@ -84,9 +84,13 @@ function seedAuthenticatedSession() {
 }
 
 async function importProjectWithWork(user) {
-  const input = document.querySelector(
-    `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
-  );
+  let input;
+  await waitFor(() => {
+    input = document.querySelector(
+      `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
+    );
+    expect(input).toBeTruthy();
+  });
   const file = new File(
     [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT, projectName: "Imported" })],
     "project.hfzproject",

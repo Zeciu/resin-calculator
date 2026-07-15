@@ -19,6 +19,11 @@ import { buildAuthHeaders } from "../auth/authHeaders.js";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 import { parseProjectFileText } from "../workspace/projectFileParse.js";
+import {
+  canAddPolygonPoint,
+  polygonPointLimitMessage,
+} from "./calculatorCapabilityPolicy.js";
+import { useCalculatorCapabilityEnforcement } from "./useCalculatorCapabilityEnforcement.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -574,6 +579,7 @@ export default forwardRef(function ResinCalculator(
     showHeader = true,
     workspaceVariant,
     readOnly = false,
+    enforceAccountCapabilities = false,
     onDirtyChange,
     onProjectRestored,
     onSaveProjectRequest,
@@ -599,6 +605,8 @@ export default forwardRef(function ResinCalculator(
   const maxPourThicknessInputRef = useRef(null);
   const firstFillThicknessInputRef = useRef(null);
   const displayUnits = useCalculatorDisplayUnits();
+  const { maxPolygonPoints, layerCalculation, pdfExport, advancedReports } =
+    useCalculatorCapabilityEnforcement(enforceAccountCapabilities);
 
   const [calculationMode, setCalculationMode] = useState("wood");
   const [mode, setMode] = useState("reference");
@@ -1387,24 +1395,40 @@ export default forwardRef(function ResinCalculator(
     }
 
     if (calculationMode === "standard" && mode === "polygon") {
+      if (!canAddPolygonPoint(polygonPoints.length, maxPolygonPoints)) {
+        setError(polygonPointLimitMessage(maxPolygonPoints, "standard"));
+        return;
+      }
       setPolygonPoints((prev) => [...prev, point]);
       markResultOutdated();
       return;
     }
 
     if (calculationMode === "wood" && mode === "mold") {
+      if (!canAddPolygonPoint(moldBoundaryPoints.length, maxPolygonPoints)) {
+        setError(polygonPointLimitMessage(maxPolygonPoints, "mold"));
+        return;
+      }
       setMoldBoundaryPoints((prev) => [...prev, point]);
       markResultOutdated();
       return;
     }
 
     if (calculationMode === "wood" && mode === "wood") {
+      if (!canAddPolygonPoint(woodBoundaryPoints.length, maxPolygonPoints)) {
+        setError(polygonPointLimitMessage(maxPolygonPoints, "wood"));
+        return;
+      }
       setWoodBoundaryPoints((prev) => [...prev, point]);
       markResultOutdated();
       return;
     }
 
     if (calculationMode === "wood" && mode === "cavity") {
+      if (!canAddPolygonPoint(currentCavityPoints.length, maxPolygonPoints)) {
+        setError(polygonPointLimitMessage(maxPolygonPoints, "cavity"));
+        return;
+      }
       setCurrentCavityPoints((prev) => [...prev, point]);
       markResultOutdated();
     }
@@ -1752,6 +1776,10 @@ export default forwardRef(function ResinCalculator(
       setError("Calculate results before exporting a PDF.");
       return;
     }
+    if (!pdfExport) {
+      setError("PDF export is not available for new projects on this account.");
+      return;
+    }
 
     const canvas = canvasRef.current;
     if (!canvas) {
@@ -1886,7 +1914,7 @@ export default forwardRef(function ResinCalculator(
         `${formatNumber(result.mainVolumeLiters, 3)} L`
       );
 
-      if (firstFillVolumeLiters != null) {
+      if (advancedReports && firstFillVolumeLiters != null) {
         const selectedFirstFillOption = getFirstFillRecommendationOption(
           firstFillRecommendationMode
         );
@@ -1909,7 +1937,7 @@ export default forwardRef(function ResinCalculator(
         );
       }
 
-      if (pourPlanRows.length > 0) {
+      if (advancedReports && pourPlanRows.length > 0) {
         addSectionTitle("Pour Layer Planning");
         addLine("Maximum pour thickness", `${formatNumber(maxPourThicknessMm, 2)} mm`);
         addLine("Resin mix ratio (A:B)", getMixRatioOption(resinMixRatio).label);
@@ -2107,6 +2135,12 @@ export default forwardRef(function ResinCalculator(
 
   const calculatePourLayers = async () => {
     if (isReadOnly) return;
+    if (!layerCalculation) {
+      setRecommendedLayerCount(null);
+      setPourPlanRows([]);
+      setLayerPlanningError("Pour layer planning is not available for new projects on this account.");
+      return;
+    }
     const mainDepth = parseFloat(mainDepthInputRef.current?.value ?? depthMm);
     const maxPourThickness = parseFloat(maxPourThicknessInputRef.current?.value ?? maxPourThicknessMm);
     const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
@@ -2199,6 +2233,12 @@ export default forwardRef(function ResinCalculator(
 
   const calculateFirstFillVolume = async () => {
     if (isReadOnly) return;
+    if (!layerCalculation) {
+      setFirstFillVolumeLiters(null);
+      setRecommendedFirstFillVolumeLiters(null);
+      setFirstFillError("First fill planning is not available for new projects on this account.");
+      return;
+    }
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
     const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
     const firstFillThickness = parseFloat(firstFillThicknessValue);
@@ -3379,6 +3419,8 @@ export default forwardRef(function ResinCalculator(
               <h3>Optional Pour Planning Tools</h3>
               <p>Use these planning aids when helpful. They do not change the resin volume calculation.</p>
             </div>
+            {layerCalculation ? (
+              <>
             <div className="pour-layer-planning-row">
               <div className="pour-layer-planning-controls">
                 <h3 className="planning-tool-title">First Fill Seal Coat Calculator</h3>
@@ -3579,6 +3621,12 @@ export default forwardRef(function ResinCalculator(
                 </div>
               </aside>
             </div>
+              </>
+            ) : (
+              <p className="pour-layer-validation">
+                Pour layer planning is not available for new projects on this account.
+              </p>
+            )}
           </section>
 
           <details className="detailed-breakdown">
@@ -3647,7 +3695,7 @@ export default forwardRef(function ResinCalculator(
           <button
             className="project-action-button"
             onClick={exportPdf}
-            disabled={!result}
+            disabled={!result || !pdfExport}
           >
             <FileText size={15} aria-hidden="true" />
             Export PDF

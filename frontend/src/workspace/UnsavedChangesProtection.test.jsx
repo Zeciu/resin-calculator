@@ -68,7 +68,11 @@ function installImageMock() {
 
 async function uploadPhoto(user) {
   const restoreImage = installImageMock();
-  const input = document.querySelector("input[type='file'][accept='image/*']");
+  let input;
+  await waitFor(() => {
+    input = document.querySelector("input[type='file'][accept='image/*']");
+    expect(input).toBeTruthy();
+  });
   const file = new File(["pixels"], "photo.png", { type: "image/png" });
   await user.upload(input, file);
   await waitFor(() => {
@@ -79,9 +83,13 @@ async function uploadPhoto(user) {
 
 async function importProjectWithWork(user) {
   const restoreImage = installImageMock();
-  const input = document.querySelector(
-    `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
-  );
+  let input;
+  await waitFor(() => {
+    input = document.querySelector(
+      `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
+    );
+    expect(input).toBeTruthy();
+  });
   const file = new File(
     [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT })],
     "project.hfzproject",

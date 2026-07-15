@@ -2,6 +2,7 @@ import { vi } from "vitest";
 import { KNOWLEDGE_BASE_ENTRIES } from "./knowledgeBaseContent.js";
 import { buildPublishedManualResponse } from "../manual/manualTestHelpers.js";
 import { buildPublishedGlossaryResponse } from "../glossary/glossaryTestHelpers.js";
+import { FREE_CAPABILITIES } from "../capabilities/capabilityDefaults.js";
 
 export function buildPublishedKnowledgeBaseResponse(entries = KNOWLEDGE_BASE_ENTRIES) {
   return {
@@ -34,9 +35,24 @@ export function buildPublishedKnowledgeBaseResponse(entries = KNOWLEDGE_BASE_ENT
   };
 }
 
-export function mockPublishedKnowledgeBaseFetch(entries = KNOWLEDGE_BASE_ENTRIES) {
+export function mockPublishedKnowledgeBaseFetch(
+  entries = KNOWLEDGE_BASE_ENTRIES,
+  capabilities = null,
+) {
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
+    if (requestUrl.includes("/api/me/capabilities")) {
+      return {
+        ok: true,
+        json: async () =>
+          capabilities ?? {
+            role: "user",
+            accessTier: "free",
+            catalogVersion: 1,
+            capabilities: FREE_CAPABILITIES,
+          },
+      };
+    }
     if (requestUrl.includes("/api/content/knowledge-base")) {
       return {
         ok: true,

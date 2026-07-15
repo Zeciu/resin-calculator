@@ -299,9 +299,9 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Block 2 — Production Identity, Ownership, and Commercial Access**
+**Block 3 — Complete the Local Workspace Experience**
 
-See §201 for scope. Block 1 canonical v2 Save/Open cutover is complete (§12).
+Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). See §217 for Block 3 scope.
 
 ---
 
@@ -629,7 +629,7 @@ Block 2 will therefore use the smallest implementation sequence:
 
 1. **Task 2.1 — Local Project Ownership Enforcement** — CLOSED (see §14)
 2. **Task 2.2 — Production Cognito Authentication** — CLOSED (see §15)
-3. **Task 2.3 — Product Capability Enforcement**
+3. **Task 2.3 — Product Capability Enforcement** — CLOSED (see §16)
 
 ### Task 2.1 — Ownership rule
 
@@ -813,3 +813,56 @@ Task 2.2 did not implement:
 ### Next task
 
 **Task 2.3 — Product Capability Enforcement**
+
+---
+
+## 16. Block 2 Task 2.3 — Product Capability Enforcement
+
+**Task 2.3 status:** CLOSED — implementation, Product Owner manual QA, and automated validation complete
+
+### Product rules enforced
+
+**New Projects:** all genuinely new Projects use the existing Wood Boundary workflow (References → Mold → Wood → Cavities → Calculate). `calculator.formworkMode` does not switch calculation mode.
+
+**Free-tier polygon limit:** `calculator.maxPolygonPoints` (4) applies independently to each Mold boundary, Wood island, and Cavity polygon. Reference measurements remain unlimited. Multiple Wood islands and Cavities remain allowed.
+
+**Existing Project continuity:** valid owned Projects retain the functional capabilities with which they were legitimately created and saved. Later subscription downgrade does not retroactively restrict existing owned premium Projects.
+
+**Premium tools (new free Projects only):** layer calculation, first-fill/pour planning, PDF export, and advanced reports are restricted according to current capabilities.
+
+**Knowledge Base:** free users see up to `knowledgeBase.maxArticles`; subscriber/administrator users see unlimited entries (frontend enforcement; published API remains public).
+
+**Not enforced:** `tutorial.maxVideos`, `projects.maxSavedProjects` through Recent Projects.
+
+**Unchanged:** Task 2.1 foreign-owned read-only behavior; Manual, embedded tutorial videos, and Glossary full access.
+
+### Delivered
+
+* session-type distinction via `enforceAccountCapabilities` (new vs established vs read-only);
+* capability-loading gate before new-session enforcement;
+* per-polygon point guards and user feedback in the Wood Boundary workflow;
+* premium-tool restrictions for genuinely new free Projects;
+* Knowledge Base article slicing;
+* policy modules: `calculatorCapabilityPolicy`, `useCalculatorCapabilityEnforcement`, `knowledgeBaseCapabilityPolicy`;
+* focused capability and workflow tests.
+
+### Intentional deferrals
+
+No backend blanket calculator capability guards (would break existing owned premium Project continuity without trusted Project-history machinery). No Stripe, DynamoDB entitlements, `structuralCapabilitySnapshot`, cloud persistence, DRM, or billing UI.
+
+### Validation
+
+* Backend: 130 passed
+* Frontend: 522 passed (69 files)
+* Production Cognito build: passed
+* Product Owner manual QA: passed
+
+Task 2.2 live AWS Cognito E2E validation remains a release-certification requirement (unchanged).
+
+### Implementation commit
+
+`f42901a`
+
+### Next step
+
+**Block 3 — Complete the Local Workspace Experience** (see §217).

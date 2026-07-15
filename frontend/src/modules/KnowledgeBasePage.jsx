@@ -10,6 +10,9 @@ import {
 import ContentUnavailableMessage from "../content/ContentUnavailableMessage.jsx";
 import { usePublishedContent } from "../content/usePublishedContent.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
+import { useCapabilityLimit } from "../capabilities/CapabilitiesContext.jsx";
+import { CAPABILITY_KEYS } from "../capabilities/capabilityKeys.js";
+import { limitKnowledgeBaseEntries } from "../capabilities/knowledgeBaseCapabilityPolicy.js";
 
 export default function KnowledgeBasePage() {
   const scrollContainerRef = useRef(null);
@@ -18,7 +21,11 @@ export default function KnowledgeBasePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
   const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedKnowledgeBase);
-  const entries = payload?.entries ?? [];
+  const maxArticles = useCapabilityLimit(CAPABILITY_KEYS.KNOWLEDGE_BASE_MAX_ARTICLES);
+  const entries = useMemo(
+    () => limitKnowledgeBaseEntries(payload?.entries ?? [], maxArticles),
+    [payload?.entries, maxArticles],
+  );
 
   const filteredEntries = useMemo(
     () => filterKnowledgeBaseEntries(entries, searchQuery),
