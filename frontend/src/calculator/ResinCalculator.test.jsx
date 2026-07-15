@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { createRef } from "react";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 import ResinCalculator from "./ResinCalculator.jsx";
-import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 import { VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 import { TestProviders } from "../test/TestProviders.jsx";
 
@@ -61,7 +60,6 @@ describe("ResinCalculator — smoke", () => {
     renderCalculator(<ResinCalculator />);
     const fileInput = document.querySelector("input[type='file'][accept='image/*']");
     expect(fileInput).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
     expect(screen.getByText("References")).toBeInTheDocument();
     expect(screen.getByText("Calculate")).toBeInTheDocument();
   });
@@ -83,7 +81,7 @@ describe("ResinCalculator — header behavior", () => {
   it("hides legacy AppHeader when showHeader is false", () => {
     renderCalculator(<ResinCalculator showHeader={false} />);
     expect(screen.queryByText(/Epoxy Resin Volume Estimator/i)).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
+    expect(screen.getByText("References")).toBeInTheDocument();
   });
 
   it("omits duplicate product title when workspaceVariant is dedicated", () => {
@@ -91,19 +89,7 @@ describe("ResinCalculator — header behavior", () => {
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
-  });
-
-  it("accepts HFZWood project files and legacy JSON project files for import", () => {
-    renderCalculator(<ResinCalculator />);
-    const importInput = document.querySelector(
-      `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
-    );
-
-    expect(importInput).toBeInTheDocument();
-    expect(HFZ_PROJECT_IMPORT_ACCEPT).toContain(".hfzproject");
-    expect(HFZ_PROJECT_IMPORT_ACCEPT).toContain("application/json");
-    expect(HFZ_PROJECT_IMPORT_ACCEPT).toContain(".json");
+    expect(screen.getByText("References")).toBeInTheDocument();
   });
 });
 

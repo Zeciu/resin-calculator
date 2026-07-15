@@ -65,7 +65,7 @@ export async function ensureFileHandleReadPermission(handle) {
 }
 
 export async function ensureFileHandleWritePermission(handle) {
-  return ensureFileHandlePermission(handle, "write");
+  return ensureFileHandlePermission(handle, "readwrite");
 }
 
 export async function storeRecentProjectHandle(entryId, handle) {

@@ -313,7 +313,7 @@ describe("projectFileSave", () => {
         fileName: "river-table.hfzproject",
       });
 
-      expect(queryPermission).toHaveBeenCalledWith({ mode: "write" });
+      expect(queryPermission).toHaveBeenCalledWith({ mode: "readwrite" });
       expect(requestPermission).not.toHaveBeenCalled();
       expect(createWritable).toHaveBeenCalledTimes(1);
     });
@@ -339,7 +339,7 @@ describe("projectFileSave", () => {
         persistedLifecycle: EXISTING_LIFECYCLE,
       });
 
-      expect(requestPermission).toHaveBeenCalledWith({ mode: "write" });
+      expect(requestPermission).toHaveBeenCalledWith({ mode: "readwrite" });
       expect(createWritable).toHaveBeenCalledTimes(1);
     });
 

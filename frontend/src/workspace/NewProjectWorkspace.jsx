@@ -247,9 +247,7 @@ export default function NewProjectWorkspace() {
 
     if (canUpdateCurrentProjectInPlace(currentProjectRef.current)) {
       await performInPlaceSave();
-      if (blocker.state === "blocked" && !isProjectDirtyRef.current) {
-        blocker.proceed();
-      } else if (blocker.state === "blocked") {
+      if (blocker.state === "blocked" && isProjectDirtyRef.current) {
         blocker.reset();
       }
       return;

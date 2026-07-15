@@ -301,7 +301,7 @@ The existence of an item in an earlier architecture or implementation document d
 
 **Block 3 — continued local workspace experience**
 
-Task 3.2 is closed (see §18). Task 3.1 is closed (see §17). Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). Scope the next Block 3 task from remaining §17 deferrals not yet delivered (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI, Calculator Import parity). Block 3 scope: see §5.
+Task 3.3 is closed (see §19). Task 3.2 is closed (see §18). Task 3.1 is closed (see §17). Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). Scope the next Block 3 task from remaining §17 deferrals not yet delivered (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI). Block 3 scope: see §5.
 
 ---
 
@@ -896,7 +896,7 @@ Task 2.2 live AWS Cognito E2E validation remains a release-certification require
 
 ### Intentional deferrals
 
-Save As; local Project deletion UI; Remove from Recent Projects UI; thumbnails; tab-close/logout unsaved protection; Calculator Import parity; device-local preferences migration; cloud/sync; filesystem monitoring; branching/conflict resolution; ownership transfer; billing; `structuralCapabilitySnapshot`; v1 migration; unrelated refactors.
+Save As; local Project deletion UI; Remove from Recent Projects UI; thumbnails; tab-close/logout unsaved protection; cloud/sync; filesystem monitoring; branching/conflict resolution; ownership transfer; billing; `structuralCapabilitySnapshot`; v1 migration; unrelated refactors.
 
 ### Implementation commit
 
@@ -938,7 +938,7 @@ Task 2.2 live AWS Cognito E2E validation remains a release-certification require
 
 ### Intentional deferrals
 
-Cloud or cross-device preference sync; account-level preference authority; backend preference API removal or migration; regional unit auto-detection; new preference categories; broad Settings UI redesign; guest-accessible Settings expansion; PDF document localization; API-provided pour-plan row labels; remaining calculator secondary strings; Task 3.3; Cloud Workspace; Stripe/billing; unrelated cleanup.
+Cloud or cross-device preference sync; account-level preference authority; backend preference API removal or migration; regional unit auto-detection; new preference categories; broad Settings UI redesign; guest-accessible Settings expansion; PDF document localization; API-provided pour-plan row labels; remaining calculator secondary strings; Cloud Workspace; Stripe/billing; unrelated cleanup.
 
 ### Implementation commit
 
@@ -946,4 +946,45 @@ Cloud or cross-device preference sync; account-level preference authority; backe
 
 ### Next step
 
-**Block 3 — continued local workspace experience** — scope next task from §17 deferrals (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI, Calculator Import parity).
+**Task 3.3 — Simplify Project Open and Update Safety** (see §19).
+
+---
+
+## 19. Block 3 Task 3.3 — Simplify Project Open and Update Safety
+
+**Task 3.3 status:** CLOSED — implementation, Product Owner manual QA, write-permission repair, code hygiene, and automated validation complete
+
+### Delivered
+
+* **Calculator Import removed:** redundant calculator-level Import Project UI and handler removed; **Projects → Open Project** is the sole authoritative Project-open path.
+* **No Logout infrastructure:** no logout guard or new workspace-session context added; existing route-level unsaved-changes protection unchanged.
+* **Write-permission repair:** File System Access write-capable checks use `"readwrite"` (not invalid `"write"`); read permission remains `"read"`.
+* **Existing Project update:** opened owned Projects update successfully from **Project Actions → Save Project** and **Unsaved Changes dialog → Save Project**; successful in-place save clears dirty state; denied permission produces no write, no Recent Projects mutation, no false success, and no navigation.
+* **Tests:** workspace restore test helper; focused Product Owner write-permission flow coverage.
+
+Task 2.1 ownership, Task 2.3 capabilities, Task 3.1 file integrity, and Task 3.2 device-local preferences/i18n unchanged.
+
+### Product Owner manual QA
+
+Passed: Projects → Open Project remains authoritative; calculator Import absent; existing owned Project saves from both save entry points after write permission granted; denied permission shows clear error without false success; dirty state and navigation behave correctly.
+
+### Validation
+
+* Backend: 130 passed
+* Frontend: 571 passed (72 files)
+* Production Cognito build: passed
+* Code hygiene check: passed
+
+Task 2.2 live AWS Cognito E2E validation remains a release-certification requirement (unchanged).
+
+### Intentional deferrals
+
+Logout guards or new workspace-session context; Save As; Remove from Recent Projects UI; local Project deletion UI; thumbnails; beforeunload/tab-close protection; calculator Import reinstatement; Cloud Workspace; sync; branching/conflict handling; ownership transfer; Stripe/billing; unrelated refactoring.
+
+### Implementation commit
+
+(to be recorded at closure)
+
+### Next step
+
+**Block 3 — continued local workspace experience** — scope next task from §17 deferrals (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI).

@@ -75,7 +75,6 @@
   "calculator.volumeLabel": "Volume ({unit})",
   "calculator.estimatedVolume": "Estimated volume: {value} {unit}",
   "calculator.title": "River Table & Woodworking Resin Calculator",
-  "calculator.importProject": "Import Project",
   "calculator.uploadPhoto": "Upload Photo:",
   "calculator.chooseFile": "Choose File",
   "calculator.photoUploaded": "✓ Photo uploaded",

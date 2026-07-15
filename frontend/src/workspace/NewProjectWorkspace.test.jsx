@@ -48,10 +48,10 @@ describe("NewProjectWorkspace", () => {
   it("renders the calculator without duplicate product title chrome", () => {
     renderNewProjectWorkspace();
 
-    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
     expect(screen.getByText("References")).toBeInTheDocument();
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Import Project/i })).not.toBeInTheDocument();
   });
 });

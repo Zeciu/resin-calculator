@@ -32,8 +32,8 @@ function expectProjectsHub() {
 
 function expectCalculatorRoute() {
   const main = screen.getByRole("main");
-  expect(within(main).getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
   expect(within(main).getByText("References")).toBeInTheDocument();
+  expect(within(main).queryByRole("button", { name: /Import Project/i })).not.toBeInTheDocument();
   expect(
     within(main).queryByText(/River Table & Woodworking Resin Calculator/i),
   ).not.toBeInTheDocument();

@@ -2,13 +2,9 @@ import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
-import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
+import { openRestoredProjectWithWork } from "./workspaceProjectTestHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
-const TINY_PNG =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
-
-import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 
 HTMLCanvasElement.prototype.getContext = () => ({
   clearRect: () => {},
@@ -81,25 +77,8 @@ async function uploadPhoto(user) {
   restoreImage();
 }
 
-async function importProjectWithWork(user) {
-  const restoreImage = installImageMock();
-  let input;
-  await waitFor(() => {
-    input = document.querySelector(
-      `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
-    );
-    expect(input).toBeTruthy();
-  });
-  const file = new File(
-    [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT })],
-    "project.hfzproject",
-    { type: "application/json" },
-  );
-  await user.upload(input, file);
-  await waitFor(() => {
-    expect(screen.getByText(/Photo uploaded/i)).toBeInTheDocument();
-  });
-  restoreImage();
+async function seedProjectWithWork(router) {
+  await openRestoredProjectWithWork(router);
 }
 
 describe("Unsaved changes protection", () => {
@@ -123,9 +102,9 @@ describe("Unsaved changes protection", () => {
 
   it("shows the dialog when leaving after meaningful work", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/new-project");
+    const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("link", { name: "Home" }));
 
     expect(screen.getByRole("dialog", { name: /You have unsaved changes/i })).toBeInTheDocument();
@@ -135,7 +114,7 @@ describe("Unsaved changes protection", () => {
     const user = userEvent.setup();
     const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("link", { name: "Home" }));
     await user.click(screen.getByRole("button", { name: "Cancel" }));
 
@@ -148,7 +127,7 @@ describe("Unsaved changes protection", () => {
     const user = userEvent.setup();
     const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("link", { name: "Home" }));
     await user.click(screen.getByRole("button", { name: "Discard Changes" }));
 
@@ -164,7 +143,7 @@ describe("Unsaved changes protection", () => {
     const user = userEvent.setup();
     const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("link", { name: "Home" }));
     const dialog = screen.getByRole("dialog", { name: /You have unsaved changes/i });
     await user.click(within(dialog).getByRole("button", { name: "Save Project" }));

@@ -102,7 +102,7 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByText("New Project")).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Import Project/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Import Project/i })).not.toBeInTheDocument();
     expect(screen.getByText("References")).toBeInTheDocument();
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),

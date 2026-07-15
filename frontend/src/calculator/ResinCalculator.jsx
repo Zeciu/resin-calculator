@@ -10,15 +10,12 @@ import {
   RotateCw,
   Save,
   Trash2,
-  Upload,
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
 import AppHeader from "../AppHeader";
 import { buildAuthHeaders } from "../auth/authHeaders.js";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
-import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
-import { parseProjectFileText } from "../workspace/projectFileParse.js";
 import { canAddPolygonPoint } from "./calculatorCapabilityPolicy.js";
 import { useCalculatorCapabilityEnforcement } from "./useCalculatorCapabilityEnforcement.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
@@ -543,7 +540,6 @@ export default forwardRef(function ResinCalculator(
   const workAreaRef = useRef(null);
   const workspaceImagePanelRef = useRef(null);
   const imageRef = useRef(null);
-  const importFileInputRef = useRef(null);
   const dragRef = useRef(null);
   const suppressNextClickRef = useRef(false);
   const cavityRowRefs = useRef([]);
@@ -607,7 +603,6 @@ export default forwardRef(function ResinCalculator(
   const [result, setResult] = useState(null);
   const [resultOutdated, setResultOutdated] = useState(false);
   const [error, setError] = useState("");
-  const [importedProject, setImportedProject] = useState(false);
   const buildProjectSnapshotRef = useRef(() => ({}));
   const restoreImportedProjectRef = useRef(() => {});
 
@@ -1023,7 +1018,6 @@ export default forwardRef(function ResinCalculator(
       img.onload = () => {
         const initialRotationDeg = img.height > img.width ? 90 : 0;
         imageRef.current = img;
-        setImportedProject(false);
         setImageDataUrl(dataUrl);
         setPolygonPoints([]);
         setUseImageBorderAsMold(false);
@@ -1627,8 +1621,6 @@ export default forwardRef(function ResinCalculator(
       imageRef.current = img;
       dragRef.current = null;
       suppressNextClickRef.current = false;
-      setImportedProject(true);
-
       setImageDataUrl(project.image.dataUrl);
       setCalculationMode(ui.calculationMode || "standard");
       setMode(ui.selectedMode || (ui.calculationMode === "wood" ? "wood" : "polygon"));
@@ -1701,29 +1693,6 @@ export default forwardRef(function ResinCalculator(
     getProjectSnapshot: () => buildProjectSnapshotRef.current(),
     restoreProjectSnapshot: (project) => restoreImportedProjectRef.current(project),
   }));
-
-  const importProject = (event) => {
-    if (isReadOnly) return;
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const parsed = parseProjectFileText(reader.result);
-        restoreImportedProject(parsed.snapshot);
-      } catch (err) {
-        setError(err.message || "Invalid project file.");
-      } finally {
-        event.target.value = "";
-      }
-    };
-    reader.onerror = () => {
-      setError("Invalid project file: could not read file.");
-      event.target.value = "";
-    };
-    reader.readAsText(file);
-  };
 
   const exportPdf = () => {
     if (!result) {
@@ -2375,22 +2344,11 @@ export default forwardRef(function ResinCalculator(
     <div className={`container${isReadOnly ? " container--read-only" : ""}`}>
       {showHeader ? <AppHeader /> : null}
 
-      <div className="calculation-mode-bar">
-        {workspaceVariant !== "dedicated" ? (
+      {workspaceVariant !== "dedicated" ? (
+        <div className="calculation-mode-bar">
           <span className="calculation-mode-label">{ui.title}</span>
-        ) : null}
-        {!isReadOnly ? (
-          <button
-            className="project-action-button mode-import-action"
-            onClick={() => importFileInputRef.current?.click()}
-            title={ui.importProject}
-            aria-label={ui.importProject}
-          >
-            <Upload size={15} aria-hidden="true" />
-            {ui.importProject}
-          </button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
       <div className={`controls${isReadOnly ? " controls--read-only" : ""}`}>
         <div className="workflow-row">
@@ -2417,13 +2375,6 @@ export default forwardRef(function ResinCalculator(
             </div>
           </aside>
         </div>
-        <input
-          ref={importFileInputRef}
-          type="file"
-          accept={HFZ_PROJECT_IMPORT_ACCEPT}
-          className="hidden-file-input"
-          onChange={importProject}
-        />
 
       </div>
 

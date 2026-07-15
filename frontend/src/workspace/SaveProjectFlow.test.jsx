@@ -7,13 +7,11 @@ import {
   ProjectFileSaveCancelledError,
   ProjectFileSaveError,
 } from "./projectFileSave.js";
-import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
+import { openRestoredProjectWithWork } from "./workspaceProjectTestHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
-
-import { buildV2ProjectFileJson, VALID_CALCULATOR_SNAPSHOT } from "../project/projectFileTestFixtures.js";
 
 const saveProjectFileMock = vi.fn();
 
@@ -83,25 +81,8 @@ function seedAuthenticatedSession() {
   );
 }
 
-async function importProjectWithWork(user) {
-  let input;
-  await waitFor(() => {
-    input = document.querySelector(
-      `input[type='file'][accept='${HFZ_PROJECT_IMPORT_ACCEPT}']`,
-    );
-    expect(input).toBeTruthy();
-  });
-  const file = new File(
-    [buildV2ProjectFileJson({ snapshot: VALID_CALCULATOR_SNAPSHOT, projectName: "Imported" })],
-    "project.hfzproject",
-    {
-      type: "application/json",
-    },
-  );
-  await user.upload(input, file);
-  await waitFor(() => {
-    expect(screen.getByText(/Photo uploaded/i)).toBeInTheDocument();
-  });
+async function seedProjectWithWork(router) {
+  await openRestoredProjectWithWork(router, { projectName: "Imported" });
 }
 
 function getSaveProjectDialog() {
@@ -138,9 +119,9 @@ describe("Save Project flow", () => {
 
   it("opens SaveProjectDialog from the workspace Save Project action", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/new-project");
+    const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("button", { name: "Save Project" }));
 
     expect(getSaveProjectDialog()).toBeInTheDocument();
@@ -149,9 +130,9 @@ describe("Save Project flow", () => {
 
   it("opens the same SaveProjectDialog from unsaved changes", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/new-project");
+    const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("link", { name: "Home" }));
 
     const unsavedDialog = screen.getByRole("dialog", {
@@ -166,9 +147,9 @@ describe("Save Project flow", () => {
 
   it("rejects an empty project name", async () => {
     const user = userEvent.setup();
-    renderWorkspace("/new-project");
+    const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("button", { name: "Save Project" }));
     await user.click(within(getSaveProjectDialog()).getByRole("button", { name: "Save" }));
 
@@ -180,7 +161,7 @@ describe("Save Project flow", () => {
     const user = userEvent.setup();
     const { router } = renderWorkspace("/new-project");
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("button", { name: "Save Project" }));
 
     const saveDialog = getSaveProjectDialog();
@@ -216,7 +197,7 @@ describe("Save Project flow", () => {
       new ProjectFileSaveError("Could not save project file."),
     );
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("button", { name: "Save Project" }));
 
     const saveDialog = getSaveProjectDialog();
@@ -237,7 +218,7 @@ describe("Save Project flow", () => {
 
     saveProjectFileMock.mockRejectedValue(new ProjectFileSaveCancelledError());
 
-    await importProjectWithWork(user);
+    await seedProjectWithWork(router);
     await user.click(screen.getByRole("button", { name: "Save Project" }));
 
     const saveDialog = getSaveProjectDialog();
