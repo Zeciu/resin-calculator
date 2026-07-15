@@ -19,6 +19,7 @@ const DEFAULT_TEST_CAPABILITIES_RESPONSE = {
 };
 
 beforeEach(() => {
+  localStorage.clear();
   vi.stubEnv("VITE_AUTH_MODE", "mock");
   vi.stubGlobal(
     "fetch",
@@ -28,17 +29,6 @@ beforeEach(() => {
         return {
           ok: true,
           json: async () => DEFAULT_TEST_CAPABILITIES_RESPONSE,
-        };
-      }
-      if (requestUrl.includes("/api/preferences")) {
-        return {
-          ok: true,
-          json: async () => ({
-            interfaceLanguage: "en",
-            lengthUnit: "mm",
-            volumeUnit: "L",
-            exists: true,
-          }),
         };
       }
       return {

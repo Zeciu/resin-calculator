@@ -3,60 +3,68 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
-import { mockStatefulPreferencesFetch } from "../preferences/testHelpers.js";
+import {
+  DEVICE_PREFERENCES_STORAGE_KEY,
+} from "../preferences/devicePreferencesStorage.js";
+import {
+  clearDevicePreferences,
+  mockCapabilitiesFetch,
+  seedDevicePreferences,
+} from "../preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
-function seedAuthenticatedSession() {
+function seedAuthenticatedSession(userId = "stub-user") {
   sessionStorage.setItem(
     SESSION_STORAGE_KEY,
     JSON.stringify({
-      user: { id: "stub-user", email: "user@example.com", username: "user" },
+      user: { id: userId, email: "user@example.com", username: "user" },
     }),
   );
 }
 
 describe("Preferences reachability and language switching", () => {
   beforeEach(() => {
+    localStorage.clear();
     sessionStorage.clear();
+    clearDevicePreferences();
     vi.restoreAllMocks();
+    mockCapabilitiesFetch();
   });
 
   it("reaches Application Preferences from Home and applies a language change", async () => {
     const user = userEvent.setup();
     seedAuthenticatedSession();
-    mockStatefulPreferencesFetch({ interfaceLanguage: "en" });
+    seedDevicePreferences({ interfaceLanguage: "en" });
     renderWorkspace(ROUTES.HOME);
 
-    // My Account is reachable from the authenticated Home screen.
     const myAccountLink = await screen.findByRole("link", { name: "My Account" });
     await user.click(myAccountLink);
 
-    // Application Preferences is linked from My Account.
     await user.click(await screen.findByRole("link", { name: "Application Preferences" }));
     expect(
       await screen.findByRole("heading", { name: "Application Preferences" }),
     ).toBeInTheDocument();
 
-    // Change interface language to Romanian and save.
     const languageSelect = screen.getAllByRole("combobox")[0];
     await user.selectOptions(languageSelect, "ro");
     await user.click(screen.getByRole("button", { name: /Save preferences/i }));
 
-    // The whole app re-renders in Romanian once the new language is stored.
     expect(
       await screen.findByRole("heading", { name: "Preferințe aplicație" }),
     ).toBeInTheDocument();
     const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
     expect(within(sidebar).getByRole("link", { name: "Proiect nou" })).toBeInTheDocument();
     expect(within(sidebar).getByRole("link", { name: "Contul meu" })).toBeInTheDocument();
-    // The save confirmation is shown (captured in the language active at save time).
     expect(screen.getByRole("status")).toHaveTextContent(/Preferences saved\.|Preferințele au fost salvate\./);
+    expect(JSON.parse(localStorage.getItem(DEVICE_PREFERENCES_STORAGE_KEY)).interfaceLanguage).toBe(
+      "ro",
+    );
   });
 
   it("renders Home and navigation in Romanian when the stored language is ro", async () => {
     seedAuthenticatedSession();
-    mockStatefulPreferencesFetch({ interfaceLanguage: "ro" });
+    seedDevicePreferences({ interfaceLanguage: "ro" });
     renderWorkspace(ROUTES.HOME);
 
     expect(
@@ -75,10 +83,10 @@ describe("Preferences reachability and language switching", () => {
     expect(within(sidebar).getByRole("link", { name: "Contul meu" })).toBeInTheDocument();
   });
 
-  it("saves length and volume unit preferences and persists them", async () => {
+  it("saves length and volume unit preferences and persists them locally", async () => {
     const user = userEvent.setup();
     seedAuthenticatedSession();
-    const fetchMock = mockStatefulPreferencesFetch({ lengthUnit: "mm", volumeUnit: "L" });
+    seedDevicePreferences({ lengthUnit: "mm", volumeUnit: "L" });
     renderWorkspace(ROUTES.PREFERENCES);
 
     await screen.findByRole("heading", { name: "Application Preferences" });
@@ -89,14 +97,12 @@ describe("Preferences reachability and language switching", () => {
     await user.click(screen.getByRole("button", { name: /Save preferences/i }));
 
     await waitFor(() => {
-      const putCall = fetchMock.mock.calls.find(([, init]) => init?.method === "PUT");
-      expect(putCall).toBeTruthy();
-      const body = JSON.parse(putCall[1].body);
-      expect(body.lengthUnit).toBe("cm");
-      expect(body.volumeUnit).toBe("ml");
+      expect(JSON.parse(localStorage.getItem(DEVICE_PREFERENCES_STORAGE_KEY))).toMatchObject({
+        lengthUnit: "cm",
+        volumeUnit: "ml",
+      });
     });
 
-    // Selected units remain reflected after the save round-trip.
     await waitFor(() => {
       expect(screen.getAllByRole("combobox")[1]).toHaveValue("cm");
       expect(screen.getAllByRole("combobox")[2]).toHaveValue("ml");
@@ -105,7 +111,7 @@ describe("Preferences reachability and language switching", () => {
 
   it("keeps My Account reachable from a dedicated module page", async () => {
     seedAuthenticatedSession();
-    mockStatefulPreferencesFetch({ interfaceLanguage: "en" });
+    seedDevicePreferences({ interfaceLanguage: "en" });
     renderWorkspace(ROUTES.NEW_PROJECT);
 
     const header = await screen.findByRole("banner", { name: "Module header" });

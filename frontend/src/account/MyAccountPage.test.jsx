@@ -1,7 +1,7 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { mockPreferencesFetch } from "../preferences/testHelpers.js";
+import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -19,9 +19,11 @@ function seedAuthenticatedSession(user = MOCK_USER) {
 
 describe("My Account page", () => {
   beforeEach(() => {
+    localStorage.clear();
     sessionStorage.clear();
     vi.restoreAllMocks();
-    mockPreferencesFetch({ interfaceLanguage: "en", lengthUnit: "mm", volumeUnit: "L", exists: true });
+    mockCapabilitiesFetch();
+    seedDevicePreferences({ interfaceLanguage: "en", lengthUnit: "mm", volumeUnit: "L" });
   });
 
   it("renders mock profile information", async () => {

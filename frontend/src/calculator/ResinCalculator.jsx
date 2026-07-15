@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import { jsPDF } from "jspdf";
 import { computeProjectDirtyState } from "./projectDirtyState.js";
 import {
@@ -19,11 +19,10 @@ import { buildAuthHeaders } from "../auth/authHeaders.js";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
 import { HFZ_PROJECT_IMPORT_ACCEPT } from "../projectFileTypes.js";
 import { parseProjectFileText } from "../workspace/projectFileParse.js";
-import {
-  canAddPolygonPoint,
-  polygonPointLimitMessage,
-} from "./calculatorCapabilityPolicy.js";
+import { canAddPolygonPoint } from "./calculatorCapabilityPolicy.js";
 import { useCalculatorCapabilityEnforcement } from "./useCalculatorCapabilityEnforcement.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
+import { buildCalculatorUi } from "./calculatorUi.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -43,38 +42,13 @@ const MIX_RATIO_OPTIONS = [
 const FIRST_FILL_RECOMMENDATION_OPTIONS = [
   {
     value: "10",
-    label: "Use +10% — Wood sealed underneath",
     multiplier: 1.1,
   },
   {
     value: "30",
-    label: "Use +30% — Wood not sealed underneath",
     multiplier: 1.3,
   },
 ];
-const MODE_HELP = {
-  standard: {
-    title: "Standard Resin Area",
-    text:
-      "Use for regular shapes where you can draw the resin area directly. Examples: rectangles, squares, circles, trays, countertops, and shelves.",
-  },
-  wood: {
-    title: "Wood Boundary Mode",
-    text:
-      "Use for live edge slabs and irregular wood shapes. Examples: river tables, natural edges, cracks, and cavities. Resin volume is calculated as mold area minus wood area.",
-  },
-};
-const PHOTO_HELP = {
-  title: "Photo Tips",
-  text:
-    "For best results, photograph the project from directly above.\nInclude the complete mold and at least one known measurement.",
-};
-const MAIN_RESIN_DEPTH_HELP = {
-  title: "Main Resin Depth",
-  text:
-    "Enter the average depth of the main resin area between the wood slabs. This value is used to calculate the volume of the large resin-filled section of the project.",
-  examples: "Example: If the river section is approximately 50 mm deep, enter 50.",
-};
 const WORKSPACE_EDIT_COLORS = {
   active: {
     stroke: "#00e5ff",
@@ -118,29 +92,7 @@ const WORKSPACE_EDIT_COLORS = {
   },
 };
 
-const WORKFLOW_HELP = {
-  reference: {
-    title: "Reference Measurements",
-    text:
-      "Add measurements in both horizontal and vertical directions whenever possible.\nMore reference measurements improve calculation accuracy.",
-  },
-  mold: {
-    title: "Mold Boundary",
-    text: "Trace the inside edge of the mold that will contain the resin.",
-  },
-  wood: {
-    title: "Wood Islands",
-    text:
-      "Trace each separate wood slab or island inside the mold.\nResin area is calculated as mold area minus the total wood island area.",
-  },
-  cavity: {
-    title: "Resin Cavities",
-    text:
-      "Trace cracks, voids, knots, or other cavities that will be filled with resin.\nEach cavity can have its own depth.",
-  },
-};
-
-function HelpIcon({ helpKey, help, activeHelpKey, onToggle }) {
+function HelpIcon({ helpKey, help, activeHelpKey, onToggle, aboutLabel }) {
   const isActive = activeHelpKey === helpKey;
 
   return (
@@ -149,7 +101,7 @@ function HelpIcon({ helpKey, help, activeHelpKey, onToggle }) {
         role="button"
         tabIndex={0}
         className="help-icon-trigger"
-        aria-label={`About ${help.title}`}
+        aria-label={aboutLabel}
         onClick={(event) => {
           event.stopPropagation();
           onToggle(helpKey);
@@ -607,6 +559,8 @@ export default forwardRef(function ResinCalculator(
   const displayUnits = useCalculatorDisplayUnits();
   const { maxPolygonPoints, layerCalculation, pdfExport, advancedReports } =
     useCalculatorCapabilityEnforcement(enforceAccountCapabilities);
+  const { t } = useI18n();
+  const ui = useMemo(() => buildCalculatorUi(t), [t]);
 
   const [calculationMode, setCalculationMode] = useState("wood");
   const [mode, setMode] = useState("reference");
@@ -1061,7 +1015,7 @@ export default forwardRef(function ResinCalculator(
     reader.onload = () => {
       const dataUrl = reader.result;
       if (typeof dataUrl !== "string") {
-        setError("Could not read uploaded image.");
+        setError(ui.errors.readUploadedImage);
         return;
       }
 
@@ -1128,10 +1082,10 @@ export default forwardRef(function ResinCalculator(
           })
         );
       };
-      img.onerror = () => setError("Could not load uploaded image.");
+      img.onerror = () => setError(ui.errors.readUploadedImage);
       img.src = dataUrl;
     };
-    reader.onerror = () => setError("Could not read uploaded image.");
+    reader.onerror = () => setError(ui.errors.readUploadedImage);
     reader.readAsDataURL(file);
   };
 
@@ -1396,7 +1350,7 @@ export default forwardRef(function ResinCalculator(
 
     if (calculationMode === "standard" && mode === "polygon") {
       if (!canAddPolygonPoint(polygonPoints.length, maxPolygonPoints)) {
-        setError(polygonPointLimitMessage(maxPolygonPoints, "standard"));
+        setError(ui.errors.polygonPointLimit(maxPolygonPoints, "standard"));
         return;
       }
       setPolygonPoints((prev) => [...prev, point]);
@@ -1406,7 +1360,7 @@ export default forwardRef(function ResinCalculator(
 
     if (calculationMode === "wood" && mode === "mold") {
       if (!canAddPolygonPoint(moldBoundaryPoints.length, maxPolygonPoints)) {
-        setError(polygonPointLimitMessage(maxPolygonPoints, "mold"));
+        setError(ui.errors.polygonPointLimit(maxPolygonPoints, "mold"));
         return;
       }
       setMoldBoundaryPoints((prev) => [...prev, point]);
@@ -1416,7 +1370,7 @@ export default forwardRef(function ResinCalculator(
 
     if (calculationMode === "wood" && mode === "wood") {
       if (!canAddPolygonPoint(woodBoundaryPoints.length, maxPolygonPoints)) {
-        setError(polygonPointLimitMessage(maxPolygonPoints, "wood"));
+        setError(ui.errors.polygonPointLimit(maxPolygonPoints, "wood"));
         return;
       }
       setWoodBoundaryPoints((prev) => [...prev, point]);
@@ -1426,7 +1380,7 @@ export default forwardRef(function ResinCalculator(
 
     if (calculationMode === "wood" && mode === "cavity") {
       if (!canAddPolygonPoint(currentCavityPoints.length, maxPolygonPoints)) {
-        setError(polygonPointLimitMessage(maxPolygonPoints, "cavity"));
+        setError(ui.errors.polygonPointLimit(maxPolygonPoints, "cavity"));
         return;
       }
       setCurrentCavityPoints((prev) => [...prev, point]);
@@ -1600,7 +1554,7 @@ export default forwardRef(function ResinCalculator(
 
   const saveProject = () => {
     if (!imageDataUrl) {
-      setError("Upload an image before saving a project.");
+      setError(ui.errors.uploadImageBeforeSave);
       return;
     }
 
@@ -1773,11 +1727,11 @@ export default forwardRef(function ResinCalculator(
 
   const exportPdf = () => {
     if (!result) {
-      setError("Calculate results before exporting a PDF.");
+      setError(ui.errors.calculateBeforePdf);
       return;
     }
     if (!pdfExport) {
-      setError("PDF export is not available for new projects on this account.");
+      setError(ui.errors.pdfExportUnavailable);
       return;
     }
 
@@ -2070,7 +2024,7 @@ export default forwardRef(function ResinCalculator(
     setResultOutdated(false);
     const image = imageRef.current;
     if (!image) {
-      setError("Upload an image first.");
+      setError(ui.errors.uploadImageFirst);
       return;
     }
 
@@ -2138,7 +2092,7 @@ export default forwardRef(function ResinCalculator(
     if (!layerCalculation) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
-      setLayerPlanningError("Pour layer planning is not available for new projects on this account.");
+      setLayerPlanningError(ui.errors.layerPlanningUnavailable);
       return;
     }
     const mainDepth = parseFloat(mainDepthInputRef.current?.value ?? depthMm);
@@ -2151,28 +2105,28 @@ export default forwardRef(function ResinCalculator(
     if (!Number.isFinite(mainDepth) || mainDepth <= 0) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
-      setLayerPlanningError("Enter a valid Main Resin Depth before calculating layers.");
+      setLayerPlanningError(ui.errors.mainDepthBeforeLayers);
       focusPourLayerPlanning();
       return;
     }
     if (!Number.isFinite(maxPourThickness) || maxPourThickness <= 0) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
-      setLayerPlanningError("Maximum Pour Thickness must be greater than 0.");
+      setLayerPlanningError(ui.errors.maxPourThicknessPositive);
       focusPourLayerPlanning();
       return;
     }
     if (!resinSurfaceAreaCm2) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
-      setLayerPlanningError("Calculate Resin Volume first to set the resin surface area.");
+      setLayerPlanningError(ui.errors.calculateVolumeBeforePlanning);
       focusPourLayerPlanning();
       return;
     }
     if (hasFirstFillThickness && (!Number.isFinite(firstFillThickness) || firstFillThickness <= 0 || firstFillThickness > mainDepth)) {
       setRecommendedLayerCount(null);
       setPourPlanRows([]);
-      setLayerPlanningError("First Fill Seal Coat Thickness must be greater than 0 and not exceed Main Resin Depth.");
+      setLayerPlanningError(ui.errors.firstFillThicknessRange);
       focusPourLayerPlanning();
       return;
     }
@@ -2236,7 +2190,7 @@ export default forwardRef(function ResinCalculator(
     if (!layerCalculation) {
       setFirstFillVolumeLiters(null);
       setRecommendedFirstFillVolumeLiters(null);
-      setFirstFillError("First fill planning is not available for new projects on this account.");
+      setFirstFillError(ui.errors.firstFillPlanningUnavailable);
       return;
     }
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
@@ -2246,14 +2200,14 @@ export default forwardRef(function ResinCalculator(
     if (!resinSurfaceAreaCm2) {
       setFirstFillVolumeLiters(null);
       setRecommendedFirstFillVolumeLiters(null);
-      setFirstFillError("Calculate Resin Volume first to set the resin surface area.");
+      setFirstFillError(ui.errors.calculateVolumeBeforePlanning);
       focusFirstFillPlanning();
       return;
     }
     if (!Number.isFinite(firstFillThickness) || firstFillThickness <= 0) {
       setFirstFillVolumeLiters(null);
       setRecommendedFirstFillVolumeLiters(null);
-      setFirstFillError("First Fill Seal Coat Thickness must be greater than 0.");
+      setFirstFillError(ui.errors.firstFillThicknessPositive);
       focusFirstFillPlanning();
       return;
     }
@@ -2288,7 +2242,7 @@ export default forwardRef(function ResinCalculator(
   const finishWoodIsland = () => {
     if (isReadOnly) return;
     if (woodBoundaryPoints.length < 3) {
-      setError("A wood island needs at least 3 points.");
+      setError(ui.errors.woodIslandMinPoints);
       return;
     }
 
@@ -2317,7 +2271,7 @@ export default forwardRef(function ResinCalculator(
   const finishCavity = () => {
     if (isReadOnly) return;
     if (currentCavityPoints.length < 3) {
-      setError("A cavity needs at least 3 points.");
+      setError(ui.errors.cavityMinPoints);
       return;
     }
     const newCavityIndex = cavityPolygons.length;
@@ -2339,14 +2293,13 @@ export default forwardRef(function ResinCalculator(
         helpKey={helpKey}
         help={help}
         activeHelpKey={activeModeHelp}
+        aboutLabel={ui.helpAbout(help.title)}
         onToggle={(nextHelpKey) =>
           setActiveModeHelp((prev) => (prev === nextHelpKey ? null : nextHelpKey))
         }
       />
     );
   };
-
-  const renderModeHelp = (modeKey) => renderHelpPopup(modeKey, MODE_HELP[modeKey]);
 
   const hasUploadedPhoto = Boolean(imageDataUrl);
   const activeWorkflowStage = !hasUploadedPhoto
@@ -2375,44 +2328,44 @@ export default forwardRef(function ResinCalculator(
     calculationMode === "wood"
       ? [
           {
-            label: "References",
+            label: ui.workflow.references,
             complete: measurementsComplete,
             current: activeWorkflowStage === "references",
           },
           {
-            label: "Mold",
+            label: ui.workflow.mold,
             complete: moldBoundaryComplete,
             current: activeWorkflowStage === "mold",
           },
           {
-            label: "Wood",
+            label: ui.workflow.wood,
             complete: woodBoundaryComplete,
             current: activeWorkflowStage === "wood",
           },
           {
-            label: "Cavities",
+            label: ui.workflow.cavities,
             complete: cavitiesComplete,
             current: activeWorkflowStage === "cavities",
           },
           {
-            label: "Calculate",
+            label: ui.workflow.calculate,
             complete: result?.calculationType === "wood" && !resultOutdated,
             current: activeWorkflowStage === "calculate",
           },
         ]
       : [
           {
-            label: "References",
+            label: ui.workflow.references,
             complete: measurementsComplete,
             current: activeWorkflowStage === "references",
           },
           {
-            label: "Area",
+            label: ui.workflow.area,
             complete: polygonPoints.length >= 3,
             current: activeWorkflowStage === "area",
           },
           {
-            label: "Calculate",
+            label: ui.workflow.calculate,
             complete: result?.calculationType === "standard" && !resultOutdated,
             current: activeWorkflowStage === "calculate",
           },
@@ -2424,48 +2377,43 @@ export default forwardRef(function ResinCalculator(
 
       <div className="calculation-mode-bar">
         {workspaceVariant !== "dedicated" ? (
-          <span className="calculation-mode-label">
-            River Table & Woodworking Resin Calculator
-          </span>
+          <span className="calculation-mode-label">{ui.title}</span>
         ) : null}
         {!isReadOnly ? (
           <button
             className="project-action-button mode-import-action"
             onClick={() => importFileInputRef.current?.click()}
-            title="Import Project"
-            aria-label="Import Project"
+            title={ui.importProject}
+            aria-label={ui.importProject}
           >
             <Upload size={15} aria-hidden="true" />
-            Import Project
+            {ui.importProject}
           </button>
         ) : null}
       </div>
 
       <div className={`controls${isReadOnly ? " controls--read-only" : ""}`}>
         <div className="workflow-row">
-          <span className="workflow-section-label">Upload Photo:</span>
+          <span className="workflow-section-label">{ui.uploadPhoto}</span>
           <label
             className={`upload-control ${
               activeWorkflowStage === "photo" ? "upload-control-current" : ""
             } ${hasUploadedPhoto ? "upload-control-complete" : ""}`}
           >
             <span className="upload-label-row">
-              {hasUploadedPhoto ? "✓ Photo uploaded" : "Choose File"}
-              {renderHelpPopup("photo", PHOTO_HELP)}
+              {hasUploadedPhoto ? ui.photoUploaded : ui.chooseFile}
+              {renderHelpPopup("photo", ui.help.photo)}
             </span>
             <input type="file" accept="image/*" onChange={onImageUpload} />
             {activeWorkflowStage === "photo" && (
-              <span className="upload-helper">Start by uploading a photo.</span>
+              <span className="upload-helper">{ui.uploadHelper}</span>
             )}
           </label>
           <aside className="upload-onboarding-panel" aria-label="Upload photo guidance">
             <span className="onboarding-badge">1</span>
             <div>
-              <h2>Step 1 — Upload a Photo</h2>
-              <p>
-                For best results, upload a clear top-down photo of your project
-                that includes the entire mold and all wood pieces.
-              </p>
+              <h2>{ui.step1Title}</h2>
+              <p>{ui.step1Body}</p>
             </div>
           </aside>
         </div>
@@ -2479,7 +2427,7 @@ export default forwardRef(function ResinCalculator(
 
       </div>
 
-      <div className="workflow-progress" aria-label="Workflow progress">
+      <div className="workflow-progress" aria-label={ui.workflowProgress}>
         {workflowSteps.map((step, idx) => (
           <div
             key={step.label}
@@ -2498,7 +2446,7 @@ export default forwardRef(function ResinCalculator(
       {mode === "reference" && draftReferencePoints.length === 2 && (
         <div className="reference-draft" ref={referenceDraftRef}>
           <div>
-            Reference draft captured. Enter its real-world length ({displayUnits.lengthLabel}):
+            {ui.referenceDraft(displayUnits.lengthLabel)}
           </div>
           <div className="reference-draft-row">
             <input
@@ -2515,7 +2463,7 @@ export default forwardRef(function ResinCalculator(
               placeholder="e.g. 10.0"
             />
             <button onClick={saveReferenceMeasurement}>
-              Save Reference Measurement
+              {ui.saveReferenceMeasurement}
             </button>
           </div>
         </div>
@@ -2551,12 +2499,12 @@ export default forwardRef(function ResinCalculator(
           open={referencesExpanded}
           onToggle={(event) => setReferencesExpanded(event.currentTarget.open)}
         >
-          <summary>Reference Measurements</summary>
+          <summary>{ui.referenceMeasurements}</summary>
           <div className="reference-list-items">
             {referenceMeasurements.map((ref, idx) => (
               <div key={idx} className="reference-item">
                 <div className="reference-label">
-                  Reference {idx + 1}: {displayUnits.formatReferenceLength(ref.knownLengthCm)}{" "}
+                  {ui.referenceItem(idx + 1)}: {displayUnits.formatReferenceLength(ref.knownLengthCm)}{" "}
                   {displayUnits.lengthLabel}
                   {(() => {
                     const pts = ref.calibrationPoints || [];
@@ -2571,7 +2519,7 @@ export default forwardRef(function ResinCalculator(
                   disabled={isReadOnly}
                   onClick={() => deleteReferenceMeasurement(idx)}
                 >
-                  Delete
+                  {ui.delete}
                 </button>
               </div>
             ))}
@@ -2603,8 +2551,8 @@ export default forwardRef(function ResinCalculator(
                 }}
                 title="Click then select two points on the image"
               >
-                Add Reference Measurement
-                {renderHelpPopup("reference", WORKFLOW_HELP.reference)}
+                {ui.addReferenceMeasurement}
+                {renderHelpPopup("reference", ui.help.reference)}
               </button>
               <button
                 className={
@@ -2615,7 +2563,7 @@ export default forwardRef(function ResinCalculator(
                 }
                 onClick={() => {
                   if (referenceMeasurements.length === 0) {
-                    setError("Add at least one reference measurement before continuing.");
+                    setError(ui.errors.addReferenceBeforeContinue);
                     setMode("reference");
                     return;
                   }
@@ -2633,7 +2581,7 @@ export default forwardRef(function ResinCalculator(
                   setError("");
                 }}
               >
-                Done with Measurements
+                {ui.doneWithMeasurements}
               </button>
               {activeWorkflowStage === "references" && (
                 <aside
@@ -2642,14 +2590,8 @@ export default forwardRef(function ResinCalculator(
                 >
                   <span className="onboarding-badge">2</span>
                   <div>
-                    <h2>Step 2 — Add Reference Measurements</h2>
-                    <p>
-                      Draw reference measurements using known dimensions visible in
-                      the photo. These measurements are used to calibrate the image
-                      scale before calculating resin volume. For best accuracy, add
-                      multiple horizontal and vertical references, especially when
-                      the photo is not perfectly top-down.
-                    </p>
+                    <h2>{ui.step2Title}</h2>
+                    <p>{ui.step2Body}</p>
                   </div>
                 </aside>
               )}
@@ -2702,7 +2644,7 @@ export default forwardRef(function ResinCalculator(
                 }
                 onClick={calculate}
               >
-                Calculate
+                {ui.calculate}
               </button>
             </>
           )}
@@ -2711,7 +2653,7 @@ export default forwardRef(function ResinCalculator(
             <>
               {!moldBoundaryComplete && (
                 <div className="active-step-group next-step-group">
-                  <span className="workflow-section-label">Mold Boundary</span>
+                  <span className="workflow-section-label">{ui.moldBoundary}</span>
                   <button
                     className={`${
                       mode === "mold" ? "mode-active" : ""
@@ -2731,15 +2673,15 @@ export default forwardRef(function ResinCalculator(
                       setCavitiesComplete(false);
                     }}
                   >
-                    Draw Mold Boundary
-                    {renderHelpPopup("mold-boundary", WORKFLOW_HELP.mold)}
+                    {ui.drawMoldBoundary}
+                    {renderHelpPopup("mold-boundary", ui.help.mold)}
                   </button>
                   <button
                     className="secondary-action"
                     onClick={clearMoldBoundary}
                     disabled={isReadOnly}
                   >
-                    Clear Mold Boundary
+                    {ui.clearMoldBoundary}
                   </button>
                   <button
                     className={
@@ -2750,7 +2692,7 @@ export default forwardRef(function ResinCalculator(
                     }
                     onClick={() => {
                       if (moldBoundaryPoints.length < 3) {
-                        setError("Draw the mold boundary before continuing.");
+                        setError(ui.errors.drawMoldBeforeContinue);
                         return;
                       }
                       setMoldBoundaryComplete(true);
@@ -2759,7 +2701,7 @@ export default forwardRef(function ResinCalculator(
                       setError("");
                     }}
                   >
-                    Finish Mold
+                    {ui.finishMold}
                   </button>
                   {activeWorkflowStage === "mold" && (
                     <aside
@@ -2768,11 +2710,8 @@ export default forwardRef(function ResinCalculator(
                     >
                       <span className="onboarding-badge">3</span>
                       <div>
-                        <h2>Step 3 — Define the Mold Boundary</h2>
-                        <p>
-                          Draw the inside perimeter of the mold. This area will be
-                          used as the outer boundary for all resin calculations.
-                        </p>
+                        <h2>{ui.step3Title}</h2>
+                        <p>{ui.step3Body}</p>
                       </div>
                     </aside>
                   )}
@@ -2781,7 +2720,7 @@ export default forwardRef(function ResinCalculator(
 
               {moldBoundaryComplete && (
                 <div className="active-step-group completed-step-group">
-                  <span className="workflow-section-label">✓ Mold complete</span>
+                  <span className="workflow-section-label">{ui.moldComplete}</span>
                   <button
                     className="secondary-action"
                     onClick={() => {
@@ -2791,14 +2730,14 @@ export default forwardRef(function ResinCalculator(
                     }}
                     disabled={moldBoundaryPoints.length < 3 || isReadOnly}
                   >
-                    Edit Mold Boundary
+                    {ui.editMoldBoundary}
                   </button>
                   <button
                     className="secondary-action"
                     onClick={clearMoldBoundary}
                     disabled={isReadOnly}
                   >
-                    Clear Mold Boundary
+                    {ui.clearMoldBoundary}
                   </button>
                 </div>
               )}
@@ -2806,7 +2745,7 @@ export default forwardRef(function ResinCalculator(
               {moldBoundaryComplete && !woodBoundaryComplete && (
                 <div className="active-step-group next-step-group">
                   <div className="toolbar-row toolbar-row-primary">
-                    <span className="workflow-section-label">Wood Islands</span>
+                    <span className="workflow-section-label">{ui.woodIslands}</span>
                     <button
                       className={`${
                         mode === "wood" ? "mode-active" : ""
@@ -2826,8 +2765,8 @@ export default forwardRef(function ResinCalculator(
                         setCavitiesComplete(false);
                       }}
                     >
-                      Add Wood Island
-                      {renderHelpPopup("wood-boundary", WORKFLOW_HELP.wood)}
+                      {ui.addWoodIsland}
+                      {renderHelpPopup("wood-boundary", ui.help.wood)}
                     </button>
                     <button
                       className={
@@ -2839,14 +2778,14 @@ export default forwardRef(function ResinCalculator(
                       onClick={finishWoodIsland}
                       disabled={woodBoundaryPoints.length < 3}
                     >
-                      Complete Current Island
+                      {ui.completeCurrentIsland}
                     </button>
                     <button
                       className="secondary-action"
                       onClick={deleteSelectedWoodIsland}
                       disabled={selectedShape?.type !== "wood" || isReadOnly}
                     >
-                      Delete Selected Wood Island
+                      {ui.deleteSelectedWoodIsland}
                     </button>
                     <button
                       className={
@@ -2858,11 +2797,11 @@ export default forwardRef(function ResinCalculator(
                       }
                       onClick={() => {
                         if (woodBoundaryPoints.length > 0) {
-                          setError("Complete the current wood island before finishing the Wood step.");
+                          setError(ui.errors.completeWoodIslandFirst);
                           return;
                         }
                         if (woodBoundaryPolygons.length === 0) {
-                          setError("Add at least one wood island before continuing.");
+                          setError(ui.errors.addWoodIslandBeforeContinue);
                           return;
                         }
                         setWoodBoundaryComplete(true);
@@ -2871,7 +2810,7 @@ export default forwardRef(function ResinCalculator(
                         setError("");
                       }}
                     >
-                      Done with Wood
+                      {ui.doneWithWood}
                     </button>
                   </div>
                   <div className="toolbar-row toolbar-row-secondary">
@@ -2882,12 +2821,8 @@ export default forwardRef(function ResinCalculator(
                       >
                         <span className="onboarding-badge">4</span>
                         <div>
-                          <h2>Step 4 — Define Wood Islands</h2>
-                          <p>
-                            Trace the outline of each wood slab inside the mold.
-                            These areas will be excluded from the resin volume
-                            calculation.
-                          </p>
+                          <h2>{ui.step4Title}</h2>
+                          <p>{ui.step4Body}</p>
                         </div>
                       </aside>
                     )}
@@ -2897,14 +2832,14 @@ export default forwardRef(function ResinCalculator(
                       onClick={undoLastPoint}
                       disabled={getActiveWoodDrawingPointCount() === 0 || isReadOnly}
                     >
-                      Undo Last Point
+                      {ui.undoLastPoint}
                     </button>
                     <button
                       className="secondary-action"
                       onClick={clearWoodIslands}
                       disabled={isReadOnly}
                     >
-                      Clear Wood Islands
+                      {ui.clearWoodIslands}
                     </button>
                     </div>
                   </div>
@@ -2913,7 +2848,7 @@ export default forwardRef(function ResinCalculator(
 
               {woodBoundaryComplete && (
                 <div className="active-step-group completed-step-group">
-                  <span className="workflow-section-label">✓ Wood complete</span>
+                  <span className="workflow-section-label">{ui.woodComplete}</span>
                   <button
                     className="secondary-action"
                     onClick={() => {
@@ -2922,7 +2857,7 @@ export default forwardRef(function ResinCalculator(
                     }}
                     disabled={selectedShape?.type !== "wood"}
                   >
-                    Edit Selected Wood Island
+                    {ui.editSelectedWoodIsland}
                   </button>
                   <button
                     className="secondary-action"
@@ -2934,21 +2869,21 @@ export default forwardRef(function ResinCalculator(
                       setCavitiesComplete(false);
                     }}
                   >
-                    Add Wood Island
+                    {ui.addWoodIsland}
                   </button>
                   <button
                     className="secondary-action"
                     onClick={deleteSelectedWoodIsland}
                     disabled={selectedShape?.type !== "wood" || isReadOnly}
                   >
-                    Delete Selected Wood Island
+                    {ui.deleteSelectedWoodIsland}
                   </button>
                   <button
                     className="secondary-action"
                     onClick={clearWoodIslands}
                     disabled={isReadOnly}
                   >
-                    Clear Wood Islands
+                    {ui.clearWoodIslands}
                   </button>
                 </div>
               )}
@@ -2956,7 +2891,7 @@ export default forwardRef(function ResinCalculator(
               {woodBoundaryComplete && !cavitiesComplete && (
                 <div className="active-step-group next-step-group" ref={cavityControlsRef}>
                   <div className="toolbar-row toolbar-row-primary">
-                    <span className="workflow-section-label">Resin Cavities</span>
+                    <span className="workflow-section-label">{ui.resinCavities}</span>
                     <button
                       className={`${
                         mode === "cavity" ? "mode-active" : ""
@@ -2975,8 +2910,8 @@ export default forwardRef(function ResinCalculator(
                         setCavitiesComplete(false);
                       }}
                     >
-                      Add Resin Cavity
-                      {renderHelpPopup("resin-cavity", WORKFLOW_HELP.cavity)}
+                      {ui.addResinCavity}
+                      {renderHelpPopup("resin-cavity", ui.help.cavity)}
                     </button>
                     <button
                       className={
@@ -2988,7 +2923,7 @@ export default forwardRef(function ResinCalculator(
                       onClick={finishCavity}
                       disabled={currentCavityPoints.length < 3}
                     >
-                      Finish Cavity
+                      {ui.finishCavity}
                     </button>
                     <button
                       className="secondary-action"
@@ -2999,14 +2934,14 @@ export default forwardRef(function ResinCalculator(
                       }}
                       disabled={selectedShape?.type !== "cavity"}
                     >
-                      Edit Selected Cavity
+                      {ui.editSelectedCavity}
                     </button>
                     <button
                       className="secondary-action"
                       onClick={clearAllCavities}
                       disabled={isReadOnly}
                     >
-                      Clear All Cavities
+                      {ui.clearAllCavities}
                     </button>
                     <button
                       className={
@@ -3024,7 +2959,7 @@ export default forwardRef(function ResinCalculator(
                         focusMainResinDepth();
                       }}
                     >
-                      Finish Cavities
+                      {ui.finishCavities}
                     </button>
                   </div>
                   <div className="toolbar-row toolbar-row-secondary">
@@ -3035,12 +2970,8 @@ export default forwardRef(function ResinCalculator(
                       >
                         <span className="onboarding-badge">5</span>
                         <div>
-                          <h2>Step 5 — Define Resin Cavities</h2>
-                          <p>
-                            Trace every resin area located between the mold boundary
-                            and the wood islands. Each cavity represents an area that
-                            will be included in the final resin volume calculation.
-                          </p>
+                          <h2>{ui.step5Title}</h2>
+                          <p>{ui.step5Body}</p>
                         </div>
                       </aside>
                     )}
@@ -3050,7 +2981,7 @@ export default forwardRef(function ResinCalculator(
 
               {cavitiesComplete && (
                 <div className="active-step-group completed-step-group" ref={cavityControlsRef}>
-                  <span className="workflow-section-label">✓ Cavities complete</span>
+                  <span className="workflow-section-label">{ui.cavitiesComplete}</span>
                   <button
                     className="secondary-action"
                     onClick={() => {
@@ -3060,7 +2991,7 @@ export default forwardRef(function ResinCalculator(
                       setCavitiesComplete(false);
                     }}
                   >
-                    Add Resin Cavity
+                    {ui.addResinCavity}
                   </button>
                   <button
                     className="secondary-action"
@@ -3070,14 +3001,14 @@ export default forwardRef(function ResinCalculator(
                     }}
                     disabled={selectedShape?.type !== "cavity"}
                   >
-                    Edit Selected Cavity
+                    {ui.editSelectedCavity}
                   </button>
                   <button
                     className="secondary-action"
                     onClick={clearAllCavities}
                     disabled={isReadOnly}
                   >
-                    Clear All Cavities
+                    {ui.clearAllCavities}
                   </button>
                 </div>
               )}
@@ -3317,7 +3248,7 @@ export default forwardRef(function ResinCalculator(
             <label className="final-depth-field">
               <span className="final-depth-label">
                 {displayUnits.mainResinDepthLabel()}
-                {renderHelpPopup("main-resin-depth", MAIN_RESIN_DEPTH_HELP)}
+                {renderHelpPopup("main-resin-depth", ui.help.mainResinDepth)}
               </span>
               <input
                 ref={mainDepthInputRef}
@@ -3341,7 +3272,7 @@ export default forwardRef(function ResinCalculator(
               />
             </label>
             <button className="calculate-primary-button" onClick={calculateWood}>
-              Calculate Resin Volume
+              {ui.calculateResinVolume}
             </button>
           </div>
         )}
@@ -3349,28 +3280,30 @@ export default forwardRef(function ResinCalculator(
       {error && <div className="error">{error}</div>}
       {result && resultOutdated && (
         <div className="outdated-result-warning">
-          Results need recalculation after your latest edit.
+          {ui.resultsOutdated}
         </div>
       )}
       {result && result.calculationType === "standard" && (
         <div className="result">
           <div className="result-summary-layout">
             <div className="result-summary-column">
-              <div>Selected area: {result.areaCm2.toFixed(2)} cm²</div>
+              <div>{ui.result.selectedArea(result.areaCm2.toFixed(2))}</div>
               <div>
-                Estimated volume: {displayUnits.formatVolume(result.volumeLiters)}{" "}
-                {displayUnits.volumeLabel}
+                {ui.result.estimatedVolume(
+                  displayUnits.formatVolume(result.volumeLiters),
+                  displayUnits.volumeLabel,
+                )}
               </div>
               {result.recommendedVolumeLiters != null && (
                 <div>
-                  Recommended amount (incl. {result.safetyMarginPercent ?? 10}% margin):{" "}
+                  {ui.result.recommendedAmountWithMargin(result.safetyMarginPercent ?? 10)}{" "}
                   {result.recommendedVolumeLiters.toFixed(3)} L
                 </div>
               )}
             </div>
             <div className="project-notes-column">
               <label className="project-notes-label">
-                Project Notes
+                {ui.projectNotes}
                 <textarea
                   value={projectNotes}
                   maxLength={1000}
@@ -3389,18 +3322,18 @@ export default forwardRef(function ResinCalculator(
         <div className="result result-wood">
           <div className="result-summary-layout">
             <div className="main-result-card result-summary-column">
-              <div className="main-result-label">Total Resin Required:</div>
+              <div className="main-result-label">{ui.result.totalResinRequired}</div>
               <div className="main-result-value">
                 {formatNumber(result.volumeLiters, 2)} L
               </div>
-              <div className="main-result-label">Recommended Amount (+10%):</div>
+              <div className="main-result-label">{ui.result.recommendedAmountTenPercent}</div>
               <div className="main-result-value">
                 {formatNumber(result.recommendedVolumeLiters, 2)} L
               </div>
             </div>
             <div className="project-notes-column">
               <label className="project-notes-label">
-                Project Notes
+                {ui.projectNotes}
                 <textarea
                   value={projectNotes}
                   maxLength={1000}
@@ -3414,23 +3347,23 @@ export default forwardRef(function ResinCalculator(
             </div>
           </div>
 
-          <section className="optional-planning-tools" aria-label="Optional pour planning tools">
+          <section className="optional-planning-tools" aria-label={ui.planning.optionalToolsTitle}>
             <div className="optional-planning-header">
-              <h3>Optional Pour Planning Tools</h3>
-              <p>Use these planning aids when helpful. They do not change the resin volume calculation.</p>
+              <h3>{ui.planning.optionalToolsTitle}</h3>
+              <p>{ui.planning.optionalToolsSubtitle}</p>
             </div>
             {layerCalculation ? (
               <>
             <div className="pour-layer-planning-row">
               <div className="pour-layer-planning-controls">
-                <h3 className="planning-tool-title">First Fill Seal Coat Calculator</h3>
+                <h3 className="planning-tool-title">{ui.planning.firstFillTitle}</h3>
                 <label className="pour-layer-field">
-                  First Fill Seal Coat Thickness (mm)
+                  {ui.planning.firstFillThicknessLabel}
                   <input
                     ref={firstFillThicknessInputRef}
                     type="number"
                     step="0.1"
-                    placeholder="Recommended: 3 mm"
+                    placeholder={ui.planning.firstFillThicknessPlaceholder}
                     value={firstFillThicknessMm}
                     onChange={(event) => {
                       setFirstFillThicknessMm(event.target.value);
@@ -3444,17 +3377,17 @@ export default forwardRef(function ResinCalculator(
                   />
                 </label>
                 <button className="primary-action" onClick={calculateFirstFillVolume}>
-                  Calculate First Fill Volume
+                  {ui.planning.calculateFirstFillVolume}
                 </button>
                 {firstFillVolumeLiters != null && (
                   <div className="pour-layer-result">
                     <div>
-                      First Fill Seal Coat Volume:{" "}
+                      {ui.planning.firstFillVolume}{" "}
                       {formatNumber(firstFillVolumeLiters, 3)} L
                     </div>
                     <div className="first-fill-recommendation-options">
                       <div className="first-fill-recommendation-title">
-                        First Fill Recommendation Mode
+                        {ui.planning.firstFillRecommendationMode}
                       </div>
                       {FIRST_FILL_RECOMMENDATION_OPTIONS.map((option) => {
                         const recommendedVolumeLiters =
@@ -3482,8 +3415,8 @@ export default forwardRef(function ResinCalculator(
                             />
                             <span>
                               {option.value === "10"
-                                ? "Wood sealed underneath (silicone seal underneath wood)"
-                                : "Wood not sealed underneath (resin may leak underneath wood)"}{" "}
+                                ? ui.planning.firstFillSealedUnderneath
+                                : ui.planning.firstFillUnsealedUnderneath}{" "}
                               —{" "}
                               <strong className="first-fill-recommendation-volume">
                                 {formatNumber(recommendedVolumeLiters, 3)} L
@@ -3493,8 +3426,7 @@ export default forwardRef(function ResinCalculator(
                         );
                       })}
                       <div className="first-fill-recommendation-helper">
-                        This selection controls the First Fill Seal Coat row in the
-                        Pour Layer Planning table.
+                        {ui.planning.firstFillTableHelper}
                       </div>
                     </div>
                   </div>
@@ -3505,25 +3437,20 @@ export default forwardRef(function ResinCalculator(
               </div>
               <aside
                 className="upload-onboarding-panel pour-layer-helper"
-                aria-label="First fill seal coat guidance"
+                aria-label={ui.help.firstFill.title}
               >
                 <span className="onboarding-badge">i</span>
                 <div>
-                  <h2>First Fill Seal Coat Calculator</h2>
-                  <p>
-                    Enter the thickness of the initial sealing layer. The
-                    application will calculate the amount of resin needed for the
-                    first fill coat used to seal pores, cracks and potential leak
-                    paths before the main pour.
-                  </p>
+                  <h2>{ui.help.firstFill.title}</h2>
+                  <p>{ui.help.firstFill.text}</p>
                 </div>
               </aside>
             </div>
             <div className="pour-layer-planning-row">
               <div className="pour-layer-planning-controls">
-                <h3 className="planning-tool-title">Pour Layer Planning</h3>
+                <h3 className="planning-tool-title">{ui.planning.pourLayerTitle}</h3>
                 <label className="pour-layer-field">
-                  Maximum Pour Thickness Per Layer (mm)
+                  {ui.planning.maxPourThicknessLabel}
                   <input
                     ref={maxPourThicknessInputRef}
                     type="number"
@@ -3539,7 +3466,7 @@ export default forwardRef(function ResinCalculator(
                   />
                 </label>
                 <label className="pour-layer-field">
-                  Resin Mix Ratio (A:B)
+                  {ui.planning.resinMixRatioLabel}
                   <select
                     value={resinMixRatio}
                     onChange={(event) => setResinMixRatio(event.target.value)}
@@ -3552,19 +3479,19 @@ export default forwardRef(function ResinCalculator(
                   </select>
                 </label>
                 <button className="primary-action" onClick={calculatePourLayers}>
-                  Calculate Pour Plan
+                  {ui.planning.calculatePourPlan}
                 </button>
                 {pourPlanRows.length > 0 && (
                   <div className="pour-plan-table-wrap">
                     <table className="pour-plan-table">
                       <thead>
                         <tr>
-                          <th>Pour</th>
-                          <th>Thickness</th>
-                          <th>Resin Volume</th>
-                          <th>Recommended Amount (+10%)</th>
-                          <th>Component A</th>
-                          <th>Component B</th>
+                          <th>{ui.planning.tablePour}</th>
+                          <th>{ui.planning.tableThickness}</th>
+                          <th>{ui.planning.tableResinVolume}</th>
+                          <th>{ui.planning.tableRecommendedAmount}</th>
+                          <th>{ui.planning.tableComponentA}</th>
+                          <th>{ui.planning.tableComponentB}</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -3594,8 +3521,7 @@ export default forwardRef(function ResinCalculator(
                       </tbody>
                     </table>
                     <div className="pour-plan-note">
-                      Layer thicknesses are automatically balanced to avoid very thin
-                      final pours.
+                      {ui.planning.layerBalanceNote}
                     </div>
                   </div>
                 )}
@@ -3605,78 +3531,77 @@ export default forwardRef(function ResinCalculator(
               </div>
               <aside
                 className="upload-onboarding-panel pour-layer-helper"
-                aria-label="Pour layer planning guidance"
+                aria-label={ui.help.pourLayer.title}
               >
                 <span className="onboarding-badge">i</span>
                 <div>
-                  <h2>Pour Layer Planning</h2>
-                  <p>
-                    Enter the maximum pour thickness recommended by the resin
-                    manufacturer for the resin system you are using.
-                  </p>
-                  <p>
-                    The application will use any entered first fill seal coat and
-                    split the remaining depth into safe pour layers.
-                  </p>
+                  <h2>{ui.help.pourLayer.title}</h2>
+                  <p>{ui.help.pourLayer.text1}</p>
+                  <p>{ui.help.pourLayer.text2}</p>
                 </div>
               </aside>
             </div>
               </>
             ) : (
               <p className="pour-layer-validation">
-                Pour layer planning is not available for new projects on this account.
+                {ui.errors.layerPlanningUnavailable}
               </p>
             )}
           </section>
 
           <details className="detailed-breakdown">
-            <summary>Detailed Breakdown</summary>
+            <summary>{ui.result.detailedBreakdown}</summary>
             <div className="result-section">
-              <div className="result-section-title">Summary (areas)</div>
-              <div>Mold area: {formatNumber(result.moldAreaCm2, 2)} cm²</div>
+              <div className="result-section-title">{ui.result.summaryAreas}</div>
+              <div>{ui.result.moldArea(formatNumber(result.moldAreaCm2, 2))}</div>
               <div>
-                Mold source:{" "}
-                {result.useImageBorderAsMold ? "image border" : "drawn boundary"}
+                {ui.result.moldSource}{" "}
+                {result.useImageBorderAsMold
+                  ? ui.result.moldSourceImageBorder
+                  : ui.result.moldSourceDrawnBoundary}
               </div>
               <div>
-                Total wood island area: {formatNumber(result.woodAreaCm2, 2)} cm²
-              </div>
-              <div>Wood islands: {result.woodIslandCount ?? woodBoundaryPolygons.length}</div>
-              <div>
-                Main resin area: {formatNumber(result.mainResinAreaCm2, 2)} cm²
+                {ui.result.totalWoodIslandArea(formatNumber(result.woodAreaCm2, 2))}
               </div>
               <div>
-                Isolated cavity area (reported separately):{" "}
-                {formatNumber(result.cavityAreaCm2, 2)} cm²
+                {ui.result.woodIslandsCount(
+                  result.woodIslandCount ?? woodBoundaryPolygons.length,
+                )}
+              </div>
+              <div>
+                {ui.result.mainResinArea(formatNumber(result.mainResinAreaCm2, 2))}
+              </div>
+              <div>
+                {ui.result.isolatedCavityArea(formatNumber(result.cavityAreaCm2, 2))}
               </div>
             </div>
 
             <div className="result-section">
-              <div className="result-section-title">Main resin</div>
-              <div>Area: {formatNumber(result.mainResinAreaCm2, 2)} cm²</div>
-              <div>Main depth: {formatNumber(result.mainPourDepthMm, 2)} mm</div>
-              <div>Main volume: {formatNumber(result.mainVolumeLiters, 3)} L</div>
+              <div className="result-section-title">{ui.result.mainResinSection}</div>
+              <div>{ui.result.area(formatNumber(result.mainResinAreaCm2, 2))}</div>
+              <div>{ui.result.mainDepth(formatNumber(result.mainPourDepthMm, 2))}</div>
+              <div>{ui.result.mainVolume(formatNumber(result.mainVolumeLiters, 3))}</div>
             </div>
 
             {Array.isArray(result.cavities) && result.cavities.length > 0 && (
               <div className="result-section">
-                <div className="result-section-title">Cavities</div>
+                <div className="result-section-title">{ui.result.cavitiesSection}</div>
                 {result.cavities.map((cavity, idx) => (
                   <div key={cavity.name || idx} className="cavity-result-block">
-                    <div>{cavity.name || `Cavity ${idx + 1}`}</div>
-                    <div>Area: {formatNumber(cavity.areaCm2, 2)} cm²</div>
-                    <div>Depth: {formatNumber(cavity.depthMm, 2)} mm</div>
-                    <div>Volume: {formatNumber(cavity.volumeLiters, 3)} L</div>
+                    <div>{cavity.name || ui.result.cavityItem(idx + 1)}</div>
+                    <div>{ui.result.area(formatNumber(cavity.areaCm2, 2))}</div>
+                    <div>{ui.result.depth(formatNumber(cavity.depthMm, 2))}</div>
+                    <div>{ui.result.volume(formatNumber(cavity.volumeLiters, 3))}</div>
                   </div>
                 ))}
               </div>
             )}
 
             <div className="result-section">
-              <div className="result-section-title">Totals</div>
-              <div>Total resin volume: {formatNumber(result.volumeLiters, 3)} L</div>
+              <div className="result-section-title">{ui.result.totalsSection}</div>
+              <div>{ui.result.totalResinVolume(formatNumber(result.volumeLiters, 3))}</div>
               <div>
-                Recommended amount (incl. {result.safetyMarginPercent ?? 10}% margin):{" "}
+                {ui.result.recommendedAmountWithMargin(result.safetyMarginPercent ?? 10)}{" "}
                 {formatNumber(result.recommendedVolumeLiters, 3)} L
               </div>
             </div>
@@ -3684,12 +3609,12 @@ export default forwardRef(function ResinCalculator(
         </div>
       )}
       <div className="bottom-project-actions">
-        <h3>Project Actions</h3>
+        <h3>{ui.projectActions}</h3>
         <div className="bottom-project-actions-row">
           {!isReadOnly ? (
             <button className="project-action-button" onClick={handleSaveProjectClick}>
               <Save size={15} aria-hidden="true" />
-              Save Project
+              {ui.saveProject}
             </button>
           ) : null}
           <button
@@ -3698,7 +3623,7 @@ export default forwardRef(function ResinCalculator(
             disabled={!result || !pdfExport}
           >
             <FileText size={15} aria-hidden="true" />
-            Export PDF
+            {ui.exportPdf}
           </button>
         </div>
       </div>

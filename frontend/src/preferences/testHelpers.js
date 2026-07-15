@@ -1,9 +1,53 @@
 import { vi } from "vitest";
 import { GUEST_CAPABILITIES_RESPONSE } from "../capabilities/capabilityDefaults.js";
 import { DEFAULT_PREFERENCES } from "./preferencesConstants.js";
+import {
+  DEVICE_PREFERENCES_STORAGE_KEY,
+  loadDevicePreferences,
+  saveDevicePreferences,
+} from "./devicePreferencesStorage.js";
 
 function capabilitiesResponse() {
   return GUEST_CAPABILITIES_RESPONSE;
+}
+
+function handleCapabilitiesFetch(url) {
+  const path = String(url);
+  if (path.endsWith("/api/me/capabilities")) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => capabilitiesResponse(),
+    });
+  }
+  return Promise.reject(new Error(`Unhandled fetch: ${path}`));
+}
+
+export function clearDevicePreferences() {
+  localStorage.removeItem(DEVICE_PREFERENCES_STORAGE_KEY);
+}
+
+export function seedDevicePreferences(preferences = {}) {
+  saveDevicePreferences({
+    interfaceLanguage: DEFAULT_PREFERENCES.interfaceLanguage,
+    lengthUnit: DEFAULT_PREFERENCES.lengthUnit,
+    volumeUnit: DEFAULT_PREFERENCES.volumeUnit,
+    ...preferences,
+  });
+}
+
+export function readDevicePreferencesFromStorage() {
+  return loadDevicePreferences();
+}
+
+export function mockCapabilitiesFetch() {
+  return vi.spyOn(global, "fetch").mockImplementation((url, init) => {
+    const path = String(url);
+    if (path.includes("/api/preferences")) {
+      return Promise.reject(new Error("Unexpected /api/preferences call"));
+    }
+    return handleCapabilitiesFetch(url, init);
+  });
 }
 
 function handleMockApiFetch(url, init, preferences) {
@@ -37,6 +81,7 @@ function handleMockApiFetch(url, init, preferences) {
   return Promise.reject(new Error(`Unhandled fetch: ${path}`));
 }
 
+/** @deprecated Use seedDevicePreferences + mockCapabilitiesFetch for device-local preference tests. */
 export function mockPreferencesFetch(preferences = DEFAULT_PREFERENCES) {
   return vi.spyOn(global, "fetch").mockImplementation((url, init) =>
     handleMockApiFetch(url, init, preferences),
@@ -44,8 +89,7 @@ export function mockPreferencesFetch(preferences = DEFAULT_PREFERENCES) {
 }
 
 /**
- * Stateful preferences mock: PUT updates are reflected on subsequent GET,
- * matching real backend persistence behavior in integration tests.
+ * @deprecated Use seedDevicePreferences + mockCapabilitiesFetch for device-local preference tests.
  */
 export function mockStatefulPreferencesFetch(initial = {}) {
   let stored = {
@@ -70,4 +114,11 @@ export function mockStatefulPreferencesFetch(initial = {}) {
   });
   vi.stubGlobal("fetch", fetchMock);
   return fetchMock;
+}
+
+export function assertNoPreferencesApiCalls(fetchMock) {
+  const preferenceCalls = fetchMock.mock.calls.filter(([url]) =>
+    String(url).includes("/api/preferences"),
+  );
+  expect(preferenceCalls).toHaveLength(0);
 }

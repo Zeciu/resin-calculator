@@ -5,7 +5,7 @@ import { CapabilitiesProvider, useCapability, useCapabilityLimit } from "./Capab
 import { CAPABILITY_KEYS } from "./capabilityKeys.js";
 import { GUEST_CAPABILITIES_RESPONSE } from "./capabilityDefaults.js";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
-import { mockPreferencesFetch } from "../preferences/testHelpers.js";
+import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -45,26 +45,14 @@ function renderCapabilitiesTree() {
   );
 }
 
-function mockCapabilitiesFetch(response = GUEST_CAPABILITIES_RESPONSE) {
-  return vi.spyOn(global, "fetch").mockImplementation((url, init) => {
+function mockCapabilitiesApiFetch(response = GUEST_CAPABILITIES_RESPONSE) {
+  return vi.spyOn(global, "fetch").mockImplementation((url) => {
     const path = String(url);
     if (path.endsWith("/api/me/capabilities")) {
       return Promise.resolve({
         ok: true,
         status: 200,
         json: async () => response,
-      });
-    }
-    if (path.endsWith("/api/preferences")) {
-      return Promise.resolve({
-        ok: true,
-        status: 200,
-        json: async () => ({
-          interfaceLanguage: "en",
-          lengthUnit: "mm",
-          volumeUnit: "L",
-          exists: false,
-        }),
       });
     }
     return Promise.reject(new Error(`Unhandled fetch: ${path}`));
@@ -78,7 +66,7 @@ describe("CapabilitiesProvider", () => {
   });
 
   it("loads capabilities after authentication", async () => {
-    mockCapabilitiesFetch();
+    mockCapabilitiesApiFetch();
     sessionStorage.setItem(
       SESSION_STORAGE_KEY,
       JSON.stringify({ user: { id: "user-a", email: "a@example.com", username: "a", role: "user" } }),
@@ -93,7 +81,7 @@ describe("CapabilitiesProvider", () => {
   });
 
   it("returns boolean values from useCapability", async () => {
-    mockCapabilitiesFetch({
+    mockCapabilitiesApiFetch({
       ...GUEST_CAPABILITIES_RESPONSE,
       capabilities: {
         ...GUEST_CAPABILITIES_RESPONSE.capabilities,
@@ -113,7 +101,7 @@ describe("CapabilitiesProvider", () => {
   });
 
   it("returns numeric limits and unlimited from useCapabilityLimit", async () => {
-    mockCapabilitiesFetch(ADMIN_CAPABILITIES);
+    mockCapabilitiesApiFetch(ADMIN_CAPABILITIES);
     sessionStorage.setItem(
       SESSION_STORAGE_KEY,
       JSON.stringify({
@@ -129,11 +117,11 @@ describe("CapabilitiesProvider", () => {
   });
 
   it("does not interfere with preferences provider", async () => {
-    const fetchMock = mockPreferencesFetch({
+    const fetchMock = mockCapabilitiesFetch();
+    seedDevicePreferences({
       interfaceLanguage: "ro",
       lengthUnit: "cm",
       volumeUnit: "ml",
-      exists: true,
     });
     sessionStorage.setItem(
       SESSION_STORAGE_KEY,
@@ -159,7 +147,7 @@ describe("CapabilitiesProvider", () => {
       expect(fetchMock).toHaveBeenCalled();
     });
     const calledPaths = fetchMock.mock.calls.map(([url]) => String(url));
-    expect(calledPaths.some((path) => path.endsWith("/api/preferences"))).toBe(true);
+    expect(calledPaths.some((path) => path.endsWith("/api/preferences"))).toBe(false);
     expect(calledPaths.some((path) => path.endsWith("/api/me/capabilities"))).toBe(true);
   });
 });

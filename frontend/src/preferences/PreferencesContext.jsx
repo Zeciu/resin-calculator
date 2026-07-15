@@ -1,84 +1,42 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { useAuth } from "../auth/useAuth.js";
-import { detectBrowserInterfaceLanguage } from "./browserLanguage.js";
-import { fetchPreferences, savePreferences } from "./preferencesApi.js";
-import { DEFAULT_PREFERENCES, normalizePreferences } from "./preferencesConstants.js";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import {
+  DevicePreferencesStorageError,
+  loadDevicePreferences,
+  saveDevicePreferences,
+} from "./devicePreferencesStorage.js";
 
 const PreferencesContext = createContext(null);
 
-function withBrowserLanguageIfNeeded(preferences) {
-  if (preferences.exists) {
-    return preferences;
-  }
-  return {
-    ...preferences,
-    interfaceLanguage: detectBrowserInterfaceLanguage(),
-  };
-}
-
-function guestPreferences() {
-  return withBrowserLanguageIfNeeded({ ...DEFAULT_PREFERENCES, exists: false });
-}
-
 export function PreferencesProvider({ children }) {
-  const { isAuthenticated, user } = useAuth();
-  const [preferences, setPreferences] = useState(guestPreferences);
+  const [preferences, setPreferences] = useState(() => loadDevicePreferences());
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const resetToDefaults = useCallback(() => {
-    setPreferences(guestPreferences());
+  const reloadPreferences = useCallback(() => {
     setError("");
+    setPreferences(loadDevicePreferences());
   }, []);
 
-  const reloadPreferences = useCallback(async () => {
-    if (!isAuthenticated) {
-      resetToDefaults();
-      return;
-    }
-
+  const updatePreferences = useCallback(async (patch) => {
     setIsLoading(true);
     setError("");
     try {
-      const loaded = await fetchPreferences();
-      setPreferences(withBrowserLanguageIfNeeded(loaded));
-    } catch (loadError) {
-      setError(loadError.message || "Failed to load preferences.");
-      setPreferences(guestPreferences());
+      const saved = saveDevicePreferences(patch);
+      setPreferences(saved);
+      return saved;
+    } catch (saveError) {
+      const message =
+        saveError instanceof DevicePreferencesStorageError
+          ? saveError.message
+          : saveError instanceof Error
+            ? saveError.message
+            : "Failed to save preferences.";
+      setError(message);
+      throw saveError;
     } finally {
       setIsLoading(false);
     }
-  }, [isAuthenticated, resetToDefaults]);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      resetToDefaults();
-      return;
-    }
-    void reloadPreferences();
-  }, [isAuthenticated, user?.id, reloadPreferences, resetToDefaults]);
-
-  const updatePreferences = useCallback(
-    async (patch) => {
-      if (!isAuthenticated) {
-        throw new Error("Sign in to save preferences.");
-      }
-
-      setIsLoading(true);
-      setError("");
-      try {
-        const saved = await savePreferences(patch);
-        setPreferences(normalizePreferences(saved));
-        return saved;
-      } catch (saveError) {
-        setError(saveError.message || "Failed to save preferences.");
-        throw saveError;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [isAuthenticated],
-  );
+  }, []);
 
   const value = useMemo(
     () => ({

@@ -299,9 +299,9 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Block 3 — Task 3.2 — Device-Local Preferences Authority**
+**Block 3 — continued local workspace experience**
 
-Task 3.1 is closed (see §17). Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). Block 3 scope: see §5.
+Task 3.2 is closed (see §18). Task 3.1 is closed (see §17). Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). Scope the next Block 3 task from remaining §17 deferrals not yet delivered (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI, Calculator Import parity). Block 3 scope: see §5.
 
 ---
 
@@ -904,4 +904,46 @@ Save As; local Project deletion UI; Remove from Recent Projects UI; thumbnails; 
 
 ### Next step
 
-**Task 3.2 — Device-Local Preferences Authority**
+**Task 3.2 — Device-Local Preferences Authority** (see §18).
+
+---
+
+## 18. Block 3 Task 3.2 — Device-Local Preferences Authority
+
+**Task 3.2 status:** CLOSED — implementation, Product Owner manual QA, calculator i18n QA repairs, code hygiene, and automated validation complete
+
+### Delivered
+
+* **Device-local authority:** `interfaceLanguage`, `lengthUnit`, and `volumeUnit` stored in `localStorage` (`hfzwood.devicePreferences`); sole frontend preference authority.
+* **No frontend `/api/preferences` dependency:** normal initialization and save use `devicePreferencesStorage.js` only; orphaned `preferencesApi.js` removed; backend endpoint remains dormant.
+* **Persistence:** preferences survive refresh, logout, login, and account switch on the same browser/device; auth lifecycle does not reset preferences.
+* **First launch:** browser language detection with `mm` and `L`; malformed or unavailable storage falls back safely; failed writes throw (no false success).
+* **Calculator i18n:** primary workflow, result summary, optional pour-planning tools, detailed breakdown, and related validation messages follow selected interface language via `calculatorUi.js` and shared `I18nContext`.
+* **Romanian terminology:** calculator mold-boundary workflow uses **Cofraj**, not Mulaj.
+
+Device preferences remain independent from canonical `.hfzproject` v2 data. Task 3.1 ownership/Save/Open/Update, Task 2.3 capabilities, and Task 2.1 behavior unchanged.
+
+### Product Owner manual QA
+
+Passed: device-local persistence across refresh, logout/login, and account switch; Quick Preferences; calculator display units; interface language switching; localized calculator workflow, result, and pour-planning areas; Romanian Cofraj terminology.
+
+### Validation
+
+* Backend: 130 passed
+* Frontend: 561 passed (71 files)
+* Production Cognito build: passed
+* Code hygiene check: passed
+
+Task 2.2 live AWS Cognito E2E validation remains a release-certification requirement (unchanged).
+
+### Intentional deferrals
+
+Cloud or cross-device preference sync; account-level preference authority; backend preference API removal or migration; regional unit auto-detection; new preference categories; broad Settings UI redesign; guest-accessible Settings expansion; PDF document localization; API-provided pour-plan row labels; remaining calculator secondary strings; Task 3.3; Cloud Workspace; Stripe/billing; unrelated cleanup.
+
+### Implementation commit
+
+`pending`
+
+### Next step
+
+**Block 3 — continued local workspace experience** — scope next task from §17 deferrals (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI, Calculator Import parity).
