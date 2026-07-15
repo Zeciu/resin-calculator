@@ -7,7 +7,13 @@ import {
   buildPersistableCanonicalV2,
 } from "../project/buildPersistableCanonicalV2.js";
 import { assertProjectWritableByMode, PROJECT_WRITE_FORBIDDEN_MESSAGE } from "../project/projectOwnership.js";
-import { isFileSystemHandle } from "./recentProjectHandles.js";
+import {
+  ensureFileHandleWritePermission,
+  isFileSystemHandle,
+} from "./recentProjectHandles.js";
+
+export const PROJECT_FILE_WRITE_PERMISSION_DENIED_MESSAGE =
+  "Write permission was not granted. Your changes were not saved to the project file.";
 
 export {
   HFZ_PROJECT_FILE_EXTENSION,
@@ -110,6 +116,11 @@ export async function updateProjectFile({
   rejectIfProjectReadOnly(ownershipMode);
   if (!isFileSystemHandle(fileHandle)) {
     throw new ProjectFileSaveError("Cannot update project file without a file handle.");
+  }
+
+  const hasWritePermission = await ensureFileHandleWritePermission(fileHandle);
+  if (!hasWritePermission) {
+    throw new ProjectFileSaveError(PROJECT_FILE_WRITE_PERMISSION_DENIED_MESSAGE);
   }
 
   const { payload, persistedLifecycle: nextPersistedLifecycle } =

@@ -2193,6 +2193,14 @@ button.workspace-sidebar__link {
   cursor: not-allowed;
 }
 
+.projects-hub__recent-card--unavailable {
+  border-color: #d4c4a8;
+}
+
+.projects-hub__recent-meta--unavailable {
+  color: #8a6d3b;
+}
+
 .projects-hub__recent-thumb {
   display: inline-flex;
   align-items: center;

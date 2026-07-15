@@ -2,9 +2,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
 import {
   buildRecentProjectEntry,
+  clearRecentProjectUnavailable,
   extractCanonicalProjectId,
   findRecentProjectByProjectId,
   loadRecentProjects,
+  markRecentProjectUnavailable,
   RECENT_PROJECTS_STORAGE_KEY,
   refreshRecentProjectOnOpen,
   updateRecentProjectOnSave,
@@ -178,5 +180,23 @@ describe("recentProjectsIndex", () => {
     expect(updated).toHaveLength(1);
     expect(updated[0].id).toBe(entry.id);
     expect(updated[0].projectId).toBe("project-abc");
+  });
+
+  it("marks and clears local file unavailable state without deleting the entry", () => {
+    const [entry] = upsertRecentProject(
+      buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+        fileName: "river-table.hfzproject",
+      }),
+    );
+
+    const marked = markRecentProjectUnavailable(entry.id);
+    expect(marked).toHaveLength(1);
+    expect(marked[0].localFileUnavailable).toBe(true);
+    expect(marked[0].projectName).toBe(entry.projectName);
+
+    const cleared = clearRecentProjectUnavailable(entry.id);
+    expect(cleared).toHaveLength(1);
+    expect(cleared[0].localFileUnavailable).toBeUndefined();
+    expect(cleared[0].id).toBe(entry.id);
   });
 });

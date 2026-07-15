@@ -16,6 +16,7 @@ const ALLOWED_RECENT_FIELDS = new Set([
   "lastSavedAt",
   "lastKnownFileName",
   "sourceFormat",
+  "localFileUnavailable",
 ]);
 
 export function createRecentProjectId() {
@@ -219,6 +220,43 @@ export function touchRecentProject(entryId) {
     ...match,
     lastOpenedAt: new Date().toISOString(),
   };
+
+  const remainder = existing.filter((item) => item.id !== entryId);
+  return saveRecentProjects([updated, ...remainder]);
+}
+
+export function markRecentProjectUnavailable(entryId) {
+  const existing = loadRecentProjects();
+  const match = existing.find((item) => item.id === entryId);
+  if (!match || match.localFileUnavailable === true) {
+    return existing;
+  }
+
+  const updated = sanitizeRecentProjectEntry({
+    ...match,
+    localFileUnavailable: true,
+  });
+
+  if (!updated) {
+    return existing;
+  }
+
+  const remainder = existing.filter((item) => item.id !== entryId);
+  return saveRecentProjects([updated, ...remainder]);
+}
+
+export function clearRecentProjectUnavailable(entryId) {
+  const existing = loadRecentProjects();
+  const match = existing.find((item) => item.id === entryId);
+  if (!match?.localFileUnavailable) {
+    return existing;
+  }
+
+  const { localFileUnavailable: _removed, ...rest } = match;
+  const updated = sanitizeRecentProjectEntry(rest);
+  if (!updated) {
+    return existing;
+  }
 
   const remainder = existing.filter((item) => item.id !== entryId);
   return saveRecentProjects([updated, ...remainder]);

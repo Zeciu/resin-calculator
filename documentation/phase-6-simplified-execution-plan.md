@@ -299,9 +299,9 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Block 3 — Complete the Local Workspace Experience**
+**Block 3 — Task 3.2 — Device-Local Preferences Authority**
 
-Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). See §217 for Block 3 scope.
+Task 3.1 is closed (see §17). Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). Block 3 scope: see §5.
 
 ---
 
@@ -865,4 +865,43 @@ Task 2.2 live AWS Cognito E2E validation remains a release-certification require
 
 ### Next step
 
-**Block 3 — Complete the Local Workspace Experience** (see §217).
+**Task 3.1 — Local Project File Integrity and Relocation Safety** (see §5).
+
+---
+
+## 17. Block 3 Task 3.1 — Local Project File Integrity and Relocation Safety
+
+**Task 3.1 status:** CLOSED — implementation, Product Owner manual QA, code hygiene, and automated validation complete
+
+### Delivered
+
+* **projectId-safe Locate/Rebind:** selected `.hfzproject` parsed through canonical v2; rebind only when `projectMetadata.projectId` matches the Recent entry; mismatch rejected before Recent Projects or IndexedDB handle mutation.
+* **Unavailable/moved-file state:** inaccessible bound files mark the Recent entry `localFileUnavailable`; entry and metadata preserved; UI indicates unavailability; Locate preserved; successful matching rebind clears the flag without duplicating entries.
+* **Write-permission recovery:** Update Existing Project checks/requests write permission before `createWritable()`; denied permission produces no write, no false lifecycle adoption, no Recent Projects mutation, and no dirty-state clearing.
+
+Task 2.1 ownership and Task 2.3 capability behavior unchanged.
+
+### Product Owner manual QA
+
+Passed: moved Project marked unavailable after access attempt; entry preserved; matching Locate rebinds and opens; unavailable state clears on success; wrong `.hfzproject` rejected with clear message; original entry intact.
+
+### Validation
+
+* Backend: 130 passed
+* Frontend: 534 passed (69 files)
+* Production Cognito build: passed
+* Code hygiene check: passed
+
+Task 2.2 live AWS Cognito E2E validation remains a release-certification requirement (unchanged).
+
+### Intentional deferrals
+
+Save As; local Project deletion UI; Remove from Recent Projects UI; thumbnails; tab-close/logout unsaved protection; Calculator Import parity; device-local preferences migration; cloud/sync; filesystem monitoring; branching/conflict resolution; ownership transfer; billing; `structuralCapabilitySnapshot`; v1 migration; unrelated refactors.
+
+### Implementation commit
+
+`717c7cb`
+
+### Next step
+
+**Task 3.2 — Device-Local Preferences Authority**

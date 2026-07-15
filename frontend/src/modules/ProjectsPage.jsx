@@ -11,6 +11,7 @@ import {
   loadProjectIntoRecentEntry,
   loadRecentProject,
   pickProjectFileWithHandle,
+  RecentProjectRebindMismatchError,
   RecentProjectUnavailableError,
   supportsNativeProjectOpenPicker,
 } from "../workspace/projectFileOpen.js";
@@ -30,10 +31,12 @@ function formatRecentTimestamp(value) {
 }
 
 function RecentProjectCard({ entry, disabled, onOpen }) {
+  const isUnavailable = entry.localFileUnavailable === true;
+
   return (
     <button
       type="button"
-      className="projects-hub__recent-card"
+      className={`projects-hub__recent-card${isUnavailable ? " projects-hub__recent-card--unavailable" : ""}`}
       disabled={disabled}
       onClick={() => onOpen(entry)}
     >
@@ -42,6 +45,11 @@ function RecentProjectCard({ entry, disabled, onOpen }) {
       </span>
       <span className="projects-hub__recent-copy">
         <span className="projects-hub__recent-name">{entry.projectName}</span>
+        {isUnavailable ? (
+          <span className="projects-hub__recent-meta projects-hub__recent-meta--unavailable">
+            Local file unavailable or moved
+          </span>
+        ) : null}
         <span className="projects-hub__recent-meta">
           Opened {formatRecentTimestamp(entry.lastOpenedAt)}
         </span>
@@ -111,6 +119,14 @@ export default function ProjectsPage() {
         if (loadError instanceof RecentProjectUnavailableError) {
           setUnavailableEntry(loadError.entry);
           setError(loadError.message);
+          refreshRecentProjects();
+          return;
+        }
+
+        if (loadError instanceof RecentProjectRebindMismatchError) {
+          setUnavailableEntry(loadError.entry);
+          setError(loadError.message);
+          refreshRecentProjects();
           return;
         }
 

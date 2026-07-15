@@ -9,12 +9,15 @@ import {
   loadProjectFromFile,
   loadProjectIntoRecentEntry,
   loadRecentProject,
+  RecentProjectRebindMismatchError,
+  RecentProjectUnavailableError,
   recordSavedProjectInRecentIndex,
 } from "./projectFileOpen.js";
 import { ProjectFileParseError } from "./projectFileParse.js";
 import {
   buildRecentProjectEntry,
   loadRecentProjects,
+  markRecentProjectUnavailable,
   upsertRecentProject,
 } from "./recentProjectsIndex.js";
 
@@ -168,6 +171,83 @@ describe("loadProjectIntoRecentEntry", () => {
     expect(loadRecentProjects()).toHaveLength(1);
     expect(storeRecentProjectHandleMock).toHaveBeenCalledWith(entry.id, handle);
   });
+
+  it("rebinds when the selected file has the same projectId in a different location", async () => {
+    const entry = buildRecentEntry();
+    const file = new File(
+      [
+        buildV2ProjectFileJsonForOwner("stub-user", {
+          snapshot: VALID_CALCULATOR_SNAPSHOT,
+          identity: { projectId: "project-1", lastModifiedAt: "2026-02-01T12:00:00.000Z" },
+        }),
+      ],
+      "moved/river-table-copy.hfzproject",
+      { type: "application/json" },
+    );
+    const handle = buildPermissionHandle({ file, includePermissionMethods: false });
+
+    const result = await loadProjectIntoRecentEntry(entry, file, handle);
+
+    expect(result.entry.id).toBe(entry.id);
+    expect(loadRecentProjects()[0].lastKnownFileName).toBe("moved/river-table-copy.hfzproject");
+    expect(storeRecentProjectHandleMock).toHaveBeenCalledWith(entry.id, handle);
+  });
+
+  it("rejects rebind when the selected file belongs to a different projectId", async () => {
+    const entry = buildRecentEntry();
+    const file = new File(
+      [
+        buildV2ProjectFileJsonForOwner("stub-user", {
+          snapshot: VALID_CALCULATOR_SNAPSHOT,
+          identity: { projectId: "project-other", lastModifiedAt: "2026-02-01T12:00:00.000Z" },
+        }),
+      ],
+      "other-table.hfzproject",
+      { type: "application/json" },
+    );
+    const handle = buildPermissionHandle({ file, includePermissionMethods: false });
+    const originalLastKnownFileName = entry.lastKnownFileName;
+
+    await expect(loadProjectIntoRecentEntry(entry, file, handle)).rejects.toBeInstanceOf(
+      RecentProjectRebindMismatchError,
+    );
+
+    expect(loadRecentProjects()).toHaveLength(1);
+    expect(loadRecentProjects()[0].id).toBe(entry.id);
+    expect(loadRecentProjects()[0].projectId).toBe("project-1");
+    expect(loadRecentProjects()[0].lastKnownFileName).toBe(originalLastKnownFileName);
+    expect(storeRecentProjectHandleMock).not.toHaveBeenCalled();
+  });
+
+  it("clears unavailable state after a matching projectId rebind", async () => {
+    const entry = markRecentProjectUnavailable(buildRecentEntry().id)[0];
+    const file = buildValidProjectFile();
+    const handle = buildPermissionHandle({ file, includePermissionMethods: false });
+
+    await loadProjectIntoRecentEntry(entry, file, handle);
+
+    expect(loadRecentProjects()[0].localFileUnavailable).toBeUndefined();
+  });
+
+  it("preserves unavailable state after a mismatched projectId rebind", async () => {
+    const entry = markRecentProjectUnavailable(buildRecentEntry().id)[0];
+    const file = new File(
+      [
+        buildV2ProjectFileJsonForOwner("stub-user", {
+          snapshot: VALID_CALCULATOR_SNAPSHOT,
+          identity: { projectId: "project-other" },
+        }),
+      ],
+      "other-table.hfzproject",
+      { type: "application/json" },
+    );
+
+    await expect(loadProjectIntoRecentEntry(entry, file)).rejects.toBeInstanceOf(
+      RecentProjectRebindMismatchError,
+    );
+
+    expect(loadRecentProjects()[0].localFileUnavailable).toBe(true);
+  });
 });
 
 describe("loadRecentProject", () => {
@@ -284,6 +364,7 @@ describe("loadRecentProject", () => {
     });
 
     expect(getFile).not.toHaveBeenCalled();
+    expect(loadRecentProjects()[0].localFileUnavailable).toBe(true);
   });
 
   it("preserves direct-open behavior when permission methods are unavailable", async () => {
@@ -322,6 +403,32 @@ describe("loadRecentProject", () => {
       message:
         "This recent project could not be opened. Please locate the project file manually.",
     });
+
+    expect(loadRecentProjects()[0].localFileUnavailable).toBe(true);
+  });
+
+  it("marks the recent entry unavailable when no stored handle exists", async () => {
+    const entry = buildRecentEntry();
+
+    getRecentProjectHandleMock.mockResolvedValue(null);
+
+    await expect(loadRecentProject(entry, { user: { id: "stub-user" } })).rejects.toBeInstanceOf(
+      RecentProjectUnavailableError,
+    );
+
+    expect(loadRecentProjects()[0].localFileUnavailable).toBe(true);
+  });
+
+  it("clears unavailable state after a successful recent open", async () => {
+    const entry = markRecentProjectUnavailable(buildRecentEntry().id)[0];
+    const file = buildValidProjectFile();
+    const handle = buildPermissionHandle({ file });
+
+    getRecentProjectHandleMock.mockResolvedValue(handle);
+
+    await loadRecentProject(entry, { user: { id: "stub-user" } });
+
+    expect(loadRecentProjects()[0].localFileUnavailable).toBeUndefined();
   });
 
   it("propagates parse errors without converting them to unavailable errors", async () => {

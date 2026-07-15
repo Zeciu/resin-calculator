@@ -5,6 +5,7 @@ import {
   HFZ_PROJECT_FORMAT,
   ProjectFileSaveCancelledError,
   ProjectFileSaveError,
+  PROJECT_FILE_WRITE_PERMISSION_DENIED_MESSAGE,
   buildProjectFilePayload,
   downloadProjectFile,
   saveProjectFile,
@@ -288,6 +289,82 @@ describe("projectFileSave", () => {
       ).rejects.toThrow(PROJECT_WRITE_FORBIDDEN_MESSAGE);
 
       expect(fileHandle.createWritable).not.toHaveBeenCalled();
+    });
+
+    it("writes when write permission is already granted", async () => {
+      const write = vi.fn();
+      const close = vi.fn();
+      const createWritable = vi.fn(async () => ({ write, close }));
+      const queryPermission = vi.fn(async () => "granted");
+      const requestPermission = vi.fn();
+      const fileHandle = {
+        getFile: vi.fn(),
+        createWritable,
+        queryPermission,
+        requestPermission,
+      };
+
+      await updateProjectFile({
+        fileHandle,
+        projectName: "River Table",
+        snapshot: SAMPLE_SNAPSHOT,
+        user: STUB_USER,
+        persistedLifecycle: EXISTING_LIFECYCLE,
+        fileName: "river-table.hfzproject",
+      });
+
+      expect(queryPermission).toHaveBeenCalledWith({ mode: "write" });
+      expect(requestPermission).not.toHaveBeenCalled();
+      expect(createWritable).toHaveBeenCalledTimes(1);
+    });
+
+    it("requests write permission when needed before updating", async () => {
+      const write = vi.fn();
+      const close = vi.fn();
+      const createWritable = vi.fn(async () => ({ write, close }));
+      const queryPermission = vi.fn(async () => "prompt");
+      const requestPermission = vi.fn(async () => "granted");
+      const fileHandle = {
+        getFile: vi.fn(),
+        createWritable,
+        queryPermission,
+        requestPermission,
+      };
+
+      await updateProjectFile({
+        fileHandle,
+        projectName: "River Table",
+        snapshot: SAMPLE_SNAPSHOT,
+        user: STUB_USER,
+        persistedLifecycle: EXISTING_LIFECYCLE,
+      });
+
+      expect(requestPermission).toHaveBeenCalledWith({ mode: "write" });
+      expect(createWritable).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not write when write permission is denied", async () => {
+      const createWritable = vi.fn();
+      const queryPermission = vi.fn(async () => "denied");
+      const requestPermission = vi.fn(async () => "denied");
+      const fileHandle = {
+        getFile: vi.fn(),
+        createWritable,
+        queryPermission,
+        requestPermission,
+      };
+
+      await expect(
+        updateProjectFile({
+          fileHandle,
+          projectName: "River Table",
+          snapshot: SAMPLE_SNAPSHOT,
+          user: STUB_USER,
+          persistedLifecycle: EXISTING_LIFECYCLE,
+        }),
+      ).rejects.toThrow(PROJECT_FILE_WRITE_PERMISSION_DENIED_MESSAGE);
+
+      expect(createWritable).not.toHaveBeenCalled();
     });
   });
 

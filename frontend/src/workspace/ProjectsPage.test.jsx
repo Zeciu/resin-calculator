@@ -29,6 +29,12 @@ vi.mock("./projectFileOpen.js", () => ({
       this.entry = entry;
     }
   },
+  RecentProjectRebindMismatchError: class RecentProjectRebindMismatchError extends Error {
+    constructor(entry, message) {
+      super(message);
+      this.entry = entry;
+    }
+  },
 }));
 
 import {
@@ -36,10 +42,15 @@ import {
   loadProjectIntoRecentEntry,
   loadRecentProject,
   pickProjectFileWithHandle,
+  RecentProjectRebindMismatchError,
   RecentProjectUnavailableError,
   supportsNativeProjectOpenPicker,
 } from "./projectFileOpen.js";
-import { upsertRecentProject, buildRecentProjectEntry } from "./recentProjectsIndex.js";
+import {
+  markRecentProjectUnavailable,
+  upsertRecentProject,
+  buildRecentProjectEntry,
+} from "./recentProjectsIndex.js";
 
 import { buildPersistedV2OpenEnvelope } from "../project/canonicalProjectV2.test.js";
 import { TINY_PNG } from "../project/canonicalProjectV2.test.js";
@@ -203,5 +214,52 @@ describe("ProjectsPage", () => {
       expect.objectContaining({ getFile: expect.any(Function) }),
     );
     expect(loadProjectFromFile).not.toHaveBeenCalled();
+  });
+
+  it("shows unavailable state on recent cards when the local file is marked unavailable", () => {
+    const entry = upsertRecentProject(
+      buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+        fileName: "river-table.hfzproject",
+      }),
+    )[0];
+    markRecentProjectUnavailable(entry.id);
+
+    renderProjectsPage();
+
+    expect(screen.getByText(/Local file unavailable or moved/i)).toBeInTheDocument();
+  });
+
+  it("shows a mismatch message when locating the wrong project file", async () => {
+    const user = userEvent.setup();
+    const entry = markRecentProjectUnavailable(
+      upsertRecentProject(
+        buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+          fileName: "river-table.hfzproject",
+        }),
+      )[0].id,
+    )[0];
+
+    loadRecentProject.mockRejectedValue(
+      new RecentProjectUnavailableError(entry, "Please locate the project file manually."),
+    );
+    supportsNativeProjectOpenPicker.mockReturnValue(true);
+    pickProjectFileWithHandle.mockResolvedValue({
+      file: new File(["{}"], "other-table.hfzproject", { type: "application/json" }),
+      handle: { getFile: vi.fn() },
+    });
+    loadProjectIntoRecentEntry.mockRejectedValue(
+      new RecentProjectRebindMismatchError(
+        entry,
+        "The selected file belongs to a different project.",
+      ),
+    );
+
+    renderProjectsPage();
+    await user.click(screen.getByRole("button", { name: /River Table/i }));
+    await user.click(screen.getByRole("button", { name: "Locate Project File" }));
+
+    expect(loadProjectIntoRecentEntry).toHaveBeenCalled();
+    expect(screen.getByRole("alert")).toHaveTextContent(/different project/i);
+    expect(screen.getByText(/Local file unavailable or moved/i)).toBeInTheDocument();
   });
 });

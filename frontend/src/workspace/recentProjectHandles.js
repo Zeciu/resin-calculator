@@ -34,7 +34,7 @@ export function isFileSystemHandle(handle) {
  * @param {unknown} handle
  * @returns {Promise<boolean>}
  */
-export async function ensureFileHandleReadPermission(handle) {
+async function ensureFileHandlePermission(handle, mode) {
   if (!isFileSystemHandle(handle)) {
     return false;
   }
@@ -44,7 +44,7 @@ export async function ensureFileHandleReadPermission(handle) {
   }
 
   try {
-    const current = await handle.queryPermission({ mode: "read" });
+    const current = await handle.queryPermission({ mode });
     if (current === "granted") {
       return true;
     }
@@ -53,11 +53,19 @@ export async function ensureFileHandleReadPermission(handle) {
       return false;
     }
 
-    const requested = await handle.requestPermission({ mode: "read" });
+    const requested = await handle.requestPermission({ mode });
     return requested === "granted";
   } catch {
     return false;
   }
+}
+
+export async function ensureFileHandleReadPermission(handle) {
+  return ensureFileHandlePermission(handle, "read");
+}
+
+export async function ensureFileHandleWritePermission(handle) {
+  return ensureFileHandlePermission(handle, "write");
 }
 
 export async function storeRecentProjectHandle(entryId, handle) {

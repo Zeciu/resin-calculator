@@ -7,6 +7,9 @@ import {
 import { parseProjectFile, ProjectFileParseError } from "./projectFileParse.js";
 import {
   buildRecentProjectEntry,
+  clearRecentProjectUnavailable,
+  extractCanonicalProjectId,
+  markRecentProjectUnavailable,
   refreshRecentProjectOnOpen,
   touchRecentProject,
   updateRecentProjectOnSave,
@@ -25,6 +28,34 @@ export class RecentProjectUnavailableError extends Error {
     this.name = "RecentProjectUnavailableError";
     this.entry = entry;
   }
+}
+
+export class RecentProjectRebindMismatchError extends Error {
+  constructor(
+    entry,
+    message = "The selected file belongs to a different project. Locate the file for this project instead.",
+  ) {
+    super(message);
+    this.name = "RecentProjectRebindMismatchError";
+    this.entry = entry;
+  }
+}
+
+function recentProjectIdsMatch(entryProjectId, selectedProjectId) {
+  if (!entryProjectId) {
+    return true;
+  }
+
+  return (
+    typeof selectedProjectId === "string" &&
+    selectedProjectId.trim() !== "" &&
+    selectedProjectId === entryProjectId
+  );
+}
+
+function throwRecentProjectUnavailable(entry, message) {
+  markRecentProjectUnavailable(entry.id);
+  throw new RecentProjectUnavailableError(entry, message);
 }
 
 export function supportsNativeProjectOpenPicker() {
@@ -92,21 +123,28 @@ export async function loadProjectFromFile(file, handle = null, { user = null } =
 
 export async function loadProjectIntoRecentEntry(entry, file, handle = null) {
   const parsed = await parseProjectFile(file);
+  const selectedProjectId = extractCanonicalProjectId(parsed.envelope);
+
+  if (!recentProjectIdsMatch(entry.projectId, selectedProjectId)) {
+    throw new RecentProjectRebindMismatchError(entry);
+  }
+
   const refreshedEntry = refreshRecentProjectOnOpen(entry.id, parsed.envelope, {
     fileName: file.name,
   });
+  clearRecentProjectUnavailable(entry.id);
 
   if (isFileSystemHandle(handle)) {
     await storeRecentProjectHandle(entry.id, handle);
   }
 
-  return { ...parsed, entry: refreshedEntry };
+  return { ...parsed, entry: refreshedEntry, fileName: file.name };
 }
 
 export async function loadRecentProject(entry, { user = null } = {}) {
   const handle = await getRecentProjectHandle(entry.id);
   if (!handle) {
-    throw new RecentProjectUnavailableError(
+    throwRecentProjectUnavailable(
       entry,
       "This recent project cannot be opened automatically. Please locate the project file manually.",
     );
@@ -114,7 +152,7 @@ export async function loadRecentProject(entry, { user = null } = {}) {
 
   const hasReadPermission = await ensureFileHandleReadPermission(handle);
   if (!hasReadPermission) {
-    throw new RecentProjectUnavailableError(
+    throwRecentProjectUnavailable(
       entry,
       "This recent project could not be opened. Please locate the project file manually.",
     );
@@ -127,16 +165,17 @@ export async function loadRecentProject(entry, { user = null } = {}) {
 
     if (!isForeign) {
       touchRecentProject(entry.id);
+      clearRecentProjectUnavailable(entry.id);
       await storeRecentProjectHandle(entry.id, handle);
     }
 
-    return { ...parsed, entry };
+    return { ...parsed, entry, fileName: file.name };
   } catch (error) {
     if (error instanceof ProjectFileParseError) {
       throw error;
     }
 
-    throw new RecentProjectUnavailableError(
+    throwRecentProjectUnavailable(
       entry,
       "This recent project could not be opened. Please locate the project file manually.",
     );
