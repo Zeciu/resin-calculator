@@ -1,4 +1,4 @@
-import { screen, within } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
@@ -22,12 +22,13 @@ describe("My Account page", () => {
     localStorage.clear();
     sessionStorage.clear();
     vi.restoreAllMocks();
+    vi.stubEnv("VITE_MOCK_ADMIN", "false");
     mockCapabilitiesFetch();
     seedDevicePreferences({ interfaceLanguage: "en", lengthUnit: "mm", volumeUnit: "L" });
   });
 
   it("renders mock profile information", async () => {
-    seedAuthenticatedSession();
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
     renderWorkspace(ROUTES.ACCOUNT);
 
     const main = screen.getByRole("main");
@@ -36,19 +37,19 @@ describe("My Account page", () => {
     expect(within(main).getByText("account@example.com")).toBeInTheDocument();
   });
 
-  it("shows the subscription placeholder", () => {
-    seedAuthenticatedSession();
+  it("shows subscription plan and subscribe action", async () => {
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
     renderWorkspace(ROUTES.ACCOUNT);
 
-    expect(
-      screen.getByText(
-        /Free plan — billing and subscription management will be added in a later phase/i,
-      ),
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: /Subscribe/i })).toBeInTheDocument();
+    });
+    expect(screen.getByText("Current plan")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Refresh status/i })).toBeInTheDocument();
   });
 
   it("links to application preferences", () => {
-    seedAuthenticatedSession();
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
     renderWorkspace(ROUTES.ACCOUNT);
 
     expect(screen.getByRole("link", { name: "Application Preferences" })).toHaveAttribute(
@@ -59,7 +60,7 @@ describe("My Account page", () => {
 
   it("logs out from the account page and returns to guest login mode", async () => {
     const user = userEvent.setup();
-    seedAuthenticatedSession();
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
     renderWorkspace(ROUTES.ACCOUNT);
 
     const main = screen.getByRole("main");

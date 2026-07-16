@@ -28,8 +28,8 @@ export function CapabilitiesProvider({ children }) {
       const loaded = await fetchCapabilities();
       setCapabilities(loaded);
     } catch (loadError) {
+      // Technical failures must not look like entitlement revocation.
       setError(loadError.message || "Failed to load capabilities.");
-      setCapabilities(GUEST_CAPABILITIES_RESPONSE);
     } finally {
       setIsLoading(false);
     }

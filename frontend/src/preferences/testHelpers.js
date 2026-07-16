@@ -20,6 +20,20 @@ function handleCapabilitiesFetch(url) {
       json: async () => capabilitiesResponse(),
     });
   }
+  if (path.endsWith("/api/billing/status")) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        plan: "free",
+        status: "none",
+        cancelAtPeriodEnd: false,
+        currentPeriodEnd: null,
+        canCheckout: true,
+        canManage: false,
+      }),
+    });
+  }
   return Promise.reject(new Error(`Unhandled fetch: ${path}`));
 }
 
@@ -57,6 +71,20 @@ function handleMockApiFetch(url, init, preferences) {
       ok: true,
       status: 200,
       json: async () => capabilitiesResponse(),
+    });
+  }
+  if (path.endsWith("/api/billing/status")) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        plan: "free",
+        status: "none",
+        cancelAtPeriodEnd: false,
+        currentPeriodEnd: null,
+        canCheckout: true,
+        canManage: false,
+      }),
     });
   }
   if (path.endsWith("/api/preferences")) {

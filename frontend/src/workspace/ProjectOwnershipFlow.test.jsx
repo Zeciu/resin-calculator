@@ -11,6 +11,7 @@ import {
   buildV2ProjectFileJsonForOwner,
   VALID_CALCULATOR_SNAPSHOT,
 } from "../project/projectFileTestFixtures.js";
+import { mockCapabilitiesFetch } from "../preferences/testHelpers.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 import { ROUTES } from "./routes.js";
 import {
@@ -121,6 +122,7 @@ describe("Project ownership flow", () => {
   beforeEach(() => {
     sessionStorage.clear();
     localStorage.clear();
+    mockCapabilitiesFetch();
     seedAuthenticatedSession();
     restoreImage = installPersistentImageMock();
     saveProjectFileMock.mockReset();

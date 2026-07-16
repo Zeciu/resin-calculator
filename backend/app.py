@@ -18,6 +18,7 @@ from content.repositories.filesystem import (
     initialize_production_content_root,
     strict_content_root_required,
 )
+from content.routers.billing import router as billing_router
 from content.routers.me import router as me_router
 from content.routers.preferences import router as preferences_router
 from content.routers.public_content import router as public_content_router
@@ -35,6 +36,7 @@ app.include_router(admin_knowledge_base_router, prefix="/api")
 app.include_router(public_content_router, prefix="/api")
 app.include_router(preferences_router, prefix="/api")
 app.include_router(me_router, prefix="/api")
+app.include_router(billing_router, prefix="/api")
 
 # Production SPA is same-origin behind the ALB. Restrict CORS when configured;
 # local mock development keeps the permissive default.
@@ -66,7 +68,7 @@ _COGNITO_CONFIGURED = bool(
     _COGNITO_USER_POOL_ID and _COGNITO_REGION and _COGNITO_CLIENT_ID
 )
 _AUTH_ENABLED = auth_mode() == "cognito" and _COGNITO_CONFIGURED
-_UNPROTECTED_PATHS = {"/health", "/callback"}
+_UNPROTECTED_PATHS = {"/health", "/callback", "/api/billing/webhook"}
 
 if auth_mode() == "cognito" and not _COGNITO_CONFIGURED:
     raise RuntimeError(

@@ -54,7 +54,9 @@ class CapabilityResolver:
         )
 
     def _resolve_commercial_tier(self, user_id: str, mock_access_tier: str | None) -> str:
-        if mock_access_tier in COMMERCIAL_ACCESS_TIERS:
+        # Mock access-tier headers are development-only and must never override
+        # durable commercial entitlements in Cognito/production mode.
+        if auth_mode() == "mock" and mock_access_tier in COMMERCIAL_ACCESS_TIERS:
             return mock_access_tier
 
         dev_override = dev_access_tier_override()

@@ -20,6 +20,7 @@ import { canAddPolygonPoint } from "./calculatorCapabilityPolicy.js";
 import { useCalculatorCapabilityEnforcement } from "./useCalculatorCapabilityEnforcement.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { buildCalculatorUi } from "./calculatorUi.js";
+import { ROUTES } from "../workspace/routes.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -3228,7 +3229,21 @@ export default forwardRef(function ResinCalculator(
           </div>
         )}
 
-      {error && <div className="error">{error}</div>}
+      {error && (
+        <div className="error">
+          <div>{error}</div>
+          {enforceAccountCapabilities &&
+          (error === ui.errors.pdfExportUnavailable ||
+            error === ui.errors.layerPlanningUnavailable ||
+            error === ui.errors.firstFillPlanningUnavailable ||
+            (typeof error === "string" &&
+              error.includes("points for new projects on this account"))) ? (
+            <div className="error__upgrade">
+              <a href={ROUTES.ACCOUNT}>{ui.errors.upgradeHint}</a>
+            </div>
+          ) : null}
+        </div>
+      )}
       {result && resultOutdated && (
         <div className="outdated-result-warning">
           {ui.resultsOutdated}

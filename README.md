@@ -170,6 +170,12 @@ The current local development baseline uses mock-first authentication by default
 | `CONTENT_DATA_DIR` | Backend | Filesystem root for editorial repositories (and related local filesystem stores). Production mounts EFS at `/mnt/hfzwood-content`. |
 | `REQUIRE_CONTENT_DATA_DIR` | Backend | Set to `1` in production so startup fails closed instead of using ephemeral container storage. |
 | `CORS_ALLOWED_ORIGINS` | Backend | Optional comma-separated origins. Unset defaults to `*` for local development. Production sets `https://hfzwood.com`. |
+| `STRIPE_SECRET_KEY` | Backend | Stripe secret key. Required for Checkout, Portal, and webhooks. |
+| `STRIPE_WEBHOOK_SECRET` | Backend | Stripe webhook signing secret. |
+| `STRIPE_PRICE_ID` | Backend | Allowed monthly Price ID (server-enforced). |
+| `STRIPE_CHECKOUT_SUCCESS_URL` | Backend | Post-Checkout return URL (must not grant access by itself). |
+| `STRIPE_CHECKOUT_CANCEL_URL` | Backend | Checkout cancel return URL. |
+| `STRIPE_PORTAL_RETURN_URL` | Backend | Customer Portal return URL. |
 
 Local frontend-only configuration can be placed in an untracked `frontend/.env.local` file. Restart the Vite development server after relevant environment changes.
 

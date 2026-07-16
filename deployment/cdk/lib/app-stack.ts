@@ -8,11 +8,13 @@ import * as logs from 'aws-cdk-lib/aws-logs';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 
 const DOMAIN = 'hfzwood.com';
 const EDITORIAL_CONTENT_MOUNT_PATH = '/mnt/hfzwood-content';
 const PRODUCTION_ORIGIN = `https://${DOMAIN}`;
+const STRIPE_SECRET_NAME = 'hfzwood/stripe';
 
 interface AppStackProps extends cdk.StackProps {
   repository: ecr.Repository;
@@ -79,6 +81,16 @@ export class AppStack extends cdk.Stack {
       },
     });
 
+    const stripePriceId =
+      (this.node.tryGetContext('stripePriceId') as string | undefined)?.trim() ||
+      (process.env.HFZWOOD_STRIPE_PRICE_ID || '').trim();
+
+    const stripeSecret = secretsmanager.Secret.fromSecretNameV2(
+      this,
+      'HfzwoodStripeSecret',
+      STRIPE_SECRET_NAME,
+    );
+
     const appContainer = taskDef.addContainer('app', {
       containerName: 'resin-calculator',
       image: ecs.ContainerImage.fromEcrRepository(props.repository, 'latest'),
@@ -92,6 +104,14 @@ export class AppStack extends cdk.Stack {
         CONTENT_DATA_DIR: EDITORIAL_CONTENT_MOUNT_PATH,
         REQUIRE_CONTENT_DATA_DIR: '1',
         CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,
+        STRIPE_PRICE_ID: stripePriceId,
+        STRIPE_CHECKOUT_SUCCESS_URL: `${PRODUCTION_ORIGIN}/account?billing=success`,
+        STRIPE_CHECKOUT_CANCEL_URL: `${PRODUCTION_ORIGIN}/account?billing=cancel`,
+        STRIPE_PORTAL_RETURN_URL: `${PRODUCTION_ORIGIN}/account`,
+      },
+      secrets: {
+        STRIPE_SECRET_KEY: ecs.Secret.fromSecretsManager(stripeSecret, 'secret_key'),
+        STRIPE_WEBHOOK_SECRET: ecs.Secret.fromSecretsManager(stripeSecret, 'webhook_secret'),
       },
     });
     appContainer.addMountPoints({

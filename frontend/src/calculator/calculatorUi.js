@@ -338,6 +338,8 @@ export function buildCalculatorUi(t) {
 
       firstFillPlanningUnavailable: t("calculator.error.firstFillPlanningUnavailable"),
 
+      upgradeHint: t("calculator.error.upgradeHint"),
+
       mainDepthBeforeLayers: t("calculator.error.mainDepthBeforeLayers"),
 
       maxPourThicknessPositive: t("calculator.error.maxPourThicknessPositive"),

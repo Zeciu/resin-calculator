@@ -138,8 +138,36 @@ Injected by `AppStack` (do not rely on container-local `/app/data`):
 | `CONTENT_DATA_DIR` | `/mnt/hfzwood-content` (EFS mount) |
 | `REQUIRE_CONTENT_DATA_DIR` | `1` (fail closed if storage is missing/unwritable) |
 | `CORS_ALLOWED_ORIGINS` | `https://hfzwood.com` |
+| `STRIPE_PRICE_ID` | Monthly Price ID from CDK context `stripePriceId` or env `HFZWOOD_STRIPE_PRICE_ID` |
+| `STRIPE_CHECKOUT_SUCCESS_URL` | `https://hfzwood.com/account?billing=success` |
+| `STRIPE_CHECKOUT_CANCEL_URL` | `https://hfzwood.com/account?billing=cancel` |
+| `STRIPE_PORTAL_RETURN_URL` | `https://hfzwood.com/account` |
+| `STRIPE_SECRET_KEY` | From Secrets Manager secret `hfzwood/stripe` field `secret_key` |
+| `STRIPE_WEBHOOK_SECRET` | From Secrets Manager secret `hfzwood/stripe` field `webhook_secret` |
 
-Editorial CMS state, published snapshots, and related filesystem repositories persist on EFS under `CONTENT_DATA_DIR`.
+Editorial CMS state, published snapshots, entitlement/commercial records, and related filesystem repositories persist on EFS under `CONTENT_DATA_DIR`.
+
+### Stripe secrets (required before commercial Checkout works)
+
+Create the secret once (JSON keys `secret_key` and `webhook_secret`):
+
+```cmd
+aws secretsmanager create-secret --name hfzwood/stripe --secret-string "{\"secret_key\":\"sk_live_...\",\"webhook_secret\":\"whsec_...\"}" --region eu-central-1 --profile hfzwood
+```
+
+Point Stripe webhooks at `https://hfzwood.com/api/billing/webhook` for:
+
+* `checkout.session.completed`
+* `customer.subscription.updated`
+* `customer.subscription.deleted`
+
+Deploy AppStack with the monthly Price ID:
+
+```cmd
+cdk deploy AppStack --profile hfzwood -c stripePriceId=price_...
+```
+
+Or set `HFZWOOD_STRIPE_PRICE_ID` in the environment before `cdk deploy`.
 
 ## Redeploying a new image
 

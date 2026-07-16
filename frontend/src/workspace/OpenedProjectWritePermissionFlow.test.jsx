@@ -14,6 +14,7 @@ import {
   buildV2ProjectFileJsonForOwner,
   VALID_CALCULATOR_SNAPSHOT,
 } from "../project/projectFileTestFixtures.js";
+import { mockCapabilitiesFetch } from "../preferences/testHelpers.js";
 import { parseProjectFileText } from "./projectFileParse.js";
 
 const OPENED_PROJECT_SNAPSHOT = {
@@ -134,6 +135,7 @@ describe("Opened project write permission flow", () => {
   beforeEach(() => {
     sessionStorage.clear();
     localStorage.clear();
+    mockCapabilitiesFetch();
     seedAuthenticatedSession();
     restoreImage = installPersistentImageMock();
     getRecentProjectHandleMock.mockReset();

@@ -2737,6 +2737,58 @@ button.workspace-sidebar__link {
   background: #5a4020;
 }
 
+.my-account-page__billing-message,
+.my-account-page__billing-error {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.my-account-page__billing-error {
+  color: #8a1f1f;
+}
+
+.my-account-page__billing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.my-account-page__billing-button {
+  appearance: none;
+  border: 1px solid #1f3b2c;
+  background: #1f3b2c;
+  color: #fff;
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.9rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.my-account-page__billing-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.my-account-page__billing-button--secondary {
+  background: transparent;
+  color: #1f3b2c;
+}
+
+.my-account-page__billing-button--secondary:hover:not(:disabled) {
+  background: rgba(31, 59, 44, 0.08);
+}
+
+.error__upgrade {
+  margin-top: 0.4rem;
+}
+
+.error__upgrade a {
+  color: inherit;
+  font-weight: 600;
+}
+
 /* ── Manual & Tutorials module (Task 50–51) ──────────────────── */
 .manual-module {
   display: grid;
