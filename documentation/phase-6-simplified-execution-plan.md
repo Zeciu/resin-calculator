@@ -1248,7 +1248,7 @@ Approved Product Owner commercial rules: monthly subscription; no trial; cancel 
 
 #### Documentation closure commit
 
-`<Task 5.2 documentation closure commit hash>`
+`9b2c1b6`
 
 ---
 
