@@ -299,20 +299,21 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Task 5.2 — Stripe Subscription and Durable Entitlements**
+**Task 5.3 — Integrated Commercial Production Validation**
 
 Blocks 1, 2, 3, and 4 are officially CLOSED.
 
 Task 5.1 — Production Deployment and Environment Completion is officially CLOSED (see §21).
 
-Block 5 remains open. Remaining Block 5 tasks:
+Task 5.2 — Stripe Subscription and Durable Entitlements is officially CLOSED (see §22).
 
-1. Task 5.2 — Stripe Subscription and Durable Entitlements
-2. Task 5.3 — Integrated Commercial Production Validation
+Block 5 remains open. Remaining Block 5 task:
+
+1. Task 5.3 — Integrated Commercial Production Validation
 
 Docker runtime validation and AWS/EFS/Fargate durability validation remain mandatory **release-certification gates** before commercial launch. They are not development tasks unless they reveal a concrete defect requiring a narrowly scoped repair.
 
-Do not begin Task 5.2 until Product Owner authorization.
+Do not begin Task 5.3 until Product Owner authorization.
 
 ---
 
@@ -1121,8 +1122,8 @@ Block 5 began with Task 5.1. Task 5.1 is now CLOSED (see §21). The next active 
 ### Approved Block 5 task structure
 
 1. Task 5.1 — Production Deployment and Environment Completion — **CLOSED**
-2. Task 5.2 — Stripe Subscription and Durable Entitlements — next active
-3. Task 5.3 — Integrated Commercial Production Validation — pending
+2. Task 5.2 — Stripe Subscription and Durable Entitlements — **CLOSED** (see §22)
+3. Task 5.3 — Integrated Commercial Production Validation — next active
 
 ### Task 5.1 — Production Deployment and Environment Completion
 
@@ -1182,10 +1183,83 @@ Task 2.1 ownership, Task 2.2 Cognito login, Task 2.3 capabilities, Task 3.x loca
 
 **Status: IN PROGRESS**
 
-Task 5.1 is officially closed. Block 5 is not closed.
+Task 5.1 and Task 5.2 are officially closed. Block 5 is not closed.
+
+### Next step after Task 5.1
+
+Task 5.2 is now CLOSED (see §22). The next active task is **Task 5.3 — Integrated Commercial Production Validation**.
+
+---
+
+## 22. Task 5.2 Closure
+
+### Task 5.2 — Stripe Subscription and Durable Entitlements
+
+**Status: CLOSED**
+
+#### Delivered scope
+
+* durable commercial + entitlement record per authenticated user on EFS-backed filesystem storage;
+* atomic entitlement writes and Stripe Customer index consistency;
+* Stripe Customer create/reuse, Checkout Session, and Customer Portal session (backend-owned Price ID and identity);
+* signed webhook processing for `checkout.session.completed`, `customer.subscription.updated`, and `customer.subscription.deleted`;
+* commercial state mapped to `accessTier` for the existing CapabilityResolver (product modules do not query Stripe);
+* authenticated `POST /api/billing/checkout-session`, `POST /api/billing/portal-session`, `GET /api/billing/status`, and public `POST /api/billing/webhook`;
+* exact-path webhook middleware exemption;
+* mock access-tier header gated to `AUTH_MODE=mock`;
+* My Account subscription status, Subscribe / Manage / pending return / capability refresh (fail-soft);
+* minimal capability-denied upgrade link to My Account;
+* CDK Secrets Manager wiring for Stripe secrets and production billing URLs/Price ID;
+* QA repair: global stale-event rejection by `lastStripeEventCreated` across subscription IDs; stale events do not mutate commercial or ordering metadata (bounded `processedEventIds` only).
+
+Approved Product Owner commercial rules: monthly subscription; no trial; cancel remains active until period end; Stripe Customer Portal; revoke only after confirmed loss of entitlement.
+
+#### Reviews and audits
+
+* Product Owner review: **passed**
+* Repository validation: **passed**
+* Post-implementation Cursor audit: **PASS WITH OBSERVATIONS** (ordering defect identified)
+* Targeted QA repair for cross-subscription out-of-order events: **completed**
+* Cursor repair audit: **PASS**
+* Independent Claude repair review: **PASS**
+* Product Owner authorized Keep All and task closure
+
+#### Validation evidence
+
+* full backend suite: **189 passed, 1 skipped**;
+* frontend suite: **572 passed** across 73 files;
+* frontend production Cognito build: **passed**;
+* CDK synth: **passed**;
+* focused billing tests including cross-subscription stale-event coverage: **passed**.
+
+#### Intentional exclusions (deferred)
+
+* Task 5.3 live Stripe test-mode / commercial production validation;
+* live production payments with real money;
+* Cloud Workspace;
+* S3/DynamoDB Project storage;
+* multiple plans, yearly billing, lifetime licensing;
+* coupons, tax engine, custom billing portal, analytics;
+* Block 6 security, recovery, observability, and release certification.
+
+#### Implementation commit
+
+`bb58b9a`
+
+#### Documentation closure commit
+
+`<Task 5.2 documentation closure commit hash>`
+
+---
+
+### Block 5 status
+
+**Status: IN PROGRESS**
+
+Task 5.1 and Task 5.2 are officially closed. Task 5.3 remains.
 
 ### Next step
 
-**Task 5.2 — Stripe Subscription and Durable Entitlements**
+**Task 5.3 — Integrated Commercial Production Validation**
 
-Do not begin Task 5.2 until Product Owner authorization.
+Do not begin Task 5.3 until Product Owner authorization.
