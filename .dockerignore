@@ -1,0 +1,63 @@
+# VCS
+.git
+.gitignore
+
+# Local secrets and environment overrides (production VITE_* must come from build ARG/ENV only)
+frontend/.env.local
+frontend/.env.*.local
+**/.env.local
+**/.env.*.local
+
+# Dependencies
+**/node_modules
+frontend/node_modules
+backend/.venv
+.venv
+**/__pycache__
+**/*.py[cod]
+**/*.egg-info
+
+# Test and coverage caches
+**/.pytest_cache
+**/.coverage
+**/coverage
+**/htmlcov
+frontend/coverage
+backend/.pytest_cache
+
+# Local editorial runtime data (must never enter the image or build context)
+backend/data
+
+# Local frontend build output (image rebuilds from source)
+frontend/dist
+
+# CDK generated artifacts
+deployment/cdk/cdk.out
+deployment/cdk/dist
+deployment/cdk/node_modules
+
+# IDE / editor
+.idea
+.vscode
+.cursor
+.kiro
+*.swp
+*.swo
+*~
+
+# Temporary files and logs
+*.log
+**/*.log
+tmp
+temp
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Documentation and local-only artifacts not required by Dockerfile
+documentation
+PROJECT_STATUS.md
+README.md
+dev.cmd
+test.cmd
+test

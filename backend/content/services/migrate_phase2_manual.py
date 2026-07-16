@@ -35,3 +35,43 @@ class LegacyManualMigrationService:
             "snapshotKey": snapshot_key,
             "removedFromEditorial": removed_from_editorial,
         }
+
+
+def section_to_variant_body(section: dict) -> dict:
+    return {
+        "title": section["title"],
+        "sections": [
+            {
+                "id": "main",
+                "title": "",
+                "blocks": list(section.get("blocks", [])),
+            }
+        ],
+    }
+
+
+class EditorialManualMigrationService:
+    """Create editorial manual chapters from static source and publish EN."""
+
+    def __init__(self, repository: FilesystemContentRepository):
+        self._repository = repository
+        self._publish_service = ManualPublishService(repository)
+
+    def migrate(self, source_path: Path | None = None) -> dict:
+        sections = load_manual_sections(source_path)
+        created_ids: list[str] = []
+        for section in sections:
+            meta = self._repository.create_manual_chapter(
+                section["title"],
+                content_id=section["id"],
+                locale="en",
+            )
+            body = section_to_variant_body(section)
+            self._repository.save_manual_variant(meta["contentId"], "en", body)
+            self._publish_service.publish_variant(meta["contentId"], "en")
+            created_ids.append(meta["contentId"])
+        return {
+            "locale": "en",
+            "sectionCount": len(created_ids),
+            "sectionIds": created_ids,
+        }
