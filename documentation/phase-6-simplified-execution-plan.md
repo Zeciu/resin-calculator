@@ -299,15 +299,20 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Block 5 — AWS, Stripe, and Minimum Cloud Foundation**
+**Task 5.2 — Stripe Subscription and Durable Entitlements**
 
 Blocks 1, 2, 3, and 4 are officially CLOSED.
 
-Task 4.1 delivered production-durable editorial persistence through EFS-backed filesystem repositories. No additional Release-Critical Block 4 implementation remains. There is no Task 4.2 implementation task.
+Task 5.1 — Production Deployment and Environment Completion is officially CLOSED (see §21).
+
+Block 5 remains open. Remaining Block 5 tasks:
+
+1. Task 5.2 — Stripe Subscription and Durable Entitlements
+2. Task 5.3 — Integrated Commercial Production Validation
 
 Docker runtime validation and AWS/EFS/Fargate durability validation remain mandatory **release-certification gates** before commercial launch. They are not development tasks unless they reveal a concrete defect requiring a narrowly scoped repair.
 
-The next active implementation block is **Block 5 — AWS, Stripe, and Minimum Cloud Foundation**. Do not define Block 5 tasks here; scoping begins later with a separate pre-implementation analysis.
+Do not begin Task 5.2 until Product Owner authorization.
 
 ---
 
@@ -1087,11 +1092,11 @@ These are mandatory production **release-certification** activities, not remaini
 
 #### Implementation commit
 
-`<Task 4.1 implementation commit hash>`
+`87b0564`
 
 #### Documentation closure commit
 
-`<Task 4.1 documentation closure commit hash>`
+`d12951d`
 
 ---
 
@@ -1105,8 +1110,82 @@ Do not create or retain Task 4.2 as a development task.
 
 AWS/EFS/Docker runtime proof remains part of production release certification before commercial launch.
 
+### Next step after Block 4
+
+Block 5 began with Task 5.1. Task 5.1 is now CLOSED (see §21). The next active task is **Task 5.2 — Stripe Subscription and Durable Entitlements**.
+
+---
+
+## 21. Task 5.1 Closure
+
+### Approved Block 5 task structure
+
+1. Task 5.1 — Production Deployment and Environment Completion — **CLOSED**
+2. Task 5.2 — Stripe Subscription and Durable Entitlements — next active
+3. Task 5.3 — Integrated Commercial Production Validation — pending
+
+### Task 5.1 — Production Deployment and Environment Completion
+
+**Status: CLOSED**
+
+#### Delivered scope
+
+* deployment documentation aligned to the current two-stack CDK layout (InfraStack + AppStack);
+* documented Docker/ECR workflow, Cognito frontend build-args, EFS `CONTENT_DATA_DIR`, and post-deploy smoke checklist;
+* root README documentation for production content and auth/CORS environment variables;
+* Cognito JWT audience / `client_id` validation in the backend;
+* `COGNITO_CLIENT_ID` required when Cognito auth mode is active;
+* production CORS restriction via `CORS_ALLOWED_ORIGINS` (unset remains permissive for local development);
+* AppStack injection of `COGNITO_CLIENT_ID` and `CORS_ALLOWED_ORIGINS=https://hfzwood.com`;
+* ECS deployment circuit breaker with rollback enabled.
+
+Task 2.1 ownership, Task 2.2 Cognito login, Task 2.3 capabilities, Task 3.x local workspace behavior, and Task 4.1 EFS editorial persistence remain unchanged.
+
+#### Reviews and audits
+
+* Product Owner review: **passed**
+* Repository review: **passed**
+* Post-implementation Cursor audit: **PASS WITH OBSERVATIONS** (no corrections required before Keep All)
+* Independent external review: **PASS** (no concrete defects; no corrections required before Keep All)
+* Product Owner authorized Keep All and task closure
+
+#### Validation evidence
+
+* full backend suite: **165 passed, 1 skipped**;
+* frontend suite: **571 passed** across 72 files;
+* frontend production Cognito build: **passed**;
+* CDK synth: **passed**;
+* Task 5.1 diff contains no Stripe, webhook, entitlement, checkout, or Cloud Workspace functionality.
+
+#### Intentional exclusions (deferred)
+
+* Stripe subscription checkout and webhooks;
+* durable commercial entitlements redesign;
+* Task 5.2 / Task 5.3 scope;
+* Cloud Workspace;
+* S3/DynamoDB Project storage;
+* CDN / API versioning;
+* Block 6 security, recovery, observability, and release certification;
+* live AWS redeploy of AppStack (operator step required to activate new env vars in the running service).
+
+#### Implementation commit
+
+`9e8e7a5`
+
+#### Documentation closure commit
+
+`<Task 5.1 documentation closure commit hash>`
+
+---
+
+### Block 5 status
+
+**Status: IN PROGRESS**
+
+Task 5.1 is officially closed. Block 5 is not closed.
+
 ### Next step
 
-**Block 5 — AWS, Stripe, and Minimum Cloud Foundation**
+**Task 5.2 — Stripe Subscription and Durable Entitlements**
 
-Do not define Block 5 tasks here. Task scoping begins later with a separate pre-implementation scope analysis.
+Do not begin Task 5.2 until Product Owner authorization.
