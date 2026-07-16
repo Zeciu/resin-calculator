@@ -1174,7 +1174,7 @@ Task 2.1 ownership, Task 2.2 Cognito login, Task 2.3 capabilities, Task 3.x loca
 
 #### Documentation closure commit
 
-`<Task 5.1 documentation closure commit hash>`
+`69cf680`
 
 ---
 
