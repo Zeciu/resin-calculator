@@ -1,54 +1,46 @@
-# ECS Fargate Deployment
+# Production Deployment (ECS Fargate)
 
-Deploys resin-calculator as a single Fargate container behind an Application Load Balancer,
-with Cognito for authentication. Infrastructure is managed via AWS CDK (TypeScript).
+Deploys HFZWood as a single Fargate task behind an HTTPS Application Load Balancer,
+with Cognito authentication and EFS-backed editorial persistence.
 
-## Files
+Infrastructure is managed with AWS CDK (TypeScript) as **two stacks**:
 
-| File | Purpose |
+| Stack | Purpose |
 |---|---|
-| `cdk/bin/app.ts` | CDK entry point |
-| `cdk/lib/stack.ts` | All AWS resources in one stack |
+| `InfraStack` | ECR repository, Cognito user pool / app client / Hosted UI domain, CloudWatch log group |
+| `AppStack` | ECS cluster, ALB, ACM certificate, Route 53 record, Fargate service, encrypted EFS mount |
+
+## Repository layout
+
+| Path | Purpose |
+|---|---|
+| `cdk/bin/app.ts` | CDK entry point (wires InfraStack → AppStack) |
+| `cdk/lib/infra-stack.ts` | Shared infrastructure (ECR, Cognito, logs) |
+| `cdk/lib/app-stack.ts` | Application runtime (ECS, ALB, EFS, DNS/TLS) |
 | `cdk/package.json` | CDK TypeScript dependencies |
 | `cdk/tsconfig.json` | TypeScript config |
 | `cdk/cdk.json` | CDK toolkit config |
-| `cdk/delete-infra.ps1` | Destroys all AWS infrastructure |
-| `cdk/cdk/hfzwood-iam-policy.json` | IAM policy for the deployment user |
-| `deploy-app.cmd` | Redeploys the app container after a new image is pushed |
-| `old/` | Legacy shell-based deployment scripts (reference only) |
+| `cdk/hfzwood-iam-policy.json` | IAM policy for the deployment user |
+| `cdk/delete-infra.ps1` | Destroys AppStack, InfraStack, and CDK bootstrap |
+| `deploy-app.cmd` | Forces a new ECS deployment after an image push |
+| `old/` | Legacy shell scripts (reference only) |
 
 ## Prerequisites
 
-- [AWS CLI v2](https://aws.amazon.com/cli/) installed and configured
-- [Node.js 24 LTS](https://nodejs.org/) installed (already required for the frontend)
-- [AWS CDK CLI](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) installed globally:
-  ```cmd
-  npm install -g aws-cdk
-  ```
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
+- AWS CLI v2 configured
+- Node.js 24 LTS
+- AWS CDK CLI (`npm install -g aws-cdk`)
+- Docker available on the machine that builds and pushes the image
 
-## IAM permissions for hfzwood
+## IAM profile
 
-The `hfzwood` IAM user needs a policy that covers all resources the CDK stack creates.
-The policy is defined in `cdk/hfzwood-iam-policy.json`.
+The `hfzwood` IAM user policy lives in `cdk/hfzwood-iam-policy.json`.
 
-**Creating the user and configuring the CLI profile:**
-1. Go to **IAM → Users → Create user**, name it `hfzwood`
-2. Go to **IAM → Users → hfzwood → Security credentials → Create access key**
-3. Configure the CLI profile locally:
 ```cmd
 aws configure --profile hfzwood
 ```
-Enter the Access Key ID, Secret Access Key, region `eu-central-1`, output `json`.
 
-**Applying the policy (AWS console):**
-1. Go to **IAM → Users → hfzwood → Add permissions**
-2. Choose **Create inline policy → JSON**
-3. Paste the contents of `cdk/hfzwood-iam-policy.json`
-4. Name it `hfzwood-deploy` and save
-
-> Every time a new AWS resource type is added to `stack.ts`, the corresponding actions must also be added to
-> `cdk/hfzwood-iam-policy.json` and the policy re-applied.
+Use region `eu-central-1`. When CDK adds new AWS resource types, update the IAM policy and re-apply it.
 
 ## First-time setup
 
@@ -65,26 +57,28 @@ npm install
 cdk bootstrap --profile hfzwood aws://325866321073/eu-central-1
 ```
 
-### 4. Buy domain `hfzwood.com` via Route 53 (manual)
+### 3. Domain (manual)
 
-Go to [Route 53 → Domain Registration](https://console.aws.amazon.com/route53/home#DomainRegistration) and purchase `hfzwood.com`.
-Route 53 automatically creates a hosted zone for the domain.
+Purchase/configure `hfzwood.com` in Route 53 so a hosted zone exists before `AppStack` deploy.
 
-### 5. Deploy infrastructure (InfraStack)
+### 4. Deploy InfraStack
 
 ```cmd
 cd deployment\cdk
 cdk deploy InfraStack --profile hfzwood
 ```
 
-Creates ECR, Cognito, and CloudWatch. Completes in ~1 minute.
+Creates ECR, Cognito, and the `/ecs/resin-calculator` log group.
 
-Get Cognito values from outputs and update dev.cmd
+Inspect outputs:
+
 ```cmd
 aws cloudformation describe-stacks --stack-name InfraStack --region eu-central-1 --profile hfzwood --query "Stacks[0].Outputs"
 ```
 
-### 6. Build and push the Docker image (from WSL)
+### 5. Build and push the production Docker image
+
+The image must bake Cognito frontend configuration at build time. Build from the **repository root**.
 
 ```bash
 REGION=eu-central-1
@@ -100,70 +94,103 @@ docker build -t resin-calculator \
   --build-arg VITE_COGNITO_CLIENT_ID=$CLIENT_ID \
   --build-arg VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.$REGION.amazoncognito.com \
   --build-arg VITE_COGNITO_REDIRECT_URI=https://hfzwood.com/callback \
-  /mnt/e/Programare/resin-calculator
+  .
 
 aws ecr get-login-password --region $REGION --profile hfzwood | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
 docker tag resin-calculator:latest $ECR_URI:latest
 docker push $ECR_URI:latest
 ```
 
-### 7. Deploy app infrastructure (AppStack)
+Required frontend build arguments:
+
+| Build arg | Purpose |
+|---|---|
+| `VITE_AUTH_MODE=cognito` | Prevents production mock-auth activation |
+| `VITE_COGNITO_USER_POOL_ID` | Amplify user pool |
+| `VITE_COGNITO_CLIENT_ID` | Amplify app client |
+| `VITE_COGNITO_DOMAIN` | Hosted UI domain host |
+| `VITE_COGNITO_REDIRECT_URI` | Must match Cognito callback URL (`https://hfzwood.com/callback`) |
+
+### 6. Deploy AppStack
 
 ```cmd
 cd deployment\cdk
 cdk deploy AppStack --profile hfzwood
 ```
 
-Creates ECS cluster, ALB, ACM certificate, Route 53 DNS record, and Fargate service.
-Requires the image to exist in ECR (step 6) and the domain to be active in Route 53 (step 4).
+Creates the ECS cluster, HTTPS ALB, ACM certificate, Route 53 alias, Fargate service (`desiredCount: 1`), and encrypted EFS volume mounted at `/mnt/hfzwood-content`.
 
-## Deploying a new image
+Requires:
 
-### 1. Build and push from WSL
+- an image already present in ECR;
+- Route 53 hosted zone for `hfzwood.com`.
 
-```bash
-REGION=eu-central-1
-ACCOUNT_ID=325866321073
-ECR_URI=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/resin-calculator
+## Production container environment
 
-POOL_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $REGION --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
-CLIENT_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $REGION --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
+Injected by `AppStack` (do not rely on container-local `/app/data`):
 
-docker build -t resin-calculator \
-  --build-arg VITE_AUTH_MODE=cognito \
-  --build-arg VITE_COGNITO_USER_POOL_ID=$POOL_ID \
-  --build-arg VITE_COGNITO_CLIENT_ID=$CLIENT_ID \
-  --build-arg VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.$REGION.amazoncognito.com \
-  --build-arg VITE_COGNITO_REDIRECT_URI=https://hfzwood.com/callback \
-  /mnt/e/Programare/resin-calculator
+| Variable | Value / source |
+|---|---|
+| `AUTH_MODE` | `cognito` |
+| `COGNITO_USER_POOL_ID` | InfraStack user pool |
+| `COGNITO_CLIENT_ID` | InfraStack app client |
+| `COGNITO_REGION` | Stack region (`eu-central-1`) |
+| `CONTENT_DATA_DIR` | `/mnt/hfzwood-content` (EFS mount) |
+| `REQUIRE_CONTENT_DATA_DIR` | `1` (fail closed if storage is missing/unwritable) |
+| `CORS_ALLOWED_ORIGINS` | `https://hfzwood.com` |
 
-aws ecr get-login-password --region $REGION --profile hfzwood | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
-docker tag resin-calculator:latest $ECR_URI:latest
-docker push $ECR_URI:latest
-```
+Editorial CMS state, published snapshots, and related filesystem repositories persist on EFS under `CONTENT_DATA_DIR`.
 
-### 2. Trigger ECS redeployment from Windows
+## Redeploying a new image
+
+1. Build and push with the Cognito build args above.
+2. From Windows:
 
 ```cmd
 cd deployment
 deploy-app.cmd eu-central-1 hfzwood
 ```
 
+This forces a new ECS deployment and waits until the service is stable.
+
+## Deployment sequence (summary)
+
+1. `cdk bootstrap` (once)
+2. Domain / hosted zone ready
+3. `cdk deploy InfraStack`
+4. Docker build with Cognito args → tag → push to ECR
+5. `cdk deploy AppStack`
+6. Later releases: rebuild/push image → `deploy-app.cmd`
+
 ## Architecture
 
 ```
 Internet
-   │  HTTP :80
+   │  HTTPS :443  (HTTP :80 redirects to HTTPS)
    ▼
 Application Load Balancer  (resin-calculator-alb)
-   │  HTTP :5000
+   │  :5000
    ▼
-Fargate Task  (resin-calculator, 0.25 vCPU / 512 MB)
-   ├── FastAPI on port 5000
-   └── Serves React frontend from /static (built into the image)
+Fargate Task  (desiredCount=1, single editorial writer)
+   ├── FastAPI + Cognito JWT validation
+   ├── React SPA from /static
+   └── EFS mount → /mnt/hfzwood-content  (CONTENT_DATA_DIR)
 
-Cognito User Pool  (email/password auth + Hosted UI)
+Cognito User Pool + Hosted UI
+ECR image :latest
 ```
+
+## Minimal production smoke test
+
+After deploy:
+
+1. `GET https://hfzwood.com/health` → `{"status":"ok"}`
+2. Open `https://hfzwood.com` and complete Cognito login
+3. Confirm Manual / Glossary / Knowledge Base public pages load
+4. As an `administrators` group user, open `/admin` and confirm CMS access
+5. After a forced task replacement (`deploy-app.cmd`), confirm editorial content still present (no unexpected reseed)
+
+Full release certification (EFS durability matrix, commercial flows) remains outside this document’s deploy steps.
 
 ## Teardown
 
@@ -172,19 +199,19 @@ cd deployment\cdk
 .\delete-infra.ps1 hfzwood
 ```
 
-This destroys both `AppStack` and `InfraStack` and removes the CDK bootstrap stack.
+## Cost notes
 
-## Cost estimate
-
-| Resource | Approx monthly cost |
+| Resource | Approx monthly |
 |---|---|
-| Fargate task (0.25 vCPU / 0.5 GB) | ~$9 |
-| ALB | ~$18 base + ~$0.008/LCU |
-| Cognito (≤50 000 MAU free tier) | $0 |
-| ECR + CloudWatch | < $1 |
+| Fargate (0.25 vCPU / 0.5 GB) | ~$9 |
+| ALB | ~$18 base + LCU |
+| Cognito (≤50k MAU free tier) | $0 |
+| EFS + ECR + CloudWatch | usage-based |
 
 Stop the service when idle:
 
 ```cmd
 aws ecs update-service --cluster resin-calculator-cluster --service resin-calculator-service --desired-count 0 --region eu-central-1 --profile hfzwood
 ```
+
+Keep `desiredCount` at `1` for production editorial writes unless a separate multi-writer design is approved.

@@ -35,10 +35,19 @@ app.include_router(admin_knowledge_base_router, prefix="/api")
 app.include_router(public_content_router, prefix="/api")
 app.include_router(preferences_router, prefix="/api")
 app.include_router(me_router, prefix="/api")
+
+# Production SPA is same-origin behind the ALB. Restrict CORS when configured;
+# local mock development keeps the permissive default.
+_CORS_ALLOWED_ORIGINS_RAW = os.environ.get("CORS_ALLOWED_ORIGINS", "").strip()
+_CORS_ALLOWED_ORIGINS = (
+    [origin.strip() for origin in _CORS_ALLOWED_ORIGINS_RAW.split(",") if origin.strip()]
+    if _CORS_ALLOWED_ORIGINS_RAW
+    else ["*"]
+)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_CORS_ALLOWED_ORIGINS,
+    allow_credentials=_CORS_ALLOWED_ORIGINS != ["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -46,20 +55,50 @@ app.add_middleware(
 # ── Cognito JWT validation ─────────────────────────────────────────────────────
 _COGNITO_USER_POOL_ID = os.environ.get("COGNITO_USER_POOL_ID", "")
 _COGNITO_REGION = os.environ.get("COGNITO_REGION", "")
+_COGNITO_CLIENT_ID = os.environ.get("COGNITO_CLIENT_ID", "")
 _COGNITO_ISSUER = (
     f"https://cognito-idp.{_COGNITO_REGION}.amazonaws.com/{_COGNITO_USER_POOL_ID}"
     if _COGNITO_USER_POOL_ID and _COGNITO_REGION else ""
 )
 _JWKS_CACHE: dict | None = None
 
-_COGNITO_CONFIGURED = bool(_COGNITO_USER_POOL_ID and _COGNITO_REGION)
+_COGNITO_CONFIGURED = bool(
+    _COGNITO_USER_POOL_ID and _COGNITO_REGION and _COGNITO_CLIENT_ID
+)
 _AUTH_ENABLED = auth_mode() == "cognito" and _COGNITO_CONFIGURED
 _UNPROTECTED_PATHS = {"/health", "/callback"}
 
 if auth_mode() == "cognito" and not _COGNITO_CONFIGURED:
     raise RuntimeError(
-        "AUTH_MODE=cognito requires COGNITO_USER_POOL_ID and COGNITO_REGION to be set."
+        "AUTH_MODE=cognito requires COGNITO_USER_POOL_ID, COGNITO_REGION, "
+        "and COGNITO_CLIENT_ID to be set."
     )
+
+
+def _assert_token_audience(claims: dict) -> None:
+    """Reject tokens that were not issued for this app client.
+
+    Cognito access tokens carry `client_id`; ID tokens carry `aud`.
+    """
+    expected = _COGNITO_CLIENT_ID
+    if not expected:
+        raise JWTError("COGNITO_CLIENT_ID is not configured")
+
+    candidates: list[str] = []
+    client_id = claims.get("client_id")
+    if isinstance(client_id, str) and client_id.strip():
+        candidates.append(client_id.strip())
+
+    audience = claims.get("aud")
+    if isinstance(audience, str) and audience.strip():
+        candidates.append(audience.strip())
+    elif isinstance(audience, (list, tuple)):
+        candidates.extend(
+            str(item).strip() for item in audience if str(item).strip()
+        )
+
+    if expected not in candidates:
+        raise JWTError("Token client/audience mismatch")
 
 
 async def _get_jwks() -> dict:
@@ -99,8 +138,9 @@ async def cognito_auth_middleware(request: Request, call_next):
             jwks,
             algorithms=["RS256"],
             issuer=_COGNITO_ISSUER,
-            options={"verify_at_hash": False},
+            options={"verify_at_hash": False, "verify_aud": False},
         )
+        _assert_token_audience(claims)
         request.state.jwt_claims = claims
     except ExpiredSignatureError:
         return JSONResponse(status_code=401, content={"detail": "Token expired"})

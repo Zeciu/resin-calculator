@@ -122,6 +122,7 @@ class TestAuthModeActivation:
                 AUTH_MODE="cognito",
                 COGNITO_USER_POOL_ID="eu-central-1_test",
                 COGNITO_REGION="eu-central-1",
+                COGNITO_CLIENT_ID="test-client",
             ),
         )
 
@@ -142,6 +143,20 @@ class TestAuthModeActivation:
         assert result.returncode == 0, result.stderr
         assert "STARTUP_FAILED:" in result.stdout
         assert "COGNITO_USER_POOL_ID" in result.stdout
+
+    def test_cognito_mode_without_client_id_fails_startup(self):
+        result = _run_backend_script(
+            COGNITO_STARTUP_SCRIPT,
+            _env(
+                AUTH_MODE="cognito",
+                COGNITO_USER_POOL_ID="eu-central-1_test",
+                COGNITO_REGION="eu-central-1",
+            ),
+        )
+
+        assert result.returncode == 0, result.stderr
+        assert "STARTUP_FAILED:" in result.stdout
+        assert "COGNITO_CLIENT_ID" in result.stdout
 
 
 class TestCognitoModeIdentityGuards:
@@ -186,6 +201,8 @@ class TestCognitoModeIdentityGuards:
 
         client = TestClient(app)
         with patch("app._AUTH_ENABLED", True), patch(
+            "app._COGNITO_CLIENT_ID", "test-client"
+        ), patch(
             "app._get_jwks",
             AsyncMock(return_value={"keys": [{"kty": "RSA", "kid": "test-key"}]}),
         ), patch(
@@ -194,6 +211,7 @@ class TestCognitoModeIdentityGuards:
                 "sub": "user-123",
                 "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_test",
                 "token_use": "access",
+                "client_id": "test-client",
             },
         ):
             response = client.post(

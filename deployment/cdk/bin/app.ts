@@ -11,4 +11,5 @@ new AppStack(app, 'AppStack', {
   env,
   repository: infraStack.repository,
   cognitoUserPoolId: infraStack.userPool.userPoolId,
+  cognitoUserPoolClientId: infraStack.userPoolClient.userPoolClientId,
 });

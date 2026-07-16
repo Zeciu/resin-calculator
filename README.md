@@ -156,18 +156,24 @@ The current local development baseline uses mock-first authentication by default
 
 | Variable | Scope | Notes |
 |---|---|---|
-| `AUTH_MODE` | Backend | Defaults to `mock` for local development. |
-| `VITE_AUTH_MODE` | Frontend | Unset or non-`cognito` values use the mock authentication path. |
+| `AUTH_MODE` | Backend | Defaults to `mock` for local development. Production uses `cognito`. |
+| `VITE_AUTH_MODE` | Frontend | Unset or non-`cognito` values use the mock authentication path. Production Docker builds must set `cognito`. |
 | `VITE_MOCK_ADMIN` | Frontend | `true` enables local mock administrator behavior after login or session restoration. |
 | `CAPABILITY_DEV_ACCESS_TIER` | Backend | When `AUTH_MODE=mock`, may override the local development commercial tier (`free` or `subscriber`) where supported. |
-| `VITE_COGNITO_USER_POOL_ID` | Frontend | Cognito-related names belong to the future/production authentication path. |
-| `VITE_COGNITO_CLIENT_ID` | Frontend | Not evidence that production authentication is complete. |
-| `VITE_COGNITO_DOMAIN` | Frontend | |
-| `VITE_COGNITO_REDIRECT_URI` | Frontend | |
-| `COGNITO_USER_POOL_ID` | Backend | |
-| `COGNITO_REGION` | Backend | |
+| `VITE_COGNITO_USER_POOL_ID` | Frontend | Required for Cognito-mode frontend builds. |
+| `VITE_COGNITO_CLIENT_ID` | Frontend | Required for Cognito-mode frontend builds. |
+| `VITE_COGNITO_DOMAIN` | Frontend | Cognito Hosted UI domain host. |
+| `VITE_COGNITO_REDIRECT_URI` | Frontend | Must match the Cognito app-client callback URL. |
+| `COGNITO_USER_POOL_ID` | Backend | Required when `AUTH_MODE=cognito`. |
+| `COGNITO_CLIENT_ID` | Backend | Required when `AUTH_MODE=cognito`; used to validate JWT client/audience. |
+| `COGNITO_REGION` | Backend | Required when `AUTH_MODE=cognito`. |
+| `CONTENT_DATA_DIR` | Backend | Filesystem root for editorial repositories (and related local filesystem stores). Production mounts EFS at `/mnt/hfzwood-content`. |
+| `REQUIRE_CONTENT_DATA_DIR` | Backend | Set to `1` in production so startup fails closed instead of using ephemeral container storage. |
+| `CORS_ALLOWED_ORIGINS` | Backend | Optional comma-separated origins. Unset defaults to `*` for local development. Production sets `https://hfzwood.com`. |
 
 Local frontend-only configuration can be placed in an untracked `frontend/.env.local` file. Restart the Vite development server after relevant environment changes.
+
+Production deployment procedure, Cognito Docker build arguments, and ECS/EFS details live in `deployment/README.md` (do not duplicate that workflow here).
 
 Do not commit secrets, tokens, or private credentials.
 
@@ -179,7 +185,7 @@ The current local development model is **mock-first**.
 - The mock adapter does not provide production credential validation.
 - Mock session state is browser-session based.
 - Backend `AUTH_MODE` defaults to `mock` unless configured otherwise.
-- Production Cognito integration belongs to a later milestone.
+- Production Cognito configuration is described in `deployment/README.md`.
 
 ### Local administrator access
 

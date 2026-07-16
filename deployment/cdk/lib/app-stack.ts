@@ -12,10 +12,12 @@ import { Construct } from 'constructs';
 
 const DOMAIN = 'hfzwood.com';
 const EDITORIAL_CONTENT_MOUNT_PATH = '/mnt/hfzwood-content';
+const PRODUCTION_ORIGIN = `https://${DOMAIN}`;
 
 interface AppStackProps extends cdk.StackProps {
   repository: ecr.Repository;
   cognitoUserPoolId: string;
+  cognitoUserPoolClientId: string;
 }
 
 export class AppStack extends cdk.Stack {
@@ -85,9 +87,11 @@ export class AppStack extends cdk.Stack {
       environment: {
         AUTH_MODE: "cognito",
         COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
+        COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
         COGNITO_REGION: this.region,
         CONTENT_DATA_DIR: EDITORIAL_CONTENT_MOUNT_PATH,
         REQUIRE_CONTENT_DATA_DIR: '1',
+        CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,
       },
     });
     appContainer.addMountPoints({
@@ -102,6 +106,7 @@ export class AppStack extends cdk.Stack {
       desiredCount: 1,
       minHealthyPercent: 0,
       maxHealthyPercent: 100,
+      circuitBreaker: { rollback: true },
       listenerPort: 443,
       protocol: elbv2.ApplicationProtocol.HTTPS,
       certificate,
