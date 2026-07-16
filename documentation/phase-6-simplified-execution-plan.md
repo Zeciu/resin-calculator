@@ -299,9 +299,15 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Block 3 — continued local workspace experience**
+**Block 5 — AWS, Stripe, and Minimum Cloud Foundation**
 
-Task 3.3 is closed (see §19). Task 3.2 is closed (see §18). Task 3.1 is closed (see §17). Block 2 (Tasks 2.1–2.3) is complete (see §14–§16). Scope the next Block 3 task from remaining §17 deferrals not yet delivered (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI). Block 3 scope: see §5.
+Blocks 1, 2, 3, and 4 are officially CLOSED.
+
+Task 4.1 delivered production-durable editorial persistence through EFS-backed filesystem repositories. No additional Release-Critical Block 4 implementation remains. There is no Task 4.2 implementation task.
+
+Docker runtime validation and AWS/EFS/Fargate durability validation remain mandatory **release-certification gates** before commercial launch. They are not development tasks unless they reveal a concrete defect requiring a narrowly scoped repair.
+
+The next active implementation block is **Block 5 — AWS, Stripe, and Minimum Cloud Foundation**. Do not define Block 5 tasks here; scoping begins later with a separate pre-implementation analysis.
 
 ---
 
@@ -896,7 +902,7 @@ Task 2.2 live AWS Cognito E2E validation remains a release-certification require
 
 ### Intentional deferrals
 
-Save As; local Project deletion UI; Remove from Recent Projects UI; thumbnails; tab-close/logout unsaved protection; cloud/sync; filesystem monitoring; branching/conflict resolution; ownership transfer; billing; `structuralCapabilitySnapshot`; v1 migration; unrelated refactors.
+local Project deletion UI; Remove from Recent Projects UI; thumbnails; tab-close/logout unsaved protection; cloud/sync; filesystem monitoring; branching/conflict resolution; ownership transfer; billing; `structuralCapabilitySnapshot`; v1 migration; unrelated refactors.
 
 ### Implementation commit
 
@@ -979,7 +985,9 @@ Task 2.2 live AWS Cognito E2E validation remains a release-certification require
 
 ### Intentional deferrals
 
-Logout guards or new workspace-session context; Save As; Remove from Recent Projects UI; local Project deletion UI; thumbnails; beforeunload/tab-close protection; calculator Import reinstatement; Cloud Workspace; sync; branching/conflict handling; ownership transfer; Stripe/billing; unrelated refactoring.
+Logout guards or new workspace-session context; Remove from Recent Projects UI; local Project deletion UI; thumbnails; beforeunload/tab-close protection; calculator Import reinstatement; Cloud Workspace; sync; branching/conflict handling; ownership transfer; Stripe/billing; unrelated refactoring.
+
+Application-level Save As is not part of the approved HFZWood product. HFZWood uses a Local-First file model where Projects are ordinary `.hfzproject` files owned by the user; creating renamed or duplicated Project files is naturally handled by the operating system.
 
 ### Implementation commit
 
@@ -987,4 +995,118 @@ Logout guards or new workspace-session context; Save As; Remove from Recent Proj
 
 ### Next step
 
-**Block 3 — continued local workspace experience** — scope next task from §17 deferrals (Save As, Remove from Recent Projects UI, tab-close/logout unsaved protection, local Project deletion UI).
+**Block 3 — officially CLOSED**
+
+A Release-Critical assessment completed after Task 3.3 determined that no remaining Block 3 responsibility justifies another implementation task. Remaining deferred items are convenience or UX improvements only; they do not block the approved initial commercial release and do not require any future foundational architectural redesign.
+
+---
+
+## 20. Task 4.1 and Block 4 Closure
+
+### Approved Block 4 execution decision
+
+For the approved initial HFZWood launch, production-durable editorial persistence uses an **EFS-mounted filesystem** backing the existing `FilesystemContentRepository` model.
+
+DynamoDB + S3 is not required for initial launch: the editorial CMS already uses filesystem repositories and JSON content structures, and EFS solves the launch-blocking failure mode (editorial content loss during Fargate task replacement) while preserving existing CMS behavior.
+
+The initial production deployment remains constrained to a single active Fargate task/writer unless a separate concurrency-safe persistence design is approved. Future migration to DynamoDB + S3 remains possible as a bounded replacement behind the existing repository boundary.
+
+---
+
+### Task 4.1 — Production-Durable Editorial Persistence through EFS
+
+**Status: CLOSED**
+
+#### Delivered scope
+
+* encrypted EFS-backed production storage for the existing filesystem editorial repositories;
+* EFS access point, ECS task volume, mount, NFS security-group wiring, and transit encryption;
+* explicit production `CONTENT_DATA_DIR` at `/mnt/hfzwood-content`;
+* strict startup validation preventing silent fallback to ephemeral container storage;
+* complete backend production packaging for `app.py`, `auth`, `content`, and `product`;
+* deterministic build-time editorial seed data;
+* canonical first-run seeding of Manual, Glossary, and Knowledge Base;
+* canonical published snapshots and legacy compatibility artifacts;
+* safe authoritative-root adoption without deletion or reseeding;
+* completion-marker and safe retry behavior;
+* namespaced internal repository keys with backward-compatible legacy-key reads and lazy migration;
+* atomic JSON write/replace behavior;
+* intentional single-writer production deployment;
+* repository-root `.dockerignore` and build-context hygiene.
+
+Task 2.1 ownership, Task 2.3 capabilities, Task 3.1 file integrity, Task 3.2 device-local preferences, and Task 3.3 local workspace behavior remain unchanged.
+
+#### Product Owner local QA
+
+Passed:
+
+* administrator login and capabilities;
+* Admin Panel;
+* Manual;
+* Glossary;
+* Knowledge Base;
+* New Project;
+* local navigation and general regression check.
+
+No functional regressions were observed. A temporary QA issue caused by an unsaved `frontend/.env.local` value (`VITE_MOCK_ADMIN`) was a local configuration issue, not an application defect, and is not recorded as a Task 4.1 bug.
+
+#### Validation evidence
+
+* focused Task 4.1 backend tests: **33 passed, 1 skipped**;
+* full backend suite: **163 passed, 1 skipped**;
+* frontend suite: **571 passed** across 72 files;
+* production Cognito build: **passed**;
+* CDK TypeScript build: **passed**;
+* CDK synth: **passed**;
+* strict initialization, restart, authoritative adoption, compatibility, corpus-preservation, and failure-mode smoke checks: **passed**;
+* Product Owner local QA: **passed**.
+
+#### Limitations / release-certification gates
+
+* Docker image build and runtime were not validated on this machine because Docker CLI is unavailable;
+* actual EFS mount and access-point permissions must be validated in AWS;
+* editorial persistence must be verified across real Fargate task replacement and redeployment;
+* ALB recovery and accepted temporary deployment downtime must be observed;
+* deployment must confirm no reseeding or overwrite of authoritative EFS content.
+
+These are mandatory production **release-certification** activities, not remaining Block 4 implementation tasks. They do not create a Task 4.2 development task unless a concrete defect requiring a narrowly scoped repair is discovered.
+
+#### Intentional exclusions
+
+* DynamoDB editorial persistence;
+* S3 editorial persistence;
+* Stripe and billing;
+* durable entitlements;
+* server-authoritative preferences;
+* Cloud Workspace;
+* Project upload, sync, branching, and conflict handling;
+* multi-writer editorial support;
+* calculator changes;
+* new CMS functionality;
+* Block 6 backup, recovery, observability, and release-certification program.
+
+#### Implementation commit
+
+`<Task 4.1 implementation commit hash>`
+
+#### Documentation closure commit
+
+`<Task 4.1 documentation closure commit hash>`
+
+---
+
+### Block 4 — Production Backend and Durable Data
+
+**Status: CLOSED**
+
+No additional Release-Critical implementation remains.
+
+Do not create or retain Task 4.2 as a development task.
+
+AWS/EFS/Docker runtime proof remains part of production release certification before commercial launch.
+
+### Next step
+
+**Block 5 — AWS, Stripe, and Minimum Cloud Foundation**
+
+Do not define Block 5 tasks here. Task scoping begins later with a separate pre-implementation scope analysis.
