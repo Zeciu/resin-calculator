@@ -1653,3 +1653,34 @@ Remaining Phase 6 commercial launch gate:
 **Task 5.3B — Live Commercial Infrastructure Validation**
 
 **Status: NOT STARTED — PENDING LIVE VALIDATION WITH ALFRED**
+
+---
+
+## 27. Post-Closure Calculator UX Correction — Image Upload Scroll
+
+A post-closure calculator UX issue was corrected without reopening Phase 6. After primary-image upload, automatic scrolling now preserves image context while exposing the mandatory Add reference measurement action.
+
+### Issue
+
+After a successful primary-image upload, the workspace automatically scrolled the image panel to the top of the viewport (`workspaceImagePanelRef`, `block: "start"`). Because the reference-measurement controls are rendered above the image panel, the mandatory **Add Reference Measurement** button could leave the visible area.
+
+### Correction
+
+Post-upload scrolling now prefers `referenceControlsRef` (the active workflow controls containing **Add Reference Measurement**) with `block: "start"`, falling back to the image panel only when reference controls are not mounted. No calculator workflow, business logic, capability, or layout redesign was changed.
+
+### Files changed
+
+* `frontend/src/calculator/ResinCalculator.jsx`
+* `frontend/src/calculator/ResinCalculator.test.jsx`
+
+### Validation
+
+* focused `ResinCalculator.test.jsx`: **23 passed**;
+* full frontend suite: **573 passed** (73 files);
+* frontend production build: **passed**.
+
+### Closure boundary
+
+Phase 6 Local Implementation remains **CLOSED**. Task 6.2 and Block 6 were not reopened.
+
+**Next active work remains Task 5.3B — Live Commercial Infrastructure Validation (NOT STARTED — PENDING WITH ALFRED).**
