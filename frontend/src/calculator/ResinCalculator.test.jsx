@@ -349,9 +349,30 @@ describe("ResinCalculator — read-only persistent mutations", () => {
   });
 });
 
-describe("ResinCalculator — post-upload scroll target", () => {
+describe("ResinCalculator — workflow-step scroll targets", () => {
   let restoreImage;
   let scrollTargets;
+
+  const PRE_MOLD_REFERENCE_SNAPSHOT = {
+    ...VALID_CALCULATOR_SNAPSHOT,
+    ui: {
+      calculationMode: "wood",
+      selectedMode: "reference",
+      rotationDeg: 0,
+      zoomFactor: 1,
+      selectedShape: null,
+      measurementsComplete: false,
+    },
+    woodBoundaryMode: {
+      ...VALID_CALCULATOR_SNAPSHOT.woodBoundaryMode,
+      useImageBorderAsMold: false,
+      moldBoundaryPoints: [],
+      woodBoundaryPolygons: [],
+      currentWoodBoundaryPoints: [],
+      cavities: [],
+    },
+    result: null,
+  };
 
   beforeEach(() => {
     scrollTargets = [];
@@ -368,6 +389,13 @@ describe("ResinCalculator — post-upload scroll target", () => {
     restoreImage();
     Element.prototype.scrollIntoView = vi.fn();
   });
+
+  function finalWorkflowControlsScroll() {
+    const controlsScrolls = scrollTargets.filter((entry) =>
+      String(entry.className).includes("active-workflow-controls"),
+    );
+    return controlsScrolls[controlsScrolls.length - 1] ?? null;
+  }
 
   it("scrolls to the reference-measurement controls after image upload", async () => {
     const user = userEvent.setup();
@@ -393,9 +421,7 @@ describe("ResinCalculator — post-upload scroll target", () => {
       ).toBe(true);
     });
 
-    const referenceScroll = scrollTargets.find((entry) =>
-      String(entry.className).includes("active-workflow-controls"),
-    );
+    const referenceScroll = finalWorkflowControlsScroll();
     expect(referenceScroll.options).toEqual({ behavior: "auto", block: "start" });
     expect(screen.getByRole("button", { name: /Add Reference Measurement/i })).toBeInTheDocument();
     expect(
@@ -403,5 +429,55 @@ describe("ResinCalculator — post-upload scroll target", () => {
         String(entry.className).includes("workspace-image-panel"),
       ),
     ).toBe(false);
+  });
+
+  it("scrolls to Draw Mold controls after completing the reference measurement", async () => {
+    const user = userEvent.setup();
+    const ref = createRef();
+
+    renderCalculator(
+      <ResinCalculator
+        ref={ref}
+        showHeader={false}
+        workspaceVariant="dedicated"
+      />,
+    );
+
+    await act(async () => {
+      ref.current.restoreProjectSnapshot(PRE_MOLD_REFERENCE_SNAPSHOT);
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("button", { name: /Done with Measurements/i }),
+      ).toBeInTheDocument();
+    });
+
+    scrollTargets.length = 0;
+
+    await user.click(
+      screen.getByRole("button", { name: /Done with Measurements/i }),
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole("button", { name: /Draw Mold Boundary/i }),
+      ).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(finalWorkflowControlsScroll()).not.toBeNull();
+    });
+
+    const moldScroll = finalWorkflowControlsScroll();
+    expect(moldScroll.options).toEqual({ behavior: "auto", block: "start" });
+    expect(
+      scrollTargets.filter((entry) =>
+        String(entry.className).includes("workspace-image-panel"),
+      ),
+    ).toHaveLength(0);
+    expect(
+      scrollTargets[scrollTargets.length - 1].className,
+    ).toContain("active-workflow-controls");
   });
 });

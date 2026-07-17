@@ -547,7 +547,9 @@ export default forwardRef(function ResinCalculator(
   const cavityDepthInputRefs = useRef([]);
   const referenceDraftRef = useRef(null);
   const draftKnownLengthInputRef = useRef(null);
-  const referenceControlsRef = useRef(null);
+  // Attached to `.active-workflow-controls` for every workflow step so
+  // automatic scrolling can target the newly active step controls.
+  const activeWorkflowControlsRef = useRef(null);
   const cavityControlsRef = useRef(null);
   const finalActionBarRef = useRef(null);
   const mainDepthInputRef = useRef(null);
@@ -892,17 +894,29 @@ export default forwardRef(function ResinCalculator(
     moldBoundaryComplete,
   ]);
 
+  const scrollActiveWorkflowControlsIntoView = (behavior = "auto") => {
+    window.setTimeout(() => {
+      // Prefer active workflow-step controls over the image panel alone so the
+      // next mandatory action stays visible while retaining image context below.
+      const scrollTarget =
+        activeWorkflowControlsRef.current ?? workspaceImagePanelRef.current;
+      scrollTarget?.scrollIntoView({
+        behavior,
+        block: "start",
+      });
+    }, 0);
+  };
+
   useEffect(() => {
     if (!imageDataUrl) return undefined;
 
     const scrollTimer = window.setTimeout(() => {
       resizeCanvasToWorkArea();
-      // Prefer the reference-measurement action container so the mandatory
-      // "Add Reference Measurement" control stays visible while still keeping
-      // part of the uploaded image in view below it. Fall back to the image
-      // panel when reference controls are not mounted (e.g. measurements done).
+      // Prefer the active workflow-controls container so the mandatory next
+      // action (e.g. Add Reference Measurement) stays visible while still
+      // keeping part of the uploaded image in view below it.
       const scrollTarget =
-        referenceControlsRef.current ?? workspaceImagePanelRef.current;
+        activeWorkflowControlsRef.current ?? workspaceImagePanelRef.current;
       scrollTarget?.scrollIntoView({
         behavior: "auto",
         block: "start",
@@ -1000,12 +1014,7 @@ export default forwardRef(function ResinCalculator(
     setResult(null);
     setError("");
 
-    window.setTimeout(() => {
-      referenceControlsRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 0);
+    scrollActiveWorkflowControlsIntoView("smooth");
   };
 
   const onImageUpload = (event) => {
@@ -2490,7 +2499,7 @@ export default forwardRef(function ResinCalculator(
         <div className="workspace-controls">
         <div
           className="active-workflow-controls"
-          ref={!measurementsComplete ? referenceControlsRef : null}
+          ref={activeWorkflowControlsRef}
         >
           {!measurementsComplete && (
             <>
@@ -2537,6 +2546,7 @@ export default forwardRef(function ResinCalculator(
                   }
                   setResult(null);
                   setError("");
+                  scrollActiveWorkflowControlsIntoView("auto");
                 }}
               >
                 {ui.doneWithMeasurements}
