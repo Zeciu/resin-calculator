@@ -266,7 +266,7 @@ HFZWood is demonstrably safe, recoverable, supportable, tested, and ready for co
 
 Approved Block 6 execution structure (see §24):
 
-1. **Task 6.1 — Production Safety Hardening** — NOT STARTED
+1. **Task 6.1 — Production Safety Hardening** — **CLOSED** (see §25)
 2. **Task 6.2 — Release Readiness** — NOT STARTED
 
 This block delivers the minimum justified local release-readiness work under the current team's control. It does not include Task 5.3B live infrastructure validation.
@@ -315,7 +315,7 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Task 6.1 — Production Safety Hardening**
+**Task 6.2 — Release Readiness**
 
 **Status: NOT STARTED**
 
@@ -330,7 +330,9 @@ Integrated commercial validation was separated into Task 5.3A and Task 5.3B (see
 * **Task 5.3A — Local Commercial Readiness Validation** is **CLOSED without implementation**;
 * **Task 5.3B — Live Commercial Infrastructure Validation** is **PENDING** live validation with Alfred.
 
-Block 6 planning is **CLOSED** (see §24). The approved Block 6 structure is two tasks: Task 6.1 and Task 6.2.
+Task 6.1 — Production Safety Hardening is **CLOSED** (see §25).
+
+Block 6 planning is **CLOSED** (see §24). Task 6.2 is the remaining Block 6 implementation task.
 
 **Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
 
@@ -1284,7 +1286,7 @@ Task 5.1, Task 5.2, and Task 5.3A are officially closed. Task 5.3B live validati
 
 ### Next step
 
-**Task 6.1 — Production Safety Hardening** (see §24)
+**Task 6.2 — Release Readiness** (see §25)
 
 Task 5.3B remains a mandatory pre-commercial-launch release gate with Alfred after remaining internal work is complete.
 
@@ -1411,11 +1413,11 @@ Every item remains:
 
 ### 23.9 Next active work
 
-**Task 6.1 — Production Safety Hardening**
+**Task 6.2 — Release Readiness**
 
 **Status: NOT STARTED**
 
-Block 6 planning is closed (see §24). Task 6.2 follows Task 6.1.
+Task 6.1 is CLOSED (see §25). Block 6 planning is closed (see §24).
 
 Starting Block 6 does not cancel or satisfy Task 5.3B.
 
@@ -1439,14 +1441,14 @@ Block 6 pre-implementation assessment is complete. The Product Owner has approve
 
 ### 24.3 Approved Block 6 task structure
 
-1. **Task 6.1 — Production Safety Hardening** — **NOT STARTED**
+1. **Task 6.1 — Production Safety Hardening** — **CLOSED** (see §25)
 2. **Task 6.2 — Release Readiness** — **NOT STARTED**
 
 Task 5.3B — Live Commercial Infrastructure Validation remains **PENDING** and is completely outside Block 6.
 
 ### 24.4 Task 6.1 — Production Safety Hardening
 
-**Status: NOT STARTED**
+**Status: CLOSED** (see §25)
 
 Scope:
 
@@ -1492,6 +1494,58 @@ Block 6 Task 6.2 may record PASS vs PENDING certification status but must not ma
 
 ### 24.8 Next active task
 
-**Task 6.1 — Production Safety Hardening**
+**Task 6.2 — Release Readiness**
+
+**Status: NOT STARTED**
+
+---
+
+## 25. Task 6.1 Closure — Production Safety Hardening
+
+### 25.1 Status
+
+**Status: CLOSED**
+
+### 25.2 Delivered scope
+
+* AWS Backup vault/plan/selection for editorial/commercial EFS with 14-day retention;
+* CloudWatch alarms for ALB unhealthy hosts and ECS running task count below one;
+* centralized calculator abuse ceilings in `backend/safety/input_limits.py`;
+* calculator-only request body size limit (2 MB) returning 413;
+* minimal Cognito authentication failure warning logs (path + reason only);
+* negative-path backend tests for calculator limits and editorial image validation;
+* operator backup/recovery and alarm documentation in `deployment/README.md`.
+
+No Stripe, entitlement, capability, Cognito rule, subscription, Local Workspace, or frontend product behavior changed.
+
+### 25.3 Intentionally excluded
+
+* live AWS backup restore drill;
+* live alarm verification;
+* GitHub Actions / CI;
+* SNS/email alarm actions;
+* WAF / enterprise rate limiting;
+* structured logging platform;
+* Task 5.3B live validation;
+* any reopening of Blocks 1–5.
+
+### 25.4 Validation evidence
+
+* focused Task 6.1 backend tests: **17 passed**;
+* full backend suite: **200 passed, 1 skipped**;
+* full frontend suite: **572 passed**;
+* frontend production build: **passed**;
+* CDK TypeScript build: **passed**;
+* `cdk synth AppStack`: **passed**.
+
+Live AWS deployment, backup restore verification, and alarm firing remain **PENDING — LIVE VALIDATION REQUIRED** (Task 5.3B / operator).
+
+### 25.5 Task 5.3B boundary
+
+Task 5.3B remains unchanged, mandatory, and completely outside Task 6.1.
+
+### 25.6 Next active task
+
+**Task 6.2 — Release Readiness**
 
 **Status: NOT STARTED**
