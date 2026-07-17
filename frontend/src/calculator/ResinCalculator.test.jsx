@@ -348,3 +348,60 @@ describe("ResinCalculator — read-only persistent mutations", () => {
     expect(onDirtyChange).toHaveBeenCalledWith(false);
   });
 });
+
+describe("ResinCalculator — post-upload scroll target", () => {
+  let restoreImage;
+  let scrollTargets;
+
+  beforeEach(() => {
+    scrollTargets = [];
+    Element.prototype.scrollIntoView = vi.fn(function scrollIntoViewSpy(options) {
+      scrollTargets.push({
+        className: this?.className ?? "",
+        options,
+      });
+    });
+    restoreImage = installPersistentImageMock();
+  });
+
+  afterEach(() => {
+    restoreImage();
+    Element.prototype.scrollIntoView = vi.fn();
+  });
+
+  it("scrolls to the reference-measurement controls after image upload", async () => {
+    const user = userEvent.setup();
+    renderCalculator(
+      <ResinCalculator showHeader={false} workspaceVariant="dedicated" />,
+    );
+
+    const input = document.querySelector("input[type='file'][accept='image/*']");
+    expect(input).toBeTruthy();
+
+    const file = new File(["pixels"], "photo.png", { type: "image/png" });
+    await user.upload(input, file);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Photo uploaded/i)).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(
+        scrollTargets.some((entry) =>
+          String(entry.className).includes("active-workflow-controls"),
+        ),
+      ).toBe(true);
+    });
+
+    const referenceScroll = scrollTargets.find((entry) =>
+      String(entry.className).includes("active-workflow-controls"),
+    );
+    expect(referenceScroll.options).toEqual({ behavior: "auto", block: "start" });
+    expect(screen.getByRole("button", { name: /Add Reference Measurement/i })).toBeInTheDocument();
+    expect(
+      scrollTargets.some((entry) =>
+        String(entry.className).includes("workspace-image-panel"),
+      ),
+    ).toBe(false);
+  });
+});

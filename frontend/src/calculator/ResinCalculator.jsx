@@ -897,7 +897,13 @@ export default forwardRef(function ResinCalculator(
 
     const scrollTimer = window.setTimeout(() => {
       resizeCanvasToWorkArea();
-      workspaceImagePanelRef.current?.scrollIntoView({
+      // Prefer the reference-measurement action container so the mandatory
+      // "Add Reference Measurement" control stays visible while still keeping
+      // part of the uploaded image in view below it. Fall back to the image
+      // panel when reference controls are not mounted (e.g. measurements done).
+      const scrollTarget =
+        referenceControlsRef.current ?? workspaceImagePanelRef.current;
+      scrollTarget?.scrollIntoView({
         behavior: "auto",
         block: "start",
       });
