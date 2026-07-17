@@ -220,6 +220,55 @@ After deploy:
 
 Full release certification (EFS durability matrix, commercial flows) remains outside this document’s deploy steps.
 
+## EFS backup and recovery
+
+`AppStack` provisions AWS Backup for the editorial/commercial EFS filesystem.
+
+| Setting | Value |
+|---|---|
+| Backup vault | `resin-calculator-efs-backup` |
+| Backup plan | `resin-calculator-efs-daily` |
+| Schedule | Daily at 05:00 UTC |
+| Retention | 14 days |
+| Protected resource | Editorial/commercial EFS (`EditorialContentFilesystem`) |
+
+**What is backed up:** all data under the EFS mount used as `CONTENT_DATA_DIR`, including editorial CMS state, published snapshots, entitlement/commercial records, and the Stripe customer index.
+
+**Verify backups exist (operator):**
+
+```cmd
+aws backup list-recovery-points-by-backup-vault --backup-vault-name resin-calculator-efs-backup --region eu-central-1 --profile hfzwood
+```
+
+Confirm recent recovery points appear after the daily schedule.
+
+**High-level recovery (operator):**
+
+1. Identify the target recovery point from the backup vault.
+2. Restore the EFS filesystem to a new or existing filesystem using the AWS Backup console or CLI restore workflow for Amazon EFS.
+3. If recovery requires remounting, update the ECS task definition / AppStack EFS reference only after operator review — do not automate filesystem replacement in this task.
+4. Redeploy or restart the ECS service after the restored mount is available.
+
+A live restore drill is **not** part of Task 6.1. Full restore validation on real AWS remains part of Task 5.3B / operator certification.
+
+**Post-restore checks:**
+
+1. `GET https://hfzwood.com/health` → `{"status":"ok"}`
+2. Manual / Glossary / Knowledge Base public pages load expected published content
+3. Administrator CMS access still works
+4. Existing editorial content and entitlement files are present on the mounted path (no unexpected reseed)
+
+## Operational monitoring (ALB + ECS)
+
+`AppStack` creates two CloudWatch alarms:
+
+| Alarm | Meaning | Where to inspect |
+|---|---|---|
+| `resin-calculator-alb-unhealthy-hosts` | ALB target group has one or more unhealthy hosts | CloudWatch → Alarms; ECS service / Target group health |
+| `resin-calculator-ecs-running-tasks-low` | ECS service is running fewer than one task | CloudWatch → Alarms; ECS cluster `resin-calculator-cluster`, service `resin-calculator-service` |
+
+Both alarms use two evaluation periods to reduce transient deployment noise. SNS/email actions are not configured in CDK; subscribe operators manually if desired.
+
 ## Teardown
 
 ```powershell

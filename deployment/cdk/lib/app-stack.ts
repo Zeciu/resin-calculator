@@ -1,9 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
+import * as backup from 'aws-cdk-lib/aws-backup';
+import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecsPatterns from 'aws-cdk-lib/aws-ecs-patterns';
 import * as efs from 'aws-cdk-lib/aws-efs';
+import * as events from 'aws-cdk-lib/aws-events';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
@@ -148,6 +151,59 @@ export class AppStack extends cdk.Stack {
       fargateService.service,
       'Allow ECS tasks to mount editorial EFS'
     );
+
+    const editorialEfsBackupVault = new backup.BackupVault(this, 'EditorialEfsBackupVault', {
+      backupVaultName: 'resin-calculator-efs-backup',
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
+
+    const editorialEfsBackupPlan = new backup.BackupPlan(this, 'EditorialEfsBackupPlan', {
+      backupPlanName: 'resin-calculator-efs-daily',
+      backupVault: editorialEfsBackupVault,
+    });
+
+    editorialEfsBackupPlan.addRule(
+      new backup.BackupPlanRule({
+        ruleName: 'DailyEfsBackup',
+        scheduleExpression: events.Schedule.cron({ minute: '0', hour: '5' }),
+        deleteAfter: cdk.Duration.days(14),
+      }),
+    );
+
+    editorialEfsBackupPlan.addSelection('EditorialEfsSelection', {
+      resources: [backup.BackupResource.fromEfsFileSystem(editorialContentFilesystem)],
+    });
+
+    new cloudwatch.Alarm(this, 'AlbUnhealthyHostsAlarm', {
+      alarmName: 'resin-calculator-alb-unhealthy-hosts',
+      alarmDescription: 'ALB target group has unhealthy hosts.',
+      metric: fargateService.targetGroup.metrics.unhealthyHostCount(),
+      threshold: 0,
+      evaluationPeriods: 2,
+      datapointsToAlarm: 2,
+      comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+      treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+    });
+
+    new cloudwatch.Alarm(this, 'EcsRunningTaskCountLowAlarm', {
+      alarmName: 'resin-calculator-ecs-running-tasks-low',
+      alarmDescription: 'ECS service has fewer than one running task.',
+      metric: new cloudwatch.Metric({
+        namespace: 'AWS/ECS',
+        metricName: 'RunningTaskCount',
+        dimensionsMap: {
+          ClusterName: cluster.clusterName,
+          ServiceName: fargateService.service.serviceName,
+        },
+        statistic: 'Minimum',
+        period: cdk.Duration.minutes(1),
+      }),
+      threshold: 1,
+      evaluationPeriods: 2,
+      datapointsToAlarm: 2,
+      comparisonOperator: cloudwatch.ComparisonOperator.LESS_THAN_THRESHOLD,
+      treatMissingData: cloudwatch.TreatMissingData.BREACHING,
+    });
 
     new cdk.CfnOutput(this, 'AppUrl', { value: `https://${DOMAIN}` });
   }

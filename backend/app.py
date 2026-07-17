@@ -1,4 +1,5 @@
 import os
+import logging
 import httpx
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
@@ -23,6 +24,15 @@ from content.routers.me import router as me_router
 from content.routers.preferences import router as preferences_router
 from content.routers.public_content import router as public_content_router
 from auth.dependencies import auth_mode
+from safety.input_limits import (
+    CALCULATOR_MAX_BODY_BYTES,
+    CALCULATOR_PATHS,
+    InputLimitError,
+    validate_calculate_request,
+    validate_calculate_wood_request,
+)
+
+auth_logger = logging.getLogger(__name__)
 
 
 app = FastAPI()
@@ -113,6 +123,31 @@ async def _get_jwks() -> dict:
     return _JWKS_CACHE
 
 
+def _auth_failure_reason(exc: Exception) -> str:
+    message = str(exc).lower()
+    if isinstance(exc, ExpiredSignatureError):
+        return "expired_token"
+    if "audience" in message or "client" in message:
+        return "audience_mismatch"
+    return "invalid_token"
+
+
+@app.middleware("http")
+async def calculator_request_size_limit_middleware(request: Request, call_next):
+    if request.method == "POST" and request.url.path in CALCULATOR_PATHS:
+        content_length = request.headers.get("content-length")
+        if content_length is not None:
+            try:
+                if int(content_length) > CALCULATOR_MAX_BODY_BYTES:
+                    return JSONResponse(
+                        status_code=413,
+                        content={"detail": "Request body too large."},
+                    )
+            except ValueError:
+                pass
+    return await call_next(request)
+
+
 @app.middleware("http")
 async def cognito_auth_middleware(request: Request, call_next):
     if not _AUTH_ENABLED or request.url.path in _UNPROTECTED_PATHS:
@@ -130,6 +165,10 @@ async def cognito_auth_middleware(request: Request, call_next):
 
     auth_header = request.headers.get("Authorization", "")
     if not auth_header.startswith("Bearer "):
+        auth_logger.warning(
+            "Authentication failed path=%s reason=missing_token",
+            request.url.path,
+        )
         return JSONResponse(status_code=401, content={"detail": "Unauthorized"})
 
     token = auth_header[len("Bearer "):]
@@ -145,10 +184,23 @@ async def cognito_auth_middleware(request: Request, call_next):
         _assert_token_audience(claims)
         request.state.jwt_claims = claims
     except ExpiredSignatureError:
+        auth_logger.warning(
+            "Authentication failed path=%s reason=expired_token",
+            request.url.path,
+        )
         return JSONResponse(status_code=401, content={"detail": "Token expired"})
-    except JWTError:
+    except JWTError as exc:
+        auth_logger.warning(
+            "Authentication failed path=%s reason=%s",
+            request.url.path,
+            _auth_failure_reason(exc),
+        )
         return JSONResponse(status_code=401, content={"detail": "Invalid token"})
     except Exception:
+        auth_logger.warning(
+            "Authentication failed path=%s reason=invalid_token",
+            request.url.path,
+        )
         return JSONResponse(status_code=401, content={"detail": "Unauthorized"})
 
     return await call_next(request)
@@ -303,6 +355,11 @@ def volume_from_area_cm2(area_cm2, depth_mm):
 
 @app.post("/calculate")
 def calculate(req: CalculateRequest):
+    try:
+        validate_calculate_request(req.polygonPoints, req.referenceMeasurements)
+    except InputLimitError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from None
+
     if len(req.polygonPoints) < 3:
         raise HTTPException(status_code=400, detail="At least 3 polygon points are required.")
 
@@ -346,6 +403,19 @@ def calculate_wood(req: CalculateWoodRequest):
     main_pour_depth_mm = req.mainPourDepthMm or req.depthMm
     cavity_depths_mm = req.cavityDepthsMm
 
+    if wood_boundary_polygons is None:
+        wood_boundary_polygons = [wood_boundary_points] if len(wood_boundary_points) > 0 else []
+
+    try:
+        validate_calculate_wood_request(
+            mold_boundary_points=mold_boundary_points,
+            wood_boundary_polygons=wood_boundary_polygons,
+            cavity_polygons=cavity_polygons,
+            reference_measurements=reference_measurements,
+        )
+    except InputLimitError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from None
+
     try:
         image_width = float(image_width)
         image_height = float(image_height)
@@ -361,9 +431,6 @@ def calculate_wood(req: CalculateWoodRequest):
 
     if not use_image_border_as_mold and len(mold_boundary_points) < 3:
         raise HTTPException(status_code=400, detail="Mold boundary requires at least 3 points.")
-
-    if wood_boundary_polygons is None:
-        wood_boundary_polygons = [wood_boundary_points] if len(wood_boundary_points) > 0 else []
 
     if not isinstance(wood_boundary_polygons, list):
         raise HTTPException(status_code=400, detail="woodBoundaryPolygons must be an array.")
