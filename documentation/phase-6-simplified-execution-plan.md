@@ -264,19 +264,35 @@ It does not include operational Cloud Workspace unless separately approved.
 
 HFZWood is demonstrably safe, recoverable, supportable, tested, and ready for commercial release.
 
-This block includes:
+Approved Block 6 execution structure (see §24):
 
-* proportional security hardening;
-* input and payload validation;
-* backup and recovery;
-* observability and logging;
-* cost-awareness checks;
-* integrated regression testing;
-* Product Owner manual QA;
-* code hygiene;
+1. **Task 6.1 — Production Safety Hardening** — NOT STARTED
+2. **Task 6.2 — Release Readiness** — NOT STARTED
+
+This block delivers the minimum justified local release-readiness work under the current team's control. It does not include Task 5.3B live infrastructure validation.
+
+Approved scope includes:
+
+* EFS backup and recovery;
+* minimal operational monitoring (ALB + ECS only);
+* proportional request and input boundaries;
+* minimal auth and billing failure logging;
+* negative-path validation tests;
 * documentation alignment;
-* final independent audit;
-* release certification.
+* release readiness checklist;
+* PASS vs PENDING (Task 5.3B) certification matrix;
+* Block 6 closure documentation.
+
+Explicitly deferred and **not** Block 6 launch blockers:
+
+* GitHub Actions / CI;
+* separate independent audit task;
+* formal QA program;
+* enterprise observability;
+* WAF / enterprise rate limiting;
+* structured logging platform;
+* any reopening of Blocks 1–5;
+* any Task 5.3B implementation.
 
 ---
 
@@ -299,7 +315,9 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Block 6 — Security, Recovery, QA, and Release: pre-implementation assessment**
+**Task 6.1 — Production Safety Hardening**
+
+**Status: NOT STARTED**
 
 Blocks 1, 2, 3, and 4 are officially CLOSED.
 
@@ -312,13 +330,13 @@ Integrated commercial validation was separated into Task 5.3A and Task 5.3B (see
 * **Task 5.3A — Local Commercial Readiness Validation** is **CLOSED without implementation**;
 * **Task 5.3B — Live Commercial Infrastructure Validation** is **PENDING** live validation with Alfred.
 
-No additional Block 5 implementation task is currently justified under the current team's control.
+Block 6 planning is **CLOSED** (see §24). The approved Block 6 structure is two tasks: Task 6.1 and Task 6.2.
 
 **Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
 
 Task 5.3B remains a mandatory **pre-commercial-launch release gate**. It requires real AWS deployment, Cognito, Docker runtime, ECS/Fargate, EFS, AWS Secrets Manager, Stripe Test Mode, Stripe Products and Price IDs, Stripe webhooks, and end-to-end subscription lifecycle validation. Do not mark Task 5.3B as passed or complete.
 
-Starting Block 6 pre-implementation assessment does not cancel or satisfy Task 5.3B.
+Task 5.3B remains completely outside Block 6. Starting Block 6 does not cancel or satisfy Task 5.3B.
 
 ---
 
@@ -1266,7 +1284,7 @@ Task 5.1, Task 5.2, and Task 5.3A are officially closed. Task 5.3B live validati
 
 ### Next step
 
-**Block 6 — Security, Recovery, QA, and Release: pre-implementation assessment**
+**Task 6.1 — Production Safety Hardening** (see §24)
 
 Task 5.3B remains a mandatory pre-commercial-launch release gate with Alfred after remaining internal work is complete.
 
@@ -1393,8 +1411,87 @@ Every item remains:
 
 ### 23.9 Next active work
 
-**Block 6 — Security, Recovery, QA, and Release: pre-implementation assessment**
+**Task 6.1 — Production Safety Hardening**
+
+**Status: NOT STARTED**
+
+Block 6 planning is closed (see §24). Task 6.2 follows Task 6.1.
 
 Starting Block 6 does not cancel or satisfy Task 5.3B.
 
 Task 5.3B remains a mandatory pre-launch gate with Alfred after the remaining internal work is complete.
+
+---
+
+## 24. Block 6 Planning Decision and Approved Task Structure
+
+### 24.1 Planning status
+
+**Status: CLOSED — planning complete; implementation not started**
+
+Block 6 pre-implementation assessment is complete. The Product Owner has approved a reduced two-task Block 6 structure.
+
+### 24.2 Planning inputs
+
+* **Cursor** performed repository assessment of current Block 6 coverage, release gaps, and deferred items.
+* **Claude** independently challenged the proposed scope and task boundaries.
+* The **Product Owner** approved the reduced two-task structure documented below.
+
+### 24.3 Approved Block 6 task structure
+
+1. **Task 6.1 — Production Safety Hardening** — **NOT STARTED**
+2. **Task 6.2 — Release Readiness** — **NOT STARTED**
+
+Task 5.3B — Live Commercial Infrastructure Validation remains **PENDING** and is completely outside Block 6.
+
+### 24.4 Task 6.1 — Production Safety Hardening
+
+**Status: NOT STARTED**
+
+Scope:
+
+* EFS backup and recovery;
+* minimal operational monitoring (ALB + ECS only);
+* proportional request and input boundaries;
+* minimal auth and billing failure logging;
+* negative-path validation tests.
+
+### 24.5 Task 6.2 — Release Readiness
+
+**Status: NOT STARTED**
+
+Scope:
+
+* documentation alignment;
+* release readiness checklist;
+* PASS vs PENDING (Task 5.3B) certification matrix;
+* Block 6 closure documentation.
+
+Depends on Task 6.1 completion before Block 6 closure sign-off.
+
+### 24.6 Explicit exclusions
+
+The following are intentionally deferred and are **not** Block 6 launch blockers:
+
+* GitHub Actions / CI;
+* separate independent audit task;
+* formal QA program;
+* enterprise observability;
+* WAF / enterprise rate limiting;
+* structured logging platform;
+* any reopening of Blocks 1–5;
+* any Task 5.3B implementation.
+
+### 24.7 Task 5.3B boundary
+
+Task 5.3B remains unchanged, mandatory, and completely outside Block 6.
+
+All Task 5.3B live validation items remain **PENDING — LIVE VALIDATION REQUIRED** (see §23.7).
+
+Block 6 Task 6.2 may record PASS vs PENDING certification status but must not mark Task 5.3B items as passed or complete.
+
+### 24.8 Next active task
+
+**Task 6.1 — Production Safety Hardening**
+
+**Status: NOT STARTED**
