@@ -1666,7 +1666,7 @@ After a successful primary-image upload, the workspace automatically scrolled th
 
 ### Correction
 
-Post-upload scrolling now prefers `referenceControlsRef` (the active workflow controls containing **Add Reference Measurement**) with `block: "start"`, falling back to the image panel only when reference controls are not mounted. No calculator workflow, business logic, capability, or layout redesign was changed.
+Post-upload scrolling now prefers the active workflow-controls container (containing **Add Reference Measurement**) with `block: "start"`, falling back to the image panel only when those controls are not mounted. No calculator workflow, business logic, capability, or layout redesign was changed.
 
 ### Files changed
 
@@ -1684,3 +1684,17 @@ Post-upload scrolling now prefers `referenceControlsRef` (the active workflow co
 Phase 6 Local Implementation remains **CLOSED**. Task 6.2 and Block 6 were not reopened.
 
 **Next active work remains Task 5.3B — Live Commercial Infrastructure Validation (NOT STARTED — PENDING WITH ALFRED).**
+
+### Follow-up — reference completion → Draw Mold scroll
+
+A second post-closure transition issue was observed: after **Done with Measurements**, the workflow advanced to the mold step but the viewport left **Draw Mold Boundary** off-screen, with the image panel prominent.
+
+**Root cause:** the active-controls ref was detached once measurements completed, and no scroll targeted the newly rendered mold controls. Browser layout/scroll position after the reference UI unmounted made the image the effective focus.
+
+**Correction:** keep `activeWorkflowControlsRef` attached to `.active-workflow-controls` for every step; after reference completion, scroll that container into view (`block: "start"`). Shared helper prefers active controls over the image panel. Upload → Add Reference behavior is unchanged. No workflow or calculator business logic changed.
+
+**Files:** `ResinCalculator.jsx`, `ResinCalculator.test.jsx` (upload + Done→Draw Mold regression coverage).
+
+**Validation:** focused calculator tests passed; full frontend suite passed; production build passed.
+
+Phase 6 Local Implementation remains **CLOSED**. Task 5.3B remains **NOT STARTED — PENDING WITH ALFRED**.
