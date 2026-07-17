@@ -299,7 +299,7 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Task 5.3 — Integrated Commercial Production Validation**
+**Block 6 — Security, Recovery, QA, and Release: pre-implementation assessment**
 
 Blocks 1, 2, 3, and 4 are officially CLOSED.
 
@@ -307,13 +307,18 @@ Task 5.1 — Production Deployment and Environment Completion is officially CLOS
 
 Task 5.2 — Stripe Subscription and Durable Entitlements is officially CLOSED (see §22).
 
-Block 5 remains open. Remaining Block 5 task:
+Integrated commercial validation was separated into Task 5.3A and Task 5.3B (see §23):
 
-1. Task 5.3 — Integrated Commercial Production Validation
+* **Task 5.3A — Local Commercial Readiness Validation** is **CLOSED without implementation**;
+* **Task 5.3B — Live Commercial Infrastructure Validation** is **PENDING** live validation with Alfred.
 
-Docker runtime validation and AWS/EFS/Fargate durability validation remain mandatory **release-certification gates** before commercial launch. They are not development tasks unless they reveal a concrete defect requiring a narrowly scoped repair.
+No additional Block 5 implementation task is currently justified under the current team's control.
 
-Do not begin Task 5.3 until Product Owner authorization.
+**Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
+
+Task 5.3B remains a mandatory **pre-commercial-launch release gate**. It requires real AWS deployment, Cognito, Docker runtime, ECS/Fargate, EFS, AWS Secrets Manager, Stripe Test Mode, Stripe Products and Price IDs, Stripe webhooks, and end-to-end subscription lifecycle validation. Do not mark Task 5.3B as passed or complete.
+
+Starting Block 6 pre-implementation assessment does not cancel or satisfy Task 5.3B.
 
 ---
 
@@ -1123,7 +1128,8 @@ Block 5 began with Task 5.1. Task 5.1 is now CLOSED (see §21). The next active 
 
 1. Task 5.1 — Production Deployment and Environment Completion — **CLOSED**
 2. Task 5.2 — Stripe Subscription and Durable Entitlements — **CLOSED** (see §22)
-3. Task 5.3 — Integrated Commercial Production Validation — next active
+3. Task 5.3A — Local Commercial Readiness Validation — **CLOSED** (see §23)
+4. Task 5.3B — Live Commercial Infrastructure Validation — **PENDING RELEASE GATE**
 
 ### Task 5.1 — Production Deployment and Environment Completion
 
@@ -1181,13 +1187,13 @@ Task 2.1 ownership, Task 2.2 Cognito login, Task 2.3 capabilities, Task 3.x loca
 
 ### Block 5 status
 
-**Status: IN PROGRESS**
+**Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
 
-Task 5.1 and Task 5.2 are officially closed. Block 5 is not closed.
+Task 5.1 and Task 5.2 are officially closed. Task 5.3A is CLOSED without implementation (see §23). Task 5.3B remains pending.
 
 ### Next step after Task 5.1
 
-Task 5.2 is now CLOSED (see §22). The next active task is **Task 5.3 — Integrated Commercial Production Validation**.
+Task 5.2 is CLOSED (see §22). Task 5.3A is CLOSED without implementation (see §23). Task 5.3B live validation remains pending with Alfred.
 
 ---
 
@@ -1234,7 +1240,7 @@ Approved Product Owner commercial rules: monthly subscription; no trial; cancel 
 
 #### Intentional exclusions (deferred)
 
-* Task 5.3 live Stripe test-mode / commercial production validation;
+* Task 5.3B live Stripe test-mode / commercial infrastructure validation;
 * live production payments with real money;
 * Cloud Workspace;
 * S3/DynamoDB Project storage;
@@ -1254,12 +1260,141 @@ Approved Product Owner commercial rules: monthly subscription; no trial; cancel 
 
 ### Block 5 status
 
-**Status: IN PROGRESS**
+**Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
 
-Task 5.1 and Task 5.2 are officially closed. Task 5.3 remains.
+Task 5.1, Task 5.2, and Task 5.3A are officially closed. Task 5.3B live validation remains pending (see §23).
 
 ### Next step
 
-**Task 5.3 — Integrated Commercial Production Validation**
+**Block 6 — Security, Recovery, QA, and Release: pre-implementation assessment**
 
-Do not begin Task 5.3 until Product Owner authorization.
+Task 5.3B remains a mandatory pre-commercial-launch release gate with Alfred after remaining internal work is complete.
+
+---
+
+## 23. Task 5.3A Closure and Task 5.3B Live Validation Gate
+
+### 23.1 Execution decision
+
+Integrated commercial validation was split because local implementation readiness and live infrastructure certification are different forms of evidence.
+
+Task 5.3A verifies everything that can be established without real external infrastructure.
+
+Task 5.3B verifies actual deployed behavior and therefore cannot be completed locally or simulated honestly.
+
+### 23.2 Task 5.3A status
+
+**Status: CLOSED — repository analysis and Product Owner review complete; no implementation justified**
+
+### 23.3 Scope reviewed
+
+Task 5.3A inspected:
+
+* authentication and billing boundaries;
+* Stripe Checkout, Portal, webhook, and commercial-status paths;
+* durable entitlements;
+* CapabilityResolver integration;
+* frontend capability refresh and My Account commercial UI;
+* configuration and secret boundaries;
+* Docker and CDK deployment preparation;
+* test coverage;
+* documentation and operator handoff readiness.
+
+### 23.4 Verification findings
+
+#### Cross-subscription event ordering
+
+The initial repository analysis raised a possible concern about late events from superseded subscriptions.
+
+A focused verification demonstrated that the current implementation already prevents the concrete regression scenario:
+
+* stale-event rejection is global per user through `lastStripeEventCreated`;
+* it is not limited to matching subscription IDs;
+* stale prior-subscription events do not overwrite current commercial state;
+* they update only the bounded processed-event record;
+* existing backend tests cover older `updated` and `deleted` events for a prior subscription.
+
+Conclusion:
+
+**No remaining defect was demonstrated. The issue had already been repaired during Task 5.2 QA.**
+
+#### My Account success-return flow
+
+A focused render and authority analysis demonstrated that:
+
+* the success return URL never grants entitlement;
+* backend capabilities remain authoritative;
+* commercial actions remain disabled during reconciliation;
+* a delayed webhook may leave a temporary pending/Free visual state until refresh;
+* a brief plan/status mismatch may occur within one refresh cycle;
+* no incorrect commercial action or capability grant is possible.
+
+Conclusion:
+
+**This is a non-blocking UX observation, not a commercial-authority or functional defect.**
+
+#### Additional tests
+
+Additional optional edge-case tests were not treated as required implementation because no concrete defect was demonstrated and the current task was validation, not speculative test expansion.
+
+### 23.5 Final Task 5.3A verdict
+
+**READY FOR TASK 5.3A CLOSURE WITHOUT IMPLEMENTATION**
+
+No source code, tests, infrastructure source, or product behavior changed.
+
+No new automated test run is claimed for this documentation-only closure.
+
+The inherited Task 5.2 validation baseline remains:
+
+* backend: 189 passed, 1 skipped;
+* frontend: 572 passed;
+* production Cognito build: passed;
+* CDK synth: passed;
+* focused cross-subscription billing tests: passed.
+
+These are previously recorded validation results inspected during Task 5.3A, not newly executed tests during documentation closure.
+
+### 23.6 Non-blocking observations
+
+* Entitlement user records and the Stripe Customer index are atomic per file but not transactionally committed together; acceptable under the approved single-writer model and recoverable through authoritative user records/fallback lookup.
+* The fallback filename-stem behavior is not a demonstrated current Cognito identity defect.
+* These observations do not justify a Task 5.3A repair.
+
+### 23.7 Task 5.3B status and boundary
+
+**Status: PENDING — LIVE VALIDATION REQUIRED**
+
+Task 5.3B will be performed with Alfred after all implementation work under the current team's control is complete.
+
+It must validate at minimum:
+
+* production Docker image build and runtime;
+* deployment through the real AWS CDK stacks;
+* Cognito login and authenticated billing requests;
+* ECS/Fargate task environment and Secrets Manager retrieval;
+* EFS mount, writes, restart, task replacement, and persistence;
+* real Stripe Test Mode Product and Price configuration;
+* Checkout and Customer Portal;
+* signed Stripe webhook delivery;
+* checkout → webhook → durable entitlement → CapabilityResolver → frontend capability flow;
+* cancellation at period end;
+* resubscription and replacement-subscription event ordering;
+* deployment rollback and recovery behavior;
+* absence of data loss or unexpected reseeding after restart.
+
+Every item remains:
+
+**PENDING — LIVE VALIDATION REQUIRED**
+
+### 23.8 Block 5 status
+
+**Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
+
+### 23.9 Next active work
+
+**Block 6 — Security, Recovery, QA, and Release: pre-implementation assessment**
+
+Starting Block 6 does not cancel or satisfy Task 5.3B.
+
+Task 5.3B remains a mandatory pre-launch gate with Alfred after the remaining internal work is complete.
