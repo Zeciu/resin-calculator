@@ -10,7 +10,7 @@ The resin estimation calculator (Standard Resin Area and Wood Boundary modes) wa
 - **New Project** workspace (calculator)
 - **Projects** hub — Open Project, Recent Projects, `.hfzproject` files
 - **Manual and Tutorials**, **Glossary**, and **Knowledge Base** dedicated reading modules
-- Mock/session authentication (production Cognito wiring deferred)
+- Authentication: local development uses mock/session auth; production uses AWS Cognito (see `deployment/README.md`)
 
 ## Calculator features
 
@@ -269,11 +269,11 @@ Targeted validation does not replace complete unified validation when broader re
 
 ### Current observational baseline
 
-As verified through Phase 6 Milestone 0 Task M0.1, the current observational baseline is:
+As verified during Phase 6 Task 6.2 closure (2026-07-17), the current observational baseline is:
 
-- 115 backend tests;
-- 234 frontend tests across 49 test files;
-- 349 automated tests in total through the unified validation workflow.
+- 200 backend tests passed, 1 skipped;
+- 572 frontend tests across 73 test files;
+- unified validation through `.\test.cmd`.
 
 These counts are observational only. They are not permanent contracts and are expected to change as legitimate tests are added, removed, reorganized, or replaced.
 

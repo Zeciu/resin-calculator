@@ -267,9 +267,11 @@ HFZWood is demonstrably safe, recoverable, supportable, tested, and ready for co
 Approved Block 6 execution structure (see §24):
 
 1. **Task 6.1 — Production Safety Hardening** — **CLOSED** (see §25)
-2. **Task 6.2 — Release Readiness** — NOT STARTED
+2. **Task 6.2 — Release Readiness** — **CLOSED** (see §26)
 
-This block delivers the minimum justified local release-readiness work under the current team's control. It does not include Task 5.3B live infrastructure validation.
+**Block 6 status:** CLOSED for local security, recovery foundations, and release-readiness documentation. Live commercial and AWS certification remain pending through Task 5.3B.
+
+This block delivered the minimum justified local release-readiness work under the current team's control. It does not include Task 5.3B live infrastructure validation.
 
 Approved scope includes:
 
@@ -315,9 +317,9 @@ The existence of an item in an earlier architecture or implementation document d
 
 ## 7. Immediate Next Step
 
-**Task 6.2 — Release Readiness**
+**Task 5.3B — Live Commercial Infrastructure Validation**
 
-**Status: NOT STARTED**
+**Status: NOT STARTED — PENDING LIVE VALIDATION WITH ALFRED**
 
 Blocks 1, 2, 3, and 4 are officially CLOSED.
 
@@ -325,20 +327,19 @@ Task 5.1 — Production Deployment and Environment Completion is officially CLOS
 
 Task 5.2 — Stripe Subscription and Durable Entitlements is officially CLOSED (see §22).
 
-Integrated commercial validation was separated into Task 5.3A and Task 5.3B (see §23):
-
-* **Task 5.3A — Local Commercial Readiness Validation** is **CLOSED without implementation**;
-* **Task 5.3B — Live Commercial Infrastructure Validation** is **PENDING** live validation with Alfred.
+Task 5.3A — Local Commercial Readiness Validation is **CLOSED without implementation** (see §23).
 
 Task 6.1 — Production Safety Hardening is **CLOSED** (see §25).
 
-Block 6 planning is **CLOSED** (see §24). Task 6.2 is the remaining Block 6 implementation task.
+Task 6.2 — Release Readiness is **CLOSED** (see §26).
+
+**Block 6 local security, recovery foundations, and release-readiness documentation are complete.**
+
+**Phase 6 Local Implementation is CLOSED.** Live commercial and AWS certification remain pending through Task 5.3B.
 
 **Block 5 local implementation and readiness work is complete. Block 5 live commercial certification remains pending through Task 5.3B.**
 
-Task 5.3B remains a mandatory **pre-commercial-launch release gate**. It requires real AWS deployment, Cognito, Docker runtime, ECS/Fargate, EFS, AWS Secrets Manager, Stripe Test Mode, Stripe Products and Price IDs, Stripe webhooks, and end-to-end subscription lifecycle validation. Do not mark Task 5.3B as passed or complete.
-
-Task 5.3B remains completely outside Block 6. Starting Block 6 does not cancel or satisfy Task 5.3B.
+Task 5.3B remains a mandatory **pre-commercial-launch release gate**. It requires real AWS deployment, Cognito, Docker runtime, ECS/Fargate, EFS, AWS Secrets Manager, Stripe Test Mode, Stripe Products and Price IDs, Stripe webhooks, end-to-end subscription lifecycle validation, backup restore verification, and CloudWatch alarm verification. Do not mark Task 5.3B as passed or complete.
 
 ---
 
@@ -1286,9 +1287,9 @@ Task 5.1, Task 5.2, and Task 5.3A are officially closed. Task 5.3B live validati
 
 ### Next step
 
-**Task 6.2 — Release Readiness** (see §25)
+**Task 5.3B — Live Commercial Infrastructure Validation** (see §23.7, §26)
 
-Task 5.3B remains a mandatory pre-commercial-launch release gate with Alfred after remaining internal work is complete.
+Task 5.3B remains a mandatory pre-commercial-launch release gate with Alfred.
 
 ---
 
@@ -1413,15 +1414,13 @@ Every item remains:
 
 ### 23.9 Next active work
 
-**Task 6.2 — Release Readiness**
+**Task 5.3B — Live Commercial Infrastructure Validation**
 
-**Status: NOT STARTED**
+**Status: NOT STARTED — PENDING LIVE VALIDATION WITH ALFRED**
 
-Task 6.1 is CLOSED (see §25). Block 6 planning is closed (see §24).
+Task 6.1 and Task 6.2 are CLOSED. Block 6 local work is CLOSED (see §26). Phase 6 Local Implementation is CLOSED.
 
-Starting Block 6 does not cancel or satisfy Task 5.3B.
-
-Task 5.3B remains a mandatory pre-launch gate with Alfred after the remaining internal work is complete.
+Task 5.3B remains a mandatory pre-launch gate with Alfred.
 
 ---
 
@@ -1442,7 +1441,7 @@ Block 6 pre-implementation assessment is complete. The Product Owner has approve
 ### 24.3 Approved Block 6 task structure
 
 1. **Task 6.1 — Production Safety Hardening** — **CLOSED** (see §25)
-2. **Task 6.2 — Release Readiness** — **NOT STARTED**
+2. **Task 6.2 — Release Readiness** — **CLOSED** (see §26)
 
 Task 5.3B — Live Commercial Infrastructure Validation remains **PENDING** and is completely outside Block 6.
 
@@ -1460,7 +1459,7 @@ Scope:
 
 ### 24.5 Task 6.2 — Release Readiness
 
-**Status: NOT STARTED**
+**Status: CLOSED** (see §26)
 
 Scope:
 
@@ -1494,9 +1493,9 @@ Block 6 Task 6.2 may record PASS vs PENDING certification status but must not ma
 
 ### 24.8 Next active task
 
-**Task 6.2 — Release Readiness**
+**Task 5.3B — Live Commercial Infrastructure Validation**
 
-**Status: NOT STARTED**
+**Status: NOT STARTED — PENDING LIVE VALIDATION WITH ALFRED**
 
 ---
 
@@ -1544,8 +1543,113 @@ Live AWS deployment, backup restore verification, and alarm firing remain **PEND
 
 Task 5.3B remains unchanged, mandatory, and completely outside Task 6.1.
 
-### 25.6 Next active task
+### 25.6 Next active task after Task 6.1
 
-**Task 6.2 — Release Readiness**
+Task 6.2 — Release Readiness (now CLOSED; see §26).
 
-**Status: NOT STARTED**
+---
+
+## 26. Task 6.2 Closure — Release Readiness
+
+### 26.1 Status
+
+**Status: CLOSED**
+
+### 26.2 Delivered scope
+
+* full local automated regression validation;
+* frontend production build and CDK synth verification;
+* minimal Product Owner smoke verification (startup, Home, authenticated navigation, My Account / Subscribe);
+* optional Save / Open / Update round-trip covered by focused automated smoke-equivalent tests;
+* PASS vs PENDING (Task 5.3B) certification matrix;
+* documentation alignment for Cognito status and observational test baseline in `README.md`;
+* Block 6 and Phase 6 Local Implementation closure recording.
+
+No source code, tests, infrastructure source, billing, capability, Cognito rule, subscription, or Local Workspace behavior changed during Task 6.2.
+
+### 26.3 Validation evidence (executed during Task 6.2)
+
+* `.\test.cmd`: backend **200 passed, 1 skipped**; frontend **572 passed** (73 files);
+* frontend production build: **passed**;
+* CDK TypeScript build: **passed**;
+* `cdk synth AppStack`: **passed**;
+* local runtime smoke: `GET http://localhost:5000/health` → `{"status":"ok"}`; frontend `http://localhost:5173/` → HTTP 200;
+* focused smoke-equivalent frontend tests: **51 passed** across My Account, Home, navigation, Save / Open / Update flows.
+
+### 26.4 PASS (Local) matrix
+
+| Area | Status |
+|------|--------|
+| Blocks 1–4 implementation | **PASS** |
+| Task 5.1 production deployment packaging (code/CDK) | **PASS** |
+| Task 5.2 Stripe → entitlement → capabilities (mocked) | **PASS** |
+| Task 5.3A local commercial readiness analysis | **PASS** (closed without implementation) |
+| Task 6.1 production safety hardening (code/CDK/tests) | **PASS** |
+| Full backend automated suite | **PASS** |
+| Full frontend automated suite | **PASS** |
+| Frontend production build | **PASS** |
+| CDK TypeScript build + AppStack synth | **PASS** |
+| Local app startup / health | **PASS** |
+| Home and authenticated navigation (local/mock) | **PASS** |
+| My Account Subscribe entry point (local/mock) | **PASS** |
+| Local Project Save / Open / Update (automated) | **PASS** |
+| Capability enforcement (automated) | **PASS** |
+| Ownership / read-only (automated) | **PASS** |
+| Editorial CMS / Learning modules (automated) | **PASS** |
+| Calculator input abuse ceilings (Task 6.1) | **PASS** |
+| Documentation alignment for local readiness | **PASS** |
+
+### 26.5 PENDING (Task 5.3B) matrix
+
+Every item below remains:
+
+**PENDING — LIVE VALIDATION REQUIRED**
+
+| Area | Status |
+|------|--------|
+| Production Docker image build and runtime on AWS | **PENDING — LIVE VALIDATION REQUIRED** |
+| Deploy InfraStack + AppStack (including Backup + alarms) | **PENDING — LIVE VALIDATION REQUIRED** |
+| Live Cognito login on production domain | **PENDING — LIVE VALIDATION REQUIRED** |
+| ECS/Fargate task environment and Secrets Manager retrieval | **PENDING — LIVE VALIDATION REQUIRED** |
+| EFS mount, writes, restart, task replacement, no unexpected reseed | **PENDING — LIVE VALIDATION REQUIRED** |
+| Stripe Test Mode Product / Price configuration | **PENDING — LIVE VALIDATION REQUIRED** |
+| Checkout and Customer Portal on deployed stack | **PENDING — LIVE VALIDATION REQUIRED** |
+| Signed Stripe webhook delivery | **PENDING — LIVE VALIDATION REQUIRED** |
+| checkout → webhook → durable entitlement → CapabilityResolver → frontend capabilities | **PENDING — LIVE VALIDATION REQUIRED** |
+| Cancellation at period end | **PENDING — LIVE VALIDATION REQUIRED** |
+| Resubscription and replacement-subscription event ordering (live) | **PENDING — LIVE VALIDATION REQUIRED** |
+| AWS Backup recovery points exist; restore drill | **PENDING — LIVE VALIDATION REQUIRED** |
+| CloudWatch alarm verification / optional fire test | **PENDING — LIVE VALIDATION REQUIRED** |
+| Deployment rollback and recovery behavior | **PENDING — LIVE VALIDATION REQUIRED** |
+
+### 26.6 Block 6 status
+
+**Block 6 local security, recovery foundations, and release-readiness documentation are complete. Live commercial and AWS certification remain pending through Task 5.3B.**
+
+Do not interpret Block 6 closure as full commercial production certification.
+
+### 26.7 Phase 6 Local Implementation status
+
+**Phase 6 Local Implementation is CLOSED.**
+
+Remaining Phase 6 commercial launch gate:
+
+**Task 5.3B — Live Commercial Infrastructure Validation** with Alfred.
+
+### 26.8 Intentionally deferred / excluded
+
+* GitHub Actions / CI;
+* WAF / enterprise rate limiting;
+* observability dashboards / custom metrics / SNS alarm wiring;
+* formal penetration testing / separate independent security audit;
+* broad performance testing;
+* new formal QA framework beyond minimal Product Owner smoke;
+* new application functionality;
+* any reopening of Blocks 1–5;
+* any Task 5.3B live execution.
+
+### 26.9 Next active work
+
+**Task 5.3B — Live Commercial Infrastructure Validation**
+
+**Status: NOT STARTED — PENDING LIVE VALIDATION WITH ALFRED**

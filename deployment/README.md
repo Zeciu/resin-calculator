@@ -218,7 +218,7 @@ After deploy:
 4. As an `administrators` group user, open `/admin` and confirm CMS access
 5. After a forced task replacement (`deploy-app.cmd`), confirm editorial content still present (no unexpected reseed)
 
-Full release certification (EFS durability matrix, commercial flows) remains outside this document’s deploy steps.
+Full release certification (EFS durability matrix, commercial flows, backup restore drill, and CloudWatch alarm verification) remains outside this document’s deploy steps and is recorded as **PENDING — LIVE VALIDATION REQUIRED** under Task 5.3B in `documentation/phase-6-simplified-execution-plan.md` §26.5.
 
 ## EFS backup and recovery
 
