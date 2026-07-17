@@ -699,6 +699,9 @@ A new `versionId` is not generated solely because of:
 The authoritative rule is:
 
 **If a save operation changes persistent Project content, it creates a new `versionId`. If no persistent Project content has changed, the Project version remains unchanged.**
+> **Phase 6 implementation note (Block 1):**
+>
+> The initial commercial implementation intentionally simplifies this rule. `versionId` is generated only once, when a Project is first saved, and remains stable for subsequent **Update Existing Project** operations. This decision was made because no implemented feature currently consumes per-save version progression. Future synchronization or Cloud Workspace work must define its own content-change detection strategy if per-edit version tracking becomes necessary.
 
 ### 9.4 Direct Version Ancestry
 
