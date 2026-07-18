@@ -1,6 +1,6 @@
 import re
 
-from ..repositories.filesystem import DEFAULT_LOCALE, parse_iso
+from ..repositories.filesystem import DEFAULT_LOCALE, EDITORIAL_LOCALES, parse_iso
 from ..schemas.common import ContentStatus
 from ..schemas.editorial import EditorialVisibility
 from ..schemas.glossary import (
@@ -62,7 +62,7 @@ class GlossaryEntryService:
             if not meta:
                 continue
             variants: dict[str, GlossaryVariantSummary] = {}
-            for variant_locale in ("en", "ro"):
+            for variant_locale in EDITORIAL_LOCALES:
                 variant = self._repository.get_glossary_variant(content_id, variant_locale)
                 if not variant:
                     continue
@@ -106,7 +106,7 @@ class GlossaryEntryService:
         from .glossary_publish import GlossaryPublishService
 
         publish_service = GlossaryPublishService(self._repository)
-        for locale in ("en", "ro"):
+        for locale in EDITORIAL_LOCALES:
             publish_service.rebuild_published_snapshot(locale)
 
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> GlossaryVariantResponse:

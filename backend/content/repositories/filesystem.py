@@ -16,7 +16,11 @@ CONTENT_TYPE_MANUAL_CHAPTER = "manual_chapter"
 CONTENT_TYPE_GLOSSARY_ENTRY = "glossary_entry"
 CONTENT_TYPE_KB_ENTRY = "kb_entry"
 DEFAULT_SECTION_ID = "main"
-DEFAULT_LOCALE = "en"
+# Romanian is the canonical editorial authoring language. English remains a
+# valid variant locale but is no longer the create/list default.
+CANONICAL_EDITORIAL_LOCALE = "ro"
+DEFAULT_LOCALE = CANONICAL_EDITORIAL_LOCALE
+EDITORIAL_LOCALES = (CANONICAL_EDITORIAL_LOCALE, "en")
 INITIALIZATION_MARKER = ".hfzwood-initialized.json"
 
 
@@ -191,12 +195,31 @@ def root_has_authoritative_editorial_records(root: Path) -> bool:
     return bool(records)
 
 
+def _module_snapshot_filename(module: str) -> str:
+    return "document.json" if module == "manual" else "entries.json"
+
+
+def _iter_locale_snapshot_checks(root: Path, tree: str) -> list[tuple[Path, str]]:
+    """Discover published/legacy snapshots for any locale (language-neutral)."""
+    module_dirs = (
+        ("manual", "manual"),
+        ("glossary", "glossary"),
+        ("knowledge-base", "kb"),
+    )
+    checks: list[tuple[Path, str]] = []
+    for dir_name, module in module_dirs:
+        base = root / tree / dir_name
+        if not base.is_dir():
+            continue
+        filename = _module_snapshot_filename(module)
+        for locale_dir in sorted(base.iterdir()):
+            if locale_dir.is_dir():
+                checks.append((locale_dir / filename, module))
+    return checks
+
+
 def root_has_authoritative_published_corpus(root: Path) -> bool:
-    checks = [
-        (root / "published" / "manual" / "en" / "document.json", "manual"),
-        (root / "published" / "glossary" / "en" / "entries.json", "glossary"),
-        (root / "published" / "knowledge-base" / "en" / "entries.json", "kb"),
-    ]
+    checks = _iter_locale_snapshot_checks(root, "published")
     return any(_snapshot_has_corpus(path, module) for path, module in checks)
 
 
@@ -212,14 +235,9 @@ def _validate_required_artifact_payloads(root: Path) -> None:
             "refusing automatic adoption."
         )
 
-    snapshot_checks = [
-        (root / "published" / "manual" / "en" / "document.json", "manual"),
-        (root / "published" / "glossary" / "en" / "entries.json", "glossary"),
-        (root / "published" / "knowledge-base" / "en" / "entries.json", "kb"),
-        (root / "legacy" / "manual" / "en" / "document.json", "manual"),
-        (root / "legacy" / "glossary" / "en" / "entries.json", "glossary"),
-        (root / "legacy" / "knowledge-base" / "en" / "entries.json", "kb"),
-    ]
+    snapshot_checks = _iter_locale_snapshot_checks(root, "published") + _iter_locale_snapshot_checks(
+        root, "legacy"
+    )
     for path, module in snapshot_checks:
         if not path.is_file():
             continue

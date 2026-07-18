@@ -55,7 +55,7 @@ def test_first_initialization_seeds_real_admin_cms_content(strict_client: TestCl
     glossary_entries = load_glossary_entries()
     kb_entries = load_knowledge_base_entries()
 
-    manual_response = strict_client.get("/api/admin/manual/chapters", headers=admin_headers())
+    manual_response = strict_client.get("/api/admin/manual/chapters?locale=en", headers=admin_headers())
     assert manual_response.status_code == 200
     manual_items = manual_response.json()
     assert [item["contentId"] for item in manual_items] == [section["id"] for section in manual_sections]
@@ -101,7 +101,7 @@ def test_first_initialization_seeds_real_admin_cms_content(strict_client: TestCl
 def test_first_initialization_preserves_order_ids_and_locale_behavior(strict_client: TestClient) -> None:
     manual_sections = load_manual_sections()
 
-    manual_items = strict_client.get("/api/admin/manual/chapters", headers=admin_headers()).json()
+    manual_items = strict_client.get("/api/admin/manual/chapters?locale=en", headers=admin_headers()).json()
     assert [item["sortOrder"] for item in manual_items] == [100 * (index + 1) for index in range(len(manual_sections))]
     assert [item["contentId"] for item in manual_items] == [section["id"] for section in manual_sections]
 

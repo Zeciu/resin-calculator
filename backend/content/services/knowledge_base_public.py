@@ -25,7 +25,7 @@ class KnowledgeBasePublicService:
         variant = self._repository.get_kb_variant(content_id, locale)
         if variant and variant["status"] == "published":
             return variant["draftBody"].get("title", "").strip()
-        for fallback_locale in ("en", "ro"):
+        for fallback_locale in ("ro", "en"):
             if fallback_locale == locale:
                 continue
             fallback = self._repository.get_kb_variant(content_id, fallback_locale)
@@ -37,7 +37,7 @@ class KnowledgeBasePublicService:
         variant = self._repository.get_glossary_variant(content_id, locale)
         if variant and variant["status"] == "published":
             return variant["draftBody"].get("term", "").strip()
-        for fallback_locale in ("en", "ro"):
+        for fallback_locale in ("ro", "en"):
             if fallback_locale == locale:
                 continue
             fallback = self._repository.get_glossary_variant(content_id, fallback_locale)
@@ -49,7 +49,7 @@ class KnowledgeBasePublicService:
         variant = self._repository.get_manual_variant(content_id, locale)
         if variant and variant["status"] == "published":
             return variant["draftBody"].get("title", "").strip()
-        for fallback_locale in ("en", "ro"):
+        for fallback_locale in ("ro", "en"):
             if fallback_locale == locale:
                 continue
             fallback = self._repository.get_manual_variant(content_id, fallback_locale)

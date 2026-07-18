@@ -1,4 +1,4 @@
-from ..repositories.filesystem import DEFAULT_LOCALE, DEFAULT_SECTION_ID, parse_iso
+from ..repositories.filesystem import DEFAULT_LOCALE, DEFAULT_SECTION_ID, EDITORIAL_LOCALES, parse_iso
 from ..schemas.common import ContentStatus
 from ..schemas.editorial import EditorialVisibility
 from ..schemas.manual import (
@@ -62,7 +62,7 @@ class ManualChapterService:
                 continue
             variants: dict[str, ManualVariantSummary] = {}
             active_variant: dict | None = None
-            for variant_locale in ("en", "ro"):
+            for variant_locale in EDITORIAL_LOCALES:
                 variant = self._repository.get_manual_variant(content_id, variant_locale)
                 if not variant:
                     continue

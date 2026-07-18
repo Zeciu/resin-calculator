@@ -58,7 +58,7 @@ async def upload_manual_image(
 
 @router.get("", response_model=list[ManualChapterListItem])
 def list_chapters(
-    locale: str = "en",
+    locale: str = "ro",
     _: dict = Depends(require_administrator),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> list[ManualChapterListItem]:

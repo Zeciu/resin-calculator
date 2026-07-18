@@ -95,6 +95,26 @@ class TestKnowledgeBaseEntryCrud:
 
 
 class TestKnowledgeBaseVariants:
+    def test_create_defaults_to_romanian_variant(self, client):
+        entry_id = client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": "Articol Nou", "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+
+        ro_variant = client.get(
+            f"/api/admin/knowledge-base/entries/{entry_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+        en_variant = client.get(
+            f"/api/admin/knowledge-base/entries/{entry_id}/variants/en",
+            headers=admin_headers(),
+        ).json()
+
+        assert ro_variant["exists"] is True
+        assert ro_variant["body"]["title"] == "Articol Nou"
+        assert en_variant["exists"] is False
+
     def test_save_and_load_draft_variant(self, client):
         entry_id = client.post(
             "/api/admin/knowledge-base/entries",

@@ -1,5 +1,8 @@
+from content.repositories.filesystem import EDITORIAL_LOCALES
+
+
 def chapter_identity_title(repository, content_id: str) -> str:
-    for variant_locale in ("en", "ro"):
+    for variant_locale in EDITORIAL_LOCALES:
         variant = repository.get_manual_variant(content_id, variant_locale)
         if not variant:
             continue
@@ -10,7 +13,7 @@ def chapter_identity_title(repository, content_id: str) -> str:
 
 
 def entry_identity_term(repository, content_id: str) -> str:
-    for variant_locale in ("en", "ro"):
+    for variant_locale in EDITORIAL_LOCALES:
         variant = repository.get_glossary_variant(content_id, variant_locale)
         if not variant:
             continue
@@ -21,7 +24,7 @@ def entry_identity_term(repository, content_id: str) -> str:
 
 
 def entry_identity_title(repository, content_id: str) -> str:
-    for variant_locale in ("en", "ro"):
+    for variant_locale in EDITORIAL_LOCALES:
         variant = repository.get_kb_variant(content_id, variant_locale)
         if not variant:
             continue

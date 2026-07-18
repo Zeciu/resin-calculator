@@ -69,6 +69,26 @@ class TestGlossaryEntryCrud:
 
 
 class TestGlossaryVariants:
+    def test_create_defaults_to_romanian_variant(self, client):
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Termen Nou"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+
+        ro_variant = client.get(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+        en_variant = client.get(
+            f"/api/admin/glossary/entries/{entry_id}/variants/en",
+            headers=admin_headers(),
+        ).json()
+
+        assert ro_variant["exists"] is True
+        assert ro_variant["body"]["term"] == "Termen Nou"
+        assert en_variant["exists"] is False
+
     def test_save_and_load_draft_variant(self, client):
         entry_id = client.post(
             "/api/admin/glossary/entries",
@@ -84,10 +104,10 @@ class TestGlossaryVariants:
         assert save_response.status_code == 200
         assert save_response.json()["status"] == "draft"
 
-    def test_ro_list_uses_identity_term_when_ro_variant_is_missing(self, client):
+    def test_list_prefers_romanian_identity_term(self, client):
         entry_id = client.post(
             "/api/admin/glossary/entries",
-            json={"term": "English Term"},
+            json={"term": "Termen RO"},
             headers=admin_headers(),
         ).json()["contentId"]
         client.put(
@@ -96,8 +116,8 @@ class TestGlossaryVariants:
             headers=admin_headers(),
         )
 
-        ro_list = client.get("/api/admin/glossary/entries?locale=ro", headers=admin_headers()).json()
-        assert ro_list[0]["term"] == "English Term"
+        listed = client.get("/api/admin/glossary/entries?locale=en", headers=admin_headers()).json()
+        assert listed[0]["term"] == "Termen RO"
 
 
 class TestGlossaryPublish:

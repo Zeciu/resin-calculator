@@ -2,7 +2,7 @@ import { createEditorialAdminClient } from "../../editorial/editorialAdminApi.js
 
 const client = createEditorialAdminClient("/api/admin/glossary/entries");
 
-export function listGlossaryEntries(locale = "en") {
+export function listGlossaryEntries(locale = "ro") {
   return client.request(`?locale=${encodeURIComponent(locale)}`);
 }
 

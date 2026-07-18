@@ -83,7 +83,7 @@ class SaveManualVariantBody(ManualVariantBody):
 
 class CreateManualChapterRequest(BaseModel):
     title: str
-    locale: LocaleCode = "en"
+    locale: LocaleCode = "ro"
 
     @field_validator("title")
     @classmethod

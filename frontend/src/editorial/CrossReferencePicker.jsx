@@ -16,7 +16,7 @@ export default function CrossReferencePicker({
   label,
   selected,
   onChange,
-  locale = "en",
+  locale = "ro",
   excludeIds = [],
   allowTypes,
   seeAlsoMode = false,

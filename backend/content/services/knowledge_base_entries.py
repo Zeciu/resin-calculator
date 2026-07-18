@@ -1,4 +1,4 @@
-from ..repositories.filesystem import DEFAULT_LOCALE, parse_iso
+from ..repositories.filesystem import DEFAULT_LOCALE, EDITORIAL_LOCALES, parse_iso
 from ..schemas.common import ContentStatus
 from ..schemas.editorial import EditorialVisibility
 from ..schemas.knowledge_base import (
@@ -63,7 +63,7 @@ class KnowledgeBaseEntryService:
             if not meta:
                 continue
             variants: dict[str, KnowledgeBaseVariantSummary] = {}
-            for variant_locale in ("en", "ro"):
+            for variant_locale in EDITORIAL_LOCALES:
                 variant = self._repository.get_kb_variant(content_id, variant_locale)
                 if not variant:
                     continue
@@ -113,7 +113,7 @@ class KnowledgeBaseEntryService:
         from .knowledge_base_publish import KnowledgeBasePublishService
 
         publish_service = KnowledgeBasePublishService(self._repository)
-        for locale in ("en", "ro"):
+        for locale in EDITORIAL_LOCALES:
             publish_service.rebuild_published_snapshot(locale)
 
     def _variant_response(

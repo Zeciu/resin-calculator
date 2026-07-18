@@ -118,7 +118,7 @@ function createInMemoryManualApi() {
   }
 
   function chapterListTitle(contentId) {
-    for (const locale of ["en", "ro"]) {
+    for (const locale of ["ro", "en"]) {
       const variant = variants.get(variantKey(contentId, locale));
       const title = variant?.body?.title?.trim();
       if (title) {
@@ -134,7 +134,7 @@ function createInMemoryManualApi() {
       variants.clear();
       sortOrder = 100;
     },
-    seedChapter({ contentId, title, sortOrder: chapterSortOrder, body, status = "draft", locale = "en" }) {
+    seedChapter({ contentId, title, sortOrder: chapterSortOrder, body, status = "draft", locale = "ro" }) {
       chapters.set(contentId, {
         contentId,
         title,
@@ -158,7 +158,7 @@ function createInMemoryManualApi() {
       }
 
       if (path === "/" && method === "GET") {
-        const locale = parsed.searchParams.get("locale") || "en";
+        const locale = parsed.searchParams.get("locale") || "ro";
         const items = [...chapters.values()]
           .sort((a, b) => a.sortOrder - b.sortOrder)
           // Only chapters with a saved variant in the active locale appear.
@@ -180,7 +180,7 @@ function createInMemoryManualApi() {
 
       if (path === "/" && method === "POST") {
         const payload = JSON.parse(init.body);
-        const createLocale = payload.locale || "en";
+        const createLocale = payload.locale || "ro";
         const contentId = payload.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
         sortOrder += 100;
         chapters.set(contentId, {
@@ -562,7 +562,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Publish" }));
 
     await waitFor(() => {
-      expect(screen.getByText("Live (EN)")).toBeInTheDocument();
+      expect(screen.getByText("Live (RO)")).toBeInTheDocument();
     });
 
     const publishCalls = global.fetch.mock.calls.filter(
@@ -661,67 +661,67 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "Locale Chapter" });
     await editDocument(user, "Locale content.");
-    await user.click(screen.getByRole("button", { name: "RO" }));
+    await user.click(screen.getByRole("button", { name: "EN" }));
 
     const dialog = getUnsavedChangesDialog();
     await user.click(within(dialog).getByRole("button", { name: "Cancel" }));
 
-    expect(screen.getByRole("button", { name: "EN" })).toHaveClass("editorial-topbar__locale-button--active");
+    expect(screen.getByRole("button", { name: "RO" })).toHaveClass("editorial-topbar__locale-button--active");
     expect(screen.getByRole("textbox", { name: "Chapter document" })).toHaveValue("Locale content.");
   });
 
-  it("loads an empty RO variant instead of keeping EN content", async () => {
+  it("loads an empty EN variant instead of keeping RO content", async () => {
     const user = userEvent.setup();
     seedAdministrator();
-    vi.spyOn(window, "prompt").mockReturnValueOnce("English Chapter");
+    vi.spyOn(window, "prompt").mockReturnValueOnce("Romanian Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
     });
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
-    await screen.findByRole("button", { name: "English Chapter" });
-    await editDocument(user, "English body.");
+    await screen.findByRole("button", { name: "Romanian Chapter" });
+    await editDocument(user, "Romanian body.");
     await user.click(screen.getByRole("button", { name: "Save draft" }));
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole("button", { name: "RO" }));
+    await user.click(screen.getByRole("button", { name: "EN" }));
 
     await waitFor(() => {
       expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("");
       expect(screen.getByRole("textbox", { name: "Chapter document" })).toHaveValue("");
     });
-    expect(screen.getByText(/No RO content saved yet/i)).toBeInTheDocument();
-    expect(screen.queryByText(/English body/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/No EN content saved yet/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Romanian body/i)).not.toBeInTheDocument();
   });
 
-  it("hides EN-only chapters from the RO sidebar and shows an empty state", async () => {
+  it("hides RO-only chapters from the EN sidebar and shows an empty state", async () => {
     const user = userEvent.setup();
     seedAdministrator();
-    vi.spyOn(window, "prompt").mockReturnValueOnce("English Chapter");
+    vi.spyOn(window, "prompt").mockReturnValueOnce("Romanian Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
     });
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
-    await screen.findByRole("button", { name: "English Chapter" });
-    await editDocument(user, "English body.");
+    await screen.findByRole("button", { name: "Romanian Chapter" });
+    await editDocument(user, "Romanian body.");
     await user.click(screen.getByRole("button", { name: "Save draft" }));
     await waitFor(() => {
       expect(screen.queryByText("Unsaved changes")).not.toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole("button", { name: "RO" }));
+    await user.click(screen.getByRole("button", { name: "EN" }));
 
-    // The EN-only chapter must not appear in the RO sidebar.
+    // The RO-only chapter must not appear in the EN sidebar.
     const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
     await waitFor(() => {
-      expect(within(sidebar).queryByRole("button", { name: "English Chapter" })).not.toBeInTheDocument();
+      expect(within(sidebar).queryByRole("button", { name: "Romanian Chapter" })).not.toBeInTheDocument();
     });
-    expect(within(sidebar).getByText("No Romanian chapters yet.")).toBeInTheDocument();
+    expect(within(sidebar).getByText("No English chapters yet.")).toBeInTheDocument();
   });
 
   it("does not ask to save again after Save when adding a new chapter", async () => {
@@ -911,7 +911,7 @@ describe("Manual management workspace (Task 59B)", () => {
     expect(screen.getAllByRole("button", { name: "Media Chapter" })).toHaveLength(1);
   });
 
-  it("creates the RO variant (not EN) when adding a chapter on the RO tab", async () => {
+  it("creates the RO variant by default when adding a chapter", async () => {
     const user = userEvent.setup();
     seedAdministrator();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Capitol Nou");
@@ -921,12 +921,12 @@ describe("Manual management workspace (Task 59B)", () => {
       expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
     });
 
-    await user.click(screen.getByRole("button", { name: "RO" }));
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
 
     // RO editor is populated with the created title.
     await screen.findByRole("button", { name: "Capitol Nou" });
     expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("Capitol Nou");
+    expect(screen.getByRole("button", { name: "RO" })).toHaveClass("editorial-topbar__locale-button--active");
 
     // The RO chapter is listed in the RO sidebar.
     const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
@@ -956,6 +956,7 @@ describe("Manual management workspace (Task 59B)", () => {
       expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
     });
 
+    await user.click(screen.getByRole("button", { name: "EN" }));
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "English Only Chapter" });
     expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("English Only Chapter");

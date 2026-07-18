@@ -13,7 +13,7 @@ export const EDITORIAL_VISIBILITY = {
  *   locale?: string;
  * }} params
  */
-export function resolveEditorialDisplay({ isDirty = false, editorialVisibility, exists = true, locale = "en" }) {
+export function resolveEditorialDisplay({ isDirty = false, editorialVisibility, exists = true, locale = "ro" }) {
   const localeLabel = locale.toUpperCase();
 
   if (isDirty) {

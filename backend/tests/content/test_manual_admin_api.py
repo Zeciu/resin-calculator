@@ -69,10 +69,31 @@ class TestManualChapterCrud:
         missing_response = client.get(f"/api/admin/manual/chapters/{chapter_id}", headers=admin_headers())
         assert missing_response.status_code == 404
 
-    def test_create_defaults_to_english_variant(self, client):
+    def test_create_defaults_to_romanian_variant(self, client):
         chapter_id = client.post(
             "/api/admin/manual/chapters",
-            json={"title": "English Default"},
+            json={"title": "Romanian Default"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+
+        en_variant = client.get(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/en",
+            headers=admin_headers(),
+        ).json()
+        ro_variant = client.get(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+
+        assert ro_variant["exists"] is True
+        assert ro_variant["body"]["title"] == "Romanian Default"
+        assert en_variant["exists"] is False
+        assert en_variant["body"]["title"] == ""
+
+    def test_create_in_en_populates_en_variant_and_leaves_ro_empty(self, client):
+        chapter_id = client.post(
+            "/api/admin/manual/chapters",
+            json={"title": "English Chapter", "locale": "en"},
             headers=admin_headers(),
         ).json()["contentId"]
 
@@ -86,30 +107,9 @@ class TestManualChapterCrud:
         ).json()
 
         assert en_variant["exists"] is True
-        assert en_variant["body"]["title"] == "English Default"
+        assert en_variant["body"]["title"] == "English Chapter"
         assert ro_variant["exists"] is False
         assert ro_variant["body"]["title"] == ""
-
-    def test_create_in_ro_populates_ro_variant_and_leaves_en_empty(self, client):
-        chapter_id = client.post(
-            "/api/admin/manual/chapters",
-            json={"title": "Capitol Nou", "locale": "ro"},
-            headers=admin_headers(),
-        ).json()["contentId"]
-
-        ro_variant = client.get(
-            f"/api/admin/manual/chapters/{chapter_id}/variants/ro",
-            headers=admin_headers(),
-        ).json()
-        en_variant = client.get(
-            f"/api/admin/manual/chapters/{chapter_id}/variants/en",
-            headers=admin_headers(),
-        ).json()
-
-        assert ro_variant["exists"] is True
-        assert ro_variant["body"]["title"] == "Capitol Nou"
-        assert en_variant["exists"] is False
-        assert en_variant["body"]["title"] == ""
 
 
 class TestManualVariants:
@@ -171,7 +171,7 @@ class TestManualVariants:
     def test_ro_list_excludes_chapters_without_a_ro_variant(self, client):
         chapter_id = client.post(
             "/api/admin/manual/chapters",
-            json={"title": "English Chapter"},
+            json={"title": "English Chapter", "locale": "en"},
             headers=admin_headers(),
         ).json()["contentId"]
 
@@ -206,7 +206,7 @@ class TestManualVariants:
     def test_chapter_with_both_variants_appears_in_both_lists(self, client):
         chapter_id = client.post(
             "/api/admin/manual/chapters",
-            json={"title": "Shared Chapter"},
+            json={"title": "Shared Chapter", "locale": "en"},
             headers=admin_headers(),
         ).json()["contentId"]
 
@@ -323,7 +323,7 @@ class TestManualValidation:
     def test_missing_locale_variant_returns_empty_draft(self, client):
         chapter_id = client.post(
             "/api/admin/manual/chapters",
-            json={"title": "English Chapter"},
+            json={"title": "English Chapter", "locale": "en"},
             headers=admin_headers(),
         ).json()["contentId"]
 

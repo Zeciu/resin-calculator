@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { publishButtonLabel } from "./editorialStatus.js";
 
-const LOCALES = ["en", "ro"];
+const LOCALES = ["ro", "en"];
 
 /**
  * @param {{

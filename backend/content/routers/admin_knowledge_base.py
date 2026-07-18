@@ -59,7 +59,7 @@ async def upload_kb_image(
 @router.get("/references/search", response_model=list[KnowledgeBaseReferenceOption])
 def search_references(
     q: str = "",
-    locale: str = "en",
+    locale: str = "ro",
     _: dict = Depends(require_administrator),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> list[KnowledgeBaseReferenceOption]:
@@ -71,7 +71,7 @@ def search_references(
 
 @router.get("", response_model=list[KnowledgeBaseEntryListItem])
 def list_entries(
-    locale: str = "en",
+    locale: str = "ro",
     _: dict = Depends(require_administrator),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> list[KnowledgeBaseEntryListItem]:

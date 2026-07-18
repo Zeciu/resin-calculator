@@ -22,7 +22,7 @@ def get_reference_search_service() -> ReferenceSearchService:
 @router.get("/search", response_model=list[EditorialReferenceOption])
 def search_references(
     q: str = "",
-    locale: str = "en",
+    locale: str = "ro",
     _: dict = Depends(require_administrator),
     service: ReferenceSearchService = Depends(get_reference_search_service),
 ) -> list[EditorialReferenceOption]:

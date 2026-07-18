@@ -60,7 +60,7 @@ function createInMemoryKnowledgeBaseApi() {
   }
 
   function entryListTitle(contentId) {
-    for (const locale of ["en", "ro"]) {
+    for (const locale of ["ro", "en"]) {
       const variant = variants.get(variantKey(contentId, locale));
       const title = variant?.body?.title?.trim();
       if (title) {
@@ -76,7 +76,7 @@ function createInMemoryKnowledgeBaseApi() {
       variants.clear();
       sortOrder = 100;
     },
-    seedEntry({ contentId, title, category = "Epoxy", difficulty = "Beginner", body, status = "draft", locale = "en" }) {
+    seedEntry({ contentId, title, category = "Epoxy", difficulty = "Beginner", body, status = "draft", locale = "ro" }) {
       entries.set(contentId, {
         contentId,
         title,
@@ -104,7 +104,7 @@ function createInMemoryKnowledgeBaseApi() {
       }
 
       if (path === "/" && method === "GET") {
-        const locale = parsed.searchParams.get("locale") || "en";
+        const locale = parsed.searchParams.get("locale") || "ro";
         const items = [...entries.values()]
           .sort((a, b) => a.sortOrder - b.sortOrder)
           .map((entry) => ({
@@ -135,9 +135,9 @@ function createInMemoryKnowledgeBaseApi() {
           difficulty: payload.difficulty,
           sortOrder,
         });
-        variants.set(variantKey(contentId, "en"), {
+        variants.set(variantKey(contentId, "ro"), {
           contentId,
-          locale: "en",
+          locale: "ro",
           category: payload.category,
           difficulty: payload.difficulty,
           status: "draft",
@@ -343,7 +343,7 @@ describe("Knowledge base management workspace (Task 61)", () => {
 
     await user.click(screen.getByRole("button", { name: "Publish" }));
     await waitFor(() => {
-      expect(screen.getByText(/Live \(EN\)|Draft changes \(EN\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/Live \(RO\)|Draft changes \(RO\)/i)).toBeInTheDocument();
     });
     },
     15000,
@@ -392,8 +392,8 @@ describe("Knowledge base management workspace (Task 61)", () => {
       expect(screen.getByRole("button", { name: "Cloudy epoxy" })).toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole("button", { name: "RO" }));
-    expect(screen.getByText(/Live \(RO\)|Draft \(RO\)|Draft changes \(RO\)|No RO content yet/i)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "EN" }));
+    expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related Knowledge Base Articles")).toBeInTheDocument();
   });
 });

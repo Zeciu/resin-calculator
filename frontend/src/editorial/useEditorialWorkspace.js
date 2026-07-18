@@ -31,7 +31,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 export function useEditorialWorkspace(config) {
   const [items, setItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState("ro");
   const [editorState, setEditorState] = useState(config.emptyEditorState);
   const [savedState, setSavedState] = useState(config.emptyEditorState);
   const [isLoading, setIsLoading] = useState(true);

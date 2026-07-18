@@ -73,7 +73,7 @@ function createInMemoryGlossaryApi() {
   }
 
   function entryListTerm(contentId) {
-    for (const locale of ["en", "ro"]) {
+    for (const locale of ["ro", "en"]) {
       const variant = variants.get(variantKey(contentId, locale));
       const term = variant?.body?.term?.trim();
       if (term) {
@@ -89,7 +89,7 @@ function createInMemoryGlossaryApi() {
       variants.clear();
       sortOrder = 100;
     },
-    seedEntry({ contentId, term, body, status = "draft", locale = "en" }) {
+    seedEntry({ contentId, term, body, status = "draft", locale = "ro" }) {
       entries.set(contentId, { contentId, term, sortOrder: entries.size * 100 + 100 });
       variants.set(variantKey(contentId, locale), {
         contentId,
@@ -109,7 +109,7 @@ function createInMemoryGlossaryApi() {
       }
 
       if (path === "/" && method === "GET") {
-        const locale = parsed.searchParams.get("locale") || "en";
+        const locale = parsed.searchParams.get("locale") || "ro";
         const items = [...entries.values()]
           .sort((a, b) => a.sortOrder - b.sortOrder)
           .map((entry) => ({
@@ -132,9 +132,9 @@ function createInMemoryGlossaryApi() {
           .replace(/^-+|-+$/g, "");
         sortOrder += 100;
         entries.set(contentId, { contentId, term: payload.term, sortOrder });
-        variants.set(variantKey(contentId, "en"), {
+        variants.set(variantKey(contentId, "ro"), {
           contentId,
-          locale: "en",
+          locale: "ro",
           status: "draft",
           exists: true,
           body: emptyVariantBody(payload.term),
@@ -322,7 +322,7 @@ describe("Glossary management workspace (Task 60)", () => {
 
     await user.click(screen.getByRole("button", { name: "Publish" }));
     await waitFor(() => {
-      expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/Live \(RO\)|Draft \(RO\)|Draft changes \(RO\)/i)).toBeInTheDocument();
     });
   });
 
@@ -369,8 +369,8 @@ describe("Glossary management workspace (Task 60)", () => {
       expect(screen.getByRole("button", { name: "Sealing" })).toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole("button", { name: "RO" }));
-    expect(screen.getByText(/Live \(RO\)|Draft \(RO\)|Draft changes \(RO\)|No RO content yet/i)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "EN" }));
+    expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related terms")).toBeInTheDocument();
   });
 });

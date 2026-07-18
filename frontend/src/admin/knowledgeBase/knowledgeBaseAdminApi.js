@@ -2,7 +2,7 @@ import { createEditorialAdminClient } from "../../editorial/editorialAdminApi.js
 
 const client = createEditorialAdminClient("/api/admin/knowledge-base/entries");
 
-export function listKnowledgeBaseEntries(locale = "en") {
+export function listKnowledgeBaseEntries(locale = "ro") {
   return client.request(`?locale=${encodeURIComponent(locale)}`);
 }
 

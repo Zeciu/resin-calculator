@@ -65,7 +65,7 @@ export function createEditorialAdminClient(basePath) {
   return { request, uploadImage };
 }
 
-export async function searchEditorialReferences(query, locale = "en") {
+export async function searchEditorialReferences(query, locale = "ro") {
   const params = new URLSearchParams({ q: query, locale });
   const response = await fetch(`${API_BASE_URL}/api/admin/references/search?${params.toString()}`, {
     headers: await adminHeaders(),

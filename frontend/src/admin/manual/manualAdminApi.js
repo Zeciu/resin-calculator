@@ -2,11 +2,11 @@ import { createEditorialAdminClient } from "../../editorial/editorialAdminApi.js
 
 const client = createEditorialAdminClient("/api/admin/manual/chapters");
 
-export function listManualChapters(locale = "en") {
+export function listManualChapters(locale = "ro") {
   return client.request(`?locale=${encodeURIComponent(locale)}`);
 }
 
-export function createManualChapter(title, locale = "en") {
+export function createManualChapter(title, locale = "ro") {
   return client.request("", {
     method: "POST",
     body: JSON.stringify({ title, locale }),

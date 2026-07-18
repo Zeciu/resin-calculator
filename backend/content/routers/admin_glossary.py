@@ -59,7 +59,7 @@ async def upload_glossary_image(
 @router.get("/references/search", response_model=list[GlossaryReferenceOption])
 def search_references(
     q: str = "",
-    locale: str = "en",
+    locale: str = "ro",
     _: dict = Depends(require_administrator),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> list[GlossaryReferenceOption]:
@@ -71,7 +71,7 @@ def search_references(
 
 @router.get("", response_model=list[GlossaryEntryListItem])
 def list_entries(
-    locale: str = "en",
+    locale: str = "ro",
     _: dict = Depends(require_administrator),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> list[GlossaryEntryListItem]:
