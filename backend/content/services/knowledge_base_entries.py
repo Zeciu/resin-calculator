@@ -13,6 +13,7 @@ from ..schemas.knowledge_base import (
 from .editorial_identity import entry_identity_title
 from .editorial_status import compute_editorial_visibility
 from .reference_search import ReferenceSearchService
+from ..translation_metadata import translation_metadata_for_api
 
 
 def empty_variant_body(title: str = "") -> dict:
@@ -124,6 +125,7 @@ class KnowledgeBaseEntryService:
         meta: dict,
     ) -> KnowledgeBaseVariantResponse:
         parsed_locale = parse_locale(locale)
+        translation_fields = translation_metadata_for_api(variant)
         if not variant:
             return KnowledgeBaseVariantResponse(
                 contentId=content_id,
@@ -136,6 +138,7 @@ class KnowledgeBaseEntryService:
                 exists=False,
                 updatedAt=None,
                 publishedAt=None,
+                **translation_fields,
             )
         status = ContentStatus(variant["status"])
         updated_at = parse_iso(variant.get("updatedAt"))
@@ -156,6 +159,7 @@ class KnowledgeBaseEntryService:
             exists=True,
             updatedAt=updated_at,
             publishedAt=published_at,
+            **translation_fields,
         )
 
     def get_variant(self, content_id: str, locale: str) -> KnowledgeBaseVariantResponse:

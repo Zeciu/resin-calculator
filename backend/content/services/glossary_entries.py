@@ -15,6 +15,7 @@ from ..schemas.glossary import (
 from .editorial_identity import entry_identity_term
 from .editorial_status import compute_editorial_visibility
 from .reference_search import ReferenceSearchService
+from ..translation_metadata import translation_metadata_for_api
 
 
 def empty_variant_body(term: str = "") -> dict:
@@ -111,6 +112,7 @@ class GlossaryEntryService:
 
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> GlossaryVariantResponse:
         parsed_locale = parse_locale(locale)
+        translation_fields = translation_metadata_for_api(variant)
         if not variant:
             return GlossaryVariantResponse(
                 contentId=content_id,
@@ -121,6 +123,7 @@ class GlossaryEntryService:
                 exists=False,
                 updatedAt=None,
                 publishedAt=None,
+                **translation_fields,
             )
         status = ContentStatus(variant["status"])
         updated_at = parse_iso(variant.get("updatedAt"))
@@ -139,6 +142,7 @@ class GlossaryEntryService:
             exists=True,
             updatedAt=updated_at,
             publishedAt=published_at,
+            **translation_fields,
         )
 
     def get_variant(self, content_id: str, locale: str) -> GlossaryVariantResponse:

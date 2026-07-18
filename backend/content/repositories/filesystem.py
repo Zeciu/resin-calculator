@@ -11,6 +11,10 @@ from typing import Any
 from content.services.glossary_source import load_glossary_entries
 from content.services.knowledge_base_source import load_knowledge_base_entries
 from content.services.manual_source import load_manual_sections
+from content.translation_metadata import (
+    apply_translation_metadata_on_save,
+    initial_translation_metadata_on_create,
+)
 
 CONTENT_TYPE_MANUAL_CHAPTER = "manual_chapter"
 CONTENT_TYPE_GLOSSARY_ENTRY = "glossary_entry"
@@ -684,6 +688,7 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": None,
             "snapshotKey": None,
+            **initial_translation_metadata_on_create(locale),
         }
         order = {
             "pk": "INDEX#manual",
@@ -724,6 +729,11 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": existing.get("publishedAt") if existing else None,
             "snapshotKey": existing.get("snapshotKey") if existing else None,
+            **apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+            ),
         }
         meta["updatedAt"] = isoformat(now)
         self._persist_typed_meta(
@@ -1028,6 +1038,7 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": None,
             "snapshotKey": None,
+            **initial_translation_metadata_on_create(DEFAULT_LOCALE),
         }
         order = {
             "pk": "INDEX#glossary",
@@ -1068,6 +1079,11 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": existing.get("publishedAt") if existing else None,
             "snapshotKey": existing.get("snapshotKey") if existing else None,
+            **apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+            ),
         }
         meta["updatedAt"] = isoformat(now)
         self._persist_typed_meta(
@@ -1309,6 +1325,7 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": None,
             "snapshotKey": None,
+            **initial_translation_metadata_on_create(DEFAULT_LOCALE),
         }
         order = {
             "pk": "INDEX#kb",
@@ -1376,6 +1393,11 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": existing.get("publishedAt") if existing else None,
             "snapshotKey": existing.get("snapshotKey") if existing else None,
+            **apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+            ),
         }
         meta["category"] = category
         meta["difficulty"] = difficulty

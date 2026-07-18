@@ -4,7 +4,7 @@ from typing import Literal
 from pydantic import BaseModel, Field, field_validator
 
 from .common import ContentStatus, LocaleCode, VALID_LOCALES
-from .editorial import EditorialVisibility
+from .editorial import EditorialVisibility, TranslationMetadataFields
 from .manual import ImageBlock, ManualBlock, VideoBlock, parse_locale
 
 GlossaryMediaBlock = ImageBlock | VideoBlock
@@ -71,7 +71,7 @@ class GlossaryEntryListItem(BaseModel):
     variants: dict[LocaleCode, GlossaryVariantSummary]
 
 
-class GlossaryVariantResponse(BaseModel):
+class GlossaryVariantResponse(TranslationMetadataFields):
     contentId: str
     locale: LocaleCode
     status: ContentStatus

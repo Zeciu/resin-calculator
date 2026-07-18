@@ -4,7 +4,7 @@ from typing import Annotated, Any, Literal, Union
 from pydantic import BaseModel, Field, field_validator
 
 from .common import ContentStatus, LocaleCode, VALID_LOCALES
-from .editorial import EditorialVisibility
+from .editorial import EditorialVisibility, TranslationMetadataFields
 
 
 class ParagraphBlock(BaseModel):
@@ -122,7 +122,7 @@ class ManualChapterListItem(BaseModel):
     variants: dict[LocaleCode, ManualVariantSummary]
 
 
-class ManualVariantResponse(BaseModel):
+class ManualVariantResponse(TranslationMetadataFields):
     contentId: str
     locale: LocaleCode
     status: ContentStatus

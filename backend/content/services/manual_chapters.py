@@ -9,6 +9,7 @@ from ..schemas.manual import (
     ManualVariantSummary,
     parse_locale,
 )
+from ..translation_metadata import translation_metadata_for_api
 from .editorial_identity import chapter_identity_title
 from .editorial_status import compute_editorial_visibility
 
@@ -113,6 +114,7 @@ class ManualChapterService:
 
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> ManualVariantResponse:
         parsed_locale = parse_locale(locale)
+        translation_fields = translation_metadata_for_api(variant)
         if not variant:
             return ManualVariantResponse(
                 contentId=content_id,
@@ -123,6 +125,7 @@ class ManualChapterService:
                 exists=False,
                 updatedAt=None,
                 publishedAt=None,
+                **translation_fields,
             )
         status = ContentStatus(variant["status"])
         updated_at = parse_iso(variant.get("updatedAt"))
@@ -141,6 +144,7 @@ class ManualChapterService:
             exists=True,
             updatedAt=updated_at,
             publishedAt=published_at,
+            **translation_fields,
         )
 
     def get_variant(self, content_id: str, locale: str) -> ManualVariantResponse:
