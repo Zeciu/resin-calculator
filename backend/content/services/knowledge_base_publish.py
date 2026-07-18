@@ -4,7 +4,7 @@ from ..schemas.common import ContentStatus
 from ..schemas.knowledge_base import (
     KnowledgeBaseVariantBody,
     PublishKnowledgeBaseVariantResponse,
-    parse_locale,
+    parse_admin_locale,
 )
 from .knowledge_base_entries import variant_has_publishable_body
 from .knowledge_base_public import KnowledgeBasePublicService
@@ -18,7 +18,7 @@ class KnowledgeBasePublishService:
         self._references = CrossReferenceValidator(repository)
 
     def publish_variant(self, content_id: str, locale: str) -> PublishKnowledgeBaseVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         variant = self._repository.get_kb_variant(content_id, parsed_locale)
         if not variant:
             raise KeyError(content_id)
@@ -54,7 +54,7 @@ class KnowledgeBasePublishService:
         )
 
     def unpublish_variant(self, content_id: str, locale: str) -> None:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         self._repository.unpublish_kb_variant(content_id, parsed_locale)
         document = self._public_service.build_admin_snapshot(parsed_locale)
         rebuild_locale_snapshot(
@@ -65,7 +65,7 @@ class KnowledgeBasePublishService:
         )
 
     def rebuild_published_snapshot(self, locale: str) -> str | None:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         document = self._public_service.build_admin_snapshot(parsed_locale)
         return rebuild_locale_snapshot(
             document,

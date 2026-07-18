@@ -315,10 +315,25 @@ class TestManualValidation:
         ).json()["contentId"]
 
         response = client.get(
-            f"/api/admin/manual/chapters/{chapter_id}/variants/fr",
+            f"/api/admin/manual/chapters/{chapter_id}/variants/xx",
             headers=admin_headers(),
         )
         assert response.status_code == 400
+
+    def test_prepared_admin_locale_accepted(self, client):
+        chapter_id = client.post(
+            "/api/admin/manual/chapters",
+            json={"title": "Locale Check"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+
+        response = client.get(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/fr",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        assert response.json()["locale"] == "fr"
+        assert response.json()["exists"] is False
 
     def test_missing_locale_variant_returns_empty_draft(self, client):
         chapter_id = client.post(

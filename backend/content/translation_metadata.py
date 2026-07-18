@@ -84,6 +84,23 @@ def apply_translation_metadata_on_save(
     }
 
 
+def translation_metadata_on_generation(
+    *,
+    source_revision: int,
+    provider: str = "deepl",
+    generated_at: datetime,
+) -> dict[str, Any]:
+    """Metadata stamped on a target variant after a successful Generate run."""
+    from datetime import timezone
+
+    aware = generated_at if generated_at.tzinfo else generated_at.replace(tzinfo=timezone.utc)
+    return {
+        "generatedFromSourceRevision": int(source_revision),
+        "translationProvider": provider,
+        "generatedAt": aware.astimezone(timezone.utc).isoformat(),
+    }
+
+
 def read_source_revision(ro_variant: dict[str, Any] | None) -> int | None:
     if not ro_variant:
         return None

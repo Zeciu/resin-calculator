@@ -7,6 +7,7 @@ from auth.dependencies import require_administrator
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.glossary import (
     CreateGlossaryEntryRequest,
+    GenerateTranslationRequest,
     GlossaryEntryListItem,
     GlossaryEntryMeta,
     GlossaryReferenceOption,
@@ -18,6 +19,7 @@ from content.schemas.glossary import (
 from content.services.glossary_entries import GlossaryEntryService
 from content.services.glossary_images import GlossaryImageService
 from content.services.glossary_publish import GlossaryPublishService
+from content.routers.generate_translation import run_generate
 
 router = APIRouter(prefix="/admin/glossary/entries", tags=["admin-glossary"])
 
@@ -155,6 +157,23 @@ def publish_variant(
         raise _entry_not_found() from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/{content_id}/variants/{locale}/generate-translation", response_model=GlossaryVariantResponse)
+def generate_translation(
+    content_id: str,
+    locale: str,
+    payload: GenerateTranslationRequest = GenerateTranslationRequest(),
+    _: dict = Depends(require_administrator),
+    service: GlossaryEntryService = Depends(get_entry_service),
+) -> GlossaryVariantResponse:
+    return run_generate(
+        lambda: service.generate_translation(
+            content_id,
+            locale,
+            confirm_overwrite=payload.confirmOverwrite,
+        )
+    )
 
 
 @router.post("/{content_id}/variants/{locale}/unpublish", status_code=204)

@@ -3,7 +3,7 @@ from typing import Annotated, Any, Literal, Union
 
 from pydantic import BaseModel, Field, field_validator
 
-from .common import ContentStatus, LocaleCode, VALID_LOCALES
+from .common import AdminLocaleCode, ContentStatus, LocaleCode, VALID_LOCALES, parse_admin_locale
 from .editorial import EditorialVisibility, TranslationMetadataFields
 
 
@@ -83,7 +83,7 @@ class SaveManualVariantBody(ManualVariantBody):
 
 class CreateManualChapterRequest(BaseModel):
     title: str
-    locale: LocaleCode = "ro"
+    locale: AdminLocaleCode = "ro"
 
     @field_validator("title")
     @classmethod
@@ -119,12 +119,12 @@ class ManualChapterListItem(BaseModel):
     contentId: str
     title: str
     sortOrder: int
-    variants: dict[LocaleCode, ManualVariantSummary]
+    variants: dict[str, ManualVariantSummary]
 
 
 class ManualVariantResponse(TranslationMetadataFields):
     contentId: str
-    locale: LocaleCode
+    locale: AdminLocaleCode
     status: ContentStatus
     editorialVisibility: EditorialVisibility
     body: ManualVariantBody
@@ -135,10 +135,14 @@ class ManualVariantResponse(TranslationMetadataFields):
 
 class PublishManualVariantResponse(BaseModel):
     contentId: str
-    locale: LocaleCode
+    locale: AdminLocaleCode
     status: ContentStatus
     publishedAt: datetime
     snapshotKey: str
+
+
+class GenerateTranslationRequest(BaseModel):
+    confirmOverwrite: bool = False
 
 
 class PublicManualSection(BaseModel):
@@ -157,8 +161,11 @@ class PublicManualResponse(BaseModel):
     sections: list[PublicManualSection] = Field(default_factory=list)
 
 
+# Public locale parser (en/ro only). Admin routes use parse_admin_locale.
 def parse_locale(locale: str) -> LocaleCode:
-    normalized = locale.strip().lower()
-    if normalized not in VALID_LOCALES:
-        raise ValueError(f"Unsupported locale: {locale}")
-    return normalized  # type: ignore[return-value]
+    from .common import parse_public_locale
+
+    return parse_public_locale(locale)
+
+
+__all__ = ["parse_locale", "parse_admin_locale", "VALID_LOCALES"]

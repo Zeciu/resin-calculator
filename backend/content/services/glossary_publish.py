@@ -1,7 +1,7 @@
 from .cross_reference_validator import CrossReferenceValidator
 from ..repositories.filesystem import parse_iso
 from ..schemas.common import ContentStatus
-from ..schemas.glossary import GlossaryVariantBody, PublishGlossaryVariantResponse, parse_locale
+from ..schemas.glossary import GlossaryVariantBody, PublishGlossaryVariantResponse, parse_admin_locale
 from .glossary_entries import variant_has_publishable_body
 from .glossary_public import GlossaryPublicService
 from .snapshot_publish import rebuild_locale_snapshot
@@ -14,7 +14,7 @@ class GlossaryPublishService:
         self._references = CrossReferenceValidator(repository)
 
     def publish_variant(self, content_id: str, locale: str) -> PublishGlossaryVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         variant = self._repository.get_glossary_variant(content_id, parsed_locale)
         if not variant:
             raise KeyError(content_id)
@@ -44,7 +44,7 @@ class GlossaryPublishService:
         )
 
     def unpublish_variant(self, content_id: str, locale: str) -> None:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         self._repository.unpublish_glossary_variant(content_id, parsed_locale)
         document = self._public_service.build_admin_snapshot(parsed_locale)
         rebuild_locale_snapshot(
@@ -55,7 +55,7 @@ class GlossaryPublishService:
         )
 
     def rebuild_published_snapshot(self, locale: str) -> str | None:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         document = self._public_service.build_admin_snapshot(parsed_locale)
         return rebuild_locale_snapshot(
             document,

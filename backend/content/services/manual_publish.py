@@ -1,6 +1,6 @@
 from ..repositories.filesystem import parse_iso
 from ..schemas.common import ContentStatus
-from ..schemas.manual import ManualVariantBody, PublishManualVariantResponse, parse_locale
+from ..schemas.manual import ManualVariantBody, PublishManualVariantResponse, parse_admin_locale
 from .manual_chapters import variant_has_non_empty_body
 
 
@@ -9,7 +9,7 @@ class ManualPublishService:
         self._repository = repository
 
     def publish_variant(self, content_id: str, locale: str) -> PublishManualVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         variant = self._repository.get_manual_variant(content_id, parsed_locale)
         if not variant:
             raise KeyError(content_id)
@@ -32,13 +32,13 @@ class ManualPublishService:
         )
 
     def unpublish_variant(self, content_id: str, locale: str) -> None:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         self._repository.unpublish_manual_variant(content_id, parsed_locale)
         document = self._assemble_document(parsed_locale)
         self._repository.write_manual_snapshot(parsed_locale, document)
 
     def rebuild_published_snapshot(self, locale: str) -> str | None:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         document = self._assemble_document(parsed_locale)
         if not document["chapters"]:
             self._repository.delete_admin_manual_snapshot(parsed_locale)

@@ -7,6 +7,7 @@ import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js"
 import {
   createGlossaryEntry,
   deleteGlossaryEntry,
+  generateGlossaryTranslation,
   getGlossaryVariant,
   listGlossaryEntries,
   publishGlossaryVariant,
@@ -38,6 +39,7 @@ export default function GlossaryManagementPage() {
     saveItem: (contentId, locale, editorState) =>
       saveGlossaryVariant(contentId, locale, editorToVariantBody(editorState)),
     publishItem: (contentId, locale) => publishGlossaryVariant(contentId, locale),
+    generateTranslation: generateGlossaryTranslation,
     createItem: (term) => createGlossaryEntry(term),
     deleteItem: deleteGlossaryEntry,
     createPromptLabel: "Enter the glossary term",
@@ -54,6 +56,7 @@ export default function GlossaryManagementPage() {
       publish: "Failed to publish glossary entry.",
       create: "Failed to create glossary entry.",
       delete: "Failed to delete glossary entry.",
+      generate: "Failed to generate translation.",
     },
   });
 
@@ -73,6 +76,7 @@ export default function GlossaryManagementPage() {
       backHref={ADMIN_ROUTES.ROOT}
       locale={workspace.locale}
       isSaving={workspace.isSaving}
+      isGenerating={workspace.isGenerating}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
@@ -83,6 +87,7 @@ export default function GlossaryManagementPage() {
       onLocaleChange={workspace.handleLocaleChange}
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
+      onGenerateTranslation={workspace.handleGenerateTranslation}
       showUnsavedDialog={workspace.showUnsavedDialog}
       onUnsavedSave={workspace.handleUnsavedSave}
       onUnsavedDiscard={workspace.handleUnsavedDiscard}
@@ -93,7 +98,7 @@ export default function GlossaryManagementPage() {
           addLabel="Add New Entry"
           items={workspace.sidebarItems}
           selectedId={workspace.selectedItemId}
-          isSaving={workspace.isSaving}
+          isSaving={workspace.isSaving || workspace.isGenerating}
           onAdd={workspace.handleAddItem}
           onSelect={workspace.handleSelectItem}
         />

@@ -1,6 +1,6 @@
 from ..repositories.filesystem import DEFAULT_LOCALE
 from ..schemas.editorial import EditorialReferenceOption
-from ..schemas.glossary import parse_locale
+from ..schemas.glossary import parse_admin_locale
 from .editorial_identity import (
     chapter_identity_title,
     entry_identity_term,
@@ -13,7 +13,7 @@ class ReferenceSearchService:
         self._repository = repository
 
     def search_references(self, query: str = "", locale: str = DEFAULT_LOCALE) -> list[EditorialReferenceOption]:
-        parse_locale(locale)
+        parse_admin_locale(locale)
         normalized = query.strip().lower()
         options: list[EditorialReferenceOption] = []
 

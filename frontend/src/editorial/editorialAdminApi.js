@@ -21,6 +21,18 @@ export async function parseAdminError(response) {
   return `Request failed (${response.status})`;
 }
 
+export class AdminApiError extends Error {
+  /**
+   * @param {string} message
+   * @param {number} status
+   */
+  constructor(message, status) {
+    super(message);
+    this.name = "AdminApiError";
+    this.status = status;
+  }
+}
+
 /**
  * @param {string} basePath e.g. "/api/admin/manual/chapters"
  */
@@ -35,7 +47,7 @@ export function createEditorialAdminClient(basePath) {
     });
 
     if (!response.ok) {
-      throw new Error(await parseAdminError(response));
+      throw new AdminApiError(await parseAdminError(response), response.status);
     }
 
     if (response.status === 204) {

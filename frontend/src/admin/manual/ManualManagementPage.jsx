@@ -5,6 +5,7 @@ import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js"
 import {
   createManualChapter,
   deleteManualChapter,
+  generateManualTranslation,
   getManualVariant,
   listManualChapters,
   publishManualVariant,
@@ -30,6 +31,7 @@ export default function ManualManagementPage() {
     saveItem: (contentId, locale, editorState) =>
       saveManualVariant(contentId, locale, editorToVariantBody(editorState.title, editorState.document)),
     publishItem: (contentId, locale) => publishManualVariant(contentId, locale),
+    generateTranslation: generateManualTranslation,
     createItem: (title, locale) => createManualChapter(title, locale),
     deleteItem: deleteManualChapter,
     createPromptLabel: "Enter the chapter title",
@@ -48,6 +50,7 @@ export default function ManualManagementPage() {
       publish: "Failed to publish chapter.",
       create: "Failed to create chapter.",
       delete: "Failed to delete chapter.",
+      generate: "Failed to generate translation.",
     },
   });
 
@@ -57,6 +60,7 @@ export default function ManualManagementPage() {
       backHref={ADMIN_ROUTES.ROOT}
       locale={workspace.locale}
       isSaving={workspace.isSaving}
+      isGenerating={workspace.isGenerating}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
@@ -67,6 +71,7 @@ export default function ManualManagementPage() {
       onLocaleChange={workspace.handleLocaleChange}
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
+      onGenerateTranslation={workspace.handleGenerateTranslation}
       showUnsavedDialog={workspace.showUnsavedDialog}
       onUnsavedSave={workspace.handleUnsavedSave}
       onUnsavedDiscard={workspace.handleUnsavedDiscard}
@@ -77,11 +82,11 @@ export default function ManualManagementPage() {
           addLabel="Add New Chapter"
           items={workspace.sidebarItems}
           selectedId={workspace.selectedItemId}
-          isSaving={workspace.isSaving}
+          isSaving={workspace.isSaving || workspace.isGenerating}
           emptyLabel={
             workspace.locale === "ro"
               ? "No Romanian chapters yet."
-              : "No English chapters yet."
+              : `No ${workspace.locale.toUpperCase()} chapters yet.`
           }
           onAdd={workspace.handleAddItem}
           onSelect={workspace.handleSelectItem}
@@ -103,14 +108,14 @@ export default function ManualManagementPage() {
                 onChange={(event) =>
                   workspace.setEditorState((prev) => ({ ...prev, title: event.target.value }))
                 }
-                disabled={workspace.isSaving}
+                disabled={workspace.isSaving || workspace.isGenerating}
               />
             </div>
             <button
               type="button"
               className="manual-admin__delete-chapter"
               onClick={workspace.handleDeleteItem}
-              disabled={workspace.isSaving}
+              disabled={workspace.isSaving || workspace.isGenerating}
             >
               Delete Chapter
             </button>
@@ -122,7 +127,7 @@ export default function ManualManagementPage() {
               onDocumentChange={(document) =>
                 workspace.setEditorState((prev) => ({ ...prev, document }))
               }
-              disabled={workspace.isSaving}
+              disabled={workspace.isSaving || workspace.isGenerating}
             />
           </div>
         </>

@@ -3,9 +3,9 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-from .common import ContentStatus, LocaleCode, VALID_LOCALES
+from .common import AdminLocaleCode, ContentStatus, LocaleCode, VALID_LOCALES
 from .editorial import EditorialVisibility, TranslationMetadataFields
-from .manual import ImageBlock, VideoBlock, parse_locale
+from .manual import ImageBlock, VideoBlock, parse_admin_locale, parse_locale
 
 KnowledgeBaseCategory = Literal["Epoxy", "Wood", "Finishing", "Application", "Projects", "Calibration"]
 KnowledgeBaseDifficulty = Literal["Beginner", "Intermediate", "Professional"]
@@ -92,12 +92,12 @@ class KnowledgeBaseEntryListItem(BaseModel):
     category: KnowledgeBaseCategory
     difficulty: KnowledgeBaseDifficulty
     sortOrder: int
-    variants: dict[LocaleCode, KnowledgeBaseVariantSummary]
+    variants: dict[str, KnowledgeBaseVariantSummary]
 
 
 class KnowledgeBaseVariantResponse(TranslationMetadataFields):
     contentId: str
-    locale: LocaleCode
+    locale: AdminLocaleCode
     category: KnowledgeBaseCategory
     difficulty: KnowledgeBaseDifficulty
     status: ContentStatus
@@ -110,10 +110,14 @@ class KnowledgeBaseVariantResponse(TranslationMetadataFields):
 
 class PublishKnowledgeBaseVariantResponse(BaseModel):
     contentId: str
-    locale: LocaleCode
+    locale: AdminLocaleCode
     status: ContentStatus
     publishedAt: datetime
     snapshotKey: str
+
+
+class GenerateTranslationRequest(BaseModel):
+    confirmOverwrite: bool = False
 
 
 class PublicKnowledgeBaseRelationship(BaseModel):
@@ -158,4 +162,4 @@ class KnowledgeBaseReferenceOption(BaseModel):
     detail: str = ""
 
 
-__all__ = ["parse_locale", "VALID_LOCALES", "KB_CATEGORIES", "KB_DIFFICULTIES"]
+__all__ = ["parse_locale", "parse_admin_locale", "VALID_LOCALES", "KB_CATEGORIES", "KB_DIFFICULTIES"]

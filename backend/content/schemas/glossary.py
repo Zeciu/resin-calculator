@@ -3,9 +3,9 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
-from .common import ContentStatus, LocaleCode, VALID_LOCALES
+from .common import AdminLocaleCode, ContentStatus, LocaleCode, VALID_LOCALES
 from .editorial import EditorialVisibility, TranslationMetadataFields
-from .manual import ImageBlock, ManualBlock, VideoBlock, parse_locale
+from .manual import ImageBlock, ManualBlock, VideoBlock, parse_admin_locale, parse_locale
 
 GlossaryMediaBlock = ImageBlock | VideoBlock
 SeeAlsoTargetType = Literal["glossary_entry", "manual_chapter", "kb_entry"]
@@ -68,12 +68,12 @@ class GlossaryEntryListItem(BaseModel):
     contentId: str
     term: str
     sortOrder: int
-    variants: dict[LocaleCode, GlossaryVariantSummary]
+    variants: dict[str, GlossaryVariantSummary]
 
 
 class GlossaryVariantResponse(TranslationMetadataFields):
     contentId: str
-    locale: LocaleCode
+    locale: AdminLocaleCode
     status: ContentStatus
     editorialVisibility: EditorialVisibility
     body: GlossaryVariantBody
@@ -84,10 +84,14 @@ class GlossaryVariantResponse(TranslationMetadataFields):
 
 class PublishGlossaryVariantResponse(BaseModel):
     contentId: str
-    locale: LocaleCode
+    locale: AdminLocaleCode
     status: ContentStatus
     publishedAt: datetime
     snapshotKey: str
+
+
+class GenerateTranslationRequest(BaseModel):
+    confirmOverwrite: bool = False
 
 
 class PublicGlossaryRelationship(BaseModel):
@@ -129,4 +133,4 @@ class GlossaryReferenceOption(BaseModel):
     detail: str = ""
 
 
-__all__ = ["parse_locale", "VALID_LOCALES"]
+__all__ = ["parse_locale", "parse_admin_locale", "VALID_LOCALES"]

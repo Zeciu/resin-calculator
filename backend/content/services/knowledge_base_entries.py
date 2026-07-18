@@ -8,7 +8,7 @@ from ..schemas.knowledge_base import (
     KnowledgeBaseVariantBody,
     KnowledgeBaseVariantResponse,
     KnowledgeBaseVariantSummary,
-    parse_locale,
+    parse_admin_locale,
 )
 from .editorial_identity import entry_identity_title
 from .editorial_status import compute_editorial_visibility
@@ -57,7 +57,7 @@ class KnowledgeBaseEntryService:
         self._repository = repository
 
     def list_entries(self, locale: str = DEFAULT_LOCALE) -> list[KnowledgeBaseEntryListItem]:
-        parse_locale(locale)
+        parse_admin_locale(locale)
         items: list[KnowledgeBaseEntryListItem] = []
         for content_id in self._repository.list_kb_entry_ids():
             meta = self._repository.get_kb_entry_meta(content_id)
@@ -124,7 +124,7 @@ class KnowledgeBaseEntryService:
         variant: dict | None,
         meta: dict,
     ) -> KnowledgeBaseVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)
         if not variant:
             return KnowledgeBaseVariantResponse(
@@ -163,7 +163,7 @@ class KnowledgeBaseEntryService:
         )
 
     def get_variant(self, content_id: str, locale: str) -> KnowledgeBaseVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         meta = self._repository.get_kb_entry_meta(content_id)
         if not meta:
             raise KeyError(content_id)
@@ -178,7 +178,7 @@ class KnowledgeBaseEntryService:
         difficulty: str,
         body: KnowledgeBaseVariantBody,
     ) -> KnowledgeBaseVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         if not body.title.strip():
             raise ValueError("Knowledge Base title cannot be empty.")
         payload = body.model_dump()
@@ -201,6 +201,26 @@ class KnowledgeBaseEntryService:
         )
         meta = self._repository.get_kb_entry_meta(content_id)
         return self._variant_response(content_id, parsed_locale, saved, meta)
+
+    def generate_translation(
+        self,
+        content_id: str,
+        locale: str,
+        *,
+        confirm_overwrite: bool = False,
+        provider=None,
+    ) -> KnowledgeBaseVariantResponse:
+        from .translation_generation import TranslationGenerationService
+
+        service = TranslationGenerationService(self._repository, provider=provider)
+        saved = service.generate(
+            module="knowledge_base",
+            content_id=content_id,
+            target_locale=locale,
+            confirm_overwrite=confirm_overwrite,
+        )
+        meta = self._repository.get_kb_entry_meta(content_id)
+        return self._variant_response(content_id, locale, saved, meta)
 
     def search_references(self, query: str = "", locale: str = DEFAULT_LOCALE) -> list[KnowledgeBaseReferenceOption]:
         options = ReferenceSearchService(self._repository).search_references(query, locale)

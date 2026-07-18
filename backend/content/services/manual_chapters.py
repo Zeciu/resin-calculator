@@ -7,7 +7,7 @@ from ..schemas.manual import (
     ManualVariantBody,
     ManualVariantResponse,
     ManualVariantSummary,
-    parse_locale,
+    parse_admin_locale,
 )
 from ..translation_metadata import translation_metadata_for_api
 from .editorial_identity import chapter_identity_title
@@ -55,7 +55,7 @@ class ManualChapterService:
         self._repository = repository
 
     def list_chapters(self, locale: str = DEFAULT_LOCALE) -> list[ManualChapterListItem]:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         items: list[ManualChapterListItem] = []
         for content_id in self._repository.list_manual_chapter_ids():
             meta = self._repository.get_manual_chapter_meta(content_id)
@@ -89,7 +89,7 @@ class ManualChapterService:
         return items
 
     def create_chapter(self, title: str, locale: str = DEFAULT_LOCALE) -> ManualChapterMeta:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         meta = self._repository.create_manual_chapter(title, locale=parsed_locale)
         return ManualChapterMeta(
             contentId=meta["contentId"],
@@ -113,7 +113,7 @@ class ManualChapterService:
         self._repository.delete_manual_chapter(content_id)
 
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> ManualVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)
         if not variant:
             return ManualVariantResponse(
@@ -148,18 +148,37 @@ class ManualChapterService:
         )
 
     def get_variant(self, content_id: str, locale: str) -> ManualVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         if not self._repository.get_manual_chapter_meta(content_id):
             raise KeyError(content_id)
         variant = self._repository.get_manual_variant(content_id, parsed_locale)
         return self._variant_response(content_id, parsed_locale, variant)
 
     def save_variant(self, content_id: str, locale: str, body: ManualVariantBody) -> ManualVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         if not body.title.strip():
             raise ValueError("Chapter title cannot be empty.")
         saved = self._repository.save_manual_variant(content_id, parsed_locale, body.model_dump())
         return self._variant_response(content_id, parsed_locale, saved)
+
+    def generate_translation(
+        self,
+        content_id: str,
+        locale: str,
+        *,
+        confirm_overwrite: bool = False,
+        provider=None,
+    ) -> ManualVariantResponse:
+        from .translation_generation import TranslationGenerationService
+
+        service = TranslationGenerationService(self._repository, provider=provider)
+        saved = service.generate(
+            module="manual",
+            content_id=content_id,
+            target_locale=locale,
+            confirm_overwrite=confirm_overwrite,
+        )
+        return self._variant_response(content_id, locale, saved)
 
     def reorder_chapters(self, chapter_ids: list[str]) -> None:
         self._repository.reorder_manual_chapters(chapter_ids)

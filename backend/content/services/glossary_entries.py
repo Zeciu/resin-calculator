@@ -10,7 +10,7 @@ from ..schemas.glossary import (
     GlossaryVariantBody,
     GlossaryVariantResponse,
     GlossaryVariantSummary,
-    parse_locale,
+    parse_admin_locale,
 )
 from .editorial_identity import entry_identity_term
 from .editorial_status import compute_editorial_visibility
@@ -56,7 +56,7 @@ class GlossaryEntryService:
         self._repository = repository
 
     def list_entries(self, locale: str = DEFAULT_LOCALE) -> list[GlossaryEntryListItem]:
-        parse_locale(locale)
+        parse_admin_locale(locale)
         items: list[GlossaryEntryListItem] = []
         for content_id in self._repository.list_glossary_entry_ids():
             meta = self._repository.get_glossary_entry_meta(content_id)
@@ -111,7 +111,7 @@ class GlossaryEntryService:
             publish_service.rebuild_published_snapshot(locale)
 
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> GlossaryVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)
         if not variant:
             return GlossaryVariantResponse(
@@ -146,18 +146,37 @@ class GlossaryEntryService:
         )
 
     def get_variant(self, content_id: str, locale: str) -> GlossaryVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         if not self._repository.get_glossary_entry_meta(content_id):
             raise KeyError(content_id)
         variant = self._repository.get_glossary_variant(content_id, parsed_locale)
         return self._variant_response(content_id, parsed_locale, variant)
 
     def save_variant(self, content_id: str, locale: str, body: GlossaryVariantBody) -> GlossaryVariantResponse:
-        parsed_locale = parse_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         if not body.term.strip():
             raise ValueError("Glossary term cannot be empty.")
         saved = self._repository.save_glossary_variant(content_id, parsed_locale, body.model_dump())
         return self._variant_response(content_id, parsed_locale, saved)
+
+    def generate_translation(
+        self,
+        content_id: str,
+        locale: str,
+        *,
+        confirm_overwrite: bool = False,
+        provider=None,
+    ) -> GlossaryVariantResponse:
+        from .translation_generation import TranslationGenerationService
+
+        service = TranslationGenerationService(self._repository, provider=provider)
+        saved = service.generate(
+            module="glossary",
+            content_id=content_id,
+            target_locale=locale,
+            confirm_overwrite=confirm_overwrite,
+        )
+        return self._variant_response(content_id, locale, saved)
 
     def search_references(self, query: str = "", locale: str = DEFAULT_LOCALE) -> list[GlossaryReferenceOption]:
         options = ReferenceSearchService(self._repository).search_references(query, locale)

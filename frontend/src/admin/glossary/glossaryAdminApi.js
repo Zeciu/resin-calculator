@@ -35,6 +35,16 @@ export function deleteGlossaryEntry(contentId) {
   return client.request(`/${encodeURIComponent(contentId)}`, { method: "DELETE" });
 }
 
+export function generateGlossaryTranslation(contentId, locale, confirmOverwrite = false) {
+  return client.request(
+    `/${encodeURIComponent(contentId)}/variants/${encodeURIComponent(locale)}/generate-translation`,
+    {
+      method: "POST",
+      body: JSON.stringify({ confirmOverwrite }),
+    },
+  );
+}
+
 export function uploadGlossaryImage(file) {
   return client.uploadImage(file);
 }

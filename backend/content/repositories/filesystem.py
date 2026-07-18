@@ -24,7 +24,18 @@ DEFAULT_SECTION_ID = "main"
 # valid variant locale but is no longer the create/list default.
 CANONICAL_EDITORIAL_LOCALE = "ro"
 DEFAULT_LOCALE = CANONICAL_EDITORIAL_LOCALE
-EDITORIAL_LOCALES = (CANONICAL_EDITORIAL_LOCALE, "en")
+# Admin-prepared editorial locales (independent from public PUBLIC_LOCALES).
+EDITORIAL_LOCALES = (
+    CANONICAL_EDITORIAL_LOCALE,
+    "en",
+    "fr",
+    "de",
+    "es",
+    "pt",
+    "pl",
+    "cs",
+    "it",
+)
 INITIALIZATION_MARKER = ".hfzwood-initialized.json"
 
 
@@ -702,7 +713,14 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(meta)
 
-    def save_manual_variant(self, content_id: str, locale: str, body: dict[str, Any]) -> dict[str, Any]:
+    def save_manual_variant(
+        self,
+        content_id: str,
+        locale: str,
+        body: dict[str, Any],
+        *,
+        generation_metadata: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
             records, content_id, CONTENT_TYPE_MANUAL_CHAPTER, make_manual_meta_key
@@ -719,6 +737,15 @@ class FilesystemContentRepository:
             make_manual_variant_key,
             make_manual_meta_key,
         )
+        metadata_fields = (
+            generation_metadata
+            if generation_metadata is not None
+            else apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+            )
+        )
         variant = {
             "pk": f"CONTENT#{content_id}",
             "sk": f"VARIANT#{locale}",
@@ -729,11 +756,7 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": existing.get("publishedAt") if existing else None,
             "snapshotKey": existing.get("snapshotKey") if existing else None,
-            **apply_translation_metadata_on_save(
-                locale=locale,
-                new_body=body,
-                existing=existing,
-            ),
+            **metadata_fields,
         }
         meta["updatedAt"] = isoformat(now)
         self._persist_typed_meta(
@@ -1052,7 +1075,14 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(meta)
 
-    def save_glossary_variant(self, content_id: str, locale: str, body: dict[str, Any]) -> dict[str, Any]:
+    def save_glossary_variant(
+        self,
+        content_id: str,
+        locale: str,
+        body: dict[str, Any],
+        *,
+        generation_metadata: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
             records, content_id, CONTENT_TYPE_GLOSSARY_ENTRY, make_glossary_meta_key
@@ -1069,6 +1099,15 @@ class FilesystemContentRepository:
             make_glossary_variant_key,
             make_glossary_meta_key,
         )
+        metadata_fields = (
+            generation_metadata
+            if generation_metadata is not None
+            else apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+            )
+        )
         variant = {
             "pk": f"CONTENT#{content_id}",
             "sk": f"VARIANT#{locale}",
@@ -1079,11 +1118,7 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": existing.get("publishedAt") if existing else None,
             "snapshotKey": existing.get("snapshotKey") if existing else None,
-            **apply_translation_metadata_on_save(
-                locale=locale,
-                new_body=body,
-                existing=existing,
-            ),
+            **metadata_fields,
         }
         meta["updatedAt"] = isoformat(now)
         self._persist_typed_meta(
@@ -1368,6 +1403,8 @@ class FilesystemContentRepository:
         body: dict[str, Any],
         category: str,
         difficulty: str,
+        *,
+        generation_metadata: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
@@ -1383,6 +1420,15 @@ class FilesystemContentRepository:
             make_kb_variant_key,
             make_kb_meta_key,
         )
+        metadata_fields = (
+            generation_metadata
+            if generation_metadata is not None
+            else apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+            )
+        )
         variant = {
             "pk": f"CONTENT#{content_id}",
             "sk": f"VARIANT#{locale}",
@@ -1393,11 +1439,7 @@ class FilesystemContentRepository:
             "updatedAt": isoformat(now),
             "publishedAt": existing.get("publishedAt") if existing else None,
             "snapshotKey": existing.get("snapshotKey") if existing else None,
-            **apply_translation_metadata_on_save(
-                locale=locale,
-                new_body=body,
-                existing=existing,
-            ),
+            **metadata_fields,
         }
         meta["category"] = category
         meta["difficulty"] = difficulty

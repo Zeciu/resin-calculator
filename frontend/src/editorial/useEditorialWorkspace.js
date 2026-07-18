@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { AdminApiError } from "./editorialAdminApi.js";
+import { isCanonicalSourceLocale } from "./editorialLocales.js";
 
 /**
  * Shared editorial workspace state machine for admin content modules.
@@ -10,6 +12,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
  *   loadVariant: (contentId: string, locale: string) => Promise<unknown>;
  *   saveItem: (contentId: string, locale: string, editorState: TEditor) => Promise<unknown>;
  *   publishItem: (contentId: string, locale: string, editorState: TEditor) => Promise<unknown>;
+ *   generateTranslation?: (contentId: string, locale: string, confirmOverwrite: boolean) => Promise<unknown>;
  *   createItem: (promptValue: string) => Promise<{ contentId: string }>;
  *   deleteItem: (contentId: string) => Promise<void>;
  *   createPromptLabel: string;
@@ -25,6 +28,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
  *     publish?: string;
  *     create?: string;
  *     delete?: string;
+ *     generate?: string;
  *   };
  * }} config
  */
@@ -36,6 +40,7 @@ export function useEditorialWorkspace(config) {
   const [savedState, setSavedState] = useState(config.emptyEditorState);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
   const pendingNavigationRef = useRef(null);
@@ -329,6 +334,54 @@ export function useEditorialWorkspace(config) {
     }
   }, [config, editorState, loadVariant, locale, refreshItems, selectedItemId]);
 
+  const runGenerateTranslation = useCallback(
+    async (confirmOverwrite) => {
+      if (!selectedItemId || !config.generateTranslation || isCanonicalSourceLocale(locale)) {
+        return;
+      }
+
+      setErrorMessage("");
+      setIsGenerating(true);
+      try {
+        const generated = await config.generateTranslation(
+          selectedItemId,
+          locale,
+          confirmOverwrite,
+        );
+        let nextEditor = config.applySavedVariant(generated, editorState);
+        if (config.transformEditor) {
+          const nextItems = await refreshItems(locale);
+          nextEditor = config.transformEditor(nextEditor, { items: nextItems, variant: generated });
+        }
+        setEditorState(nextEditor);
+        setSavedState(nextEditor);
+        await refreshItems(locale);
+      } catch (error) {
+        if (error instanceof AdminApiError && error.status === 409 && !confirmOverwrite) {
+          const confirmed = window.confirm(
+            `${error.message}\n\nOverwrite the existing ${locale.toUpperCase()} draft with a new translation?`,
+          );
+          if (confirmed) {
+            setIsGenerating(false);
+            await runGenerateTranslation(true);
+            return;
+          }
+          return;
+        }
+        setErrorMessage(error.message || config.messages?.generate || "Failed to generate translation.");
+      } finally {
+        setIsGenerating(false);
+      }
+    },
+    [config, editorState, locale, refreshItems, selectedItemId],
+  );
+
+  const handleGenerateTranslation = useCallback(() => {
+    requestNavigation(async () => {
+      await runGenerateTranslation(false);
+    });
+  }, [requestNavigation, runGenerateTranslation]);
+
   const sidebarItems = useMemo(
     () => items.map((item) => ({ contentId: item.contentId, label: config.getItemLabel(item) })),
     [config, items],
@@ -344,6 +397,7 @@ export function useEditorialWorkspace(config) {
     savedState,
     isLoading,
     isSaving,
+    isGenerating,
     isDirty,
     errorMessage,
     showUnsavedDialog,
@@ -354,6 +408,7 @@ export function useEditorialWorkspace(config) {
     handleLocaleChange,
     handleSaveDraft,
     handlePublish,
+    handleGenerateTranslation,
     handleUnsavedSave,
     handleUnsavedDiscard,
     handleUnsavedCancel,

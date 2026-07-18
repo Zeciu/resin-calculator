@@ -7,6 +7,7 @@ import KnowledgeBaseEntryEditor from "./KnowledgeBaseEntryEditor.jsx";
 import {
   createKnowledgeBaseEntry,
   deleteKnowledgeBaseEntry,
+  generateKnowledgeBaseTranslation,
   getKnowledgeBaseVariant,
   listKnowledgeBaseEntries,
   publishKnowledgeBaseVariant,
@@ -44,6 +45,7 @@ export default function KnowledgeBaseManagementPage() {
         editorToVariantBody(editorState),
       ),
     publishItem: (contentId, locale) => publishKnowledgeBaseVariant(contentId, locale),
+    generateTranslation: generateKnowledgeBaseTranslation,
     createItem: (title) => createKnowledgeBaseEntry(title, "Epoxy", "Beginner"),
     deleteItem: deleteKnowledgeBaseEntry,
     createPromptLabel: "Enter the troubleshooting entry title",
@@ -64,6 +66,7 @@ export default function KnowledgeBaseManagementPage() {
       publish: "Failed to publish knowledge base entry.",
       create: "Failed to create knowledge base entry.",
       delete: "Failed to delete knowledge base entry.",
+      generate: "Failed to generate translation.",
     },
   });
 
@@ -73,6 +76,7 @@ export default function KnowledgeBaseManagementPage() {
       backHref={ADMIN_ROUTES.ROOT}
       locale={workspace.locale}
       isSaving={workspace.isSaving}
+      isGenerating={workspace.isGenerating}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
@@ -83,6 +87,7 @@ export default function KnowledgeBaseManagementPage() {
       onLocaleChange={workspace.handleLocaleChange}
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
+      onGenerateTranslation={workspace.handleGenerateTranslation}
       showUnsavedDialog={workspace.showUnsavedDialog}
       onUnsavedSave={workspace.handleUnsavedSave}
       onUnsavedDiscard={workspace.handleUnsavedDiscard}
@@ -93,7 +98,7 @@ export default function KnowledgeBaseManagementPage() {
           addLabel="Add New Entry"
           items={workspace.sidebarItems}
           selectedId={workspace.selectedItemId}
-          isSaving={workspace.isSaving}
+          isSaving={workspace.isSaving || workspace.isGenerating}
           onAdd={workspace.handleAddItem}
           onSelect={workspace.handleSelectItem}
         />

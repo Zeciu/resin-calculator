@@ -7,6 +7,7 @@ from auth.dependencies import require_administrator
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.manual import (
     CreateManualChapterRequest,
+    GenerateTranslationRequest,
     ManualChapterListItem,
     ManualChapterMeta,
     ManualVariantBody,
@@ -18,6 +19,7 @@ from content.schemas.manual import (
 from content.services.manual_chapters import ManualChapterService
 from content.services.manual_images import ManualImageService
 from content.services.manual_publish import ManualPublishService
+from content.routers.generate_translation import run_generate
 
 router = APIRouter(prefix="/admin/manual/chapters", tags=["admin-manual"])
 
@@ -154,6 +156,24 @@ def publish_variant(
         raise _chapter_not_found() from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/{content_id}/variants/{locale}/generate-translation", response_model=ManualVariantResponse)
+def generate_translation(
+    content_id: str,
+    locale: str,
+    payload: GenerateTranslationRequest = GenerateTranslationRequest(),
+    _: dict = Depends(require_administrator),
+    service: ManualChapterService = Depends(get_chapter_service),
+) -> ManualVariantResponse:
+    body = payload
+    return run_generate(
+        lambda: service.generate_translation(
+            content_id,
+            locale,
+            confirm_overwrite=body.confirmOverwrite,
+        )
+    )
 
 
 @router.post("/{content_id}/variants/{locale}/unpublish", status_code=204)

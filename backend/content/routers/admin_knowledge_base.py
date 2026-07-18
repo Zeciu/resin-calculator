@@ -7,6 +7,7 @@ from auth.dependencies import require_administrator
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.knowledge_base import (
     CreateKnowledgeBaseEntryRequest,
+    GenerateTranslationRequest,
     KnowledgeBaseEntryListItem,
     KnowledgeBaseEntryMeta,
     KnowledgeBaseReferenceOption,
@@ -18,6 +19,7 @@ from content.schemas.knowledge_base import (
 from content.services.knowledge_base_entries import KnowledgeBaseEntryService
 from content.services.knowledge_base_images import KnowledgeBaseImageService
 from content.services.knowledge_base_publish import KnowledgeBasePublishService
+from content.routers.generate_translation import run_generate
 
 router = APIRouter(prefix="/admin/knowledge-base/entries", tags=["admin-knowledge-base"])
 
@@ -161,6 +163,26 @@ def publish_variant(
         raise _entry_not_found() from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post(
+    "/{content_id}/variants/{locale}/generate-translation",
+    response_model=KnowledgeBaseVariantResponse,
+)
+def generate_translation(
+    content_id: str,
+    locale: str,
+    payload: GenerateTranslationRequest = GenerateTranslationRequest(),
+    _: dict = Depends(require_administrator),
+    service: KnowledgeBaseEntryService = Depends(get_entry_service),
+) -> KnowledgeBaseVariantResponse:
+    return run_generate(
+        lambda: service.generate_translation(
+            content_id,
+            locale,
+            confirm_overwrite=payload.confirmOverwrite,
+        )
+    )
 
 
 @router.post("/{content_id}/variants/{locale}/unpublish", status_code=204)
