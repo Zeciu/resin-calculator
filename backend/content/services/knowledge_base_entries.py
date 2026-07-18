@@ -117,6 +117,13 @@ class KnowledgeBaseEntryService:
         for locale in EDITORIAL_LOCALES:
             publish_service.rebuild_published_snapshot(locale)
 
+    def delete_variant(self, content_id: str, locale: str) -> None:
+        parsed_locale = parse_admin_locale(locale)
+        self._repository.delete_kb_entry_variant(content_id, parsed_locale)
+        from .knowledge_base_publish import KnowledgeBasePublishService
+
+        KnowledgeBasePublishService(self._repository).rebuild_published_snapshot(parsed_locale)
+
     def _variant_response(
         self,
         content_id: str,

@@ -59,13 +59,22 @@ function tipTapInlineToHtml(content = []) {
     .join("");
 }
 
+function decodeHtmlEntities(text) {
+  // textarea uses an RCDATA content model: character references are decoded
+  // without turning encoded angle brackets into active markup elements.
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  return textarea.value;
+}
+
 function htmlToTipTapInline(html) {
   const trimmed = html?.trim() ?? "";
   if (!trimmed) {
     return [];
   }
   if (!trimmed.includes("<")) {
-    return [{ type: "text", text: trimmed }];
+    const decoded = decodeHtmlEntities(trimmed);
+    return decoded ? [{ type: "text", text: decoded }] : [];
   }
 
   const template = document.createElement("template");

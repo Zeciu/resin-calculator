@@ -35,6 +35,13 @@ export function deleteKnowledgeBaseEntry(contentId) {
   return client.request(`/${encodeURIComponent(contentId)}`, { method: "DELETE" });
 }
 
+export function deleteKnowledgeBaseEntryVariant(contentId, locale) {
+  return client.request(
+    `/${encodeURIComponent(contentId)}/variants/${encodeURIComponent(locale)}`,
+    { method: "DELETE" },
+  );
+}
+
 export function generateKnowledgeBaseTranslation(contentId, locale, confirmOverwrite = false) {
   return client.request(
     `/${encodeURIComponent(contentId)}/variants/${encodeURIComponent(locale)}/generate-translation`,

@@ -171,6 +171,29 @@ function createInMemoryKnowledgeBaseApi() {
       }
 
       const variantMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)$/);
+      if (variantMatch && method === "DELETE") {
+        const [, contentId, locale] = variantMatch;
+        if (locale === "ro") {
+          return Promise.resolve({
+            ok: false,
+            status: 409,
+            json: async () => ({
+              detail: "Cannot delete the canonical Romanian variant in isolation.",
+            }),
+          });
+        }
+        const key = variantKey(contentId, locale);
+        if (!variants.has(key)) {
+          return Promise.resolve({
+            ok: false,
+            status: 404,
+            json: async () => ({ detail: "Not found" }),
+          });
+        }
+        variants.delete(key);
+        return Promise.resolve({ ok: true, status: 204, json: async () => null });
+      }
+
       if (variantMatch && method === "GET") {
         const [, contentId, locale] = variantMatch;
         const entry = entries.get(contentId);
@@ -367,7 +390,7 @@ describe("Knowledge base management workspace (Task 61)", () => {
       expect(screen.getByRole("button", { name: "Sticky resin" })).toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole("button", { name: "Delete Entry" }));
+    await user.click(screen.getByRole("button", { name: "Delete entry in all languages" }));
     await waitFor(() => {
       expect(screen.queryByRole("button", { name: "Sticky resin" })).not.toBeInTheDocument();
     });
@@ -395,6 +418,106 @@ describe("Knowledge base management workspace (Task 61)", () => {
     await user.click(screen.getByRole("button", { name: "EN" }));
     expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related Knowledge Base Articles")).toBeInTheDocument();
+  });
+
+  it("deletes only the active non-RO translation and keeps the entry selected", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
+    memoryApi.seedEntry({
+      contentId: "multi-locale",
+      title: "Multi Locale",
+      locale: "ro",
+      body: { ...emptyVariantBody("Multi Locale"), solution: ["RO."] },
+    });
+    memoryApi.seedEntry({
+      contentId: "multi-locale",
+      title: "Multi Locale EN",
+      locale: "en",
+      body: { ...emptyVariantBody("Multi Locale EN"), solution: ["EN."] },
+    });
+    memoryApi.seedEntry({
+      contentId: "multi-locale",
+      title: "Multi Locale FR",
+      locale: "fr",
+      body: { ...emptyVariantBody("Multi Locale FR"), solution: ["FR."] },
+    });
+
+    renderWorkspace(ADMIN_ROUTES.KNOWLEDGE_BASE);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Multi Locale" })).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole("button", { name: "FR" }));
+    await waitFor(() => {
+      expect(screen.getByRole("textbox", { name: "Entry title" })).toHaveValue("Multi Locale FR");
+    });
+
+    await user.click(screen.getByRole("button", { name: "Delete French translation" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(
+      expect.stringMatching(/Delete the French translation[\s\S]*Only this language will be removed/i),
+    );
+
+    const localeDeleteCalls = global.fetch.mock.calls.filter(
+      ([url, init]) =>
+        init?.method === "DELETE" &&
+        String(url).endsWith("/api/admin/knowledge-base/entries/multi-locale/variants/fr"),
+    );
+    const entityDeleteCalls = global.fetch.mock.calls.filter(
+      ([url, init]) =>
+        init?.method === "DELETE" &&
+        String(url).endsWith("/api/admin/knowledge-base/entries/multi-locale"),
+    );
+    expect(localeDeleteCalls).toHaveLength(1);
+    expect(entityDeleteCalls).toHaveLength(0);
+
+    await waitFor(() => {
+      expect(screen.getByText(/No FR content yet/i)).toBeInTheDocument();
+    });
+    expect(screen.getByRole("button", { name: "Multi Locale" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Delete French translation" })).not.toBeInTheDocument();
+  });
+
+  it("does not offer isolated Romanian translation deletion", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    vi.spyOn(window, "prompt").mockReturnValueOnce("RO Entry");
+    renderWorkspace(ADMIN_ROUTES.KNOWLEDGE_BASE);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Add New Entry" })).toBeEnabled();
+    });
+    await user.click(screen.getByRole("button", { name: "Add New Entry" }));
+    await screen.findByRole("button", { name: "RO Entry" });
+
+    expect(screen.queryByRole("button", { name: /Delete Romanian translation/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete entry in all languages" })).toBeInTheDocument();
+  });
+
+  it("warns that deleting an entry removes it in all languages", async () => {
+    memoryApi.seedEntry({
+      contentId: "sticky-resin",
+      title: "Sticky resin",
+      body: {
+        ...emptyVariantBody("Sticky resin"),
+        solution: ["Check ratio."],
+      },
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(false);
+    renderWorkspace(ADMIN_ROUTES.KNOWLEDGE_BASE);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Sticky resin" })).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole("button", { name: "Delete entry in all languages" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(
+      expect.stringContaining("Romanian and every translation will be permanently deleted"),
+    );
+    expect(screen.getByRole("button", { name: "Sticky resin" })).toBeInTheDocument();
   });
 });
 

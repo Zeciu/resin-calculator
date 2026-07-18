@@ -110,6 +110,13 @@ class GlossaryEntryService:
         for locale in EDITORIAL_LOCALES:
             publish_service.rebuild_published_snapshot(locale)
 
+    def delete_variant(self, content_id: str, locale: str) -> None:
+        parsed_locale = parse_admin_locale(locale)
+        self._repository.delete_glossary_entry_variant(content_id, parsed_locale)
+        from .glossary_publish import GlossaryPublishService
+
+        GlossaryPublishService(self._repository).rebuild_published_snapshot(parsed_locale)
+
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> GlossaryVariantResponse:
         parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)

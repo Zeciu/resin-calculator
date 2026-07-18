@@ -74,10 +74,11 @@ class ManualChapterService:
                 )
                 if variant_locale == parsed_locale:
                     active_variant = variant
-            # Only list chapters that have a saved variant in the active locale.
-            if active_variant is None:
-                continue
-            active_title = active_variant.get("draftBody", {}).get("title", "").strip()
+            # Always list chapters with META so locale deletion can keep list position
+            # while the active locale shows as missing/untranslated (Glossary/KB parity).
+            active_title = ""
+            if active_variant is not None:
+                active_title = active_variant.get("draftBody", {}).get("title", "").strip()
             items.append(
                 ManualChapterListItem(
                     contentId=content_id,
@@ -111,6 +112,13 @@ class ManualChapterService:
 
     def delete_chapter(self, content_id: str) -> None:
         self._repository.delete_manual_chapter(content_id)
+
+    def delete_variant(self, content_id: str, locale: str) -> None:
+        parsed_locale = parse_admin_locale(locale)
+        self._repository.delete_manual_chapter_variant(content_id, parsed_locale)
+        from .manual_publish import ManualPublishService
+
+        ManualPublishService(self._repository).rebuild_published_snapshot(parsed_locale)
 
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> ManualVariantResponse:
         parsed_locale = parse_admin_locale(locale)

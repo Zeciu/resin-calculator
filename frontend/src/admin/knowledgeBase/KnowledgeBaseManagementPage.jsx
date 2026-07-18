@@ -2,11 +2,13 @@ import { ADMIN_ROUTES } from "../adminRoutes.js";
 import CrossReferencePicker from "../../editorial/CrossReferencePicker.jsx";
 import EditorialManagementShell from "../../editorial/EditorialManagementShell.jsx";
 import EditorialSidebar from "../../editorial/EditorialSidebar.jsx";
+import { adminLocaleLabel } from "../../editorial/editorialLocales.js";
 import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js";
 import KnowledgeBaseEntryEditor from "./KnowledgeBaseEntryEditor.jsx";
 import {
   createKnowledgeBaseEntry,
   deleteKnowledgeBaseEntry,
+  deleteKnowledgeBaseEntryVariant,
   generateKnowledgeBaseTranslation,
   getKnowledgeBaseVariant,
   listKnowledgeBaseEntries,
@@ -48,6 +50,7 @@ export default function KnowledgeBaseManagementPage() {
     generateTranslation: generateKnowledgeBaseTranslation,
     createItem: (title) => createKnowledgeBaseEntry(title, "Epoxy", "Beginner"),
     deleteItem: deleteKnowledgeBaseEntry,
+    deleteLocaleVariant: deleteKnowledgeBaseEntryVariant,
     createPromptLabel: "Enter the troubleshooting entry title",
     variantToEditor,
     transformEditor: (editor, { items }) => ({
@@ -59,6 +62,10 @@ export default function KnowledgeBaseManagementPage() {
     emptyEditorState,
     getDeleteLabel: (editorState, selectedItem) =>
       editorState.title.trim() || selectedItem?.title || "this entry",
+    getDeleteEntityConfirmMessage: (label) =>
+      `Delete "${label}" in all languages? Romanian and every translation will be permanently deleted. This cannot be undone.`,
+    getDeleteLocaleConfirmMessage: (label, locale) =>
+      `Delete the ${adminLocaleLabel(locale)} translation of "${label}"? Only this language will be removed. Romanian and other translations will remain.`,
     messages: {
       loadList: "Failed to load knowledge base entries.",
       loadVariant: "Failed to load knowledge base entry.",
@@ -66,6 +73,7 @@ export default function KnowledgeBaseManagementPage() {
       publish: "Failed to publish knowledge base entry.",
       create: "Failed to create knowledge base entry.",
       delete: "Failed to delete knowledge base entry.",
+      deleteLocale: "Failed to delete translation.",
       generate: "Failed to generate translation.",
     },
   });
@@ -122,14 +130,26 @@ export default function KnowledgeBaseManagementPage() {
                 disabled={workspace.isSaving}
               />
             </div>
-            <button
-              type="button"
-              className="manual-admin__delete-chapter"
-              onClick={workspace.handleDeleteItem}
-              disabled={workspace.isSaving}
-            >
-              Delete Entry
-            </button>
+            <div className="manual-admin__delete-actions">
+              {workspace.canDeleteLocaleVariant && workspace.savedState.exists !== false ? (
+                <button
+                  type="button"
+                  className="manual-admin__delete-chapter"
+                  onClick={workspace.handleDeleteLocaleVariant}
+                  disabled={workspace.isSaving || workspace.isGenerating}
+                >
+                  {`Delete ${adminLocaleLabel(workspace.locale)} translation`}
+                </button>
+              ) : null}
+              <button
+                type="button"
+                className="manual-admin__delete-chapter"
+                onClick={workspace.handleDeleteItem}
+                disabled={workspace.isSaving || workspace.isGenerating}
+              >
+                Delete entry in all languages
+              </button>
+            </div>
           </div>
           <KnowledgeBaseEntryEditor
             key={`${workspace.selectedItemId}-${workspace.locale}`}

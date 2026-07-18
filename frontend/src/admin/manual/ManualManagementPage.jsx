@@ -1,10 +1,12 @@
 import { ADMIN_ROUTES } from "../adminRoutes.js";
 import EditorialManagementShell from "../../editorial/EditorialManagementShell.jsx";
 import EditorialSidebar from "../../editorial/EditorialSidebar.jsx";
+import { adminLocaleLabel } from "../../editorial/editorialLocales.js";
 import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js";
 import {
   createManualChapter,
   deleteManualChapter,
+  deleteManualChapterVariant,
   generateManualTranslation,
   getManualVariant,
   listManualChapters,
@@ -34,6 +36,7 @@ export default function ManualManagementPage() {
     generateTranslation: generateManualTranslation,
     createItem: (title, locale) => createManualChapter(title, locale),
     deleteItem: deleteManualChapter,
+    deleteLocaleVariant: deleteManualChapterVariant,
     createPromptLabel: "Enter the chapter title",
     variantToEditor,
     applySavedVariant: (saved) => variantToEditor(saved),
@@ -41,8 +44,10 @@ export default function ManualManagementPage() {
     emptyEditorState,
     getDeleteLabel: (editorState, selectedItem) =>
       editorState.title.trim() || selectedItem?.title || "this chapter",
-    getDeleteConfirmMessage: (label) =>
-      `Delete "${label}"? This deletes this chapter in all languages. This cannot be undone.`,
+    getDeleteEntityConfirmMessage: (label) =>
+      `Delete "${label}" in all languages? Romanian and every translation will be permanently deleted. This cannot be undone.`,
+    getDeleteLocaleConfirmMessage: (label, locale) =>
+      `Delete the ${adminLocaleLabel(locale)} translation of "${label}"? Only this language will be removed. Romanian and other translations will remain.`,
     messages: {
       loadList: "Failed to load manual chapters.",
       loadVariant: "Failed to load chapter.",
@@ -50,6 +55,7 @@ export default function ManualManagementPage() {
       publish: "Failed to publish chapter.",
       create: "Failed to create chapter.",
       delete: "Failed to delete chapter.",
+      deleteLocale: "Failed to delete translation.",
       generate: "Failed to generate translation.",
     },
   });
@@ -111,14 +117,26 @@ export default function ManualManagementPage() {
                 disabled={workspace.isSaving || workspace.isGenerating}
               />
             </div>
-            <button
-              type="button"
-              className="manual-admin__delete-chapter"
-              onClick={workspace.handleDeleteItem}
-              disabled={workspace.isSaving || workspace.isGenerating}
-            >
-              Delete Chapter
-            </button>
+            <div className="manual-admin__delete-actions">
+              {workspace.canDeleteLocaleVariant && workspace.savedState.exists !== false ? (
+                <button
+                  type="button"
+                  className="manual-admin__delete-chapter"
+                  onClick={workspace.handleDeleteLocaleVariant}
+                  disabled={workspace.isSaving || workspace.isGenerating}
+                >
+                  {`Delete ${adminLocaleLabel(workspace.locale)} translation`}
+                </button>
+              ) : null}
+              <button
+                type="button"
+                className="manual-admin__delete-chapter"
+                onClick={workspace.handleDeleteItem}
+                disabled={workspace.isSaving || workspace.isGenerating}
+              >
+                Delete chapter in all languages
+              </button>
+            </div>
           </div>
           <div className="manual-admin__field manual-admin__field--editor">
             <ManualChapterEditor

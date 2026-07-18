@@ -168,7 +168,7 @@ class TestManualVariants:
         assert en_variant["body"]["title"] == "English Title"
         assert ro_variant["body"]["title"] == "Titlu Romana"
 
-    def test_ro_list_excludes_chapters_without_a_ro_variant(self, client):
+    def test_ro_list_includes_chapters_without_a_ro_variant(self, client):
         chapter_id = client.post(
             "/api/admin/manual/chapters",
             json={"title": "English Chapter", "locale": "en"},
@@ -187,9 +187,10 @@ class TestManualVariants:
 
         ro_list = client.get("/api/admin/manual/chapters?locale=ro", headers=admin_headers())
         assert ro_list.status_code == 200
-        assert ro_list.json() == []
+        assert [item["contentId"] for item in ro_list.json()] == [chapter_id]
+        assert ro_list.json()[0]["title"] == "English Chapter"
 
-    def test_ro_created_chapter_only_appears_in_ro_list(self, client):
+    def test_ro_created_chapter_also_appears_in_en_list_by_identity(self, client):
         chapter_id = client.post(
             "/api/admin/manual/chapters",
             json={"title": "Capitol Nou", "locale": "ro"},
@@ -201,7 +202,8 @@ class TestManualVariants:
         assert ro_list.json()[0]["title"] == "Capitol Nou"
 
         en_list = client.get("/api/admin/manual/chapters?locale=en", headers=admin_headers())
-        assert en_list.json() == []
+        assert [item["contentId"] for item in en_list.json()] == [chapter_id]
+        assert en_list.json()[0]["title"] == "Capitol Nou"
 
     def test_chapter_with_both_variants_appears_in_both_lists(self, client):
         chapter_id = client.post(
@@ -362,7 +364,8 @@ class TestManualValidation:
             "/api/admin/manual/chapters?locale=ro",
             headers=admin_headers(),
         ).json()
-        assert ro_list == []
+        assert [item["contentId"] for item in ro_list] == [chapter_id]
+        assert ro_list[0]["title"] == "English Chapter"
 
     def test_empty_title_on_save_rejected(self, client):
         chapter_id = client.post(

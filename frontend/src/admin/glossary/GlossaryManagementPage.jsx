@@ -3,10 +3,12 @@ import { ADMIN_ROUTES } from "../adminRoutes.js";
 import CrossReferencePicker from "../../editorial/CrossReferencePicker.jsx";
 import EditorialManagementShell from "../../editorial/EditorialManagementShell.jsx";
 import EditorialSidebar from "../../editorial/EditorialSidebar.jsx";
+import { adminLocaleLabel } from "../../editorial/editorialLocales.js";
 import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js";
 import {
   createGlossaryEntry,
   deleteGlossaryEntry,
+  deleteGlossaryEntryVariant,
   generateGlossaryTranslation,
   getGlossaryVariant,
   listGlossaryEntries,
@@ -42,6 +44,7 @@ export default function GlossaryManagementPage() {
     generateTranslation: generateGlossaryTranslation,
     createItem: (term) => createGlossaryEntry(term),
     deleteItem: deleteGlossaryEntry,
+    deleteLocaleVariant: deleteGlossaryEntryVariant,
     createPromptLabel: "Enter the glossary term",
     variantToEditor,
     applySavedVariant: (saved) => variantToEditor(saved),
@@ -49,6 +52,10 @@ export default function GlossaryManagementPage() {
     emptyEditorState,
     getDeleteLabel: (editorState, selectedItem) =>
       editorState.term.trim() || selectedItem?.term || "this entry",
+    getDeleteEntityConfirmMessage: (label) =>
+      `Delete "${label}" in all languages? Romanian and every translation will be permanently deleted. This cannot be undone.`,
+    getDeleteLocaleConfirmMessage: (label, locale) =>
+      `Delete the ${adminLocaleLabel(locale)} translation of "${label}"? Only this language will be removed. Romanian and other translations will remain.`,
     messages: {
       loadList: "Failed to load glossary entries.",
       loadVariant: "Failed to load glossary entry.",
@@ -56,6 +63,7 @@ export default function GlossaryManagementPage() {
       publish: "Failed to publish glossary entry.",
       create: "Failed to create glossary entry.",
       delete: "Failed to delete glossary entry.",
+      deleteLocale: "Failed to delete translation.",
       generate: "Failed to generate translation.",
     },
   });
@@ -122,14 +130,26 @@ export default function GlossaryManagementPage() {
                 disabled={workspace.isSaving}
               />
             </div>
-            <button
-              type="button"
-              className="manual-admin__delete-chapter"
-              onClick={workspace.handleDeleteItem}
-              disabled={workspace.isSaving}
-            >
-              Delete Entry
-            </button>
+            <div className="manual-admin__delete-actions">
+              {workspace.canDeleteLocaleVariant && workspace.savedState.exists !== false ? (
+                <button
+                  type="button"
+                  className="manual-admin__delete-chapter"
+                  onClick={workspace.handleDeleteLocaleVariant}
+                  disabled={workspace.isSaving || workspace.isGenerating}
+                >
+                  {`Delete ${adminLocaleLabel(workspace.locale)} translation`}
+                </button>
+              ) : null}
+              <button
+                type="button"
+                className="manual-admin__delete-chapter"
+                onClick={workspace.handleDeleteItem}
+                disabled={workspace.isSaving || workspace.isGenerating}
+              >
+                Delete entry in all languages
+              </button>
+            </div>
           </div>
           <div className="manual-admin__field manual-admin__field--editor">
             <GlossaryEntryEditor

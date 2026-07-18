@@ -131,4 +131,110 @@ describe("manualEditorAdapter", () => {
     const right = blocksToDocument([{ type: "paragraph", text: "Saved body." }]);
     expect(documentsSemanticallyEqual(left, right)).toBe(true);
   });
+
+  describe("HTML entity load/save round-trip (Observation 004)", () => {
+    function paragraphText(blocks) {
+      return blocks[0]?.text ?? "";
+    }
+
+    function editorTextFromBlocks(blocks) {
+      const document = blocksToDocument(blocks);
+      return document.content[0]?.content?.[0]?.text ?? "";
+    }
+
+    it("decodes plain hexadecimal apostrophe entities into editor text", () => {
+      const blocks = [{ type: "paragraph", text: "Il s&#x27;agit" }];
+      expect(editorTextFromBlocks(blocks)).toBe("Il s'agit");
+    });
+
+    it("round-trips apostrophe entities without double-escaping", () => {
+      const blocks = [{ type: "paragraph", text: "d&#x27;humidité" }];
+      expect(editorTextFromBlocks(blocks)).toBe("d'humidité");
+
+      const saved = documentToBlocks(blocksToDocument(blocks));
+      expect(paragraphText(saved)).not.toContain("&amp;#");
+      expect(editorTextFromBlocks(saved)).toBe("d'humidité");
+    });
+
+    it("decodes named ampersand entities and keeps a single safe escape on save", () => {
+      const blocks = [{ type: "paragraph", text: "A &amp; B" }];
+      expect(editorTextFromBlocks(blocks)).toBe("A & B");
+
+      const saved = documentToBlocks(blocksToDocument(blocks));
+      expect(paragraphText(saved)).toBe("A &amp; B");
+      expect(editorTextFromBlocks(saved)).toBe("A & B");
+    });
+
+    it("decodes quotation entities", () => {
+      const blocks = [{ type: "paragraph", text: "&quot;test&quot;" }];
+      expect(editorTextFromBlocks(blocks)).toBe('"test"');
+
+      const saved = documentToBlocks(blocksToDocument(blocks));
+      expect(paragraphText(saved)).toBe("&quot;test&quot;");
+      expect(editorTextFromBlocks(saved)).toBe('"test"');
+    });
+
+    it("does not progressively double-encode non-breaking spaces", () => {
+      const blocks = [{ type: "paragraph", text: "a&nbsp;b" }];
+      expect(editorTextFromBlocks(blocks)).toBe("a\u00a0b");
+
+      const once = documentToBlocks(blocksToDocument(blocks));
+      const twice = documentToBlocks(blocksToDocument(once));
+      expect(paragraphText(once)).not.toContain("&amp;nbsp");
+      expect(paragraphText(twice)).not.toContain("&amp;nbsp");
+      expect(editorTextFromBlocks(once)).toBe("a\u00a0b");
+      expect(editorTextFromBlocks(twice)).toBe("a\u00a0b");
+    });
+
+    it("preserves inline markup while decoding text-node entities", () => {
+      const blocks = [
+        {
+          type: "paragraph",
+          text: 'See <strong>d&#x27;humidité</strong> and <a href="/docs">L&#x27;utilisation</a>.',
+        },
+      ];
+      const document = blocksToDocument(blocks);
+      const texts = (document.content[0].content ?? [])
+        .filter((node) => node.type === "text")
+        .map((node) => node.text);
+      expect(texts.join("")).toBe("See d'humidité and L'utilisation.");
+
+      const saved = documentToBlocks(document);
+      expect(paragraphText(saved)).toContain("<strong>");
+      expect(paragraphText(saved)).toContain('<a href="/docs">');
+      expect(paragraphText(saved)).not.toContain("&amp;#");
+      expect(
+        (blocksToDocument(saved).content[0].content ?? [])
+          .filter((node) => node.type === "text")
+          .map((node) => node.text)
+          .join(""),
+      ).toBe("See d'humidité and L'utilisation.");
+    });
+
+    it("survives repeated open → save → open cycles without progressive corruption", () => {
+      let blocks = [{ type: "paragraph", text: "Il s&#x27;agit d&#x27;humidité &amp; plus" }];
+      for (let i = 0; i < 3; i += 1) {
+        blocks = documentToBlocks(blocksToDocument(blocks));
+        expect(paragraphText(blocks)).not.toContain("&amp;#");
+        expect(paragraphText(blocks)).not.toContain("&amp;amp;");
+        expect(editorTextFromBlocks(blocks)).toBe("Il s'agit d'humidité & plus");
+      }
+    });
+
+    it("leaves ordinary text without entities unchanged", () => {
+      const blocks = [{ type: "paragraph", text: "Ordinary calibration text." }];
+      expect(editorTextFromBlocks(blocks)).toBe("Ordinary calibration text.");
+      expect(documentToBlocks(blocksToDocument(blocks))).toEqual(blocks);
+    });
+
+    it("does not turn encoded angle brackets into active markup", () => {
+      const blocks = [{ type: "paragraph", text: "&lt;strong&gt;safe&lt;/strong&gt;" }];
+      const document = blocksToDocument(blocks);
+      expect(document.content[0].content).toEqual([
+        { type: "text", text: "<strong>safe</strong>" },
+      ]);
+      const saved = documentToBlocks(document);
+      expect(paragraphText(saved)).toBe("&lt;strong&gt;safe&lt;/strong&gt;");
+    });
+  });
 });

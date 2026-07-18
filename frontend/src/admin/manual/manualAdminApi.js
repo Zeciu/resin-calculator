@@ -35,6 +35,13 @@ export function deleteManualChapter(contentId) {
   return client.request(`/${encodeURIComponent(contentId)}`, { method: "DELETE" });
 }
 
+export function deleteManualChapterVariant(contentId, locale) {
+  return client.request(
+    `/${encodeURIComponent(contentId)}/variants/${encodeURIComponent(locale)}`,
+    { method: "DELETE" },
+  );
+}
+
 export function generateManualTranslation(contentId, locale, confirmOverwrite = false) {
   return client.request(
     `/${encodeURIComponent(contentId)}/variants/${encodeURIComponent(locale)}/generate-translation`,

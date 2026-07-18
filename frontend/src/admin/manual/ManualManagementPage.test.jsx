@@ -161,8 +161,6 @@ function createInMemoryManualApi() {
         const locale = parsed.searchParams.get("locale") || "ro";
         const items = [...chapters.values()]
           .sort((a, b) => a.sortOrder - b.sortOrder)
-          // Only chapters with a saved variant in the active locale appear.
-          .filter((chapter) => variants.has(variantKey(chapter.contentId, locale)))
           .map((chapter) => {
             const activeVariant = variants.get(variantKey(chapter.contentId, locale));
             return {
@@ -275,6 +273,29 @@ function createInMemoryManualApi() {
           status: 200,
           json: async () => withEditorialVisibility(saved),
         });
+      }
+
+      if (variantMatch && method === "DELETE") {
+        const [, contentId, locale] = variantMatch;
+        if (locale === "ro") {
+          return Promise.resolve({
+            ok: false,
+            status: 409,
+            json: async () => ({
+              detail: "Cannot delete the canonical Romanian variant in isolation.",
+            }),
+          });
+        }
+        const key = variantKey(contentId, locale);
+        if (!variants.has(key)) {
+          return Promise.resolve({
+            ok: false,
+            status: 404,
+            json: async () => ({ detail: "Not found" }),
+          });
+        }
+        variants.delete(key);
+        return Promise.resolve({ ok: true, status: 204, json: async () => null });
       }
 
       const publishMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/publish$/);
@@ -697,7 +718,7 @@ describe("Manual management workspace (Task 59B)", () => {
     expect(screen.queryByText(/Romanian body/i)).not.toBeInTheDocument();
   });
 
-  it("hides RO-only chapters from the EN sidebar and shows an empty state", async () => {
+  it("keeps RO-only chapters in the EN sidebar and shows missing EN content", async () => {
     const user = userEvent.setup();
     seedAdministrator();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Romanian Chapter");
@@ -716,12 +737,12 @@ describe("Manual management workspace (Task 59B)", () => {
 
     await user.click(screen.getByRole("button", { name: "EN" }));
 
-    // The RO-only chapter must not appear in the EN sidebar.
+    // Identity title keeps the chapter listed; the EN variant is still missing.
     const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
     await waitFor(() => {
-      expect(within(sidebar).queryByRole("button", { name: "Romanian Chapter" })).not.toBeInTheDocument();
+      expect(within(sidebar).getByRole("button", { name: "Romanian Chapter" })).toBeInTheDocument();
     });
-    expect(within(sidebar).getByText("No English chapters yet.")).toBeInTheDocument();
+    expect(screen.getByText(/No EN content saved yet/i)).toBeInTheDocument();
   });
 
   it("does not ask to save again after Save when adding a new chapter", async () => {
@@ -855,7 +876,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await user.click(screen.getByRole("button", { name: "Chapter One" }));
-    await user.click(screen.getByRole("button", { name: "Delete Chapter" }));
+    await user.click(screen.getByRole("button", { name: "Delete chapter in all languages" }));
 
     await waitFor(() => {
       expect(screen.queryByRole("button", { name: "Chapter One" })).not.toBeInTheDocument();
@@ -938,12 +959,12 @@ describe("Manual management workspace (Task 59B)", () => {
     );
     expect(JSON.parse(createCall[1].body).locale).toBe("ro");
 
-    // EN did not receive the text, and the chapter is absent from the EN sidebar.
+    // EN did not receive the text, but the chapter remains listed by identity title.
     await user.click(screen.getByRole("button", { name: "EN" }));
     await waitFor(() => {
-      expect(within(sidebar).queryByRole("button", { name: "Capitol Nou" })).not.toBeInTheDocument();
+      expect(within(sidebar).getByRole("button", { name: "Capitol Nou" })).toBeInTheDocument();
     });
-    expect(within(sidebar).getByText("No English chapters yet.")).toBeInTheDocument();
+    expect(screen.getByText(/No EN content saved yet/i)).toBeInTheDocument();
   });
 
   it("creates the EN variant (not RO) when adding a chapter on the EN tab", async () => {
@@ -971,10 +992,8 @@ describe("Manual management workspace (Task 59B)", () => {
       expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("");
     });
     const sidebar = screen.getByRole("complementary", { name: "Manual chapters" });
-    expect(
-      within(sidebar).queryByRole("button", { name: "English Only Chapter" }),
-    ).not.toBeInTheDocument();
-    expect(within(sidebar).getByText("No Romanian chapters yet.")).toBeInTheDocument();
+    expect(within(sidebar).getByRole("button", { name: "English Only Chapter" })).toBeInTheDocument();
+    expect(screen.getByText(/No RO content yet/i)).toBeInTheDocument();
   });
 
   it("warns that deleting a chapter removes it in all languages", async () => {
@@ -990,12 +1009,97 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
     await screen.findByRole("button", { name: "Deletable Chapter" });
 
-    await user.click(screen.getByRole("button", { name: "Delete Chapter" }));
+    await user.click(screen.getByRole("button", { name: "Delete chapter in all languages" }));
 
     expect(confirmSpy).toHaveBeenCalledWith(
-      expect.stringContaining("This deletes this chapter in all languages."),
+      expect.stringContaining("Romanian and every translation will be permanently deleted"),
     );
     // Cancelled (confirm returned false) — chapter remains.
     expect(screen.getByRole("button", { name: "Deletable Chapter" })).toBeInTheDocument();
+  });
+
+  it("deletes only the active non-RO translation and keeps the entity selected", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
+    memoryApi.seedChapter({
+      contentId: "multi-locale",
+      title: "Multi Locale",
+      sortOrder: 100,
+      locale: "ro",
+      body: {
+        title: "Multi Locale",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "RO body." }] }],
+      },
+    });
+    memoryApi.seedChapter({
+      contentId: "multi-locale",
+      title: "Multi Locale EN",
+      sortOrder: 100,
+      locale: "en",
+      body: {
+        title: "Multi Locale EN",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "EN body." }] }],
+      },
+    });
+    memoryApi.seedChapter({
+      contentId: "multi-locale",
+      title: "Multi Locale FR",
+      sortOrder: 100,
+      locale: "fr",
+      body: {
+        title: "Multi Locale FR",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "FR body." }] }],
+      },
+    });
+
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Multi Locale" })).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole("button", { name: "FR" }));
+    await waitFor(() => {
+      expect(screen.getByRole("textbox", { name: "Chapter title" })).toHaveValue("Multi Locale FR");
+    });
+
+    await user.click(screen.getByRole("button", { name: "Delete French translation" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(
+      expect.stringMatching(/Delete the French translation[\s\S]*Only this language will be removed/i),
+    );
+
+    const localeDeleteCalls = global.fetch.mock.calls.filter(
+      ([url, init]) =>
+        init?.method === "DELETE" &&
+        String(url).endsWith("/api/admin/manual/chapters/multi-locale/variants/fr"),
+    );
+    const entityDeleteCalls = global.fetch.mock.calls.filter(
+      ([url, init]) =>
+        init?.method === "DELETE" && String(url).endsWith("/api/admin/manual/chapters/multi-locale"),
+    );
+    expect(localeDeleteCalls).toHaveLength(1);
+    expect(entityDeleteCalls).toHaveLength(0);
+
+    await waitFor(() => {
+      expect(screen.getByText(/No FR content yet/i)).toBeInTheDocument();
+    });
+    expect(screen.getByRole("button", { name: "Multi Locale" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Delete French translation" })).not.toBeInTheDocument();
+  });
+
+  it("does not offer isolated Romanian translation deletion", async () => {
+    const user = userEvent.setup();
+    seedAdministrator();
+    vi.spyOn(window, "prompt").mockReturnValueOnce("RO Chapter");
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeEnabled();
+    });
+    await user.click(screen.getByRole("button", { name: "Add New Chapter" }));
+    await screen.findByRole("button", { name: "RO Chapter" });
+
+    expect(screen.queryByRole("button", { name: /Delete Romanian translation/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete chapter in all languages" })).toBeInTheDocument();
   });
 });

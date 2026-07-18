@@ -113,6 +113,23 @@ def delete_entry(
         raise _entry_not_found() from exc
 
 
+@router.delete("/{content_id}/variants/{locale}", status_code=204)
+def delete_variant(
+    content_id: str,
+    locale: str,
+    _: dict = Depends(require_administrator),
+    service: GlossaryEntryService = Depends(get_entry_service),
+) -> None:
+    try:
+        service.delete_variant(content_id, locale)
+    except KeyError as exc:
+        raise _entry_not_found() from exc
+    except ValueError as exc:
+        detail = str(exc)
+        status = 409 if "canonical Romanian" in detail else 400
+        raise HTTPException(status_code=status, detail=detail) from exc
+
+
 @router.get("/{content_id}/variants/{locale}", response_model=GlossaryVariantResponse)
 def get_variant(
     content_id: str,

@@ -15,12 +15,16 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   generateTranslation?: (contentId: string, locale: string, confirmOverwrite: boolean) => Promise<unknown>;
  *   createItem: (promptValue: string) => Promise<{ contentId: string }>;
  *   deleteItem: (contentId: string) => Promise<void>;
+ *   deleteLocaleVariant?: (contentId: string, locale: string) => Promise<void>;
  *   createPromptLabel: string;
  *   variantToEditor: (variant: unknown) => TEditor;
  *   applySavedVariant: (variant: unknown, editorState: TEditor) => TEditor;
  *   editorStatesEqual: (left: TEditor, right: TEditor) => boolean;
  *   emptyEditorState: () => TEditor;
  *   getDeleteLabel: (editorState: TEditor, selectedItem: { contentId: string } | null, items: Array<{ contentId: string }>) => string;
+ *   getDeleteConfirmMessage?: (label: string) => string;
+ *   getDeleteEntityConfirmMessage?: (label: string) => string;
+ *   getDeleteLocaleConfirmMessage?: (label: string, locale: string) => string;
  *   messages?: {
  *     loadList?: string;
  *     loadVariant?: string;
@@ -28,6 +32,7 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *     publish?: string;
  *     create?: string;
  *     delete?: string;
+ *     deleteLocale?: string;
  *     generate?: string;
  *   };
  * }} config
@@ -167,9 +172,11 @@ export function useEditorialWorkspace(config) {
     }
 
     const deleteLabel = config.getDeleteLabel(editorState, selectedItem, items);
-    const confirmMessage = config.getDeleteConfirmMessage
-      ? config.getDeleteConfirmMessage(deleteLabel)
-      : `Delete "${deleteLabel}"? This cannot be undone.`;
+    const confirmMessage = config.getDeleteEntityConfirmMessage
+      ? config.getDeleteEntityConfirmMessage(deleteLabel)
+      : config.getDeleteConfirmMessage
+        ? config.getDeleteConfirmMessage(deleteLabel)
+        : `Delete "${deleteLabel}" in all languages? Romanian and every translation will be permanently deleted. This cannot be undone.`;
     const confirmed = window.confirm(confirmMessage);
     if (!confirmed) {
       return;
@@ -193,6 +200,33 @@ export function useEditorialWorkspace(config) {
       }
     } catch (error) {
       setErrorMessage(error.message || config.messages?.delete || "Failed to delete item.");
+    } finally {
+      setIsSaving(false);
+    }
+  }, [config, editorState, items, loadVariant, locale, refreshItems, selectedItem, selectedItemId]);
+
+  const deleteSelectedLocaleVariant = useCallback(async () => {
+    if (!selectedItemId || !config.deleteLocaleVariant || isCanonicalSourceLocale(locale)) {
+      return;
+    }
+
+    const deleteLabel = config.getDeleteLabel(editorState, selectedItem, items);
+    const confirmMessage = config.getDeleteLocaleConfirmMessage
+      ? config.getDeleteLocaleConfirmMessage(deleteLabel, locale)
+      : `Delete the ${locale.toUpperCase()} translation of "${deleteLabel}"? Only this language will be removed. Romanian and other translations will remain.`;
+    const confirmed = window.confirm(confirmMessage);
+    if (!confirmed) {
+      return;
+    }
+
+    setErrorMessage("");
+    setIsSaving(true);
+    try {
+      await config.deleteLocaleVariant(selectedItemId, locale);
+      await refreshItems();
+      await loadVariant(selectedItemId, locale);
+    } catch (error) {
+      setErrorMessage(error.message || config.messages?.deleteLocale || "Failed to delete translation.");
     } finally {
       setIsSaving(false);
     }
@@ -257,6 +291,18 @@ export function useEditorialWorkspace(config) {
     }
     await deleteSelectedItem();
   }, [deleteSelectedItem, isDirty, selectedItemId]);
+
+  const handleDeleteLocaleVariant = useCallback(async () => {
+    if (!selectedItemId || !config.deleteLocaleVariant || isCanonicalSourceLocale(locale)) {
+      return;
+    }
+    if (isDirty) {
+      pendingNavigationRef.current = deleteSelectedLocaleVariant;
+      setShowUnsavedDialog(true);
+      return;
+    }
+    await deleteSelectedLocaleVariant();
+  }, [config.deleteLocaleVariant, deleteSelectedLocaleVariant, isDirty, locale, selectedItemId]);
 
   const handleSelectItem = useCallback(
     (contentId) => {
@@ -404,6 +450,8 @@ export function useEditorialWorkspace(config) {
     sidebarItems,
     handleAddItem,
     handleDeleteItem,
+    handleDeleteLocaleVariant,
+    canDeleteLocaleVariant: Boolean(config.deleteLocaleVariant) && !isCanonicalSourceLocale(locale),
     handleSelectItem,
     handleLocaleChange,
     handleSaveDraft,

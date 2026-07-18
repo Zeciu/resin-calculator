@@ -853,6 +853,27 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    def delete_manual_chapter_variant(self, content_id: str, locale: str) -> None:
+        normalized = locale.strip().lower()
+        if normalized == CANONICAL_EDITORIAL_LOCALE:
+            raise ValueError("Cannot delete the canonical Romanian variant in isolation.")
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, content_id, CONTENT_TYPE_MANUAL_CHAPTER, make_manual_meta_key
+        )
+        variant_key, variant = _resolve_variant_key(
+            records,
+            content_id,
+            normalized,
+            CONTENT_TYPE_MANUAL_CHAPTER,
+            make_manual_variant_key,
+            make_manual_meta_key,
+        )
+        if meta is None or variant is None or variant_key is None:
+            raise KeyError(content_id)
+        records.pop(variant_key, None)
+        self._write_store(records)
+
     def delete_manual_chapter(self, content_id: str) -> None:
         records = self._read_store()
         if not _meta_exists(records, content_id, CONTENT_TYPE_MANUAL_CHAPTER, make_manual_meta_key):
@@ -1215,6 +1236,27 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    def delete_glossary_entry_variant(self, content_id: str, locale: str) -> None:
+        normalized = locale.strip().lower()
+        if normalized == CANONICAL_EDITORIAL_LOCALE:
+            raise ValueError("Cannot delete the canonical Romanian variant in isolation.")
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, content_id, CONTENT_TYPE_GLOSSARY_ENTRY, make_glossary_meta_key
+        )
+        variant_key, variant = _resolve_variant_key(
+            records,
+            content_id,
+            normalized,
+            CONTENT_TYPE_GLOSSARY_ENTRY,
+            make_glossary_variant_key,
+            make_glossary_meta_key,
+        )
+        if meta is None or variant is None or variant_key is None:
+            raise KeyError(content_id)
+        records.pop(variant_key, None)
+        self._write_store(records)
+
     def delete_glossary_entry(self, content_id: str) -> None:
         records = self._read_store()
         if not _meta_exists(records, content_id, CONTENT_TYPE_GLOSSARY_ENTRY, make_glossary_meta_key):
@@ -1521,6 +1563,25 @@ class FilesystemContentRepository:
         self._finalize_typed_record_migration(records, content_id, CONTENT_TYPE_KB_ENTRY)
         self._write_store(records)
         return deepcopy(variant)
+
+    def delete_kb_entry_variant(self, content_id: str, locale: str) -> None:
+        normalized = locale.strip().lower()
+        if normalized == CANONICAL_EDITORIAL_LOCALE:
+            raise ValueError("Cannot delete the canonical Romanian variant in isolation.")
+        records = self._read_store()
+        _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
+        variant_key, variant = _resolve_variant_key(
+            records,
+            content_id,
+            normalized,
+            CONTENT_TYPE_KB_ENTRY,
+            make_kb_variant_key,
+            make_kb_meta_key,
+        )
+        if meta is None or variant is None or variant_key is None:
+            raise KeyError(content_id)
+        records.pop(variant_key, None)
+        self._write_store(records)
 
     def delete_kb_entry(self, content_id: str) -> None:
         records = self._read_store()
