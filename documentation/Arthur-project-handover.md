@@ -5798,4 +5798,123 @@ Observation 004 (HTML entity double-escaping after AI translation) was corrected
 
 Observation 008 (locale deletion removed entire multilingual entities) was implemented and closed after Product QA PASS: non-RO locales delete only that translation; Romanian cannot be deleted in isolation; full-entity delete remains a separate explicit action. Multilingual locale deletion is now safe across Manual, Glossary, and Knowledge Base.
 
-Next active Product QA priority: Observation 001 — Generate All.
+Next active Product QA priority: Observation 001 — Generate All (Update All Translations) Product QA Scenarios 1–7.
+
+## Task A — Translation Update Engine
+
+Status: CLOSED (Product Owner validated)
+
+Approved Option B with two revision counters (not fingerprints):
+
+- RO: `sourceRevision`, `sourceTextRevision`
+- Target: `generatedFromSourceRevision`, `generatedFromSourceTextRevision`
+
+Delivered: shared classify / media-sync / full-generate engine; single-item Generate Translation uses it; zero DeepL for media-only and current; manual/untracked never silently overwritten; segment-level incremental translation deferred.
+
+## Task B — Update All Translations (Generate All)
+
+Status: IMPLEMENTED (awaiting Product QA CLOSE of Observation 001)
+
+Scope: one editorial module + one target locale per run; sequential chunked HTTP; orchestration only over `TranslationUpdateService`.
+
+Policy: generate missing; skip current; sync media-only (0 DeepL); skip text-outdated unless `includeTextOutdated`; always protect manual/untracked; drafts only; no auto-publish; process-local lock; no queues/workers/new AWS infrastructure.
+
+API:
+
+- `POST /api/admin/{manual|glossary|knowledge-base}/translations/{locale}/bulk-preview`
+- `POST /api/admin/{manual|glossary|knowledge-base}/translations/{locale}/bulk-update` (`offset`/`limit`, default chunk 5)
+
+Admin UX: **Update All Translations** with preflight, confirmation, progress, summary.
+
+Deferred: multi-locale batch; cancellation; automatic retries; segment-level DeepL; distributed locks.
+
+## Session Closure — Product QA Translation Workflow
+
+Today's session completed the multilingual editorial Product QA cycle.
+
+Completed
+
+- Observation 004 (HTML entity encoding) — CLOSED — Product QA PASS.
+- Observation 008 (safe locale-specific deletion) — CLOSED — Product QA PASS.
+- Multilingual editorial workflow manually validated across:
+  - Manual & Tutorials
+  - Glossary
+  - Knowledge Base
+- Commit:
+  161845e7286f3fc1c5de9c7189b230171ccb415a
+- Branch:
+  main (pushed successfully)
+
+Important operational finding
+
+A local DeepL configuration failure was diagnosed as an orphan backend process running without the required environment variables, not an application defect.
+
+When troubleshooting local DeepL translation, first verify that only one backend instance is serving port 5000.
+
+Current Product QA status
+
+Remaining observations:
+
+1. Observation 001 — Generate All / Update All Translations (IMPLEMENTED; awaiting Product QA Scenarios 1–7).
+2. Observation 002 — Incremental translation (media-only DONE in Task A/B; segment DeepL deferred; CLOSE after PO confirms media-only QA).
+
+Observation 005 — Editorial Collection Edit / legacy sibling migration — CLOSED (see closure record below).
+Observation 007 — Public Language Activation — completed (see prior status update).
+
+Next major activity
+
+After the remaining Product QA observations are completed, begin preparing the comprehensive HFZWood Product Evolution & Architectural Decision document.
+
+The document will describe:
+
+- product origin;
+- architectural evolution;
+- major design decisions;
+- rejected alternatives;
+- implementation philosophy;
+- commercial decisions;
+- current architecture;
+- future roadmap.
+
+Its purpose is to serve as the primary technical and product reference for Alfred, future collaborators, technical audits, and potential investors.
+### Editorial Product QA Status Update
+
+The following Product QA observations have been completed and accepted:
+
+- Observation 006 — Translation workflow / Generate All completed and accepted.
+- Public publication pipeline corrected. Published snapshots are now the sole public source of truth. Legacy seed fallback no longer reappears when published snapshots exist.
+- Observation 007 — Public Language Activation completed.
+  - Public language visibility is now independent from translation generation and publication.
+  - Admin Dashboard contains the Public Languages management table.
+  - English is the default and initially the only active public language.
+  - Additional languages can be activated explicitly by the Product Owner without triggering translation or publication.
+  - Translation status and Published Content are informational only and do not block activation.
+
+### Observation 005 — CLOSED
+
+Original Observation 005 wording (“Create/Delete only; no Edit”) was outdated. Direct select-to-edit + Save Draft already existed under a stable `contentId`.
+
+The real defect was legacy→typed migration: saving the first Romanian variant removed all legacy keys for that entity without promoting sibling locales, so English (and other) variants could be lost.
+
+Fix: every legacy META/VARIANT for the entity is promoted to typed keys and verified complete before legacy keys are removed. Draft Save still does not mutate published snapshots.
+
+Product Owner QA confirmed:
+
+- Romanian variants can be saved and published;
+- English sibling variants remain preserved;
+- public Romanian Glossary becomes available after successful Publish;
+- Knowledge Base Product QA for the same migration path passed.
+
+Post-QA UX (same observation closure):
+
+- Glossary Related Terms and Synonyms only offer entries already published in the active admin locale;
+- Publish relationship validation surfaces the backend `detail` (human-readable term labels) instead of a generic HTTP 500 string.
+
+Final validation for this closure: full backend suite, full frontend suite, and frontend production build — all passed.
+
+Remaining approved pre-release sequence:
+
+1. Dedicated junk/dead/duplicate code audit.
+2. Safe cleanup and complete validation.
+3. Alfred handover.
+4. Task 5.3B live production validation.

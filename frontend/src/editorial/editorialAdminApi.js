@@ -7,18 +7,32 @@ export async function adminHeaders(includeJsonContentType = true) {
 }
 
 export async function parseAdminError(response) {
+  const status = response.status;
   try {
     const payload = await response.json();
-    if (typeof payload.detail === "string") {
-      return payload.detail;
+    const detail = payload?.detail;
+    if (typeof detail === "string" && detail.trim()) {
+      return detail.trim();
     }
-    if (Array.isArray(payload.detail) && payload.detail[0]?.msg) {
-      return payload.detail[0].msg;
+    if (Array.isArray(detail) && detail.length > 0) {
+      const first = detail[0];
+      if (typeof first === "string" && first.trim()) {
+        return first.trim();
+      }
+      if (typeof first?.msg === "string" && first.msg.trim()) {
+        return first.msg.trim();
+      }
+    }
+    if (detail && typeof detail === "object" && typeof detail.msg === "string" && detail.msg.trim()) {
+      return detail.msg.trim();
+    }
+    if (typeof payload?.message === "string" && payload.message.trim()) {
+      return payload.message.trim();
     }
   } catch {
-    // ignore parse failures
+    // Fall through to status-based message when the body is not JSON.
   }
-  return `Request failed (${response.status})`;
+  return `Request failed (${status})`;
 }
 
 export class AdminApiError extends Error {
@@ -77,8 +91,11 @@ export function createEditorialAdminClient(basePath) {
   return { request, uploadImage };
 }
 
-export async function searchEditorialReferences(query, locale = "ro") {
+export async function searchEditorialReferences(query, locale = "ro", options = {}) {
   const params = new URLSearchParams({ q: query, locale });
+  if (options.publishedOnly) {
+    params.set("publishedOnly", "true");
+  }
   const response = await fetch(`${API_BASE_URL}/api/admin/references/search?${params.toString()}`, {
     headers: await adminHeaders(),
   });

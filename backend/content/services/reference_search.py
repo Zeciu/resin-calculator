@@ -8,17 +8,39 @@ from .editorial_identity import (
 )
 
 
+def _variant_is_published(variant: dict | None) -> bool:
+    return bool(variant) and variant.get("status") == "published"
+
+
 class ReferenceSearchService:
     def __init__(self, repository) -> None:
         self._repository = repository
 
-    def search_references(self, query: str = "", locale: str = DEFAULT_LOCALE) -> list[EditorialReferenceOption]:
-        parse_admin_locale(locale)
+    def search_references(
+        self,
+        query: str = "",
+        locale: str = DEFAULT_LOCALE,
+        *,
+        published_only: bool = False,
+    ) -> list[EditorialReferenceOption]:
+        """
+        Search Manual / Glossary / Knowledge Base targets for editorial cross-references.
+
+        When published_only is True, only include entities that already have a
+        published variant in the requested locale (aligned with Publish validation).
+        """
+        parsed_locale = parse_admin_locale(locale)
         normalized = query.strip().lower()
         options: list[EditorialReferenceOption] = []
 
         for content_id in self._repository.list_manual_chapter_ids():
-            title = chapter_identity_title(self._repository, content_id)
+            variant = self._repository.get_manual_variant(content_id, parsed_locale)
+            if published_only and not _variant_is_published(variant):
+                continue
+            if published_only and variant:
+                title = (variant.get("draftBody") or {}).get("title", "").strip()
+            else:
+                title = chapter_identity_title(self._repository, content_id)
             if normalized and normalized not in title.lower() and normalized not in content_id.lower():
                 continue
             options.append(
@@ -31,7 +53,13 @@ class ReferenceSearchService:
             )
 
         for content_id in self._repository.list_glossary_entry_ids():
-            term = entry_identity_term(self._repository, content_id)
+            variant = self._repository.get_glossary_variant(content_id, parsed_locale)
+            if published_only and not _variant_is_published(variant):
+                continue
+            if published_only and variant:
+                term = (variant.get("draftBody") or {}).get("term", "").strip()
+            else:
+                term = entry_identity_term(self._repository, content_id)
             if normalized and normalized not in term.lower() and normalized not in content_id.lower():
                 continue
             options.append(
@@ -44,7 +72,13 @@ class ReferenceSearchService:
             )
 
         for content_id in self._repository.list_kb_entry_ids():
-            title = entry_identity_title(self._repository, content_id)
+            variant = self._repository.get_kb_variant(content_id, parsed_locale)
+            if published_only and not _variant_is_published(variant):
+                continue
+            if published_only and variant:
+                title = (variant.get("draftBody") or {}).get("title", "").strip()
+            else:
+                title = entry_identity_title(self._repository, content_id)
             if normalized and normalized not in title.lower() and normalized not in content_id.lower():
                 continue
             options.append(

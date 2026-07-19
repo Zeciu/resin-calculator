@@ -10,6 +10,7 @@ import { searchEditorialReferences } from "./editorialAdminApi.js";
  *   excludeIds?: string[];
  *   allowTypes?: string[];
  *   seeAlsoMode?: boolean;
+ *   publishedOnly?: boolean;
  * }} props
  */
 export default function CrossReferencePicker({
@@ -20,6 +21,7 @@ export default function CrossReferencePicker({
   excludeIds = [],
   allowTypes,
   seeAlsoMode = false,
+  publishedOnly = false,
 }) {
   const listId = useId();
   const [query, setQuery] = useState("");
@@ -31,7 +33,7 @@ export default function CrossReferencePicker({
     const handle = window.setTimeout(async () => {
       setIsLoading(true);
       try {
-        const results = await searchEditorialReferences(query, locale);
+        const results = await searchEditorialReferences(query, locale, { publishedOnly });
         if (cancelled) {
           return;
         }
@@ -63,7 +65,7 @@ export default function CrossReferencePicker({
       cancelled = true;
       window.clearTimeout(handle);
     };
-  }, [query, locale, excludeIds, allowTypes, selected]);
+  }, [query, locale, excludeIds, allowTypes, selected, publishedOnly]);
 
   function addOption(option) {
     if (seeAlsoMode) {

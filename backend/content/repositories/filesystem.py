@@ -155,6 +155,104 @@ def _meta_exists(
     return record is not None
 
 
+def _typed_key_builders_for_content_type(
+    content_type: str,
+) -> tuple[Any, Any]:
+    if content_type == CONTENT_TYPE_MANUAL_CHAPTER:
+        return make_manual_meta_key, make_manual_variant_key
+    if content_type == CONTENT_TYPE_GLOSSARY_ENTRY:
+        return make_glossary_meta_key, make_glossary_variant_key
+    if content_type == CONTENT_TYPE_KB_ENTRY:
+        return make_kb_meta_key, make_kb_variant_key
+    raise ValueError(f"Unsupported content type for legacy migration: {content_type}")
+
+
+def _legacy_variant_keys_for_content(
+    records: dict[str, Any],
+    content_id: str,
+) -> list[tuple[str, str]]:
+    """Return (legacy_key, locale) pairs for CONTENT#{id}|VARIANT#{locale}."""
+    prefix = f"CONTENT#{content_id}|VARIANT#"
+    found: list[tuple[str, str]] = []
+    for key in records:
+        if not key.startswith(prefix):
+            continue
+        locale = key[len(prefix) :]
+        if locale:
+            found.append((key, locale))
+    return found
+
+
+def _content_owns_legacy_namespace(
+    records: dict[str, Any],
+    content_id: str,
+    content_type: str,
+) -> bool:
+    """True when legacy META for this id belongs to content_type, or typed META already does."""
+    make_typed_meta_key, _ = _typed_key_builders_for_content_type(content_type)
+    typed_meta = records.get(make_typed_meta_key(content_id))
+    if typed_meta is not None and typed_meta.get("contentType") == content_type:
+        return True
+    legacy_meta = records.get(make_legacy_meta_key(content_id))
+    return legacy_meta is not None and legacy_meta.get("contentType") == content_type
+
+
+def _promote_legacy_records_for_content(
+    records: dict[str, Any],
+    content_id: str,
+    content_type: str,
+) -> None:
+    """
+    Copy every legacy META/VARIANT for content_id into typed keys.
+
+    Does not remove legacy keys. Typed records already present win (not overwritten).
+    """
+    if not _content_owns_legacy_namespace(records, content_id, content_type):
+        return
+
+    make_typed_meta_key, make_typed_variant_key = _typed_key_builders_for_content_type(
+        content_type
+    )
+    typed_meta_key = make_typed_meta_key(content_id)
+    legacy_meta_key = make_legacy_meta_key(content_id)
+    legacy_meta = records.get(legacy_meta_key)
+    if (
+        legacy_meta is not None
+        and legacy_meta.get("contentType") == content_type
+        and typed_meta_key not in records
+    ):
+        records[typed_meta_key] = deepcopy(legacy_meta)
+
+    for legacy_key, locale in _legacy_variant_keys_for_content(records, content_id):
+        typed_key = make_typed_variant_key(content_id, locale)
+        if typed_key in records:
+            continue
+        records[typed_key] = deepcopy(records[legacy_key])
+
+
+def _legacy_records_fully_promoted(
+    records: dict[str, Any],
+    content_id: str,
+    content_type: str,
+) -> bool:
+    """True when every legacy variant/meta for this entity has a typed counterpart."""
+    if not _content_owns_legacy_namespace(records, content_id, content_type):
+        return True
+
+    make_typed_meta_key, make_typed_variant_key = _typed_key_builders_for_content_type(
+        content_type
+    )
+    if make_typed_meta_key(content_id) not in records:
+        legacy_meta = records.get(make_legacy_meta_key(content_id))
+        if legacy_meta is not None and legacy_meta.get("contentType") == content_type:
+            return False
+
+    for _legacy_key, locale in _legacy_variant_keys_for_content(records, content_id):
+        if make_typed_variant_key(content_id, locale) not in records:
+            return False
+    return True
+
+
 def _migrate_legacy_meta_key(
     records: dict[str, Any],
     content_id: str,
@@ -172,6 +270,23 @@ def _migrate_legacy_keys_for_content(
     content_id: str,
     content_type: str,
 ) -> None:
+    """
+    Promote all legacy locale variants/meta to typed keys, then remove legacy keys.
+
+    Never deletes legacy sibling variants until every legacy variant has been
+    copied to its typed key. Raises if promotion is incomplete so callers do
+    not persist a half-migrated entity.
+    """
+    if not _content_owns_legacy_namespace(records, content_id, content_type):
+        return
+
+    _promote_legacy_records_for_content(records, content_id, content_type)
+    if not _legacy_records_fully_promoted(records, content_id, content_type):
+        raise RuntimeError(
+            f"Refusing to remove legacy keys for {content_type} '{content_id}': "
+            "legacy records were not fully promoted to typed storage."
+        )
+
     _migrate_legacy_meta_key(records, content_id, content_type)
     prefix = f"CONTENT#{content_id}|"
     for key in list(records):

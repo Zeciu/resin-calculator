@@ -38,7 +38,7 @@ Generate All Translation
 
 Status
 
-OPEN
+IMPLEMENTED — awaiting Product QA validation of Update All Translations (Task B)
 
 Priority
 
@@ -71,6 +71,16 @@ Notes
 
 This was never part of Task 7.1.4 implementation.
 It is a future product capability discovered during Product QA.
+
+Task A (single-item translation update engine) is complete and must be reused by Task B Generate All. Do not duplicate translation logic in the frontend or in a separate bulk pipeline.
+
+Task B delivery (awaiting Product QA CLOSE):
+
+- Admin action: **Update All Translations** (one module + one target locale; never RO).
+- Preflight counts (no DeepL) then chunked sequential execution via `TranslationBulkService` → `TranslationUpdateService` only.
+- Default policy: generate missing; skip current; sync media-only (0 DeepL); skip text-outdated unless `includeTextOutdated`; always skip manual/untracked; drafts only.
+- Process-local duplicate-run lock; no queues/workers/new infrastructure.
+- Mark CLOSED only after Product Owner validates Scenarios 1–7.
 ## Observation 002
 
 Title
@@ -79,7 +89,7 @@ Incremental translation and media-only synchronization
 
 Status
 
-OPEN
+IMPLEMENTED — Task A + Task B media-only path proven in automated tests; CLOSED only after Product Owner confirms single-item and Update All media-only QA
 
 Priority
 
@@ -108,15 +118,36 @@ This creates unnecessary DeepL API usage in two common situations:
 1. A small text modification is made, such as adding or changing one sentence inside a much larger chapter or article.
 2. Only language-independent media or structure is changed, such as adding, removing, moving or replacing an image or embedded video.
 
-Current behaviour
+Current behaviour (before Task A)
 
-When Generate Translation is used again, the complete Romanian content item is sent to DeepL and the complete translated draft is regenerated.
+When Generate Translation was used again, the complete Romanian content item was sent to DeepL and the complete translated draft was regenerated.
 
 As a result:
 
-- adding one sentence may retranslate an entire chapter;
-- adding only an image or video may still require retranslating all textual content;
-- previously translated source characters are consumed again.
+- adding one sentence retranslated an entire chapter;
+- adding only an image or video still retranslated all textual content;
+- previously translated source characters were consumed again.
+
+### Task A delivery (Option B)
+
+Approved architecture uses two RO counters (`sourceRevision`, `sourceTextRevision`) and matching target stamps (`generatedFromSourceRevision`, `generatedFromSourceTextRevision`).
+
+Delivered:
+
+- text vs media-only classification via ordered `extract_translatable_items`;
+- media-only synchronization with zero DeepL calls;
+- full regeneration when text is outdated (existing overwrite confirmation);
+- skip when current; no silent overwrite of manual/untracked targets;
+- single-item Generate Translation route now runs the shared update engine.
+
+### Task B note
+
+Update All Translations reuses the same engine: media-only items use `sync_media_only` with zero DeepL in bulk as well.
+
+Explicitly deferred:
+
+- segment-level / paragraph-level incremental DeepL;
+- stable block UUID migration.
 
 Expected behaviour
 
@@ -124,30 +155,11 @@ The translation workflow should distinguish between textual changes and language
 
 A. Incremental text translation
 
-When only part of the Romanian canonical text has changed:
-
-- identify the new or modified translatable text segments;
-- send only those segments to DeepL;
-- insert or replace their translated equivalents in the correct positions;
-- preserve unchanged translated text;
-- preserve existing media and document structure.
+Deferred (segment-level DeepL). Text outdated items still use full-item regeneration under Option B.
 
 B. Media-only synchronization
 
-When the canonical change contains no new or modified translatable text:
-
-- synchronize images, embedded videos and their positions to the existing foreign-language variants;
-- do not call DeepL;
-- do not consume translation characters;
-- preserve the existing translated text.
-
-C. Mixed changes
-
-When both text and media have changed:
-
-- send only new or modified text segments to DeepL;
-- synchronize media and structural changes independently;
-- reconstruct the target variant while preserving unchanged translations.
+Implemented in Task A (zero DeepL when `sourceTextRevision` is unchanged).
 
 Expected administrative workflow
 
@@ -316,7 +328,7 @@ Editorial collections lack Edit functionality
 
 Status
 
-OPEN
+CLOSED
 
 Priority
 
@@ -324,7 +336,7 @@ HIGH
 
 Type
 
-Workflow Improvement
+Workflow Improvement / Data Integrity
 
 Module
 
@@ -360,6 +372,35 @@ Notes
 This observation was discovered during the migration of the canonical editorial language from English to Romanian.
 
 The same workflow limitation exists consistently across both editorial collections.
+
+### Implementation note (corrected defect)
+
+Product QA clarified that modern select-to-edit + Save Draft already updates locale term/title/body in place under a stable `contentId`. No Edit mode, Rename API, or `contentId` remapping was added.
+
+The real defect was lazy legacy→typed persistence migration: saving the first Romanian variant for a legacy English-origin Glossary/KB entity wrote typed META + typed RO, then removed all legacy keys for that `contentId` without first promoting sibling locales (for example EN). Sibling editorial variants could be deleted.
+
+Correction: shared filesystem migration now promotes every legacy META/VARIANT for the entity to typed keys, verifies promotion is complete, then removes legacy keys. Ordering indexes and cross-reference IDs are unchanged. Draft Save still does not mutate published snapshots.
+
+### Product Owner QA — CLOSED
+
+Confirmed:
+
+- Existing Glossary entries can be edited directly.
+- Stable `contentId` is preserved.
+- English sibling variants are preserved.
+- Legacy migration works correctly.
+- Romanian variants can be saved and published.
+- Public Romanian Glossary becomes available after successful Publish.
+
+Earlier Product QA failures against Glossary Publish were caused by relationship validation (Related Terms / Synonyms pointing at entries not yet published in the active locale), not by the Observation 005 migration fix.
+
+### Post-QA UX improvements (relationship validation)
+
+Implemented after Observation 005 Product Owner QA CLOSE:
+
+- Glossary Related Terms and Synonyms pickers only offer glossary entries already published in the active admin locale.
+- Publish relationship validation errors surface the backend `detail` message (including human-readable term labels) instead of a generic failure string.
+- Regression coverage for Save Draft success + Publish rejection, published-only reference search, and Publish success after the referenced entry is published.
 ## Observation 006
 
 Title
@@ -688,3 +729,54 @@ For each affected editorial module:
 Manual Product QA completed the checklist above across Manual & Tutorials, Glossary, and Knowledge Base.
 
 Observation 008 is CLOSED — Product QA PASS.
+## Session Closure — Product QA Translation Workflow
+
+Today's session completed the multilingual editorial Product QA correction cycle.
+
+Completed
+
+- Observation 004 (HTML entity encoding) — CLOSED — Product QA PASS.
+- Observation 008 (safe locale-specific deletion) — implemented and validated manually across:
+  - Manual & Tutorials;
+  - Glossary;
+  - Knowledge Base.
+- Repository committed and pushed:
+  - Commit: 161845e7286f3fc1c5de9c7189b230171ccb415a
+  - Branch: main
+- Repository state is clean (only unrelated approved untracked files remain).
+
+Important operational finding
+
+A local DeepL failure was diagnosed as an orphan backend process running without the required environment variables, not an application defect.
+
+Future local DeepL troubleshooting should first verify that only one backend instance is serving port 5000.
+
+Next session
+
+Product QA validate Task B (Update All Translations), then continue remaining observations.
+
+Priority order:
+
+1. Observation 001 — Generate All / Update All Translations (IMPLEMENTED; run Scenarios 1–7, then CLOSE).
+2. Observation 002 — Confirm media-only single-item + bulk QA, then CLOSE (segment DeepL remains deferred).
+3. Observation 007 — Public Language activation.
+4. Observation 005 — Editorial Collection Edit workflow (CLOSED; relationship-picker UX follow-up implemented after QA).
+
+Task B implementation is complete pending Product Owner QA CLOSE.
+## Approved Resolution Order
+
+The following execution order has been approved after Product Owner review and shall be preserved throughout the remainder of the editorial implementation. This order is intentional and may only be changed if a newly discovered blocking defect requires it.
+
+1. Complete Observation 006 (Generate All) Product QA and close any remaining implementation defects.
+2. Resolve the Admin → Publish → Public Application pipeline so that published editorial content is correctly served by the public application.
+3. Complete Observation 007 — Public Language Activation:
+   - define when a language becomes publicly visible;
+   - separate translation existence from public availability;
+   - validate the resulting editorial workflow.
+4. Observation 005 — Editorial Collection Edit workflow — CLOSED (legacy sibling migration + relationship-picker UX).
+5. Perform a dedicated junk/dead/duplicate code audit only after the editorial workflow is considered feature-complete.
+6. Apply only safe cleanup changes and execute the complete validation suite (backend, frontend, build and Product QA).
+7. Prepare the Alfred handover package.
+8. Execute Task 5.3B live production validation before commercial release.
+
+This checklist represents the approved pre-release completion sequence for the editorial system and shall be used as the reference order until release readiness is achieved.

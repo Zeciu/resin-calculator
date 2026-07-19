@@ -13,6 +13,9 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("AUTH_MODE", "mock")
     admin_glossary.reset_repository_cache()
     public_content.reset_repository_cache()
+    from content.routers import admin_editorial
+
+    admin_editorial.reset_repository_cache()
     from app import app
 
     return TestClient(app)
@@ -412,3 +415,162 @@ class TestGlossaryUnpublishAndDelete:
         assert keep_id in public_ids
         terms = [item["term"] for item in public_entries]
         assert terms == sorted(terms, key=str.casefold)
+
+
+class TestGlossaryRelationshipPublishQa:
+    """Observation 005 follow-up: relationship validation UX + locale-aware picker feed."""
+
+    def test_save_draft_with_unpublished_related_then_publish_surfaces_term_label(self, client):
+        related_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Epoxy resin"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{related_id}/variants/ro",
+            json={"body": sample_body("Epoxy resin", "Two-part polymer system.")},
+            headers=admin_headers(),
+        )
+
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Indepartarea bulelor"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        save_response = client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+            json={
+                "body": {
+                    **sample_body("Indepartarea bulelor", "Cum scoatem bulele."),
+                    "relatedTermIds": [related_id],
+                }
+            },
+            headers=admin_headers(),
+        )
+        assert save_response.status_code == 200
+
+        publish_response = client.post(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro/publish",
+            headers=admin_headers(),
+        )
+        assert publish_response.status_code == 400
+        assert publish_response.json()["detail"] == "Published related term required: Epoxy resin"
+
+    def test_publish_succeeds_after_related_term_is_published(self, client):
+        related_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Epoxy resin"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{related_id}/variants/ro",
+            json={"body": sample_body("Epoxy resin", "Two-part polymer system.")},
+            headers=admin_headers(),
+        )
+
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Indepartarea bulelor"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+            json={
+                "body": {
+                    **sample_body("Indepartarea bulelor", "Cum scoatem bulele."),
+                    "relatedTermIds": [related_id],
+                }
+            },
+            headers=admin_headers(),
+        )
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{entry_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 400
+        )
+
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{related_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        publish_response = client.post(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro/publish",
+            headers=admin_headers(),
+        )
+        assert publish_response.status_code == 200
+        admin_glossary.reset_repository_cache()
+        snapshot = FilesystemContentRepository().read_glossary_snapshot("ro")
+        assert snapshot is not None
+        assert any(item["id"] == entry_id for item in snapshot.get("entries", []))
+
+    def test_published_only_reference_search_excludes_unpublished_locale_variants(self, client):
+        from content.routers import admin_editorial
+
+        admin_editorial.reset_repository_cache()
+
+        draft_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Draft only term"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{draft_id}/variants/ro",
+            json={"body": sample_body("Draft only term", "Not published yet.")},
+            headers=admin_headers(),
+        )
+
+        published_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Published term"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{published_id}/variants/ro",
+            json={"body": sample_body("Published term", "Ready for references.")},
+            headers=admin_headers(),
+        )
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{published_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+
+        unfiltered = client.get(
+            "/api/admin/references/search",
+            params={"q": "term", "locale": "ro"},
+            headers=admin_headers(),
+        )
+        assert unfiltered.status_code == 200
+        unfiltered_ids = {
+            item["contentId"]
+            for item in unfiltered.json()
+            if item["contentType"] == "glossary_entry"
+        }
+        assert draft_id in unfiltered_ids
+        assert published_id in unfiltered_ids
+
+        filtered = client.get(
+            "/api/admin/references/search",
+            params={"q": "term", "locale": "ro", "publishedOnly": "true"},
+            headers=admin_headers(),
+        )
+        assert filtered.status_code == 200
+        filtered_ids = {
+            item["contentId"]
+            for item in filtered.json()
+            if item["contentType"] == "glossary_entry"
+        }
+        assert draft_id not in filtered_ids
+        assert published_id in filtered_ids
+        published_option = next(
+            item for item in filtered.json() if item["contentId"] == published_id
+        )
+        assert published_option["label"] == "Published term"
+

@@ -256,6 +256,28 @@ function createInMemoryGlossaryApi() {
             json: async () => ({ detail: "Glossary definition cannot be empty." }),
           });
         }
+        for (const relatedId of variant.body.relatedTermIds ?? []) {
+          const related = variants.get(variantKey(relatedId, locale));
+          if (!related || related.status !== "published") {
+            const label = entryListTerm(relatedId) || relatedId;
+            return Promise.resolve({
+              ok: false,
+              status: 400,
+              json: async () => ({ detail: `Published related term required: ${label}` }),
+            });
+          }
+        }
+        for (const synonymId of variant.body.synonymTermIds ?? []) {
+          const synonym = variants.get(variantKey(synonymId, locale));
+          if (!synonym || synonym.status !== "published") {
+            const label = entryListTerm(synonymId) || synonymId;
+            return Promise.resolve({
+              ok: false,
+              status: 400,
+              json: async () => ({ detail: `Published synonym required: ${label}` }),
+            });
+          }
+        }
         const published = {
           ...variant,
           status: "published",
@@ -494,6 +516,45 @@ describe("Glossary management workspace (Task 60)", () => {
       expect.stringContaining("Romanian and every translation will be permanently deleted"),
     );
     expect(screen.getByRole("button", { name: "Pot life" })).toBeInTheDocument();
+  });
+
+  it("surfaces backend relationship validation when Publish is rejected", async () => {
+    memoryApi.seedEntry({
+      contentId: "epoxy-resin",
+      term: "Epoxy resin",
+      body: {
+        ...emptyVariantBody("Epoxy resin"),
+        definitionBlocks: [{ type: "paragraph", text: "Two-part polymer." }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedEntry({
+      contentId: "bubble-removal",
+      term: "Indepartarea bulelor",
+      body: {
+        ...emptyVariantBody("Indepartarea bulelor"),
+        definitionBlocks: [{ type: "paragraph", text: "Cum scoatem bulele." }],
+        relatedTermIds: ["epoxy-resin"],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Indepartarea bulelor" })).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole("button", { name: "Indepartarea bulelor" }));
+
+    await user.click(screen.getByRole("button", { name: "Publish" }));
+    await waitFor(() => {
+      expect(screen.getByText("Published related term required: Epoxy resin")).toBeInTheDocument();
+    });
+    expect(screen.queryByText(/Request failed \(500\)/i)).not.toBeInTheDocument();
   });
 });
 

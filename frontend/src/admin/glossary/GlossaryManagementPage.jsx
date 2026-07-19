@@ -118,6 +118,11 @@ export default function GlossaryManagementPage() {
         </div>
       ) : workspace.selectedItem ? (
         <>
+          {workspace.locale === "ro" && workspace.savedState.exists === false ? (
+            <p className="manual-admin__hint" role="status">
+              No Romanian content yet. Enter the Romanian content and save the draft.
+            </p>
+          ) : null}
           <div className="manual-admin__title-row">
             <div className="manual-admin__field manual-admin__field--title">
               <input
@@ -176,6 +181,7 @@ export default function GlossaryManagementPage() {
               locale={workspace.locale}
               excludeIds={[workspace.selectedItemId]}
               allowTypes={["glossary_entry"]}
+              publishedOnly
             />
             <CrossReferencePicker
               label="Synonyms"
@@ -189,6 +195,7 @@ export default function GlossaryManagementPage() {
               locale={workspace.locale}
               excludeIds={[workspace.selectedItemId]}
               allowTypes={["glossary_entry"]}
+              publishedOnly
             />
             <CrossReferencePicker
               label="See also"

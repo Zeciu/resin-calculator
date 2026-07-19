@@ -1,5 +1,6 @@
 import json
 import os
+from copy import deepcopy
 from pathlib import Path
 
 import pytest
@@ -459,13 +460,433 @@ def test_mixed_old_and_new_store_resolves_typed_precedence_and_cross_module_ids(
     assert wrong_type is None
 
 
-def test_legacy_shared_key_content_type_mismatch_is_not_returned_for_wrong_module(tmp_path: Path) -> None:
-    _write_store(tmp_path, _legacy_manual_store_records("calibration"))
+def test_legacy_glossary_en_only_preserves_en_when_saving_ro(tmp_path: Path) -> None:
+    """Observation 005: first RO save must promote legacy EN, not delete it."""
+    records = _legacy_glossary_store_records("bubble-removal")
+    # Use a realistic English term for this content id.
+    records[make_legacy_variant_key("bubble-removal", "en")]["draftBody"]["term"] = "Bubble removal"
+    en_body = deepcopy(records[make_legacy_variant_key("bubble-removal", "en")]["draftBody"])
+    en_variant_before = deepcopy(records[make_legacy_variant_key("bubble-removal", "en")])
+    _write_store(tmp_path, records)
     repository = FilesystemContentRepository(tmp_path)
 
-    assert repository.get_manual_variant("calibration", "en") is not None
-    assert repository.get_glossary_variant("calibration", "en") is None
-    assert repository.get_kb_variant("calibration", "en") is None
+    assert repository.get_glossary_variant("bubble-removal", "ro") is None
+    assert repository.list_glossary_entry_ids() == ["bubble-removal"]
+
+    repository.save_glossary_variant(
+        "bubble-removal",
+        "ro",
+        {
+            "term": "Indepartarea bulelor",
+            "definitionBlocks": [],
+            "media": [],
+            "relatedTermIds": list(en_body.get("relatedTermIds", [])),
+            "synonymTermIds": list(en_body.get("synonymTermIds", [])),
+            "seeAlso": list(en_body.get("seeAlso", [])),
+        },
+    )
+
+    assert repository.list_glossary_entry_ids() == ["bubble-removal"]
+    ro = repository.get_glossary_variant("bubble-removal", "ro")
+    en = repository.get_glossary_variant("bubble-removal", "en")
+    assert ro is not None
+    assert ro["draftBody"]["term"] == "Indepartarea bulelor"
+    assert en is not None
+    assert en["draftBody"] == en_body
+    assert en["status"] == en_variant_before["status"]
+    assert en["publishedAt"] == en_variant_before["publishedAt"]
+    assert en["snapshotKey"] == en_variant_before["snapshotKey"]
+
+    stored = json.loads(repository._store_path.read_text(encoding="utf-8"))["records"]
+    assert make_glossary_meta_key("bubble-removal") in stored
+    assert make_glossary_variant_key("bubble-removal", "ro") in stored
+    assert make_glossary_variant_key("bubble-removal", "en") in stored
+    assert make_legacy_meta_key("bubble-removal") not in stored
+    assert make_legacy_variant_key("bubble-removal", "en") not in stored
+    assert "INDEX#glossary|ORDER#000100" in stored
+
+
+def test_legacy_kb_en_only_preserves_en_when_saving_ro(tmp_path: Path) -> None:
+    records = _legacy_kb_store_records("bubbles-after-curing")
+    en_before = deepcopy(records[make_legacy_variant_key("bubbles-after-curing", "en")])
+    meta_before = deepcopy(records[make_legacy_meta_key("bubbles-after-curing")])
+    _write_store(tmp_path, records)
+    repository = FilesystemContentRepository(tmp_path)
+
+    assert repository.get_kb_variant("bubbles-after-curing", "ro") is None
+
+    repository.save_kb_variant(
+        "bubbles-after-curing",
+        "ro",
+        {
+            "title": "Bule dupa intarire",
+            "problemSummary": "",
+            "symptoms": [],
+            "possibleCauses": [],
+            "solution": [],
+            "prevention": [],
+            "tips": [],
+            "warnings": [],
+            "searchKeywords": [],
+            "estimatedRepairTime": None,
+            "requiredTools": [],
+            "requiredMaterials": [],
+            "media": [],
+            "relatedKbEntryIds": list(en_before["draftBody"].get("relatedKbEntryIds", [])),
+            "relatedGlossaryEntryIds": list(
+                en_before["draftBody"].get("relatedGlossaryEntryIds", [])
+            ),
+            "relatedManualChapterIds": list(
+                en_before["draftBody"].get("relatedManualChapterIds", [])
+            ),
+        },
+        meta_before["category"],
+        meta_before["difficulty"],
+    )
+
+    en = repository.get_kb_variant("bubbles-after-curing", "en")
+    ro = repository.get_kb_variant("bubbles-after-curing", "ro")
+    meta = repository.get_kb_entry_meta("bubbles-after-curing")
+    assert ro is not None
+    assert ro["draftBody"]["title"] == "Bule dupa intarire"
+    assert en is not None
+    assert en["draftBody"] == en_before["draftBody"]
+    assert en["status"] == en_before["status"]
+    assert en["publishedAt"] == en_before["publishedAt"]
+    assert en["snapshotKey"] == en_before["snapshotKey"]
+    assert meta["category"] == meta_before["category"]
+    assert meta["difficulty"] == meta_before["difficulty"]
+    assert meta["sortOrder"] == meta_before["sortOrder"]
+
+    stored = json.loads(repository._store_path.read_text(encoding="utf-8"))["records"]
+    assert make_kb_variant_key("bubbles-after-curing", "en") in stored
+    assert make_kb_variant_key("bubbles-after-curing", "ro") in stored
+    assert make_legacy_variant_key("bubbles-after-curing", "en") not in stored
+
+
+def test_legacy_multi_locale_promotes_all_siblings_on_single_save(tmp_path: Path) -> None:
+    now = "2026-01-01T00:00:00+00:00"
+    content_id = "multi-legacy"
+    records = {
+        make_legacy_meta_key(content_id): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "META",
+            "contentId": content_id,
+            "contentType": CONTENT_TYPE_GLOSSARY_ENTRY,
+            "sortOrder": 200,
+            "createdAt": now,
+            "updatedAt": now,
+        },
+        make_legacy_variant_key(content_id, "en"): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "VARIANT#en",
+            "contentId": content_id,
+            "locale": "en",
+            "status": "published",
+            "draftBody": {
+                "term": "English term",
+                "definitionBlocks": [{"type": "paragraph", "text": "EN body"}],
+                "media": [],
+                "relatedTermIds": ["other"],
+                "synonymTermIds": [],
+                "seeAlso": [],
+            },
+            "updatedAt": now,
+            "publishedAt": now,
+            "snapshotKey": "published/glossary/en/entries.json",
+            "generatedFromSourceRevision": 1,
+            "generatedFromSourceTextRevision": 1,
+            "translationProvider": "deepl",
+            "generatedAt": now,
+        },
+        make_legacy_variant_key(content_id, "fr"): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "VARIANT#fr",
+            "contentId": content_id,
+            "locale": "fr",
+            "status": "draft",
+            "draftBody": {
+                "term": "Terme francais",
+                "definitionBlocks": [{"type": "paragraph", "text": "FR body"}],
+                "media": [],
+                "relatedTermIds": [],
+                "synonymTermIds": [],
+                "seeAlso": [],
+            },
+            "updatedAt": now,
+            "publishedAt": None,
+            "snapshotKey": None,
+            "generatedFromSourceRevision": None,
+            "generatedFromSourceTextRevision": None,
+            "translationProvider": None,
+            "generatedAt": None,
+        },
+        "INDEX#glossary|ORDER#000200": {
+            "pk": "INDEX#glossary",
+            "sk": "ORDER#000200",
+            "contentId": content_id,
+        },
+    }
+    _write_store(tmp_path, records)
+    repository = FilesystemContentRepository(tmp_path)
+
+    repository.save_glossary_variant(
+        content_id,
+        "ro",
+        {
+            "term": "Termen romanesc",
+            "definitionBlocks": [],
+            "media": [],
+            "relatedTermIds": ["other"],
+            "synonymTermIds": [],
+            "seeAlso": [],
+        },
+    )
+
+    en = repository.get_glossary_variant(content_id, "en")
+    fr = repository.get_glossary_variant(content_id, "fr")
+    ro = repository.get_glossary_variant(content_id, "ro")
+    assert ro["draftBody"]["term"] == "Termen romanesc"
+    assert en["draftBody"]["term"] == "English term"
+    assert en["generatedFromSourceRevision"] == 1
+    assert en["translationProvider"] == "deepl"
+    assert fr["draftBody"]["term"] == "Terme francais"
+    assert fr["status"] == "draft"
+
+    stored = json.loads(repository._store_path.read_text(encoding="utf-8"))["records"]
+    assert make_glossary_variant_key(content_id, "en") in stored
+    assert make_glossary_variant_key(content_id, "fr") in stored
+    assert make_glossary_variant_key(content_id, "ro") in stored
+    assert make_legacy_variant_key(content_id, "en") not in stored
+    assert make_legacy_variant_key(content_id, "fr") not in stored
+    assert "INDEX#glossary|ORDER#000200" in stored
+
+
+def test_legacy_migration_refuses_to_drop_unpromoted_siblings(tmp_path: Path) -> None:
+    from content.repositories import filesystem as filesystem_module
+
+    _write_store(tmp_path, _legacy_glossary_store_records("bubble-removal"))
+    records = json.loads(
+        (tmp_path / "editorial" / "content-store.json").read_text(encoding="utf-8")
+    )["records"]
+
+    # Pretend typed META already exists (as during save) but promotion is incomplete.
+    records[make_glossary_meta_key("bubble-removal")] = deepcopy(
+        records[make_legacy_meta_key("bubble-removal")]
+    )
+
+    original_promote = filesystem_module._promote_legacy_records_for_content
+
+    def broken_promote(records_arg, content_id, content_type):
+        # Intentionally skip promoting sibling variants.
+        return None
+
+    filesystem_module._promote_legacy_records_for_content = broken_promote
+    try:
+        with pytest.raises(RuntimeError, match="not fully promoted"):
+            filesystem_module._migrate_legacy_keys_for_content(
+                records,
+                "bubble-removal",
+                CONTENT_TYPE_GLOSSARY_ENTRY,
+            )
+    finally:
+        filesystem_module._promote_legacy_records_for_content = original_promote
+
+    assert make_legacy_variant_key("bubble-removal", "en") in records
+    assert make_legacy_meta_key("bubble-removal") in records
+
+
+def test_modern_typed_glossary_rename_preserves_siblings_and_id(tmp_path: Path) -> None:
+    now = "2026-01-01T00:00:00+00:00"
+    content_id = "modern-term"
+    records = {
+        make_glossary_meta_key(content_id): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "META",
+            "contentId": content_id,
+            "contentType": CONTENT_TYPE_GLOSSARY_ENTRY,
+            "sortOrder": 50,
+            "createdAt": now,
+            "updatedAt": now,
+        },
+        make_glossary_variant_key(content_id, "ro"): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "VARIANT#ro",
+            "contentId": content_id,
+            "locale": "ro",
+            "status": "draft",
+            "draftBody": {
+                "term": "Termen vechi",
+                "definitionBlocks": [{"type": "paragraph", "text": "Definitie"}],
+                "media": [],
+                "relatedTermIds": [],
+                "synonymTermIds": [],
+                "seeAlso": [],
+            },
+            "updatedAt": now,
+            "publishedAt": None,
+            "snapshotKey": None,
+            "sourceRevision": 1,
+            "sourceTextRevision": 1,
+        },
+        make_glossary_variant_key(content_id, "en"): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "VARIANT#en",
+            "contentId": content_id,
+            "locale": "en",
+            "status": "draft",
+            "draftBody": {
+                "term": "Old term",
+                "definitionBlocks": [{"type": "paragraph", "text": "Definition"}],
+                "media": [],
+                "relatedTermIds": [],
+                "synonymTermIds": [],
+                "seeAlso": [],
+            },
+            "updatedAt": now,
+            "publishedAt": None,
+            "snapshotKey": None,
+            "generatedFromSourceRevision": 1,
+            "generatedFromSourceTextRevision": 1,
+            "translationProvider": "deepl",
+            "generatedAt": now,
+        },
+        make_glossary_variant_key(content_id, "fr"): {
+            "pk": f"CONTENT#{content_id}",
+            "sk": "VARIANT#fr",
+            "contentId": content_id,
+            "locale": "fr",
+            "status": "draft",
+            "draftBody": {
+                "term": "Ancien terme",
+                "definitionBlocks": [{"type": "paragraph", "text": "Definition FR"}],
+                "media": [],
+                "relatedTermIds": [],
+                "synonymTermIds": [],
+                "seeAlso": [],
+            },
+            "updatedAt": now,
+            "publishedAt": None,
+            "snapshotKey": None,
+            "generatedFromSourceRevision": 1,
+            "generatedFromSourceTextRevision": 1,
+            "translationProvider": "deepl",
+            "generatedAt": now,
+        },
+        "INDEX#glossary|ORDER#000050": {
+            "pk": "INDEX#glossary",
+            "sk": "ORDER#000050",
+            "contentId": content_id,
+        },
+    }
+    _write_store(tmp_path, records)
+    repository = FilesystemContentRepository(tmp_path)
+
+    saved = repository.save_glossary_variant(
+        content_id,
+        "ro",
+        {
+            "term": "Termen nou",
+            "definitionBlocks": [{"type": "paragraph", "text": "Definitie"}],
+            "media": [],
+            "relatedTermIds": [],
+            "synonymTermIds": [],
+            "seeAlso": [],
+        },
+    )
+
+    assert saved["contentId"] == content_id
+    assert saved.get("sourceRevision") == 2
+    assert repository.get_glossary_variant(content_id, "en")["draftBody"]["term"] == "Old term"
+    assert repository.get_glossary_variant(content_id, "fr")["draftBody"]["term"] == "Ancien terme"
+    assert repository.list_glossary_entry_ids() == [content_id]
+
+
+def test_legacy_glossary_ro_draft_save_does_not_mutate_published_snapshot(
+    tmp_path: Path,
+) -> None:
+    records = _legacy_glossary_store_records("bubble-removal")
+    records[make_legacy_variant_key("bubble-removal", "en")]["draftBody"]["term"] = "Bubble removal"
+    _write_store(tmp_path, records)
+    repository = FilesystemContentRepository(tmp_path)
+    snapshot = {
+        "locale": "en",
+        "entries": [
+            {
+                "id": "bubble-removal",
+                "term": "Bubble removal",
+                "definition": ["Legacy public text"],
+                "media": [],
+                "relatedTerms": [],
+                "synonyms": [],
+                "seeAlso": [],
+            }
+        ],
+    }
+    repository.write_glossary_snapshot("en", snapshot)
+    before = (tmp_path / "published" / "glossary" / "en" / "entries.json").read_text(
+        encoding="utf-8"
+    )
+
+    repository.save_glossary_variant(
+        "bubble-removal",
+        "ro",
+        {
+            "term": "Indepartarea bulelor",
+            "definitionBlocks": [{"type": "paragraph", "text": "Text RO"}],
+            "media": [],
+            "relatedTermIds": [],
+            "synonymTermIds": [],
+            "seeAlso": [],
+        },
+    )
+
+    after = (tmp_path / "published" / "glossary" / "en" / "entries.json").read_text(
+        encoding="utf-8"
+    )
+    assert after == before
+    assert repository.get_glossary_variant("bubble-removal", "en") is not None
+
+    repository.publish_glossary_variant("bubble-removal", "ro")
+    assert repository.get_glossary_variant("bubble-removal", "en")["draftBody"]["term"] == (
+        "Bubble removal"
+    )
+    en_snapshot_after_ro_publish = (
+        tmp_path / "published" / "glossary" / "en" / "entries.json"
+    ).read_text(encoding="utf-8")
+    assert en_snapshot_after_ro_publish == before
+
+    repository.publish_glossary_variant("bubble-removal", "en")
+    en_public = repository.read_glossary_snapshot("en")
+    assert any(entry.get("id") == "bubble-removal" for entry in en_public.get("entries", []))
+
+
+def test_observation_008_delete_semantics_unchanged_after_migration(tmp_path: Path) -> None:
+    records = _legacy_glossary_store_records("bubble-removal")
+    records[make_legacy_variant_key("bubble-removal", "en")]["draftBody"]["term"] = "Bubble removal"
+    _write_store(tmp_path, records)
+    repository = FilesystemContentRepository(tmp_path)
+    repository.save_glossary_variant(
+        "bubble-removal",
+        "ro",
+        {
+            "term": "Indepartarea bulelor",
+            "definitionBlocks": [],
+            "media": [],
+            "relatedTermIds": [],
+            "synonymTermIds": [],
+            "seeAlso": [],
+        },
+    )
+
+    repository.delete_glossary_entry_variant("bubble-removal", "en")
+    assert repository.get_glossary_variant("bubble-removal", "en") is None
+    assert repository.get_glossary_variant("bubble-removal", "ro") is not None
+    assert "bubble-removal" in repository.list_glossary_entry_ids()
+
+    repository.delete_glossary_entry("bubble-removal")
+    assert "bubble-removal" not in repository.list_glossary_entry_ids()
+    assert repository.get_glossary_variant("bubble-removal", "ro") is None
 
 
 def test_cleanup_refuses_authoritative_editorial_records(

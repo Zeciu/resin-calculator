@@ -374,7 +374,11 @@ export function useEditorialWorkspace(config) {
       await loadVariant(selectedItemId, locale);
       await refreshItems();
     } catch (error) {
-      setErrorMessage(error.message || config.messages?.publish || "Failed to publish.");
+      const detail =
+        error instanceof AdminApiError && error.message.trim()
+          ? error.message
+          : error.message || config.messages?.publish || "Failed to publish.";
+      setErrorMessage(detail);
     } finally {
       setIsSaving(false);
     }
@@ -427,6 +431,7 @@ export function useEditorialWorkspace(config) {
       await runGenerateTranslation(false);
     });
   }, [requestNavigation, runGenerateTranslation]);
+
 
   const sidebarItems = useMemo(
     () => items.map((item) => ({ contentId: item.contentId, label: config.getItemLabel(item) })),
