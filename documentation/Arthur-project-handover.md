@@ -5912,9 +5912,19 @@ Post-QA UX (same observation closure):
 
 Final validation for this closure: full backend suite, full frontend suite, and frontend production build — all passed.
 
+### Step 6 — Editorial cleanup — CLOSED
+
+Dedicated editorial junk cleanup completed after the Step 5 audit.
+
+- Only evidence-backed dead code was removed (unused helpers/exports, superseded unused admin CSS).
+- Snapshot rebuild unused-parameter cleanup remains with Keep All WIP (always-write snapshot ownership) so that WIP product behavior is not landed under this cleanup commit.
+- No architectural refactoring.
+- No intentional behavior changes on committed main.
+- Validation: full backend pytest, frontend vitest (ownership flake re-ran clean; editorial suites green), frontend production build — passed.
+
+`frontend/src/admin/publicLanguagesApi.js` and other Keep All WIP were left untouched for feature landing.
+
 Remaining approved pre-release sequence:
 
-1. Dedicated junk/dead/duplicate code audit.
-2. Safe cleanup and complete validation.
-3. Alfred handover.
-4. Task 5.3B live production validation.
+1. Alfred handover.
+2. Task 5.3B live production validation.

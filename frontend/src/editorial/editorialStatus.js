@@ -78,10 +78,3 @@ export function publishButtonLabel(editorialVisibility) {
   }
   return "Publish";
 }
-
-/**
- * @param {object | null | undefined} variant
- */
-export function editorialVisibilityFromVariant(variant) {
-  return variant?.editorialVisibility ?? EDITORIAL_VISIBILITY.EMPTY;
-}

@@ -264,7 +264,3 @@ def reconstruct_draft_body(
     for item, translated in translations:
         _set_path(result, item.path, translated)
     return result
-
-
-def draft_has_translatable_content(module: EditorialModule, draft_body: dict[str, Any]) -> bool:
-    return bool(extract_translatable_items(module, draft_body))

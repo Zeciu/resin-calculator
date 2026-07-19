@@ -1,5 +1,3 @@
-import re
-
 from ..repositories.filesystem import DEFAULT_LOCALE, EDITORIAL_LOCALES, parse_iso
 from ..schemas.common import ContentStatus
 from ..schemas.editorial import EditorialVisibility
@@ -47,8 +45,6 @@ def variant_has_publishable_body(body: GlossaryVariantBody) -> bool:
     return False
 
 
-def _strip_html(text: str) -> str:
-    return re.sub(r"<[^>]+>", "", text or "").strip()
 
 
 class GlossaryEntryService:
