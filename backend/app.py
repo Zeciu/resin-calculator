@@ -14,6 +14,8 @@ from content.routers.admin_editorial import router as admin_editorial_router
 from content.routers.admin_glossary import router as admin_glossary_router
 from content.routers.admin_knowledge_base import router as admin_knowledge_base_router
 from content.routers.admin_manual import router as admin_manual_router
+from content.routers.admin_translation_bulk import router as admin_translation_bulk_router
+from content.routers.admin_public_languages import router as admin_public_languages_router
 from content.repositories.filesystem import (
     default_content_root,
     initialize_production_content_root,
@@ -23,6 +25,7 @@ from content.routers.billing import router as billing_router
 from content.routers.me import router as me_router
 from content.routers.preferences import router as preferences_router
 from content.routers.public_content import router as public_content_router
+from content.routers.public_languages import router as public_languages_router
 from auth.dependencies import auth_mode
 from safety.input_limits import (
     CALCULATOR_MAX_BODY_BYTES,
@@ -43,7 +46,10 @@ app.include_router(admin_manual_router, prefix="/api")
 app.include_router(admin_editorial_router, prefix="/api")
 app.include_router(admin_glossary_router, prefix="/api")
 app.include_router(admin_knowledge_base_router, prefix="/api")
+app.include_router(admin_translation_bulk_router, prefix="/api")
+app.include_router(admin_public_languages_router, prefix="/api")
 app.include_router(public_content_router, prefix="/api")
+app.include_router(public_languages_router, prefix="/api")
 app.include_router(preferences_router, prefix="/api")
 app.include_router(me_router, prefix="/api")
 app.include_router(billing_router, prefix="/api")

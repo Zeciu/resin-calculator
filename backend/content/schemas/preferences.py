@@ -6,6 +6,13 @@ from pydantic import BaseModel, ConfigDict, Field
 class InterfaceLanguage(str, Enum):
     EN = "en"
     RO = "ro"
+    FR = "fr"
+    DE = "de"
+    ES = "es"
+    PT = "pt"
+    PL = "pl"
+    CS = "cs"
+    IT = "it"
 
 
 class LengthUnit(str, Enum):

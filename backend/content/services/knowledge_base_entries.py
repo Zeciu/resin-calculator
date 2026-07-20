@@ -13,6 +13,7 @@ from ..schemas.knowledge_base import (
 from .editorial_identity import entry_identity_title
 from .editorial_status import compute_editorial_visibility
 from .reference_search import ReferenceSearchService
+from .translation_update import classification_fields_for_api
 from ..translation_metadata import translation_metadata_for_api
 
 
@@ -133,6 +134,17 @@ class KnowledgeBaseEntryService:
     ) -> KnowledgeBaseVariantResponse:
         parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)
+        translation_fields.update(
+            classification_fields_for_api(
+                locale=parsed_locale,
+                ro_variant=(
+                    None
+                    if parsed_locale == "ro"
+                    else self._repository.get_kb_variant(content_id, "ro")
+                ),
+                target_variant=None if parsed_locale == "ro" else variant,
+            )
+        )
         if not variant:
             return KnowledgeBaseVariantResponse(
                 contentId=content_id,

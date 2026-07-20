@@ -1,8 +1,29 @@
-export const INTERFACE_LANGUAGES = ["en", "ro"];
+/** Configured public language codes (activation is separate). */
+export const CONFIGURED_PUBLIC_LANGUAGES = [
+  "en",
+  "ro",
+  "fr",
+  "de",
+  "es",
+  "pt",
+  "pl",
+  "cs",
+  "it",
+];
+
+/** @deprecated Use CONFIGURED_PUBLIC_LANGUAGES; kept for preference normalization. */
+export const INTERFACE_LANGUAGES = CONFIGURED_PUBLIC_LANGUAGES;
 
 export const INTERFACE_LANGUAGE_LABELS = {
   en: "English",
   ro: "Română",
+  fr: "Français",
+  de: "Deutsch",
+  es: "Español",
+  pt: "Português",
+  pl: "Polski",
+  cs: "Čeština",
+  it: "Italiano",
 };
 
 export const LENGTH_UNITS = ["mm", "cm", "m", "in", "ft"];

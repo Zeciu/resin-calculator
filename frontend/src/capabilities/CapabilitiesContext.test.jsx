@@ -5,6 +5,7 @@ import { CapabilitiesProvider, useCapability, useCapabilityLimit } from "./Capab
 import { CAPABILITY_KEYS } from "./capabilityKeys.js";
 import { GUEST_CAPABILITIES_RESPONSE } from "./capabilityDefaults.js";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
+import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
 import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
@@ -37,9 +38,11 @@ function renderCapabilitiesTree() {
   return render(
     <AuthProviderForTests>
       <CapabilitiesProvider>
-        <PreferencesProvider>
-          <CapabilityProbe />
-        </PreferencesProvider>
+        <PublicLanguagesProvider>
+          <PreferencesProvider>
+            <CapabilityProbe />
+          </PreferencesProvider>
+        </PublicLanguagesProvider>
       </CapabilitiesProvider>
     </AuthProviderForTests>,
   );
@@ -48,6 +51,16 @@ function renderCapabilitiesTree() {
 function mockCapabilitiesApiFetch(response = GUEST_CAPABILITIES_RESPONSE) {
   return vi.spyOn(global, "fetch").mockImplementation((url) => {
     const path = String(url);
+    if (path.endsWith("/api/content/public-languages")) {
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          defaultPublicLocale: "en",
+          activePublicLocales: ["en", "ro"],
+        }),
+      });
+    }
     if (path.endsWith("/api/me/capabilities")) {
       return Promise.resolve({
         ok: true,
@@ -136,9 +149,11 @@ describe("CapabilitiesProvider", () => {
     render(
       <AuthProviderForTests>
         <CapabilitiesProvider>
-          <PreferencesProvider>
-            <CombinedProbe />
-          </PreferencesProvider>
+          <PublicLanguagesProvider>
+            <PreferencesProvider>
+              <CombinedProbe />
+            </PreferencesProvider>
+          </PublicLanguagesProvider>
         </CapabilitiesProvider>
       </AuthProviderForTests>,
     );

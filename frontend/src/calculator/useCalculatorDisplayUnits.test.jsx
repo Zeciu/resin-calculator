@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { I18nProvider } from "../i18n/I18nContext.jsx";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
+import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
 import { seedDevicePreferences } from "../preferences/testHelpers.js";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
 
@@ -20,11 +21,13 @@ function Probe() {
 
 function renderProbe() {
   return render(
-    <PreferencesProvider>
-      <I18nProvider>
-        <Probe />
-      </I18nProvider>
-    </PreferencesProvider>,
+    <PublicLanguagesProvider>
+      <PreferencesProvider>
+        <I18nProvider>
+          <Probe />
+        </I18nProvider>
+      </PreferencesProvider>
+    </PublicLanguagesProvider>,
   );
 }
 
@@ -32,6 +35,19 @@ describe("useCalculatorDisplayUnits", () => {
   beforeEach(() => {
     localStorage.clear();
     vi.restoreAllMocks();
+    vi.spyOn(global, "fetch").mockImplementation((url) => {
+      if (String(url).includes("/api/content/public-languages")) {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro"],
+          }),
+        });
+      }
+      return Promise.reject(new Error(`Unhandled fetch: ${url}`));
+    });
   });
 
   it("shows metric display units (cm/ml) and converts canonical values for display", () => {

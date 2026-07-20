@@ -45,6 +45,16 @@ export function isAdministratorFetchRequest(init = {}) {
 
 export function handleGlobalReferenceSearch(url) {
   const parsed = new URL(url, "http://localhost");
+  if (parsed.pathname === "/api/content/public-languages") {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        defaultPublicLocale: "en",
+        activePublicLocales: ["en", "ro"],
+      }),
+    });
+  }
   if (parsed.pathname === "/api/admin/references/search") {
     return Promise.resolve({ ok: true, status: 200, json: async () => [] });
   }

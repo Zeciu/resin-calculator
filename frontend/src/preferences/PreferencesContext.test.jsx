@@ -8,6 +8,7 @@ import {
   loadDevicePreferences,
 } from "./devicePreferencesStorage.js";
 import { PreferencesProvider, usePreferences } from "./PreferencesContext.jsx";
+import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
 import {
   assertNoPreferencesApiCalls,
   clearDevicePreferences,
@@ -34,11 +35,13 @@ function PreferencesProbe() {
 function renderPreferencesTree() {
   return render(
     <AuthProviderForTests>
-      <PreferencesProvider>
-        <I18nProvider>
-          <PreferencesProbe />
-        </I18nProvider>
-      </PreferencesProvider>
+      <PublicLanguagesProvider>
+        <PreferencesProvider>
+          <I18nProvider>
+            <PreferencesProbe />
+          </I18nProvider>
+        </PreferencesProvider>
+      </PublicLanguagesProvider>
     </AuthProviderForTests>,
   );
 }

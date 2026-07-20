@@ -83,11 +83,13 @@ export default function GlossaryManagementPage() {
       ariaLabel="Glossary management"
       backHref={ADMIN_ROUTES.ROOT}
       locale={workspace.locale}
+      bulkModule="glossary"
       isSaving={workspace.isSaving}
       isGenerating={workspace.isGenerating}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
+      translationUpdateState={workspace.savedState.translationUpdateState}
       hasSelection={Boolean(workspace.selectedItem)}
       canSave={Boolean(workspace.selectedItemId)}
       canPublish={Boolean(workspace.selectedItemId)}
@@ -96,6 +98,9 @@ export default function GlossaryManagementPage() {
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
       onGenerateTranslation={workspace.handleGenerateTranslation}
+      onBulkCompleted={() => {
+        void workspace.reloadAfterBulkUpdate();
+      }}
       showUnsavedDialog={workspace.showUnsavedDialog}
       onUnsavedSave={workspace.handleUnsavedSave}
       onUnsavedDiscard={workspace.handleUnsavedDiscard}

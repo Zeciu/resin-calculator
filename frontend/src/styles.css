@@ -1297,7 +1297,7 @@ button .help-icon-wrapper {
   border-radius: 12px;
 }
 
-/* â”€â”€ Landing page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Landing page ───────────────────────────────────────────── */
 .landing-body {
   max-width: 600px;
   margin: 0 auto;
@@ -1315,7 +1315,7 @@ button .help-icon-wrapper {
 .landing-actions { display: flex; gap: 12px; justify-content: center; }
 .landing-btn { min-width: 120px; padding: 10px 28px; font-size: 1rem; }
 
-/* â”€â”€ Auth callback â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Auth callback ──────────────────────────────────────────── */
 .auth-callback {
   display: flex;
   flex-direction: column;
@@ -1326,7 +1326,7 @@ button .help-icon-wrapper {
   color: #555;
 }
 
-/* â”€â”€ Workspace hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Workspace hero ─────────────────────────────────────────── */
 .workspace-hero {
   position: relative;
   display: flex;
@@ -1405,7 +1405,7 @@ button .help-icon-wrapper {
   font-weight: 600;
 }
 
-/* â”€â”€ Application workspace layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Application workspace layout ───────────────────────────── */
 .application-workspace {
   box-sizing: border-box;
   max-width: 1200px;
@@ -1558,7 +1558,7 @@ button.workspace-sidebar__link {
   }
 }
 
-/* â”€â”€ Dedicated module layout (Task 44) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Dedicated module layout (Task 44) ───────────────────────── */
 .application-workspace:has(.dedicated-module-layout) {
   max-width: min(100%, 1680px);
   padding: 10px 10px 16px;
@@ -1749,7 +1749,7 @@ button.workspace-sidebar__link {
   }
 }
 
-/* â”€â”€ New Project workspace (Task 45) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── New Project workspace (Task 45) ─────────────────────────── */
 .application-workspace:has(.new-project-workspace) {
   max-width: min(100%, 1760px);
   padding: 8px 8px 12px;
@@ -1871,7 +1871,7 @@ button.workspace-sidebar__link {
   box-shadow: none;
 }
 
-/* â”€â”€ Unsaved changes dialog (Task 46) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Unsaved changes dialog (Task 46) ────────────────────────── */
 .unsaved-changes-dialog__backdrop {
   position: fixed;
   inset: 0;
@@ -1945,7 +1945,7 @@ button.workspace-sidebar__link {
   color: #6f2f2f;
 }
 
-/* â”€â”€ Save project dialog (Task 47) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Save project dialog (Task 47) ───────────────────────────── */
 .save-project-dialog__backdrop {
   position: fixed;
   inset: 0;
@@ -2037,7 +2037,7 @@ button.workspace-sidebar__link {
   color: #4b341f;
 }
 
-/* â”€â”€ Projects Hub (Task 48) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Projects Hub (Task 48) ──────────────────────────────────── */
 .projects-hub {
   display: flex;
   flex-direction: column;
@@ -2143,7 +2143,7 @@ button.workspace-sidebar__link {
   color: #6d6254;
 }
 
-/* â”€â”€ Shared module empty state (Task 54) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Shared module empty state (Task 54) ─────────────────────── */
 .module-empty-state {
   margin: 28px 0 0;
   padding: 18px;
@@ -2239,7 +2239,7 @@ button.workspace-sidebar__link {
   white-space: nowrap;
 }
 
-/* â”€â”€ Guest intro (central workspace content) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Guest intro (central workspace content) ─────────────────── */
 .guest-intro {
   display: flex;
   flex-direction: column;
@@ -2285,7 +2285,7 @@ button.workspace-sidebar__link {
   color: #5a4a32;
 }
 
-/* â”€â”€ Logged-in Home hub (central workspace content) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Logged-in Home hub (central workspace content) ──────────── */
 .logged-in-home {
   display: flex;
   flex-direction: column;
@@ -2324,7 +2324,7 @@ button.workspace-sidebar__link {
   font-weight: 600;
 }
 
-/* â”€â”€ Locked module message (central workspace content) â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Locked module message (central workspace content) ───────── */
 .locked-module-message {
   display: flex;
   flex-direction: column;
@@ -2359,7 +2359,7 @@ button.workspace-sidebar__link {
   text-decoration: underline;
 }
 
-/* â”€â”€ Login page (workspace central content) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Login page (workspace central content) ──────────────────── */
 .login-page {
   display: flex;
   flex-direction: column;
@@ -2448,7 +2448,7 @@ button.workspace-sidebar__link {
   text-decoration: underline;
 }
 
-/* â”€â”€ Register page (workspace central content) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Register page (workspace central content) ───────────────── */
 .register-page {
   display: flex;
   flex-direction: column;
@@ -2541,7 +2541,7 @@ button.workspace-sidebar__link {
   text-decoration: underline;
 }
 
-/* â”€â”€ Password recovery page (workspace central content) â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Password recovery page (workspace central content) ──────── */
 .password-recovery-page {
   display: flex;
   flex-direction: column;
@@ -2649,7 +2649,7 @@ button.workspace-sidebar__link {
   text-decoration: underline;
 }
 
-/* â”€â”€ My Account page (workspace central content) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── My Account page (workspace central content) ─────────────── */
 .my-account-page {
   display: flex;
   flex-direction: column;
@@ -2789,7 +2789,7 @@ button.workspace-sidebar__link {
   font-weight: 600;
 }
 
-/* â”€â”€ Manual & Tutorials module (Task 50â€“51) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Manual & Tutorials module (Task 50–51) ──────────────────── */
 .manual-module {
   display: grid;
   grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
@@ -3094,7 +3094,7 @@ button.workspace-sidebar__link {
   }
 }
 
-/* â”€â”€ Glossary module (Task 52) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Glossary module (Task 52) ───────────────────────────────── */
 .glossary-module {
   display: flex;
   flex-direction: column;
@@ -3416,7 +3416,7 @@ button.workspace-sidebar__link {
   }
 }
 
-/* â”€â”€ Knowledge Base module (Task 53) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Knowledge Base module (Task 53) ─────────────────────────── */
 .knowledge-base-module {
   display: flex;
   flex-direction: column;
@@ -3685,7 +3685,7 @@ button.workspace-sidebar__link {
   }
 }
 
-/* â”€â”€ Module placeholder (workspace central content) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Module placeholder (workspace central content) ──────────── */
 .module-placeholder {
   display: flex;
   flex-direction: column;
@@ -3720,7 +3720,7 @@ button.workspace-sidebar__link {
   border-radius: 10px;
 }
 
-/* â”€â”€ Admin Panel layout (Task 58) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Admin Panel layout (Task 58) ──────────────────────────── */
 .application-workspace:has(.admin-layout) {
   max-width: min(100%, 1680px);
   padding: 16px 16px 32px;
@@ -3885,6 +3885,84 @@ button.workspace-sidebar__link {
   color: #5a4a32;
 }
 
+.admin-dashboard__error {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #9b2c2c;
+}
+
+.admin-public-languages {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.admin-public-languages__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.admin-public-languages__table th,
+.admin-public-languages__table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #d9d0c0;
+  vertical-align: middle;
+}
+
+.admin-public-languages__table th {
+  font-weight: 600;
+  color: #3a3228;
+  background: #f4efe6;
+}
+
+.admin-public-languages__default {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border: 1px solid #cbbfa8;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #5a4a32;
+}
+
+.admin-public-languages__visibility {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-public-languages__badge {
+  min-width: 4.5rem;
+  color: #5a4a32;
+}
+
+.admin-public-languages__badge--active {
+  color: #2f6b3a;
+  font-weight: 600;
+}
+
+.admin-public-languages__action {
+  padding: 6px 12px;
+  border: 1px solid #b7aa94;
+  border-radius: 4px;
+  background: #fff;
+  color: #3a3228;
+  cursor: pointer;
+  font: inherit;
+}
+
+.admin-public-languages__action:hover:not(:disabled) {
+  background: #f4efe6;
+}
+
+.admin-public-languages__action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .admin-placeholder-page {
   max-width: 640px;
 }
@@ -3909,14 +3987,13 @@ button.workspace-sidebar__link {
   }
 }
 
-/* â”€â”€ Admin Manual Management (Task 59A) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Admin Manual Management (Task 59A) ─────────────────────── */
 .manual-admin {
   display: flex;
   flex-direction: column;
   gap: 18px;
   min-height: 0;
 }
-
 
 .manual-admin__title-row {
   display: flex;
@@ -3947,8 +4024,6 @@ button.workspace-sidebar__link {
   gap: 20px;
   min-height: 580px;
 }
-
-
 
 .manual-admin__editor {
   display: flex;
@@ -4181,7 +4256,13 @@ button.workspace-sidebar__link {
   line-height: 1.7;
 }
 
-
+.manual-admin__hint {
+  margin: 0 0 12px;
+  max-width: 64ch;
+  color: #5a4a32;
+  font-size: 14px;
+  line-height: 1.5;
+}
 
 @media (max-width: 1000px) {
   .manual-admin__layout {
@@ -4189,8 +4270,6 @@ button.workspace-sidebar__link {
     min-height: auto;
   }
 }
-
-
 
 .knowledge-base-module__status {
   margin: 0 0 16px;
@@ -4338,8 +4417,6 @@ button.workspace-sidebar__link {
   font-size: 0.9rem;
 }
 
-
-
 .editorial-topbar {
   display: flex;
   justify-content: space-between;
@@ -4482,6 +4559,59 @@ button.workspace-sidebar__link {
 }
 
 .editorial-unsaved-dialog__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.editorial-bulk-dialog {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 24px;
+  width: min(560px, 92vw);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.editorial-bulk-dialog__title {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+
+.editorial-bulk-dialog__lead {
+  margin: 0 0 8px;
+}
+
+.editorial-bulk-dialog__counts {
+  margin: 0 0 12px;
+  padding-left: 1.2rem;
+}
+
+.editorial-bulk-dialog__policy,
+.editorial-bulk-dialog__note {
+  margin: 0 0 12px;
+  color: #5c4a32;
+}
+
+.editorial-bulk-dialog__checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 0 0 12px;
+}
+
+.editorial-bulk-dialog__warning {
+  margin: 0 0 12px;
+  color: #7a2e2a;
+}
+
+.editorial-bulk-dialog__failures {
+  margin: 0 0 12px;
+  padding-left: 1.2rem;
+  color: #7a2e2a;
+}
+
+.editorial-bulk-dialog__actions {
   display: flex;
   gap: 8px;
   margin-top: 16px;

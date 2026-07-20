@@ -31,9 +31,7 @@ class GlossaryPublishService:
         document = self._public_service.build_admin_snapshot(parsed_locale)
         snapshot_key = rebuild_locale_snapshot(
             document,
-            has_content=lambda payload: bool(payload["entries"]),
             write_snapshot=lambda payload: self._repository.write_glossary_snapshot(parsed_locale, payload),
-            delete_snapshot=lambda: self._repository.delete_admin_glossary_snapshot(parsed_locale),
         )
         return PublishGlossaryVariantResponse(
             contentId=content_id,
@@ -49,9 +47,7 @@ class GlossaryPublishService:
         document = self._public_service.build_admin_snapshot(parsed_locale)
         rebuild_locale_snapshot(
             document,
-            has_content=lambda payload: bool(payload["entries"]),
             write_snapshot=lambda payload: self._repository.write_glossary_snapshot(parsed_locale, payload),
-            delete_snapshot=lambda: self._repository.delete_admin_glossary_snapshot(parsed_locale),
         )
 
     def rebuild_published_snapshot(self, locale: str) -> str | None:
@@ -59,9 +55,7 @@ class GlossaryPublishService:
         document = self._public_service.build_admin_snapshot(parsed_locale)
         return rebuild_locale_snapshot(
             document,
-            has_content=lambda payload: bool(payload["entries"]),
             write_snapshot=lambda payload: self._repository.write_glossary_snapshot(parsed_locale, payload),
-            delete_snapshot=lambda: self._repository.delete_admin_glossary_snapshot(parsed_locale),
         )
 
     def _validate_relationships(self, content_id: str, body: GlossaryVariantBody, locale: str) -> None:

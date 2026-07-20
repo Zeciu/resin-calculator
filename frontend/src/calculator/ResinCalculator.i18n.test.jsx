@@ -165,6 +165,15 @@ function mockFreeCapabilitiesFetch() {
     "fetch",
     vi.fn(async (url) => {
       const requestUrl = String(url);
+      if (requestUrl.includes("/api/content/public-languages")) {
+        return {
+          ok: true,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro"],
+          }),
+        };
+      }
       if (requestUrl.includes("/api/me/capabilities")) {
         return {
           ok: true,

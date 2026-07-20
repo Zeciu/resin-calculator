@@ -859,6 +859,7 @@ class FilesystemContentRepository:
                 locale=locale,
                 new_body=body,
                 existing=existing,
+                module="manual",
             )
         )
         variant = {
@@ -1242,6 +1243,7 @@ class FilesystemContentRepository:
                 locale=locale,
                 new_body=body,
                 existing=existing,
+                module="glossary",
             )
         )
         variant = {
@@ -1584,6 +1586,7 @@ class FilesystemContentRepository:
                 locale=locale,
                 new_body=body,
                 existing=existing,
+                module="knowledge_base",
             )
         )
         variant = {

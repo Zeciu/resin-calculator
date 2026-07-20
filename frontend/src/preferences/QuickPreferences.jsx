@@ -1,7 +1,8 @@
 import { useI18n } from "../i18n/I18nContext.jsx";
+import { usePublicLanguages } from "../publicLanguages/usePublicLanguages.js";
+import { resolvePublicInterfaceLocale } from "../publicLanguages/publicLanguagesApi.js";
 import { usePreferences } from "./usePreferences.js";
 import {
-  INTERFACE_LANGUAGES,
   INTERFACE_LANGUAGE_LABELS,
   LENGTH_UNITS,
   VOLUME_UNITS,
@@ -15,6 +16,14 @@ import {
 export default function QuickPreferences({ variant = "sidebar" }) {
   const { t } = useI18n();
   const { preferences, updatePreferences, isLoading } = usePreferences();
+  const { activePublicLocales, defaultPublicLocale } = usePublicLanguages();
+  const languageOptions =
+    activePublicLocales.length > 0 ? activePublicLocales : [defaultPublicLocale || "en"];
+  const resolvedLanguage = resolvePublicInterfaceLocale(
+    preferences.interfaceLanguage,
+    languageOptions,
+    defaultPublicLocale,
+  );
 
   function handleChange(field, value) {
     void updatePreferences({ [field]: value }).catch(() => {
@@ -33,11 +42,11 @@ export default function QuickPreferences({ variant = "sidebar" }) {
         <span className="quick-preferences__label">{t("preferences.interfaceLanguage")}</span>
         <select
           className="quick-preferences__select"
-          value={preferences.interfaceLanguage}
+          value={resolvedLanguage}
           disabled={isLoading}
           onChange={(event) => handleChange("interfaceLanguage", event.target.value)}
         >
-          {INTERFACE_LANGUAGES.map((language) => (
+          {languageOptions.map((language) => (
             <option key={language} value={language}>
               {INTERFACE_LANGUAGE_LABELS[language] ?? language}
             </option>

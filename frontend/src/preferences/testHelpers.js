@@ -11,8 +11,22 @@ function capabilitiesResponse() {
   return GUEST_CAPABILITIES_RESPONSE;
 }
 
+function publicLanguagesConfigResponse(activePublicLocales = ["en", "ro"]) {
+  return {
+    defaultPublicLocale: "en",
+    activePublicLocales,
+  };
+}
+
 function handleCapabilitiesFetch(url) {
   const path = String(url);
+  if (path.endsWith("/api/content/public-languages")) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => publicLanguagesConfigResponse(),
+    });
+  }
   if (path.endsWith("/api/me/capabilities")) {
     return Promise.resolve({
       ok: true,
@@ -66,6 +80,13 @@ export function mockCapabilitiesFetch() {
 
 function handleMockApiFetch(url, init, preferences) {
   const path = String(url);
+  if (path.endsWith("/api/content/public-languages")) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: async () => publicLanguagesConfigResponse(),
+    });
+  }
   if (path.endsWith("/api/me/capabilities")) {
     return Promise.resolve({
       ok: true,
@@ -129,6 +150,9 @@ export function mockStatefulPreferencesFetch(initial = {}) {
   };
   const fetchMock = vi.fn(async (url, options) => {
     const requestUrl = String(url);
+    if (requestUrl.includes("/api/content/public-languages")) {
+      return { ok: true, json: async () => publicLanguagesConfigResponse() };
+    }
     if (requestUrl.includes("/api/me/capabilities")) {
       return { ok: true, json: async () => capabilitiesResponse() };
     }

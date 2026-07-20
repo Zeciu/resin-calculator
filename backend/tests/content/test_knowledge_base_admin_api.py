@@ -351,7 +351,7 @@ class TestLegacyKnowledgeBaseMigration:
         assert legacy_document is not None
         assert len(legacy_document["entries"]) == len(source_entries)
         assert repository.list_kb_entry_ids() == ["admin-article"]
-        assert repository.read_kb_snapshot("en") is None
+        assert repository.read_kb_snapshot("en") == {"locale": "en", "entries": []}
 
 
 class TestKnowledgeBasePublicApi:

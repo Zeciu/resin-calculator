@@ -18,6 +18,8 @@ export function emptyEditorState() {
     status: "draft",
     editorialVisibility: "empty",
     exists: true,
+    translationUpdateState: null,
+    translationUpdateAction: null,
   };
 }
 
@@ -37,6 +39,8 @@ export function variantToEditor(variant) {
     status: variant?.status ?? "draft",
     editorialVisibility: variant?.editorialVisibility ?? "empty",
     exists: variant?.exists !== false,
+    translationUpdateState: variant?.translationUpdateState ?? null,
+    translationUpdateAction: variant?.translationUpdateAction ?? null,
   };
 }
 

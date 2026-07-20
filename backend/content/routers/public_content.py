@@ -13,6 +13,8 @@ from content.services.knowledge_base_images import KnowledgeBaseImageService
 from content.services.knowledge_base_public import KnowledgeBasePublicService
 from content.services.manual_images import ManualImageService
 from content.services.manual_public import ManualPublicService
+from content.services.public_languages import PublicLanguagesService
+from content.repositories.public_languages import PublicLanguagesRepository
 
 router = APIRouter(prefix="/content", tags=["public-content"])
 
@@ -20,6 +22,18 @@ router = APIRouter(prefix="/content", tags=["public-content"])
 @lru_cache
 def get_repository() -> FilesystemContentRepository:
     return FilesystemContentRepository()
+
+
+@lru_cache
+def get_languages_repository() -> PublicLanguagesRepository:
+    return PublicLanguagesRepository()
+
+
+def get_public_languages_service() -> PublicLanguagesService:
+    return PublicLanguagesService(
+        languages_repository=get_languages_repository(),
+        content_repository=get_repository(),
+    )
 
 
 def get_public_service() -> ManualPublicService:
@@ -46,12 +60,17 @@ def get_kb_image_service() -> KnowledgeBaseImageService:
     return KnowledgeBaseImageService(get_repository())
 
 
+def _require_active_public_locale(locale: str) -> None:
+    get_public_languages_service().require_active_public_locale(locale)
+
+
 @router.get("/manual", response_model=PublicManualResponse)
 def get_published_manual(
     locale: str = "en",
     service: ManualPublicService = Depends(get_public_service),
 ) -> PublicManualResponse:
     try:
+        _require_active_public_locale(locale)
         return service.get_published_manual(locale)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -63,6 +82,7 @@ def get_published_glossary(
     service: GlossaryPublicService = Depends(get_glossary_public_service),
 ) -> PublicGlossaryResponse:
     try:
+        _require_active_public_locale(locale)
         return service.get_published_glossary(locale)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -74,6 +94,7 @@ def get_published_knowledge_base(
     service: KnowledgeBasePublicService = Depends(get_kb_public_service),
 ) -> PublicKnowledgeBaseResponse:
     try:
+        _require_active_public_locale(locale)
         return service.get_published_knowledge_base(locale)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -117,6 +138,8 @@ def get_kb_image(
 
 def reset_repository_cache() -> None:
     get_repository.cache_clear()
+    get_languages_repository.cache_clear()
     if "CONTENT_DATA_DIR" not in os.environ:
         return
     get_repository()
+    get_languages_repository()

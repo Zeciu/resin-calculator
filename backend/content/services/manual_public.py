@@ -44,9 +44,10 @@ class ManualPublicService:
         self._repository = repository
 
     def _resolve_locale_sections(self, locale: str) -> list[dict]:
-        admin_sections = sections_from_admin_snapshot(self._repository.read_manual_snapshot(locale))
-        if admin_sections:
-            return admin_sections
+        snapshot = self._repository.read_manual_snapshot(locale)
+        if snapshot is not None:
+            # Published snapshot owns this locale — never mask with legacy seed.
+            return sections_from_admin_snapshot(snapshot)
         return sections_from_legacy_document(self._repository.read_legacy_manual_document(locale))
 
     def _locale_has_content(self, locale: str) -> bool:

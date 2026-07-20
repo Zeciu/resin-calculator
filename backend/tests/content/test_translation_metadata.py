@@ -164,6 +164,7 @@ class TestManualRepositoryMetadata:
         meta = repository.create_manual_chapter("Capitol", locale="ro")
         variant = repository.get_manual_variant(meta["contentId"], "ro")
         assert variant["sourceRevision"] == 1
+        assert variant["sourceTextRevision"] == 1
 
     def test_identical_romanian_save_does_not_increment(self, repository):
         meta = repository.create_manual_chapter("Capitol", locale="ro")
@@ -172,7 +173,9 @@ class TestManualRepositoryMetadata:
         second = repository.save_manual_variant(meta["contentId"], "ro", body)
         # Create used a different draftBody, so the first material save becomes 2.
         assert first["sourceRevision"] == 2
+        assert first["sourceTextRevision"] == 2
         assert second["sourceRevision"] == 2
+        assert second["sourceTextRevision"] == 2
 
     def test_changed_romanian_body_increments(self, repository):
         meta = repository.create_manual_chapter("Capitol", locale="ro")

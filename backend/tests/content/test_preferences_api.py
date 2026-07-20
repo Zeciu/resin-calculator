@@ -40,7 +40,7 @@ def test_put_validates_enum_values(preferences_client):
     response = client.put(
         "/api/preferences",
         headers={"X-Mock-User-Id": "user-a", "X-Mock-Role": "user"},
-        json={"interfaceLanguage": "fr"},
+        json={"interfaceLanguage": "xx"},
     )
     assert response.status_code == 422
 

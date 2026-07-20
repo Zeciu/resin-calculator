@@ -13,6 +13,10 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     public_content.reset_repository_cache()
+    from content.routers import admin_public_languages, public_languages
+
+    admin_public_languages.reset_repository_cache()
+    public_languages.reset_repository_cache()
     from app import app
 
     return TestClient(app)
@@ -74,7 +78,7 @@ class TestLegacyManualMigration:
         assert legacy_document is not None
         assert legacy_document["sections"] == source_sections
         assert repository.list_manual_chapter_ids() == ["admin-chapter"]
-        assert repository.read_manual_snapshot("en") is None
+        assert repository.read_manual_snapshot("en") == {"locale": "en", "chapters": []}
 
     def test_migration_removes_stale_legacy_editorial_chapters(self, client, tmp_path, monkeypatch):
         monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
@@ -113,8 +117,22 @@ class TestLegacyManualMigration:
 
 
 class TestPublicManualApi:
-    def test_ro_locale_is_unavailable_without_autofallback(self, client):
+    def test_inactive_ro_locale_is_rejected(self, client):
         LegacyManualMigrationService(FilesystemContentRepository()).migrate()
+
+        response = client.get("/api/content/manual?locale=ro")
+        assert response.status_code == 400
+        assert "not active" in response.json()["detail"].lower()
+
+    def test_active_ro_locale_is_unavailable_without_autofallback(self, client):
+        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
+        assert (
+            client.post(
+                "/api/admin/public-languages/ro/activate",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
 
         response = client.get("/api/content/manual?locale=ro")
         assert response.status_code == 200
@@ -131,8 +149,13 @@ class TestPublicManualApi:
         assert payload["available"] is False
         assert payload["sections"] == []
 
-    def test_invalid_locale_returns_400(self, client):
+    def test_inactive_configured_locale_returns_400(self, client):
         response = client.get("/api/content/manual?locale=fr")
+        assert response.status_code == 400
+        assert "not active" in response.json()["detail"].lower()
+
+    def test_unsupported_locale_returns_400(self, client):
+        response = client.get("/api/content/manual?locale=xx")
         assert response.status_code == 400
 
     def test_admin_published_manual_takes_priority_over_legacy(self, client):

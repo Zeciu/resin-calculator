@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext.jsx";
+import { usePublicLanguages } from "../publicLanguages/usePublicLanguages.js";
+import { resolvePublicInterfaceLocale } from "../publicLanguages/publicLanguagesApi.js";
 import { usePreferences } from "./usePreferences.js";
 import {
-  INTERFACE_LANGUAGES,
   INTERFACE_LANGUAGE_LABELS,
   LENGTH_UNITS,
   VOLUME_UNITS,
@@ -13,12 +14,23 @@ import { ROUTES } from "../workspace/routes.js";
 export default function PreferencesPage() {
   const { t } = useI18n();
   const { preferences, isLoading, error, updatePreferences } = usePreferences();
+  const { activePublicLocales, defaultPublicLocale } = usePublicLanguages();
+  const languageOptions =
+    activePublicLocales.length > 0 ? activePublicLocales : [defaultPublicLocale || "en"];
   const [draft, setDraft] = useState(preferences);
   const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
-    setDraft(preferences);
-  }, [preferences]);
+    const resolvedLanguage = resolvePublicInterfaceLocale(
+      preferences.interfaceLanguage,
+      languageOptions,
+      defaultPublicLocale,
+    );
+    setDraft({
+      ...preferences,
+      interfaceLanguage: resolvedLanguage,
+    });
+  }, [preferences, activePublicLocales, defaultPublicLocale, languageOptions]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -56,7 +68,7 @@ export default function PreferencesPage() {
               setDraft((current) => ({ ...current, interfaceLanguage: event.target.value }))
             }
           >
-            {INTERFACE_LANGUAGES.map((language) => (
+            {languageOptions.map((language) => (
               <option key={language} value={language}>
                 {INTERFACE_LANGUAGE_LABELS[language]}
               </option>

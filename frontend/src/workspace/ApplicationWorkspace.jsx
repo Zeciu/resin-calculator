@@ -2,20 +2,23 @@ import { Outlet } from "react-router-dom";
 import { CapabilitiesProvider } from "../capabilities/CapabilitiesContext.jsx";
 import { I18nProvider } from "../i18n/I18nContext.jsx";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
+import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
 import { WorkspaceNavigationProvider } from "./useWorkspaceNavigation.js";
 
 export default function ApplicationWorkspace() {
   return (
     <CapabilitiesProvider>
-      <PreferencesProvider>
-        <I18nProvider>
-          <WorkspaceNavigationProvider>
-            <div className="application-workspace">
-              <Outlet />
-            </div>
-          </WorkspaceNavigationProvider>
-        </I18nProvider>
-      </PreferencesProvider>
+      <PublicLanguagesProvider>
+        <PreferencesProvider>
+          <I18nProvider>
+            <WorkspaceNavigationProvider>
+              <div className="application-workspace">
+                <Outlet />
+              </div>
+            </WorkspaceNavigationProvider>
+          </I18nProvider>
+        </PreferencesProvider>
+      </PublicLanguagesProvider>
     </CapabilitiesProvider>
   );
 }

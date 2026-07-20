@@ -1,6 +1,8 @@
+import { useState } from "react";
 import EditorialStatusBanner from "./EditorialStatusBanner.jsx";
 import EditorialTopbar from "./EditorialTopbar.jsx";
 import EditorialUnsavedDialog from "./EditorialUnsavedDialog.jsx";
+import UpdateAllTranslationsDialog from "./UpdateAllTranslationsDialog.jsx";
 import { isCanonicalSourceLocale } from "./editorialLocales.js";
 
 /**
@@ -8,11 +10,13 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   ariaLabel: string;
  *   backHref: string;
  *   locale: string;
+ *   bulkModule?: "manual" | "glossary" | "knowledge_base" | null;
  *   isSaving?: boolean;
  *   isGenerating?: boolean;
  *   isDirty?: boolean;
  *   editorialVisibility?: string;
  *   exists?: boolean;
+ *   translationUpdateState?: string | null;
  *   hasSelection?: boolean;
  *   canSave?: boolean;
  *   canPublish?: boolean;
@@ -21,6 +25,7 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   onSaveDraft: () => void;
  *   onPublish: () => void;
  *   onGenerateTranslation?: () => void;
+ *   onBulkCompleted?: () => void;
  *   showUnsavedDialog?: boolean;
  *   onUnsavedSave?: () => void;
  *   onUnsavedDiscard?: () => void;
@@ -33,11 +38,13 @@ export default function EditorialManagementShell({
   ariaLabel,
   backHref,
   locale,
+  bulkModule = null,
   isSaving = false,
   isGenerating = false,
   isDirty = false,
   editorialVisibility,
   exists = true,
+  translationUpdateState = null,
   hasSelection = false,
   canSave = false,
   canPublish = false,
@@ -46,6 +53,7 @@ export default function EditorialManagementShell({
   onSaveDraft,
   onPublish,
   onGenerateTranslation,
+  onBulkCompleted,
   showUnsavedDialog = false,
   onUnsavedSave,
   onUnsavedDiscard,
@@ -53,10 +61,23 @@ export default function EditorialManagementShell({
   sidebar,
   children,
 }) {
+  const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
+  const [bulkDialogKey, setBulkDialogKey] = useState(0);
+  const [isBulkUpdating, setIsBulkUpdating] = useState(false);
+
+  const translationIsCurrent = translationUpdateState === "current";
   const canGenerate =
     Boolean(onGenerateTranslation) &&
     hasSelection &&
-    !isCanonicalSourceLocale(locale);
+    !isCanonicalSourceLocale(locale) &&
+    !translationIsCurrent;
+  const canUpdateAll =
+    Boolean(bulkModule) && !isCanonicalSourceLocale(locale) && !isBulkUpdating;
+
+  function openBulkDialog() {
+    setBulkDialogKey((value) => value + 1);
+    setBulkDialogOpen(true);
+  }
 
   return (
     <section className="editorial-workspace manual-admin" aria-label={ariaLabel}>
@@ -65,14 +86,17 @@ export default function EditorialManagementShell({
         locale={locale}
         isSaving={isSaving}
         isGenerating={isGenerating}
+        isBulkUpdating={isBulkUpdating}
         canSave={canSave}
         canPublish={canPublish}
         canGenerate={canGenerate}
+        canUpdateAll={canUpdateAll}
         editorialVisibility={editorialVisibility}
         onLocaleChange={onLocaleChange}
         onSaveDraft={onSaveDraft}
         onPublish={onPublish}
         onGenerateTranslation={onGenerateTranslation}
+        onUpdateAllTranslations={bulkModule ? openBulkDialog : undefined}
       />
 
       {errorMessage ? <p className="editorial-workspace__error">{errorMessage}</p> : null}
@@ -92,11 +116,29 @@ export default function EditorialManagementShell({
 
       <EditorialUnsavedDialog
         isOpen={showUnsavedDialog}
-        isSaving={isSaving || isGenerating}
+        isSaving={isSaving || isGenerating || isBulkUpdating}
         onSave={onUnsavedSave ?? (() => {})}
         onDiscard={onUnsavedDiscard ?? (() => {})}
         onCancel={onUnsavedCancel ?? (() => {})}
       />
+
+      {bulkModule && bulkDialogOpen ? (
+        <UpdateAllTranslationsDialog
+          key={`${bulkModule}-${locale}-${bulkDialogKey}`}
+          isOpen
+          module={bulkModule}
+          locale={locale}
+          onRunningChange={setIsBulkUpdating}
+          onClose={() => {
+            if (!isBulkUpdating) {
+              setBulkDialogOpen(false);
+            }
+          }}
+          onCompleted={() => {
+            onBulkCompleted?.();
+          }}
+        />
+      ) : null}
     </section>
   );
 }

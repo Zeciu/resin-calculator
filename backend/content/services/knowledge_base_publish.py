@@ -41,9 +41,7 @@ class KnowledgeBasePublishService:
         document = self._public_service.build_admin_snapshot(parsed_locale)
         snapshot_key = rebuild_locale_snapshot(
             document,
-            has_content=lambda payload: bool(payload["entries"]),
             write_snapshot=lambda payload: self._repository.write_kb_snapshot(parsed_locale, payload),
-            delete_snapshot=lambda: self._repository.delete_admin_kb_snapshot(parsed_locale),
         )
         return PublishKnowledgeBaseVariantResponse(
             contentId=content_id,
@@ -59,9 +57,7 @@ class KnowledgeBasePublishService:
         document = self._public_service.build_admin_snapshot(parsed_locale)
         rebuild_locale_snapshot(
             document,
-            has_content=lambda payload: bool(payload["entries"]),
             write_snapshot=lambda payload: self._repository.write_kb_snapshot(parsed_locale, payload),
-            delete_snapshot=lambda: self._repository.delete_admin_kb_snapshot(parsed_locale),
         )
 
     def rebuild_published_snapshot(self, locale: str) -> str | None:
@@ -69,9 +65,7 @@ class KnowledgeBasePublishService:
         document = self._public_service.build_admin_snapshot(parsed_locale)
         return rebuild_locale_snapshot(
             document,
-            has_content=lambda payload: bool(payload["entries"]),
             write_snapshot=lambda payload: self._repository.write_kb_snapshot(parsed_locale, payload),
-            delete_snapshot=lambda: self._repository.delete_admin_kb_snapshot(parsed_locale),
         )
 
     def _validate_relationships(self, content_id: str, body: KnowledgeBaseVariantBody, locale: str) -> None:

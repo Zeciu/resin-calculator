@@ -8,14 +8,17 @@ import { ADMIN_EDITORIAL_LOCALES, isCanonicalSourceLocale } from "./editorialLoc
  *   locale: string;
  *   isSaving?: boolean;
  *   isGenerating?: boolean;
+ *   isBulkUpdating?: boolean;
  *   canSave?: boolean;
  *   canPublish?: boolean;
  *   canGenerate?: boolean;
+ *   canUpdateAll?: boolean;
  *   editorialVisibility?: string;
  *   onLocaleChange: (locale: string) => void;
  *   onSaveDraft: () => void;
  *   onPublish: () => void;
  *   onGenerateTranslation?: () => void;
+ *   onUpdateAllTranslations?: () => void;
  * }} props
  */
 export default function EditorialTopbar({
@@ -23,16 +26,19 @@ export default function EditorialTopbar({
   locale,
   isSaving = false,
   isGenerating = false,
+  isBulkUpdating = false,
   canSave = false,
   canPublish = false,
   canGenerate = false,
+  canUpdateAll = false,
   editorialVisibility,
   onLocaleChange,
   onSaveDraft,
   onPublish,
   onGenerateTranslation,
+  onUpdateAllTranslations,
 }) {
-  const busy = isSaving || isGenerating;
+  const busy = isSaving || isGenerating || isBulkUpdating;
 
   return (
     <header className="editorial-topbar">
@@ -62,7 +68,16 @@ export default function EditorialTopbar({
               onClick={onGenerateTranslation}
               disabled={!canGenerate || busy}
             >
-              {isGenerating ? "Generating…" : "Generate Translation"}
+              {isGenerating ? "Updating…" : "Update Translation"}
+            </button>
+          ) : null}
+          {!isCanonicalSourceLocale(locale) && onUpdateAllTranslations ? (
+            <button
+              type="button"
+              onClick={onUpdateAllTranslations}
+              disabled={!canUpdateAll || busy}
+            >
+              {isBulkUpdating ? "Updating all…" : "Update All Translations"}
             </button>
           ) : null}
           <button type="button" onClick={onSaveDraft} disabled={!canSave || busy}>

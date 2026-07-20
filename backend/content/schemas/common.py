@@ -5,12 +5,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Literal
 
-# Public API / published delivery — unchanged product surface.
-LocaleCode = Literal["en", "ro"]
-PUBLIC_LOCALES = frozenset({"en", "ro"})
-VALID_LOCALES = PUBLIC_LOCALES  # alias kept for existing public call sites
-
-# Admin may author and generate into prepared locales without public activation.
+# Configured application languages (editorial + public activation candidates).
 AdminLocaleCode = Literal["ro", "en", "fr", "de", "es", "pt", "pl", "cs", "it"]
 ADMIN_EDITORIAL_LOCALES = frozenset(
     {"ro", "en", "fr", "de", "es", "pt", "pl", "cs", "it"}
@@ -27,6 +22,25 @@ ADMIN_EDITORIAL_LOCALE_ORDER: tuple[str, ...] = (
     "it",
 )
 
+# Public delivery: any configured locale may be requested; activation is separate.
+LocaleCode = AdminLocaleCode
+CONFIGURED_PUBLIC_LOCALES = ADMIN_EDITORIAL_LOCALES
+DEFAULT_PUBLIC_LOCALE = "en"
+PUBLIC_LOCALES = CONFIGURED_PUBLIC_LOCALES  # configured set; activation gates delivery
+VALID_LOCALES = PUBLIC_LOCALES
+
+PUBLIC_LANGUAGE_LABELS: dict[str, str] = {
+    "ro": "Romanian",
+    "en": "English",
+    "fr": "French",
+    "de": "German",
+    "es": "Spanish",
+    "pt": "Portuguese",
+    "pl": "Polish",
+    "cs": "Czech",
+    "it": "Italian",
+}
+
 
 class ContentStatus(str, Enum):
     DRAFT = "draft"
@@ -35,7 +49,7 @@ class ContentStatus(str, Enum):
 
 def parse_public_locale(locale: str) -> LocaleCode:
     normalized = locale.strip().lower()
-    if normalized not in PUBLIC_LOCALES:
+    if normalized not in CONFIGURED_PUBLIC_LOCALES:
         raise ValueError(f"Unsupported locale: {locale}")
     return normalized  # type: ignore[return-value]
 

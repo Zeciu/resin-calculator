@@ -46,7 +46,7 @@ describe("devicePreferencesStorage", () => {
     localStorage.setItem(
       DEVICE_PREFERENCES_STORAGE_KEY,
       JSON.stringify({
-        interfaceLanguage: "fr",
+        interfaceLanguage: "xx",
         lengthUnit: "bad",
         volumeUnit: "bad",
       }),

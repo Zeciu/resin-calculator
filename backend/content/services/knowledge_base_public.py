@@ -123,9 +123,10 @@ class KnowledgeBasePublicService:
         return list(document.get("entries", []))
 
     def _resolve_locale_entries(self, locale: str) -> list[dict]:
-        admin_entries = self.entries_from_admin_snapshot(self._repository.read_kb_snapshot(locale))
-        if admin_entries:
-            return admin_entries
+        snapshot = self._repository.read_kb_snapshot(locale)
+        if snapshot is not None:
+            # Published snapshot owns this locale — never mask with legacy seed.
+            return self.entries_from_admin_snapshot(snapshot)
         return self.entries_from_legacy_document(self._repository.read_legacy_kb_document(locale))
 
     def _locale_has_content(self, locale: str) -> bool:

@@ -796,7 +796,7 @@ def test_modern_typed_glossary_rename_preserves_siblings_and_id(tmp_path: Path) 
     )
 
     assert saved["contentId"] == content_id
-    assert saved.get("sourceRevision") == 2
+    assert saved["sourceTextRevision"] == 2
     assert repository.get_glossary_variant(content_id, "en")["draftBody"]["term"] == "Old term"
     assert repository.get_glossary_variant(content_id, "fr")["draftBody"]["term"] == "Ancien terme"
     assert repository.list_glossary_entry_ids() == [content_id]

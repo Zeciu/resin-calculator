@@ -83,11 +83,13 @@ export default function KnowledgeBaseManagementPage() {
       ariaLabel="Knowledge base management"
       backHref={ADMIN_ROUTES.ROOT}
       locale={workspace.locale}
+      bulkModule="knowledge_base"
       isSaving={workspace.isSaving}
       isGenerating={workspace.isGenerating}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
+      translationUpdateState={workspace.savedState.translationUpdateState}
       hasSelection={Boolean(workspace.selectedItem)}
       canSave={Boolean(workspace.selectedItemId)}
       canPublish={Boolean(workspace.selectedItemId)}
@@ -96,6 +98,9 @@ export default function KnowledgeBaseManagementPage() {
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
       onGenerateTranslation={workspace.handleGenerateTranslation}
+      onBulkCompleted={() => {
+        void workspace.reloadAfterBulkUpdate();
+      }}
       showUnsavedDialog={workspace.showUnsavedDialog}
       onUnsavedSave={workspace.handleUnsavedSave}
       onUnsavedDiscard={workspace.handleUnsavedDiscard}
@@ -118,6 +123,11 @@ export default function KnowledgeBaseManagementPage() {
         </div>
       ) : workspace.selectedItem ? (
         <>
+          {workspace.locale === "ro" && workspace.savedState.exists === false ? (
+            <p className="manual-admin__hint" role="status">
+              No Romanian content yet. Enter the Romanian content and save the draft.
+            </p>
+          ) : null}
           <div className="manual-admin__title-row">
             <div className="manual-admin__field manual-admin__field--title">
               <input

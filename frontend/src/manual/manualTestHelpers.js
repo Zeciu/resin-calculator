@@ -17,6 +17,15 @@ export function buildPublishedManualResponse(sections = MANUAL_SECTIONS) {
 export function mockPublishedManualFetch(sections = MANUAL_SECTIONS) {
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
+    if (requestUrl.includes("/api/content/public-languages")) {
+      return {
+        ok: true,
+        json: async () => ({
+          defaultPublicLocale: "en",
+          activePublicLocales: ["en", "ro"],
+        }),
+      };
+    }
     if (requestUrl.includes("/api/content/manual")) {
       return {
         ok: true,

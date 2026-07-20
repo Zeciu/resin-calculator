@@ -12,6 +12,7 @@ from ..schemas.manual import (
 from ..translation_metadata import translation_metadata_for_api
 from .editorial_identity import chapter_identity_title
 from .editorial_status import compute_editorial_visibility
+from .translation_update import classification_fields_for_api
 
 
 def empty_variant_body(title: str = "") -> dict:
@@ -123,6 +124,17 @@ class ManualChapterService:
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> ManualVariantResponse:
         parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)
+        translation_fields.update(
+            classification_fields_for_api(
+                locale=parsed_locale,
+                ro_variant=(
+                    None
+                    if parsed_locale == "ro"
+                    else self._repository.get_manual_variant(content_id, "ro")
+                ),
+                target_variant=None if parsed_locale == "ro" else variant,
+            )
+        )
         if not variant:
             return ManualVariantResponse(
                 contentId=content_id,

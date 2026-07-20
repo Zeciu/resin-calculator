@@ -22,7 +22,15 @@ import {
 } from "./manualEditorAdapter.js";
 
 function emptyEditorState() {
-  return { title: "", document: emptyDocument(), status: "draft", editorialVisibility: "empty", exists: true };
+  return {
+    title: "",
+    document: emptyDocument(),
+    status: "draft",
+    editorialVisibility: "empty",
+    exists: true,
+    translationUpdateState: null,
+    translationUpdateAction: null,
+  };
 }
 
 export default function ManualManagementPage() {
@@ -65,11 +73,13 @@ export default function ManualManagementPage() {
       ariaLabel="Manual management"
       backHref={ADMIN_ROUTES.ROOT}
       locale={workspace.locale}
+      bulkModule="manual"
       isSaving={workspace.isSaving}
       isGenerating={workspace.isGenerating}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
+      translationUpdateState={workspace.savedState.translationUpdateState}
       hasSelection={Boolean(workspace.selectedItemId)}
       canSave={Boolean(workspace.selectedItemId)}
       canPublish={Boolean(workspace.selectedItemId)}
@@ -78,6 +88,9 @@ export default function ManualManagementPage() {
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
       onGenerateTranslation={workspace.handleGenerateTranslation}
+      onBulkCompleted={() => {
+        void workspace.reloadAfterBulkUpdate();
+      }}
       showUnsavedDialog={workspace.showUnsavedDialog}
       onUnsavedSave={workspace.handleUnsavedSave}
       onUnsavedDiscard={workspace.handleUnsavedDiscard}

@@ -4,6 +4,7 @@ import { AuthProviderForTests } from "../auth/AuthContext.jsx";
 import { CapabilitiesProvider, useCapabilities } from "./CapabilitiesContext.jsx";
 import { FREE_CAPABILITIES, GUEST_CAPABILITIES_RESPONSE } from "./capabilityDefaults.js";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
+import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -45,6 +46,16 @@ describe("CapabilitiesProvider fail-soft refresh", () => {
     let failNext = false;
     vi.spyOn(global, "fetch").mockImplementation((url) => {
       const path = String(url);
+      if (path.endsWith("/api/content/public-languages")) {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro"],
+          }),
+        });
+      }
       if (!path.endsWith("/api/me/capabilities")) {
         return Promise.reject(new Error(`Unhandled fetch: ${path}`));
       }
@@ -65,9 +76,11 @@ describe("CapabilitiesProvider fail-soft refresh", () => {
     render(
       <AuthProviderForTests>
         <CapabilitiesProvider>
-          <PreferencesProvider>
-            <StatusProbe />
-          </PreferencesProvider>
+          <PublicLanguagesProvider>
+            <PreferencesProvider>
+              <StatusProbe />
+            </PreferencesProvider>
+          </PublicLanguagesProvider>
         </CapabilitiesProvider>
       </AuthProviderForTests>,
     );

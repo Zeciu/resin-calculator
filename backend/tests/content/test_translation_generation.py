@@ -183,12 +183,23 @@ class TestGenerationService:
         assert all(call["source_locale"] == "ro" for call in provider.calls)
         assert all(call["target_locale"] == "en" for call in provider.calls)
 
-    def test_overwrite_requires_confirmation(self, repository):
+    def test_overwrite_requires_confirmation_when_text_outdated(self, repository):
         meta = repository.create_manual_chapter("Capitol")
         content_id = meta["contentId"]
         repository.save_manual_variant(content_id, "ro", sample_manual_body())
-        service = TranslationGenerationService(repository, provider=FakeTranslationProvider())
+        provider = FakeTranslationProvider()
+        service = TranslationGenerationService(repository, provider=provider)
         service.generate(module="manual", content_id=content_id, target_locale="en")
+        # Current → skip, no DeepL, no overwrite required.
+        calls_after_first = len(provider.calls)
+        skipped = service.generate(module="manual", content_id=content_id, target_locale="en")
+        assert skipped["_translationUpdateAction"] == "skip_current"
+        assert len(provider.calls) == calls_after_first
+
+        # Text change → full regen requires confirmation.
+        body = sample_manual_body()
+        body["title"] = "Capitol schimbat"
+        repository.save_manual_variant(content_id, "ro", body)
         with pytest.raises(OverwriteConfirmationRequired):
             service.generate(module="manual", content_id=content_id, target_locale="en")
         regenerated = service.generate(
@@ -198,7 +209,8 @@ class TestGenerationService:
             confirm_overwrite=True,
         )
         assert regenerated["draftBody"]["title"].startswith("[en]")
-
+        assert regenerated["_translationUpdateAction"] == "skip_current"
+        assert regenerated["_translationUpdateState"] == "current"
     def test_nothing_to_translate(self, repository):
         meta = repository.create_manual_chapter("Capitol")
         content_id = meta["contentId"]
@@ -279,7 +291,27 @@ class TestGenerateApiAndLocales:
         assert payload["translationProvider"] == "deepl"
         assert payload["body"]["title"].startswith("[en]")
         assert payload["status"] == "draft"
+        assert payload["generatedFromSourceTextRevision"] is not None
+        assert payload["translationUpdateAction"] == "skip_current"
+        assert payload["translationUpdateState"] == "current"
 
+        # Unchanged RO → current → skip (200, no conflict).
+        skip = client.post(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/en/generate-translation",
+            json={"confirmOverwrite": False},
+            headers=admin_headers(),
+        )
+        assert skip.status_code == 200
+        assert skip.json()["translationUpdateAction"] == "skip_current"
+
+        # Text change → conflict until confirm.
+        changed = sample_manual_body()
+        changed["title"] = "Alt capitol"
+        client.put(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/ro",
+            json={"body": changed},
+            headers=admin_headers(),
+        )
         conflict = client.post(
             f"/api/admin/manual/chapters/{chapter_id}/variants/en/generate-translation",
             json={"confirmOverwrite": False},

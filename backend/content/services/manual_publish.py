@@ -40,9 +40,6 @@ class ManualPublishService:
     def rebuild_published_snapshot(self, locale: str) -> str | None:
         parsed_locale = parse_admin_locale(locale)
         document = self._assemble_document(parsed_locale)
-        if not document["chapters"]:
-            self._repository.delete_admin_manual_snapshot(parsed_locale)
-            return None
         return self._repository.write_manual_snapshot(parsed_locale, document)
 
     def _assemble_document(self, locale: str) -> dict:

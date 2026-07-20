@@ -13,6 +13,7 @@ from ..schemas.glossary import (
 from .editorial_identity import entry_identity_term
 from .editorial_status import compute_editorial_visibility
 from .reference_search import ReferenceSearchService
+from .translation_update import classification_fields_for_api
 from ..translation_metadata import translation_metadata_for_api
 
 
@@ -43,8 +44,6 @@ def variant_has_publishable_body(body: GlossaryVariantBody) -> bool:
         if item.type == "video" and item.title.strip() and item.embedUrl.strip():
             return True
     return False
-
-
 
 
 class GlossaryEntryService:
@@ -116,6 +115,17 @@ class GlossaryEntryService:
     def _variant_response(self, content_id: str, locale: str, variant: dict | None) -> GlossaryVariantResponse:
         parsed_locale = parse_admin_locale(locale)
         translation_fields = translation_metadata_for_api(variant)
+        translation_fields.update(
+            classification_fields_for_api(
+                locale=parsed_locale,
+                ro_variant=(
+                    None
+                    if parsed_locale == "ro"
+                    else self._repository.get_glossary_variant(content_id, "ro")
+                ),
+                target_variant=None if parsed_locale == "ro" else variant,
+            )
+        )
         if not variant:
             return GlossaryVariantResponse(
                 contentId=content_id,

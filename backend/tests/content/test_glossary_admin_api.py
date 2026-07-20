@@ -170,7 +170,7 @@ class TestLegacyGlossaryMigration:
         assert legacy_document is not None
         assert len(legacy_document["entries"]) == len(source_entries)
         assert repository.list_glossary_entry_ids() == ["admin-term"]
-        assert repository.read_glossary_snapshot("en") is None
+        assert repository.read_glossary_snapshot("en") == {"locale": "en", "entries": []}
 
 
 class TestGlossaryPublicApi:
@@ -503,10 +503,21 @@ class TestGlossaryRelationshipPublishQa:
             headers=admin_headers(),
         )
         assert publish_response.status_code == 200
-        admin_glossary.reset_repository_cache()
-        snapshot = FilesystemContentRepository().read_glossary_snapshot("ro")
-        assert snapshot is not None
-        assert any(item["id"] == entry_id for item in snapshot.get("entries", []))
+
+        from content.routers import admin_public_languages, public_languages
+
+        admin_public_languages.reset_repository_cache()
+        public_languages.reset_repository_cache()
+        assert (
+            client.post(
+                "/api/admin/public-languages/ro/activate",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        public = client.get("/api/content/glossary?locale=ro").json()
+        assert public["available"] is True
+        assert any(item["id"] == entry_id for item in public["entries"])
 
     def test_published_only_reference_search_excludes_unpublished_locale_variants(self, client):
         from content.routers import admin_editorial

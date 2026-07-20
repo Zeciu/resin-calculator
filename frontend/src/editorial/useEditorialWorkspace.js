@@ -409,7 +409,7 @@ export function useEditorialWorkspace(config) {
       } catch (error) {
         if (error instanceof AdminApiError && error.status === 409 && !confirmOverwrite) {
           const confirmed = window.confirm(
-            `${error.message}\n\nOverwrite the existing ${locale.toUpperCase()} draft with a new translation?`,
+            `${error.message}\n\nContinue and overwrite the existing ${locale.toUpperCase()} draft?`,
           );
           if (confirmed) {
             setIsGenerating(false);
@@ -432,6 +432,17 @@ export function useEditorialWorkspace(config) {
     });
   }, [requestNavigation, runGenerateTranslation]);
 
+  const reloadAfterBulkUpdate = useCallback(async () => {
+    setErrorMessage("");
+    try {
+      await refreshItems(locale);
+      if (selectedItemId) {
+        await loadVariant(selectedItemId, locale);
+      }
+    } catch (error) {
+      setErrorMessage(error.message || config.messages?.loadVariant || "Failed to reload after bulk update.");
+    }
+  }, [config.messages?.loadVariant, loadVariant, locale, refreshItems, selectedItemId]);
 
   const sidebarItems = useMemo(
     () => items.map((item) => ({ contentId: item.contentId, label: config.getItemLabel(item) })),
@@ -462,6 +473,7 @@ export function useEditorialWorkspace(config) {
     handleSaveDraft,
     handlePublish,
     handleGenerateTranslation,
+    reloadAfterBulkUpdate,
     handleUnsavedSave,
     handleUnsavedDiscard,
     handleUnsavedCancel,

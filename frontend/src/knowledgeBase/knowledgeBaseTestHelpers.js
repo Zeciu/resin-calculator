@@ -53,6 +53,15 @@ export function mockPublishedKnowledgeBaseFetch(
           },
       };
     }
+    if (requestUrl.includes("/api/content/public-languages")) {
+      return {
+        ok: true,
+        json: async () => ({
+          defaultPublicLocale: "en",
+          activePublicLocales: ["en", "ro"],
+        }),
+      };
+    }
     if (requestUrl.includes("/api/content/knowledge-base")) {
       return {
         ok: true,

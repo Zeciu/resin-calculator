@@ -60,7 +60,7 @@ describe("Admin Panel foundation", () => {
         screen.getByRole("navigation", { name: "Administration navigation" }),
       ).toBeInTheDocument();
       expect(screen.getByRole("heading", { name: "Administration" })).toBeInTheDocument();
-      expect(screen.getByText(/reserved for HFZWood product administration/i)).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Public Languages" })).toBeInTheDocument();
       expect(screen.queryByRole("banner", { name: "Workspace hero" })).not.toBeInTheDocument();
     });
 

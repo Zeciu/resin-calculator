@@ -1,8 +1,9 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import { AuthProvider } from "../auth/AuthContext.jsx";
 import { I18nProvider } from "../i18n/I18nContext.jsx";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
+import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
 import AuthRouteGuard from "./AuthRouteGuard.jsx";
 
 const mockAdapter = {
@@ -15,18 +16,36 @@ function renderGuardedRoute(restoreResult) {
   mockAdapter.restoreSession.mockImplementation(() => restoreResult);
   return render(
     <AuthProvider authAdapter={mockAdapter}>
-      <PreferencesProvider>
-        <I18nProvider>
-          <AuthRouteGuard>
-            <div>Protected content</div>
-          </AuthRouteGuard>
-        </I18nProvider>
-      </PreferencesProvider>
+      <PublicLanguagesProvider>
+        <PreferencesProvider>
+          <I18nProvider>
+            <AuthRouteGuard>
+              <div>Protected content</div>
+            </AuthRouteGuard>
+          </I18nProvider>
+        </PreferencesProvider>
+      </PublicLanguagesProvider>
     </AuthProvider>,
   );
 }
 
 describe("AuthRouteGuard", () => {
+  beforeEach(() => {
+    vi.spyOn(global, "fetch").mockImplementation((url) => {
+      if (String(url).includes("/api/content/public-languages")) {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro"],
+          }),
+        });
+      }
+      return Promise.reject(new Error(`Unhandled fetch: ${url}`));
+    });
+  });
+
   it("does not show the locked state while session restoration is loading", () => {
     renderGuardedRoute(new Promise(() => {}));
 

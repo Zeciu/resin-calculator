@@ -26,6 +26,15 @@ export function buildPublishedGlossaryResponse(entries = GLOSSARY_ENTRIES) {
 export function mockPublishedGlossaryFetch(entries = GLOSSARY_ENTRIES) {
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
+    if (requestUrl.includes("/api/content/public-languages")) {
+      return {
+        ok: true,
+        json: async () => ({
+          defaultPublicLocale: "en",
+          activePublicLocales: ["en", "ro"],
+        }),
+      };
+    }
     if (requestUrl.includes("/api/content/glossary")) {
       return {
         ok: true,
