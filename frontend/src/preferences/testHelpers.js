@@ -18,13 +18,13 @@ function publicLanguagesConfigResponse(activePublicLocales = ["en", "ro"]) {
   };
 }
 
-function handleCapabilitiesFetch(url) {
+function handleCapabilitiesFetch(url, _init, activePublicLocales = ["en", "ro"]) {
   const path = String(url);
   if (path.endsWith("/api/content/public-languages")) {
     return Promise.resolve({
       ok: true,
       status: 200,
-      json: async () => publicLanguagesConfigResponse(),
+      json: async () => publicLanguagesConfigResponse(activePublicLocales),
     });
   }
   if (path.endsWith("/api/me/capabilities")) {
@@ -68,13 +68,14 @@ export function readDevicePreferencesFromStorage() {
   return loadDevicePreferences();
 }
 
-export function mockCapabilitiesFetch() {
+export function mockCapabilitiesFetch(options = {}) {
+  const activePublicLocales = options.activePublicLocales ?? ["en", "ro"];
   return vi.spyOn(global, "fetch").mockImplementation((url, init) => {
     const path = String(url);
     if (path.includes("/api/preferences")) {
       return Promise.reject(new Error("Unexpected /api/preferences call"));
     }
-    return handleCapabilitiesFetch(url, init);
+    return handleCapabilitiesFetch(url, init, activePublicLocales);
   });
 }
 

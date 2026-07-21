@@ -96,6 +96,23 @@ The committed `dev.cmd` script:
 
 When startup completes, the backend is available at `http://localhost:5000` and the frontend at `http://localhost:5173`.
 
+### Local DeepL configuration (Windows)
+
+Editorial translation generation needs DeepL credentials in the backend process environment. For local Windows development, keep them in a **gitignored** root file:
+
+1. Copy `dev.local.example.cmd` to `dev.local.cmd`.
+2. Insert your real DeepL auth key in place of the placeholder.
+3. Choose the matching API base URL:
+   - Free: `https://api-free.deepl.com`
+   - Pro: `https://api.deepl.com`
+4. Start normally with `.\dev.cmd`.
+
+`dev.cmd` calls `dev.local.cmd` when present so the backend window inherits `DEEPL_AUTH_KEY`, `DEEPL_API_BASE_URL`, and `DEEPL_TIMEOUT_SECONDS`. If `dev.local.cmd` is missing, startup continues without DeepL (translation generation will report that it is not configured).
+
+Do not commit `dev.local.cmd`. Startup scripts must never echo the auth key.
+
+Before restarting, ensure no orphan backend is already bound to port `5000`; otherwise the new window may fail to bind or you may keep talking to an older process that lacks the DeepL variables.
+
 ### Manual startup
 
 Use these commands when you need to start services manually. Run each command from the repository root in a **separate terminal**.
@@ -176,6 +193,9 @@ The current local development baseline uses mock-first authentication by default
 | `STRIPE_CHECKOUT_SUCCESS_URL` | Backend | Post-Checkout return URL (must not grant access by itself). |
 | `STRIPE_CHECKOUT_CANCEL_URL` | Backend | Checkout cancel return URL. |
 | `STRIPE_PORTAL_RETURN_URL` | Backend | Customer Portal return URL. |
+| `DEEPL_AUTH_KEY` | Backend | DeepL API auth key. For local Windows development, set via gitignored `dev.local.cmd` (see above). |
+| `DEEPL_API_BASE_URL` | Backend | DeepL API host (`https://api-free.deepl.com` or `https://api.deepl.com`). |
+| `DEEPL_TIMEOUT_SECONDS` | Backend | Optional DeepL HTTP timeout (seconds). Defaults to `30` when unset. |
 
 Local frontend-only configuration can be placed in an untracked `frontend/.env.local` file. Restart the Vite development server after relevant environment changes.
 

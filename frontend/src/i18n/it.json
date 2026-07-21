@@ -1,0 +1,19 @@
+{
+  "nav.newProject": "Nuovo progetto",
+  "nav.projects": "Progetti",
+  "nav.manualTutorials": "Manuale e tutorial",
+  "nav.glossary": "Glossario",
+  "nav.knowledgeBase": "Base di conoscenze",
+  "nav.loginRegister": "Accedi / Registrati",
+  "nav.myAccount": "Il mio account",
+  "nav.home": "Home",
+  "nav.logout": "Esci",
+  "knowledgeBase.searchLabel": "Cerca nella base di conoscenze",
+  "knowledgeBase.searchPlaceholder": "Cerca problemi, sintomi e soluzioni",
+  "knowledgeBase.problemSummary": "Riepilogo del problema",
+  "knowledgeBase.symptoms": "Sintomi",
+  "knowledgeBase.possibleCauses": "Possibili cause",
+  "knowledgeBase.solution": "Soluzione",
+  "knowledgeBase.tips": "Consigli pratici",
+  "knowledgeBase.warnings": "Avvertenze"
+}

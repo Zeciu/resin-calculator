@@ -3,6 +3,7 @@
  */
 
 import { forwardRef } from "react";
+import { useI18n } from "../i18n/I18nContext.jsx";
 
 /**
  * @param {{
@@ -15,9 +16,12 @@ const KnowledgeBaseSearch = forwardRef(function KnowledgeBaseSearch(
   { value, onChange, onSubmit },
   ref,
 ) {
+  const { t } = useI18n();
+  const searchLabel = t("knowledgeBase.searchLabel");
+
   return (
     <label className="knowledge-base-toolbar__search-label">
-      <span className="knowledge-base-toolbar__search-caption">Search knowledge base</span>
+      <span className="knowledge-base-toolbar__search-caption">{searchLabel}</span>
       <input
         ref={ref}
         type="search"
@@ -30,8 +34,8 @@ const KnowledgeBaseSearch = forwardRef(function KnowledgeBaseSearch(
             onSubmit?.(event.currentTarget.value);
           }
         }}
-        placeholder="Search problems, symptoms, and solutions"
-        aria-label="Search knowledge base"
+        placeholder={t("knowledgeBase.searchPlaceholder")}
+        aria-label={searchLabel}
       />
     </label>
   );

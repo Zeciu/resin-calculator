@@ -1,0 +1,19 @@
+{
+  "nav.newProject": "Nový projekt",
+  "nav.projects": "Projekty",
+  "nav.manualTutorials": "Manuál a tutoriály",
+  "nav.glossary": "Glosář",
+  "nav.knowledgeBase": "Databáze znalostí",
+  "nav.loginRegister": "Přihlášení / Registrace",
+  "nav.myAccount": "Můj účet",
+  "nav.home": "Domů",
+  "nav.logout": "Odhlásit se",
+  "knowledgeBase.searchLabel": "Hledat v databázi znalostí",
+  "knowledgeBase.searchPlaceholder": "Hledat problémy, příznaky a řešení",
+  "knowledgeBase.problemSummary": "Shrnutí problému",
+  "knowledgeBase.symptoms": "Příznaky",
+  "knowledgeBase.possibleCauses": "Možné příčiny",
+  "knowledgeBase.solution": "Řešení",
+  "knowledgeBase.tips": "Praktické tipy",
+  "knowledgeBase.warnings": "Varování"
+}

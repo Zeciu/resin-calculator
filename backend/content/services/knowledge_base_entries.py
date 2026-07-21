@@ -58,13 +58,14 @@ class KnowledgeBaseEntryService:
         self._repository = repository
 
     def list_entries(self, locale: str = DEFAULT_LOCALE) -> list[KnowledgeBaseEntryListItem]:
-        parse_admin_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         items: list[KnowledgeBaseEntryListItem] = []
         for content_id in self._repository.list_kb_entry_ids():
             meta = self._repository.get_kb_entry_meta(content_id)
             if not meta:
                 continue
             variants: dict[str, KnowledgeBaseVariantSummary] = {}
+            active_variant: dict | None = None
             for variant_locale in EDITORIAL_LOCALES:
                 variant = self._repository.get_kb_variant(content_id, variant_locale)
                 if not variant:
@@ -74,10 +75,18 @@ class KnowledgeBaseEntryService:
                     updatedAt=parse_iso(variant.get("updatedAt")),
                     publishedAt=parse_iso(variant.get("publishedAt")),
                 )
+                if variant_locale == parsed_locale:
+                    active_variant = variant
+            # Prefer the active-locale draft title for the Admin sidebar; fall back to
+            # identity title (first non-empty across locales, typically Romanian) when
+            # the selected locale has no translation yet — Manual list parity.
+            active_title = ""
+            if active_variant is not None:
+                active_title = active_variant.get("draftBody", {}).get("title", "").strip()
             items.append(
                 KnowledgeBaseEntryListItem(
                     contentId=content_id,
-                    title=entry_identity_title(self._repository, content_id),
+                    title=active_title or entry_identity_title(self._repository, content_id),
                     category=meta["category"],
                     difficulty=meta["difficulty"],
                     sortOrder=meta["sortOrder"],

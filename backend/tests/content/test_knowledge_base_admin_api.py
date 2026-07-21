@@ -93,6 +93,49 @@ class TestKnowledgeBaseEntryCrud:
         )
         assert delete_response.status_code == 204
 
+    def test_list_title_follows_active_locale_with_identity_fallback(self, client):
+        entry_id = client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": "Articol RO", "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+
+        client.put(
+            f"/api/admin/knowledge-base/entries/{entry_id}/variants/en",
+            json=save_payload(sample_body("EN Article")),
+            headers=admin_headers(),
+        )
+        client.put(
+            f"/api/admin/knowledge-base/entries/{entry_id}/variants/fr",
+            json=save_payload(sample_body("Article FR")),
+            headers=admin_headers(),
+        )
+
+        ro_list = client.get(
+            "/api/admin/knowledge-base/entries?locale=ro",
+            headers=admin_headers(),
+        ).json()
+        en_list = client.get(
+            "/api/admin/knowledge-base/entries?locale=en",
+            headers=admin_headers(),
+        ).json()
+        fr_list = client.get(
+            "/api/admin/knowledge-base/entries?locale=fr",
+            headers=admin_headers(),
+        ).json()
+        de_list = client.get(
+            "/api/admin/knowledge-base/entries?locale=de",
+            headers=admin_headers(),
+        ).json()
+
+        assert [item["contentId"] for item in ro_list] == [entry_id]
+        assert ro_list[0]["title"] == "Articol RO"
+        assert en_list[0]["title"] == "EN Article"
+        assert fr_list[0]["title"] == "Article FR"
+        # Missing DE translation falls back to identity (first non-empty, Romanian).
+        assert de_list[0]["contentId"] == entry_id
+        assert de_list[0]["title"] == "Articol RO"
+
 
 class TestKnowledgeBaseVariants:
     def test_create_defaults_to_romanian_variant(self, client):

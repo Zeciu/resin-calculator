@@ -5,6 +5,12 @@ setlocal
 set ROOT=%~dp0
 set ROOT=%ROOT:~0,-1%
 
+:: Optional local secrets / DeepL config (gitignored). Must not echo secret values.
+if exist "%ROOT%\dev.local.cmd" (
+  echo Loading local development environment from dev.local.cmd...
+  call "%ROOT%\dev.local.cmd"
+)
+
 :: Cognito public configuration (from InfraStack outputs)
 set VITE_COGNITO_USER_POOL_ID=eu-central-1_cM7UmwtpB
 set VITE_COGNITO_CLIENT_ID=2kb538fbaa8udmh32ov0q7bm9

@@ -3,6 +3,7 @@
  */
 
 import { Link } from "react-router-dom";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { getKnowledgeBaseEntryElementId } from "./knowledgeBaseFilter.js";
 
 /**
@@ -31,6 +32,7 @@ import { getKnowledgeBaseEntryElementId } from "./knowledgeBaseFilter.js";
  * }} props
  */
 export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavigateToEntry }) {
+  const { t } = useI18n();
   const indicator = isExpanded ? "−" : "+";
   const hasPrepMeta =
     entry.estimatedRepairTime ||
@@ -62,17 +64,26 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
             {entry.problemSummary || (entry.symptoms?.length ?? 0) > 0 ? (
               <div className="knowledge-base-entry__column">
                 {entry.problemSummary ? (
-                  <KnowledgeBaseSection title="Problem Summary">
+                  <KnowledgeBaseSection title={t("knowledgeBase.problemSummary")}>
                     <p className="knowledge-base-entry__paragraph">{entry.problemSummary}</p>
                   </KnowledgeBaseSection>
                 ) : null}
-                <KnowledgeBaseListSection title="Symptoms" items={entry.symptoms ?? []} />
+                <KnowledgeBaseListSection
+                  title={t("knowledgeBase.symptoms")}
+                  items={entry.symptoms ?? []}
+                />
               </div>
             ) : null}
             {(entry.possibleCauses?.length ?? 0) > 0 || (entry.solution?.length ?? 0) > 0 ? (
               <div className="knowledge-base-entry__column">
-                <KnowledgeBaseListSection title="Possible Causes" items={entry.possibleCauses ?? []} />
-                <KnowledgeBaseListSection title="Solution" items={entry.solution ?? []} />
+                <KnowledgeBaseListSection
+                  title={t("knowledgeBase.possibleCauses")}
+                  items={entry.possibleCauses ?? []}
+                />
+                <KnowledgeBaseListSection
+                  title={t("knowledgeBase.solution")}
+                  items={entry.solution ?? []}
+                />
               </div>
             ) : null}
             {(entry.prevention?.length ?? 0) > 0 ||
@@ -80,8 +91,12 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
             (entry.warnings?.length ?? 0) > 0 ? (
               <div className="knowledge-base-entry__column">
                 <KnowledgeBaseListSection title="Prevention" items={entry.prevention ?? []} />
-                <KnowledgeBaseListSection title="Tips" items={entry.tips ?? []} />
-                <KnowledgeBaseListSection title="Warnings" items={entry.warnings ?? []} isWarning />
+                <KnowledgeBaseListSection title={t("knowledgeBase.tips")} items={entry.tips ?? []} />
+                <KnowledgeBaseListSection
+                  title={t("knowledgeBase.warnings")}
+                  items={entry.warnings ?? []}
+                  isWarning
+                />
               </div>
             ) : null}
           </div>

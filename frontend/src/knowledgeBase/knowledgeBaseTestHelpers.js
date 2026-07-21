@@ -38,7 +38,9 @@ export function buildPublishedKnowledgeBaseResponse(entries = KNOWLEDGE_BASE_ENT
 export function mockPublishedKnowledgeBaseFetch(
   entries = KNOWLEDGE_BASE_ENTRIES,
   capabilities = null,
+  options = {},
 ) {
+  const activePublicLocales = options.activePublicLocales ?? ["en", "ro"];
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
     if (requestUrl.includes("/api/me/capabilities")) {
@@ -58,7 +60,7 @@ export function mockPublishedKnowledgeBaseFetch(
         ok: true,
         json: async () => ({
           defaultPublicLocale: "en",
-          activePublicLocales: ["en", "ro"],
+          activePublicLocales,
         }),
       };
     }

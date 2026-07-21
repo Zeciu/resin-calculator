@@ -5,6 +5,7 @@ backend/**/__pycache__/
 backend/*.pyc
 backend/data/
 .env
+dev.local.cmd
 *.log
 .DS_Store
 /deployment/cdk/node_modules/

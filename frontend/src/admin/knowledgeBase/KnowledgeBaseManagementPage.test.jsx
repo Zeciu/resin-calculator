@@ -59,9 +59,14 @@ function createInMemoryKnowledgeBaseApi() {
     return `${contentId}:${locale}`;
   }
 
-  function entryListTitle(contentId) {
-    for (const locale of ["ro", "en"]) {
-      const variant = variants.get(variantKey(contentId, locale));
+  function entryListTitle(contentId, locale = "ro") {
+    const active = variants.get(variantKey(contentId, locale));
+    const activeTitle = active?.body?.title?.trim();
+    if (activeTitle) {
+      return activeTitle;
+    }
+    for (const fallbackLocale of ["ro", "en", "fr", "de", "es", "pt", "it", "pl", "cs"]) {
+      const variant = variants.get(variantKey(contentId, fallbackLocale));
       const title = variant?.body?.title?.trim();
       if (title) {
         return title;
@@ -109,7 +114,7 @@ function createInMemoryKnowledgeBaseApi() {
           .sort((a, b) => a.sortOrder - b.sortOrder)
           .map((entry) => ({
             contentId: entry.contentId,
-            title: entryListTitle(entry.contentId),
+            title: entryListTitle(entry.contentId, locale),
             category: entry.category,
             difficulty: entry.difficulty,
             sortOrder: entry.sortOrder,
@@ -418,6 +423,65 @@ describe("Knowledge base management workspace (Task 61)", () => {
     await user.click(screen.getByRole("button", { name: "EN" }));
     expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related Knowledge Base Articles")).toBeInTheDocument();
+  });
+
+  it("updates the sidebar title to match the active Admin locale", async () => {
+    memoryApi.seedEntry({
+      contentId: "multi-title",
+      title: "Titlu RO",
+      locale: "ro",
+      body: { ...emptyVariantBody("Titlu RO"), solution: ["RO."] },
+    });
+    memoryApi.seedEntry({
+      contentId: "multi-title",
+      title: "EN Title",
+      locale: "en",
+      body: { ...emptyVariantBody("EN Title"), solution: ["EN."] },
+    });
+    memoryApi.seedEntry({
+      contentId: "multi-title",
+      title: "Titre FR",
+      locale: "fr",
+      body: { ...emptyVariantBody("Titre FR"), solution: ["FR."] },
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.KNOWLEDGE_BASE);
+
+    const sidebar = await screen.findByRole("complementary", { name: "Knowledge base entries" });
+    await waitFor(() => {
+      expect(within(sidebar).getByRole("button", { name: "Titlu RO" })).toBeInTheDocument();
+    });
+
+    await user.click(within(sidebar).getByRole("button", { name: "Titlu RO" }));
+    await waitFor(() => {
+      expect(screen.getByRole("textbox", { name: "Entry title" })).toHaveValue("Titlu RO");
+    });
+
+    await user.click(screen.getByRole("button", { name: "EN" }));
+    await waitFor(() => {
+      expect(within(sidebar).getByRole("button", { name: "EN Title" })).toBeInTheDocument();
+      expect(screen.getByRole("textbox", { name: "Entry title" })).toHaveValue("EN Title");
+    });
+    expect(within(sidebar).queryByRole("button", { name: "Titlu RO" })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "FR" }));
+    await waitFor(() => {
+      expect(within(sidebar).getByRole("button", { name: "Titre FR" })).toBeInTheDocument();
+      expect(screen.getByRole("textbox", { name: "Entry title" })).toHaveValue("Titre FR");
+    });
+
+    await user.click(screen.getByRole("button", { name: "DE" }));
+    await waitFor(() => {
+      // Missing DE translation: identity fallback to Romanian title.
+      expect(within(sidebar).getByRole("button", { name: "Titlu RO" })).toBeInTheDocument();
+      expect(screen.getByText(/No DE content yet/i)).toBeInTheDocument();
+    });
+    // Selection stays on the same entry (stable contentId) — sidebar still lists it.
+    expect(within(sidebar).getByRole("button", { name: "Titlu RO" })).toHaveClass(
+      "editorial-sidebar__item--active",
+    );
   });
 
   it("deletes only the active non-RO translation and keeps the entry selected", async () => {
