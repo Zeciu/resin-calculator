@@ -51,6 +51,27 @@ export const WORKSPACE_NAV_ITEMS = [
   },
 ];
 
+/** Auth screens that share the Login / Register nav highlight. */
+export const AUTH_FLOW_PATHS = [ROUTES.LOGIN, ROUTES.REGISTER, ROUTES.PASSWORD_RECOVERY];
+
+export function isAuthFlowPath(pathname) {
+  return AUTH_FLOW_PATHS.includes(pathname);
+}
+
+/**
+ * Route-derived active state for workspace sidebar items.
+ * Login stays active across the auth flow; My Account stays active on preferences.
+ */
+export function isWorkspaceNavItemActive(item, pathname) {
+  if (item.id === "login-register") {
+    return isAuthFlowPath(pathname);
+  }
+  if (item.id === "my-account") {
+    return pathname === ROUTES.ACCOUNT || pathname.startsWith(`${ROUTES.ACCOUNT}/`);
+  }
+  return pathname === item.path;
+}
+
 export function getVisibleWorkspaceNavItems(isAuthenticated) {
   return WORKSPACE_NAV_ITEMS.filter((item) => {
     if (item.id === "login-register") {

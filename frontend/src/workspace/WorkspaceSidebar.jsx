@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import QuickPreferences from "../preferences/QuickPreferences.jsx";
-import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems } from "./navigation.js";
+import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems, isWorkspaceNavItemActive } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
 
@@ -47,7 +47,10 @@ export default function WorkspaceSidebar() {
         {navItems.map((item) => {
           const label = t(item.labelKey);
           const isLocked = isNavItemLocked(item);
-          const isPrimaryAction = isAuthenticated && item.id === "new-project" && !isLocked;
+          // Primary emphasis is Home-only; do not keep New Project highlighted on
+          // Login, auth-flow, or preferences routes.
+          const isPrimaryAction = isLoggedInHome && item.id === "new-project" && !isLocked;
+          const isItemActive = isWorkspaceNavItemActive(item, location.pathname);
 
           return (
             <li key={item.id} className="workspace-sidebar__item">
@@ -60,15 +63,17 @@ export default function WorkspaceSidebar() {
               ) : (
                 <NavLink
                   to={item.path}
-                  className={({ isActive }) =>
+                  end={item.id !== "my-account"}
+                  className={() =>
                     [
                       "workspace-sidebar__link",
                       isPrimaryAction ? "workspace-sidebar__link--primary-action" : "",
-                      isActive ? "workspace-sidebar__link--active" : "",
+                      isItemActive ? "workspace-sidebar__link--active" : "",
                     ]
                       .filter(Boolean)
                       .join(" ")
                   }
+                  aria-current={isItemActive ? "page" : undefined}
                   onClick={clearLockedModuleMessage}
                 >
                   <span className="workspace-sidebar__label">{label}</span>

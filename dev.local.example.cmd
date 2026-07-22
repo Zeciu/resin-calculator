@@ -10,6 +10,6 @@ rem   https://api.deepl.com
 rem
 rem Do not echo DEEPL_AUTH_KEY from any startup script.
 
-set "DEEPL_AUTH_KEY=YOUR_DEEPL_AUTH_KEY_HERE"
+set "DEEPL_AUTH_KEY=paste_your_real_key_here"
 set "DEEPL_API_BASE_URL=https://api-free.deepl.com"
 set "DEEPL_TIMEOUT_SECONDS=30"
