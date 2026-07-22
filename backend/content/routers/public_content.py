@@ -7,6 +7,7 @@ from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.glossary import PublicGlossaryResponse
 from content.schemas.knowledge_base import PublicKnowledgeBaseResponse
 from content.schemas.manual import PublicManualResponse
+from content.schemas.website import PublicWebsiteResponse
 from content.services.glossary_images import GlossaryImageService
 from content.services.glossary_public import GlossaryPublicService
 from content.services.knowledge_base_images import KnowledgeBaseImageService
@@ -14,6 +15,8 @@ from content.services.knowledge_base_public import KnowledgeBasePublicService
 from content.services.manual_images import ManualImageService
 from content.services.manual_public import ManualPublicService
 from content.services.public_languages import PublicLanguagesService
+from content.services.website_images import WebsiteImageService
+from content.services.website_public import WebsitePublicService
 from content.repositories.public_languages import PublicLanguagesRepository
 
 router = APIRouter(prefix="/content", tags=["public-content"])
@@ -60,6 +63,14 @@ def get_kb_image_service() -> KnowledgeBaseImageService:
     return KnowledgeBaseImageService(get_repository())
 
 
+def get_website_public_service() -> WebsitePublicService:
+    return WebsitePublicService(get_repository())
+
+
+def get_website_image_service() -> WebsiteImageService:
+    return WebsiteImageService(get_repository())
+
+
 def _require_active_public_locale(locale: str) -> None:
     get_public_languages_service().require_active_public_locale(locale)
 
@@ -96,6 +107,33 @@ def get_published_knowledge_base(
     try:
         _require_active_public_locale(locale)
         return service.get_published_knowledge_base(locale)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.get("/website/images/{filename}")
+def get_website_image(
+    filename: str,
+    image_service: WebsiteImageService = Depends(get_website_image_service),
+) -> FileResponse:
+    try:
+        image_path, media_type = image_service.resolve_public_image(filename)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Image not found.") from exc
+    return FileResponse(image_path, media_type=media_type)
+
+
+@router.get("/website/{page_key}", response_model=PublicWebsiteResponse)
+def get_published_website_page(
+    page_key: str,
+    locale: str = "en",
+    service: WebsitePublicService = Depends(get_website_public_service),
+) -> PublicWebsiteResponse:
+    try:
+        _require_active_public_locale(locale)
+        return service.get_published_page(page_key, locale)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail="Website page not found.") from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

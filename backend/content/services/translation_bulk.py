@@ -12,6 +12,7 @@ from content.services.editorial_identity import (
     entry_identity_term,
     entry_identity_title,
 )
+from content.services.website_pages import resolve_public_title
 from content.services.translation_update import (
     GenerateModule,
     OverwriteConfirmationRequired,
@@ -291,6 +292,8 @@ class TranslationBulkService:
             return list(self._repository.list_manual_chapter_ids())
         if module == "glossary":
             return list(self._repository.list_glossary_entry_ids())
+        if module == "website":
+            return list(self._repository.list_website_page_ids())
         return list(self._repository.list_kb_entry_ids())
 
     def _label_for(self, module: GenerateModule, content_id: str) -> str:
@@ -298,6 +301,8 @@ class TranslationBulkService:
             return chapter_identity_title(self._repository, content_id) or content_id
         if module == "glossary":
             return entry_identity_term(self._repository, content_id) or content_id
+        if module == "website":
+            return resolve_public_title(self._repository, content_id, CANONICAL_SOURCE_LOCALE) or content_id
         return entry_identity_title(self._repository, content_id) or content_id
 
     def _planned_action(

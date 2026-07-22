@@ -17,7 +17,7 @@ from content.services.translation_update import (
 from content.translation.exceptions import TranslationError
 from content.translation.provider import TranslationProvider
 
-GenerateModule = Literal["manual", "glossary", "knowledge_base"]
+GenerateModule = Literal["manual", "glossary", "knowledge_base", "website"]
 
 # Backward-compatible alias used by routers and older imports.
 TranslationGenerationError = TranslationUpdateError

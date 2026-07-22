@@ -8,6 +8,6 @@ export const ADMIN_ROUTES = {
   MANUAL: "/admin/manual",
   GLOSSARY: "/admin/glossary",
   KNOWLEDGE_BASE: "/admin/knowledge-base",
-  FUTURE_CONTENT: "/admin/future-content",
+  WEBSITE: "/admin/website",
   FUTURE_ADMINISTRATION: "/admin/future-administration",
 };

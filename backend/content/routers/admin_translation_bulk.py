@@ -22,12 +22,13 @@ from content.services.translation_update import TranslationUpdateError
 from content.translation.exceptions import TranslationError
 from content.services.translation_generation import map_provider_error_to_http
 
-BulkModulePath = Literal["manual", "glossary", "knowledge-base"]
+BulkModulePath = Literal["manual", "glossary", "knowledge-base", "website"]
 
 MODULE_MAP = {
     "manual": "manual",
     "glossary": "glossary",
     "knowledge-base": "knowledge_base",
+    "website": "website",
 }
 
 router = APIRouter(prefix="/admin", tags=["admin-translation-bulk"])
@@ -46,6 +47,10 @@ def _repository_for_module(module: BulkModulePath) -> FilesystemContentRepositor
         from content.routers.admin_glossary import get_repository
 
         return get_repository()
+    if module == "website":
+        from content.routers.admin_website import get_repository
+
+        return get_repository()
     from content.routers.admin_knowledge_base import get_repository
 
     return get_repository()
@@ -59,11 +64,12 @@ def get_bulk_service(
 
 def reset_repository_cache() -> None:
     """Clear module repository caches used by bulk (shared with single-item routes)."""
-    from content.routers import admin_glossary, admin_knowledge_base, admin_manual
+    from content.routers import admin_glossary, admin_knowledge_base, admin_manual, admin_website
 
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     admin_knowledge_base.reset_repository_cache()
+    admin_website.reset_repository_cache()
 
 
 def _resolve_module(module: BulkModulePath) -> str:

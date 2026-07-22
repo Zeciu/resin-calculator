@@ -2,12 +2,13 @@ import { AdminApiError, adminHeaders, parseAdminError } from "./editorialAdminAp
 
 const API_BASE_URL = "";
 
-/** @typedef {"manual" | "glossary" | "knowledge_base"} BulkModule */
+/** @typedef {"manual" | "glossary" | "knowledge_base" | "website"} BulkModule */
 
 const MODULE_PATH = {
   manual: "manual",
   glossary: "glossary",
   knowledge_base: "knowledge-base",
+  website: "website",
 };
 
 /**

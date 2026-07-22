@@ -42,13 +42,10 @@ export const ADMIN_NAV_ITEMS = [
     kind: "link",
   },
   {
-    id: "future-content",
-    label: "Future content sections",
-    path: ADMIN_ROUTES.FUTURE_CONTENT,
-    kind: "placeholder",
-    placeholderTitle: "Future content sections",
-    placeholderMessage:
-      "Additional completed content areas will be added here in a later phase.",
+    id: "website",
+    label: "Website",
+    path: ADMIN_ROUTES.WEBSITE,
+    kind: "link",
   },
   {
     id: "future-administration",

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Any, Literal
 
 ContentFormat = Literal["plain", "html"]
-EditorialModule = Literal["manual", "glossary", "knowledge_base"]
+EditorialModule = Literal["manual", "glossary", "knowledge_base", "website"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -242,6 +242,176 @@ def extract_knowledge_base_items(draft_body: dict[str, Any]) -> list[Translatabl
     return items
 
 
+def _extract_about_sections(
+    items: list[TranslatableItem],
+    sections: list[Any],
+    *,
+    context: str | None,
+) -> None:
+    if not isinstance(sections, list):
+        return
+    for section_index, section in enumerate(sections):
+        if not isinstance(section, dict):
+            continue
+        _append_item(
+            items,
+            path=("sections", section_index, "title"),
+            text=section.get("title"),
+            content_format="plain",
+            context=context,
+        )
+        blocks = section.get("blocks") or []
+        if isinstance(blocks, list):
+            _extract_manual_blocks(items, blocks, ("sections", section_index, "blocks"), context)
+        image = section.get("image") or {}
+        if isinstance(image, dict):
+            _append_item(
+                items,
+                path=("sections", section_index, "image", "alt"),
+                text=image.get("alt"),
+                content_format="plain",
+                context=context,
+            )
+
+
+def _extract_website_sections(
+    items: list[TranslatableItem],
+    sections: list[Any],
+    *,
+    context: str | None,
+) -> None:
+    if not isinstance(sections, list):
+        return
+    for section_index, section in enumerate(sections):
+        if not isinstance(section, dict):
+            continue
+        _append_item(
+            items,
+            path=("sections", section_index, "title"),
+            text=section.get("title"),
+            content_format="plain",
+            context=context,
+        )
+        blocks = section.get("blocks") or []
+        if isinstance(blocks, list):
+            _extract_manual_blocks(items, blocks, ("sections", section_index, "blocks"), context)
+
+
+def extract_website_items(draft_body: dict[str, Any]) -> list[TranslatableItem]:
+    items: list[TranslatableItem] = []
+    page_kind = draft_body.get("pageKind")
+    context = _nonempty(draft_body.get("publicTitle"))
+    _append_item(
+        items,
+        path=("publicTitle",),
+        text=draft_body.get("publicTitle"),
+        content_format="plain",
+        context=None,
+    )
+
+    if page_kind == "home":
+        for field in ("subtitle", "description"):
+            _append_item(
+                items,
+                path=(field,),
+                text=draft_body.get(field),
+                content_format="plain",
+                context=context,
+            )
+        image = draft_body.get("image") or {}
+        if isinstance(image, dict):
+            _append_item(
+                items,
+                path=("image", "alt"),
+                text=image.get("alt"),
+                content_format="plain",
+                context=context,
+            )
+        cta = draft_body.get("cta") or {}
+        if isinstance(cta, dict):
+            _append_item(
+                items,
+                path=("cta", "label"),
+                text=cta.get("label"),
+                content_format="plain",
+                context=context,
+            )
+        return items
+
+    if page_kind == "about":
+        _extract_about_sections(items, draft_body.get("sections") or [], context=context)
+        return items
+
+    if page_kind == "pricing":
+        _append_item(
+            items,
+            path=("intro",),
+            text=draft_body.get("intro"),
+            content_format="plain",
+            context=context,
+        )
+        offers = draft_body.get("offers") or []
+        if isinstance(offers, list):
+            for offer_index, offer in enumerate(offers):
+                if not isinstance(offer, dict):
+                    continue
+                for field in ("title", "displayedPriceText", "ctaLabel"):
+                    _append_item(
+                        items,
+                        path=("offers", offer_index, field),
+                        text=offer.get(field),
+                        content_format="plain",
+                        context=context,
+                    )
+                benefits = offer.get("benefits") or []
+                if isinstance(benefits, list):
+                    for benefit_index, benefit in enumerate(benefits):
+                        _append_item(
+                            items,
+                            path=("offers", offer_index, "benefits", benefit_index),
+                            text=benefit,
+                            content_format="plain",
+                            context=context,
+                        )
+        _append_item(
+            items,
+            path=("footnote",),
+            text=draft_body.get("footnote"),
+            content_format="plain",
+            context=context,
+        )
+        return items
+
+    if page_kind in {"privacy", "terms"}:
+        _extract_website_sections(items, draft_body.get("sections") or [], context=context)
+        return items
+
+    if page_kind == "contact":
+        for field in ("intro", "manualLinkLabel", "knowledgeBaseLinkLabel"):
+            _append_item(
+                items,
+                path=(field,),
+                text=draft_body.get(field),
+                content_format="plain",
+                context=context,
+            )
+        links = draft_body.get("links") or []
+        if isinstance(links, list):
+            for link_index, link in enumerate(links):
+                if not isinstance(link, dict):
+                    continue
+                _append_item(
+                    items,
+                    path=("links", link_index, "label"),
+                    text=link.get("label"),
+                    content_format="plain",
+                    context=context,
+                )
+        return items
+
+    raise ValueError(f"Unsupported website page kind: {page_kind}")
+
+
 def extract_translatable_items(
     module: EditorialModule,
     draft_body: dict[str, Any],
@@ -252,6 +422,8 @@ def extract_translatable_items(
         return extract_glossary_items(draft_body)
     if module == "knowledge_base":
         return extract_knowledge_base_items(draft_body)
+    if module == "website":
+        return extract_website_items(draft_body)
     raise ValueError(f"Unsupported editorial module: {module}")
 
 

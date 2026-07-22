@@ -10,7 +10,7 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   ariaLabel: string;
  *   backHref: string;
  *   locale: string;
- *   bulkModule?: "manual" | "glossary" | "knowledge_base" | null;
+ *   bulkModule?: "manual" | "glossary" | "knowledge_base" | "website" | null;
  *   isSaving?: boolean;
  *   isGenerating?: boolean;
  *   isDirty?: boolean;
@@ -26,6 +26,8 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   onPublish: () => void;
  *   onGenerateTranslation?: () => void;
  *   onBulkCompleted?: () => void;
+ *   onUnpublish?: () => void;
+ *   canUnpublish?: boolean;
  *   showUnsavedDialog?: boolean;
  *   onUnsavedSave?: () => void;
  *   onUnsavedDiscard?: () => void;
@@ -54,6 +56,8 @@ export default function EditorialManagementShell({
   onPublish,
   onGenerateTranslation,
   onBulkCompleted,
+  onUnpublish,
+  canUnpublish = false,
   showUnsavedDialog = false,
   onUnsavedSave,
   onUnsavedDiscard,
@@ -97,6 +101,8 @@ export default function EditorialManagementShell({
         onPublish={onPublish}
         onGenerateTranslation={onGenerateTranslation}
         onUpdateAllTranslations={bulkModule ? openBulkDialog : undefined}
+        onUnpublish={onUnpublish}
+        canUnpublish={canUnpublish}
       />
 
       {errorMessage ? <p className="editorial-workspace__error">{errorMessage}</p> : null}

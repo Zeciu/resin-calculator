@@ -4,6 +4,7 @@ import AdminLayout from "../admin/AdminLayout.jsx";
 import ManualManagementPage from "../admin/manual/ManualManagementPage.jsx";
 import GlossaryManagementPage from "../admin/glossary/GlossaryManagementPage.jsx";
 import KnowledgeBaseManagementPage from "../admin/knowledgeBase/KnowledgeBaseManagementPage.jsx";
+import WebsiteManagementPage from "../admin/website/WebsiteManagementPage.jsx";
 import AdminPlaceholderPage from "../admin/AdminPlaceholderPage.jsx";
 import AdminRouteGuard from "../admin/AdminRouteGuard.jsx";
 import { getAdminPlaceholderNavItems } from "../admin/adminNavigation.js";
@@ -149,6 +150,10 @@ export default function WorkspaceRouter() {
           <Route
             path={ADMIN_ROUTES.KNOWLEDGE_BASE.replace(/^\/admin\//, "")}
             element={<KnowledgeBaseManagementPage />}
+          />
+          <Route
+            path={ADMIN_ROUTES.WEBSITE.replace(/^\/admin\//, "")}
+            element={<WebsiteManagementPage />}
           />
           {getAdminPlaceholderNavItems().map((item) => (
             <Route

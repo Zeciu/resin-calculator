@@ -9,7 +9,7 @@ import {
 /**
  * @param {{
  *   isOpen: boolean;
- *   module: "manual" | "glossary" | "knowledge_base";
+ *   module: "manual" | "glossary" | "knowledge_base" | "website";
  *   locale: string;
  *   onClose: () => void;
  *   onCompleted?: () => void;

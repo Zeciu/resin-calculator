@@ -19,6 +19,8 @@ import { ADMIN_EDITORIAL_LOCALES, isCanonicalSourceLocale } from "./editorialLoc
  *   onPublish: () => void;
  *   onGenerateTranslation?: () => void;
  *   onUpdateAllTranslations?: () => void;
+ *   onUnpublish?: () => void;
+ *   canUnpublish?: boolean;
  * }} props
  */
 export default function EditorialTopbar({
@@ -37,6 +39,8 @@ export default function EditorialTopbar({
   onPublish,
   onGenerateTranslation,
   onUpdateAllTranslations,
+  onUnpublish,
+  canUnpublish = false,
 }) {
   const busy = isSaving || isGenerating || isBulkUpdating;
 
@@ -86,6 +90,11 @@ export default function EditorialTopbar({
           <button type="button" onClick={onPublish} disabled={!canPublish || busy}>
             {publishButtonLabel(editorialVisibility)}
           </button>
+          {onUnpublish ? (
+            <button type="button" onClick={onUnpublish} disabled={!canUnpublish || busy}>
+              Unpublish
+            </button>
+          ) : null}
         </div>
       </div>
     </header>

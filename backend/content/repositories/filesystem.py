@@ -11,6 +11,13 @@ from typing import Any
 from content.services.glossary_source import load_glossary_entries
 from content.services.knowledge_base_source import load_knowledge_base_entries
 from content.services.manual_source import load_manual_sections
+from content.website_pages import (
+    WEBSITE_PAGE_DEFINITIONS,
+    WEBSITE_PAGE_KEYS,
+    empty_website_draft_body,
+    empty_website_snapshot_document,
+    website_page_definition,
+)
 from content.translation_metadata import (
     apply_translation_metadata_on_save,
     initial_translation_metadata_on_create,
@@ -19,6 +26,7 @@ from content.translation_metadata import (
 CONTENT_TYPE_MANUAL_CHAPTER = "manual_chapter"
 CONTENT_TYPE_GLOSSARY_ENTRY = "glossary_entry"
 CONTENT_TYPE_KB_ENTRY = "kb_entry"
+CONTENT_TYPE_WEBSITE_PAGE = "website_page"
 DEFAULT_SECTION_ID = "main"
 # Romanian is the canonical editorial authoring language. English remains a
 # valid variant locale but is no longer the create/list default.
@@ -80,6 +88,14 @@ def make_kb_meta_key(content_id: str) -> str:
 
 def make_kb_variant_key(content_id: str, locale: str) -> str:
     return f"CONTENT#kb_entry#{content_id}|VARIANT#{locale}"
+
+
+def make_website_meta_key(page_key: str) -> str:
+    return f"CONTENT#website_page#{page_key}|META"
+
+
+def make_website_variant_key(page_key: str, locale: str) -> str:
+    return f"CONTENT#website_page#{page_key}|VARIANT#{locale}"
 
 
 def make_order_key(sort_order: int) -> str:
@@ -164,6 +180,8 @@ def _typed_key_builders_for_content_type(
         return make_glossary_meta_key, make_glossary_variant_key
     if content_type == CONTENT_TYPE_KB_ENTRY:
         return make_kb_meta_key, make_kb_variant_key
+    if content_type == CONTENT_TYPE_WEBSITE_PAGE:
+        return make_website_meta_key, make_website_variant_key
     raise ValueError(f"Unsupported content type for legacy migration: {content_type}")
 
 
@@ -395,6 +413,7 @@ def _adopt_authoritative_existing_root(root: Path) -> None:
         )
 
     _validate_required_artifact_payloads(root)
+    _ensure_website_artifacts(root)
     _write_initialization_marker(root)
 
 
@@ -533,6 +552,7 @@ def required_initialization_artifacts(root: Path) -> list[Path]:
         root / "published" / "manual" / "en" / "document.json",
         root / "published" / "glossary" / "en" / "entries.json",
         root / "published" / "knowledge-base" / "en" / "entries.json",
+        root / "published" / "website" / "en" / "pages.json",
         root / "legacy" / "manual" / "en" / "document.json",
         root / "legacy" / "glossary" / "en" / "entries.json",
         root / "legacy" / "knowledge-base" / "en" / "entries.json",
@@ -599,6 +619,12 @@ def _seed_canonical_editorial_content(repository: "FilesystemContentRepository")
     EditorialManualMigrationService(repository).migrate()
     EditorialGlossaryMigrationService(repository).migrate()
     EditorialKnowledgeBaseMigrationService(repository).migrate()
+    repository.ensure_website_pages_exist()
+
+
+def _ensure_website_artifacts(root: Path) -> None:
+    repository = FilesystemContentRepository(root)
+    repository.ensure_website_pages_exist()
 
 
 def _write_initialization_marker(root: Path) -> None:
@@ -675,6 +701,56 @@ class FilesystemContentRepository:
         self._published_dir.mkdir(parents=True, exist_ok=True)
         if not self._store_path.exists():
             self._write_store({})
+        self.ensure_website_pages_exist()
+
+    def ensure_website_pages_exist(self) -> None:
+        records = self._read_store()
+        now = utc_now()
+        changed = False
+
+        for page in WEBSITE_PAGE_DEFINITIONS:
+            page_key = page["pageKey"]
+            if _meta_exists(
+                records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+            ):
+                continue
+
+            meta = {
+                "pk": f"CONTENT#{page_key}",
+                "sk": "META",
+                "contentId": page_key,
+                "contentType": CONTENT_TYPE_WEBSITE_PAGE,
+                "pageKey": page_key,
+                "slug": page["slug"],
+                "adminLabel": page["adminLabel"],
+                "pageKind": page["pageKind"],
+                "sortOrder": page["sortOrder"],
+                "createdAt": isoformat(now),
+                "updatedAt": isoformat(now),
+            }
+            variant = {
+                "pk": f"CONTENT#{page_key}",
+                "sk": f"VARIANT#{DEFAULT_LOCALE}",
+                "contentId": page_key,
+                "locale": DEFAULT_LOCALE,
+                "status": "draft",
+                "draftBody": empty_website_draft_body(page["pageKind"]),
+                "updatedAt": isoformat(now),
+                "publishedAt": None,
+                "snapshotKey": None,
+                **initial_translation_metadata_on_create(DEFAULT_LOCALE),
+            }
+            records[make_website_meta_key(page_key)] = meta
+            records[make_website_variant_key(page_key, DEFAULT_LOCALE)] = variant
+            changed = True
+
+        if changed:
+            self._write_store(records)
+
+        snapshot_path = self._root / "published" / "website" / "en" / "pages.json"
+        if not snapshot_path.exists():
+            snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+            atomic_write_json(snapshot_path, empty_website_snapshot_document("en"))
 
     def _read_store(self) -> dict[str, Any]:
         if not self._store_path.exists():
@@ -1772,3 +1848,240 @@ class FilesystemContentRepository:
             return None
         with snapshot_path.open("r", encoding="utf-8") as handle:
             return json.load(handle)
+
+    def list_website_page_ids(self) -> list[str]:
+        records = self._read_store()
+        ordered: list[tuple[int, str]] = []
+        for key, value in records.items():
+            if not key.startswith("CONTENT#website_page#") or not key.endswith("|META"):
+                continue
+            sort_order = int(value.get("sortOrder", 0))
+            ordered.append((sort_order, value["pageKey"]))
+        ordered.sort(key=lambda item: item[0])
+        return [page_key for _, page_key in ordered]
+
+    def get_website_page_meta(self, page_key: str) -> dict[str, Any] | None:
+        if page_key not in WEBSITE_PAGE_KEYS:
+            return None
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+        )
+        return deepcopy(meta) if meta is not None else None
+
+    def get_website_variant(self, page_key: str, locale: str) -> dict[str, Any] | None:
+        if page_key not in WEBSITE_PAGE_KEYS:
+            return None
+        records = self._read_store()
+        if not _meta_exists(records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key):
+            return None
+        _, record = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        return deepcopy(record) if record is not None else None
+
+    def save_website_variant(
+        self,
+        page_key: str,
+        locale: str,
+        body: dict[str, Any],
+        *,
+        generation_metadata: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        if page_key not in WEBSITE_PAGE_KEYS:
+            raise KeyError(page_key)
+
+        page = website_page_definition(page_key)
+        if body.get("pageKind") != page["pageKind"]:
+            raise ValueError("Website draft body pageKind does not match page metadata.")
+
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+        )
+        if meta is None:
+            raise KeyError(page_key)
+
+        now = utc_now()
+        _, existing = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        metadata_fields = (
+            generation_metadata
+            if generation_metadata is not None
+            else apply_translation_metadata_on_save(
+                locale=locale,
+                new_body=body,
+                existing=existing,
+                module="website",
+            )
+        )
+        variant = {
+            "pk": f"CONTENT#{page_key}",
+            "sk": f"VARIANT#{locale}",
+            "contentId": page_key,
+            "locale": locale,
+            "status": existing["status"] if existing else "draft",
+            "draftBody": body,
+            "updatedAt": isoformat(now),
+            "publishedAt": existing.get("publishedAt") if existing else None,
+            "snapshotKey": existing.get("snapshotKey") if existing else None,
+            **metadata_fields,
+        }
+        meta["updatedAt"] = isoformat(now)
+        self._persist_typed_meta(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key, meta
+        )
+        self._persist_typed_variant(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+            variant,
+        )
+        self._finalize_typed_record_migration(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE
+        )
+        self._write_store(records)
+        return deepcopy(variant)
+
+    def publish_website_variant(self, page_key: str, locale: str) -> dict[str, Any]:
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+        )
+        _, variant = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        if meta is None or variant is None:
+            raise KeyError(page_key)
+        now = utc_now()
+        variant["status"] = "published"
+        variant["publishedAt"] = isoformat(now)
+        variant["updatedAt"] = isoformat(now)
+        variant["snapshotKey"] = f"published/website/{locale}/pages.json"
+        meta["updatedAt"] = isoformat(now)
+        self._persist_typed_meta(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key, meta
+        )
+        self._persist_typed_variant(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+            variant,
+        )
+        self._finalize_typed_record_migration(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE
+        )
+        self._write_store(records)
+        return deepcopy(variant)
+
+    def unpublish_website_variant(self, page_key: str, locale: str) -> dict[str, Any]:
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+        )
+        _, variant = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        if meta is None or variant is None:
+            raise KeyError(page_key)
+        now = utc_now()
+        variant["status"] = "draft"
+        variant["updatedAt"] = isoformat(now)
+        meta["updatedAt"] = isoformat(now)
+        self._persist_typed_meta(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key, meta
+        )
+        self._persist_typed_variant(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+            variant,
+        )
+        self._finalize_typed_record_migration(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE
+        )
+        self._write_store(records)
+        return deepcopy(variant)
+
+    def delete_website_page_variant(self, page_key: str, locale: str) -> None:
+        normalized = locale.strip().lower()
+        if normalized == CANONICAL_EDITORIAL_LOCALE:
+            raise ValueError("Cannot delete the canonical Romanian variant in isolation.")
+        records = self._read_store()
+        _, meta = _resolve_meta_key(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+        )
+        variant_key, variant = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        if meta is None or variant is None or variant_key is None:
+            raise KeyError(page_key)
+        now = utc_now()
+        records.pop(variant_key, None)
+        meta["updatedAt"] = isoformat(now)
+        self._persist_typed_meta(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key, meta
+        )
+        self._finalize_typed_record_migration(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE
+        )
+        self._write_store(records)
+
+    def write_website_snapshot(self, locale: str, document: dict[str, Any]) -> str:
+        snapshot_key = f"published/website/{locale}/pages.json"
+        snapshot_path = self._root / snapshot_key
+        atomic_write_json(snapshot_path, document)
+        return snapshot_key
+
+    def read_website_snapshot(self, locale: str) -> dict[str, Any] | None:
+        snapshot_path = self._root / f"published/website/{locale}/pages.json"
+        if not snapshot_path.exists():
+            return None
+        with snapshot_path.open("r", encoding="utf-8") as handle:
+            return json.load(handle)
+
+    def save_website_image(self, filename: str, data: bytes) -> str:
+        images_dir = self._root / "website" / "images"
+        images_dir.mkdir(parents=True, exist_ok=True)
+        image_path = images_dir / filename
+        image_path.write_bytes(data)
+        return f"/api/content/website/images/{filename}"
+
+    def get_website_image_path(self, filename: str) -> Path | None:
+        image_path = self._root / "website" / "images" / filename
+        return image_path if image_path.is_file() else None

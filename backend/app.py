@@ -14,6 +14,7 @@ from content.routers.admin_editorial import router as admin_editorial_router
 from content.routers.admin_glossary import router as admin_glossary_router
 from content.routers.admin_knowledge_base import router as admin_knowledge_base_router
 from content.routers.admin_manual import router as admin_manual_router
+from content.routers.admin_website import router as admin_website_router
 from content.routers.admin_translation_bulk import router as admin_translation_bulk_router
 from content.routers.admin_public_languages import router as admin_public_languages_router
 from content.repositories.filesystem import (
@@ -46,6 +47,7 @@ app.include_router(admin_manual_router, prefix="/api")
 app.include_router(admin_editorial_router, prefix="/api")
 app.include_router(admin_glossary_router, prefix="/api")
 app.include_router(admin_knowledge_base_router, prefix="/api")
+app.include_router(admin_website_router, prefix="/api")
 app.include_router(admin_translation_bulk_router, prefix="/api")
 app.include_router(admin_public_languages_router, prefix="/api")
 app.include_router(public_content_router, prefix="/api")

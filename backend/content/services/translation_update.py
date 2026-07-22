@@ -25,7 +25,7 @@ from content.translation_metadata import (
     translation_metadata_on_media_sync,
 )
 
-GenerateModule = Literal["manual", "glossary", "knowledge_base"]
+GenerateModule = Literal["manual", "glossary", "knowledge_base", "website"]
 
 
 class TranslationUpdateState(str, Enum):
@@ -395,6 +395,8 @@ class TranslationUpdateService:
             return self._repository.get_manual_variant(content_id, CANONICAL_SOURCE_LOCALE)
         if module == "glossary":
             return self._repository.get_glossary_variant(content_id, CANONICAL_SOURCE_LOCALE)
+        if module == "website":
+            return self._repository.get_website_variant(content_id, CANONICAL_SOURCE_LOCALE)
         return self._repository.get_kb_variant(content_id, CANONICAL_SOURCE_LOCALE)
 
     def _load_target_variant(
@@ -404,6 +406,8 @@ class TranslationUpdateService:
             return self._repository.get_manual_variant(content_id, locale)
         if module == "glossary":
             return self._repository.get_glossary_variant(content_id, locale)
+        if module == "website":
+            return self._repository.get_website_variant(content_id, locale)
         return self._repository.get_kb_variant(content_id, locale)
 
     def _require_meta(self, module: GenerateModule, content_id: str) -> None:
@@ -411,6 +415,8 @@ class TranslationUpdateService:
             meta = self._repository.get_manual_chapter_meta(content_id)
         elif module == "glossary":
             meta = self._repository.get_glossary_entry_meta(content_id)
+        elif module == "website":
+            meta = self._repository.get_website_page_meta(content_id)
         else:
             meta = self._repository.get_kb_entry_meta(content_id)
         if meta is None:
@@ -434,6 +440,13 @@ class TranslationUpdateService:
             )
         if module == "glossary":
             return self._repository.save_glossary_variant(
+                content_id,
+                target_locale,
+                body,
+                generation_metadata=generation_metadata,
+            )
+        if module == "website":
+            return self._repository.save_website_variant(
                 content_id,
                 target_locale,
                 body,
