@@ -8,6 +8,12 @@ import { ROUTES } from "./routes.js";
 
 export const WORKSPACE_NAV_ITEMS = [
   {
+    id: "home",
+    labelKey: "nav.home",
+    path: ROUTES.HOME,
+    requiresAuth: false,
+  },
+  {
     id: "new-project",
     labelKey: "nav.newProject",
     path: ROUTES.NEW_PROJECT,
@@ -69,6 +75,9 @@ export function isWorkspaceNavItemActive(item, pathname) {
   if (item.id === "my-account") {
     return pathname === ROUTES.ACCOUNT || pathname.startsWith(`${ROUTES.ACCOUNT}/`);
   }
+  if (item.id === "home") {
+    return pathname === ROUTES.HOME;
+  }
   return pathname === item.path;
 }
 
@@ -81,9 +90,10 @@ export function getVisibleWorkspaceNavItems(isAuthenticated) {
   });
 }
 
+/** Authenticated Home hub sidebar order (Home first; no Login/Register). */
 export function getLoggedInHomeNavItems() {
   return WORKSPACE_NAV_ITEMS.filter(
-    (item) => item.requiresAuth && item.id !== "login-register",
+    (item) => item.id === "home" || (item.requiresAuth && item.id !== "login-register"),
   );
 }
 

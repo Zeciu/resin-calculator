@@ -1345,18 +1345,24 @@ button .help-icon-wrapper {
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  /* Layered: light veil, ivory→image fade, wood/resin photo */
   background-image:
     linear-gradient(
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    ),
+    linear-gradient(
       90deg,
-      rgba(251, 250, 246, 0.82) 0%,
-      rgba(251, 250, 246, 0.78) 38%,
-      rgba(251, 250, 246, 0.24) 52%,
-      rgba(251, 250, 246, 0.04) 70%,
+      rgba(251, 250, 246, 0.94) 0%,
+      rgba(251, 250, 246, 0.9) 28%,
+      rgba(251, 250, 246, 0.72) 40%,
+      rgba(251, 250, 246, 0.28) 54%,
+      rgba(251, 250, 246, 0.06) 72%,
       rgba(251, 250, 246, 0) 100%
     ),
     url("/header-wood-epoxy.png");
-  background-position: center, center right;
-  background-size: cover, cover;
+  background-position: center, center, center right;
+  background-size: cover, cover, cover;
   background-repeat: no-repeat;
 }
 
@@ -1403,6 +1409,16 @@ button .help-icon-wrapper {
   color: #475447;
   font-size: 16px;
   font-weight: 600;
+}
+
+.workspace-hero__image {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  max-height: 280px;
+  margin-top: 16px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* ── Application workspace layout ───────────────────────────── */
@@ -2283,6 +2299,103 @@ button.workspace-sidebar__link {
   font-size: 15px;
   font-weight: 600;
   color: #5a4a32;
+}
+
+.guest-home-onboarding {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #e8dfd0;
+  max-width: 42rem;
+}
+
+.guest-home-onboarding__title {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: #3a3228;
+}
+
+.guest-home-onboarding__body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #4a4034;
+}
+
+.guest-home-onboarding__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.guest-home-onboarding__primary {
+  display: inline-flex;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #3f5d3a;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.guest-home-onboarding__primary:hover,
+.guest-home-onboarding__primary:focus-visible {
+  background: #334c30;
+}
+
+.guest-home-onboarding__secondary {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.public-home {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.public-home__description {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4a4034;
+}
+
+.public-home__cta {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #3f5d3a;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.public-home__cta:hover,
+.public-home__cta:focus-visible {
+  background: #334c30;
+}
+
+.public-home__video {
+  width: 100%;
+}
+
+.public-home__video-element,
+.public-home__video-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  background: #1a1a1a;
 }
 
 /* ── Logged-in Home hub (central workspace content) ──────────── */
@@ -4973,3 +5086,295 @@ button.workspace-sidebar__link {
 .content-unavailable__action {
   padding: 8px 14px;
 }
+
+.public-website-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 16px 0 32px;
+}
+
+.public-website-layout__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.public-website-layout__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.public-website-layout__logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.public-website-layout__brand-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.public-website-layout__home-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.public-website-layout__content {
+  min-height: 240px;
+}
+
+.public-website-page__title {
+  margin: 0 0 20px;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+}
+
+.public-website-page__status {
+  margin: 0;
+}
+
+.public-website-page__header {
+  margin: 0;
+}
+
+.website-section-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 42rem;
+  overflow-wrap: break-word;
+}
+
+.website-section-blocks__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.website-section-blocks__title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.website-section-blocks__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.website-section-blocks__section--with-image .website-section-blocks__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.website-section-blocks__figure {
+  margin: 0;
+}
+
+.website-section-blocks__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.website-section-blocks__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.website-section-blocks__blocks .manual-module__paragraph,
+.website-section-blocks__blocks .manual-module__heading {
+  margin: 0;
+}
+
+.public-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 56rem;
+}
+
+.public-pricing__intro,
+.public-pricing__footnote {
+  margin: 0;
+  max-width: 42rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.public-pricing__empty {
+  margin: 0;
+  min-height: 0;
+}
+
+.public-pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.public-pricing__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid #e8dfd0;
+}
+
+.public-pricing__card-title {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.public-pricing__card-price {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.public-pricing__benefits {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.5;
+}
+
+.public-pricing__cta {
+  display: inline-flex;
+  align-self: flex-start;
+  max-width: 100%;
+  margin-top: 4px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #3f5d3a;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.public-pricing__cta:hover,
+.public-pricing__cta:focus-visible {
+  background: #334c30;
+}
+
+.public-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 42rem;
+}
+
+.public-contact__intro,
+.public-contact__email {
+  margin: 0;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.public-contact__mailto {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.public-contact__links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.public-contact__link {
+  display: inline-block;
+  max-width: 100%;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.public-website-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e8dfd0;
+}
+
+.home-hub-layout .public-website-footer {
+  margin-top: 0;
+  padding: 16px 0 8px;
+}
+
+.public-website-footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.public-website-footer__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.public-website-footer__link:hover,
+.public-website-footer__link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .public-website-layout {
+    padding: 12px 0 24px;
+    gap: 16px;
+  }
+
+  .public-website-layout__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .public-website-page__title {
+    font-size: 1.4rem;
+  }
+
+  .public-pricing__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .website-section-blocks__section--with-image .website-section-blocks__content {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+
+  .website-section-blocks__section--with-image .website-section-blocks__figure {
+    order: 1;
+  }
+
+  .website-section-blocks__section--with-image .website-section-blocks__blocks {
+    order: 0;
+  }
+}
+

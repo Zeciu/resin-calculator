@@ -19,7 +19,8 @@ export default function PasswordRecoveryPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const email = String(new FormData(event.currentTarget).get("email") ?? "").trim();
+    const formElement = event.currentTarget;
+    const email = String(new FormData(formElement).get("email") ?? "").trim();
 
     if (!email) {
       setEmailError("Email is required.");
@@ -39,7 +40,7 @@ export default function PasswordRecoveryPage() {
     if (isMockAuthMode()) {
       setSubmittedEmail(email);
       setIsSubmitted(true);
-      event.currentTarget.reset();
+      formElement.reset();
       return;
     }
 
@@ -49,7 +50,7 @@ export default function PasswordRecoveryPage() {
       setSubmittedEmail(email);
       setAwaitingResetConfirmation(true);
       setIsSubmitted(true);
-      event.currentTarget.reset();
+      formElement.reset();
     } catch (recoveryError) {
       setFormError(
         recoveryError instanceof Error

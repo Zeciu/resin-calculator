@@ -18,6 +18,12 @@ import PreferencesPage from "../preferences/PreferencesPage.jsx";
 import LoginPage from "../auth/LoginPage.jsx";
 import PasswordRecoveryPage from "../auth/PasswordRecoveryPage.jsx";
 import RegisterPage from "../auth/RegisterPage.jsx";
+import PublicAboutPage from "../website/PublicAboutPage.jsx";
+import PublicContactPage from "../website/PublicContactPage.jsx";
+import PublicPricingPage from "../website/PublicPricingPage.jsx";
+import PublicPrivacyPage from "../website/PublicPrivacyPage.jsx";
+import PublicTermsPage from "../website/PublicTermsPage.jsx";
+import PublicWebsiteLayout from "../website/PublicWebsiteLayout.jsx";
 import ApplicationWorkspace from "./ApplicationWorkspace.jsx";
 import AuthRouteGuard from "./AuthRouteGuard.jsx";
 import DedicatedModuleLayout from "./DedicatedModuleLayout.jsx";
@@ -28,6 +34,11 @@ import RoutePlaceholder from "./RoutePlaceholder.jsx";
 import { ROUTES } from "./routes.js";
 
 export const WORKSPACE_ROUTE_PATHS = [
+  ROUTES.ABOUT,
+  ROUTES.PRICING,
+  ROUTES.PRIVACY,
+  ROUTES.TERMS,
+  ROUTES.CONTACT,
   ROUTES.LOGIN,
   ROUTES.REGISTER,
   ROUTES.PASSWORD_RECOVERY,
@@ -85,6 +96,14 @@ export default function WorkspaceRouter() {
               element={<RoutePlaceholder title={title} />}
             />
           ))}
+        </Route>
+
+        <Route element={<PublicWebsiteLayout />}>
+          <Route path={workspaceRoutePath(ROUTES.ABOUT)} element={<PublicAboutPage />} />
+          <Route path={workspaceRoutePath(ROUTES.PRICING)} element={<PublicPricingPage />} />
+          <Route path={workspaceRoutePath(ROUTES.PRIVACY)} element={<PublicPrivacyPage />} />
+          <Route path={workspaceRoutePath(ROUTES.TERMS)} element={<PublicTermsPage />} />
+          <Route path={workspaceRoutePath(ROUTES.CONTACT)} element={<PublicContactPage />} />
         </Route>
 
         <Route element={<DedicatedModuleLayout />}>

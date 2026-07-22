@@ -5,6 +5,11 @@
 
 export const ROUTES = {
   HOME: "/",
+  ABOUT: "/about",
+  PRICING: "/pricing",
+  PRIVACY: "/privacy",
+  TERMS: "/terms",
+  CONTACT: "/contact",
   LOGIN: "/login",
   REGISTER: "/register",
   PASSWORD_RECOVERY: "/password-recovery",

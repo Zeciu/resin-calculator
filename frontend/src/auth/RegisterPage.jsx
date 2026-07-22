@@ -59,7 +59,8 @@ export default function RegisterPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
     const nextErrors = validateRegistration(formData);
     setErrors(nextErrors);
     setFormError("");
@@ -77,13 +78,13 @@ export default function RegisterPage() {
       const result = await register({ email, username, password });
       if (result?.needsConfirmation) {
         setPendingConfirmation({ email: result.email ?? email });
-        event.currentTarget.reset();
+        formElement.reset();
         setErrors(INITIAL_ERRORS);
         return;
       }
 
       await login({ email, username, password });
-      event.currentTarget.reset();
+      formElement.reset();
       setErrors(INITIAL_ERRORS);
       navigate(ROUTES.HOME, { replace: true });
     } catch (registerError) {

@@ -59,7 +59,9 @@ describe("Auth flow", () => {
 
     await user.click(screen.getByRole("button", { name: /Log out/i }));
 
-    expect(screen.getByRole("heading", { name: /Log in to HFZWood/i })).toBeInTheDocument();
+    expect(
+      screen.getByText(/The first platform that gives woodworkers and resin enthusiasts/i),
+    ).toBeInTheDocument();
     expectNewProjectLocked();
     expect(screen.queryByRole("button", { name: /Log out/i })).not.toBeInTheDocument();
     expect(sessionStorage.getItem(SESSION_STORAGE_KEY)).toBeNull();

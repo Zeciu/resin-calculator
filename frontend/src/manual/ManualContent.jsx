@@ -28,14 +28,18 @@ export default function ManualContent({ sections }) {
 }
 
 /**
+ * Trusted public renderer for published editorial blocks.
+ * Shared with Website document pages (heading/paragraph subset).
+ *
  * @param {{ block: import("./manualContent.js").ManualBlock }} props
  */
-function ManualBlock({ block }) {
+export function ManualBlock({ block }) {
   if (block.type === "heading") {
-    const Tag = `h${block.level}`;
+    const level = Math.min(Math.max(Number(block.level) || 2, 2), 4);
+    const Tag = `h${level}`;
     return (
       <Tag
-        className={`manual-module__heading manual-module__heading--level-${block.level}`}
+        className={`manual-module__heading manual-module__heading--level-${level}`}
         dangerouslySetInnerHTML={{ __html: block.text }}
       />
     );

@@ -38,7 +38,7 @@ export default function WorkspaceSidebar() {
   function handleLogout() {
     logout();
     clearLockedModuleMessage();
-    navigate(ROUTES.LOGIN, { replace: true });
+    navigate(ROUTES.HOME, { replace: true });
   }
 
   return (
