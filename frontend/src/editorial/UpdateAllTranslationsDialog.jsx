@@ -148,8 +148,9 @@ export default function UpdateAllTranslationsDialog({
             <p className="editorial-bulk-dialog__policy">
               Missing translations will be generated. Current translations will be skipped.
               Media-only changes will be synchronized without DeepL. Manual/untracked
-              translations will be skipped. Drafts only — nothing is published
-              automatically.
+              translations will be skipped. Generated translations are saved immediately as
+              backend drafts — nothing is published automatically. Next steps: review entries,
+              Save draft only when you edit one, then Publish all drafts for this locale.
             </p>
             <label className="editorial-bulk-dialog__checkbox">
               <input
@@ -200,7 +201,10 @@ export default function UpdateAllTranslationsDialog({
 
         {phase === "summary" && finalSummary ? (
           <>
-            <p className="editorial-bulk-dialog__lead">Update finished.</p>
+            <p className="editorial-bulk-dialog__lead">
+              Update finished. Translations are saved as drafts. Review as needed, then use
+              Publish all drafts for {localeName}.
+            </p>
             <ul className="editorial-bulk-dialog__counts">
               <li>Total processed: {finalSummary.total ?? 0}</li>
               <li>Generated: {finalSummary.generated ?? 0}</li>

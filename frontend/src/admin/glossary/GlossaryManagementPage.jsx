@@ -4,6 +4,7 @@ import CrossReferencePicker from "../../editorial/CrossReferencePicker.jsx";
 import EditorialManagementShell from "../../editorial/EditorialManagementShell.jsx";
 import EditorialSidebar from "../../editorial/EditorialSidebar.jsx";
 import { adminLocaleLabel } from "../../editorial/editorialLocales.js";
+import { useEditorialBulkPublish } from "../../editorial/useEditorialBulkPublish.js";
 import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js";
 import {
   createGlossaryEntry,
@@ -12,6 +13,7 @@ import {
   generateGlossaryTranslation,
   getGlossaryVariant,
   listGlossaryEntries,
+  publishAllGlossaryDrafts,
   publishGlossaryVariant,
   saveGlossaryVariant,
 } from "./glossaryAdminApi.js";
@@ -68,6 +70,14 @@ export default function GlossaryManagementPage() {
     },
   });
 
+  const bulkPublish = useEditorialBulkPublish({
+    items: workspace.items,
+    locale: workspace.locale,
+    publishAllDrafts: publishAllGlossaryDrafts,
+    reloadAfterBulkUpdate: workspace.reloadAfterBulkUpdate,
+    confirmNoun: "glossary draft",
+  });
+
   const relatedSelected = useMemo(
     () => idsToSelected(workspace.editorState.relatedTermIds, workspace.items),
     [workspace.editorState.relatedTermIds, workspace.items],
@@ -86,6 +96,7 @@ export default function GlossaryManagementPage() {
       bulkModule="glossary"
       isSaving={workspace.isSaving}
       isGenerating={workspace.isGenerating}
+      isBulkPublishing={bulkPublish.isBulkPublishing}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
@@ -93,10 +104,15 @@ export default function GlossaryManagementPage() {
       hasSelection={Boolean(workspace.selectedItem)}
       canSave={Boolean(workspace.selectedItemId)}
       canPublish={Boolean(workspace.selectedItemId)}
-      errorMessage={workspace.errorMessage}
+      canPublishAllDrafts={bulkPublish.canPublishAllDrafts}
+      publishableDraftCount={bulkPublish.publishableDraftCount}
+      localeFullyPublished={bulkPublish.localeFullyPublished}
+      errorMessage={bulkPublish.bulkErrorMessage || workspace.errorMessage}
+      statusMessage={bulkPublish.statusMessage}
       onLocaleChange={workspace.handleLocaleChange}
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
+      onPublishAllDrafts={bulkPublish.handlePublishAllDrafts}
       onGenerateTranslation={workspace.handleGenerateTranslation}
       onBulkCompleted={() => {
         void workspace.reloadAfterBulkUpdate();
@@ -111,7 +127,7 @@ export default function GlossaryManagementPage() {
           addLabel="Add New Entry"
           items={workspace.sidebarItems}
           selectedId={workspace.selectedItemId}
-          isSaving={workspace.isSaving || workspace.isGenerating}
+          isSaving={workspace.isSaving || workspace.isGenerating || bulkPublish.isBulkPublishing}
           onAdd={workspace.handleAddItem}
           onSelect={workspace.handleSelectItem}
         />

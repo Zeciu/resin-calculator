@@ -72,9 +72,17 @@ function createInMemoryGlossaryApi() {
     return `${contentId}:${locale}`;
   }
 
-  function entryListTerm(contentId) {
-    for (const locale of ["ro", "en"]) {
-      const variant = variants.get(variantKey(contentId, locale));
+  function entryListTerm(contentId, locale = "ro") {
+    const active = variants.get(variantKey(contentId, locale));
+    const activeTerm = active?.body?.term?.trim();
+    if (activeTerm) {
+      return activeTerm;
+    }
+    for (const fallbackLocale of ["ro", "en", "fr", "de", "es", "pt", "it", "pl", "cs"]) {
+      if (fallbackLocale === locale) {
+        continue;
+      }
+      const variant = variants.get(variantKey(contentId, fallbackLocale));
       const term = variant?.body?.term?.trim();
       if (term) {
         return term;
@@ -97,6 +105,8 @@ function createInMemoryGlossaryApi() {
         status,
         exists: true,
         body,
+        updatedAt: status === "published" ? "2026-01-02T00:00:00+00:00" : "2026-01-01T00:00:00+00:00",
+        publishedAt: status === "published" ? "2026-01-02T00:00:00+00:00" : null,
       });
     },
     handler(url, method, init) {
@@ -114,11 +124,19 @@ function createInMemoryGlossaryApi() {
           .sort((a, b) => a.sortOrder - b.sortOrder)
           .map((entry) => ({
             contentId: entry.contentId,
-            term: entryListTerm(entry.contentId),
+            term: entryListTerm(entry.contentId, locale),
             sortOrder: entry.sortOrder,
             variants: {
-              en: { status: variants.get(variantKey(entry.contentId, "en"))?.status || "draft" },
-              ro: { status: variants.get(variantKey(entry.contentId, "ro"))?.status || "draft" },
+              en: {
+                status: variants.get(variantKey(entry.contentId, "en"))?.status || "draft",
+                updatedAt: variants.get(variantKey(entry.contentId, "en"))?.updatedAt ?? null,
+                publishedAt: variants.get(variantKey(entry.contentId, "en"))?.publishedAt ?? null,
+              },
+              ro: {
+                status: variants.get(variantKey(entry.contentId, "ro"))?.status || "draft",
+                updatedAt: variants.get(variantKey(entry.contentId, "ro"))?.updatedAt ?? null,
+                publishedAt: variants.get(variantKey(entry.contentId, "ro"))?.publishedAt ?? null,
+              },
             },
           }));
         return Promise.resolve({ ok: true, status: 200, json: async () => items });
@@ -237,6 +255,94 @@ function createInMemoryGlossaryApi() {
         });
       }
 
+      const bulkPublishMatch = path.match(/^\/variants\/([^/]+)\/publish-drafts$/);
+      if (bulkPublishMatch && method === "POST") {
+        const [, locale] = bulkPublishMatch;
+        const published = [];
+        const failed = [];
+        const skipped = [];
+        for (const entry of entries.values()) {
+          const key = variantKey(entry.contentId, locale);
+          const variant = variants.get(key);
+          if (!variant) {
+            skipped.push({
+              contentId: entry.contentId,
+              term: entry.term,
+              reason: `No ${locale} variant.`,
+            });
+            continue;
+          }
+          if (variant.status === "published") {
+            skipped.push({
+              contentId: entry.contentId,
+              term: variant.body?.term || entry.term,
+              reason: "Already published; no draft changes.",
+            });
+            continue;
+          }
+          if (!variant.body?.term?.trim()) {
+            failed.push({
+              contentId: entry.contentId,
+              term: entry.term,
+              reason: "Glossary term cannot be empty.",
+            });
+            continue;
+          }
+          const hasBody = (variant.body.definitionBlocks ?? []).some((block) =>
+            Boolean(block.text?.trim()),
+          );
+          if (!hasBody) {
+            failed.push({
+              contentId: entry.contentId,
+              term: variant.body.term,
+              reason: "Glossary definition cannot be empty.",
+            });
+            continue;
+          }
+          let relationError = null;
+          for (const relatedId of variant.body.relatedTermIds ?? []) {
+            const related = variants.get(variantKey(relatedId, locale));
+            if (!related || !related.body?.term?.trim()) {
+              relationError = `Related term required in ${locale}: ${entryListTerm(relatedId) || relatedId}`;
+              break;
+            }
+          }
+          if (relationError) {
+            failed.push({
+              contentId: entry.contentId,
+              term: variant.body.term,
+              reason: relationError,
+            });
+            continue;
+          }
+          variants.set(key, {
+            ...variant,
+            status: "published",
+            publishedAt: "2026-01-03T00:00:00+00:00",
+            updatedAt: "2026-01-03T00:00:00+00:00",
+          });
+          published.push({
+            contentId: entry.contentId,
+            term: variant.body.term,
+            reason: null,
+          });
+        }
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            locale,
+            publishedCount: published.length,
+            failedCount: failed.length,
+            skippedCount: skipped.length,
+            published,
+            failed,
+            skipped,
+            snapshotKey: `published/glossary/${locale}/entries.json`,
+          }),
+        });
+      }
+
       const publishMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/publish$/);
       if (publishMatch && method === "POST") {
         const [, contentId, locale] = publishMatch;
@@ -258,23 +364,23 @@ function createInMemoryGlossaryApi() {
         }
         for (const relatedId of variant.body.relatedTermIds ?? []) {
           const related = variants.get(variantKey(relatedId, locale));
-          if (!related || related.status !== "published") {
+          if (!related || !related.body?.term?.trim()) {
             const label = entryListTerm(relatedId) || relatedId;
             return Promise.resolve({
               ok: false,
               status: 400,
-              json: async () => ({ detail: `Published related term required: ${label}` }),
+              json: async () => ({ detail: `Related term required in ${locale}: ${label}` }),
             });
           }
         }
         for (const synonymId of variant.body.synonymTermIds ?? []) {
           const synonym = variants.get(variantKey(synonymId, locale));
-          if (!synonym || synonym.status !== "published") {
+          if (!synonym || !synonym.body?.term?.trim()) {
             const label = entryListTerm(synonymId) || synonymId;
             return Promise.resolve({
               ok: false,
               status: 400,
-              json: async () => ({ detail: `Published synonym required: ${label}` }),
+              json: async () => ({ detail: `Synonym required in ${locale}: ${label}` }),
             });
           }
         }
@@ -419,6 +525,66 @@ describe("Glossary management workspace (Task 60)", () => {
     expect(screen.getByLabelText("Related terms")).toBeInTheDocument();
   });
 
+  it("updates the glossary navigation list term when switching locale", async () => {
+    memoryApi.seedEntry({
+      contentId: "atac-biologic",
+      term: "Atac biologic",
+      body: {
+        ...emptyVariantBody("Atac biologic"),
+        definitionBlocks: [{ type: "paragraph", text: "Definitie RO." }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedEntry({
+      contentId: "atac-biologic",
+      term: "Biological attack",
+      body: {
+        ...emptyVariantBody("Biological attack"),
+        definitionBlocks: [{ type: "paragraph", text: "Definition EN." }],
+      },
+      status: "draft",
+      locale: "en",
+    });
+    memoryApi.seedEntry({
+      contentId: "only-ro",
+      term: "Doar romaneste",
+      body: {
+        ...emptyVariantBody("Doar romaneste"),
+        definitionBlocks: [{ type: "paragraph", text: "Fara traducere." }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Atac biologic" })).toBeInTheDocument();
+    });
+    expect(screen.getByRole("button", { name: "Doar romaneste" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Atac biologic" }));
+    await user.click(screen.getByRole("button", { name: "EN" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Biological attack" })).toBeInTheDocument();
+    });
+    expect(screen.queryByRole("button", { name: "Atac biologic" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Doar romaneste" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Glossary term" })).toHaveValue("Biological attack");
+
+    await user.click(screen.getByRole("button", { name: "RO" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Atac biologic" })).toBeInTheDocument();
+    });
+    expect(screen.queryByRole("button", { name: "Biological attack" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Doar romaneste" })).toBeInTheDocument();
+  });
+
   it("deletes only the active non-RO translation and keeps the entry selected", async () => {
     const user = userEvent.setup();
     seedAdministrator();
@@ -520,6 +686,35 @@ describe("Glossary management workspace (Task 60)", () => {
 
   it("surfaces backend relationship validation when Publish is rejected", async () => {
     memoryApi.seedEntry({
+      contentId: "bubble-removal",
+      term: "Indepartarea bulelor",
+      body: {
+        ...emptyVariantBody("Indepartarea bulelor"),
+        definitionBlocks: [{ type: "paragraph", text: "Cum scoatem bulele." }],
+        relatedTermIds: ["missing-related"],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Indepartarea bulelor" })).toBeInTheDocument();
+    });
+    await user.click(screen.getByRole("button", { name: "Indepartarea bulelor" }));
+
+    await user.click(screen.getByRole("button", { name: "Publish" }));
+    await waitFor(() => {
+      expect(screen.getByText(/Related term required in ro: missing-related/i)).toBeInTheDocument();
+    });
+    expect(screen.queryByText(/Request failed \(500\)/i)).not.toBeInTheDocument();
+  });
+
+  it("publishes an entry that references another draft relation", async () => {
+    memoryApi.seedEntry({
       contentId: "epoxy-resin",
       term: "Epoxy resin",
       body: {
@@ -549,12 +744,141 @@ describe("Glossary management workspace (Task 60)", () => {
       expect(screen.getByRole("button", { name: "Indepartarea bulelor" })).toBeInTheDocument();
     });
     await user.click(screen.getByRole("button", { name: "Indepartarea bulelor" }));
-
     await user.click(screen.getByRole("button", { name: "Publish" }));
+
     await waitFor(() => {
-      expect(screen.getByText("Published related term required: Epoxy resin")).toBeInTheDocument();
+      expect(screen.queryByText(/Related term required/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Request failed/i)).not.toBeInTheDocument();
     });
-    expect(screen.queryByText(/Request failed \(500\)/i)).not.toBeInTheDocument();
+  });
+
+  it("publishes all drafts for the selected language with confirmation", async () => {
+    memoryApi.seedEntry({
+      contentId: "term-a",
+      term: "Term A",
+      body: {
+        ...emptyVariantBody("Term A"),
+        definitionBlocks: [{ type: "paragraph", text: "Definition A." }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedEntry({
+      contentId: "term-b",
+      term: "Term B",
+      body: {
+        ...emptyVariantBody("Term B"),
+        definitionBlocks: [{ type: "paragraph", text: "Definition B." }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedEntry({
+      contentId: "term-live",
+      term: "Term Live",
+      body: {
+        ...emptyVariantBody("Term Live"),
+        definitionBlocks: [{ type: "paragraph", text: "Already live." }],
+      },
+      status: "published",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Publish all drafts" })).toBeEnabled();
+    });
+    expect(screen.getByText(/Drafts ready to publish: 2/i)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Publish all drafts" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining("Publish all drafts for RO"));
+    expect(confirmSpy.mock.calls[0][0]).toMatch(/2 glossary drafts/);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Publish all \(RO\): 2 published, 0 failed, 1 skipped/i)).toBeInTheDocument();
+    });
+  });
+
+  it("disables Publish all drafts when there are no publishable drafts", async () => {
+    memoryApi.seedEntry({
+      contentId: "term-live",
+      term: "Term Live",
+      body: {
+        ...emptyVariantBody("Term Live"),
+        definitionBlocks: [{ type: "paragraph", text: "Already live." }],
+      },
+      status: "published",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    renderWorkspace(ADMIN_ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Publish all drafts" })).toBeDisabled();
+    });
+  });
+
+  it("prevents duplicate Publish all drafts submissions while in progress", async () => {
+    memoryApi.seedEntry({
+      contentId: "term-a",
+      term: "Term A",
+      body: {
+        ...emptyVariantBody("Term A"),
+        definitionBlocks: [{ type: "paragraph", text: "Definition A." }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+
+    let resolveBulk;
+    const originalHandler = memoryApi.handler.bind(memoryApi);
+    memoryApi.handler = (url, method, init) => {
+      const parsed = new URL(url, "http://localhost");
+      const path = parsed.pathname.replace(API_ROOT, "") || "/";
+      if (path.match(/^\/variants\/[^/]+\/publish-drafts$/) && method === "POST") {
+        return new Promise((resolve) => {
+          resolveBulk = () =>
+            resolve({
+              ok: true,
+              status: 200,
+              json: async () => ({
+                locale: "ro",
+                publishedCount: 1,
+                failedCount: 0,
+                skippedCount: 0,
+                published: [{ contentId: "term-a", term: "Term A", reason: null }],
+                failed: [],
+                skipped: [],
+                snapshotKey: "published/glossary/ro/entries.json",
+              }),
+            });
+        });
+      }
+      return originalHandler(url, method, init);
+    };
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Publish all drafts" })).toBeEnabled();
+    });
+    await user.click(screen.getByRole("button", { name: "Publish all drafts" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Publishing all…" })).toBeDisabled();
+    });
+    resolveBulk();
+    await waitFor(() => {
+      expect(screen.getByText(/1 published/i)).toBeInTheDocument();
+    });
   });
 });
 

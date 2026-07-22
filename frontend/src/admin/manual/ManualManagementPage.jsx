@@ -2,6 +2,7 @@ import { ADMIN_ROUTES } from "../adminRoutes.js";
 import EditorialManagementShell from "../../editorial/EditorialManagementShell.jsx";
 import EditorialSidebar from "../../editorial/EditorialSidebar.jsx";
 import { adminLocaleLabel } from "../../editorial/editorialLocales.js";
+import { useEditorialBulkPublish } from "../../editorial/useEditorialBulkPublish.js";
 import { useEditorialWorkspace } from "../../editorial/useEditorialWorkspace.js";
 import {
   createManualChapter,
@@ -10,6 +11,7 @@ import {
   generateManualTranslation,
   getManualVariant,
   listManualChapters,
+  publishAllManualDrafts,
   publishManualVariant,
   saveManualVariant,
 } from "./manualAdminApi.js";
@@ -68,6 +70,14 @@ export default function ManualManagementPage() {
     },
   });
 
+  const bulkPublish = useEditorialBulkPublish({
+    items: workspace.items,
+    locale: workspace.locale,
+    publishAllDrafts: publishAllManualDrafts,
+    reloadAfterBulkUpdate: workspace.reloadAfterBulkUpdate,
+    confirmNoun: "manual draft",
+  });
+
   return (
     <EditorialManagementShell
       ariaLabel="Manual management"
@@ -76,6 +86,7 @@ export default function ManualManagementPage() {
       bulkModule="manual"
       isSaving={workspace.isSaving}
       isGenerating={workspace.isGenerating}
+      isBulkPublishing={bulkPublish.isBulkPublishing}
       isDirty={workspace.isDirty}
       editorialVisibility={workspace.savedState.editorialVisibility}
       exists={workspace.savedState.exists}
@@ -83,10 +94,15 @@ export default function ManualManagementPage() {
       hasSelection={Boolean(workspace.selectedItemId)}
       canSave={Boolean(workspace.selectedItemId)}
       canPublish={Boolean(workspace.selectedItemId)}
-      errorMessage={workspace.errorMessage}
+      canPublishAllDrafts={bulkPublish.canPublishAllDrafts}
+      publishableDraftCount={bulkPublish.publishableDraftCount}
+      localeFullyPublished={bulkPublish.localeFullyPublished}
+      errorMessage={bulkPublish.bulkErrorMessage || workspace.errorMessage}
+      statusMessage={bulkPublish.statusMessage}
       onLocaleChange={workspace.handleLocaleChange}
       onSaveDraft={workspace.handleSaveDraft}
       onPublish={workspace.handlePublish}
+      onPublishAllDrafts={bulkPublish.handlePublishAllDrafts}
       onGenerateTranslation={workspace.handleGenerateTranslation}
       onBulkCompleted={() => {
         void workspace.reloadAfterBulkUpdate();
@@ -101,7 +117,7 @@ export default function ManualManagementPage() {
           addLabel="Add New Chapter"
           items={workspace.sidebarItems}
           selectedId={workspace.selectedItemId}
-          isSaving={workspace.isSaving || workspace.isGenerating}
+          isSaving={workspace.isSaving || workspace.isGenerating || bulkPublish.isBulkPublishing}
           emptyLabel={
             workspace.locale === "ro"
               ? "No Romanian chapters yet."

@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from .common import AdminLocaleCode, ContentStatus, LocaleCode, VALID_LOCALES
 from .editorial import EditorialVisibility, TranslationMetadataFields
+from .editorial_bulk import BulkPublishDraftItemResult, BulkPublishDraftsResponse
 from .manual import ImageBlock, VideoBlock, parse_admin_locale, parse_locale
 
 KnowledgeBaseCategory = Literal["Epoxy", "Wood", "Finishing", "Application", "Projects", "Calibration"]
@@ -114,6 +115,10 @@ class PublishKnowledgeBaseVariantResponse(BaseModel):
     status: ContentStatus
     publishedAt: datetime
     snapshotKey: str
+
+
+BulkPublishKnowledgeBaseItemResult = BulkPublishDraftItemResult
+BulkPublishKnowledgeBaseDraftsResponse = BulkPublishDraftsResponse
 
 
 class GenerateTranslationRequest(BaseModel):

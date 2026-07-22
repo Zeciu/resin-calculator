@@ -7,6 +7,7 @@ import { getGlossaryLetterSectionId } from "./glossaryFilter.js";
  *   expandedEntryId: string | null;
  *   onToggleEntry: (entryId: string) => void;
  *   onNavigateToEntry?: (entryId: string) => void;
+ *   publishedEntryIds?: Set<string>;
  * }} props
  */
 export default function GlossaryEntryList({
@@ -14,6 +15,7 @@ export default function GlossaryEntryList({
   expandedEntryId,
   onToggleEntry,
   onNavigateToEntry,
+  publishedEntryIds,
 }) {
   if (groups.length === 0) {
     return (
@@ -47,6 +49,7 @@ export default function GlossaryEntryList({
                 isExpanded={expandedEntryId === entry.id}
                 onToggle={onToggleEntry}
                 onNavigateToEntry={onNavigateToEntry}
+                publishedEntryIds={publishedEntryIds}
               />
             ))}
           </div>

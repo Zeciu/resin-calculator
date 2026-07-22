@@ -308,6 +308,98 @@ class TestManualPublish:
         assert ro_variant["status"] == "draft"
 
 
+class TestManualBulkPublishDrafts:
+    def _create_draft(self, client, title: str, body: str, locale: str = "ro"):
+        chapter_id = client.post(
+            "/api/admin/manual/chapters",
+            json={"title": title},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        response = client.put(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/{locale}",
+            json={"body": sample_body(title, body)},
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        return chapter_id
+
+    def test_bulk_publish_romanian_drafts(self, client):
+        first_id = self._create_draft(client, "Chapter A", "Body A")
+        second_id = self._create_draft(client, "Chapter B", "Body B")
+        response = client.post(
+            "/api/admin/manual/chapters/variants/ro/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["locale"] == "ro"
+        assert payload["publishedCount"] >= 2
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert first_id in published_ids
+        assert second_id in published_ids
+        assert payload["snapshotKey"]
+
+        for chapter_id in (first_id, second_id):
+            variant = client.get(
+                f"/api/admin/manual/chapters/{chapter_id}/variants/ro",
+                headers=admin_headers(),
+            ).json()
+            assert variant["status"] == "published"
+
+    def test_bulk_publish_translated_language_is_isolated(self, client):
+        chapter_id = self._create_draft(client, "RO chapter", "Corp RO", "ro")
+        client.put(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/en",
+            json={"body": sample_body("EN chapter", "Body EN")},
+            headers=admin_headers(),
+        )
+        response = client.post(
+            "/api/admin/manual/chapters/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["locale"] == "en"
+        assert any(item["contentId"] == chapter_id for item in payload["published"])
+
+        ro_variant = client.get(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+        assert ro_variant["status"] == "draft"
+
+    def test_bulk_publish_skips_live_and_reports_invalid(self, client):
+        live_id = self._create_draft(client, "Live Chapter", "Already public.")
+        assert (
+            client.post(
+                f"/api/admin/manual/chapters/{live_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        empty_id = client.post(
+            "/api/admin/manual/chapters",
+            json={"title": "Empty Body"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/manual/chapters/{empty_id}/variants/ro",
+            json={"body": sample_body("Empty Body", "")},
+            headers=admin_headers(),
+        )
+        draft_id = self._create_draft(client, "Ready Draft", "Publish me.")
+
+        response = client.post(
+            "/api/admin/manual/chapters/variants/ro/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert draft_id in {item["contentId"] for item in payload["published"]}
+        assert live_id in {item["contentId"] for item in payload["skipped"]}
+        assert empty_id in {item["contentId"] for item in payload["failed"]}
+
+
 class TestManualValidation:
     def test_invalid_locale_rejected(self, client):
         chapter_id = client.post(

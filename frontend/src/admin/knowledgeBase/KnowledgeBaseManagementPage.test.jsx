@@ -97,6 +97,8 @@ function createInMemoryKnowledgeBaseApi() {
         status,
         exists: true,
         body,
+        updatedAt: status === "published" ? "2026-01-02T00:00:00+00:00" : "2026-01-01T00:00:00+00:00",
+        publishedAt: status === "published" ? "2026-01-02T00:00:00+00:00" : null,
       });
     },
     handler(url, method, init) {
@@ -112,17 +114,29 @@ function createInMemoryKnowledgeBaseApi() {
         const locale = parsed.searchParams.get("locale") || "ro";
         const items = [...entries.values()]
           .sort((a, b) => a.sortOrder - b.sortOrder)
-          .map((entry) => ({
-            contentId: entry.contentId,
-            title: entryListTitle(entry.contentId, locale),
-            category: entry.category,
-            difficulty: entry.difficulty,
-            sortOrder: entry.sortOrder,
-            variants: {
-              en: { status: variants.get(variantKey(entry.contentId, "en"))?.status || "draft" },
-              ro: { status: variants.get(variantKey(entry.contentId, "ro"))?.status || "draft" },
-            },
-          }));
+          .map((entry) => {
+            const enVariant = variants.get(variantKey(entry.contentId, "en"));
+            const roVariant = variants.get(variantKey(entry.contentId, "ro"));
+            return {
+              contentId: entry.contentId,
+              title: entryListTitle(entry.contentId, locale),
+              category: entry.category,
+              difficulty: entry.difficulty,
+              sortOrder: entry.sortOrder,
+              variants: {
+                en: {
+                  status: enVariant?.status || "draft",
+                  updatedAt: enVariant?.updatedAt ?? null,
+                  publishedAt: enVariant?.publishedAt ?? null,
+                },
+                ro: {
+                  status: roVariant?.status || "draft",
+                  updatedAt: roVariant?.updatedAt ?? null,
+                  publishedAt: roVariant?.publishedAt ?? null,
+                },
+              },
+            };
+          });
         return Promise.resolve({ ok: true, status: 200, json: async () => items });
       }
 
@@ -256,6 +270,60 @@ function createInMemoryKnowledgeBaseApi() {
           ok: true,
           status: 200,
           json: async () => withEditorialVisibility(saved),
+        });
+      }
+
+      const bulkPublishMatch = path.match(/^\/variants\/([^/]+)\/publish-drafts$/);
+      if (bulkPublishMatch && method === "POST") {
+        const [, locale] = bulkPublishMatch;
+        const published = [];
+        const failed = [];
+        const skipped = [];
+        for (const entry of entries.values()) {
+          const key = variantKey(entry.contentId, locale);
+          const variant = variants.get(key);
+          const title = variant?.body?.title || entry.title;
+          if (!variant) {
+            skipped.push({ contentId: entry.contentId, term: title, reason: `No ${locale} variant.` });
+            continue;
+          }
+          if (variant.status === "published") {
+            skipped.push({
+              contentId: entry.contentId,
+              term: title,
+              reason: "Already published; no draft changes.",
+            });
+            continue;
+          }
+          if (!(variant.body?.solution?.length ?? 0)) {
+            failed.push({
+              contentId: entry.contentId,
+              term: title,
+              reason: "Solution cannot be empty.",
+            });
+            continue;
+          }
+          variants.set(key, {
+            ...variant,
+            status: "published",
+            publishedAt: "2026-01-03T00:00:00+00:00",
+            updatedAt: "2026-01-03T00:00:00+00:00",
+          });
+          published.push({ contentId: entry.contentId, term: title, reason: null });
+        }
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            locale,
+            publishedCount: published.length,
+            failedCount: failed.length,
+            skippedCount: skipped.length,
+            published,
+            failed,
+            skipped,
+            snapshotKey: `published/knowledge-base/${locale}/document.json`,
+          }),
         });
       }
 
@@ -582,6 +650,58 @@ describe("Knowledge base management workspace (Task 61)", () => {
       expect.stringContaining("Romanian and every translation will be permanently deleted"),
     );
     expect(screen.getByRole("button", { name: "Sticky resin" })).toBeInTheDocument();
+  });
+
+  it("publishes all drafts for the current locale", async () => {
+    memoryApi.seedEntry({
+      contentId: "kb-a",
+      title: "KB A",
+      body: {
+        ...emptyVariantBody("KB A"),
+        problemSummary: "Problem A",
+        solution: ["Fix A"],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedEntry({
+      contentId: "kb-b",
+      title: "KB B",
+      body: {
+        ...emptyVariantBody("KB B"),
+        problemSummary: "Problem B",
+        solution: ["Fix B"],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedEntry({
+      contentId: "kb-live",
+      title: "KB Live",
+      body: {
+        ...emptyVariantBody("KB Live"),
+        problemSummary: "Live problem",
+        solution: ["Live fix"],
+      },
+      status: "published",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.KNOWLEDGE_BASE);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Drafts ready to publish: 2/i)).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Publish all drafts" })).toBeEnabled();
+    });
+    await user.click(screen.getByRole("button", { name: "Publish all drafts" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining("Publish all drafts for RO"));
+    await waitFor(() => {
+      expect(screen.getByText(/Publish all \(RO\): 2 published, 0 failed, 1 skipped/i)).toBeInTheDocument();
+    });
   });
 });
 

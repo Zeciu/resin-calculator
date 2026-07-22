@@ -107,7 +107,7 @@ class TestGlossaryVariants:
         assert save_response.status_code == 200
         assert save_response.json()["status"] == "draft"
 
-    def test_list_prefers_romanian_identity_term(self, client):
+    def test_list_uses_selected_locale_term_with_canonical_fallback(self, client):
         entry_id = client.post(
             "/api/admin/glossary/entries",
             json={"term": "Termen RO"},
@@ -119,8 +119,17 @@ class TestGlossaryVariants:
             headers=admin_headers(),
         )
 
-        listed = client.get("/api/admin/glossary/entries?locale=en", headers=admin_headers()).json()
-        assert listed[0]["term"] == "Termen RO"
+        en_listed = client.get("/api/admin/glossary/entries?locale=en", headers=admin_headers()).json()
+        assert en_listed[0]["contentId"] == entry_id
+        assert en_listed[0]["term"] == "English Term"
+
+        ro_listed = client.get("/api/admin/glossary/entries?locale=ro", headers=admin_headers()).json()
+        assert ro_listed[0]["contentId"] == entry_id
+        assert ro_listed[0]["term"] == "Termen RO"
+
+        fr_listed = client.get("/api/admin/glossary/entries?locale=fr", headers=admin_headers()).json()
+        assert fr_listed[0]["contentId"] == entry_id
+        assert fr_listed[0]["term"] == "Termen RO"
 
 
 class TestGlossaryPublish:
@@ -284,8 +293,31 @@ class TestGlossaryRelationshipValidation:
             f"/api/admin/glossary/entries/{entry_id}/variants/en/publish",
             headers=admin_headers(),
         )
+        # Same-locale draft targets are allowed so mutual/see-also graphs can publish.
+        assert response.status_code == 200
+
+    def test_rejects_missing_related_term(self, client):
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Main Term"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/en",
+            json={
+                "body": {
+                    **sample_body("Main Term"),
+                    "relatedTermIds": ["does-not-exist"],
+                }
+            },
+            headers=admin_headers(),
+        )
+        response = client.post(
+            f"/api/admin/glossary/entries/{entry_id}/variants/en/publish",
+            headers=admin_headers(),
+        )
         assert response.status_code == 400
-        assert "published" in response.json()["detail"].lower()
+        assert "unknown" in response.json()["detail"].lower()
 
     def test_rejects_kb_entry_see_also(self, client):
         entry_id = client.post(
@@ -453,8 +485,7 @@ class TestGlossaryRelationshipPublishQa:
             f"/api/admin/glossary/entries/{entry_id}/variants/ro/publish",
             headers=admin_headers(),
         )
-        assert publish_response.status_code == 400
-        assert publish_response.json()["detail"] == "Published related term required: Epoxy resin"
+        assert publish_response.status_code == 200
 
     def test_publish_succeeds_after_related_term_is_published(self, client):
         related_id = client.post(
@@ -488,7 +519,7 @@ class TestGlossaryRelationshipPublishQa:
                 f"/api/admin/glossary/entries/{entry_id}/variants/ro/publish",
                 headers=admin_headers(),
             ).status_code
-            == 400
+            == 200
         )
 
         assert (
@@ -518,6 +549,312 @@ class TestGlossaryRelationshipPublishQa:
         public = client.get("/api/content/glossary?locale=ro").json()
         assert public["available"] is True
         assert any(item["id"] == entry_id for item in public["entries"])
+
+    def test_mutual_see_also_entries_can_publish_individually(self, client):
+        first_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Cavitate"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        second_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Fisura"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{first_id}/variants/ro",
+            json={
+                "body": {
+                    **sample_body("Cavitate", "O cavitate in lemn."),
+                    "seeAlso": [
+                        {
+                            "targetContentId": second_id,
+                            "targetType": "glossary_entry",
+                            "label": "Fisura",
+                        }
+                    ],
+                }
+            },
+            headers=admin_headers(),
+        )
+        client.put(
+            f"/api/admin/glossary/entries/{second_id}/variants/ro",
+            json={
+                "body": {
+                    **sample_body("Fisura", "O fisura in lemn."),
+                    "seeAlso": [
+                        {
+                            "targetContentId": first_id,
+                            "targetType": "glossary_entry",
+                            "label": "Cavitate",
+                        }
+                    ],
+                }
+            },
+            headers=admin_headers(),
+        )
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{first_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{second_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+
+
+class TestGlossaryBulkPublishDrafts:
+    def _create_draft(self, client, term: str, definition: str, locale: str = "ro"):
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": term},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        response = client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/{locale}",
+            json={"body": sample_body(term, definition)},
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        return entry_id
+
+    def test_bulk_publish_romanian_drafts(self, client):
+        first_id = self._create_draft(client, "Term A", "Definition A")
+        second_id = self._create_draft(client, "Term B", "Definition B")
+        response = client.post(
+            "/api/admin/glossary/entries/variants/ro/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["locale"] == "ro"
+        assert payload["publishedCount"] >= 2
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert first_id in published_ids
+        assert second_id in published_ids
+        assert payload["snapshotKey"]
+
+        for entry_id in (first_id, second_id):
+            variant = client.get(
+                f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+                headers=admin_headers(),
+            ).json()
+            assert variant["status"] == "published"
+            assert variant["contentId"] == entry_id
+
+    def test_bulk_publish_translated_language_is_isolated(self, client):
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "RO term"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+            json={"body": sample_body("RO term", "Definitie RO.")},
+            headers=admin_headers(),
+        )
+        client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/en",
+            json={"body": sample_body("EN term", "Definition EN.")},
+            headers=admin_headers(),
+        )
+
+        response = client.post(
+            "/api/admin/glossary/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["locale"] == "en"
+        assert any(item["contentId"] == entry_id for item in payload["published"])
+
+        en_public = client.get("/api/content/glossary?locale=en").json()
+        assert any(item["id"] == entry_id for item in en_public["entries"])
+
+        ro_variant = client.get(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+        assert ro_variant["status"] == "draft"
+
+    def test_bulk_publish_no_drafts_available(self, client):
+        entry_id = self._create_draft(client, "Already Live", "Definition")
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{entry_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        response = client.post(
+            "/api/admin/glossary/entries/variants/ro/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["publishedCount"] == 0
+        assert any(item["contentId"] == entry_id for item in payload["skipped"])
+
+    def test_bulk_publish_reports_invalid_drafts(self, client):
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Empty Def"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/ro",
+            json={
+                "body": {
+                    "term": "Empty Def",
+                    "definitionBlocks": [{"type": "paragraph", "text": ""}],
+                    "media": [],
+                    "relatedTermIds": [],
+                    "synonymTermIds": [],
+                    "seeAlso": [],
+                }
+            },
+            headers=admin_headers(),
+        )
+        good_id = self._create_draft(client, "Good Term", "Has definition.")
+        response = client.post(
+            "/api/admin/glossary/entries/variants/ro/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        failed_ids = {item["contentId"] for item in payload["failed"]}
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert entry_id in failed_ids
+        assert good_id in published_ids
+        assert any("definition" in item["reason"].lower() for item in payload["failed"])
+
+    def test_bulk_publish_preserves_already_published_and_ids(self, client):
+        live_id = self._create_draft(client, "Live Term", "Already public.")
+        assert (
+            client.post(
+                f"/api/admin/glossary/entries/{live_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        draft_id = self._create_draft(client, "New Draft", "Fresh draft.")
+        before = client.get(
+            f"/api/admin/glossary/entries/{live_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+
+        response = client.post(
+            "/api/admin/glossary/entries/variants/ro/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert draft_id in {item["contentId"] for item in payload["published"]}
+        assert live_id in {item["contentId"] for item in payload["skipped"]}
+
+        after = client.get(
+            f"/api/admin/glossary/entries/{live_id}/variants/ro",
+            headers=admin_headers(),
+        ).json()
+        assert after["contentId"] == before["contentId"] == live_id
+        assert after["body"]["term"] == before["body"]["term"]
+        assert after["status"] == "published"
+
+    def test_bulk_publish_runtime_error_is_structured_not_500(self, client, monkeypatch):
+        entry_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Boom Term RO"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{entry_id}/variants/en",
+            json={"body": sample_body("Boom Term", "Definition that would publish.")},
+            headers=admin_headers(),
+        )
+
+        from content.services import glossary_publish
+
+        def raise_runtime(self, content_id, locale):
+            raise RuntimeError(
+                "Refusing to remove legacy keys for glossary_entry "
+                f"'{content_id}': legacy records were not fully promoted to typed storage."
+            )
+
+        monkeypatch.setattr(
+            glossary_publish.GlossaryPublishService,
+            "_publish_variant_core",
+            raise_runtime,
+        )
+
+        response = client.post(
+            "/api/admin/glossary/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["publishedCount"] == 0
+        assert any(item["contentId"] == entry_id for item in payload["failed"])
+        assert any("legacy" in (item["reason"] or "").lower() for item in payload["failed"])
+
+    def test_bulk_publish_en_mutual_seealso_drafts(self, client):
+        first_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Alburn RO"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        second_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Duramen RO"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{first_id}/variants/en",
+            json={
+                "body": {
+                    **sample_body("Alburn", "Outer wood."),
+                    "seeAlso": [
+                        {
+                            "targetType": "glossary_entry",
+                            "targetContentId": second_id,
+                            "label": "Heartwood",
+                        }
+                    ],
+                }
+            },
+            headers=admin_headers(),
+        )
+        client.put(
+            f"/api/admin/glossary/entries/{second_id}/variants/en",
+            json={
+                "body": {
+                    **sample_body("Heartwood", "Inner wood."),
+                    "relatedTermIds": [first_id],
+                }
+            },
+            headers=admin_headers(),
+        )
+
+        response = client.post(
+            "/api/admin/glossary/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert first_id in published_ids
+        assert second_id in published_ids
+        assert payload["failedCount"] == 0
+
+        public = client.get("/api/content/glossary?locale=en").json()
+        public_ids = {entry["id"] for entry in public["entries"]}
+        assert first_id in public_ids
+        assert second_id in public_ids
 
     def test_published_only_reference_search_excludes_unpublished_locale_variants(self, client):
         from content.routers import admin_editorial

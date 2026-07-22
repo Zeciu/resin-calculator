@@ -20,10 +20,16 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   hasSelection?: boolean;
  *   canSave?: boolean;
  *   canPublish?: boolean;
+ *   canPublishAllDrafts?: boolean;
+ *   publishableDraftCount?: number;
+ *   localeFullyPublished?: boolean;
+ *   isBulkPublishing?: boolean;
  *   errorMessage?: string;
+ *   statusMessage?: string;
  *   onLocaleChange: (locale: string) => void;
  *   onSaveDraft: () => void;
  *   onPublish: () => void;
+ *   onPublishAllDrafts?: () => void;
  *   onGenerateTranslation?: () => void;
  *   onBulkCompleted?: () => void;
  *   onUnpublish?: () => void;
@@ -43,6 +49,7 @@ export default function EditorialManagementShell({
   bulkModule = null,
   isSaving = false,
   isGenerating = false,
+  isBulkPublishing = false,
   isDirty = false,
   editorialVisibility,
   exists = true,
@@ -50,10 +57,15 @@ export default function EditorialManagementShell({
   hasSelection = false,
   canSave = false,
   canPublish = false,
+  canPublishAllDrafts = false,
+  publishableDraftCount = 0,
+  localeFullyPublished = false,
   errorMessage = "",
+  statusMessage = "",
   onLocaleChange,
   onSaveDraft,
   onPublish,
+  onPublishAllDrafts,
   onGenerateTranslation,
   onBulkCompleted,
   onUnpublish,
@@ -91,14 +103,17 @@ export default function EditorialManagementShell({
         isSaving={isSaving}
         isGenerating={isGenerating}
         isBulkUpdating={isBulkUpdating}
+        isBulkPublishing={isBulkPublishing}
         canSave={canSave}
         canPublish={canPublish}
         canGenerate={canGenerate}
         canUpdateAll={canUpdateAll}
+        canPublishAllDrafts={canPublishAllDrafts}
         editorialVisibility={editorialVisibility}
         onLocaleChange={onLocaleChange}
         onSaveDraft={onSaveDraft}
         onPublish={onPublish}
+        onPublishAllDrafts={onPublishAllDrafts}
         onGenerateTranslation={onGenerateTranslation}
         onUpdateAllTranslations={bulkModule ? openBulkDialog : undefined}
         onUnpublish={onUnpublish}
@@ -106,6 +121,14 @@ export default function EditorialManagementShell({
       />
 
       {errorMessage ? <p className="editorial-workspace__error">{errorMessage}</p> : null}
+      {statusMessage ? <p className="editorial-workspace__status" role="status">{statusMessage}</p> : null}
+
+      {onPublishAllDrafts ? (
+        <p className="editorial-workspace__bulk-status" role="status">
+          {`Drafts ready to publish: ${publishableDraftCount}`}
+          {localeFullyPublished ? " · Current locale fully published" : ""}
+        </p>
+      ) : null}
 
       <EditorialStatusBanner
         isDirty={isDirty}
@@ -122,7 +145,7 @@ export default function EditorialManagementShell({
 
       <EditorialUnsavedDialog
         isOpen={showUnsavedDialog}
-        isSaving={isSaving || isGenerating || isBulkUpdating}
+        isSaving={isSaving || isGenerating || isBulkUpdating || isBulkPublishing}
         onSave={onUnsavedSave ?? (() => {})}
         onDiscard={onUnsavedDiscard ?? (() => {})}
         onCancel={onUnsavedCancel ?? (() => {})}

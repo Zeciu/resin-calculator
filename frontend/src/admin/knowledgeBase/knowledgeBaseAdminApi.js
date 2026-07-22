@@ -31,6 +31,12 @@ export function publishKnowledgeBaseVariant(contentId, locale) {
   );
 }
 
+export function publishAllKnowledgeBaseDrafts(locale) {
+  return client.request(`/variants/${encodeURIComponent(locale)}/publish-drafts`, {
+    method: "POST",
+  });
+}
+
 export function deleteKnowledgeBaseEntry(contentId) {
   return client.request(`/${encodeURIComponent(contentId)}`, { method: "DELETE" });
 }

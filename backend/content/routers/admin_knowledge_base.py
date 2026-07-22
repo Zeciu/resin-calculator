@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from auth.dependencies import require_administrator
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.knowledge_base import (
+    BulkPublishKnowledgeBaseDraftsResponse,
     CreateKnowledgeBaseEntryRequest,
     GenerateTranslationRequest,
     KnowledgeBaseEntryListItem,
@@ -163,6 +164,18 @@ def save_variant(
         )
     except KeyError as exc:
         raise _entry_not_found() from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/variants/{locale}/publish-drafts", response_model=BulkPublishKnowledgeBaseDraftsResponse)
+def publish_all_drafts(
+    locale: str,
+    _: dict = Depends(require_administrator),
+    publish_service: KnowledgeBasePublishService = Depends(get_publish_service),
+) -> BulkPublishKnowledgeBaseDraftsResponse:
+    try:
+        return publish_service.publish_all_drafts(locale)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from .common import AdminLocaleCode, ContentStatus, LocaleCode, VALID_LOCALES, parse_admin_locale
 from .editorial import EditorialVisibility, TranslationMetadataFields
+from .editorial_bulk import BulkPublishDraftItemResult, BulkPublishDraftsResponse
 
 
 class ParagraphBlock(BaseModel):
@@ -139,6 +140,10 @@ class PublishManualVariantResponse(BaseModel):
     status: ContentStatus
     publishedAt: datetime
     snapshotKey: str
+
+
+BulkPublishManualItemResult = BulkPublishDraftItemResult
+BulkPublishManualDraftsResponse = BulkPublishDraftsResponse
 
 
 class GenerateTranslationRequest(BaseModel):

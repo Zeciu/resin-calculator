@@ -146,6 +146,8 @@ function createInMemoryManualApi() {
         status,
         exists: true,
         body,
+        updatedAt: status === "published" ? "2026-01-02T00:00:00+00:00" : "2026-01-01T00:00:00+00:00",
+        publishedAt: status === "published" ? "2026-01-02T00:00:00+00:00" : null,
       });
     },
     handler(url, method, init) {
@@ -163,13 +165,23 @@ function createInMemoryManualApi() {
           .sort((a, b) => a.sortOrder - b.sortOrder)
           .map((chapter) => {
             const activeVariant = variants.get(variantKey(chapter.contentId, locale));
+            const enVariant = variants.get(variantKey(chapter.contentId, "en"));
+            const roVariant = variants.get(variantKey(chapter.contentId, "ro"));
             return {
               contentId: chapter.contentId,
               title: activeVariant?.body?.title?.trim() || chapterListTitle(chapter.contentId),
               sortOrder: chapter.sortOrder,
               variants: {
-                en: { status: variants.get(variantKey(chapter.contentId, "en"))?.status || "draft" },
-                ro: { status: variants.get(variantKey(chapter.contentId, "ro"))?.status || "draft" },
+                en: {
+                  status: enVariant?.status || "draft",
+                  updatedAt: enVariant?.updatedAt ?? null,
+                  publishedAt: enVariant?.publishedAt ?? null,
+                },
+                ro: {
+                  status: roVariant?.status || "draft",
+                  updatedAt: roVariant?.updatedAt ?? null,
+                  publishedAt: roVariant?.publishedAt ?? null,
+                },
               },
             };
           });
@@ -296,6 +308,63 @@ function createInMemoryManualApi() {
         }
         variants.delete(key);
         return Promise.resolve({ ok: true, status: 204, json: async () => null });
+      }
+
+      const bulkPublishMatch = path.match(/^\/variants\/([^/]+)\/publish-drafts$/);
+      if (bulkPublishMatch && method === "POST") {
+        const [, locale] = bulkPublishMatch;
+        const published = [];
+        const failed = [];
+        const skipped = [];
+        for (const chapter of chapters.values()) {
+          const key = variantKey(chapter.contentId, locale);
+          const variant = variants.get(key);
+          const title = variant?.body?.title || chapter.title;
+          if (!variant) {
+            skipped.push({ contentId: chapter.contentId, term: title, reason: `No ${locale} variant.` });
+            continue;
+          }
+          if (variant.status === "published") {
+            skipped.push({
+              contentId: chapter.contentId,
+              term: title,
+              reason: "Already published; no draft changes.",
+            });
+            continue;
+          }
+          const hasBody = variant.body?.sections?.some((section) =>
+            section.blocks?.some((block) => Boolean(block.text?.trim())),
+          );
+          if (!variant.body?.title?.trim() || !hasBody) {
+            failed.push({
+              contentId: chapter.contentId,
+              term: title,
+              reason: "Chapter body cannot be empty.",
+            });
+            continue;
+          }
+          variants.set(key, {
+            ...variant,
+            status: "published",
+            publishedAt: "2026-01-03T00:00:00+00:00",
+            updatedAt: "2026-01-03T00:00:00+00:00",
+          });
+          published.push({ contentId: chapter.contentId, term: title, reason: null });
+        }
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            locale,
+            publishedCount: published.length,
+            failedCount: failed.length,
+            skippedCount: skipped.length,
+            published,
+            failed,
+            skipped,
+            snapshotKey: `published/manual/${locale}/document.json`,
+          }),
+        });
       }
 
       const publishMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/publish$/);
@@ -1101,5 +1170,80 @@ describe("Manual management workspace (Task 59B)", () => {
 
     expect(screen.queryByRole("button", { name: /Delete Romanian translation/i })).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Delete chapter in all languages" })).toBeInTheDocument();
+  });
+
+  it("publishes all drafts for the current locale", async () => {
+    memoryApi.seedChapter({
+      contentId: "chapter-a",
+      title: "Chapter A",
+      sortOrder: 100,
+      body: {
+        title: "Chapter A",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "Body A." }] }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedChapter({
+      contentId: "chapter-b",
+      title: "Chapter B",
+      sortOrder: 200,
+      body: {
+        title: "Chapter B",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "Body B." }] }],
+      },
+      status: "draft",
+      locale: "ro",
+    });
+    memoryApi.seedChapter({
+      contentId: "chapter-live",
+      title: "Chapter Live",
+      sortOrder: 300,
+      body: {
+        title: "Chapter Live",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "Already live." }] }],
+      },
+      status: "published",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    const user = userEvent.setup();
+    const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Drafts ready to publish: 2/i)).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Publish all drafts" })).toBeEnabled();
+    });
+    await user.click(screen.getByRole("button", { name: "Publish all drafts" }));
+
+    expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining("Publish all drafts for RO"));
+    await waitFor(() => {
+      expect(screen.getByText(/Publish all \(RO\): 2 published, 0 failed, 1 skipped/i)).toBeInTheDocument();
+    });
+  });
+
+  it("disables Publish all drafts when there are no publishable drafts", async () => {
+    memoryApi.seedChapter({
+      contentId: "chapter-live",
+      title: "Chapter Live",
+      sortOrder: 100,
+      body: {
+        title: "Chapter Live",
+        sections: [{ id: "main", title: "", blocks: [{ type: "paragraph", text: "Already live." }] }],
+      },
+      status: "published",
+      locale: "ro",
+    });
+
+    seedAdministrator();
+    renderWorkspace(ADMIN_ROUTES.MANUAL);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Drafts ready to publish: 0/i)).toBeInTheDocument();
+      expect(screen.getByText(/Current locale fully published/i)).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Publish all drafts" })).toBeDisabled();
+    });
   });
 });

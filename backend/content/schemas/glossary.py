@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field, field_validator
 
 from .common import AdminLocaleCode, ContentStatus, LocaleCode, VALID_LOCALES
 from .editorial import EditorialVisibility, TranslationMetadataFields
+from .editorial_bulk import BulkPublishDraftItemResult, BulkPublishDraftsResponse
 from .manual import ImageBlock, ManualBlock, VideoBlock, parse_admin_locale, parse_locale
 
 GlossaryMediaBlock = ImageBlock | VideoBlock
@@ -88,6 +89,11 @@ class PublishGlossaryVariantResponse(BaseModel):
     status: ContentStatus
     publishedAt: datetime
     snapshotKey: str
+
+
+# Backward-compatible aliases for the existing Glossary publish-all API.
+BulkPublishGlossaryItemResult = BulkPublishDraftItemResult
+BulkPublishGlossaryDraftsResponse = BulkPublishDraftsResponse
 
 
 class GenerateTranslationRequest(BaseModel):

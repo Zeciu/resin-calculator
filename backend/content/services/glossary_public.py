@@ -97,7 +97,11 @@ class GlossaryPublicService:
             target_id = reference.get("targetContentId", "")
             label = reference.get("label", "").strip()
             if target_type == "glossary_entry":
-                label = label or self._resolve_term_label(target_id, locale)
+                # Public snapshots expose only published glossary targets as relations.
+                published_label = self._resolve_term_label(target_id, locale)
+                if not published_label:
+                    continue
+                label = label or published_label
             elif target_type == "manual_chapter":
                 label = label or self._resolve_manual_label(target_id, locale)
             if not label:

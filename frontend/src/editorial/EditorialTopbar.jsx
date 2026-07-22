@@ -9,14 +9,17 @@ import { ADMIN_EDITORIAL_LOCALES, isCanonicalSourceLocale } from "./editorialLoc
  *   isSaving?: boolean;
  *   isGenerating?: boolean;
  *   isBulkUpdating?: boolean;
+ *   isBulkPublishing?: boolean;
  *   canSave?: boolean;
  *   canPublish?: boolean;
  *   canGenerate?: boolean;
  *   canUpdateAll?: boolean;
+ *   canPublishAllDrafts?: boolean;
  *   editorialVisibility?: string;
  *   onLocaleChange: (locale: string) => void;
  *   onSaveDraft: () => void;
  *   onPublish: () => void;
+ *   onPublishAllDrafts?: () => void;
  *   onGenerateTranslation?: () => void;
  *   onUpdateAllTranslations?: () => void;
  *   onUnpublish?: () => void;
@@ -29,20 +32,23 @@ export default function EditorialTopbar({
   isSaving = false,
   isGenerating = false,
   isBulkUpdating = false,
+  isBulkPublishing = false,
   canSave = false,
   canPublish = false,
   canGenerate = false,
   canUpdateAll = false,
+  canPublishAllDrafts = false,
   editorialVisibility,
   onLocaleChange,
   onSaveDraft,
   onPublish,
+  onPublishAllDrafts,
   onGenerateTranslation,
   onUpdateAllTranslations,
   onUnpublish,
   canUnpublish = false,
 }) {
-  const busy = isSaving || isGenerating || isBulkUpdating;
+  const busy = isSaving || isGenerating || isBulkUpdating || isBulkPublishing;
 
   return (
     <header className="editorial-topbar">
@@ -90,6 +96,15 @@ export default function EditorialTopbar({
           <button type="button" onClick={onPublish} disabled={!canPublish || busy}>
             {publishButtonLabel(editorialVisibility)}
           </button>
+          {onPublishAllDrafts ? (
+            <button
+              type="button"
+              onClick={onPublishAllDrafts}
+              disabled={!canPublishAllDrafts || busy}
+            >
+              {isBulkPublishing ? "Publishing all…" : "Publish all drafts"}
+            </button>
+          ) : null}
           {onUnpublish ? (
             <button type="button" onClick={onUnpublish} disabled={!canUnpublish || busy}>
               Unpublish

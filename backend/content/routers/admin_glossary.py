@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from auth.dependencies import require_administrator
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.glossary import (
+    BulkPublishGlossaryDraftsResponse,
     CreateGlossaryEntryRequest,
     GenerateTranslationRequest,
     GlossaryEntryListItem,
@@ -78,6 +79,21 @@ def list_entries(
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> list[GlossaryEntryListItem]:
     return service.list_entries(locale)
+
+
+@router.post("/variants/{locale}/publish-drafts", response_model=BulkPublishGlossaryDraftsResponse)
+def publish_all_drafts(
+    locale: str,
+    _: dict = Depends(require_administrator),
+    publish_service: GlossaryPublishService = Depends(get_publish_service),
+) -> BulkPublishGlossaryDraftsResponse:
+    try:
+        return publish_service.publish_all_drafts(locale)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        # Surface unexpected failures to the Admin UI instead of a bare 500 body.
+        raise HTTPException(status_code=500, detail=str(exc) or exc.__class__.__name__) from exc
 
 
 @router.post("", response_model=GlossaryEntryMeta, status_code=201)

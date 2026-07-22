@@ -19,10 +19,42 @@ import { getGlossaryEntryElementId } from "./glossaryFilter.js";
  *   isExpanded: boolean;
  *   onToggle: (entryId: string) => void;
  *   onNavigateToEntry?: (entryId: string) => void;
+ *   publishedEntryIds?: Set<string>;
  * }} props
  */
-export default function GlossaryEntry({ entry, isExpanded, onToggle, onNavigateToEntry }) {
+export default function GlossaryEntry({
+  entry,
+  isExpanded,
+  onToggle,
+  onNavigateToEntry,
+  publishedEntryIds,
+}) {
   const indicator = isExpanded ? "−" : "+";
+
+  function canNavigateToGlossaryEntry(targetId) {
+    if (!targetId || !onNavigateToEntry) {
+      return false;
+    }
+    if (publishedEntryIds && !publishedEntryIds.has(targetId)) {
+      return false;
+    }
+    return true;
+  }
+
+  function renderGlossaryTargetButton(targetId, label) {
+    if (!canNavigateToGlossaryEntry(targetId)) {
+      return <span>{label}</span>;
+    }
+    return (
+      <button
+        type="button"
+        className="glossary-entry__meta-link"
+        onClick={() => onNavigateToEntry(targetId)}
+      >
+        {label}
+      </button>
+    );
+  }
 
   return (
     <article className="glossary-entry" id={getGlossaryEntryElementId(entry.id)}>
@@ -55,13 +87,7 @@ export default function GlossaryEntry({ entry, isExpanded, onToggle, onNavigateT
               {entry.synonyms.map((item, index) => (
                 <span key={item.id}>
                   {index > 0 ? ", " : null}
-                  <button
-                    type="button"
-                    className="glossary-entry__meta-link"
-                    onClick={() => onNavigateToEntry?.(item.id)}
-                  >
-                    {item.term}
-                  </button>
+                  {renderGlossaryTargetButton(item.id, item.term)}
                 </span>
               ))}
             </p>
@@ -72,13 +98,7 @@ export default function GlossaryEntry({ entry, isExpanded, onToggle, onNavigateT
               {entry.relatedTerms.map((item, index) => (
                 <span key={item.id}>
                   {index > 0 ? ", " : null}
-                  <button
-                    type="button"
-                    className="glossary-entry__meta-link"
-                    onClick={() => onNavigateToEntry?.(item.id)}
-                  >
-                    {item.term}
-                  </button>
+                  {renderGlossaryTargetButton(item.id, item.term)}
                 </span>
               ))}
             </p>
@@ -89,9 +109,13 @@ export default function GlossaryEntry({ entry, isExpanded, onToggle, onNavigateT
               {entry.seeAlso.map((item, index) => (
                 <span key={`${item.targetType}-${item.targetId}`}>
                   {index > 0 ? ", " : null}
-                  <Link className="glossary-entry__meta-link" to={item.href}>
-                    {item.label}
-                  </Link>
+                  {item.targetType === "glossary_entry" ? (
+                    renderGlossaryTargetButton(item.targetId, item.label)
+                  ) : (
+                    <Link className="glossary-entry__meta-link" to={item.href}>
+                      {item.label}
+                    </Link>
+                  )}
                 </span>
               ))}
             </p>

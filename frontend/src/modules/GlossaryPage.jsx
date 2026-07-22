@@ -23,6 +23,11 @@ export default function GlossaryPage() {
   const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedGlossary);
   const entries = payload?.entries ?? [];
 
+  const publishedEntryIds = useMemo(
+    () => new Set(entries.map((entry) => entry.id)),
+    [entries],
+  );
+
   const filteredGroups = useMemo(() => {
     const filtered = filterGlossaryEntries(entries, searchQuery);
     return groupGlossaryEntriesByLetter(filtered);
@@ -59,6 +64,11 @@ export default function GlossaryPage() {
   }, []);
 
   const handleNavigateToEntry = useCallback((entryId) => {
+    if (!entryId) {
+      return;
+    }
+    // Clear search so the target entry is visible in the current locale list.
+    setSearchQuery("");
     setExpandedEntryId(entryId);
     requestAnimationFrame(() => {
       scrollToEntry(entryId);
@@ -162,6 +172,7 @@ export default function GlossaryPage() {
               expandedEntryId={expandedEntryId}
               onToggleEntry={handleToggleEntry}
               onNavigateToEntry={handleNavigateToEntry}
+              publishedEntryIds={publishedEntryIds}
             />
           </>
         ) : null}

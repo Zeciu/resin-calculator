@@ -1,7 +1,10 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { mockPublishedGlossaryFetch } from "../glossary/glossaryTestHelpers.js";
+import {
+  buildPublishedGlossaryResponse,
+  mockPublishedGlossaryFetch,
+} from "../glossary/glossaryTestHelpers.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -179,6 +182,15 @@ describe("GlossaryPage", () => {
         synonyms: [],
         seeAlso: [],
       },
+      {
+        id: "epoxy-resin",
+        term: "Epoxy resin",
+        definition: ["Synonym target."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
     ]);
 
     renderWorkspace(ROUTES.GLOSSARY);
@@ -189,12 +201,176 @@ describe("GlossaryPage", () => {
     await user.click(screen.getByRole("button", { name: "Resin" }));
 
     expect(screen.getByText(/Also called:/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
-    expect(screen.getByText(/Related:/i)).toBeInTheDocument();
     const resinEntry = document.getElementById("glossary-entry-resin");
+    expect(within(resinEntry).getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
+    expect(screen.getByText(/Related:/i)).toBeInTheDocument();
     expect(within(resinEntry).getByRole("button", { name: "Hardener" })).toBeInTheDocument();
     expect(screen.getByText(/See also:/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Mixing basics" })).toHaveAttribute("href", "/manual#mixing");
+  });
+
+  it("navigates see-also glossary relations by entry id and preserves locale", async () => {
+    seedAuthenticatedSession();
+    const { seedDevicePreferences } = await import("../preferences/testHelpers.js");
+    seedDevicePreferences({ interfaceLanguage: "ro" });
+    const user = userEvent.setup();
+    const entries = [
+      {
+        id: "alburn",
+        term: "Alburn",
+        definition: ["Outer wood layer."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [
+          {
+            targetType: "glossary_entry",
+            targetId: "duramen",
+            label: "Duramen",
+            href: "/glossary#glossary-entry-duramen",
+          },
+        ],
+      },
+      {
+        id: "duramen",
+        term: "Duramen",
+        definition: ["Heartwood."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
+    ];
+    const fetchMock = vi.fn(async (url) => {
+      const requestUrl = String(url);
+      if (requestUrl.includes("/api/content/public-languages")) {
+        return {
+          ok: true,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro"],
+          }),
+        };
+      }
+      if (requestUrl.includes("/api/content/glossary")) {
+        const locale = new URL(requestUrl, "http://local").searchParams.get("locale");
+        return {
+          ok: true,
+          json: async () => ({
+            ...buildPublishedGlossaryResponse(entries),
+            locale,
+            requestedLocale: locale,
+          }),
+        };
+      }
+      if (requestUrl.includes("/api/preferences")) {
+        return {
+          ok: true,
+          json: async () => ({
+            interfaceLanguage: "ro",
+            lengthUnit: "mm",
+            volumeUnit: "L",
+            exists: true,
+          }),
+        };
+      }
+      return { ok: false, status: 404, json: async () => ({}) };
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    renderWorkspace(ROUTES.GLOSSARY);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Alburn" })).toBeInTheDocument();
+    });
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("locale=ro"));
+
+    await user.click(screen.getByRole("button", { name: "Alburn" }));
+    const alburnEntry = document.getElementById("glossary-entry-alburn");
+    await user.click(within(alburnEntry).getByRole("button", { name: "Duramen" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Duramen" })).toHaveAttribute("aria-expanded", "true");
+    });
+    const glossaryCalls = fetchMock.mock.calls
+      .map((call) => String(call[0]))
+      .filter((url) => url.includes("/api/content/glossary"));
+    expect(glossaryCalls.every((url) => url.includes("locale=ro"))).toBe(true);
+    expect(document.getElementById("glossary-entry-duramen")).toBeInTheDocument();
+  });
+
+  it("supports keyboard activation for related glossary terms", async () => {
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    mockPublishedGlossaryFetch([
+      {
+        id: "alburn",
+        term: "Alburn",
+        definition: ["Outer wood layer."],
+        media: [],
+        relatedTerms: [{ id: "duramen", term: "Duramen" }],
+        synonyms: [],
+        seeAlso: [],
+      },
+      {
+        id: "duramen",
+        term: "Duramen",
+        definition: ["Heartwood."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
+    ]);
+
+    renderWorkspace(ROUTES.GLOSSARY);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Alburn" })).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole("button", { name: "Alburn" }));
+    const alburnEntry = document.getElementById("glossary-entry-alburn");
+    within(alburnEntry).getByRole("button", { name: "Duramen" }).focus();
+    await user.keyboard("{Enter}");
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Duramen" })).toHaveAttribute("aria-expanded", "true");
+    });
+  });
+
+  it("does not expose unpublished or missing glossary targets as clickable relations", async () => {
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    mockPublishedGlossaryFetch([
+      {
+        id: "alburn",
+        term: "Alburn",
+        definition: ["Outer wood layer."],
+        media: [],
+        relatedTerms: [{ id: "missing-term", term: "Missing Term" }],
+        synonyms: [],
+        seeAlso: [
+          {
+            targetType: "glossary_entry",
+            targetId: "unpublished-term",
+            label: "Unpublished Term",
+            href: "/glossary#glossary-entry-unpublished-term",
+          },
+        ],
+      },
+    ]);
+
+    renderWorkspace(ROUTES.GLOSSARY);
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Alburn" })).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole("button", { name: "Alburn" }));
+    const alburnEntry = document.getElementById("glossary-entry-alburn");
+    expect(within(alburnEntry).getByText("Missing Term")).toBeInTheDocument();
+    expect(within(alburnEntry).getByText("Unpublished Term")).toBeInTheDocument();
+    expect(within(alburnEntry).queryByRole("button", { name: "Missing Term" })).not.toBeInTheDocument();
+    expect(within(alburnEntry).queryByRole("button", { name: "Unpublished Term" })).not.toBeInTheDocument();
+    expect(within(alburnEntry).queryByRole("link", { name: "Unpublished Term" })).not.toBeInTheDocument();
   });
 
   it("blocks guest access in the dedicated module layout", () => {

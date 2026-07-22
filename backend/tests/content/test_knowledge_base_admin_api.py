@@ -241,6 +241,110 @@ class TestKnowledgeBasePublish:
         assert response.status_code == 400
 
 
+class TestKnowledgeBaseBulkPublishDrafts:
+    def _create_draft(self, client, title: str, locale: str = "en"):
+        entry_id = client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": title, "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        response = client.put(
+            f"/api/admin/knowledge-base/entries/{entry_id}/variants/{locale}",
+            json=save_payload(sample_body(title)),
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        return entry_id
+
+    def test_bulk_publish_drafts(self, client):
+        first_id = self._create_draft(client, "KB Draft A")
+        second_id = self._create_draft(client, "KB Draft B")
+        response = client.post(
+            "/api/admin/knowledge-base/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["locale"] == "en"
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert first_id in published_ids
+        assert second_id in published_ids
+        assert payload["snapshotKey"]
+
+        public_response = client.get("/api/content/knowledge-base?locale=en")
+        assert public_response.status_code == 200
+        public_ids = {entry["id"] for entry in public_response.json()["entries"]}
+        assert first_id in public_ids
+        assert second_id in public_ids
+
+    def test_bulk_publish_reports_unpublished_reference_failures(self, client):
+        related_id = client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": "Draft related", "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        # Leave related unpublished and unpublishable so the referencing article fails validation.
+        client.put(
+            f"/api/admin/knowledge-base/entries/{related_id}/variants/en",
+            json=save_payload(
+                {
+                    **sample_body("Draft related"),
+                    "problemSummary": "",
+                    "solution": [],
+                }
+            ),
+            headers=admin_headers(),
+        )
+
+        entry_id = client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": "Main article", "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        body = sample_body("Main article")
+        body["relatedKbEntryIds"] = [related_id]
+        client.put(
+            f"/api/admin/knowledge-base/entries/{entry_id}/variants/en",
+            json=save_payload(body),
+            headers=admin_headers(),
+        )
+        good_id = self._create_draft(client, "Valid article")
+
+        response = client.post(
+            "/api/admin/knowledge-base/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        failed_ids = {item["contentId"] for item in payload["failed"]}
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert entry_id in failed_ids
+        assert related_id in failed_ids
+        assert good_id in published_ids
+        assert any(
+            item["contentId"] == entry_id and "published" in (item["reason"] or "").lower()
+            for item in payload["failed"]
+        )
+    def test_bulk_publish_skips_unchanged_live_entries(self, client):
+        live_id = self._create_draft(client, "Already live")
+        assert (
+            client.post(
+                f"/api/admin/knowledge-base/entries/{live_id}/variants/en/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        draft_id = self._create_draft(client, "Fresh draft")
+        response = client.post(
+            "/api/admin/knowledge-base/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        payload = response.json()
+        assert draft_id in {item["contentId"] for item in payload["published"]}
+        assert live_id in {item["contentId"] for item in payload["skipped"]}
+
+
 class TestKnowledgeBaseRelationshipValidation:
     def _create_and_publish(self, client, title: str) -> str:
         entry_id = client.post(

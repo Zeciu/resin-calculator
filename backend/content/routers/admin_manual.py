@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from auth.dependencies import require_administrator
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.manual import (
+    BulkPublishManualDraftsResponse,
     CreateManualChapterRequest,
     GenerateTranslationRequest,
     ManualChapterListItem,
@@ -156,6 +157,18 @@ def save_variant(
         return service.save_variant(content_id, locale, ManualVariantBody.model_validate(payload.body.model_dump()))
     except KeyError as exc:
         raise _chapter_not_found() from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/variants/{locale}/publish-drafts", response_model=BulkPublishManualDraftsResponse)
+def publish_all_drafts(
+    locale: str,
+    _: dict = Depends(require_administrator),
+    publish_service: ManualPublishService = Depends(get_publish_service),
+) -> BulkPublishManualDraftsResponse:
+    try:
+        return publish_service.publish_all_drafts(locale)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

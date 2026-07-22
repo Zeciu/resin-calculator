@@ -51,13 +51,14 @@ class GlossaryEntryService:
         self._repository = repository
 
     def list_entries(self, locale: str = DEFAULT_LOCALE) -> list[GlossaryEntryListItem]:
-        parse_admin_locale(locale)
+        parsed_locale = parse_admin_locale(locale)
         items: list[GlossaryEntryListItem] = []
         for content_id in self._repository.list_glossary_entry_ids():
             meta = self._repository.get_glossary_entry_meta(content_id)
             if not meta:
                 continue
             variants: dict[str, GlossaryVariantSummary] = {}
+            active_variant: dict | None = None
             for variant_locale in EDITORIAL_LOCALES:
                 variant = self._repository.get_glossary_variant(content_id, variant_locale)
                 if not variant:
@@ -67,10 +68,18 @@ class GlossaryEntryService:
                     updatedAt=parse_iso(variant.get("updatedAt")),
                     publishedAt=parse_iso(variant.get("publishedAt")),
                 )
+                if variant_locale == parsed_locale:
+                    active_variant = variant
+            # Prefer the active-locale draft term for the Admin sidebar; fall back to
+            # identity term (first non-empty across locales, typically Romanian) when
+            # the selected locale has no translation yet — Manual/KB list parity.
+            active_term = ""
+            if active_variant is not None:
+                active_term = active_variant.get("draftBody", {}).get("term", "").strip()
             items.append(
                 GlossaryEntryListItem(
                     contentId=content_id,
-                    term=entry_identity_term(self._repository, content_id),
+                    term=active_term or entry_identity_term(self._repository, content_id),
                     sortOrder=meta["sortOrder"],
                     variants=variants,
                 )

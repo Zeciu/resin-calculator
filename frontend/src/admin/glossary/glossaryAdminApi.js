@@ -31,6 +31,12 @@ export function publishGlossaryVariant(contentId, locale) {
   );
 }
 
+export function publishAllGlossaryDrafts(locale) {
+  return client.request(`/variants/${encodeURIComponent(locale)}/publish-drafts`, {
+    method: "POST",
+  });
+}
+
 export function deleteGlossaryEntry(contentId) {
   return client.request(`/${encodeURIComponent(contentId)}`, { method: "DELETE" });
 }

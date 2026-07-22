@@ -31,6 +31,12 @@ export function publishManualVariant(contentId, locale) {
   );
 }
 
+export function publishAllManualDrafts(locale) {
+  return client.request(`/variants/${encodeURIComponent(locale)}/publish-drafts`, {
+    method: "POST",
+  });
+}
+
 export function deleteManualChapter(contentId) {
   return client.request(`/${encodeURIComponent(contentId)}`, { method: "DELETE" });
 }
