@@ -6022,4 +6022,153 @@ Production editorial root changed from EFS to `/app/content`; commercial root re
 - Focused B5 validation: 6 passed; related validation suite: 27 passed; CDK synth passed.
 - No live deployment performed. Alfred release gate (including deferred Docker runtime validation) remains pending.
 
-Next step: Task B6 — Release B cleanup, final validation and handover preparation.
+### Task B6 — Cleanup, Final Validation and Handover Preparation — CLOSED
+
+Release B implementation is complete. **Release B implementation is CLOSED.** Final architecture and Alfred release-gate handover are recorded below. No live deployment performed. Alfred release gate remains **PENDING**.
+
+#### Release B task status
+
+| Task | Status |
+|------|--------|
+| B1 — Release-Mode Startup | CLOSED |
+| B2 — Commercial Data Root | CLOSED |
+| B3 — Selective Git Tracking of Editorial Release Corpus | CLOSED |
+| B4 — Docker Packaging of Editorial Release Corpus | CLOSED (Docker runtime validation deferred to Alfred) |
+| B5 — Production Editorial/Commercial Data Wiring | CLOSED |
+| B6 — Cleanup, Final Validation and Handover Preparation | CLOSED |
+
+#### Final architecture
+
+**Production**
+
+- Editorial content is read from the packaged corpus at `/app/content` (`CONTENT_DATA_DIR=/app/content`).
+- `EDITORIAL_CONTENT_MODE=release` (Admin editorial mutations return HTTP 403; public/admin reads remain available).
+- Commercial/user data is durable and writable on EFS via `COMMERCIAL_DATA_DIR=/mnt/hfzwood-content` (entitlements, preferences).
+- No editorial startup writes; no editorial dependency on EFS; no commercial data packaged in the image.
+- No path collision between `/app/content` and `/mnt/hfzwood-content`.
+
+**Local**
+
+- Writable editorial mode remains the default (`EDITORIAL_CONTENT_MODE` missing/blank → writable).
+- Local startup and Admin edit/publish remain unchanged.
+- Commercial fallback: unset/blank `COMMERCIAL_DATA_DIR` → `CONTENT_DATA_DIR` → `backend/data`.
+- Docker Desktop is **not** required for normal local editorial work.
+
+**Local workflow**
+
+`Local Admin → validate → commit/push → Alfred builds/deploys`
+
+**Future content updates**
+
+`edit locally → validate → commit/push → deployment pipeline`
+
+#### Cleanup notes
+
+- No proven-dead production code paths were removed in B6: `REQUIRE_CONTENT_DATA_DIR` / seed-data / strict-init remain for local development, tests, rollback and compatibility.
+- Production no longer sets `REQUIRE_CONTENT_DATA_DIR` (removed in B5).
+
+#### Final validation (B6)
+
+- Focused Release B suite: 99 passed.
+- Full backend suite: 585 passed, 1 skipped.
+- CDK synth (AppStack): passed.
+- Static Docker packaging checks: covered by focused B4 tests.
+- Frontend suite: not required (no shared Release B frontend behavior changes).
+- Local Docker runtime validation: not required; deferred to Alfred.
+
+#### Deferred to Alfred release gate
+
+- Real `docker build`
+- Image filesystem inspection (`/app/content` inventory; absence of preferences/entitlements/legacy)
+- Container startup with production-like env
+- Container-level HTTP smoke
+- Live Cognito validation
+- Live Stripe validation
+- ECS/EFS/ALB production deployment validation
+- Rollback validation
+
+### Alfred Release Gate — Release B Handover
+
+#### Production environment variables
+
+| Variable | Value |
+|----------|-------|
+| `CONTENT_DATA_DIR` | `/app/content` |
+| `EDITORIAL_CONTENT_MODE` | `release` |
+| `COMMERCIAL_DATA_DIR` | `/mnt/hfzwood-content` |
+| `AUTH_MODE` | `cognito` |
+| Cognito | `COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID`, `COGNITO_REGION` (existing) |
+| Stripe | `STRIPE_PRICE_ID` + Secrets Manager `hfzwood/stripe` (`secret_key`, `webhook_secret`) |
+
+Do **not** set `REQUIRE_CONTENT_DATA_DIR` in production for this architecture.
+
+#### EFS mount
+
+- Container path: `/mnt/hfzwood-content` (writable, transit-encrypted)
+- Access-point path: `/hfzwood-content`
+- Construct IDs preserved: `EditorialContentFilesystem`, `EditorialContentAccessPoint`
+- Used for commercial data only (`entitlements/`, `preferences/`)
+
+#### Docker build and smoke (Alfred)
+
+```text
+docker build -t hfzwood-release-b .
+docker run --rm -p 5000:5000 ^
+  -e CONTENT_DATA_DIR=/app/content ^
+  -e EDITORIAL_CONTENT_MODE=release ^
+  -e COMMERCIAL_DATA_DIR=/tmp/commercial ^
+  -e AUTH_MODE=mock ^
+  hfzwood-release-b
+```
+
+Smoke expectations:
+
+- Startup succeeds (release corpus validation).
+- `GET /api/content/manual?locale=en` → 200
+- `GET /api/content/glossary?locale=en` → 200
+- `GET /api/content/knowledge-base?locale=en` → 200
+- `GET /api/content/website/home?locale=en` → 200
+- Editorial image GET → 200
+- Admin mutation (authenticated admin) → 403 with release-mode detail
+- Admin read → 200
+- Image must contain `/app/content/...` corpus and must **not** contain preferences/entitlements/legacy under `/app/content`
+
+#### Deployment validation checklist
+
+- [ ] CDK diff reviewed; EFS filesystem not replaced
+- [ ] Image built from commit that includes B3 corpus + B4 packaging + B5 wiring
+- [ ] ECS task env matches production table above
+- [ ] EFS still mounted at `/mnt/hfzwood-content` writable
+- [ ] New task starts healthy (`/health`)
+- [ ] Public content reads succeed against packaged corpus
+- [ ] No editorial writes appear under EFS after startup
+- [ ] Entitlements/preferences still read/write under EFS commercial root
+
+#### Cognito / Admin validation checklist
+
+- [ ] Cognito login works in production
+- [ ] Administrator can open Editorial Admin and **read** Manual/Glossary/KB/Website
+- [ ] Administrator mutation (create/save/publish) returns HTTP 403
+- [ ] Non-admin cannot access Admin routes
+
+#### Stripe / entitlements validation checklist
+
+- [ ] Checkout / portal still function
+- [ ] Webhook updates entitlements under `COMMERCIAL_DATA_DIR` on EFS
+- [ ] `/api/me` capabilities reflect stored entitlement
+- [ ] Preferences GET/PUT persist under EFS `preferences/`
+
+#### Rollback checklist
+
+- [ ] Previous ECS task definition / image tag identified
+- [ ] Roll back service to prior task definition if release fails
+- [ ] Confirm EFS commercial data intact after rollback
+- [ ] If rolling back to pre-B5 image, restore matching env (`CONTENT_DATA_DIR` on EFS + `REQUIRE_CONTENT_DATA_DIR=1`) only with explicit operator approval
+
+#### Pass / fail gate
+
+**PASS** only if: Docker image smoke, ECS deploy health, public reads, Admin 403-on-mutate, Cognito admin read, Stripe/entitlements on EFS, and no unexpected editorial EFS writes all succeed.
+
+**FAIL** if: task unhealthy, missing `/app/content` corpus, commercial writes fail, editorial mutations allowed in production, or EFS filesystem was replaced unintentionally.
+
+No live deployment was performed as part of Release B implementation.

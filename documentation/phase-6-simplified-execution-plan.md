@@ -1774,4 +1774,43 @@ Production editorial root changed from EFS to `/app/content`; commercial root re
 * Focused B5 validation: 6 passed; related validation suite: 27 passed; CDK synth passed.
 * No live deployment performed. Alfred release gate (including deferred Docker runtime validation) remains pending.
 
-Next: Task B6 — Release B cleanup, final validation and handover preparation.
+### Task B6 — Cleanup, Final Validation and Handover Preparation — CLOSED
+
+Release B implementation is complete. **Release B implementation is CLOSED.** No live deployment performed. Alfred release gate remains **PENDING**.
+
+#### B1–B6 status
+
+* B1 Release-Mode Startup — CLOSED
+* B2 Commercial Data Root — CLOSED
+* B3 Selective Git Tracking — CLOSED
+* B4 Docker Packaging — CLOSED (Docker runtime validation deferred to Alfred)
+* B5 Production Editorial/Commercial Data Wiring — CLOSED
+* B6 Cleanup, Final Validation and Handover Preparation — CLOSED
+
+#### Final architecture
+
+* Production editorial: `/app/content` + `EDITORIAL_CONTENT_MODE=release` (no editorial EFS dependency; Admin mutations 403).
+* Production commercial: EFS `/mnt/hfzwood-content` via `COMMERCIAL_DATA_DIR` (writable entitlements/preferences).
+* Local writable mode unchanged; Docker Desktop not required for normal local editorial work.
+* Workflow: Local Admin → validate → commit/push → Alfred builds/deploys.
+* Content updates: edit locally → validate → commit/push → deployment pipeline.
+
+#### Cleanup
+
+No proven-dead production code removed in B6. Seed-data / `REQUIRE_CONTENT_DATA_DIR` strict-init retained for local, tests, rollback and compatibility. Production already omits `REQUIRE_CONTENT_DATA_DIR` (B5).
+
+#### Final validation
+
+* Focused Release B suite: 99 passed.
+* Full backend suite: 585 passed, 1 skipped.
+* CDK synth (AppStack): passed.
+* Static Docker packaging checks: passed (focused B4).
+* Frontend suite: not required.
+
+#### Deferred to Alfred release gate
+
+Real `docker build`; image filesystem inspection; container startup; container HTTP smoke; live Cognito; live Stripe; ECS/EFS/ALB deployment validation; rollback validation.
+
+#### Alfred release gate (summary)
+
+Production env: `CONTENT_DATA_DIR=/app/content`, `EDITORIAL_CONTENT_MODE=release`, `COMMERCIAL_DATA_DIR=/mnt/hfzwood-content` (do not set `REQUIRE_CONTENT_DATA_DIR`). EFS mount remains `/mnt/hfzwood-content` writable. Full Docker/smoke commands, deployment/Cognito/Stripe/rollback checklists, and pass/fail gate are in `documentation/Arthur-project-handover.md` § Alfred Release Gate — Release B Handover.
