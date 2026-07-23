@@ -52,5 +52,19 @@ COPY backend/product ./product
 COPY --from=editorial-seed-build /app/seed-data ./seed-data
 COPY --from=frontend-build /app/frontend/dist ./static
 
+# Packaged editorial release corpus (Git-tracked subset only; not the full backend/data tree).
+# Kept for EDITORIAL_CONTENT_MODE=release via CONTENT_DATA_DIR=/app/content (B5 wires production).
+# Existing seed-data export remains for writable/strict first-run seeding on durable mounts.
+COPY backend/data/editorial/content-store.json /app/content/editorial/content-store.json
+COPY backend/data/config/public-languages.json /app/content/config/public-languages.json
+COPY backend/data/published/manual/ /app/content/published/manual/
+COPY backend/data/published/glossary/ /app/content/published/glossary/
+COPY backend/data/published/knowledge-base/ /app/content/published/knowledge-base/
+COPY backend/data/published/website/ /app/content/published/website/
+COPY backend/data/manual/images/ /app/content/manual/images/
+COPY backend/data/glossary/images/ /app/content/glossary/images/
+COPY backend/data/knowledge-base/images/ /app/content/knowledge-base/images/
+COPY backend/data/website/images/ /app/content/website/images/
+
 EXPOSE 5000
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]

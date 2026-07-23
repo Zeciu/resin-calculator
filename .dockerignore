@@ -7,6 +7,8 @@ frontend/.env.local
 frontend/.env.*.local
 **/.env.local
 **/.env.*.local
+.env
+**/.env
 
 # Dependencies
 **/node_modules
@@ -24,9 +26,6 @@ backend/.venv
 **/htmlcov
 frontend/coverage
 backend/.pytest_cache
-
-# Local editorial runtime data (must never enter the image or build context)
-backend/data
 
 # Local frontend build output (image rebuilds from source)
 frontend/dist
@@ -61,3 +60,48 @@ README.md
 dev.cmd
 test.cmd
 test
+changed-files.txt
+
+# backend/data — exclude commercial/user/runtime by default; allow approved editorial release corpus only
+backend/data/*
+!backend/data/editorial/
+backend/data/editorial/*
+!backend/data/editorial/content-store.json
+!backend/data/published/
+backend/data/published/*
+!backend/data/published/manual/
+!backend/data/published/manual/**
+!backend/data/published/glossary/
+!backend/data/published/glossary/**
+!backend/data/published/knowledge-base/
+!backend/data/published/knowledge-base/**
+!backend/data/published/website/
+!backend/data/published/website/**
+!backend/data/manual/
+backend/data/manual/*
+!backend/data/manual/images/
+!backend/data/manual/images/**
+!backend/data/glossary/
+backend/data/glossary/*
+!backend/data/glossary/images/
+!backend/data/glossary/images/**
+!backend/data/knowledge-base/
+backend/data/knowledge-base/*
+!backend/data/knowledge-base/images/
+!backend/data/knowledge-base/images/**
+!backend/data/website/
+backend/data/website/*
+!backend/data/website/images/
+!backend/data/website/images/**
+!backend/data/config/
+backend/data/config/*
+!backend/data/config/public-languages.json
+
+# Keep commercial/user/runtime artifacts out of the image build context
+backend/data/preferences/
+backend/data/entitlements/
+backend/data/legacy/
+backend/data/.hfzwood-initialized.json
+backend/data/**/*.tmp*
+backend/data/**/.hfzwood-write-check-*
+backend/data/**/.hfzwood-init-*

@@ -5999,4 +5999,13 @@ Approved editorial corpus is now Git-tracked via selective `.gitignore` rules (4
 - Secret scan found no credentials.
 - `.dockerignore`, Dockerfile, backend code, CDK, frontend and production activation remain untouched.
 
-Next step: Task B4 — Docker packaging of the Git-tracked editorial corpus.
+### Task B4 — Docker Packaging of Editorial Release Corpus — CLOSED
+
+Implementation closed: `.dockerignore` selectively permits only the approved editorial corpus; Dockerfile packages it under `/app/content` (42 corpus files, approximately 23.97 MB). Preferences, entitlements, legacy and runtime artifacts are excluded. CDK, EFS and production activation remained untouched.
+
+- Release-mode equivalent validation passed; focused B4 validation: 15 passed.
+- Remaining validation (real `docker build`, image filesystem inspection, container startup, container-level HTTP smoke): **DEFERRED TO ALFRED RELEASE GATE**.
+- Reason: Docker is not available in the current local environment; actual image/deployment validation belongs to the production deployment owner.
+- This deferral is not an implementation blocker for B5.
+
+Next step: Task B5 — Production Editorial/Commercial Data Wiring.
