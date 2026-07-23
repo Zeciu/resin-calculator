@@ -6172,3 +6172,124 @@ Smoke expectations:
 **FAIL** if: task unhealthy, missing `/app/content` corpus, commercial writes fail, editorial mutations allowed in production, or EFS filesystem was replaced unintentionally.
 
 No live deployment was performed as part of Release B implementation.
+Session Update — Release B Completed
+Major milestone achieved
+
+Release B has been completed in full.
+
+Tasks completed and closed today:
+
+B2 — Commercial Data Root
+B3 — Selective Git Tracking of Editorial Release Corpus
+B4 — Docker Packaging of Editorial Release Corpus
+B5 — Production Editorial/Commercial Data Wiring
+B6 — Cleanup, Final Validation and Release Close
+
+All implementation tasks have been committed, pushed and documented.
+
+Final Release B architecture
+Editorial content
+
+Production uses:
+
+CONTENT_DATA_DIR=/app/content
+EDITORIAL_CONTENT_MODE=release
+
+The complete approved editorial corpus is packaged inside the Docker image.
+
+Editorial content is read-only in production.
+
+Admin editorial mutations return HTTP 403.
+
+Commercial data
+
+Commercial/user data remains durable on EFS through:
+
+COMMERCIAL_DATA_DIR=/mnt/hfzwood-content
+
+Commercial repositories:
+
+entitlements
+preferences
+
+remain writable and independent from the packaged editorial corpus.
+
+Local workflow
+
+Local development remains unchanged.
+
+Docker Desktop is not required for normal editorial work.
+
+Current workflow is:
+
+Local Admin
+→ populate content
+→ validate
+→ commit
+→ push
+→ Alfred builds Docker image
+→ Alfred performs AWS deployment
+Release B validation
+
+Implementation validation completed:
+
+Focused Release B suite: 99 passed
+Full backend: 585 passed, 1 skipped
+CDK synth: passed
+Static Docker packaging validation: passed
+
+Docker runtime validation was intentionally deferred.
+
+Alfred Release Gate
+
+Release B implementation is complete.
+
+Remaining production validation belongs to Alfred and is documented in the dedicated Release Gate section.
+
+Pending items include:
+
+Docker image build
+image filesystem verification
+container startup
+container HTTP smoke tests
+ECS deployment
+Cognito live validation
+Stripe live validation
+EFS production validation
+ALB validation
+rollback validation
+
+These are deployment responsibilities, not additional implementation work.
+
+Current project status
+
+Application implementation is complete.
+
+The project is now in the Editorial Content Population phase.
+
+DeepL translation integration is already implemented and available locally.
+
+Current priority is:
+
+populate Manual
+populate Glossary
+populate Knowledge Base
+populate Website content
+validate translations
+commit and push editorial updates
+
+Only after editorial content is considered complete will Alfred execute the Release Gate and perform the production deployment.
+
+Important workflow reminder
+
+Do not propose or schedule further implementation work related to:
+
+AI Translation
+Cognito integration
+Docker packaging
+Release B architecture
+production deployment
+
+These areas are already implemented or explicitly assigned to Alfred.
+
+Until the editorial content is finished, all development effort should remain focused on content creation, editorial validation and translation quality.
