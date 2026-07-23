@@ -1698,3 +1698,23 @@ A second post-closure transition issue was observed: after **Done with Measureme
 **Validation:** focused calculator tests passed; full frontend suite passed; production build passed.
 
 Phase 6 Local Implementation remains **CLOSED**. Task 5.3B remains **NOT STARTED — PENDING WITH ALFRED**.
+
+---
+
+## 28. Editorial Release Architecture — Release A Closure
+
+### Release A — Backend Editorial Write Guard — CLOSED
+
+First reversible step toward Alfred’s approved model (local Admin edit/publish → Git-tracked release content → Docker image → production read-only editorial). Historical Task 4.1 EFS editorial durability remains the prior production design until later releases supersede it.
+
+Delivered:
+
+* `EDITORIAL_CONTENT_MODE=writable|release` with shared FastAPI dependency `require_editorial_writes_allowed`;
+* missing/blank defaults to `writable` (no behavior change for current local/production until explicitly set);
+* `release` blocks Manual/Glossary/KB/Website mutations, image uploads, translation generate/bulk-update, publish/unpublish, and public-language activate/deactivate with HTTP 403;
+* editorial reads remain available; billing, entitlements, preferences, and authentication are unaffected;
+* Docker, CDK, EFS, `CONTENT_DATA_DIR`, strict-root initialization, frontend, and content packaging unchanged.
+
+Validation: 29 focused tests passed; full backend suite 523 passed, 1 skipped.
+
+Release B has not started. Next: Release B pre-implementation design — (1) strict-root/read-only startup behavior; (2) `legacy/` fallback verification; (3) editorial/commercial root split; (4) binary image tracking strategy.

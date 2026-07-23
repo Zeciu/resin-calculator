@@ -8,6 +8,7 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, HTTPException
 
 from auth.dependencies import require_administrator
+from content.editorial_content_mode import require_editorial_writes_allowed
 from content.repositories.filesystem import FilesystemContentRepository
 from content.repositories.public_languages import PublicLanguagesRepository
 from content.schemas.public_languages import AdminPublicLanguagesResponse
@@ -45,6 +46,7 @@ def get_admin_public_languages(
 def activate_public_language(
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: PublicLanguagesService = Depends(get_public_languages_service),
 ) -> AdminPublicLanguagesResponse:
     try:
@@ -57,6 +59,7 @@ def activate_public_language(
 def deactivate_public_language(
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: PublicLanguagesService = Depends(get_public_languages_service),
 ) -> AdminPublicLanguagesResponse:
     try:

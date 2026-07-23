@@ -5956,3 +5956,17 @@ Correction (operation-scoped only; no cross-request cache, no persistence redesi
 Measured on the local 74-entry store: list **741→1** reads (~3803→~21 ms); snapshot **~198→1** reads (~1020→~24 ms). Response/snapshot parity covered by focused tests; full backend suite green.
 
 Note: `backend/data/` (including `editorial/content-store.json`) remains gitignored — local editorial content is not preserved by GitHub commits.
+
+### Release A — Backend Editorial Write Guard — CLOSED
+
+Centralized backend guard for the approved Git-packaged, production-read-only editorial release model. Default behavior remains fully writable.
+
+- `EDITORIAL_CONTENT_MODE=writable|release` (`backend/content/editorial_content_mode.py`).
+- Missing/blank defaults to `writable`.
+- `release` blocks all editorial mutations with backend-enforced HTTP 403; invalid values fail closed (HTTP 500).
+- Editorial Admin reads remain available; billing, entitlements, preferences, and authentication are unaffected.
+- Docker, CDK, EFS, `CONTENT_DATA_DIR`, strict-root initialization, frontend, and content packaging were not changed.
+- Validation: 29 focused tests passed; full backend suite 523 passed, 1 skipped.
+- Release B has not started.
+
+Next step: Release B pre-implementation design, beginning with (1) strict-root/read-only startup behavior; (2) `legacy/` fallback verification; (3) editorial/commercial root split; (4) binary image tracking strategy.

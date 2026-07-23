@@ -4,6 +4,7 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from auth.dependencies import require_administrator
+from content.editorial_content_mode import require_editorial_writes_allowed
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.website import (
     PublishWebsiteVariantResponse,
@@ -45,6 +46,7 @@ def _page_not_found() -> HTTPException:
 async def upload_website_image(
     file: UploadFile = File(...),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     image_service: WebsiteImageService = Depends(get_image_service),
 ) -> dict[str, str]:
     try:
@@ -87,6 +89,7 @@ def save_variant(
     locale: str,
     payload: SaveWebsiteVariantRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: WebsitePageService = Depends(get_page_service),
 ) -> WebsiteVariantResponse:
     try:
@@ -102,6 +105,7 @@ def publish_variant(
     page_key: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: WebsitePublishService = Depends(get_publish_service),
 ) -> PublishWebsiteVariantResponse:
     try:
@@ -117,6 +121,7 @@ def unpublish_variant(
     page_key: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: WebsitePublishService = Depends(get_publish_service),
 ) -> None:
     try:
@@ -133,6 +138,7 @@ def generate_translation(
     locale: str,
     payload: GenerateTranslationRequest = GenerateTranslationRequest(),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: WebsitePageService = Depends(get_page_service),
 ) -> WebsiteVariantResponse:
     return run_generate(

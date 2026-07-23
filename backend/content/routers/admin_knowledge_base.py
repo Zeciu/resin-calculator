@@ -4,6 +4,7 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from auth.dependencies import require_administrator
+from content.editorial_content_mode import require_editorial_writes_allowed
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.knowledge_base import (
     BulkPublishKnowledgeBaseDraftsResponse,
@@ -50,6 +51,7 @@ def _entry_not_found() -> HTTPException:
 async def upload_kb_image(
     file: UploadFile = File(...),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     image_service: KnowledgeBaseImageService = Depends(get_image_service),
 ) -> dict[str, str]:
     try:
@@ -85,6 +87,7 @@ def list_entries(
 def create_entry(
     payload: CreateKnowledgeBaseEntryRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> KnowledgeBaseEntryMeta:
     return service.create_entry(payload.title, payload.category, payload.difficulty)
@@ -106,6 +109,7 @@ def get_entry(
 def delete_entry(
     content_id: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> None:
     try:
@@ -119,6 +123,7 @@ def delete_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> None:
     try:
@@ -152,6 +157,7 @@ def save_variant(
     locale: str,
     payload: SaveKnowledgeBaseVariantRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> KnowledgeBaseVariantResponse:
     try:
@@ -172,6 +178,7 @@ def save_variant(
 def publish_all_drafts(
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: KnowledgeBasePublishService = Depends(get_publish_service),
 ) -> BulkPublishKnowledgeBaseDraftsResponse:
     try:
@@ -185,6 +192,7 @@ def publish_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: KnowledgeBasePublishService = Depends(get_publish_service),
 ) -> PublishKnowledgeBaseVariantResponse:
     try:
@@ -204,6 +212,7 @@ def generate_translation(
     locale: str,
     payload: GenerateTranslationRequest = GenerateTranslationRequest(),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: KnowledgeBaseEntryService = Depends(get_entry_service),
 ) -> KnowledgeBaseVariantResponse:
     return run_generate(
@@ -220,6 +229,7 @@ def unpublish_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: KnowledgeBasePublishService = Depends(get_publish_service),
 ) -> None:
     try:

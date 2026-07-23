@@ -7,6 +7,7 @@ from typing import Literal
 from fastapi import APIRouter, Depends, HTTPException, Response
 
 from auth.dependencies import require_administrator
+from content.editorial_content_mode import require_editorial_writes_allowed
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.translation_bulk import (
     BulkPreviewResponse,
@@ -129,6 +130,7 @@ def bulk_update(
     response: Response,
     payload: BulkTranslationRequest | None = None,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: TranslationBulkService = Depends(get_bulk_service),
 ) -> dict:
     response.headers["Cache-Control"] = "no-store"

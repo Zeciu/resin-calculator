@@ -4,6 +4,7 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from auth.dependencies import require_administrator
+from content.editorial_content_mode import require_editorial_writes_allowed
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.glossary import (
     BulkPublishGlossaryDraftsResponse,
@@ -50,6 +51,7 @@ def _entry_not_found() -> HTTPException:
 async def upload_glossary_image(
     file: UploadFile = File(...),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     image_service: GlossaryImageService = Depends(get_image_service),
 ) -> dict[str, str]:
     try:
@@ -85,6 +87,7 @@ def list_entries(
 def publish_all_drafts(
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: GlossaryPublishService = Depends(get_publish_service),
 ) -> BulkPublishGlossaryDraftsResponse:
     try:
@@ -100,6 +103,7 @@ def publish_all_drafts(
 def create_entry(
     payload: CreateGlossaryEntryRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> GlossaryEntryMeta:
     return service.create_entry(payload.term)
@@ -121,6 +125,7 @@ def get_entry(
 def delete_entry(
     content_id: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> None:
     try:
@@ -134,6 +139,7 @@ def delete_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> None:
     try:
@@ -167,6 +173,7 @@ def save_variant(
     locale: str,
     payload: SaveGlossaryVariantRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> GlossaryVariantResponse:
     try:
@@ -182,6 +189,7 @@ def publish_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: GlossaryPublishService = Depends(get_publish_service),
 ) -> PublishGlossaryVariantResponse:
     try:
@@ -198,6 +206,7 @@ def generate_translation(
     locale: str,
     payload: GenerateTranslationRequest = GenerateTranslationRequest(),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: GlossaryEntryService = Depends(get_entry_service),
 ) -> GlossaryVariantResponse:
     return run_generate(
@@ -214,6 +223,7 @@ def unpublish_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: GlossaryPublishService = Depends(get_publish_service),
 ) -> None:
     try:

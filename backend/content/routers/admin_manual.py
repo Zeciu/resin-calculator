@@ -4,6 +4,7 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from auth.dependencies import require_administrator
+from content.editorial_content_mode import require_editorial_writes_allowed
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.manual import (
     BulkPublishManualDraftsResponse,
@@ -50,6 +51,7 @@ def _chapter_not_found() -> HTTPException:
 async def upload_manual_image(
     file: UploadFile = File(...),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     image_service: ManualImageService = Depends(get_image_service),
 ) -> dict[str, str]:
     try:
@@ -72,6 +74,7 @@ def list_chapters(
 def create_chapter(
     payload: CreateManualChapterRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> ManualChapterMeta:
     return service.create_chapter(payload.title, payload.locale)
@@ -81,6 +84,7 @@ def create_chapter(
 def reorder_chapters(
     payload: ReorderManualChaptersRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> None:
     try:
@@ -105,6 +109,7 @@ def get_chapter(
 def delete_chapter(
     content_id: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> None:
     try:
@@ -118,6 +123,7 @@ def delete_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> None:
     try:
@@ -151,6 +157,7 @@ def save_variant(
     locale: str,
     payload: SaveManualVariantRequest,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> ManualVariantResponse:
     try:
@@ -165,6 +172,7 @@ def save_variant(
 def publish_all_drafts(
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: ManualPublishService = Depends(get_publish_service),
 ) -> BulkPublishManualDraftsResponse:
     try:
@@ -178,6 +186,7 @@ def publish_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: ManualPublishService = Depends(get_publish_service),
 ) -> PublishManualVariantResponse:
     try:
@@ -194,6 +203,7 @@ def generate_translation(
     locale: str,
     payload: GenerateTranslationRequest = GenerateTranslationRequest(),
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     service: ManualChapterService = Depends(get_chapter_service),
 ) -> ManualVariantResponse:
     body = payload
@@ -211,6 +221,7 @@ def unpublish_variant(
     content_id: str,
     locale: str,
     _: dict = Depends(require_administrator),
+    _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: ManualPublishService = Depends(get_publish_service),
 ) -> None:
     try:
