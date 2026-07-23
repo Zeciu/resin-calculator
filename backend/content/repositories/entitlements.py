@@ -6,10 +6,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 import json
-import os
 import re
 
-from content.repositories.filesystem import atomic_write_json
+from content.repositories.filesystem import atomic_write_json, commercial_data_root
 
 VALID_STORED_ACCESS_TIERS = frozenset({"free", "subscriber"})
 VALID_COMMERCIAL_STATUSES = frozenset(
@@ -119,9 +118,7 @@ class FilesystemEntitlementsRepository(EntitlementsRepository):
     """EFS-backed commercial entitlement storage; one JSON file per authenticated user."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        root = data_dir or Path(
-            os.environ.get("CONTENT_DATA_DIR", Path(__file__).resolve().parents[2] / "data")
-        )
+        root = Path(data_dir) if data_dir is not None else commercial_data_root()
         self._root = Path(root)
         self._entitlements_dir = self._root / "entitlements"
         self._entitlements_dir.mkdir(parents=True, exist_ok=True)

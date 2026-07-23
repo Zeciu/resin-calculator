@@ -1729,4 +1729,17 @@ When `EDITORIAL_CONTENT_MODE=release`, startup validates a packaged editorial co
 
 Validation: 49 focused tests passed; full backend suite 534 passed, 1 skipped.
 
-B2 and later Release B tasks remain unstarted. Next: Task B2 — `COMMERCIAL_DATA_DIR` and separation of entitlements/preferences from the editorial root.
+### Task B2 — Commercial Data Root — CLOSED
+
+Introduced `COMMERCIAL_DATA_DIR` to separate durable commercial/user filesystem state from the editorial content root.
+
+* Resolution order: explicit non-blank `COMMERCIAL_DATA_DIR`; otherwise `CONTENT_DATA_DIR`; otherwise local default `backend/data`.
+* `FilesystemEntitlementsRepository` → `<commercial_root>/entitlements`.
+* `FilesystemPreferencesRepository` → `<commercial_root>/preferences`.
+* Editorial content and public-language configuration remain on `CONTENT_DATA_DIR`.
+* Explicit constructor paths still override environment resolution.
+* Docker, Git tracking, CDK, EFS, frontend, and production release activation remain untouched.
+
+Validation: 49 focused tests passed; full backend suite 575 passed, 1 skipped.
+
+Next: Task B3 — selective Git tracking of the approved editorial release corpus.

@@ -428,6 +428,22 @@ def default_content_root() -> Path:
     return Path(os.environ.get("CONTENT_DATA_DIR", Path(__file__).resolve().parents[2] / "data"))
 
 
+COMMERCIAL_DATA_DIR_ENV = "COMMERCIAL_DATA_DIR"
+
+
+def commercial_data_root() -> Path:
+    """Root for durable commercial/user filesystem state (entitlements, preferences).
+
+    Resolution order:
+    1. COMMERCIAL_DATA_DIR when set and non-blank;
+    2. otherwise the editorial content root (`CONTENT_DATA_DIR` or local `backend/data`).
+    """
+    configured = os.environ.get(COMMERCIAL_DATA_DIR_ENV, "").strip()
+    if configured:
+        return Path(configured)
+    return default_content_root()
+
+
 def validate_strict_content_root(root: Path) -> None:
     configured = os.environ.get("CONTENT_DATA_DIR", "").strip()
     if not configured:

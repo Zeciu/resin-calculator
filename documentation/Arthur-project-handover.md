@@ -5977,6 +5977,17 @@ When `EDITORIAL_CONTENT_MODE=release`, startup validates a packaged editorial co
 - Does not seed, create directories, create an empty store, auto-create website pages, or require editorial-root writability.
 - Writable/default behavior remains unchanged (including existing `REQUIRE_CONTENT_DATA_DIR` strict init).
 - Validation: 49 focused tests passed; full backend suite 534 passed, 1 skipped.
-- B2 and later Release B tasks remain unstarted.
 
-Next step: Task B2 — `COMMERCIAL_DATA_DIR` and separation of entitlements/preferences from the editorial root.
+### Task B2 — Commercial Data Root — CLOSED
+
+Introduced `COMMERCIAL_DATA_DIR` so durable commercial/user filesystem state can be separated from the editorial content root.
+
+- Resolution order: explicit non-blank `COMMERCIAL_DATA_DIR`; otherwise `CONTENT_DATA_DIR`; otherwise local default `backend/data`.
+- `FilesystemEntitlementsRepository` uses `<commercial_root>/entitlements`.
+- `FilesystemPreferencesRepository` uses `<commercial_root>/preferences`.
+- Editorial content and public-language configuration remain on `CONTENT_DATA_DIR`.
+- Explicit constructor paths still override environment resolution.
+- Docker, Git tracking, CDK, EFS, frontend, and production release activation remain untouched.
+- Validation: 49 focused tests passed; full backend suite 575 passed, 1 skipped.
+
+Next step: Task B3 — selective Git tracking of the approved editorial release corpus.

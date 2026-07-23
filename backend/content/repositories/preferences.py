@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 
 import json
-import os
 import re
 
+from content.repositories.filesystem import commercial_data_root
 from content.schemas.preferences import UserPreferences
 
 
@@ -27,7 +27,7 @@ class FilesystemPreferencesRepository(PreferencesRepository):
     """Local development storage compatible with future DynamoDB keying by user id."""
 
     def __init__(self, data_dir: Path | None = None) -> None:
-        root = data_dir or Path(os.environ.get("CONTENT_DATA_DIR", Path(__file__).resolve().parents[2] / "data"))
+        root = Path(data_dir) if data_dir is not None else commercial_data_root()
         self._preferences_dir = root / "preferences"
         self._preferences_dir.mkdir(parents=True, exist_ok=True)
 
