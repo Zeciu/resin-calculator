@@ -908,16 +908,7 @@ class FilesystemContentRepository:
         return deepcopy(record) if record is not None else None
 
     def get_manual_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
-        records = self._read_store()
-        _, record = _resolve_variant_key(
-            records,
-            content_id,
-            locale,
-            CONTENT_TYPE_MANUAL_CHAPTER,
-            make_manual_variant_key,
-            make_manual_meta_key,
-        )
-        return deepcopy(record) if record is not None else None
+        return self.get_manual_variant_from_store(self._read_store(), content_id, locale)
 
     def create_manual_chapter(
         self, title: str, content_id: str | None = None, locale: str = DEFAULT_LOCALE
@@ -1272,8 +1263,14 @@ class FilesystemContentRepository:
                 orders.append(int(key.rsplit("#", 1)[-1]))
         return (max(orders) if orders else 0) + 100
 
-    def list_glossary_entry_ids(self) -> list[str]:
-        records = self._read_store()
+    def read_editorial_records(self) -> dict[str, Any]:
+        """Load editorial store records for a single operation.
+
+        Not a cross-request cache. Callers must not mutate the returned mapping.
+        """
+        return self._read_store()
+
+    def list_glossary_entry_ids_from_store(self, records: dict[str, Any]) -> list[str]:
         ordered: list[tuple[int, str]] = []
         for key, value in records.items():
             if not key.startswith("INDEX#glossary|ORDER#"):
@@ -1283,15 +1280,17 @@ class FilesystemContentRepository:
         ordered.sort(key=lambda item: item[0])
         return [content_id for _, content_id in ordered]
 
-    def get_glossary_entry_meta(self, content_id: str) -> dict[str, Any] | None:
-        records = self._read_store()
+    def get_glossary_entry_meta_from_store(
+        self, records: dict[str, Any], content_id: str
+    ) -> dict[str, Any] | None:
         _, record = _resolve_meta_key(
             records, content_id, CONTENT_TYPE_GLOSSARY_ENTRY, make_glossary_meta_key
         )
         return deepcopy(record) if record is not None else None
 
-    def get_glossary_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
-        records = self._read_store()
+    def get_glossary_variant_from_store(
+        self, records: dict[str, Any], content_id: str, locale: str
+    ) -> dict[str, Any] | None:
         _, meta = _resolve_meta_key(
             records, content_id, CONTENT_TYPE_GLOSSARY_ENTRY, make_glossary_meta_key
         )
@@ -1306,6 +1305,28 @@ class FilesystemContentRepository:
             make_glossary_meta_key,
         )
         return deepcopy(record) if record is not None else None
+
+    def get_manual_variant_from_store(
+        self, records: dict[str, Any], content_id: str, locale: str
+    ) -> dict[str, Any] | None:
+        _, record = _resolve_variant_key(
+            records,
+            content_id,
+            locale,
+            CONTENT_TYPE_MANUAL_CHAPTER,
+            make_manual_variant_key,
+            make_manual_meta_key,
+        )
+        return deepcopy(record) if record is not None else None
+
+    def list_glossary_entry_ids(self) -> list[str]:
+        return self.list_glossary_entry_ids_from_store(self._read_store())
+
+    def get_glossary_entry_meta(self, content_id: str) -> dict[str, Any] | None:
+        return self.get_glossary_entry_meta_from_store(self._read_store(), content_id)
+
+    def get_glossary_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
+        return self.get_glossary_variant_from_store(self._read_store(), content_id, locale)
 
     def create_glossary_entry(self, term: str, content_id: str | None = None) -> dict[str, Any]:
         records = self._read_store()

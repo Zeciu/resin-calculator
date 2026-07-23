@@ -5942,3 +5942,17 @@ Correction (shared filesystem repository):
 - No repository locks, request serialization, or Save-then-Publish workflow changes.
 
 Product Owner verified after backend restart: Save Draft, single Publish (including a previously failing entry), consecutive Publish, reference search, and Publish all drafts succeeded without content loss.
+
+### Glossary editorial read-amplification — CLOSED
+
+Steady-state Glossary Add/Save/Publish latency (~2–4s) was dominated by repeated full `content-store.json` reads inside `list_entries` (~741 reads / ~3.8s) and publish snapshot rebuild (~192–198 reads / ~1.0–1.2s), not by the Windows retry helper on the successful path.
+
+Correction (operation-scoped only; no cross-request cache, no persistence redesign):
+
+- Glossary `list_entries` loads the store once and derives ordering, meta, and locale variants in memory.
+- Glossary `build_admin_snapshot` likewise uses one editorial-store read per rebuild (including relation label resolution).
+- Standalone getters still load independently; Windows transient-access retries unchanged.
+
+Measured on the local 74-entry store: list **741→1** reads (~3803→~21 ms); snapshot **~198→1** reads (~1020→~24 ms). Response/snapshot parity covered by focused tests; full backend suite green.
+
+Note: `backend/data/` (including `editorial/content-store.json`) remains gitignored — local editorial content is not preserved by GitHub commits.

@@ -23,6 +23,18 @@ def entry_identity_term(repository, content_id: str) -> str:
     return ""
 
 
+def entry_identity_term_from_store(repository, records, content_id: str) -> str:
+    """Resolve identity term from an already-loaded store (one-operation scope)."""
+    for variant_locale in EDITORIAL_LOCALES:
+        variant = repository.get_glossary_variant_from_store(records, content_id, variant_locale)
+        if not variant:
+            continue
+        term = variant.get("draftBody", {}).get("term", "").strip()
+        if term:
+            return term
+    return ""
+
+
 def entry_identity_title(repository, content_id: str) -> str:
     for variant_locale in EDITORIAL_LOCALES:
         variant = repository.get_kb_variant(content_id, variant_locale)

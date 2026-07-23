@@ -10,7 +10,7 @@ from ..schemas.glossary import (
     GlossaryVariantSummary,
     parse_admin_locale,
 )
-from .editorial_identity import entry_identity_term
+from .editorial_identity import entry_identity_term_from_store
 from .editorial_status import compute_editorial_visibility
 from .reference_search import ReferenceSearchService
 from .translation_update import classification_fields_for_api
@@ -52,15 +52,19 @@ class GlossaryEntryService:
 
     def list_entries(self, locale: str = DEFAULT_LOCALE) -> list[GlossaryEntryListItem]:
         parsed_locale = parse_admin_locale(locale)
+        # One store read per list request — derive ordering, meta, and variants in memory.
+        records = self._repository.read_editorial_records()
         items: list[GlossaryEntryListItem] = []
-        for content_id in self._repository.list_glossary_entry_ids():
-            meta = self._repository.get_glossary_entry_meta(content_id)
+        for content_id in self._repository.list_glossary_entry_ids_from_store(records):
+            meta = self._repository.get_glossary_entry_meta_from_store(records, content_id)
             if not meta:
                 continue
             variants: dict[str, GlossaryVariantSummary] = {}
             active_variant: dict | None = None
             for variant_locale in EDITORIAL_LOCALES:
-                variant = self._repository.get_glossary_variant(content_id, variant_locale)
+                variant = self._repository.get_glossary_variant_from_store(
+                    records, content_id, variant_locale
+                )
                 if not variant:
                     continue
                 variants[variant_locale] = GlossaryVariantSummary(
@@ -79,7 +83,8 @@ class GlossaryEntryService:
             items.append(
                 GlossaryEntryListItem(
                     contentId=content_id,
-                    term=active_term or entry_identity_term(self._repository, content_id),
+                    term=active_term
+                    or entry_identity_term_from_store(self._repository, records, content_id),
                     sortOrder=meta["sortOrder"],
                     variants=variants,
                 )
