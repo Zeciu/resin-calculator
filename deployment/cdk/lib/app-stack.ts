@@ -15,7 +15,14 @@ import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 
 const DOMAIN = 'hfzwood.com';
-const EDITORIAL_CONTENT_MOUNT_PATH = '/mnt/hfzwood-content';
+/** Packaged editorial release corpus inside the container image (read-only in release mode). */
+const PACKAGED_EDITORIAL_CONTENT_DIR = '/app/content';
+/**
+ * Existing EFS mount path — now the durable commercial/user root only
+ * (entitlements, preferences). Construct IDs keep historical names to avoid
+ * replacing the filesystem.
+ */
+const COMMERCIAL_DATA_MOUNT_PATH = '/mnt/hfzwood-content';
 const PRODUCTION_ORIGIN = `https://${DOMAIN}`;
 const STRIPE_SECRET_NAME = 'hfzwood/stripe';
 
@@ -47,6 +54,7 @@ export class AppStack extends cdk.Stack {
       vpc,
     });
 
+    // Durable commercial/user filesystem (construct IDs preserved to keep existing EFS).
     const editorialContentFilesystem = new efs.FileSystem(this, 'EditorialContentFilesystem', {
       vpc,
       encrypted: true,
@@ -74,7 +82,7 @@ export class AppStack extends cdk.Stack {
       memoryLimitMiB: 512,
     });
     taskDef.addVolume({
-      name: 'editorial-content',
+      name: 'commercial-data',
       efsVolumeConfiguration: {
         fileSystemId: editorialContentFilesystem.fileSystemId,
         transitEncryption: 'ENABLED',
@@ -104,8 +112,11 @@ export class AppStack extends cdk.Stack {
         COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
         COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
         COGNITO_REGION: this.region,
-        CONTENT_DATA_DIR: EDITORIAL_CONTENT_MOUNT_PATH,
-        REQUIRE_CONTENT_DATA_DIR: '1',
+        // Editorial: packaged image corpus (no EFS seeding/writes in release mode).
+        CONTENT_DATA_DIR: PACKAGED_EDITORIAL_CONTENT_DIR,
+        EDITORIAL_CONTENT_MODE: 'release',
+        // Commercial: durable writable EFS root (entitlements + preferences).
+        COMMERCIAL_DATA_DIR: COMMERCIAL_DATA_MOUNT_PATH,
         CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,
         STRIPE_PRICE_ID: stripePriceId,
         STRIPE_CHECKOUT_SUCCESS_URL: `${PRODUCTION_ORIGIN}/account?billing=success`,
@@ -118,8 +129,8 @@ export class AppStack extends cdk.Stack {
       },
     });
     appContainer.addMountPoints({
-      containerPath: EDITORIAL_CONTENT_MOUNT_PATH,
-      sourceVolume: 'editorial-content',
+      containerPath: COMMERCIAL_DATA_MOUNT_PATH,
+      sourceVolume: 'commercial-data',
       readOnly: false,
     });
 
@@ -149,7 +160,7 @@ export class AppStack extends cdk.Stack {
     );
     editorialContentFilesystem.connections.allowDefaultPortFrom(
       fargateService.service,
-      'Allow ECS tasks to mount editorial EFS'
+      'Allow ECS tasks to mount commercial EFS'
     );
 
     const editorialEfsBackupVault = new backup.BackupVault(this, 'EditorialEfsBackupVault', {

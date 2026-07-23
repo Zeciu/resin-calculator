@@ -6008,4 +6008,18 @@ Implementation closed: `.dockerignore` selectively permits only the approved edi
 - Reason: Docker is not available in the current local environment; actual image/deployment validation belongs to the production deployment owner.
 - This deferral is not an implementation blocker for B5.
 
-Next step: Task B5 — Production Editorial/Commercial Data Wiring.
+### Task B5 — Production Editorial/Commercial Data Wiring — CLOSED
+
+Production editorial root changed from EFS to `/app/content`; commercial root remains on EFS at `/mnt/hfzwood-content`.
+
+- `CONTENT_DATA_DIR=/app/content`
+- `EDITORIAL_CONTENT_MODE=release`
+- `COMMERCIAL_DATA_DIR=/mnt/hfzwood-content`
+- `REQUIRE_CONTENT_DATA_DIR` removed from production configuration.
+- EFS remains attached, writable and transit-encrypted; existing EFS filesystem/access-point identities were preserved.
+- No path collision between editorial and commercial roots.
+- Seed-data/export path retained for local writable mode, tests, rollback and strict-init compatibility.
+- Focused B5 validation: 6 passed; related validation suite: 27 passed; CDK synth passed.
+- No live deployment performed. Alfred release gate (including deferred Docker runtime validation) remains pending.
+
+Next step: Task B6 — Release B cleanup, final validation and handover preparation.
