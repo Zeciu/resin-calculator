@@ -1717,4 +1717,16 @@ Delivered:
 
 Validation: 29 focused tests passed; full backend suite 523 passed, 1 skipped.
 
-Release B has not started. Next: Release B pre-implementation design — (1) strict-root/read-only startup behavior; (2) `legacy/` fallback verification; (3) editorial/commercial root split; (4) binary image tracking strategy.
+Release B design assessment approved. Task B1 follows.
+
+### Task B1 — Release-Mode Startup — CLOSED
+
+When `EDITORIAL_CONTENT_MODE=release`, startup validates a packaged editorial corpus without writing to the editorial root.
+
+* Does not seed, create directories, create an empty store, auto-create website pages, or require writability.
+* Required artifacts validated for existence and valid JSON (content-store `records` object; published Manual/Glossary/KB/Website `en` snapshots; `config/public-languages.json`).
+* Writable/default behavior unchanged.
+
+Validation: 49 focused tests passed; full backend suite 534 passed, 1 skipped.
+
+B2 and later Release B tasks remain unstarted. Next: Task B2 — `COMMERCIAL_DATA_DIR` and separation of entitlements/preferences from the editorial root.

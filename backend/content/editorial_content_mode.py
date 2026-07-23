@@ -45,6 +45,10 @@ def editorial_writes_allowed() -> bool:
     return editorial_content_mode() == EDITORIAL_CONTENT_MODE_WRITABLE
 
 
+def is_editorial_release_mode() -> bool:
+    return editorial_content_mode() == EDITORIAL_CONTENT_MODE_RELEASE
+
+
 def require_editorial_writes_allowed() -> None:
     """FastAPI dependency: allow mutations only when EDITORIAL_CONTENT_MODE=writable."""
     try:

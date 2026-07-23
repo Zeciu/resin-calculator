@@ -17,10 +17,15 @@ from content.routers.admin_manual import router as admin_manual_router
 from content.routers.admin_website import router as admin_website_router
 from content.routers.admin_translation_bulk import router as admin_translation_bulk_router
 from content.routers.admin_public_languages import router as admin_public_languages_router
+from content.editorial_content_mode import (
+    EDITORIAL_CONTENT_MODE_RELEASE,
+    editorial_content_mode,
+)
 from content.repositories.filesystem import (
     default_content_root,
     initialize_production_content_root,
     strict_content_root_required,
+    validate_release_editorial_root,
 )
 from content.routers.billing import router as billing_router
 from content.routers.me import router as me_router
@@ -40,7 +45,9 @@ auth_logger = logging.getLogger(__name__)
 
 
 app = FastAPI()
-if strict_content_root_required():
+if editorial_content_mode() == EDITORIAL_CONTENT_MODE_RELEASE:
+    validate_release_editorial_root(default_content_root())
+elif strict_content_root_required():
     initialize_production_content_root(default_content_root())
 
 app.include_router(admin_manual_router, prefix="/api")

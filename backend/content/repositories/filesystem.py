@@ -452,6 +452,62 @@ def validate_strict_content_root(root: Path) -> None:
         ) from exc
 
 
+def required_release_artifacts(root: Path) -> list[Path]:
+    """Artifacts required for EDITORIAL_CONTENT_MODE=release packaged corpus startup."""
+    return [
+        root / "editorial" / "content-store.json",
+        root / "published" / "manual" / "en" / "document.json",
+        root / "published" / "glossary" / "en" / "entries.json",
+        root / "published" / "knowledge-base" / "en" / "entries.json",
+        root / "published" / "website" / "en" / "pages.json",
+        root / "config" / "public-languages.json",
+    ]
+
+
+def validate_release_editorial_root(root: Path) -> None:
+    """Validate a packaged editorial corpus for release mode (read-only; no seeding)."""
+    if not root.exists():
+        raise RuntimeError(
+            f"Release editorial root does not exist: {root}"
+        )
+    if not root.is_dir():
+        raise RuntimeError(
+            f"Release editorial root is not a directory: {root}"
+        )
+
+    for path in required_release_artifacts(root):
+        relative = str(path.relative_to(root)).replace("\\", "/")
+        if not path.exists():
+            raise RuntimeError(
+                f"Release editorial root is missing required artifact: {relative}"
+            )
+        if not path.is_file():
+            raise RuntimeError(
+                f"Release editorial required artifact is not a file: {relative}"
+            )
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError) as exc:
+            raise RuntimeError(
+                f"Release editorial required artifact could not be read: {relative}"
+            ) from exc
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(
+                f"Release editorial required artifact contains invalid JSON: {relative}"
+            ) from exc
+
+        if relative == "editorial/content-store.json":
+            if not isinstance(payload, dict) or not isinstance(payload.get("records"), dict):
+                raise RuntimeError(
+                    "Release editorial required artifact editorial/content-store.json "
+                    "must be a JSON object with a records object."
+                )
+        elif not isinstance(payload, dict):
+            raise RuntimeError(
+                f"Release editorial required artifact must be a JSON object: {relative}"
+            )
+
+
 def seed_data_root() -> Path:
     return Path(__file__).resolve().parents[2] / "seed-data"
 
@@ -748,7 +804,21 @@ def initialize_production_content_root(root: Path) -> None:
 
 class FilesystemContentRepository:
     def __init__(self, data_dir: Path | None = None) -> None:
-        root = data_dir or default_content_root()
+        from content.editorial_content_mode import (
+            EDITORIAL_CONTENT_MODE_RELEASE,
+            editorial_content_mode,
+        )
+
+        root = Path(data_dir) if data_dir is not None else default_content_root()
+        if editorial_content_mode() == EDITORIAL_CONTENT_MODE_RELEASE:
+            # Packaged release corpus: validate only — never seed, mkdir, or write.
+            validate_release_editorial_root(root)
+            self._root = root
+            self._editorial_dir = self._root / "editorial"
+            self._published_dir = self._root / "published"
+            self._store_path = self._editorial_dir / "content-store.json"
+            return
+
         strict_root = data_dir is None and strict_content_root_required()
         if strict_root:
             initialize_production_content_root(root)

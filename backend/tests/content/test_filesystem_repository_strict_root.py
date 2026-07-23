@@ -28,6 +28,7 @@ def import_app_with_env(monkeypatch: pytest.MonkeyPatch, *, content_data_dir: st
     monkeypatch.setenv("AUTH_MODE", "mock")
     monkeypatch.delenv("COGNITO_USER_POOL_ID", raising=False)
     monkeypatch.delenv("COGNITO_REGION", raising=False)
+    monkeypatch.delenv("EDITORIAL_CONTENT_MODE", raising=False)
 
     app_path = Path(__file__).resolve().parents[2] / "app.py"
     spec = importlib.util.spec_from_file_location("strict_startup_validation_probe", app_path)

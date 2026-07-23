@@ -5969,4 +5969,14 @@ Centralized backend guard for the approved Git-packaged, production-read-only ed
 - Validation: 29 focused tests passed; full backend suite 523 passed, 1 skipped.
 - Release B has not started.
 
-Next step: Release B pre-implementation design, beginning with (1) strict-root/read-only startup behavior; (2) `legacy/` fallback verification; (3) editorial/commercial root split; (4) binary image tracking strategy.
+### Task B1 — Release-Mode Startup — CLOSED
+
+When `EDITORIAL_CONTENT_MODE=release`, startup validates a packaged editorial corpus and performs no editorial-root writes.
+
+- Requires the editorial root to exist and be a directory; validates required release artifacts for existence and valid JSON (`editorial/content-store.json` with a `records` object; published Manual/Glossary/KB/Website `en` snapshots; `config/public-languages.json`).
+- Does not seed, create directories, create an empty store, auto-create website pages, or require editorial-root writability.
+- Writable/default behavior remains unchanged (including existing `REQUIRE_CONTENT_DATA_DIR` strict init).
+- Validation: 49 focused tests passed; full backend suite 534 passed, 1 skipped.
+- B2 and later Release B tasks remain unstarted.
+
+Next step: Task B2 — `COMMERCIAL_DATA_DIR` and separation of entitlements/preferences from the editorial root.
