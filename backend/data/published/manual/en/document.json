@@ -1,0 +1,64 @@
+{
+  "chapters": [
+    {
+      "contentId": "capitolul-1-alegerea-lemnului-2",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Selecting the wood is the first step and one of the most important stages in carrying out a project using epoxy resin. The final appearance of the project and the success of the entire casting process depend on the quality of the wood, its condition, and how it is prepared.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the desired project, you can use a single piece of wood or multiple pieces that will be positioned inside the formwork to achieve the final shape. Sometimes we choose the wood based on a design we already have in mind. Other times, the project is inspired by the shape and characteristics of a piece of wood we have on hand.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The Test",
+              "type": "paragraph"
+            },
+            {
+              "alt": "1782149978502",
+              "caption": null,
+              "src": "/api/content/manual/images/22aab4b8-adbe-4b8b-8437-af59e8edde15.png",
+              "type": "image"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Most people are drawn to spectacular pieces of wood\u2014distinct grain patterns, knots, natural cracks, irregular shapes, or areas with a strong contrast between heartwood and sapwood. All of these elements can contribute to creating spectacular projects. However, visual appeal should not be the only criterion for choosing the material.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before proceeding with any other steps, the moisture content of the wood must be checked.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is probably the most important technical parameter we need to check before starting a project involving epoxy resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Wood is a hygroscopic material. It constantly absorbs and releases moisture from the surrounding environment. If we use wood that is not sufficiently dried, the water remaining inside it can negatively affect the resin curing process and can cause problems that sometimes arise weeks or even months after the project is completed.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 100,
+      "title": "Chapter 1 \u2013 Choosing Wood"
+    }
+  ],
+  "locale": "en"
+}

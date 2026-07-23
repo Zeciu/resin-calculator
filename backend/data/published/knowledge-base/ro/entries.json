@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Nu au fost respectate specifica\u021biile produsului.",
+        "S-a \u00eencercat scurtarea procesului de lucru."
+      ],
+      "prevention": [],
+      "problemSummary": "Dep\u0103\u0219irea grosimii maxime recomandate poate provoca reac\u021bii exoterme excesive \u0219i defecte care compromit proiectul.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 grosimea maxim\u0103 indicat\u0103 \u00een fi\u0219a tehnic\u0103 \u0219i, dac\u0103 este necesar, planific\u0103 turnarea \u00een mai multe etape."
+      ],
+      "symptoms": [
+        "Inten\u021bionezi s\u0103 torni un strat mai gros dec\u00e2t recomandarea produc\u0103torului.",
+        "Vrei s\u0103 reduci num\u0103rul de turn\u0103ri."
+      ],
+      "tips": [
+        "\u00cen multe situa\u021bii, dou\u0103 turn\u0103ri mai sub\u021biri sunt mai sigure dec\u00e2t una foarte groas\u0103."
+      ],
+      "title": "De ce nu trebuie dep\u0103\u0219it\u0103 grosimea maxim\u0103 recomandat\u0103 pentru o turnare?",
+      "warnings": [
+        "Dep\u0103\u0219irea limitelor recomandate poate conduce la supra\u00eenc\u0103lzire, fisuri, deform\u0103ri sau compromiterea proiectului."
+      ]
+    }
+  ],
+  "locale": "ro"
+}

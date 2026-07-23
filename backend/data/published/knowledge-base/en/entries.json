@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+      "media": [],
+      "possibleCauses": [
+        "The product specifications were not followed.",
+        "An attempt was made to shorten the work process."
+      ],
+      "prevention": [],
+      "problemSummary": "Exceeding the maximum recommended thickness can cause excessive exothermic reactions and defects that compromise the design.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Adhere to the maximum thickness specified in the technical data sheet, and, if necessary, plan the pour in several stages."
+      ],
+      "symptoms": [
+        "Are you planning to pour a layer thicker than the manufacturer\u2019s recommendation?",
+        "You want to reduce the number of castings."
+      ],
+      "tips": [
+        "In many cases, two thinner pours are safer than one very thick pour."
+      ],
+      "title": "Why should the maximum recommended thickness for a casting not be exceeded?",
+      "warnings": [
+        "Exceeding the recommended limits can lead to overheating, cracks, deformation, or compromise the integrity of the project."
+      ]
+    }
+  ],
+  "locale": "en"
+}

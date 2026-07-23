@@ -1742,4 +1742,13 @@ Introduced `COMMERCIAL_DATA_DIR` to separate durable commercial/user filesystem 
 
 Validation: 49 focused tests passed; full backend suite 575 passed, 1 skipped.
 
-Next: Task B3 — selective Git tracking of the approved editorial release corpus.
+### Task B3 — Selective Git Tracking of Editorial Release Corpus — CLOSED
+
+Approved editorial corpus is now Git-tracked via selective `.gitignore` rules (42 corpus files, approximately 23.97 MB).
+
+* Tracked scope: `editorial/content-store.json`; published Manual, Glossary, Knowledge Base and Website snapshots; editorial images; `config/public-languages.json`.
+* Preferences, entitlements, legacy, initialization markers and temporary/runtime files remain ignored.
+* Secret scan found no credentials.
+* `.dockerignore`, Dockerfile, backend code, CDK, frontend and production activation remain untouched.
+
+Next: Task B4 — Docker packaging of the Git-tracked editorial corpus.

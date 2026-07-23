@@ -1,0 +1,1367 @@
+{
+  "entries": [
+    {
+      "definition": [
+        "Agentul de demulare este o substan\u021b\u0103 aplicat\u0103 pe suprafa\u021ba cofrajului pentru a \u00eempiedica aderarea r\u0103\u0219inii epoxidice \u00een timpul \u00eent\u0103ririi. Utilizarea sa faciliteaz\u0103 demontarea cofrajului \u0219i reduce riscul deterior\u0103rii piesei sau al suprafe\u021belor de contact."
+      ],
+      "id": "agent-de-demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Agent de demulare"
+    },
+    {
+      "definition": [
+        "Alburnul este zona exterioar\u0103 a lemnului, situat\u0103 \u00eentre duramen \u0219i scoar\u021b\u0103. Aceast\u0103 parte a trunchiului transport\u0103 apa \u0219i substan\u021bele nutritive \u00een timpul vie\u021bii arborelui \u0219i este, de regul\u0103, mai deschis\u0103 la culoare \u0219i mai sensibil\u0103 la umiditate \u0219i atac biologic. \u00cen func\u021bie de proiect, alburnul poate fi p\u0103strat pentru efectul estetic sau \u00eendep\u0103rtat pentru o stabilitate mai bun\u0103."
+      ],
+      "id": "alburn",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Duramen",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "Amestecarea este procesul prin care r\u0103\u0219ina epoxidic\u0103 \u0219i \u00eent\u0103ritorul sunt combinate p\u00e2n\u0103 la ob\u021binerea unui amestec complet omogen. O amestecare corect\u0103 asigur\u0103 desf\u0103\u0219urarea uniform\u0103 a reac\u021biei de polimerizare \u0219i reduce riscul apari\u021biei zonelor care r\u0103m\u00e2n lipicioase sau nu se \u00eent\u0103resc complet."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Amestecare"
+    },
+    {
+      "definition": [
+        "Atacul biologic reprezint\u0103 degradarea lemnului provocat\u0103 de ciuperci, mucegaiuri, bacterii sau insecte xilofage. Intensitatea acestuia poate afecta at\u00e2t rezisten\u021ba mecanic\u0103, c\u00e2t \u0219i aspectul piesei. Lemnul afectat trebuie evaluat cu aten\u021bie \u00eenainte de utilizarea \u00eentr-un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "atac-biologic",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Lemn instabil"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Atac biologic"
+    },
+    {
+      "definition": [
+        "Bolobocul, numit \u0219i nivel\u0103, este instrumentul utilizat pentru verificarea orizontalit\u0103\u021bii sau verticalit\u0103\u021bii unei suprafe\u021be. \u00cen realizarea proiectelor cu r\u0103\u0219in\u0103 epoxidic\u0103, acesta este folosit pentru nivelarea cofrajului \u0219i pentru verificarea pozi\u021biei corecte a pieselor \u00eenainte de turnare."
+      ],
+      "id": "boloboc-nivel",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Nivelarea cofrajului"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (nivel\u0103)"
+    },
+    {
+      "definition": [
+        "Bulele de aer sunt incluziuni de aer r\u0103mase \u00een r\u0103\u0219ina epoxidic\u0103 \u00een timpul amestec\u0103rii, turn\u0103rii sau degaj\u0103rii din porii lemnului. Dac\u0103 nu sunt eliminate, acestea pot afecta aspectul \u0219i, \u00een unele situa\u021bii, rezisten\u021ba piesei finale."
+      ],
+      "id": "bule-de-aer",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Amestecare"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Turnare \u00een straturi"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bule de aer"
+    },
+    {
+      "definition": [
+        "Calculatorul de r\u0103\u0219in\u0103 este un instrument care estimeaz\u0103 cantitatea de r\u0103\u0219in\u0103 epoxidic\u0103 \u0219i \u00eent\u0103ritor necesar\u0103 pentru realizarea unui proiect. \u00cen HFZWood, calculele se bazeaz\u0103 pe geometria proiectului, volumul lemnului, volumul cavit\u0103\u021bilor \u0219i parametrii introdu\u0219i de utilizator, oferind o estimare rapid\u0103 \u0219i precis\u0103 a consumului de material."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calculator de r\u0103\u0219in\u0103"
+    },
+    {
+      "definition": [
+        "Calibrarea reprezint\u0103 procesul prin care o imagine este adus\u0103 la o scar\u0103 real\u0103 de m\u0103surare folosind o dimensiune cunoscut\u0103. \u00cen HFZWood, calibrarea permite transformarea m\u0103sur\u0103torilor realizate pe imagine \u00een dimensiuni reale, asigur\u00e2nd acurate\u021bea calculelor de suprafa\u021b\u0103 \u0219i volum."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Indreptarea lemnului"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibrare"
+    },
+    {
+      "definition": [
+        "Cantitatea necesar\u0103 de r\u0103\u0219in\u0103 reprezint\u0103 volumul sau masa de r\u0103\u0219in\u0103 epoxidic\u0103 estimat\u0103 pentru realizarea unui proiect, inclusiv eventualul factor de siguran\u021b\u0103 stabilit de utilizator. \u00cen HFZWood, aceast\u0103 valoare este calculat\u0103 automat pe baza geometriei proiectului \u0219i a parametrilor introdu\u0219i."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cantitate necesar\u0103 de r\u0103\u0219in\u0103"
+    },
+    {
+      "definition": [
+        "Cantitatea necesar\u0103 de \u00eent\u0103ritor reprezint\u0103 volumul sau masa de \u00eent\u0103ritor calculat\u0103 \u00een func\u021bie de cantitatea de r\u0103\u0219in\u0103 \u0219i de raportul de amestec specific produsului utilizat. Respectarea acestei valori este esen\u021bial\u0103 pentru desf\u0103\u0219urarea corect\u0103 a procesului de polimerizare."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cantitate necesar\u0103 de \u00eent\u0103ritor"
+    },
+    {
+      "definition": [
+        "Cavitatea este un gol natural sau rezultat \u00een urma degrad\u0103rii lemnului, care poate fi umplut cu r\u0103\u0219in\u0103 epoxidic\u0103 \u00een scop structural sau decorativ. Forma \u0219i dimensiunea cavit\u0103\u021bilor influen\u021beaz\u0103 direct volumul de r\u0103\u0219in\u0103 necesar pentru realizarea proiectului."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Nod in lemn"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Fisur\u0103",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Cavitate"
+    },
+    {
+      "definition": [
+        "Cofrajul reprezint\u0103 structura temporar\u0103 utilizat\u0103 pentru a sus\u021bine \u0219i a delimita r\u0103\u0219ina epoxidic\u0103 pe durata turn\u0103rii \u0219i a \u00eent\u0103ririi. Acesta trebuie s\u0103 fie etan\u0219, stabil \u0219i realizat din materiale care permit desprinderea u\u0219oar\u0103 a piesei dup\u0103 finalizarea procesului."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cofraj"
+    },
+    {
+      "definition": [
+        "Configura\u021bia proiectului descrie organizarea \u0219i pozi\u021bionarea tuturor elementelor care compun proiectul, inclusiv conturul exterior, piesele de lemn, cavit\u0103\u021bile \u0219i celelalte zone relevante pentru calcul. Aceasta define\u0219te structura geometric\u0103 pe baza c\u0103reia aplica\u021bia efectueaz\u0103 estim\u0103rile de material."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Configura\u021bia proiectului"
+    },
+    {
+      "definition": [
+        "Contaminarea reprezint\u0103 prezen\u021ba unor substan\u021be sau impurit\u0103\u021bi nedorite, precum praf, uleiuri, gr\u0103simi, ap\u0103 sau silicon, care pot afecta aderen\u021ba, aspectul sau \u00eent\u0103rirea r\u0103\u0219inii epoxidice. Men\u021binerea unui mediu \u0219i a unor suprafe\u021be curate este esen\u021bial\u0103 pentru ob\u021binerea unor rezultate de calitate."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "V\u00e2scozitate"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contaminare"
+    },
+    {
+      "definition": [
+        "Cristalizarea este fenomenul prin care unele r\u0103\u0219ini epoxidice dezvolt\u0103 cristale solide \u00een timpul depozit\u0103rii, \u00een special la temperaturi sc\u0103zute. \u00cen majoritatea cazurilor, cristalizarea este reversibil\u0103 \u0219i poate fi eliminat\u0103 prin \u00eenc\u0103lzirea controlat\u0103 a r\u0103\u0219inii \u00eenainte de utilizare, conform recomand\u0103rilor produc\u0103torului."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "V\u00e2scozitate"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cristalizare"
+    },
+    {
+      "definition": [
+        "Cur\u0103\u021barea cavit\u0103\u021bilor reprezint\u0103 \u00eendep\u0103rtarea prafului, resturilor de lemn, scoar\u021bei desprinse \u0219i a altor impurit\u0103\u021bi din golurile naturale ale lemnului \u00eenainte de turnarea r\u0103\u0219inii epoxidice. O cur\u0103\u021bare corespunz\u0103toare \u00eembun\u0103t\u0103\u021be\u0219te aderen\u021ba r\u0103\u0219inii \u0219i reduce riscul apari\u021biei defectelor."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cur\u0103\u021barea cavit\u0103\u021bilor"
+    },
+    {
+      "definition": [
+        "Debitarea reprezint\u0103 opera\u021bia de t\u0103iere a lemnului la dimensiunile \u0219i forma necesare pentru realizarea proiectului. Aceasta poate fi efectuat\u0103 cu diferite utilaje \u0219i urm\u0103re\u0219te ob\u021binerea unor piese care pot fi prelucrate \u0219i integrate \u00een etapa urm\u0103toare a proiectului."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Debitare"
+    },
+    {
+      "definition": [
+        "Un defect structural este orice imperfec\u021biune a lemnului care \u00eei poate reduce rezisten\u021ba, stabilitatea sau capacitatea de a suporta solicit\u0103rile mecanice. Din aceast\u0103 categorie fac parte fisurile, cr\u0103p\u0103turile extinse, putregaiul, golurile sau alte degrad\u0103ri care influen\u021beaz\u0103 comportamentul piesei \u00een exploatare."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Nod in lemn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Defect structural"
+    },
+    {
+      "definition": [
+        "Degazarea reprezint\u0103 procesul de eliminare a aerului \u0219i a gazelor din r\u0103\u0219ina epoxidic\u0103 \u00eenainte sau imediat dup\u0103 turnare. Scopul acestei opera\u021bii este reducerea num\u0103rului de bule de aer \u0219i ob\u021binerea unei turn\u0103ri c\u00e2t mai uniforme \u0219i transparente."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "V\u00e2scozitate"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Degazare - Debulare"
+    },
+    {
+      "definition": [
+        "Demularea reprezint\u0103 opera\u021bia de \u00eendep\u0103rtare a cofrajului dup\u0103 ce r\u0103\u0219ina epoxidic\u0103 s-a \u00eent\u0103rit suficient pentru a-\u0219i p\u0103stra forma. Aceast\u0103 etap\u0103 trebuie realizat\u0103 cu aten\u021bie pentru a evita deteriorarea proiectului sau a marginilor turnate."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Demulare"
+    },
+    {
+      "definition": [
+        "Densitatea r\u0103\u0219inii reprezint\u0103 masa unui volum determinat de r\u0103\u0219in\u0103 epoxidic\u0103 \u0219i este exprimat\u0103, de regul\u0103, \u00een grame pe centimetru cub sau kilograme pe litru. Acest parametru este utilizat pentru conversia \u00eentre volum \u0219i mas\u0103 atunci c\u00e2nd se calculeaz\u0103 cantit\u0103\u021bile necesare de material."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Densitatea r\u0103\u0219inii"
+    },
+    {
+      "definition": [
+        "Dozarea pigmentului reprezint\u0103 cantitatea de pigment ad\u0103ugat\u0103 \u00een r\u0103\u0219ina epoxidic\u0103 pentru ob\u021binerea culorii \u0219i opacit\u0103\u021bii dorite. Respectarea dozajului recomandat de produc\u0103tor este important\u0103 pentru a men\u021bine propriet\u0103\u021bile mecanice \u0219i procesul normal de polimerizare al r\u0103\u0219inii."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dozarea pigmentului"
+    },
+    {
+      "definition": [
+        "Duramenul reprezint\u0103 partea central\u0103, matur\u0103 \u0219i mai dens\u0103 a trunchiului unui copac. \u00cen general, acesta are o rezisten\u021b\u0103 mai mare la umiditate, ciuperci \u0219i insecte dec\u00e2t alburnul \u0219i este preferat pentru realizarea pieselor de mobilier \u0219i a proiectelor decorative cu r\u0103\u0219in\u0103 epoxidic\u0103 datorit\u0103 stabilit\u0103\u021bii \u0219i aspectului s\u0103u."
+      ],
+      "id": "duramen",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Duramen"
+    },
+    {
+      "definition": [
+        "Etan\u0219area reprezint\u0103 procesul de \u00eempiedicare a scurgerii r\u0103\u0219inii epoxidice din cofraj \u00een timpul turn\u0103rii \u0219i al \u00eent\u0103ririi. O etan\u0219are corect realizat\u0103 previne pierderile de material, men\u021bine forma proiectului \u0219i contribuie la ob\u021binerea unei turn\u0103ri f\u0103r\u0103 defecte."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Etan\u0219are"
+    },
+    {
+      "definition": [
+        "Factorul de siguran\u021b\u0103 reprezint\u0103 cantitatea suplimentar\u0103 de material ad\u0103ugat\u0103 peste valoarea calculat\u0103 pentru a compensa pierderile normale din timpul preg\u0103tirii \u0219i turn\u0103rii. Utilizarea unui factor de siguran\u021b\u0103 reduce riscul de a r\u0103m\u00e2ne f\u0103r\u0103 r\u0103\u0219in\u0103 \u00eenainte de finalizarea proiectului."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Factor de siguran\u021b\u0103"
+    },
+    {
+      "definition": [
+        "Fisura este o cr\u0103p\u0103tur\u0103 ap\u0103rut\u0103 \u00een structura lemnului ca urmare a tensiunilor interne, usc\u0103rii sau solicit\u0103rilor mecanice. \u00cen func\u021bie de dimensiune \u0219i pozi\u021bie, fisurile pot necesita stabilizare, umplere cu r\u0103\u0219in\u0103 epoxidic\u0103 sau eliminarea por\u021biunii afectate."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Cavitate",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Fisur\u0103"
+    },
+    {
+      "definition": [
+        "For\u021ba de flotabilitate este for\u021ba exercitat\u0103 de r\u0103\u0219ina lichid\u0103 asupra lemnului, av\u00e2nd tendin\u021ba de a-l ridica atunci c\u00e2nd densitatea acestuia este mai mic\u0103 dec\u00e2t cea a r\u0103\u0219inii. Dac\u0103 piesele de lemn nu sunt fixate corespunz\u0103tor, ele se pot deplasa sau pot pluti \u00een timpul turn\u0103rii, afect\u00e2nd geometria \u0219i aspectul final al proiectului."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "For\u021ba de flotabilitate"
+    },
+    {
+      "definition": [
+        "Geometria proiectului descrie forma, dimensiunile \u0219i rela\u021biile spa\u021biale dintre toate elementele care alc\u0103tuiesc proiectul. \u00cen HFZWood, geometria st\u0103 la baza calculului suprafe\u021belor, volumelor \u0219i a cantit\u0103\u021bii estimate de r\u0103\u0219in\u0103 necesare."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Geometria proiectului"
+    },
+    {
+      "definition": [
+        "Grosimea uniform\u0103 descrie situa\u021bia \u00een care o pies\u0103 din lemn are aceea\u0219i grosime pe \u00eentreaga sa suprafa\u021b\u0103. Men\u021binerea unei grosimi constante faciliteaz\u0103 prelucrarea, \u00eembinarea \u0219i calculul corect al volumului \u00een proiectele realizate cu r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "\u00cendreptarea lemnului",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Grosime uniform\u0103"
+    },
+    {
+      "definition": [
+        "Grosimea stratului de turnare reprezint\u0103 \u00een\u0103l\u021bimea stratului de r\u0103\u0219in\u0103 epoxidic\u0103 aplicat \u00eentr-o singur\u0103 etap\u0103. Aceasta trebuie s\u0103 se \u00eencadreze \u00een limita recomandat\u0103 de produc\u0103tor pentru tipul de r\u0103\u0219in\u0103 utilizat, astfel \u00eenc\u00e2t procesul de polimerizare s\u0103 se desf\u0103\u0219oare \u00een condi\u021bii optime \u0219i f\u0103r\u0103 apari\u021bia defectelor."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Degazare - Debulare"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Turnare \u00een straturi"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Grosimea stratului de turnare"
+    },
+    {
+      "definition": [
+        "\u00cencapsularea bulelor de aer reprezint\u0103 re\u021binerea bulelor \u00een masa r\u0103\u0219inii epoxidice \u00een timpul procesului de \u00eent\u0103rire. Bulele r\u0103mase captive pot afecta transparen\u021ba, aspectul estetic \u0219i, \u00een anumite situa\u021bii, rezisten\u021ba piesei finale."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bule de aer"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Incapsularea bulelor de aer"
+    },
+    {
+      "definition": [
+        "\u00cendreptarea lemnului este opera\u021bia prin care suprafa\u021ba unei piese este adus\u0103 la un plan corect, elimin\u00e2nd deform\u0103rile, denivel\u0103rile \u0219i imperfec\u021biunile. Acest proces asigur\u0103 o baz\u0103 stabil\u0103 pentru prelucr\u0103rile ulterioare \u0219i contribuie la ob\u021binerea unor \u00eembin\u0103ri \u0219i turn\u0103ri de calitate."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Calibrare"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Grosime uniform\u0103",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Indreptarea lemnului"
+    },
+    {
+      "definition": [
+        "\u00cent\u0103ritorul este componenta care declan\u0219eaz\u0103 reac\u021bia chimic\u0103 necesar\u0103 \u00eent\u0103ririi r\u0103\u0219inii epoxidice. Acesta trebuie utilizat exclusiv \u00eempreun\u0103 cu r\u0103\u0219ina pentru care a fost conceput \u0219i \u00een raportul de amestec recomandat de produc\u0103tor, deoarece orice abatere poate afecta calitatea \u0219i rezisten\u021ba materialului final."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Int\u0103ritor"
+    },
+    {
+      "definition": [
+        "Lemnul higroscopic este lemnul care are capacitatea natural\u0103 de a absorbi \u0219i de a elimina umiditate din mediul \u00eenconjur\u0103tor p\u00e2n\u0103 la atingerea unui echilibru cu atmosfera. Din acest motiv, dimensiunile \u0219i propriet\u0103\u021bile sale se pot modifica \u00een func\u021bie de condi\u021biile de temperatur\u0103 \u0219i umiditate. Acest comportament trebuie luat \u00een considerare la proiectarea \u0219i realizarea pieselor turnate cu r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lemn higroscopic"
+    },
+    {
+      "definition": [
+        "Lemnul instabil este lemnul care prezint\u0103 tendin\u021ba de a se deforma, fisura sau modifica dimensional dup\u0103 prelucrare sau \u00een timpul utiliz\u0103rii. Instabilitatea este influen\u021bat\u0103 de umiditate, tensiunile interne, modul de uscare \u0219i structura materialului. Utilizarea unui astfel de lemn poate compromite calitatea unei turn\u0103ri cu r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lemn instabil"
+    },
+    {
+      "definition": [
+        "Lemnul poros este lemnul care con\u021bine un num\u0103r ridicat de pori sau cavit\u0103\u021bi microscopice prin care poate absorbi lichide, inclusiv r\u0103\u0219ina epoxidic\u0103. Gradul de porozitate influen\u021beaz\u0103 consumul de r\u0103\u0219in\u0103, necesitatea aplic\u0103rii unui strat de sigilare \u0219i aspectul final al suprafe\u021bei."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lemn poros"
+    },
+    {
+      "definition": [
+        "Lemnul s\u0103n\u0103tos este lemnul care nu prezint\u0103 degrad\u0103ri biologice sau defecte structurale semnificative \u0219i care \u00ee\u0219i p\u0103streaz\u0103 propriet\u0103\u021bile mecanice \u0219i estetice. Alegerea unui lemn s\u0103n\u0103tos reprezint\u0103 una dintre condi\u021biile esen\u021biale pentru ob\u021binerea unor proiecte durabile \u0219i de calitate."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lemn s\u0103n\u0103tos"
+    },
+    {
+      "definition": [
+        "Linia de referin\u021b\u0103 este segmentul definit \u00eentre dou\u0103 puncte de referin\u021b\u0103 \u0219i corespunde unei distan\u021be reale cunoscute. \u00cen HFZWood, aceast\u0103 linie este utilizat\u0103 \u00een procesul de calibrare pentru stabilirea sc\u0103rii corecte a imaginii \u0219i efectuarea m\u0103sur\u0103torilor cu precizie."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Linie de referin\u021b\u0103"
+    },
+    {
+      "definition": [
+        "Marginea natural\u0103 reprezint\u0103 conturul original al lemnului, p\u0103strat dup\u0103 \u00eendep\u0103rtarea scoar\u021bei. Acest tip de muchie este frecvent utilizat \u00een proiectele de tip River Table \u0219i \u00een alte piese decorative pentru a eviden\u021bia forma natural\u0103 a lemnului."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Margine natural\u0103"
+    },
+    {
+      "definition": [
+        "MDF-ul melaminat este o plac\u0103 ob\u021binut\u0103 din fibre fine de lemn presate \u0219i acoperit\u0103 cu un strat melaminat. Suprafa\u021ba sa este foarte uniform\u0103 \u0219i permite realizarea unor cofraje cu finisaj de bun\u0103 calitate, fiind utilizat\u0103 \u00een special pentru proiectele care necesit\u0103 precizie \u0219i muchii curate."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF melaminat"
+    },
+    {
+      "definition": [
+        "Nivelarea cofrajului este opera\u021bia prin care cofrajul este a\u0219ezat perfect orizontal \u00eenainte de turnare. O nivelare corect\u0103 asigur\u0103 distribu\u021bia uniform\u0103 a r\u0103\u0219inii epoxidice \u0219i contribuie la ob\u021binerea unei suprafe\u021be finale f\u0103r\u0103 diferen\u021be de nivel."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (nivel\u0103)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nivelarea cofrajului"
+    },
+    {
+      "definition": [
+        "Nodul reprezint\u0103 zona din lemn \u00een care a fost inserat\u0103 o ramur\u0103 \u00een timpul cre\u0219terii arborelui. Nodurile pot influen\u021ba aspectul estetic, rezisten\u021ba mecanic\u0103 \u0219i comportamentul lemnului \u00een timpul prelucr\u0103rii, fiind evaluate individual \u00een func\u021bie de dimensiune, pozi\u021bie \u0219i stabilitate."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Cavitate"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nod in lemn"
+    },
+    {
+      "definition": [
+        "PAL-ul melaminat este o plac\u0103 realizat\u0103 din a\u0219chii de lemn presate \u0219i acoperit\u0103 cu un strat melaminat care ofer\u0103 o suprafa\u021b\u0103 neted\u0103 \u0219i rezistent\u0103. Datorit\u0103 costului redus \u0219i a suprafe\u021bei relativ neaderente, este utilizat frecvent la construirea cofrajelor pentru turn\u0103rile cu r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "PAL melaminat"
+    },
+    {
+      "definition": [
+        "Pasta pigmentar\u0103 este un pigment sub form\u0103 de past\u0103 concentrat\u0103, special formulat pentru colorarea r\u0103\u0219inilor epoxidice. Datorit\u0103 consisten\u021bei sale, se disperseaz\u0103 u\u0219or \u00een amestec \u0219i permite ob\u021binerea unor culori uniforme \u0219i intense cu o cantitate redus\u0103 de material."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Past\u0103 pigmentar\u0103"
+    },
+    {
+      "definition": [
+        "Pierderea tehnologic\u0103 reprezint\u0103 cantitatea de r\u0103\u0219in\u0103 care nu ajunge \u00een produsul final din cauza proceselor de amestecare, transfer, turnare sau a reziduurilor r\u0103mase \u00een recipiente \u0219i unelte. Aceasta este un fenomen normal \u0219i trebuie luat\u0103 \u00een considerare la estimarea consumului total de material."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pierdere tehnologic\u0103"
+    },
+    {
+      "definition": [
+        "Pigmentul este o substan\u021b\u0103 utilizat\u0103 pentru colorarea r\u0103\u0219inii epoxidice f\u0103r\u0103 a modifica procesul de \u00eent\u0103rire atunci c\u00e2nd este dozat\u0103 corespunz\u0103tor. Pigmen\u021bii sunt disponibili \u00eentr-o gam\u0103 variat\u0103 de culori \u0219i efecte \u0219i permit ob\u021binerea unor turn\u0103ri transparente, semitransparente sau opace, \u00een func\u021bie de tipul \u0219i cantitatea utilizat\u0103."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment"
+    },
+    {
+      "definition": [
+        "Pistolul cu aer cald este un echipament care genereaz\u0103 un flux de aer \u00eenc\u0103lzit \u0219i poate fi utilizat pentru eliminarea bulelor de aer de la suprafa\u021ba r\u0103\u0219inii epoxidice. Temperatura \u0219i distan\u021ba de lucru trebuie controlate cu aten\u021bie pentru a evita supra\u00eenc\u0103lzirea sau deformarea suprafe\u021bei."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bule de aer"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pistol cu aer cald"
+    },
+    {
+      "definition": [
+        "Poligonul de m\u0103surare reprezint\u0103 o succesiune de puncte unite \u00eentre ele care delimiteaz\u0103 conturul unei suprafe\u021be ce urmeaz\u0103 s\u0103 fie m\u0103surat\u0103. \u00cen HFZWood, poligoanele sunt utilizate pentru definirea conturului exterior, a pieselor de lemn, a cavit\u0103\u021bilor \u0219i a altor zone necesare calculelor geometrice."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Poligon de m\u0103surare"
+    },
+    {
+      "definition": [
+        "Polimerizarea este reac\u021bia chimic\u0103 prin care r\u0103\u0219ina epoxidic\u0103 \u0219i \u00eent\u0103ritorul formeaz\u0103 o structur\u0103 solid\u0103 \u0219i stabil\u0103. Acest proces \u00eencepe imediat dup\u0103 amestecare \u0219i continu\u0103 p\u00e2n\u0103 c\u00e2nd materialul \u00ee\u0219i dezvolt\u0103 propriet\u0103\u021bile finale de rezisten\u021b\u0103, duritate \u0219i stabilitate."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Raport de amestec"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polimerizare"
+    },
+    {
+      "definition": [
+        "Pozi\u021bionarea lemnului este procesul de a\u0219ezare \u0219i aliniere a pieselor de lemn \u00een configura\u021bia final\u0103 a proiectului \u00eenainte de turnarea r\u0103\u0219inii epoxidice. Modul \u00een care sunt pozi\u021bionate influen\u021beaz\u0103 aspectul estetic, volumul de r\u0103\u0219in\u0103 necesar \u0219i stabilitatea ansamblului."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pozi\u021bionarea lemnului"
+    },
+    {
+      "definition": [
+        "Protec\u021bia suprafe\u021bei \u00een timpul \u00eent\u0103ririi reprezint\u0103 m\u0103surile luate pentru a \u00eempiedica depunerea prafului, insectelor sau altor impurit\u0103\u021bi pe r\u0103\u0219ina epoxidic\u0103 p\u00e2n\u0103 la finalizarea procesului de \u00eent\u0103rire. O protec\u021bie corespunz\u0103toare contribuie la ob\u021binerea unui finisaj curat \u0219i reduce necesitatea interven\u021biilor ulterioare."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "turnare",
+          "term": "Turnare"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protec\u021bia suprafe\u021bei \u00een timpul \u00eent\u0103ririi"
+    },
+    {
+      "definition": [
+        "Punctul de referin\u021b\u0103 este un punct ales pe imagine pentru definirea unei dimensiuni cunoscute sau pentru realizarea m\u0103sur\u0103torilor geometrice. \u00cen HFZWood, punctele de referin\u021b\u0103 sunt utilizate la calibrare \u0219i la trasarea contururilor necesare calculului suprafe\u021belor \u0219i volumelor."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Punct de referin\u021b\u0103"
+    },
+    {
+      "definition": [
+        "Raportul de amestec reprezint\u0103 propor\u021bia \u00een care r\u0103\u0219ina epoxidic\u0103 \u0219i \u00eent\u0103ritorul trebuie combinate pentru a ob\u021bine o polimerizare corect\u0103. Acest raport este stabilit de produc\u0103tor \u0219i trebuie respectat cu precizie, deoarece influen\u021beaz\u0103 timpul de lucru, \u00eent\u0103rirea \u0219i propriet\u0103\u021bile finale ale materialului."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Raport de amestec"
+    },
+    {
+      "definition": [
+        "Reac\u021bia exoterm\u0103 este procesul prin care r\u0103\u0219ina epoxidic\u0103 degaj\u0103 c\u0103ldur\u0103 \u00een timpul polimeriz\u0103rii. Cantitatea de c\u0103ldur\u0103 produs\u0103 depinde de tipul r\u0103\u0219inii, volumul amestecului \u0219i temperatura mediului. O reac\u021bie exoterm\u0103 excesiv\u0103 poate afecta calitatea turn\u0103rii \u0219i poate deteriora materialul."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizare"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reac\u021bie exoterm\u0103"
+    },
+    {
+      "definition": [
+        "River Table este un tip de mas\u0103 realizat\u0103 din dou\u0103 sau mai multe piese de lemn \u00eentre care se toarn\u0103 r\u0103\u0219in\u0103 epoxidic\u0103, form\u00e2nd o zon\u0103 central\u0103 ce aminte\u0219te de cursul unui r\u00e2u. Acest stil de proiect eviden\u021biaz\u0103 marginile naturale ale lemnului \u0219i reprezint\u0103 una dintre cele mai cunoscute aplica\u021bii ale r\u0103\u0219inii epoxidice \u00een mobilier."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "River Table"
+    },
+    {
+      "definition": [
+        "R\u0103\u0219ina epoxidic\u0103 este un material bicomponent care, dup\u0103 amestecarea cu \u00eent\u0103ritorul \u00een propor\u021bia recomandat\u0103, se transform\u0103 prin reac\u021bie chimic\u0103 \u00eentr-un material solid, rezistent \u0219i durabil. \u00cen prelucrarea lemnului, este utilizat\u0103 pentru umplerea cavit\u0103\u021bilor, realizarea turn\u0103rilor decorative sau structurale \u0219i ob\u021binerea unor suprafe\u021be transparente ori pigmentate."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+    },
+    {
+      "definition": [
+        "Scoar\u021ba instabil\u0103 este scoar\u021ba care nu ader\u0103 ferm la lemn \u0219i se poate desprinde \u00een timpul prelucr\u0103rii sau dup\u0103 turnarea r\u0103\u0219inii. \u00cen majoritatea proiectelor, aceasta trebuie \u00eendep\u0103rtat\u0103 pentru a evita apari\u021bia golurilor, desprinderilor sau a altor probleme de aderen\u021b\u0103."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Margine natural\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scoar\u021b\u0103 instabil\u0103"
+    },
+    {
+      "definition": [
+        "Scurgerile de r\u0103\u0219in\u0103 reprezint\u0103 pierderea necontrolat\u0103 a r\u0103\u0219inii epoxidice prin rosturile, \u00eembin\u0103rile sau defectele cofrajului \u00eenainte de \u00eent\u0103rire. Acestea pot modifica volumul final al turn\u0103rii, pot compromite proiectul \u0219i conduc la consum suplimentar de material."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cofraj"
+        },
+        {
+          "id": "etan-are",
+          "term": "Etan\u0219are"
+        },
+        {
+          "id": "fisur",
+          "term": "Fisur\u0103"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scurgeri de r\u0103\u0219in\u0103"
+    },
+    {
+      "definition": [
+        "Sigilarea lemnului este aplicarea unui strat sub\u021bire de r\u0103\u0219in\u0103 epoxidic\u0103 sau a unui alt material compatibil pentru a reduce absorb\u021bia excesiv\u0103 \u0219i degajarea aerului din porii lemnului \u00eenaintea turn\u0103rii principale. Aceast\u0103 etap\u0103 contribuie la ob\u021binerea unei suprafe\u021be curate \u0219i la reducerea apari\u021biei bulelor de aer."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sigilarea lemnului"
+    },
+    {
+      "definition": [
+        "Siliconul de etan\u0219are este un material elastic utilizat pentru sigilarea \u00eembin\u0103rilor \u0219i rosturilor cofrajului \u00eenainte de turnarea r\u0103\u0219inii epoxidice. Aplicat corect, acesta \u00eempiedic\u0103 apari\u021bia scurgerilor \u0219i poate fi \u00eendep\u0103rtat cu u\u0219urin\u021b\u0103 dup\u0103 demontarea cofrajului."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cofraj"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Silicon de etan\u0219are"
+    },
+    {
+      "definition": [
+        "Stratul de sigilare, cunoscut \u0219i sub denumirea de Seal Coat, este un strat sub\u021bire de r\u0103\u0219in\u0103 epoxidic\u0103 aplicat \u00eenaintea turn\u0103rii principale pentru a \u00eenchide porii lemnului \u0219i a reduce degajarea aerului. Aceast\u0103 etap\u0103 contribuie la diminuarea apari\u021biei bulelor \u0219i la ob\u021binerea unei suprafe\u021be finale de calitate."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "V\u00e2scozitate"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Raport de amestec"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Strat de sigilare (Seal Coat)"
+    },
+    {
+      "definition": [
+        "Temperatura ambiental\u0103 reprezint\u0103 temperatura aerului din spa\u021biul \u00een care sunt depozitate, amestecate \u0219i utilizate r\u0103\u0219inile epoxidice. Aceasta influen\u021beaz\u0103 v\u00e2scozitatea, timpul de lucru, viteza de polimerizare \u0219i calitatea final\u0103 a turn\u0103rii, motiv pentru care trebuie men\u021binut\u0103 \u00een intervalul recomandat de produc\u0103tor."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temperatur\u0103 ambiental\u0103"
+    },
+    {
+      "definition": [
+        "Tensiunile interne sunt solicit\u0103ri existente \u00een structura lemnului ca urmare a procesului natural de cre\u0219tere sau a usc\u0103rii neuniforme. Acestea pot determina deform\u0103ri, fisuri sau modific\u0103ri dimensionale \u00een timpul prelucr\u0103rii \u0219i utiliz\u0103rii. Identificarea \u0219i reducerea efectelor tensiunilor interne contribuie la realizarea unor proiecte stabile \u0219i durabile."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tensiuni interne"
+    },
+    {
+      "definition": [
+        "Timpul de gelificare este perioada necesar\u0103 pentru ca r\u0103\u0219ina epoxidic\u0103 s\u0103 treac\u0103 din stare lichid\u0103 \u00eentr-o stare gelatinoas\u0103, \u00een care nu mai poate curge liber. Acest moment marcheaz\u0103 sf\u00e2r\u0219itul posibilit\u0103\u021bii de modelare sau corectare a turn\u0103rii \u0219i precede etapa de \u00eent\u0103rire complet\u0103."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Timp de gelificare"
+    },
+    {
+      "definition": [
+        "Timpul de lucru, cunoscut \u0219i sub denumirea de Pot Life, reprezint\u0103 intervalul \u00een care amestecul de r\u0103\u0219in\u0103 \u0219i \u00eent\u0103ritor poate fi utilizat \u00eenainte ca v\u00e2scozitatea s\u0103 \u00eenceap\u0103 s\u0103 creasc\u0103 semnificativ. Dup\u0103 expirarea acestui interval, materialul nu mai poate fi turnat sau prelucrat \u00een condi\u021bii optime."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Amestecare"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Timp de lucru (Pot Life)"
+    },
+    {
+      "definition": [
+        "Timpul de \u00eent\u0103rire reprezint\u0103 perioada necesar\u0103 pentru ca r\u0103\u0219ina epoxidic\u0103 s\u0103 \u00ee\u0219i dezvolte propriet\u0103\u021bile mecanice \u0219i s\u0103 poat\u0103 fi manipulat\u0103 sau prelucrat\u0103 \u00een siguran\u021b\u0103. Durata acestui proces depinde de tipul r\u0103\u0219inii, temperatura mediului \u0219i condi\u021biile de lucru."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Int\u0103ritor"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Timp de \u00eent\u0103rire"
+    },
+    {
+      "definition": [
+        "Tor\u021ba cu gaz este un instrument care produce o flac\u0103r\u0103 controlat\u0103 \u0219i este utilizat pentru eliminarea bulelor de aer de la suprafa\u021ba r\u0103\u0219inii epoxidice imediat dup\u0103 turnare. Folosirea sa necesit\u0103 aten\u021bie, deoarece expunerea excesiv\u0103 la c\u0103ldur\u0103 poate deteriora r\u0103\u0219ina sau materialele din jur."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bule de aer"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tor\u021b\u0103 cu gaz"
+    },
+    {
+      "definition": [
+        "Turnarea este opera\u021bia prin care r\u0103\u0219ina epoxidic\u0103 lichid\u0103 este introdus\u0103 \u00een cofraj, \u00een cavit\u0103\u021bi sau \u00een alte zone ale proiectului pentru a umple spa\u021biile disponibile \u0219i a forma piesa final\u0103 dup\u0103 \u00eent\u0103rire. Calitatea turn\u0103rii este influen\u021bat\u0103 de preg\u0103tirea materialelor, condi\u021biile de lucru \u0219i respectarea parametrilor recomanda\u021bi de produc\u0103tor."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cofraj"
+        },
+        {
+          "id": "etan-are",
+          "term": "Etan\u0219are"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizare"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Turnare \u00een straturi"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Turnare"
+    },
+    {
+      "definition": [
+        "Turnarea ad\u00e2nc\u0103, cunoscut\u0103 \u0219i sub denumirea de Deep Pour, este o tehnic\u0103 ce utilizeaz\u0103 r\u0103\u0219ini epoxidice formulate special pentru turn\u0103ri de grosime mare \u00eentr-o singur\u0103 etap\u0103. Aceste r\u0103\u0219ini dezvolt\u0103 mai pu\u021bin\u0103 c\u0103ldur\u0103 \u00een timpul polimeriz\u0103rii \u0219i permit realizarea unor volume mari f\u0103r\u0103 apari\u021bia defectelor cauzate de supra\u00eenc\u0103lzire."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "V\u00e2scozitate"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reac\u021bie exoterm\u0103"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Raport de amestec"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizare"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+    },
+    {
+      "definition": [
+        "Turnarea \u00een straturi este tehnica prin care r\u0103\u0219ina epoxidic\u0103 este aplicat\u0103 \u00een mai multe etape succesive, dup\u0103 \u00eent\u0103rirea par\u021bial\u0103 sau complet\u0103 a stratului anterior. Aceast\u0103 metod\u0103 permite realizarea unor turn\u0103ri groase, reduce riscul supra\u00eenc\u0103lzirii \u0219i ofer\u0103 un control mai bun asupra rezultatului final."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "V\u00e2scozitate"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizare"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Turnare \u00een straturi"
+    },
+    {
+      "definition": [
+        "Umiditatea lemnului reprezint\u0103 cantitatea de ap\u0103 con\u021binut\u0103 \u00een masa lemnului, exprimat\u0103 procentual \u00een raport cu masa lemnului uscat. Acest parametru influen\u021beaz\u0103 stabilitatea dimensional\u0103, comportamentul \u00een timp \u0219i compatibilitatea lemnului cu r\u0103\u0219ina epoxidic\u0103. \u00cen proiectele realizate cu HFZWood, utilizarea unui lemn cu umiditate corespunz\u0103toare reduce riscul apari\u021biei fisurilor, deform\u0103rilor \u0219i problemelor de aderen\u021b\u0103."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Lemn higroscopic"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Lemn higroscopic",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Umiditatea lemnului"
+    },
+    {
+      "definition": [
+        "Volumul de turnare reprezint\u0103 cantitatea total\u0103 de r\u0103\u0219in\u0103 epoxidic\u0103 necesar\u0103 pentru umplerea unei zone sau pentru realizarea unei turn\u0103ri complete. Acesta se determin\u0103 pe baza dimensiunilor geometrice ale proiectului \u0219i constituie unul dintre principalele rezultate calculate de aplica\u021bia HFZWood."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Amestecare"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Bule de aer"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Degazare - Debulare"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizare"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reac\u021bie exoterm\u0103"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Temperatur\u0103 ambiental\u0103"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Turnare \u00een straturi"
+        },
+        {
+          "id": "turnare",
+          "term": "Turnare"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volum de turnare"
+    },
+    {
+      "definition": [
+        "Volumul cavit\u0103\u021bilor reprezint\u0103 volumul total al golurilor existente \u00een lemn care urmeaz\u0103 s\u0103 fie umplute cu r\u0103\u0219in\u0103 epoxidic\u0103. Acesta constituie unul dintre elementele utilizate de HFZWood pentru estimarea cantit\u0103\u021bii de material necesare proiectului."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volumul cavit\u0103\u021bilor"
+    },
+    {
+      "definition": [
+        "Volumul lemnului reprezint\u0103 spa\u021biul ocupat de toate piesele de lemn care fac parte din proiect. Acesta este exprimat \u00een unit\u0103\u021bi de volum \u0219i este utilizat de aplica\u021bie pentru determinarea volumului total al proiectului \u0219i a cantit\u0103\u021bii necesare de r\u0103\u0219in\u0103."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Grosime uniform\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volumul lemnului"
+    },
+    {
+      "definition": [
+        "Volumul total al proiectului reprezint\u0103 volumul ocupat de \u00eentreaga pies\u0103 final\u0103, incluz\u00e2nd at\u00e2t lemnul, c\u00e2t \u0219i r\u0103\u0219ina epoxidic\u0103. Acest parametru st\u0103 la baza calculelor efectuate de aplica\u021bie \u0219i permite determinarea cantit\u0103\u021bilor de material necesare."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volumul total al proiectului"
+    },
+    {
+      "definition": [
+        "V\u00e2scozitatea reprezint\u0103 gradul de fluiditate al r\u0103\u0219inii epoxidice, adic\u0103 rezisten\u021ba acesteia la curgere. O r\u0103\u0219in\u0103 cu v\u00e2scozitate redus\u0103 p\u0103trunde mai u\u0219or \u00een pori \u0219i cavit\u0103\u021bi, \u00een timp ce una cu v\u00e2scozitate ridicat\u0103 este mai potrivit\u0103 pentru aplica\u021bii care necesit\u0103 controlul scurgerii sau realizarea unor straturi mai groase."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Timp de \u00eent\u0103rire"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Timp de lucru (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Timp de gelificare"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reac\u021bie exoterm\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "V\u00e2scozitate"
+    }
+  ],
+  "locale": "ro"
+}

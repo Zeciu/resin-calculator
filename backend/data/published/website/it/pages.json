@@ -1,0 +1,29 @@
+{
+  "locale": "it",
+  "pages": {
+    "contact": {
+      "body": {
+        "intro": "Siamo qui se hai bisogno di aiuto\nVogliamo che l'utilizzo di HFZWood sia il pi\u00f9 semplice e piacevole possibile. Se hai domande sull'app, riscontri un problema o desideri inviarci un suggerimento, puoi contattarci utilizzando le informazioni riportate di seguito.\nCerchiamo di rispondere a tutti i messaggi nel pi\u00f9 breve tempo possibile e apprezziamo qualsiasi feedback che ci aiuti a migliorare l\u2019app.\n\nPrima di scriverci\n\u00c8 possibile che la risposta che cerchi sia gi\u00e0 presente nell\u2019app.\nTi invitiamo a consultare:\nManuale d\u2019uso \u2013 spiegazioni complete di tutte le funzionalit\u00e0 dell\u2019applicazione.\nTutorial video \u2013 dimostrazioni passo dopo passo dei principali flussi di lavoro.\nGlossario \u2013 spiegazioni dei termini utilizzati nel settore del legno e delle resine epossidiche.\nKnowledge Base \u2013 consigli pratici, domande frequenti e informazioni utili per i tuoi progetti.\n\nFeedback\nHFZWood \u00e8 un progetto in continua evoluzione.\nLe idee, le osservazioni e i suggerimenti degli utenti contribuiscono direttamente al miglioramento dell\u2019app e allo sviluppo delle funzionalit\u00e0 future. Se hai un suggerimento che possa rendere HFZWood pi\u00f9 utile per l\u2019intera comunit\u00e0, ci farebbe piacere conoscerlo.\n\nTi ringraziamo per aver scelto di utilizzare HFZWood e per far parte della nostra comunit\u00e0.",
+        "knowledgeBaseLinkLabel": "Knowledge Base",
+        "links": [],
+        "manualLinkLabel": "Manuale e tutorial",
+        "officialLinks": {
+          "facebook": "",
+          "instagram": "",
+          "linkedin": "",
+          "tiktok": "",
+          "website": "",
+          "youtube": "https://www.youtube.com/@Hefzech"
+        },
+        "pageKind": "contact",
+        "publicTitle": "Siamo qui se hai bisogno di aiuto",
+        "showKnowledgeBaseLink": true,
+        "showManualLink": true,
+        "supportEmail": "hefzech@gmail.com"
+      },
+      "pageKey": "contact",
+      "pageKind": "contact",
+      "slug": "/contact"
+    }
+  }
+}

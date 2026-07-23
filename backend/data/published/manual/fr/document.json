@@ -1,0 +1,64 @@
+{
+  "chapters": [
+    {
+      "contentId": "capitolul-1-alegerea-lemnului-2",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Le choix du bois constitue la premi\u00e8re \u00e9tape et l\u2019une des plus importantes dans la r\u00e9alisation d\u2019un projet \u00e0 base de r\u00e9sine \u00e9poxy. L\u2019aspect final du projet ainsi que la r\u00e9ussite de l\u2019ensemble du processus de coul\u00e9e d\u00e9pendent de la qualit\u00e9 du bois, de son \u00e9tat et de la mani\u00e8re dont il est pr\u00e9par\u00e9.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "En fonction du projet souhait\u00e9, on peut utiliser un seul morceau de bois ou plusieurs morceaux qui seront dispos\u00e9s \u00e0 l\u2019int\u00e9rieur du coffrage afin d\u2019obtenir la forme finale. Parfois, nous choisissons le bois en partant d\u2019un design que nous avons d\u00e9j\u00e0 en t\u00eate. D\u2019autres fois, le projet na\u00eet justement de la forme et des caract\u00e9ristiques d\u2019une pi\u00e8ce de bois dont nous disposons.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "L'\u00e9chantillon",
+              "type": "paragraph"
+            },
+            {
+              "alt": "1782149978502",
+              "caption": null,
+              "src": "/api/content/manual/images/22aab4b8-adbe-4b8b-8437-af59e8edde15.png",
+              "type": "image"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "La plupart des gens sont attir\u00e9s par les morceaux de bois spectaculaires. Un grain marqu\u00e9, des n\u0153uds, des fissures naturelles, des formes irr\u00e9guli\u00e8res ou des zones pr\u00e9sentant un fort contraste entre le bois de c\u0153ur et l\u2019aubier. Tous ces \u00e9l\u00e9ments peuvent contribuer \u00e0 la r\u00e9alisation de projets spectaculaires. Cependant, l\u2019aspect visuel ne doit pas \u00eatre le seul crit\u00e8re de choix du mat\u00e9riau.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Avant toute autre op\u00e9ration, il convient de v\u00e9rifier le taux d'humidit\u00e9 du bois.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Il s'agit probablement du param\u00e8tre technique le plus important \u00e0 v\u00e9rifier avant de se lancer dans la r\u00e9alisation d'un projet \u00e0 base de r\u00e9sine \u00e9poxy.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Le bois est un mat\u00e9riau hygroscopique. Il absorbe et lib\u00e8re en permanence de l\u2019humidit\u00e9 de l\u2019environnement. Si l\u2019on utilise du bois insuffisamment s\u00e9ch\u00e9, l\u2019eau qui y subsiste peut nuire au processus de polym\u00e9risation de la r\u00e9sine et entra\u00eener des probl\u00e8mes qui apparaissent parfois plusieurs semaines, voire plusieurs mois, apr\u00e8s l\u2019ach\u00e8vement du projet.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 100,
+      "title": "Chapitre 1 \u2013 Le choix du bois"
+    }
+  ],
+  "locale": "fr"
+}
