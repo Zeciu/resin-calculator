@@ -1,12 +1,15 @@
+import errno
 import json
 import os
 import re
 import shutil
 import tempfile
+import time
+from collections.abc import Callable
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeVar
 
 from content.services.glossary_source import load_glossary_entries
 from content.services.knowledge_base_source import load_knowledge_base_entries
@@ -521,7 +524,59 @@ def _build_knowledge_base_legacy_document() -> dict[str, Any]:
     }
 
 
-def atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+# Transient Windows/local file-access contention (replace and store open/read).
+TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS = 7
+TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS = (0.05, 0.10, 0.20, 0.40, 0.80, 1.00)
+# Backward-compatible aliases for callers/tests that referred to replace-only names.
+ATOMIC_REPLACE_MAX_ATTEMPTS = TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS
+ATOMIC_REPLACE_RETRY_DELAYS_SECONDS = TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS
+_WINERROR_ACCESS_DENIED = 5
+_WINERROR_SHARING_VIOLATION = 32
+
+_T = TypeVar("_T")
+
+
+def _is_retryable_transient_file_access_error(exc: BaseException) -> bool:
+    """Return True only for transient access/sharing failures safe to retry."""
+    if not isinstance(exc, OSError):
+        return False
+    winerror = getattr(exc, "winerror", None)
+    if winerror in (_WINERROR_ACCESS_DENIED, _WINERROR_SHARING_VIOLATION):
+        return True
+    if getattr(exc, "errno", None) in (errno.EACCES, errno.EPERM):
+        return True
+    return False
+
+
+def _retry_transient_file_access(
+    operation: Callable[[], _T],
+    *,
+    sleep: Callable[[float], None] | None = None,
+) -> _T:
+    """Run a filesystem operation with bounded retry for transient access errors."""
+    sleeper = sleep if sleep is not None else time.sleep
+    last_error: OSError | None = None
+    for attempt in range(1, TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS + 1):
+        try:
+            return operation()
+        except OSError as exc:
+            last_error = exc
+            if (
+                not _is_retryable_transient_file_access_error(exc)
+                or attempt >= TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS
+            ):
+                raise
+            sleeper(TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS[attempt - 1])
+    assert last_error is not None
+    raise last_error
+
+
+def atomic_write_json(
+    path: Path,
+    payload: dict[str, Any],
+    *,
+    sleep: Callable[[float], None] | None = None,
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temp_path: Path | None = None
     try:
@@ -536,7 +591,13 @@ def atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
             handle.flush()
             os.fsync(handle.fileno())
             temp_path = Path(handle.name)
-        os.replace(temp_path, path)
+
+        _retry_transient_file_access(
+            lambda: os.replace(temp_path, path),
+            sleep=sleep,
+        )
+        # replace() moves the temp file into place; skip cleanup unlink.
+        temp_path = None
     finally:
         if temp_path is not None and temp_path.exists():
             temp_path.unlink()
@@ -755,8 +816,14 @@ class FilesystemContentRepository:
     def _read_store(self) -> dict[str, Any]:
         if not self._store_path.exists():
             return {}
-        with self._store_path.open("r", encoding="utf-8") as handle:
-            payload = json.load(handle)
+
+        def read_store_text() -> str:
+            with self._store_path.open("r", encoding="utf-8") as handle:
+                return handle.read()
+
+        # Retry only transient open/read access failures — not JSON parse errors.
+        text = _retry_transient_file_access(read_store_text)
+        payload = json.loads(text)
         return payload.get("records", {})
 
     def _write_store(self, records: dict[str, Any]) -> None:

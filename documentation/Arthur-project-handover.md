@@ -5928,3 +5928,17 @@ Remaining approved pre-release sequence:
 
 1. Alfred handover.
 2. Task 5.3B live production validation.
+
+### Editorial store Windows file-contention reliability — CLOSED
+
+Local Glossary Publish could fail with HTTP 500 when Windows denied access to `backend/data/editorial/content-store.json` (`PermissionError` / WinError 5 on `os.replace`, and EACCES on store open during reference search), typically under transient sync/antivirus locks. Save Draft could succeed while the immediate follow-up Publish write failed; drafts and snapshots stayed intact (no partial publish).
+
+Correction (shared filesystem repository):
+
+- Bounded retry for classified transient access errors only (WinError 5, WinError 32, EACCES, EPERM) on atomic `os.replace` and on editorial store open/read.
+- 7 attempts with delays 0.05s, 0.10s, 0.20s, 0.40s, 0.80s, 1.00s (~2.55s max sleep).
+- Atomic write design preserved (same-directory temp, fsync, replace, cleanup; destination unchanged on final failure).
+- Applies automatically to Manual, Glossary, Knowledge Base, and Website persistence.
+- No repository locks, request serialization, or Save-then-Publish workflow changes.
+
+Product Owner verified after backend restart: Save Draft, single Publish (including a previously failing entry), consecutive Publish, reference search, and Publish all drafts succeeded without content loss.
