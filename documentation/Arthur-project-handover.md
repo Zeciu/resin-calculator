@@ -6335,3 +6335,33 @@ Status:
 * Large-scale Manual, Glossary, Knowledge Base and Website content population may begin.
 * Release B remains CLOSED.
 * The production Release Gate remains Alfred’s later responsibility after the editorial population period.
+
+### DeepL Bulk Translation Resilience — CLOSED
+
+#### Context
+
+* The repository synchronization assessment found a completed local hardening pass that had never been committed.
+* GitHub contained the earlier base DeepL integration but did not reproduce the current local bulk translation behavior.
+
+#### Delivered
+
+* Multi-field translation batching via `translate_many`.
+* Bounded retry/backoff for appropriate transient provider failures.
+* Quota/rate-limit early stop for bulk Update All Translations.
+* Partial-completion metadata: `stoppedEarly`, `stopReason`, `unprocessedCount`.
+* Frontend Admin handling of early-stop results.
+* Provider HTTP-status metadata on quota/rate-limit exceptions.
+* Permanent backend and frontend regression tests.
+
+#### Safety
+
+* No live DeepL call required for validation.
+* No credential committed.
+* No change to canonical Romanian content, locale definitions, Draft/Publish or manual review workflow.
+
+#### Status
+
+* DeepL / bulk translation resilience CLOSED.
+* Implementation represented on GitHub.
+* Website official-links / plain-text feature remains the next repository-synchronization closure task.
+* Editorial population has not yet begun.
