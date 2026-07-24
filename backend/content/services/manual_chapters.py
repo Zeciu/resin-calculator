@@ -10,7 +10,7 @@ from ..schemas.manual import (
     parse_admin_locale,
 )
 from ..translation_metadata import translation_metadata_for_api
-from .editorial_identity import chapter_identity_title
+from .editorial_identity import chapter_identity_title_from_store
 from .editorial_status import compute_editorial_visibility
 from .translation_update import classification_fields_for_api
 
@@ -57,15 +57,19 @@ class ManualChapterService:
 
     def list_chapters(self, locale: str = DEFAULT_LOCALE) -> list[ManualChapterListItem]:
         parsed_locale = parse_admin_locale(locale)
+        # One store read per list request — derive ordering, meta, and variants in memory.
+        records = self._repository.read_editorial_records()
         items: list[ManualChapterListItem] = []
-        for content_id in self._repository.list_manual_chapter_ids():
-            meta = self._repository.get_manual_chapter_meta(content_id)
+        for content_id in self._repository.list_manual_chapter_ids_from_store(records):
+            meta = self._repository.get_manual_chapter_meta_from_store(records, content_id)
             if not meta:
                 continue
             variants: dict[str, ManualVariantSummary] = {}
             active_variant: dict | None = None
             for variant_locale in EDITORIAL_LOCALES:
-                variant = self._repository.get_manual_variant(content_id, variant_locale)
+                variant = self._repository.get_manual_variant_from_store(
+                    records, content_id, variant_locale
+                )
                 if not variant:
                     continue
                 variants[variant_locale] = ManualVariantSummary(
@@ -83,7 +87,8 @@ class ManualChapterService:
             items.append(
                 ManualChapterListItem(
                     contentId=content_id,
-                    title=active_title or chapter_identity_title(self._repository, content_id),
+                    title=active_title
+                    or chapter_identity_title_from_store(self._repository, records, content_id),
                     sortOrder=meta["sortOrder"],
                     variants=variants,
                 )

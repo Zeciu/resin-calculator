@@ -36,8 +36,12 @@ class ManualPublishService:
         failed_items: list[BulkPublishManualItemResult] = []
         skipped_items: list[BulkPublishManualItemResult] = []
 
-        for content_id in self._repository.list_manual_chapter_ids():
-            variant = self._repository.get_manual_variant(content_id, parsed_locale)
+        # Classify publish candidates from one store snapshot; per-item publish still writes.
+        records = self._repository.read_editorial_records()
+        for content_id in self._repository.list_manual_chapter_ids_from_store(records):
+            variant = self._repository.get_manual_variant_from_store(
+                records, content_id, parsed_locale
+            )
             title = ""
             if variant:
                 title = str((variant.get("draftBody") or {}).get("title") or "").strip()
@@ -145,12 +149,16 @@ class ManualPublishService:
         return self._repository.publish_manual_variant(content_id, locale)
 
     def _assemble_document(self, locale: str) -> dict:
+        # One store read per snapshot rebuild; derive published chapters in memory.
+        records = self._repository.read_editorial_records()
         chapters = []
-        for content_id in self._repository.list_manual_chapter_ids():
-            variant = self._repository.get_manual_variant(content_id, locale)
+        for content_id in self._repository.list_manual_chapter_ids_from_store(records):
+            variant = self._repository.get_manual_variant_from_store(records, content_id, locale)
             if not variant or variant["status"] != "published":
                 continue
-            meta = self._repository.get_manual_chapter_meta(content_id)
+            meta = self._repository.get_manual_chapter_meta_from_store(records, content_id)
+            if not meta:
+                continue
             chapters.append(
                 {
                     "contentId": content_id,

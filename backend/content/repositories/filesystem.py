@@ -850,7 +850,8 @@ class FilesystemContentRepository:
             self._write_store({})
         self.ensure_website_pages_exist()
 
-    def ensure_website_pages_exist(self) -> None:
+    def ensure_website_pages_exist(self) -> dict[str, Any]:
+        """Ensure fixed website pages exist; return the in-memory store used for the check."""
         records = self._read_store()
         now = utc_now()
         changed = False
@@ -898,6 +899,8 @@ class FilesystemContentRepository:
         if not snapshot_path.exists():
             snapshot_path.parent.mkdir(parents=True, exist_ok=True)
             atomic_write_json(snapshot_path, empty_website_snapshot_document("en"))
+
+        return records
 
     def _read_store(self) -> dict[str, Any]:
         if not self._store_path.exists():
@@ -976,22 +979,10 @@ class FilesystemContentRepository:
         return list(dict.fromkeys(keys))
 
     def list_manual_chapter_ids(self) -> list[str]:
-        records = self._read_store()
-        ordered: list[tuple[int, str]] = []
-        for key, value in records.items():
-            if not key.startswith("INDEX#manual|ORDER#"):
-                continue
-            sort_order = int(key.rsplit("#", 1)[-1])
-            ordered.append((sort_order, value["contentId"]))
-        ordered.sort(key=lambda item: item[0])
-        return [content_id for _, content_id in ordered]
+        return self.list_manual_chapter_ids_from_store(self._read_store())
 
     def get_manual_chapter_meta(self, content_id: str) -> dict[str, Any] | None:
-        records = self._read_store()
-        _, record = _resolve_meta_key(
-            records, content_id, CONTENT_TYPE_MANUAL_CHAPTER, make_manual_meta_key
-        )
-        return deepcopy(record) if record is not None else None
+        return self.get_manual_chapter_meta_from_store(self._read_store(), content_id)
 
     def get_manual_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
         return self.get_manual_variant_from_store(self._read_store(), content_id, locale)
@@ -1405,6 +1396,93 @@ class FilesystemContentRepository:
         )
         return deepcopy(record) if record is not None else None
 
+    def list_manual_chapter_ids_from_store(self, records: dict[str, Any]) -> list[str]:
+        ordered: list[tuple[int, str]] = []
+        for key, value in records.items():
+            if not key.startswith("INDEX#manual|ORDER#"):
+                continue
+            sort_order = int(key.rsplit("#", 1)[-1])
+            ordered.append((sort_order, value["contentId"]))
+        ordered.sort(key=lambda item: item[0])
+        return [content_id for _, content_id in ordered]
+
+    def get_manual_chapter_meta_from_store(
+        self, records: dict[str, Any], content_id: str
+    ) -> dict[str, Any] | None:
+        _, record = _resolve_meta_key(
+            records, content_id, CONTENT_TYPE_MANUAL_CHAPTER, make_manual_meta_key
+        )
+        return deepcopy(record) if record is not None else None
+
+    def list_kb_entry_ids_from_store(self, records: dict[str, Any]) -> list[str]:
+        ordered: list[tuple[int, str]] = []
+        for key, value in records.items():
+            if not key.startswith("INDEX#kb|ORDER#"):
+                continue
+            sort_order = int(key.rsplit("#", 1)[-1])
+            ordered.append((sort_order, value["contentId"]))
+        ordered.sort(key=lambda item: item[0])
+        return [content_id for _, content_id in ordered]
+
+    def get_kb_entry_meta_from_store(
+        self, records: dict[str, Any], content_id: str
+    ) -> dict[str, Any] | None:
+        _, record = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
+        return deepcopy(record) if record is not None else None
+
+    def get_kb_variant_from_store(
+        self, records: dict[str, Any], content_id: str, locale: str
+    ) -> dict[str, Any] | None:
+        _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
+        if not meta:
+            return None
+        _, record = _resolve_variant_key(
+            records,
+            content_id,
+            locale,
+            CONTENT_TYPE_KB_ENTRY,
+            make_kb_variant_key,
+            make_kb_meta_key,
+        )
+        return deepcopy(record) if record is not None else None
+
+    def list_website_page_ids_from_store(self, records: dict[str, Any]) -> list[str]:
+        ordered: list[tuple[int, str]] = []
+        for key, value in records.items():
+            if not key.startswith("CONTENT#website_page#") or not key.endswith("|META"):
+                continue
+            sort_order = int(value.get("sortOrder", 0))
+            ordered.append((sort_order, value["pageKey"]))
+        ordered.sort(key=lambda item: item[0])
+        return [page_key for _, page_key in ordered]
+
+    def get_website_page_meta_from_store(
+        self, records: dict[str, Any], page_key: str
+    ) -> dict[str, Any] | None:
+        if page_key not in WEBSITE_PAGE_KEYS:
+            return None
+        _, meta = _resolve_meta_key(
+            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
+        )
+        return deepcopy(meta) if meta is not None else None
+
+    def get_website_variant_from_store(
+        self, records: dict[str, Any], page_key: str, locale: str
+    ) -> dict[str, Any] | None:
+        if page_key not in WEBSITE_PAGE_KEYS:
+            return None
+        if not _meta_exists(records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key):
+            return None
+        _, record = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        return deepcopy(record) if record is not None else None
+
     def list_glossary_entry_ids(self) -> list[str]:
         return self.list_glossary_entry_ids_from_store(self._read_store())
 
@@ -1704,35 +1782,13 @@ class FilesystemContentRepository:
         return (max(orders) if orders else 0) + 100
 
     def list_kb_entry_ids(self) -> list[str]:
-        records = self._read_store()
-        ordered: list[tuple[int, str]] = []
-        for key, value in records.items():
-            if not key.startswith("INDEX#kb|ORDER#"):
-                continue
-            sort_order = int(key.rsplit("#", 1)[-1])
-            ordered.append((sort_order, value["contentId"]))
-        ordered.sort(key=lambda item: item[0])
-        return [content_id for _, content_id in ordered]
+        return self.list_kb_entry_ids_from_store(self._read_store())
 
     def get_kb_entry_meta(self, content_id: str) -> dict[str, Any] | None:
-        records = self._read_store()
-        _, record = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
-        return deepcopy(record) if record is not None else None
+        return self.get_kb_entry_meta_from_store(self._read_store(), content_id)
 
     def get_kb_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
-        records = self._read_store()
-        _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
-        if not meta:
-            return None
-        _, record = _resolve_variant_key(
-            records,
-            content_id,
-            locale,
-            CONTENT_TYPE_KB_ENTRY,
-            make_kb_variant_key,
-            make_kb_meta_key,
-        )
-        return deepcopy(record) if record is not None else None
+        return self.get_kb_variant_from_store(self._read_store(), content_id, locale)
 
     def create_kb_entry(
         self,
@@ -2024,40 +2080,13 @@ class FilesystemContentRepository:
             return json.load(handle)
 
     def list_website_page_ids(self) -> list[str]:
-        records = self._read_store()
-        ordered: list[tuple[int, str]] = []
-        for key, value in records.items():
-            if not key.startswith("CONTENT#website_page#") or not key.endswith("|META"):
-                continue
-            sort_order = int(value.get("sortOrder", 0))
-            ordered.append((sort_order, value["pageKey"]))
-        ordered.sort(key=lambda item: item[0])
-        return [page_key for _, page_key in ordered]
+        return self.list_website_page_ids_from_store(self._read_store())
 
     def get_website_page_meta(self, page_key: str) -> dict[str, Any] | None:
-        if page_key not in WEBSITE_PAGE_KEYS:
-            return None
-        records = self._read_store()
-        _, meta = _resolve_meta_key(
-            records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key
-        )
-        return deepcopy(meta) if meta is not None else None
+        return self.get_website_page_meta_from_store(self._read_store(), page_key)
 
     def get_website_variant(self, page_key: str, locale: str) -> dict[str, Any] | None:
-        if page_key not in WEBSITE_PAGE_KEYS:
-            return None
-        records = self._read_store()
-        if not _meta_exists(records, page_key, CONTENT_TYPE_WEBSITE_PAGE, make_website_meta_key):
-            return None
-        _, record = _resolve_variant_key(
-            records,
-            page_key,
-            locale,
-            CONTENT_TYPE_WEBSITE_PAGE,
-            make_website_variant_key,
-            make_website_meta_key,
-        )
-        return deepcopy(record) if record is not None else None
+        return self.get_website_variant_from_store(self._read_store(), page_key, locale)
 
     def save_website_variant(
         self,

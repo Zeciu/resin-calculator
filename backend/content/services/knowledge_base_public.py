@@ -21,59 +21,79 @@ class KnowledgeBasePublicService:
     def __init__(self, repository: FilesystemContentRepository):
         self._repository = repository
 
-    def _resolve_kb_label(self, content_id: str, locale: str) -> str:
-        variant = self._repository.get_kb_variant(content_id, locale)
+    def _resolve_kb_label_from_store(self, records: dict, content_id: str, locale: str) -> str:
+        variant = self._repository.get_kb_variant_from_store(records, content_id, locale)
         if variant and variant["status"] == "published":
             return variant["draftBody"].get("title", "").strip()
         for fallback_locale in ("ro", "en"):
             if fallback_locale == locale:
                 continue
-            fallback = self._repository.get_kb_variant(content_id, fallback_locale)
+            fallback = self._repository.get_kb_variant_from_store(
+                records, content_id, fallback_locale
+            )
             if fallback and fallback["status"] == "published":
                 return fallback["draftBody"].get("title", "").strip()
         return ""
 
-    def _resolve_glossary_label(self, content_id: str, locale: str) -> str:
-        variant = self._repository.get_glossary_variant(content_id, locale)
+    def _resolve_glossary_label_from_store(self, records: dict, content_id: str, locale: str) -> str:
+        variant = self._repository.get_glossary_variant_from_store(records, content_id, locale)
         if variant and variant["status"] == "published":
             return variant["draftBody"].get("term", "").strip()
         for fallback_locale in ("ro", "en"):
             if fallback_locale == locale:
                 continue
-            fallback = self._repository.get_glossary_variant(content_id, fallback_locale)
+            fallback = self._repository.get_glossary_variant_from_store(
+                records, content_id, fallback_locale
+            )
             if fallback and fallback["status"] == "published":
                 return fallback["draftBody"].get("term", "").strip()
         return ""
 
-    def _resolve_manual_label(self, content_id: str, locale: str) -> str:
-        variant = self._repository.get_manual_variant(content_id, locale)
+    def _resolve_manual_label_from_store(self, records: dict, content_id: str, locale: str) -> str:
+        variant = self._repository.get_manual_variant_from_store(records, content_id, locale)
         if variant and variant["status"] == "published":
             return variant["draftBody"].get("title", "").strip()
         for fallback_locale in ("ro", "en"):
             if fallback_locale == locale:
                 continue
-            fallback = self._repository.get_manual_variant(content_id, fallback_locale)
+            fallback = self._repository.get_manual_variant_from_store(
+                records, content_id, fallback_locale
+            )
             if fallback and fallback["status"] == "published":
                 return fallback["draftBody"].get("title", "").strip()
         return content_id
 
-    def _build_public_entry(self, content_id: str, variant: dict, locale: str) -> PublicKnowledgeBaseEntry:
+    def _resolve_kb_label(self, content_id: str, locale: str) -> str:
+        records = self._repository.read_editorial_records()
+        return self._resolve_kb_label_from_store(records, content_id, locale)
+
+    def _resolve_glossary_label(self, content_id: str, locale: str) -> str:
+        records = self._repository.read_editorial_records()
+        return self._resolve_glossary_label_from_store(records, content_id, locale)
+
+    def _resolve_manual_label(self, content_id: str, locale: str) -> str:
+        records = self._repository.read_editorial_records()
+        return self._resolve_manual_label_from_store(records, content_id, locale)
+
+    def _build_public_entry_from_store(
+        self, records: dict, content_id: str, variant: dict, locale: str
+    ) -> PublicKnowledgeBaseEntry:
         body = variant["draftBody"]
         related_kb = []
         for related_id in body.get("relatedKbEntryIds", []):
-            label = self._resolve_kb_label(related_id, locale)
+            label = self._resolve_kb_label_from_store(records, related_id, locale)
             if label:
                 related_kb.append(PublicKnowledgeBaseRelationship(id=related_id, label=label))
 
         related_glossary = []
         for related_id in body.get("relatedGlossaryEntryIds", []):
-            label = self._resolve_glossary_label(related_id, locale)
+            label = self._resolve_glossary_label_from_store(records, related_id, locale)
             if label:
                 related_glossary.append(PublicKnowledgeBaseRelationship(id=related_id, label=label))
 
         related_manual = []
         for related_id in body.get("relatedManualChapterIds", []):
-            label = self._resolve_manual_label(related_id, locale)
+            label = self._resolve_manual_label_from_store(records, related_id, locale)
             if label:
                 related_manual.append(PublicKnowledgeBaseRelationship(id=related_id, label=label))
 
@@ -101,13 +121,19 @@ class KnowledgeBasePublicService:
             relatedManualChapters=related_manual,
         )
 
+    def _build_public_entry(self, content_id: str, variant: dict, locale: str) -> PublicKnowledgeBaseEntry:
+        records = self._repository.read_editorial_records()
+        return self._build_public_entry_from_store(records, content_id, variant, locale)
+
     def build_admin_snapshot(self, locale: str) -> dict:
+        # One editorial-store read per snapshot rebuild; derive published entries in memory.
+        records = self._repository.read_editorial_records()
         entries: list[dict] = []
-        for content_id in self._repository.list_kb_entry_ids():
-            variant = self._repository.get_kb_variant(content_id, locale)
+        for content_id in self._repository.list_kb_entry_ids_from_store(records):
+            variant = self._repository.get_kb_variant_from_store(records, content_id, locale)
             if not variant or variant["status"] != "published":
                 continue
-            public_entry = self._build_public_entry(content_id, variant, locale)
+            public_entry = self._build_public_entry_from_store(records, content_id, variant, locale)
             entries.append(public_entry.model_dump())
 
         return {"locale": locale, "entries": entries}

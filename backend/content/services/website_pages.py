@@ -43,13 +43,18 @@ def variant_has_publishable_body(body: dict) -> bool:
 
 
 def resolve_public_title(repository, page_key: str, locale: str) -> str:
-    variant = repository.get_website_variant(page_key, locale)
+    records = repository.read_editorial_records()
+    return resolve_public_title_from_store(repository, records, page_key, locale)
+
+
+def resolve_public_title_from_store(repository, records, page_key: str, locale: str) -> str:
+    variant = repository.get_website_variant_from_store(records, page_key, locale)
     if variant and isinstance(variant.get("draftBody"), dict):
         title = str(variant["draftBody"].get("publicTitle", "")).strip()
         if title:
             return title
     if locale != DEFAULT_LOCALE:
-        ro_variant = repository.get_website_variant(page_key, DEFAULT_LOCALE)
+        ro_variant = repository.get_website_variant_from_store(records, page_key, DEFAULT_LOCALE)
         if ro_variant and isinstance(ro_variant.get("draftBody"), dict):
             return str(ro_variant["draftBody"].get("publicTitle", "")).strip()
     return ""
@@ -61,16 +66,19 @@ class WebsitePageService:
 
     def list_pages(self, locale: str = DEFAULT_LOCALE) -> list[WebsitePageListItem]:
         parsed_locale = parse_admin_locale(locale)
-        self._repository.ensure_website_pages_exist()
+        # ensure returns the store it loaded — reuse it (one read when pages already exist).
+        records = self._repository.ensure_website_pages_exist()
         items: list[WebsitePageListItem] = []
         for page in WEBSITE_PAGE_DEFINITIONS:
             page_key = page["pageKey"]
-            meta = self._repository.get_website_page_meta(page_key)
+            meta = self._repository.get_website_page_meta_from_store(records, page_key)
             if not meta:
                 continue
             variants: dict[str, WebsiteVariantSummary] = {}
             for variant_locale in EDITORIAL_LOCALES:
-                variant = self._repository.get_website_variant(page_key, variant_locale)
+                variant = self._repository.get_website_variant_from_store(
+                    records, page_key, variant_locale
+                )
                 if not variant:
                     continue
                 variants[variant_locale] = WebsiteVariantSummary(
@@ -85,7 +93,9 @@ class WebsitePageService:
                     adminLabel=meta["adminLabel"],
                     pageKind=meta["pageKind"],
                     sortOrder=meta["sortOrder"],
-                    publicTitle=resolve_public_title(self._repository, page_key, parsed_locale),
+                    publicTitle=resolve_public_title_from_store(
+                        self._repository, records, page_key, parsed_locale
+                    ),
                     variants=variants,
                 )
             )

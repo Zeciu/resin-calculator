@@ -41,8 +41,12 @@ class KnowledgeBasePublishService:
         failed_items: list[BulkPublishKnowledgeBaseItemResult] = []
         skipped_items: list[BulkPublishKnowledgeBaseItemResult] = []
 
-        for content_id in self._repository.list_kb_entry_ids():
-            variant = self._repository.get_kb_variant(content_id, parsed_locale)
+        # Classify publish candidates from one store snapshot; per-item publish still writes.
+        records = self._repository.read_editorial_records()
+        for content_id in self._repository.list_kb_entry_ids_from_store(records):
+            variant = self._repository.get_kb_variant_from_store(
+                records, content_id, parsed_locale
+            )
             title = ""
             if variant:
                 title = str((variant.get("draftBody") or {}).get("title") or "").strip()

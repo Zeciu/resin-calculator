@@ -11,10 +11,14 @@ class WebsitePublicService:
 
     def build_admin_snapshot(self, locale: str) -> dict:
         parsed_locale = parse_admin_locale(locale)
+        # One store read per snapshot rebuild; derive published pages in memory.
+        records = self._repository.read_editorial_records()
         pages: dict[str, dict] = {}
-        for page_key in self._repository.list_website_page_ids():
-            meta = self._repository.get_website_page_meta(page_key)
-            variant = self._repository.get_website_variant(page_key, parsed_locale)
+        for page_key in self._repository.list_website_page_ids_from_store(records):
+            meta = self._repository.get_website_page_meta_from_store(records, page_key)
+            variant = self._repository.get_website_variant_from_store(
+                records, page_key, parsed_locale
+            )
             if not meta or not variant or variant.get("status") != "published":
                 continue
             pages[page_key] = {
