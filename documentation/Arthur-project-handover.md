@@ -6365,3 +6365,36 @@ Status:
 * Implementation represented on GitHub.
 * Website official-links / plain-text feature remains the next repository-synchronization closure task.
 * Editorial population has not yet begun.
+
+### Website Official Links and Plain-Text Rendering — CLOSED
+
+#### Context
+
+* The repository synchronization assessment found completed Website behavior that existed only in the local working tree.
+* The tracked editorial corpus already contained `officialLinks`, while GitHub lacked the supporting schema, Admin UI and public rendering.
+* A fresh clone therefore did not fully reproduce the current local Website behavior.
+
+#### Delivered
+
+* Backend `officialLinks` schema/default support.
+* Admin editing, mapping and validation.
+* Public official/community link rendering.
+* Reusable icons and link helpers.
+* Safe multi-paragraph rendering for CMS plain-text fields.
+* Home, Contact and Pricing integration where applicable.
+* Permanent backend and frontend tests.
+
+#### Compatibility and safety
+
+* No content migration.
+* Existing records without official links remain valid.
+* No raw HTML rendering.
+* Draft/Publish, locale behavior and existing Website APIs preserved.
+* No environment, generated or secret files committed.
+
+#### Status
+
+* Website official-links/plain-text feature CLOSED.
+* Feature represented on GitHub.
+* Repository synchronization requires one final verification.
+* Editorial population remains paused until that verification confirms no completed implementation remains only local.
