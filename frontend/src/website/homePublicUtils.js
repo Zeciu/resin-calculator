@@ -58,7 +58,8 @@ export function canRenderWebsiteDestination(label, destination) {
  * @param {{ visible?: boolean; label?: string; destination?: string } | null | undefined} cta
  */
 export function canRenderHomeCta(cta) {
-  if (!cta?.visible) {
+  // Strict true only — never treat missing/undefined as shown.
+  if (cta?.visible !== true) {
     return false;
   }
   return canRenderWebsiteDestination(cta.label, cta.destination);

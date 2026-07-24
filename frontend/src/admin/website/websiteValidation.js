@@ -108,6 +108,12 @@ export function validateWebsiteEditorState(editorState) {
         return "Each contact link must have a valid URL.";
       }
     }
+    const officialLinks = body.officialLinks ?? {};
+    for (const key of ["website", "youtube", "facebook", "instagram", "tiktok", "linkedin"]) {
+      if (!isValidUrl(officialLinks[key])) {
+        return "Official link URLs must be valid http(s) addresses or left empty.";
+      }
+    }
     return null;
   }
 

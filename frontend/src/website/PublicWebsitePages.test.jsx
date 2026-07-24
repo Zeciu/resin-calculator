@@ -413,6 +413,101 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       expect(screen.queryByRole("link", { name: "Manual hidden" })).not.toBeInTheDocument();
       expect(screen.queryByRole("link", { name: "KB hidden" })).not.toBeInTheDocument();
     });
+
+    it("hides Community icons when official links are empty", async () => {
+      mockPublishedWebsiteFetch({
+        pages: {
+          contact: buildPublishedContactResponse({
+            officialLinks: {
+              website: "",
+              youtube: "",
+              facebook: "",
+              instagram: "",
+              tiktok: "",
+              linkedin: "",
+            },
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.CONTACT);
+
+      await waitFor(() => {
+        expect(screen.getByRole("heading", { name: "Contact", level: 1 })).toBeInTheDocument();
+      });
+      expect(screen.queryByRole("heading", { name: "Community", level: 2 })).not.toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: "YouTube" })).not.toBeInTheDocument();
+    });
+
+    it("renders a single official YouTube icon for the launch scenario", async () => {
+      mockPublishedWebsiteFetch({
+        pages: {
+          contact: buildPublishedContactResponse({
+            showManualLink: false,
+            showKnowledgeBaseLink: false,
+            supportEmail: "",
+            links: [],
+            officialLinks: {
+              youtube: "https://www.youtube.com/@hfzwood",
+            },
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.CONTACT);
+
+      await waitFor(() => {
+        expect(screen.getByRole("heading", { name: "Community", level: 2 })).toBeInTheDocument();
+      });
+      expect(
+        screen.getByText(/Follow the official HFZWood channels for tutorials/i),
+      ).toBeInTheDocument();
+      const youtube = screen.getByRole("link", { name: "YouTube" });
+      expect(youtube).toHaveAttribute("href", "https://www.youtube.com/@hfzwood");
+      expect(youtube).toHaveAttribute("target", "_blank");
+      expect(youtube).toHaveAttribute("rel", "noopener noreferrer");
+      expect(youtube).toHaveAttribute("data-official-link", "youtube");
+      expect(screen.queryByRole("link", { name: "Website" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: "Facebook" })).not.toBeInTheDocument();
+    });
+
+    it("renders official community icons in fixed channel order", async () => {
+      mockPublishedWebsiteFetch({
+        pages: {
+          contact: buildPublishedContactResponse({
+            officialLinks: {
+              linkedin: "https://www.linkedin.com/company/hfzwood",
+              tiktok: "https://www.tiktok.com/@hfzwood",
+              instagram: "https://www.instagram.com/hfzwood",
+              facebook: "https://www.facebook.com/hfzwood",
+              youtube: "https://www.youtube.com/@hfzwood",
+              website: "https://hfzwood.com",
+            },
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.CONTACT);
+
+      await waitFor(() => {
+        expect(screen.getByRole("heading", { name: "Community", level: 2 })).toBeInTheDocument();
+      });
+
+      const icons = Array.from(document.querySelectorAll("[data-official-link]")).map((node) =>
+        node.getAttribute("data-official-link"),
+      );
+      expect(icons).toEqual([
+        "website",
+        "youtube",
+        "facebook",
+        "instagram",
+        "tiktok",
+        "linkedin",
+      ]);
+
+      for (const label of ["Website", "YouTube", "Facebook", "Instagram", "TikTok", "LinkedIn"]) {
+        const link = screen.getByRole("link", { name: label });
+        expect(link).toHaveAttribute("target", "_blank");
+        expect(link).toHaveAttribute("rel", "noopener noreferrer");
+      }
+    });
   });
 
   describe("shared states and access", () => {

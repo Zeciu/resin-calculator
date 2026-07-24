@@ -100,6 +100,9 @@
   "website.nav.privacy": "Politica de confidențialitate",
   "website.nav.terms": "Termeni și condiții",
   "website.nav.contact": "Contact",
+  "website.contact.communityTitle": "Comunitate",
+  "website.contact.communityIntro":
+    "Urmărește canalele oficiale HFZWood pentru tutoriale, exemple de proiecte, actualizări de produs și noutăți din comunitate.",
   "knowledgeBase.searchLabel": "Caută în baza de cunoștințe",
   "knowledgeBase.searchPlaceholder": "Caută probleme, simptome și soluții",
   "knowledgeBase.problemSummary": "Rezumatul problemei",

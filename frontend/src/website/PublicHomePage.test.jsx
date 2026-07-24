@@ -82,6 +82,21 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
   });
 
+  it("renders blank-line separated CMS description as separate paragraphs", async () => {
+    publishHome({ description: "First home paragraph.\n\nSecond home paragraph." });
+    renderWorkspace(ROUTES.HOME);
+
+    await waitFor(() => {
+      expect(screen.getByText("First home paragraph.")).toBeInTheDocument();
+    });
+    expect(screen.getByText("Second home paragraph.")).toBeInTheDocument();
+    const first = screen.getByText("First home paragraph.");
+    const second = screen.getByText("Second home paragraph.");
+    expect(first.tagName).toBe("P");
+    expect(second.tagName).toBe("P");
+    expect(first).not.toBe(second);
+  });
+
   it("replaces authenticated marketing body with the same CMS description", async () => {
     seedAuthenticatedSession();
     publishHome({ description: "Shared CMS Description" });
@@ -166,6 +181,19 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
       expect(screen.getByText("CMS Home Description")).toBeInTheDocument();
     });
     expect(screen.queryByRole("link", { name: "Hidden" })).not.toBeInTheDocument();
+  });
+
+  it("does not render View Pricing when CMS visible is false", async () => {
+    publishHome({
+      cta: { label: "View Pricing", destination: "/pricing", visible: false },
+    });
+    renderWorkspace(ROUTES.HOME);
+
+    await waitFor(() => {
+      expect(screen.getByText("CMS Home Description")).toBeInTheDocument();
+    });
+    expect(screen.queryByRole("link", { name: "View Pricing" })).not.toBeInTheDocument();
+    expect(document.querySelector(".public-home__cta")).toBeNull();
   });
 
   it("renders supported visible video", async () => {

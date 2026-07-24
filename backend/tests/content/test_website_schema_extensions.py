@@ -239,8 +239,40 @@ class TestContactBuiltInLinkLabels:
         assert rebuilt["showManualLink"] is True
         assert rebuilt["showKnowledgeBaseLink"] is False
 
+    def test_official_links_default_and_round_trip(self, repository):
+        legacy = {
+            "pageKind": "contact",
+            "publicTitle": "Contact",
+            "intro": "",
+            "supportEmail": "",
+            "links": [],
+        }
+        validated = SaveContactWebsiteBody.model_validate(legacy)
+        assert validated.officialLinks.website == ""
+        assert validated.officialLinks.youtube == ""
+        assert validated.officialLinks.facebook == ""
+        assert validated.officialLinks.instagram == ""
+        assert validated.officialLinks.tiktok == ""
+        assert validated.officialLinks.linkedin == ""
 
-class TestBackwardCompatibility:
+        body = empty_website_draft_body("contact")
+        body["publicTitle"] = "Contact"
+        body["officialLinks"] = {
+            "website": "",
+            "youtube": "https://www.youtube.com/@hfzwood",
+            "facebook": "",
+            "instagram": "",
+            "tiktok": "",
+            "linkedin": "",
+        }
+        repository.ensure_website_pages_exist()
+        repository.save_website_variant("contact", "ro", body)
+        loaded = repository.get_website_variant("contact", "ro")
+        assert loaded["draftBody"]["officialLinks"]["youtube"] == "https://www.youtube.com/@hfzwood"
+
+        items = extract_translatable_items("website", body)
+        assert all("officialLinks" not in item.path for item in items)
+
     def test_legacy_about_variant_readable(self, repository, tmp_path):
         repository.ensure_website_pages_exist()
         legacy_body = {

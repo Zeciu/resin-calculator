@@ -62,6 +62,17 @@ class WebsiteContactLink(BaseModel):
     visible: bool = True
 
 
+class WebsiteOfficialLinks(BaseModel):
+    """Optional official social/community destination URLs for Contact."""
+
+    website: str = ""
+    youtube: str = ""
+    facebook: str = ""
+    instagram: str = ""
+    tiktok: str = ""
+    linkedin: str = ""
+
+
 class HomeWebsiteBody(BaseModel):
     pageKind: Literal["home"] = "home"
     publicTitle: str = ""
@@ -108,6 +119,7 @@ class ContactWebsiteBody(BaseModel):
     showKnowledgeBaseLink: bool = True
     manualLinkLabel: str = "Manual și tutoriale"
     knowledgeBaseLinkLabel: str = "Baza de cunoștințe"
+    officialLinks: WebsiteOfficialLinks = Field(default_factory=WebsiteOfficialLinks)
 
 
 WebsiteVariantBody = Annotated[

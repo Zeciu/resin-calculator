@@ -48,7 +48,7 @@ export default function HomePageEditor({ body, onChange, disabled = false }) {
           value={body.description ?? ""}
           onChange={(event) => updateField("description", event.target.value)}
           disabled={disabled}
-          rows={4}
+          rows={15}
         />
       </label>
       <WebsiteImageField
@@ -85,8 +85,14 @@ export default function HomePageEditor({ body, onChange, disabled = false }) {
         <label className="website-admin__checkbox">
           <input
             type="checkbox"
-            checked={body.cta?.visible ?? false}
-            onChange={(event) => updateNested("cta", { ...body.cta, visible: event.target.checked })}
+            checked={body.cta?.visible === true}
+            onChange={(event) =>
+              updateNested("cta", {
+                label: body.cta?.label ?? "",
+                destination: body.cta?.destination ?? "",
+                visible: event.target.checked,
+              })
+            }
             disabled={disabled}
           />
           Show CTA

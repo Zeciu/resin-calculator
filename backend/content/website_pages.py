@@ -129,6 +129,14 @@ def empty_website_draft_body(page_kind: WebsitePageKind) -> dict[str, Any]:
             "showKnowledgeBaseLink": True,
             "manualLinkLabel": DEFAULT_MANUAL_LINK_LABEL,
             "knowledgeBaseLinkLabel": DEFAULT_KNOWLEDGE_BASE_LINK_LABEL,
+            "officialLinks": {
+                "website": "",
+                "youtube": "",
+                "facebook": "",
+                "instagram": "",
+                "tiktok": "",
+                "linkedin": "",
+            },
         }
     raise ValueError(f"Unsupported website page kind: {page_kind}")
 

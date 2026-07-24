@@ -1,6 +1,7 @@
 import { ROUTES } from "../workspace/routes.js";
 import PublicWebsitePageShell from "./PublicWebsitePageShell.jsx";
 import WebsiteDestinationLink from "./WebsiteDestinationLink.jsx";
+import WebsitePlainText from "./WebsitePlainText.jsx";
 import { WEBSITE_PAGE_KEYS } from "./websitePublicConstants.js";
 
 const PRICING_OFFER_ORDER = ["free", "subscriber", "lifetime"];
@@ -58,7 +59,7 @@ export default function PublicPricingPage() {
 
         return (
           <div className="public-pricing">
-            {intro ? <p className="public-pricing__intro">{intro}</p> : null}
+            <WebsitePlainText text={intro} className="public-pricing__intro" />
 
             {offers.length > 0 ? (
               <div className="public-pricing__grid">
@@ -105,7 +106,7 @@ export default function PublicPricingPage() {
               />
             )}
 
-            {footnote ? <p className="public-pricing__footnote">{footnote}</p> : null}
+            <WebsitePlainText text={footnote} className="public-pricing__footnote" />
           </div>
         );
       }}

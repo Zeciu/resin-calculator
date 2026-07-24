@@ -36,8 +36,12 @@ describe("homePublicUtils", () => {
     expect(canRenderHomeCta({ visible: true, label: "Go", destination: "https://example.com" })).toBe(
       true,
     );
+    expect(canRenderHomeCta({ visible: false, label: "View Pricing", destination: "/pricing" })).toBe(
+      false,
+    );
     expect(canRenderHomeCta({ visible: false, label: "Go", destination: "/pricing" })).toBe(false);
     expect(canRenderHomeCta({ visible: true, label: "", destination: "/pricing" })).toBe(false);
+    expect(canRenderHomeCta({ label: "View Pricing", destination: "/pricing" })).toBe(false);
     expect(canRenderHomeImage({ visible: true, src: "/api/content/website/images/a.png" })).toBe(
       true,
     );

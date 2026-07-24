@@ -41,7 +41,7 @@ export default function PricingPageEditor({ body, onChange, disabled = false }) 
           value={body.intro ?? ""}
           onChange={(event) => onChange({ ...body, intro: event.target.value })}
           disabled={disabled}
-          rows={3}
+          rows={15}
         />
       </label>
       {offers.map((offer, index) => (
@@ -137,7 +137,7 @@ export default function PricingPageEditor({ body, onChange, disabled = false }) 
           value={body.footnote ?? ""}
           onChange={(event) => onChange({ ...body, footnote: event.target.value })}
           disabled={disabled}
-          rows={2}
+          rows={15}
         />
       </label>
     </div>

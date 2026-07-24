@@ -78,4 +78,33 @@ describe("websiteValidation", () => {
       }),
     ).toBe("Each contact link must have a valid URL.");
   });
+
+  it("rejects invalid official link urls", () => {
+    expect(
+      validateWebsiteEditorState({
+        pageKind: "contact",
+        body: {
+          pageKind: "contact",
+          publicTitle: "Contact",
+          officialLinks: { youtube: "not a url" },
+        },
+      }),
+    ).toBe("Official link URLs must be valid http(s) addresses or left empty.");
+  });
+
+  it("allows empty official link urls", () => {
+    expect(
+      validateWebsiteEditorState({
+        pageKind: "contact",
+        body: {
+          pageKind: "contact",
+          publicTitle: "Contact",
+          officialLinks: {
+            website: "",
+            youtube: "https://www.youtube.com/@hfzwood",
+          },
+        },
+      }),
+    ).toBeNull();
+  });
 });

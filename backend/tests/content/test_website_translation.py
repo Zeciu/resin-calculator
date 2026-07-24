@@ -30,6 +30,7 @@ from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_
 class FakeTranslationProvider:
     def __init__(self, *, fail: bool = False) -> None:
         self.calls: list[dict[str, Any]] = []
+        self.batch_calls: list[dict[str, Any]] = []
         self.fail = fail
 
     def translate(
@@ -42,23 +43,55 @@ class FakeTranslationProvider:
         content_format: Literal["plain", "html"] = "html",
         glossary_id: str | None = None,
     ) -> TranslationResult:
+        return self.translate_many(
+            [text],
+            source_locale=source_locale,
+            target_locale=target_locale,
+            context=context,
+            content_format=content_format,
+            glossary_id=glossary_id,
+        )[0]
+
+    def translate_many(
+        self,
+        texts: list[str],
+        *,
+        source_locale: str,
+        target_locale: str,
+        context: str | None = None,
+        content_format: Literal["plain", "html"] = "html",
+        glossary_id: str | None = None,
+    ) -> list[TranslationResult]:
         if self.fail:
             raise TranslationTemporaryProviderError("provider boom")
-        self.calls.append(
+        self.batch_calls.append(
             {
-                "text": text,
+                "texts": list(texts),
                 "source_locale": source_locale,
                 "target_locale": target_locale,
                 "content_format": content_format,
             }
         )
-        return TranslationResult(
-            text=f"[{target_locale}]{text}",
-            provider="deepl",
-            source_locale=source_locale,
-            target_locale=target_locale,
-            billed_characters=len(text),
-        )
+        results: list[TranslationResult] = []
+        for text in texts:
+            self.calls.append(
+                {
+                    "text": text,
+                    "source_locale": source_locale,
+                    "target_locale": target_locale,
+                    "content_format": content_format,
+                }
+            )
+            results.append(
+                TranslationResult(
+                    text=f"[{target_locale}]{text}",
+                    provider="deepl",
+                    source_locale=source_locale,
+                    target_locale=target_locale,
+                    billed_characters=len(text),
+                )
+            )
+        return results
 
 
 @pytest.fixture
@@ -472,3 +505,18 @@ class TestWebsiteBulkTranslation:
             "subscriber",
             "lifetime",
         }
+
+    def test_website_page_uses_one_provider_batch(self, repository):
+        seed_ro_page(repository, "home")
+        provider = FakeTranslationProvider()
+        TranslationUpdateService(repository, provider=provider).update(
+            module="website",
+            content_id="home",
+            target_locale="en",
+        )
+        assert len(provider.batch_calls) == 1
+        assert len(provider.batch_calls[0]["texts"]) == len(provider.calls)
+        assert len(provider.calls) > 1
+        en = repository.get_website_variant("home", "en")
+        assert en["status"] == "draft"
+        assert en["draftBody"]["publicTitle"].startswith("[en]")

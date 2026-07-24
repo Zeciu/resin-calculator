@@ -535,6 +535,32 @@ describe("Website management editors (Stage 5B)", () => {
     });
   });
 
+  it("saves home CTA visibility toggle as false", async () => {
+    memoryApi.seedVariant("home", "ro", {
+      ...emptyHomeBody(),
+      publicTitle: "Home with CTA",
+      cta: { label: "View Pricing", destination: "/pricing", visible: true },
+    });
+    seedAdministrator();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.WEBSITE);
+
+    await screen.findByDisplayValue("View Pricing");
+    const showCta = screen.getByRole("checkbox", { name: "Show CTA" });
+    expect(showCta).toBeChecked();
+    await user.click(showCta);
+    expect(showCta).not.toBeChecked();
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
+
+    await waitFor(() => {
+      expect(memoryApi.getVariant("home", "ro")?.body.cta).toEqual({
+        label: "View Pricing",
+        destination: "/pricing",
+        visible: false,
+      });
+    });
+  });
+
   it("shows explicit home visibility toggle labels", async () => {
     seedAdministrator();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
@@ -616,6 +642,25 @@ describe("Website management editors (Stage 5B)", () => {
       const body = memoryApi.getVariant("contact", "ro")?.body;
       expect(body?.manualLinkLabel).toBe("Manual custom");
       expect(body?.knowledgeBaseLinkLabel).toBe("KB custom");
+    });
+  });
+
+  it("saves contact official links", async () => {
+    seedAdministrator();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.WEBSITE);
+
+    const sidebar = await screen.findByRole("navigation", { name: "Website pages" });
+    await user.click(within(sidebar).getByRole("button", { name: "Contact" }));
+
+    await user.type(screen.getByLabelText("Page title"), "Contact");
+    await user.type(screen.getByLabelText("YouTube URL"), "https://www.youtube.com/@hfzwood");
+    await user.click(screen.getByRole("button", { name: "Save draft" }));
+
+    await waitFor(() => {
+      const body = memoryApi.getVariant("contact", "ro")?.body;
+      expect(body?.officialLinks?.youtube).toBe("https://www.youtube.com/@hfzwood");
+      expect(body?.officialLinks?.facebook).toBe("");
     });
   });
 });

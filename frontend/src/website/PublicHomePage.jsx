@@ -3,6 +3,7 @@ import {
   resolveHomeVideoSource,
 } from "./homePublicUtils.js";
 import WebsiteDestinationLink from "./WebsiteDestinationLink.jsx";
+import WebsitePlainText from "./WebsitePlainText.jsx";
 
 /**
  * CMS-driven Home marketing body (guest and authenticated share this content).
@@ -11,14 +12,13 @@ import WebsiteDestinationLink from "./WebsiteDestinationLink.jsx";
  * @param {{ body: Record<string, unknown> }} props
  */
 export default function PublicHomePage({ body }) {
-  const description = String(body.description ?? "").trim();
   const cta = body.cta;
   const video = resolveHomeVideoSource(body.video);
   const showCta = canRenderHomeCta(cta);
 
   return (
     <section className="public-home" aria-label="Home">
-      {description ? <p className="public-home__description">{description}</p> : null}
+      <WebsitePlainText text={body.description} className="public-home__description" />
 
       {showCta ? (
         <WebsiteDestinationLink

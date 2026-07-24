@@ -1,4 +1,9 @@
 import { moveItem } from "./websiteSectionUtils.js";
+import {
+  OFFICIAL_LINK_KEYS,
+  OFFICIAL_LINK_LABELS,
+  normalizeOfficialLinks,
+} from "../../website/websiteOfficialLinks.js";
 
 /**
  * @param {{
@@ -9,6 +14,7 @@ import { moveItem } from "./websiteSectionUtils.js";
  */
 export default function ContactPageEditor({ body, onChange, disabled = false }) {
   const links = body.links ?? [];
+  const officialLinks = normalizeOfficialLinks(body.officialLinks);
 
   function updateLinks(nextLinks) {
     onChange({ ...body, links: nextLinks });
@@ -28,6 +34,16 @@ export default function ContactPageEditor({ body, onChange, disabled = false }) 
     updateLinks(links.filter((_, itemIndex) => itemIndex !== index));
   }
 
+  function updateOfficialLink(key, value) {
+    onChange({
+      ...body,
+      officialLinks: {
+        ...officialLinks,
+        [key]: value,
+      },
+    });
+  }
+
   return (
     <div className="website-page-editor">
       <label className="manual-admin__field">
@@ -45,7 +61,7 @@ export default function ContactPageEditor({ body, onChange, disabled = false }) 
           value={body.intro ?? ""}
           onChange={(event) => onChange({ ...body, intro: event.target.value })}
           disabled={disabled}
-          rows={4}
+          rows={15}
         />
       </label>
       <label className="manual-admin__field">
@@ -57,6 +73,25 @@ export default function ContactPageEditor({ body, onChange, disabled = false }) 
           disabled={disabled}
         />
       </label>
+      <div className="website-page-editor__group">
+        <h3>Official Links</h3>
+        <p className="website-page-editor__hint">
+          Optional social and community URLs. Empty fields are hidden on the public Contact page.
+        </p>
+        {OFFICIAL_LINK_KEYS.map((key) => (
+          <label key={key} className="manual-admin__field">
+            <span className="manual-admin__field-label">{OFFICIAL_LINK_LABELS[key]}</span>
+            <input
+              type="url"
+              value={officialLinks[key] ?? ""}
+              onChange={(event) => updateOfficialLink(key, event.target.value)}
+              disabled={disabled}
+              placeholder="https://..."
+              aria-label={`${OFFICIAL_LINK_LABELS[key]} URL`}
+            />
+          </label>
+        ))}
+      </div>
       <div className="website-page-editor__group">
         <h3>Resource links</h3>
         <label className="manual-admin__field">

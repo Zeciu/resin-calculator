@@ -1,6 +1,8 @@
 import { canRenderWebsiteDestination } from "./homePublicUtils.js";
+import OfficialCommunityLinks from "./OfficialCommunityLinks.jsx";
 import PublicWebsitePageShell from "./PublicWebsitePageShell.jsx";
 import WebsiteDestinationLink from "./WebsiteDestinationLink.jsx";
+import WebsitePlainText from "./WebsitePlainText.jsx";
 import { WEBSITE_PAGE_KEYS } from "./websitePublicConstants.js";
 
 const MANUAL_PATH = "/manual";
@@ -31,7 +33,7 @@ export default function PublicContactPage() {
 
         return (
           <div className="public-contact">
-            {intro ? <p className="public-contact__intro">{intro}</p> : null}
+            <WebsitePlainText text={intro} className="public-contact__intro" />
 
             {supportEmail ? (
               <p className="public-contact__email">
@@ -77,6 +79,8 @@ export default function PublicContactPage() {
                 })}
               </ul>
             ) : null}
+
+            <OfficialCommunityLinks officialLinks={body.officialLinks} />
           </div>
         );
       }}

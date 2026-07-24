@@ -119,6 +119,14 @@ describe("websiteEditorAdapter", () => {
 
     expect(editor.body.manualLinkLabel).toBe(DEFAULT_MANUAL_LINK_LABEL);
     expect(editor.body.knowledgeBaseLinkLabel).toBe(DEFAULT_KNOWLEDGE_BASE_LINK_LABEL);
+    expect(editor.body.officialLinks).toEqual({
+      website: "",
+      youtube: "",
+      facebook: "",
+      instagram: "",
+      tiktok: "",
+      linkedin: "",
+    });
   });
 
   it("splits and merges about hero section", () => {

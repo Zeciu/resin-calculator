@@ -1,4 +1,5 @@
 import { blocksToDocument, documentToBlocks, documentsSemanticallyEqual } from "../manual/manualEditorAdapter.js";
+import { emptyOfficialLinks, normalizeOfficialLinks } from "../../website/websiteOfficialLinks.js";
 import { DEFAULT_KNOWLEDGE_BASE_LINK_LABEL, DEFAULT_MANUAL_LINK_LABEL } from "./websiteConstants.js";
 import { ensureHeroSection, mergeAboutSections, splitAboutSections } from "./websiteSectionUtils.js";
 
@@ -71,6 +72,7 @@ function emptyContactBody() {
     showKnowledgeBaseLink: true,
     manualLinkLabel: DEFAULT_MANUAL_LINK_LABEL,
     knowledgeBaseLinkLabel: DEFAULT_KNOWLEDGE_BASE_LINK_LABEL,
+    officialLinks: emptyOfficialLinks(),
   };
 }
 
@@ -130,6 +132,26 @@ function cloneBody(body, pageKind) {
     pageKind,
   };
 
+  if (pageKind === "home") {
+    const cta = body?.cta && typeof body.cta === "object" ? body.cta : {};
+    const image = body?.image && typeof body.image === "object" ? body.image : {};
+    const video = body?.video && typeof body.video === "object" ? body.video : {};
+    merged.cta = {
+      label: String(cta.label ?? ""),
+      destination: String(cta.destination ?? ""),
+      visible: cta.visible === true,
+    };
+    merged.image = {
+      src: String(image.src ?? ""),
+      alt: String(image.alt ?? ""),
+      visible: image.visible === true,
+    };
+    merged.video = {
+      url: String(video.url ?? ""),
+      visible: video.visible === true,
+    };
+  }
+
   if (pageKind === "about") {
     merged.sections = ensureHeroSection(merged.sections).map(normalizeAboutSection);
   }
@@ -141,6 +163,7 @@ function cloneBody(body, pageKind) {
     merged.manualLinkLabel = merged.manualLinkLabel ?? DEFAULT_MANUAL_LINK_LABEL;
     merged.knowledgeBaseLinkLabel =
       merged.knowledgeBaseLinkLabel ?? DEFAULT_KNOWLEDGE_BASE_LINK_LABEL;
+    merged.officialLinks = normalizeOfficialLinks(merged.officialLinks);
   }
   if (pageKind === "privacy" || pageKind === "terms") {
     merged.sections = Array.isArray(merged.sections)
