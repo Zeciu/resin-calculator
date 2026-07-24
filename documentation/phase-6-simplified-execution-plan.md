@@ -1814,3 +1814,7 @@ Real `docker build`; image filesystem inspection; container startup; container H
 #### Alfred release gate (summary)
 
 Production env: `CONTENT_DATA_DIR=/app/content`, `EDITORIAL_CONTENT_MODE=release`, `COMMERCIAL_DATA_DIR=/mnt/hfzwood-content` (do not set `REQUIRE_CONTENT_DATA_DIR`). EFS mount remains `/mnt/hfzwood-content` writable. Full Docker/smoke commands, deployment/Cognito/Stripe/rollback checklists, and pass/fail gate are in `documentation/Arthur-project-handover.md` § Alfred Release Gate — Release B Handover.
+
+### C1 — Editorial Read-Amplification Fix — CLOSED
+
+Post–Release B corrective (not a Release B reopen). Manual, Knowledge Base and Website Admin list/snapshot paths now match the Glossary load-once pattern (`read_editorial_records()` once; `*_from_store` lookups in memory, including KB relation labels). Measured: Manual/KB list at n=20 from 201 → 1 full-store read; snapshot assembly → 1; Website list/snapshot → 1. Permanent regression tests added. Validation: 45 focused passed; content 508 passed / 1 skipped; backend 621 passed / 1 skipped. No API/schema/workflow changes. Release B remains CLOSED. Editorial content population may begin; Alfred’s production Release Gate remains deferred until after population. Details: `documentation/Arthur-project-handover.md` § C1.

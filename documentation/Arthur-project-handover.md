@@ -6293,3 +6293,45 @@ production deployment
 These areas are already implemented or explicitly assigned to Alfred.
 
 Until the editorial content is finished, all development effort should remain focused on content creation, editorial validation and translation quality.
+
+### C1 — Editorial Read-Amplification Fix — CLOSED
+
+Context:
+
+* Before large-scale content population, an external CTO-style assessment identified that the previous Glossary read-amplification defect might still exist in Manual, Knowledge Base and Website.
+* A read-count assessment confirmed the defect in Manual and Knowledge Base and the same bounded multi-read pattern in Website.
+* Content population was paused until correction.
+
+Correction:
+
+* Manual, Knowledge Base and Website now use the same load-once pattern already established for Glossary.
+* Admin list and snapshot-building operations call `read_editorial_records()` once and perform metadata, locale variant, identity-title and relation-label lookups from the in-memory store.
+* Knowledge Base relations no longer trigger repository reads inside relation loops.
+* Website page list reuses the store returned by page initialization.
+
+Measured result:
+
+* Manual list at 20 chapters: 201 → 1 full-store read.
+* Knowledge Base list at 20 entries: 201 → 1.
+* Manual and Knowledge Base snapshot rebuilds: corpus-dependent reads → 1 assembly read.
+* Website list and snapshot: multi-read → 1.
+* High-level publish operations may still perform a small constant number of validation/write reads, but read count no longer scales with corpus size, locale count or relation count.
+
+Validation:
+
+* Focused read-amplification tests: 45 passed.
+* Content suite: 508 passed, 1 skipped.
+* Complete backend: 621 passed, 1 skipped.
+* No frontend changes.
+* No API, schema, store-format, locale, Draft/Publish or editorial workflow changes.
+
+Permanent rule:
+
+> Editorial Admin list and snapshot-building paths must load the editorial store once per operation and use `*_from_store` helpers inside record, locale and relation loops. Ordinary disk-backed getters must not be called from such loops.
+
+Status:
+
+* C1 CLOSED.
+* Large-scale Manual, Glossary, Knowledge Base and Website content population may begin.
+* Release B remains CLOSED.
+* The production Release Gate remains Alfred’s later responsibility after the editorial population period.
