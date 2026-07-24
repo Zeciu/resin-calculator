@@ -21,3 +21,16 @@ class TranslationProvider(Protocol):
         glossary_id: str | None = None,
     ) -> TranslationResult:
         ...
+
+    def translate_many(
+        self,
+        texts: list[str],
+        *,
+        source_locale: str,
+        target_locale: str,
+        context: str | None = None,
+        content_format: Literal["plain", "html"] = "html",
+        glossary_id: str | None = None,
+    ) -> list[TranslationResult]:
+        """Translate multiple strings in one provider request when supported."""
+        ...

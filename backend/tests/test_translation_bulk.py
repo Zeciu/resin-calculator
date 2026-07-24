@@ -20,6 +20,7 @@ from content.translation.types import TranslationResult
 class FakeTranslationProvider:
     def __init__(self, *, fail_on_titles: set[str] | None = None) -> None:
         self.calls: list[dict[str, Any]] = []
+        self.batch_calls: list[dict[str, Any]] = []
         self.fail_on_titles = fail_on_titles or set()
 
     def translate(
@@ -32,18 +33,49 @@ class FakeTranslationProvider:
         content_format: Literal["plain", "html"] = "html",
         glossary_id: str | None = None,
     ) -> TranslationResult:
-        self.calls.append({"text": text, "target_locale": target_locale})
-        if text in self.fail_on_titles or (context and context in self.fail_on_titles):
-            from content.translation.exceptions import TranslationTemporaryProviderError
-
-            raise TranslationTemporaryProviderError("provider boom")
-        return TranslationResult(
-            text=f"[{target_locale}]{text}",
-            provider="deepl",
+        return self.translate_many(
+            [text],
             source_locale=source_locale,
             target_locale=target_locale,
-            billed_characters=len(text),
+            context=context,
+            content_format=content_format,
+            glossary_id=glossary_id,
+        )[0]
+
+    def translate_many(
+        self,
+        texts: list[str],
+        *,
+        source_locale: str,
+        target_locale: str,
+        context: str | None = None,
+        content_format: Literal["plain", "html"] = "html",
+        glossary_id: str | None = None,
+    ) -> list[TranslationResult]:
+        self.batch_calls.append(
+            {
+                "texts": list(texts),
+                "target_locale": target_locale,
+                "context": context,
+            }
         )
+        results: list[TranslationResult] = []
+        for text in texts:
+            self.calls.append({"text": text, "target_locale": target_locale})
+            if text in self.fail_on_titles or (context and context in self.fail_on_titles):
+                from content.translation.exceptions import TranslationTemporaryProviderError
+
+                raise TranslationTemporaryProviderError("provider boom")
+            results.append(
+                TranslationResult(
+                    text=f"[{target_locale}]{text}",
+                    provider="deepl",
+                    source_locale=source_locale,
+                    target_locale=target_locale,
+                    billed_characters=len(text),
+                )
+            )
+        return results
 
 
 @pytest.fixture
@@ -366,3 +398,168 @@ class TestBulkPreviewAndUpdate:
             headers=admin_headers(),
         )
         assert conflict_ro.status_code == 400
+
+
+class RateLimitedProvider(FakeTranslationProvider):
+    def __init__(self, *, fail_on_titles: set[str] | None = None) -> None:
+        super().__init__(fail_on_titles=fail_on_titles)
+
+    def translate_many(self, texts, **kwargs):
+        self.batch_calls.append({"texts": list(texts), "target_locale": kwargs.get("target_locale")})
+        context = kwargs.get("context")
+        for text in texts:
+            self.calls.append({"text": text, "target_locale": kwargs.get("target_locale")})
+            if text in self.fail_on_titles or (context and context in self.fail_on_titles):
+                from content.translation.exceptions import TranslationRateLimitedError
+
+                raise TranslationRateLimitedError(
+                    "DeepL rate limit exceeded.",
+                    http_status=429,
+                )
+        return [
+            TranslationResult(
+                text=f"[{kwargs['target_locale']}]{text}",
+                provider="deepl",
+                source_locale=kwargs["source_locale"],
+                target_locale=kwargs["target_locale"],
+                billed_characters=len(text),
+            )
+            for text in texts
+        ]
+
+
+class QuotaExceededProvider(FakeTranslationProvider):
+    def __init__(self, *, fail_on_titles: set[str] | None = None) -> None:
+        super().__init__(fail_on_titles=fail_on_titles)
+
+    def translate_many(self, texts, **kwargs):
+        self.batch_calls.append({"texts": list(texts), "target_locale": kwargs.get("target_locale")})
+        context = kwargs.get("context")
+        for text in texts:
+            self.calls.append({"text": text, "target_locale": kwargs.get("target_locale")})
+            if text in self.fail_on_titles or (context and context in self.fail_on_titles):
+                from content.translation.exceptions import TranslationQuotaExceededError
+
+                raise TranslationQuotaExceededError(
+                    "DeepL quota exceeded.",
+                    http_status=456,
+                )
+        return [
+            TranslationResult(
+                text=f"[{kwargs['target_locale']}]{text}",
+                provider="deepl",
+                source_locale=kwargs["source_locale"],
+                target_locale=kwargs["target_locale"],
+                billed_characters=len(text),
+            )
+            for text in texts
+        ]
+
+
+class TestBulkEarlyStop:
+    def test_rate_limit_stops_remaining_items(self, repository):
+        first = seed_chapter(repository, "First")
+        second = seed_chapter(repository, "Second")
+        third = seed_chapter(repository, "Third")
+        provider = RateLimitedProvider(fail_on_titles={"Second"})
+        bulk = TranslationBulkService(repository, provider=provider)
+        result = bulk.process_chunk(
+            module="manual",
+            target_locale="en",
+            offset=0,
+            limit=20,
+        )
+        assert result["stoppedEarly"] is True
+        assert result["stopReason"] == "rate_limited"
+        assert result["done"] is True
+        assert result["nextOffset"] is None
+        assert result["unprocessedCount"] >= 1
+        by_id = {item["contentId"]: item for item in result["items"]}
+        assert by_id[first]["status"] == "completed"
+        assert by_id[second]["status"] == "failed"
+        assert third not in by_id
+        assert repository.get_manual_variant(first, "en") is not None
+        assert repository.get_manual_variant(second, "en") is None
+        assert repository.get_manual_variant(third, "en") is None
+        assert result["chunkSummary"]["providerCallItems"] == 1
+        assert result["chunkSummary"]["generated"] == 1
+        assert result["chunkSummary"]["failed"] == 1
+
+    def test_rerun_after_partial_rate_limit_skips_completed(self, repository):
+        first = seed_chapter(repository, "AgainFirst")
+        second = seed_chapter(repository, "AgainSecond")
+        provider = RateLimitedProvider(fail_on_titles={"AgainSecond"})
+        bulk = TranslationBulkService(repository, provider=provider)
+        first_run = bulk.process_chunk(
+            module="manual",
+            target_locale="en",
+            offset=0,
+            limit=20,
+        )
+        assert first_run["stoppedEarly"] is True
+        assert repository.get_manual_variant(first, "en") is not None
+
+        provider2 = FakeTranslationProvider()
+        bulk2 = TranslationBulkService(repository, provider=provider2)
+        second_run = bulk2.process_chunk(
+            module="manual",
+            target_locale="en",
+            offset=0,
+            limit=20,
+        )
+        by_id = {item["contentId"]: item for item in second_run["items"]}
+        assert by_id[first]["action"] == "skip_current"
+        assert by_id[second]["action"] == "generate_full"
+        assert by_id[second]["status"] == "completed"
+        assert repository.get_manual_variant(second, "en") is not None
+        assert second_run["stoppedEarly"] is False
+
+    def test_quota_exceeded_stops_without_retrying_remaining(self, repository):
+        first = seed_chapter(repository, "QuotaFirst")
+        second = seed_chapter(repository, "QuotaSecond")
+        third = seed_chapter(repository, "QuotaThird")
+        provider = QuotaExceededProvider(fail_on_titles={"QuotaSecond"})
+        bulk = TranslationBulkService(repository, provider=provider)
+        result = bulk.process_chunk(
+            module="manual",
+            target_locale="en",
+            offset=0,
+            limit=20,
+        )
+        assert result["stoppedEarly"] is True
+        assert result["stopReason"] == "quota_exceeded"
+        assert result["unprocessedCount"] >= 1
+        by_id = {item["contentId"]: item for item in result["items"]}
+        assert by_id[first]["status"] == "completed"
+        assert by_id[second]["status"] == "failed"
+        assert third not in by_id
+        assert repository.get_manual_variant(first, "en") is not None
+        assert repository.get_manual_variant(third, "en") is None
+
+    def test_ordinary_item_failure_does_not_stop_bulk(self, repository):
+        good = seed_chapter(repository, "StillGood")
+        bad = seed_chapter(repository, "StillBad")
+        later = seed_chapter(repository, "StillLater")
+        provider = FakeTranslationProvider(fail_on_titles={"StillBad"})
+        bulk = TranslationBulkService(repository, provider=provider)
+        result = bulk.process_chunk(
+            module="manual",
+            target_locale="en",
+            offset=0,
+            limit=20,
+        )
+        assert result["stoppedEarly"] is False
+        by_id = {item["contentId"]: item for item in result["items"]}
+        assert by_id[good]["status"] == "completed"
+        assert by_id[bad]["status"] == "failed"
+        assert by_id[later]["status"] == "completed"
+        assert repository.get_manual_variant(later, "en") is not None
+
+    def test_nothing_published_on_generate(self, repository):
+        cid = seed_chapter(repository, "DraftOnly")
+        bulk = TranslationBulkService(repository, provider=FakeTranslationProvider())
+        bulk.process_chunk(module="manual", target_locale="en", offset=0, limit=20)
+        variant = repository.get_manual_variant(cid, "en")
+        assert variant is not None
+        assert variant["status"] == "draft"
+        assert repository.read_manual_snapshot("en") is None

@@ -13,7 +13,10 @@ from fastapi.testclient import TestClient
 from content.translation.config import DeepLConfig, DEFAULT_TIMEOUT_SECONDS, load_deepl_config
 from content.translation.deepl import (
     DEFAULT_RETRY_DELAY_SECONDS,
+    MAX_ATTEMPTS,
+    MAX_BACKOFF_SECONDS,
     MAX_REQUEST_BODY_BYTES,
+    MAX_RETRY_AFTER_SECONDS,
     DeepLTranslationProvider,
 )
 from content.translation.exceptions import (
@@ -58,6 +61,23 @@ def _success_body(
     if billed is not None:
         item["billed_characters"] = billed
     return {"translations": [item]}
+
+
+def _success_body_many(
+    texts: list[str],
+    *,
+    detected: str | None = "RO",
+    billed: int | None = 12,
+) -> dict[str, Any]:
+    items: list[dict[str, Any]] = []
+    for text in texts:
+        item: dict[str, Any] = {"text": text}
+        if detected is not None:
+            item["detected_source_language"] = detected
+        if billed is not None:
+            item["billed_characters"] = billed
+        items.append(item)
+    return {"translations": items}
 
 
 class RecordingTransport(httpx.BaseTransport):
@@ -477,13 +497,17 @@ def test_http_error_mapping(status: int, exc_type: type[Exception]):
         return httpx.Response(status, json={"message": "err"})
 
     provider, _ = _provider_with_handler(handler)
-    with pytest.raises(exc_type):
+    with pytest.raises(exc_type) as exc_info:
         provider.translate("text", source_locale="ro", target_locale="en")
-    # Non-retryable statuses: 1 attempt; retryable: 2
+    # Non-retryable statuses: 1 attempt; retryable: MAX_ATTEMPTS
     if status in {429, 529, 500, 502, 503, 504}:
-        assert calls["n"] == 2
+        assert calls["n"] == MAX_ATTEMPTS
     else:
         assert calls["n"] == 1
+    if status in {429, 529}:
+        assert getattr(exc_info.value, "http_status", None) == status
+    if status == 456:
+        assert getattr(exc_info.value, "http_status", None) == 456
 
 
 def test_connection_failure_retries_once():
@@ -496,7 +520,7 @@ def test_connection_failure_retries_once():
     provider, transport = _provider_with_handler(handler)
     with pytest.raises(TranslationTemporaryProviderError):
         provider.translate("text", source_locale="ro", target_locale="en")
-    assert attempts["n"] == 2
+    assert attempts["n"] == MAX_ATTEMPTS
 
 
 def test_connect_timeout_retries_once():
@@ -509,7 +533,7 @@ def test_connect_timeout_retries_once():
     provider, _ = _provider_with_handler(handler)
     with pytest.raises(TranslationTimeoutError):
         provider.translate("text", source_locale="ro", target_locale="en")
-    assert attempts["n"] == 2
+    assert attempts["n"] == MAX_ATTEMPTS
 
 
 @pytest.mark.parametrize(
@@ -553,7 +577,7 @@ class TestRetryBehaviour:
         assert result.text == "ok"
         assert attempts["n"] == 2
 
-    def test_retry_after_respected_within_cap(self):
+    def test_retry_after_respected_without_five_second_cap(self):
         sleeps: list[float] = []
         attempts = {"n": 0}
 
@@ -565,7 +589,8 @@ class TestRetryBehaviour:
 
         provider, _ = _provider_with_handler(handler, sleep=sleeps.append)
         provider.translate("text", source_locale="ro", target_locale="en")
-        assert sleeps == [5.0]
+        assert sleeps == [9.0]
+        assert 9.0 <= MAX_RETRY_AFTER_SECONDS
 
     def test_retry_after_small_value_used(self):
         sleeps: list[float] = []
@@ -581,6 +606,25 @@ class TestRetryBehaviour:
         provider.translate("text", source_locale="ro", target_locale="en")
         assert sleeps == [1.5]
 
+    def test_exponential_backoff_when_retry_after_missing_on_529(self):
+        sleeps: list[float] = []
+        attempts = {"n": 0}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            attempts["n"] += 1
+            return httpx.Response(529, json={})
+
+        provider, _ = _provider_with_handler(handler, sleep=sleeps.append)
+        with pytest.raises(TranslationRateLimitedError) as exc_info:
+            provider.translate("text", source_locale="ro", target_locale="en")
+        assert attempts["n"] == MAX_ATTEMPTS
+        assert exc_info.value.http_status == 529
+        expected = [
+            min(DEFAULT_RETRY_DELAY_SECONDS * (2**i), MAX_BACKOFF_SECONDS)
+            for i in range(MAX_ATTEMPTS - 1)
+        ]
+        assert sleeps == expected
+
     def test_default_delay_when_retry_after_missing(self):
         sleeps: list[float] = []
         attempts = {"n": 0}
@@ -595,6 +639,49 @@ class TestRetryBehaviour:
         provider.translate("text", source_locale="ro", target_locale="en")
         assert sleeps == [DEFAULT_RETRY_DELAY_SECONDS]
 
+    def test_temporary_failure_succeeds_on_later_retry(self):
+        attempts = {"n": 0}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            attempts["n"] += 1
+            if attempts["n"] < 3:
+                return httpx.Response(429, json={})
+            return httpx.Response(200, json=_success_body("recovered"))
+
+        provider, _ = _provider_with_handler(handler)
+        result = provider.translate("text", source_locale="ro", target_locale="en")
+        assert result.text == "recovered"
+        assert attempts["n"] == 3
+
+    def test_rate_limit_after_max_attempts_raises(self):
+        attempts = {"n": 0}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            attempts["n"] += 1
+            return httpx.Response(429, json={})
+
+        provider, _ = _provider_with_handler(handler)
+        with pytest.raises(TranslationRateLimitedError) as exc_info:
+            provider.translate("text", source_locale="ro", target_locale="en")
+        assert attempts["n"] == MAX_ATTEMPTS
+        assert exc_info.value.http_status == 429
+        assert AUTH_KEY not in str(exc_info.value)
+
+    def test_quota_456_does_not_retry(self):
+        attempts = {"n": 0}
+
+        def handler(request: httpx.Request) -> httpx.Response:
+            attempts["n"] += 1
+            return httpx.Response(456, json={"message": "Quota exceeded"})
+
+        provider, _ = _provider_with_handler(handler)
+        with pytest.raises(TranslationQuotaExceededError) as exc_info:
+            provider.translate("text", source_locale="ro", target_locale="en")
+        assert attempts["n"] == 1
+        assert exc_info.value.http_status == 456
+        assert AUTH_KEY not in str(exc_info.value)
+        assert "Quota exceeded" not in str(exc_info.value)
+
     def test_malformed_200_does_not_retry(self):
         attempts = {"n": 0}
 
@@ -607,7 +694,7 @@ class TestRetryBehaviour:
             provider.translate("text", source_locale="ro", target_locale="en")
         assert attempts["n"] == 1
 
-    def test_never_exceeds_two_attempts(self):
+    def test_never_exceeds_max_attempts(self):
         attempts = {"n": 0}
 
         def handler(request: httpx.Request) -> httpx.Response:
@@ -617,7 +704,56 @@ class TestRetryBehaviour:
         provider, _ = _provider_with_handler(handler)
         with pytest.raises(TranslationTemporaryProviderError):
             provider.translate("text", source_locale="ro", target_locale="en")
-        assert attempts["n"] == 2
+        assert attempts["n"] == MAX_ATTEMPTS
+
+
+# ---------------------------------------------------------------------------
+# Batch translate_many
+# ---------------------------------------------------------------------------
+
+
+class TestTranslateMany:
+    def test_multiple_strings_one_request_preserves_order(self):
+        def handler(request: httpx.Request) -> httpx.Response:
+            body = _json_body(request)
+            assert body["text"] == ["Alpha", "Beta", "Gamma"]
+            return httpx.Response(
+                200,
+                json=_success_body_many(["A", "B", "C"]),
+            )
+
+        provider, transport = _provider_with_handler(handler)
+        results = provider.translate_many(
+            ["Alpha", "Beta", "Gamma"],
+            source_locale="ro",
+            target_locale="en",
+            content_format="plain",
+        )
+        assert [r.text for r in results] == ["A", "B", "C"]
+        assert len(transport.requests) == 1
+
+    def test_count_mismatch_fails_safely(self):
+        def handler(request: httpx.Request) -> httpx.Response:
+            return httpx.Response(200, json=_success_body_many(["only-one"]))
+
+        provider, _ = _provider_with_handler(handler)
+        with pytest.raises(TranslationMalformedResponseError):
+            provider.translate_many(
+                ["one", "two"],
+                source_locale="ro",
+                target_locale="en",
+            )
+
+    def test_translate_delegates_to_translate_many(self):
+        def handler(request: httpx.Request) -> httpx.Response:
+            body = _json_body(request)
+            assert body["text"] == ["solo"]
+            return httpx.Response(200, json=_success_body("ok"))
+
+        provider, transport = _provider_with_handler(handler)
+        result = provider.translate("solo", source_locale="ro", target_locale="en")
+        assert result.text == "ok"
+        assert len(transport.requests) == 1
 
 
 # ---------------------------------------------------------------------------

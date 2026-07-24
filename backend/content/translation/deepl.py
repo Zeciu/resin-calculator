@@ -20,7 +20,6 @@ from content.translation.exceptions import (
     TranslationRequestTooLargeError,
     TranslationTemporaryProviderError,
     TranslationTimeoutError,
-    TranslationUnsupportedLocaleError,
 )
 from content.translation.locales import map_source_locale, map_target_locale, normalize_app_locale
 from content.translation.types import TranslationResult
@@ -29,9 +28,12 @@ logger = logging.getLogger(__name__)
 
 PROVIDER_NAME = "deepl"
 MAX_REQUEST_BODY_BYTES = 128 * 1024
-MAX_ATTEMPTS = 2
-MAX_RETRY_AFTER_SECONDS = 5.0
+# Conservative finite retries for temporary provider failures (429/529/5xx).
+MAX_ATTEMPTS = 4
+# Safety bound only — not the previous hard 5s cap on Retry-After.
+MAX_RETRY_AFTER_SECONDS = 120.0
 DEFAULT_RETRY_DELAY_SECONDS = 0.5
+MAX_BACKOFF_SECONDS = 16.0
 SUPPORTED_CONTENT_FORMATS = frozenset({"plain", "html"})
 
 # The adapter cannot determine whether an ambiguously timed-out request was
@@ -76,9 +78,28 @@ class DeepLTranslationProvider:
         # configure, create, validate, synchronize, or manage glossaries.
         glossary_id: str | None = None,
     ) -> TranslationResult:
+        return self.translate_many(
+            [text],
+            source_locale=source_locale,
+            target_locale=target_locale,
+            context=context,
+            content_format=content_format,
+            glossary_id=glossary_id,
+        )[0]
+
+    def translate_many(
+        self,
+        texts: list[str],
+        *,
+        source_locale: str,
+        target_locale: str,
+        context: str | None = None,
+        content_format: Literal["plain", "html"] = "html",
+        glossary_id: str | None = None,
+    ) -> list[TranslationResult]:
         self._config.require_available()
         self._validate_inputs(
-            text,
+            texts,
             source_locale=source_locale,
             target_locale=target_locale,
             content_format=content_format,
@@ -95,7 +116,7 @@ class DeepLTranslationProvider:
         )
 
         payload: dict[str, Any] = {
-            "text": [text],
+            "text": list(texts),
             "source_lang": deepl_source,
             "target_lang": deepl_target,
             "show_billed_characters": True,
@@ -128,20 +149,28 @@ class DeepLTranslationProvider:
         )
         return self._parse_success_response(
             response,
+            expected_count=len(texts),
             source_locale=app_source,
             target_locale=app_target,
         )
 
     def _validate_inputs(
         self,
-        text: str,
+        texts: list[str],
         *,
         source_locale: str,
         target_locale: str,
         content_format: str,
     ) -> None:
-        if not isinstance(text, str) or not text.strip():
-            raise TranslationInvalidRequestError("Translation text must be a non-empty string.")
+        if not isinstance(texts, list) or not texts:
+            raise TranslationInvalidRequestError(
+                "Translation texts must be a non-empty list of strings."
+            )
+        for text in texts:
+            if not isinstance(text, str) or not text.strip():
+                raise TranslationInvalidRequestError(
+                    "Translation text must be a non-empty string."
+                )
         if content_format not in SUPPORTED_CONTENT_FORMATS:
             raise TranslationInvalidRequestError("Unsupported content_format.")
 
@@ -188,7 +217,7 @@ class DeepLTranslationProvider:
                 )
                 last_error = TranslationTimeoutError("DeepL connect timeout.")
                 if attempt < MAX_ATTEMPTS:
-                    self._sleep(DEFAULT_RETRY_DELAY_SECONDS)
+                    self._sleep(self._backoff_delay(attempt))
                     continue
                 raise last_error from exc
             except httpx.ConnectError as exc:
@@ -204,7 +233,7 @@ class DeepLTranslationProvider:
                 )
                 last_error = TranslationTemporaryProviderError("DeepL connection failure.")
                 if attempt < MAX_ATTEMPTS:
-                    self._sleep(DEFAULT_RETRY_DELAY_SECONDS)
+                    self._sleep(self._backoff_delay(attempt))
                     continue
                 raise last_error from exc
             except httpx.ReadTimeout as exc:
@@ -287,7 +316,7 @@ class DeepLTranslationProvider:
             )
 
             if self._is_retryable_status(status) and attempt < MAX_ATTEMPTS:
-                self._sleep(self._retry_delay(response))
+                self._sleep(self._retry_delay(response, attempt=attempt))
                 continue
 
             raise self._map_http_error(status) from None
@@ -295,17 +324,22 @@ class DeepLTranslationProvider:
         # Unreachable: loop always returns or raises.
         raise TranslationTemporaryProviderError("DeepL request failed.") from last_error
 
-    def _retry_delay(self, response: httpx.Response) -> float:
+    def _retry_delay(self, response: httpx.Response, *, attempt: int) -> float:
         retry_after = response.headers.get("Retry-After")
         if retry_after is not None and retry_after.strip():
             try:
                 seconds = float(retry_after.strip())
                 if seconds < 0:
-                    return DEFAULT_RETRY_DELAY_SECONDS
+                    return self._backoff_delay(attempt)
                 return min(seconds, MAX_RETRY_AFTER_SECONDS)
             except ValueError:
-                return DEFAULT_RETRY_DELAY_SECONDS
-        return DEFAULT_RETRY_DELAY_SECONDS
+                return self._backoff_delay(attempt)
+        return self._backoff_delay(attempt)
+
+    @staticmethod
+    def _backoff_delay(attempt: int) -> float:
+        delay = DEFAULT_RETRY_DELAY_SECONDS * (2 ** (attempt - 1))
+        return min(delay, MAX_BACKOFF_SECONDS)
 
     @staticmethod
     def _is_retryable_status(status: int) -> bool:
@@ -324,9 +358,15 @@ class DeepLTranslationProvider:
         if status == 413:
             return TranslationRequestTooLargeError("DeepL rejected the request as too large.")
         if status in {429, 529}:
-            return TranslationRateLimitedError("DeepL rate limit exceeded.")
+            return TranslationRateLimitedError(
+                "DeepL rate limit exceeded.",
+                http_status=status,
+            )
         if status == 456:
-            return TranslationQuotaExceededError("DeepL quota exceeded.")
+            return TranslationQuotaExceededError(
+                "DeepL quota exceeded.",
+                http_status=456,
+            )
         if status in {500, 502, 503, 504}:
             return TranslationTemporaryProviderError("DeepL temporary provider failure.")
         return TranslationTemporaryProviderError(f"DeepL request failed with HTTP {status}.")
@@ -335,9 +375,10 @@ class DeepLTranslationProvider:
         self,
         response: httpx.Response,
         *,
+        expected_count: int,
         source_locale: str,
         target_locale: str,
-    ) -> TranslationResult:
+    ) -> list[TranslationResult]:
         try:
             data = response.json()
         except (ValueError, json.JSONDecodeError) as exc:
@@ -349,45 +390,65 @@ class DeepLTranslationProvider:
         translations = data.get("translations")
         if not isinstance(translations, list):
             raise TranslationMalformedResponseError("DeepL response missing translations list.")
-        if not translations:
-            raise TranslationMalformedResponseError("DeepL response contained no translations.")
+        if len(translations) != expected_count:
+            raise TranslationMalformedResponseError(
+                "DeepL returned an unexpected number of translations."
+            )
 
-        first = translations[0]
-        if not isinstance(first, dict):
-            raise TranslationMalformedResponseError("DeepL translation entry has an incompatible shape.")
+        results: list[TranslationResult] = []
+        total_billed = 0
+        billed_known = True
+        for entry in translations:
+            if not isinstance(entry, dict):
+                raise TranslationMalformedResponseError(
+                    "DeepL translation entry has an incompatible shape."
+                )
 
-        translated = first.get("text")
-        if not isinstance(translated, str):
-            raise TranslationMalformedResponseError("DeepL translation text is missing or invalid.")
-        if not translated:
-            raise TranslationMalformedResponseError("DeepL returned an empty translation.")
+            translated = entry.get("text")
+            if not isinstance(translated, str):
+                raise TranslationMalformedResponseError(
+                    "DeepL translation text is missing or invalid."
+                )
+            if not translated:
+                raise TranslationMalformedResponseError("DeepL returned an empty translation.")
 
-        detected = first.get("detected_source_language")
-        if detected is not None and not isinstance(detected, str):
-            raise TranslationMalformedResponseError("DeepL detected_source_language is invalid.")
+            detected = entry.get("detected_source_language")
+            if detected is not None and not isinstance(detected, str):
+                raise TranslationMalformedResponseError(
+                    "DeepL detected_source_language is invalid."
+                )
 
-        billed = first.get("billed_characters")
-        if billed is not None:
-            if isinstance(billed, bool) or not isinstance(billed, int):
-                raise TranslationMalformedResponseError("DeepL billed_characters is invalid.")
+            billed = entry.get("billed_characters")
+            if billed is not None:
+                if isinstance(billed, bool) or not isinstance(billed, int):
+                    raise TranslationMalformedResponseError(
+                        "DeepL billed_characters is invalid."
+                    )
+                total_billed += billed
+            else:
+                billed_known = False
 
-        result = TranslationResult(
-            text=translated,
-            provider=PROVIDER_NAME,
-            source_locale=source_locale,
-            target_locale=target_locale,
-            detected_source_language=detected,
-            billed_characters=billed,
-        )
+            results.append(
+                TranslationResult(
+                    text=translated,
+                    provider=PROVIDER_NAME,
+                    source_locale=source_locale,
+                    target_locale=target_locale,
+                    detected_source_language=detected,
+                    billed_characters=billed,
+                )
+            )
+
         logger.info(
             "deepl translate result provider=%s source_locale=%s target_locale=%s "
-            "result_category=success billed_characters=%s",
+            "result_category=success translation_count=%s billed_characters=%s",
             PROVIDER_NAME,
             source_locale,
             target_locale,
-            billed if billed is not None else "unknown",
+            expected_count,
+            total_billed if billed_known else "unknown",
         )
-        return result
+        return results
 
     def _log_attempt(
         self,
@@ -420,4 +481,8 @@ __all__ = [
     "DeepLTranslationProvider",
     "PROVIDER_NAME",
     "MAX_REQUEST_BODY_BYTES",
+    "MAX_ATTEMPTS",
+    "MAX_RETRY_AFTER_SECONDS",
+    "DEFAULT_RETRY_DELAY_SECONDS",
+    "MAX_BACKOFF_SECONDS",
 ]

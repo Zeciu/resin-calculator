@@ -79,3 +79,6 @@ class BulkUpdateResponse(BaseModel):
     done: bool
     chunkSummary: BulkChunkSummaryModel
     items: list[BulkItemResultModel]
+    stoppedEarly: bool = False
+    stopReason: Literal["rate_limited", "quota_exceeded"] | None = None
+    unprocessedCount: int = 0

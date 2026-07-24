@@ -359,16 +359,54 @@ class TranslationUpdateService:
         if isinstance(provider, DeepLTranslationProvider):
             provider._config.require_available()
 
-        translated_pairs: list[tuple[Any, str]] = []
-        for item in items:
-            result = provider.translate(
-                item.text,
+        # Batch all fields for this item into one provider request when supported.
+        # Mixed plain/html uses html tag handling (safe for plain strings).
+        formats = {item.content_format for item in items}
+        content_format: Literal["plain", "html"] = (
+            "html" if "html" in formats else "plain"
+        )
+        contexts = [
+            item.context.strip()
+            for item in items
+            if isinstance(item.context, str) and item.context.strip()
+        ]
+        batch_context = contexts[0] if contexts else None
+        texts = [item.text for item in items]
+
+        translate_many = getattr(provider, "translate_many", None)
+        if callable(translate_many):
+            results = translate_many(
+                texts,
                 source_locale=CANONICAL_SOURCE_LOCALE,
                 target_locale=target_locale,
-                context=item.context,
-                content_format=item.content_format,
+                context=batch_context,
+                content_format=content_format,
             )
-            translated_pairs.append((item, result.text))
+        else:
+            results = [
+                provider.translate(
+                    text,
+                    source_locale=CANONICAL_SOURCE_LOCALE,
+                    target_locale=target_locale,
+                    context=batch_context,
+                    content_format=content_format,
+                )
+                for text in texts
+            ]
+
+        if not isinstance(results, list) or len(results) != len(items):
+            raise TranslationUpdateError(
+                "Translation provider returned an unexpected number of translations."
+            )
+
+        translated_pairs: list[tuple[Any, str]] = []
+        for item, result in zip(items, results, strict=True):
+            translated = getattr(result, "text", None)
+            if not isinstance(translated, str):
+                raise TranslationUpdateError(
+                    "Translation provider returned an invalid translation entry."
+                )
+            translated_pairs.append((item, translated))
 
         new_body = reconstruct_draft_body(draft_body, translated_pairs)
         source_revision = read_source_revision(ro_variant) or 1

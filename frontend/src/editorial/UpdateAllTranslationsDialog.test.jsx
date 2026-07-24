@@ -165,5 +165,107 @@ describe("UpdateAllTranslationsDialog", () => {
     await user.click(screen.getByRole("button", { name: "Start update" }));
     expect(await screen.findByText(/Broken: provider boom/)).toBeInTheDocument();
     expect(screen.getByText(/Failed: 1/)).toBeInTheDocument();
+    expect(screen.getByText(/Items generated via DeepL: 1/)).toBeInTheDocument();
+  });
+
+  it("shows rate-limit pause messaging and renamed DeepL counter", async () => {
+    const user = userEvent.setup();
+    previewBulkTranslations.mockResolvedValue({
+      total: 4,
+      counts: {
+        missing: 4,
+        current: 0,
+        mediaOnlyOutdated: 0,
+        textOutdated: 0,
+        manualUntracked: 0,
+        invalid: 0,
+      },
+      items: [],
+    });
+    runBulkUpdateAll.mockResolvedValue({
+      total: 4,
+      summary: {
+        total: 3,
+        generated: 2,
+        mediaSynced: 0,
+        skippedCurrent: 0,
+        skippedTextOutdated: 0,
+        skippedManualUntracked: 0,
+        skippedInvalid: 0,
+        failed: 1,
+        providerCallItems: 2,
+      },
+      items: [],
+      stoppedEarly: true,
+      stopReason: "rate_limited",
+      unprocessedCount: 1,
+    });
+
+    render(
+      <UpdateAllTranslationsDialog
+        isOpen
+        module="website"
+        locale="es"
+        onClose={() => {}}
+      />,
+    );
+
+    await screen.findByRole("button", { name: "Start update" });
+    await user.click(screen.getByRole("button", { name: "Start update" }));
+    expect(
+      await screen.findByText(/DeepL temporarily limited requests/i),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/1 item left unprocessed/i)).toBeInTheDocument();
+    expect(screen.getByText(/Items generated via DeepL: 2/)).toBeInTheDocument();
+    expect(screen.queryByText(/DeepL item calls/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Update finished/i)).not.toBeInTheDocument();
+  });
+
+  it("shows quota pause messaging", async () => {
+    const user = userEvent.setup();
+    previewBulkTranslations.mockResolvedValue({
+      total: 3,
+      counts: {
+        missing: 3,
+        current: 0,
+        mediaOnlyOutdated: 0,
+        textOutdated: 0,
+        manualUntracked: 0,
+        invalid: 0,
+      },
+      items: [],
+    });
+    runBulkUpdateAll.mockResolvedValue({
+      total: 3,
+      summary: {
+        total: 2,
+        generated: 1,
+        mediaSynced: 0,
+        skippedCurrent: 0,
+        skippedTextOutdated: 0,
+        skippedManualUntracked: 0,
+        skippedInvalid: 0,
+        failed: 1,
+        providerCallItems: 1,
+      },
+      items: [],
+      stoppedEarly: true,
+      stopReason: "quota_exceeded",
+      unprocessedCount: 1,
+    });
+
+    render(
+      <UpdateAllTranslationsDialog
+        isOpen
+        module="manual"
+        locale="fr"
+        onClose={() => {}}
+      />,
+    );
+
+    await screen.findByRole("button", { name: "Start update" });
+    await user.click(screen.getByRole("button", { name: "Start update" }));
+    expect(await screen.findByText(/account quota has been exceeded/i)).toBeInTheDocument();
+    expect(screen.getByText(/1 item left unprocessed/i)).toBeInTheDocument();
   });
 });

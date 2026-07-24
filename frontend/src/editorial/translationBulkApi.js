@@ -94,8 +94,6 @@ export function mergeBulkSummaries(left, right) {
 }
 
 /**
- * Run chunked Update All Translations until done.
- *
  * @param {BulkModule} module
  * @param {string} locale
  * @param {{
@@ -130,6 +128,7 @@ export async function runBulkUpdateAll(module, locale, options = {}) {
     items.push(...(chunk.items ?? []));
 
     const last = chunk.items?.[chunk.items.length - 1] ?? null;
+    const stoppedEarly = Boolean(chunk.stoppedEarly);
     onProgress?.({
       processed: items.length,
       total,
@@ -137,11 +136,18 @@ export async function runBulkUpdateAll(module, locale, options = {}) {
       currentAction: last?.action ?? null,
       summary,
       items: [...items],
-      done: Boolean(chunk.done),
+      done: Boolean(chunk.done) || stoppedEarly,
     });
 
-    if (chunk.done) {
-      return { total, summary, items };
+    if (stoppedEarly || chunk.done) {
+      return {
+        total,
+        summary,
+        items,
+        stoppedEarly,
+        stopReason: chunk.stopReason ?? null,
+        unprocessedCount: chunk.unprocessedCount ?? 0,
+      };
     }
 
     offset = chunk.nextOffset ?? offset + (chunk.items?.length ?? limit);

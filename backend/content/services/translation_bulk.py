@@ -21,9 +21,15 @@ from content.services.translation_update import (
     TranslationUpdateService,
     TranslationUpdateState,
 )
-from content.translation.exceptions import TranslationError
+from content.translation.exceptions import (
+    TranslationError,
+    TranslationQuotaExceededError,
+    TranslationRateLimitedError,
+)
 from content.translation.provider import TranslationProvider
 from content.translation_metadata import CANONICAL_SOURCE_LOCALE
+
+BulkStopReason = Literal["rate_limited", "quota_exceeded"]
 
 DEFAULT_BULK_CHUNK_SIZE = 5
 MAX_BULK_CHUNK_SIZE = 20
@@ -50,6 +56,7 @@ class BulkItemResult:
     status: BulkItemStatus
     provider_called: bool
     error: str | None = None
+    stop_reason: BulkStopReason | None = None
 
 
 @dataclass
@@ -256,14 +263,27 @@ class TranslationBulkService:
             chunk = plans[offset : offset + chunk_limit]
             results: list[BulkItemResult] = []
             summary = BulkSummary()
+            stopped_early = False
+            stop_reason: BulkStopReason | None = None
 
             for plan in chunk:
                 result = self._execute_plan(module, parsed, plan, include_text_outdated)
                 results.append(result)
                 summary.add_result(result)
+                if result.stop_reason in ("rate_limited", "quota_exceeded"):
+                    stopped_early = True
+                    stop_reason = result.stop_reason
+                    break
 
-            next_offset = offset + len(chunk)
-            done = next_offset >= total
+            processed_through = offset + len(results)
+            unprocessed_count = max(0, total - processed_through) if stopped_early else 0
+            if stopped_early:
+                next_offset = None
+                done = True
+            else:
+                next_offset_value = offset + len(chunk)
+                done = next_offset_value >= total
+                next_offset = None if done else next_offset_value
             return {
                 "module": module,
                 "locale": parsed,
@@ -271,10 +291,13 @@ class TranslationBulkService:
                 "offset": offset,
                 "limit": chunk_limit,
                 "total": total,
-                "nextOffset": None if done else next_offset,
+                "nextOffset": next_offset,
                 "done": done,
                 "chunkSummary": summary.as_dict(),
                 "items": [self._result_dict(r) for r in results],
+                "stoppedEarly": stopped_early,
+                "stopReason": stop_reason,
+                "unprocessedCount": unprocessed_count,
             }
         finally:
             _release_bulk_run(module, parsed)
@@ -467,6 +490,30 @@ class TranslationBulkService:
                 status="failed",
                 provider_called=False,
                 error=exc.message,
+            )
+        except TranslationRateLimitedError as exc:
+            return BulkItemResult(
+                content_id=plan.content_id,
+                label=plan.label,
+                initial_state=plan.state.value,
+                action=plan.planned_action,
+                final_state=None,
+                status="failed",
+                provider_called=False,
+                error=str(exc),
+                stop_reason="rate_limited",
+            )
+        except TranslationQuotaExceededError as exc:
+            return BulkItemResult(
+                content_id=plan.content_id,
+                label=plan.label,
+                initial_state=plan.state.value,
+                action=plan.planned_action,
+                final_state=None,
+                status="failed",
+                provider_called=False,
+                error=str(exc),
+                stop_reason="quota_exceeded",
             )
         except (TranslationUpdateError, TranslationError, KeyError, ValueError) as exc:
             message = getattr(exc, "message", None) or str(exc)

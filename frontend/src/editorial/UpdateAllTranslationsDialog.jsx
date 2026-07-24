@@ -31,6 +31,9 @@ export default function UpdateAllTranslationsDialog({
   const [progress, setProgress] = useState(null);
   const [finalSummary, setFinalSummary] = useState(null);
   const [failedItems, setFailedItems] = useState([]);
+  const [stoppedEarly, setStoppedEarly] = useState(false);
+  const [stopReason, setStopReason] = useState(null);
+  const [unprocessedCount, setUnprocessedCount] = useState(0);
 
   useEffect(() => {
     if (!isOpen) {
@@ -45,6 +48,9 @@ export default function UpdateAllTranslationsDialog({
     setProgress(null);
     setFinalSummary(null);
     setFailedItems([]);
+    setStoppedEarly(false);
+    setStopReason(null);
+    setUnprocessedCount(0);
 
     previewBulkTranslations(module, locale, { includeTextOutdated: false })
       .then((result) => {
@@ -95,6 +101,9 @@ export default function UpdateAllTranslationsDialog({
       });
       setFinalSummary(result.summary);
       setFailedItems(result.items.filter((item) => item.status === "failed"));
+      setStoppedEarly(Boolean(result.stoppedEarly));
+      setStopReason(result.stopReason ?? null);
+      setUnprocessedCount(result.unprocessedCount ?? 0);
       setPhase("summary");
       onRunningChange?.(false);
       onCompleted?.();
@@ -201,10 +210,31 @@ export default function UpdateAllTranslationsDialog({
 
         {phase === "summary" && finalSummary ? (
           <>
-            <p className="editorial-bulk-dialog__lead">
-              Update finished. Translations are saved as drafts. Review as needed, then use
-              Publish all drafts for {localeName}.
-            </p>
+            {stopReason === "rate_limited" ? (
+              <p className="editorial-bulk-dialog__lead">
+                Translation processing was paused because DeepL temporarily limited requests.
+                Completed drafts were saved. Run Update All Translations again later to continue
+                with the remaining items.
+                {unprocessedCount > 0
+                  ? ` ${unprocessedCount} item${unprocessedCount === 1 ? "" : "s"} left unprocessed.`
+                  : ""}
+              </p>
+            ) : null}
+            {stopReason === "quota_exceeded" ? (
+              <p className="editorial-bulk-dialog__lead">
+                DeepL account quota has been exceeded. Completed drafts were saved. Translation
+                can continue after quota becomes available.
+                {unprocessedCount > 0
+                  ? ` ${unprocessedCount} item${unprocessedCount === 1 ? "" : "s"} left unprocessed.`
+                  : ""}
+              </p>
+            ) : null}
+            {!stoppedEarly ? (
+              <p className="editorial-bulk-dialog__lead">
+                Update finished. Translations are saved as drafts. Review as needed, then use
+                Publish all drafts for {localeName}.
+              </p>
+            ) : null}
             <ul className="editorial-bulk-dialog__counts">
               <li>Total processed: {finalSummary.total ?? 0}</li>
               <li>Generated: {finalSummary.generated ?? 0}</li>
@@ -214,7 +244,7 @@ export default function UpdateAllTranslationsDialog({
               <li>Skipped manual/untracked: {finalSummary.skippedManualUntracked ?? 0}</li>
               <li>Skipped invalid: {finalSummary.skippedInvalid ?? 0}</li>
               <li>Failed: {finalSummary.failed ?? 0}</li>
-              <li>DeepL item calls: {finalSummary.providerCallItems ?? 0}</li>
+              <li>Items generated via DeepL: {finalSummary.providerCallItems ?? 0}</li>
             </ul>
             {failedItems.length > 0 ? (
               <ul className="editorial-bulk-dialog__failures">

@@ -26,6 +26,7 @@ from content.translation.types import TranslationResult
 class FakeTranslationProvider:
     def __init__(self) -> None:
         self.calls: list[dict[str, Any]] = []
+        self.batch_calls: list[dict[str, Any]] = []
 
     def translate(
         self,
@@ -37,14 +38,48 @@ class FakeTranslationProvider:
         content_format: Literal["plain", "html"] = "html",
         glossary_id: str | None = None,
     ) -> TranslationResult:
-        self.calls.append({"text": text, "target_locale": target_locale})
-        return TranslationResult(
-            text=f"[{target_locale}]{text}",
-            provider="deepl",
+        return self.translate_many(
+            [text],
             source_locale=source_locale,
             target_locale=target_locale,
-            billed_characters=len(text),
+            context=context,
+            content_format=content_format,
+            glossary_id=glossary_id,
+        )[0]
+
+    def translate_many(
+        self,
+        texts: list[str],
+        *,
+        source_locale: str,
+        target_locale: str,
+        context: str | None = None,
+        content_format: Literal["plain", "html"] = "html",
+        glossary_id: str | None = None,
+    ) -> list[TranslationResult]:
+        self.batch_calls.append(
+            {
+                "texts": list(texts),
+                "source_locale": source_locale,
+                "target_locale": target_locale,
+                "context": context,
+                "content_format": content_format,
+                "glossary_id": glossary_id,
+            }
         )
+        results: list[TranslationResult] = []
+        for text in texts:
+            self.calls.append({"text": text, "target_locale": target_locale})
+            results.append(
+                TranslationResult(
+                    text=f"[{target_locale}]{text}",
+                    provider="deepl",
+                    source_locale=source_locale,
+                    target_locale=target_locale,
+                    billed_characters=len(text),
+                )
+            )
+        return results
 
 
 @pytest.fixture
@@ -557,3 +592,55 @@ class TestUpdateEngineActions:
         assert ro_before["draftBody"] == ro_after["draftBody"]
         assert repository.get_manual_variant(cid, "en") is not None
         assert repository.get_manual_variant(cid, "de") is None
+
+
+class TestBatchedFieldTranslation:
+    def test_manual_multi_field_uses_one_provider_batch(self, repository):
+        meta = repository.create_manual_chapter("Capitol")
+        cid = meta["contentId"]
+        body = manual_body(
+            title="Titlu",
+            blocks=[
+                {"type": "paragraph", "text": "Primul."},
+                {"type": "paragraph", "text": "Al doilea."},
+            ],
+        )
+        repository.save_manual_variant(cid, "ro", body)
+        provider = FakeTranslationProvider()
+        service = TranslationUpdateService(repository, provider=provider)
+        saved, _ = service.update(module="manual", content_id=cid, target_locale="en")
+        assert len(provider.batch_calls) == 1
+        assert len(provider.batch_calls[0]["texts"]) == len(provider.calls)
+        assert len(provider.calls) >= 3
+        assert saved["draftBody"]["title"] == "[en]Titlu"
+        assert saved["draftBody"]["sections"][0]["blocks"][0]["text"] == "[en]Primul."
+        assert saved["draftBody"]["sections"][0]["blocks"][1]["text"] == "[en]Al doilea."
+
+    def test_provider_failure_mid_item_saves_no_partial_draft(self, repository):
+        from content.translation.exceptions import TranslationTemporaryProviderError
+
+        class ExplodingProvider(FakeTranslationProvider):
+            def translate_many(self, texts, **kwargs):
+                self.batch_calls.append({"texts": list(texts)})
+                raise TranslationTemporaryProviderError("boom mid-item")
+
+        meta = repository.create_manual_chapter("Capitol")
+        cid = meta["contentId"]
+        repository.save_manual_variant(cid, "ro", manual_body(title="A", paragraph="B"))
+        provider = ExplodingProvider()
+        service = TranslationUpdateService(repository, provider=provider)
+        with pytest.raises(TranslationTemporaryProviderError):
+            service.update(module="manual", content_id=cid, target_locale="en")
+        assert repository.get_manual_variant(cid, "en") is None
+        assert len(provider.batch_calls) == 1
+
+    def test_glossary_uses_same_batched_path(self, repository):
+        meta = repository.create_glossary_entry("Termen")
+        cid = meta["contentId"]
+        repository.save_glossary_variant(cid, "ro", glossary_body())
+        provider = FakeTranslationProvider()
+        service = TranslationUpdateService(repository, provider=provider)
+        saved, _ = service.update(module="glossary", content_id=cid, target_locale="en")
+        assert len(provider.batch_calls) == 1
+        assert saved["draftBody"]["term"] == "[en]Termen"
+        assert "[en]" in saved["draftBody"]["definitionBlocks"][0]["text"]

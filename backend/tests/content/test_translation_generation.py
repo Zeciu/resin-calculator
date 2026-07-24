@@ -27,6 +27,7 @@ from content.translation_metadata import read_generated_from_source_revision, re
 class FakeTranslationProvider:
     def __init__(self, *, fail_after: int | None = None) -> None:
         self.calls: list[dict[str, Any]] = []
+        self.batch_calls: list[dict[str, Any]] = []
         self.fail_after = fail_after
 
     def translate(
@@ -39,24 +40,57 @@ class FakeTranslationProvider:
         content_format: Literal["plain", "html"] = "html",
         glossary_id: str | None = None,
     ) -> TranslationResult:
-        self.calls.append(
+        return self.translate_many(
+            [text],
+            source_locale=source_locale,
+            target_locale=target_locale,
+            context=context,
+            content_format=content_format,
+            glossary_id=glossary_id,
+        )[0]
+
+    def translate_many(
+        self,
+        texts: list[str],
+        *,
+        source_locale: str,
+        target_locale: str,
+        context: str | None = None,
+        content_format: Literal["plain", "html"] = "html",
+        glossary_id: str | None = None,
+    ) -> list[TranslationResult]:
+        self.batch_calls.append(
             {
-                "text": text,
+                "texts": list(texts),
                 "source_locale": source_locale,
                 "target_locale": target_locale,
                 "context": context,
                 "content_format": content_format,
             }
         )
-        if self.fail_after is not None and len(self.calls) > self.fail_after:
+        results: list[TranslationResult] = []
+        for text in texts:
+            self.calls.append(
+                {
+                    "text": text,
+                    "source_locale": source_locale,
+                    "target_locale": target_locale,
+                    "context": context,
+                    "content_format": content_format,
+                }
+            )
+            results.append(
+                TranslationResult(
+                    text=f"[{target_locale}]{text}",
+                    provider="deepl",
+                    source_locale=source_locale,
+                    target_locale=target_locale,
+                    billed_characters=len(text),
+                )
+            )
+        if self.fail_after is not None and len(self.batch_calls) > self.fail_after:
             raise TranslationTemporaryProviderError("provider boom")
-        return TranslationResult(
-            text=f"[{target_locale}]{text}",
-            provider="deepl",
-            source_locale=source_locale,
-            target_locale=target_locale,
-            billed_characters=len(text),
-        )
+        return results
 
 
 @pytest.fixture

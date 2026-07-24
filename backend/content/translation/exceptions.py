@@ -26,9 +26,27 @@ class TranslationAuthError(TranslationError):
 class TranslationQuotaExceededError(TranslationError):
     """Provider character quota or plan limit exceeded."""
 
+    def __init__(
+        self,
+        message: str = "DeepL quota exceeded.",
+        *,
+        http_status: int | None = 456,
+    ) -> None:
+        super().__init__(message)
+        self.http_status = http_status
+
 
 class TranslationRateLimitedError(TranslationError):
     """Provider rate limit or capacity throttle."""
+
+    def __init__(
+        self,
+        message: str = "DeepL rate limit exceeded.",
+        *,
+        http_status: int | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.http_status = http_status
 
 
 class TranslationTimeoutError(TranslationError):
