@@ -10,7 +10,24 @@
       ],
       "prevention": [],
       "problemSummary": "Dep\u0103\u0219irea grosimii maxime recomandate poate provoca reac\u021bii exoterme excesive \u0219i defecte care compromit proiectul.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cristalizare",
+          "label": "Cristalizare"
+        },
+        {
+          "id": "incapsularea-bulelor-de-aer",
+          "label": "Incapsularea bulelor de aer"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "label": "Reac\u021bie exoterm\u0103"
+        },
+        {
+          "id": "supra-nc-lzire",
+          "label": "Supra\u00eenc\u0103lzire"
+        }
+      ],
       "relatedKbArticles": [],
       "relatedManualChapters": [],
       "requiredMaterials": [],
@@ -29,6 +46,178 @@
       "title": "De ce nu trebuie dep\u0103\u0219it\u0103 grosimea maxim\u0103 recomandat\u0103 pentru o turnare?",
       "warnings": [
         "Dep\u0103\u0219irea limitelor recomandate poate conduce la supra\u00eenc\u0103lzire, fisuri, deform\u0103ri sau compromiterea proiectului."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+      "media": [],
+      "possibleCauses": [
+        "Alegerea lemnului se bazeaz\u0103 doar pe aspectul estetic.",
+        "Nu au fost verificate starea \u0219i stabilitatea materialului.",
+        "Nu s-a \u021binut cont de tipul proiectului care urmeaz\u0103 s\u0103 fie realizat."
+      ],
+      "prevention": [
+        "Aspectul frumos nu garanteaz\u0103 un lemn potrivit.",
+        "Verific\u0103 \u00eentotdeauna lemnul \u00eenainte de a \u00eencepe proiectul.",
+        "G\u00e2nde\u0219te alegerea lemnului \u00een func\u021bie de rezultatul final dorit."
+      ],
+      "problemSummary": "Alegerea lemnului este una dintre cele mai importante etape ale proiectului. Un lemn s\u0103n\u0103tos \u0219i stabil ofer\u0103 o baz\u0103 sigur\u0103 pentru turnare, \u00een timp ce un lemn ales gre\u0219it poate compromite rezultatul final.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "alburn",
+          "label": "Alburn"
+        },
+        {
+          "id": "atac-biologic",
+          "label": "Atac biologic"
+        },
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        },
+        {
+          "id": "defect-structural",
+          "label": "Defect structural"
+        },
+        {
+          "id": "lemn-higroscopic",
+          "label": "Lemn higroscopic"
+        },
+        {
+          "id": "lemn-instabil",
+          "label": "Lemn instabil"
+        },
+        {
+          "id": "lemn-poros",
+          "label": "Lemn poros"
+        },
+        {
+          "id": "lemn-s-n-tos",
+          "label": "Lemn s\u0103n\u0103tos"
+        },
+        {
+          "id": "nod-in-lemn",
+          "label": "Nod in lemn"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [
+        "Aparat de verificat umiditatea"
+      ],
+      "searchKeywords": [],
+      "solution": [
+        "Alege lemn bine uscat, s\u0103n\u0103tos \u0219i stabil. Verific\u0103 umiditatea, starea general\u0103 \u0219i compatibilitatea piesei cu proiectul pe care dore\u0219ti s\u0103 \u00eel realizezi."
+      ],
+      "symptoms": [
+        "Nu e\u0219ti sigur dac\u0103 lemnul este potrivit pentru turnare.",
+        "Lemnul are un aspect spectaculos, dar prezint\u0103 defecte.",
+        "Nu \u0219tii ce criterii trebuie verificate \u00eenainte de utilizare."
+      ],
+      "tips": [
+        "Verifica cu atentie umiditatea si gradul de sanatate al lemnului ales."
+      ],
+      "title": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?",
+      "warnings": [
+        "Un lemn instabil poate genera probleme chiar \u0219i dup\u0103 finalizarea proiectului."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul nu a fost verificat \u00eenainte de utilizare.",
+        "Uscarea a fost incomplet\u0103 sau neuniform\u0103.",
+        "Umiditatea difer\u0103 \u00eentre diferite zone ale piesei."
+      ],
+      "prevention": [
+        "Verific\u0103 at\u00e2t suprafa\u021ba, c\u00e2t \u0219i zonele diferite ale piesei.",
+        "Acord\u0103 o aten\u021bie suplimentar\u0103 pieselor groase."
+      ],
+      "problemSummary": "Umiditatea lemnului influen\u021beaz\u0103 direct comportamentul r\u0103\u0219inii \u0219i stabilitatea proiectului. Pentru majoritatea aplica\u021biilor se recomand\u0103 o umiditate cuprins\u0103 \u00eentre 6% \u0219i 12%.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "atac-biologic",
+          "label": "Atac biologic"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [
+        "Aparat de verificat umiditatea"
+      ],
+      "searchKeywords": [],
+      "solution": [
+        "M\u0103soar\u0103 umiditatea cu un aparat dedicat, \u00een mai multe puncte ale piesei. Utilizeaz\u0103 lemn cu o umiditate cuprins\u0103 \u00eentre 6% \u0219i 12%."
+      ],
+      "symptoms": [
+        "Nu cuno\u0219ti umiditatea lemnului.",
+        "Lemnul a fost depozitat \u00een condi\u021bii necunoscute.",
+        "Exist\u0103 suspiciuni c\u0103 piesa nu este complet uscat\u0103."
+      ],
+      "tips": [
+        "Verifica umiditatea in mai multe zone ale bucatii de lemn."
+      ],
+      "title": "Care este umiditatea recomandat\u0103 a lemnului \u00eenainte de turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul con\u021bine \u00eenc\u0103 o cantitate mare de umiditate.",
+        "Umiditatea nu a fost verificat\u0103 \u00eenainte de turnare."
+      ],
+      "prevention": [
+        "Verificarea umidit\u0103\u021bii dureaz\u0103 doar c\u00e2teva minute \u0219i poate preveni pierderea materialelor \u0219i a multor ore de lucru."
+      ],
+      "problemSummary": "Utilizarea unui lemn cu umiditate prea mare poate afecta procesul de polimerizare a r\u0103\u0219inii \u0219i poate compromite \u00eentregul proiect.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "coaj-de-portocal",
+          "label": "Coaj\u0103 de portocal\u0103"
+        },
+        {
+          "id": "contaminare",
+          "label": "Contaminare"
+        },
+        {
+          "id": "int-rire-incomplet",
+          "label": "Int\u0103rire incomplet\u0103"
+        },
+        {
+          "id": "lemn-instabil",
+          "label": "Lemn instabil"
+        },
+        {
+          "id": "lemn-poros",
+          "label": "Lemn poros"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Opre\u0219te proiectul \u0219i usuc\u0103 lemnul p\u00e2n\u0103 c\u00e2nd ajunge \u00een intervalul recomandat. Verific\u0103 din nou umiditatea \u00eenainte de utilizare."
+      ],
+      "symptoms": [
+        "R\u0103\u0219ina nu se \u00eent\u0103re\u0219te complet.",
+        "Apar bule de aer.",
+        "Exist\u0103 zone lipicioase.",
+        "Apar fisuri sau deform\u0103ri \u00een timp.",
+        "R\u0103\u0219ina se desprinde de lemn."
+      ],
+      "tips": [],
+      "title": "Ce probleme pot ap\u0103rea dac\u0103 lemnul este prea umed?",
+      "warnings": [
+        "Nu presupune c\u0103 lemnul este uscat doar pentru c\u0103 a fost depozitat o perioad\u0103 \u00eendelungat\u0103."
       ]
     }
   ],

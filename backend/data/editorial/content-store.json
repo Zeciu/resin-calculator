@@ -105,6 +105,111 @@
       "status": "draft",
       "updatedAt": "2026-07-07T11:27:28.566415+00:00"
     },
+    "CONTENT#glossary_entry#abonament|META": {
+      "contentId": "abonament",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:10:27.367789+00:00",
+      "pk": "CONTENT#abonament",
+      "sk": "META",
+      "sortOrder": 16800,
+      "updatedAt": "2026-07-26T11:10:45.053345+00:00"
+    },
+    "CONTENT#glossary_entry#abonament|VARIANT#ro": {
+      "contentId": "abonament",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Abonamentul reprezint\u0103 forma de licen\u021biere prin care utilizatorul ob\u021bine acces la anumite capabilit\u0103\u021bi ale aplica\u021biei HFZWood. Tipul abonamentului stabile\u0219te func\u021bionalit\u0103\u021bile disponibile \u0219i eventualele limit\u0103ri de utilizare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Abonament"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#abonament",
+      "publishedAt": "2026-07-26T11:10:45.053345+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:10:45.053345+00:00"
+    },
+    "CONTENT#glossary_entry#actualizarea-proiectului|META": {
+      "contentId": "actualizarea-proiectului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:03:48.484903+00:00",
+      "pk": "CONTENT#actualizarea-proiectului",
+      "sk": "META",
+      "sortOrder": 15800,
+      "updatedAt": "2026-07-26T11:03:57.127316+00:00"
+    },
+    "CONTENT#glossary_entry#actualizarea-proiectului|VARIANT#ro": {
+      "contentId": "actualizarea-proiectului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Actualizarea proiectului reprezint\u0103 opera\u021bia prin care modific\u0103rile efectuate asupra unui proiect existent sunt salvate f\u0103r\u0103 crearea unui proiect nou. Aceast\u0103 opera\u021bie p\u0103streaz\u0103 identitatea proiectului \u0219i \u00eenlocuie\u0219te versiunea salvat\u0103 anterior cu cea actualizat\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Actualizarea proiectului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#actualizarea-proiectului",
+      "publishedAt": "2026-07-26T11:03:57.127316+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:03:57.127316+00:00"
+    },
+    "CONTENT#glossary_entry#aderen|META": {
+      "contentId": "aderen",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:04:09.435365+00:00",
+      "pk": "CONTENT#aderen",
+      "sk": "META",
+      "sortOrder": 13400,
+      "updatedAt": "2026-07-26T10:04:18.870830+00:00"
+    },
+    "CONTENT#glossary_entry#aderen|VARIANT#ro": {
+      "contentId": "aderen",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Aderen\u021ba reprezint\u0103 capacitatea a dou\u0103 materiale aflate \u00een contact de a se fixa ferm unul de cel\u0103lalt. \u00cen proiectele cu r\u0103\u0219in\u0103 epoxidic\u0103, o aderen\u021b\u0103 corespunz\u0103toare \u00eentre r\u0103\u0219in\u0103 \u0219i lemn este esen\u021bial\u0103 pentru rezisten\u021ba \u0219i durabilitatea piesei finale.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Aderen\u021b\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#aderen",
+      "publishedAt": "2026-07-26T10:04:18.870830+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:04:18.870830+00:00"
+    },
     "CONTENT#glossary_entry#agent-de-demulare|META": {
       "contentId": "agent-de-demulare",
       "contentType": "glossary_entry",
@@ -112,7 +217,7 @@
       "pk": "CONTENT#agent-de-demulare",
       "sk": "META",
       "sortOrder": 3300,
-      "updatedAt": "2026-07-23T09:30:10.422704+00:00"
+      "updatedAt": "2026-07-26T12:18:47.624516+00:00"
     },
     "CONTENT#glossary_entry#agent-de-demulare|VARIANT#ro": {
       "contentId": "agent-de-demulare",
@@ -124,7 +229,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "agent demulare",
+            "caption": null,
+            "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [],
         "seeAlso": [],
         "synonymTermIds": [],
@@ -132,13 +244,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#agent-de-demulare",
-      "publishedAt": "2026-07-23T09:30:10.422704+00:00",
+      "publishedAt": "2026-07-26T12:18:47.624516+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-07-23T09:30:10.422704+00:00"
+      "updatedAt": "2026-07-26T12:18:47.624516+00:00"
     },
     "CONTENT#glossary_entry#alburn|META": {
       "contentId": "alburn",
@@ -147,7 +259,7 @@
       "pk": "CONTENT#alburn",
       "sk": "META",
       "sortOrder": 400,
-      "updatedAt": "2026-07-22T21:17:51.952909+00:00"
+      "updatedAt": "2026-07-26T12:45:40.005760+00:00"
     },
     "CONTENT#glossary_entry#alburn|VARIANT#en": {
       "contentId": "alburn",
@@ -227,8 +339,17 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
-        "relatedTermIds": [],
+        "media": [
+          {
+            "alt": "albur",
+            "caption": null,
+            "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [
+          "duramen"
+        ],
         "seeAlso": [
           {
             "label": "Duramen",
@@ -241,13 +362,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#alburn",
-      "publishedAt": "2026-07-22T18:59:55.395164+00:00",
+      "publishedAt": "2026-07-26T12:45:40.005760+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 3,
-      "sourceTextRevision": 3,
+      "sourceRevision": 5,
+      "sourceTextRevision": 4,
       "status": "published",
-      "updatedAt": "2026-07-22T18:59:55.395164+00:00"
+      "updatedAt": "2026-07-26T12:45:40.005760+00:00"
     },
     "CONTENT#glossary_entry#amestecare|META": {
       "contentId": "amestecare",
@@ -287,6 +408,76 @@
       "status": "published",
       "updatedAt": "2026-07-23T10:03:12.618297+00:00"
     },
+    "CONTENT#glossary_entry#arie-calculat|META": {
+      "contentId": "arie-calculat",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:28:48.425476+00:00",
+      "pk": "CONTENT#arie-calculat",
+      "sk": "META",
+      "sortOrder": 8300,
+      "updatedAt": "2026-07-24T11:29:04.724239+00:00"
+    },
+    "CONTENT#glossary_entry#arie-calculat|VARIANT#ro": {
+      "contentId": "arie-calculat",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Aria calculat\u0103 reprezint\u0103 suprafa\u021ba determinat\u0103 automat de aplica\u021bie pe baza poligonului de m\u0103surare definit de utilizator. Aceast\u0103 valoare este utilizat\u0103 \u00een calculele geometrice \u0219i contribuie la estimarea volumului \u0219i a cantit\u0103\u021bii necesare de r\u0103\u0219in\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Arie calculat\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#arie-calculat",
+      "publishedAt": "2026-07-24T11:29:04.724239+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:29:04.724239+00:00"
+    },
+    "CONTENT#glossary_entry#aspirare-a-prafului|META": {
+      "contentId": "aspirare-a-prafului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:37:58.212075+00:00",
+      "pk": "CONTENT#aspirare-a-prafului",
+      "sk": "META",
+      "sortOrder": 11400,
+      "updatedAt": "2026-07-26T12:32:02.524855+00:00"
+    },
+    "CONTENT#glossary_entry#aspirare-a-prafului|VARIANT#ro": {
+      "contentId": "aspirare-a-prafului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Aspirarea prafului reprezint\u0103 procesul de colectare \u0219i \u00eendep\u0103rtare a prafului rezultat \u00een timpul prelucr\u0103rii lemnului \u0219i a r\u0103\u0219inii epoxidice. Utilizarea unui sistem eficient de aspirare contribuie la men\u021binerea unui mediu de lucru curat, protejeaz\u0103 s\u0103n\u0103tatea operatorului \u0219i \u00eembun\u0103t\u0103\u021be\u0219te calitatea finisajului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Aspirare a prafului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#aspirare-a-prafului",
+      "publishedAt": "2026-07-26T12:32:02.524855+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:32:02.524855+00:00"
+    },
     "CONTENT#glossary_entry#atac-biologic|META": {
       "contentId": "atac-biologic",
       "contentType": "glossary_entry",
@@ -294,7 +485,7 @@
       "pk": "CONTENT#atac-biologic",
       "sk": "META",
       "sortOrder": 500,
-      "updatedAt": "2026-07-22T21:17:52.898592+00:00"
+      "updatedAt": "2026-07-26T12:48:22.744917+00:00"
     },
     "CONTENT#glossary_entry#atac-biologic|VARIANT#en": {
       "contentId": "atac-biologic",
@@ -396,7 +587,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "atac biologic",
+            "caption": null,
+            "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "lemn-instabil"
         ],
@@ -406,13 +604,83 @@
       },
       "locale": "ro",
       "pk": "CONTENT#atac-biologic",
-      "publishedAt": "2026-07-22T20:28:14.445034+00:00",
+      "publishedAt": "2026-07-26T12:48:22.744917+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 4,
+      "sourceRevision": 5,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:48:22.744917+00:00"
+    },
+    "CONTENT#glossary_entry#banc-de-lucru|META": {
+      "contentId": "banc-de-lucru",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:41:30.008956+00:00",
+      "pk": "CONTENT#banc-de-lucru",
+      "sk": "META",
+      "sortOrder": 11700,
+      "updatedAt": "2026-07-26T12:33:03.259325+00:00"
+    },
+    "CONTENT#glossary_entry#banc-de-lucru|VARIANT#ro": {
+      "contentId": "banc-de-lucru",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Bancul de lucru este suprafa\u021ba sau masa destinat\u0103 desf\u0103\u0219ur\u0103rii opera\u021biilor de prelucrare, asamblare \u0219i finisare. Un banc de lucru stabil \u0219i suficient de rigid contribuie la precizia opera\u021biilor \u0219i la desf\u0103\u0219urarea \u00een siguran\u021b\u0103 a activit\u0103\u021bilor din atelier.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Banc de lucru"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#banc-de-lucru",
+      "publishedAt": "2026-07-26T12:33:03.259325+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-22T20:28:14.445034+00:00"
+      "updatedAt": "2026-07-26T12:33:03.259325+00:00"
+    },
+    "CONTENT#glossary_entry#baza-de-cunostinte|META": {
+      "contentId": "baza-de-cunostinte",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:15:22.092393+00:00",
+      "pk": "CONTENT#baza-de-cunostinte",
+      "sk": "META",
+      "sortOrder": 17000,
+      "updatedAt": "2026-07-26T11:15:42.320186+00:00"
+    },
+    "CONTENT#glossary_entry#baza-de-cunostinte|VARIANT#ro": {
+      "contentId": "baza-de-cunostinte",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Baza de cunostinte (Knowledge Base) reprezint\u0103 colec\u021bia de articole tehnice \u0219i informa\u021bii suplimentare care completeaz\u0103 manualul aplica\u021biei. Aceasta ofer\u0103 explica\u021bii detaliate, recomand\u0103ri \u0219i informa\u021bii utile despre materialele, procesele \u0219i tehnicile utilizate \u00een proiectele cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Baza de cunostinte"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#baza-de-cunostinte",
+      "publishedAt": "2026-07-26T11:15:42.320186+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:15:42.320186+00:00"
     },
     "CONTENT#glossary_entry#boloboc-nivel|META": {
       "contentId": "boloboc-nivel",
@@ -421,7 +689,7 @@
       "pk": "CONTENT#boloboc-nivel",
       "sk": "META",
       "sortOrder": 3600,
-      "updatedAt": "2026-07-23T09:31:32.050660+00:00"
+      "updatedAt": "2026-07-26T12:19:09.539741+00:00"
     },
     "CONTENT#glossary_entry#boloboc-nivel|VARIANT#ro": {
       "contentId": "boloboc-nivel",
@@ -443,7 +711,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "boloboc",
+            "caption": null,
+            "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "nivelarea-cofrajului"
         ],
@@ -453,13 +728,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#boloboc-nivel",
-      "publishedAt": "2026-07-23T09:31:32.050660+00:00",
+      "publishedAt": "2026-07-26T12:19:09.539741+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 3,
-      "sourceTextRevision": 2,
+      "sourceRevision": 4,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-07-23T09:31:32.050660+00:00"
+      "updatedAt": "2026-07-26T12:19:09.539741+00:00"
     },
     "CONTENT#glossary_entry#bule-de-aer|META": {
       "contentId": "bule-de-aer",
@@ -468,7 +743,7 @@
       "pk": "CONTENT#bule-de-aer",
       "sk": "META",
       "sortOrder": 5100,
-      "updatedAt": "2026-07-23T11:06:35.762228+00:00"
+      "updatedAt": "2026-07-26T12:19:43.645972+00:00"
     },
     "CONTENT#glossary_entry#bule-de-aer|VARIANT#ro": {
       "contentId": "bule-de-aer",
@@ -480,7 +755,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "bule aer rasina",
+            "caption": null,
+            "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "amestecare",
           "turnare-ad-nc-deep-pour",
@@ -493,13 +775,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#bule-de-aer",
-      "publishedAt": "2026-07-23T11:06:35.762228+00:00",
+      "publishedAt": "2026-07-26T12:19:43.645972+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-07-23T11:06:35.762228+00:00"
+      "updatedAt": "2026-07-26T12:19:43.645972+00:00"
     },
     "CONTENT#glossary_entry#calculator-de-r-in|META": {
       "contentId": "calculator-de-r-in",
@@ -535,6 +817,41 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T11:48:43.081079+00:00"
+    },
+    "CONTENT#glossary_entry#calibrarea-imaginii|META": {
+      "contentId": "calibrarea-imaginii",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:03:28.239929+00:00",
+      "pk": "CONTENT#calibrarea-imaginii",
+      "sk": "META",
+      "sortOrder": 15700,
+      "updatedAt": "2026-07-26T11:03:39.504076+00:00"
+    },
+    "CONTENT#glossary_entry#calibrarea-imaginii|VARIANT#ro": {
+      "contentId": "calibrarea-imaginii",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Calibrarea imaginii reprezint\u0103 procesul prin care aplica\u021bia stabile\u0219te coresponden\u021ba dintre dimensiunile din fotografie \u0219i dimensiunile reale, folosind o distan\u021b\u0103 de referin\u021b\u0103 cunoscut\u0103. O calibrare corect\u0103 este esen\u021bial\u0103 pentru ob\u021binerea unor rezultate precise.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Calibrarea imaginii"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#calibrarea-imaginii",
+      "publishedAt": "2026-07-26T11:03:39.504076+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:03:39.504076+00:00"
     },
     "CONTENT#glossary_entry#calibrare|META": {
       "contentId": "calibrare",
@@ -713,6 +1030,41 @@
       "status": "published",
       "updatedAt": "2026-07-23T11:54:04.409974+00:00"
     },
+    "CONTENT#glossary_entry#capabilitate|META": {
+      "contentId": "capabilitate",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:10:03.936329+00:00",
+      "pk": "CONTENT#capabilitate",
+      "sk": "META",
+      "sortOrder": 16700,
+      "updatedAt": "2026-07-26T11:10:17.213281+00:00"
+    },
+    "CONTENT#glossary_entry#capabilitate|VARIANT#ro": {
+      "contentId": "capabilitate",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "O capabilitate (*Capability*) reprezint\u0103 o func\u021bionalitate sau un grup de func\u021bionalit\u0103\u021bi pe care aplica\u021bia HFZWood le pune la dispozi\u021bia unui utilizator. Capabilit\u0103\u021bile disponibile sunt determinate de tipul abonamentului \u0219i de rolul asociat contului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Capabilitate"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#capabilitate",
+      "publishedAt": "2026-07-26T11:10:17.213281+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:10:17.213281+00:00"
+    },
     "CONTENT#glossary_entry#cavitate|META": {
       "contentId": "cavitate",
       "contentType": "glossary_entry",
@@ -828,6 +1180,202 @@
       "status": "published",
       "updatedAt": "2026-07-22T20:17:48.648488+00:00"
     },
+    "CONTENT#glossary_entry#cear-de-protec-ie|META": {
+      "contentId": "cear-de-protec-ie",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:00:04.254990+00:00",
+      "pk": "CONTENT#cear-de-protec-ie",
+      "sk": "META",
+      "sortOrder": 12200,
+      "updatedAt": "2026-07-26T12:41:20.651528+00:00"
+    },
+    "CONTENT#glossary_entry#cear-de-protec-ie|VARIANT#ro": {
+      "contentId": "cear-de-protec-ie",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Ceara de protec\u021bie este un produs de finisare aplicat pe suprafa\u021ba lemnului sau peste un strat de ulei pentru a \u00eembun\u0103t\u0103\u021bi protec\u021bia \u0219i aspectul final. Aceasta ofer\u0103 un finisaj pl\u0103cut la atingere, reduce absorb\u021bia murd\u0103riei \u0219i faciliteaz\u0103 \u00eentre\u021binerea suprafe\u021bei.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "ceara",
+            "caption": null,
+            "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Cear\u0103 de protec\u021bie"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cear-de-protec-ie",
+      "publishedAt": "2026-07-26T12:41:20.651528+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:41:20.651528+00:00"
+    },
+    "CONTENT#glossary_entry#claritate-optic|META": {
+      "contentId": "claritate-optic",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:17:32.577184+00:00",
+      "pk": "CONTENT#claritate-optic",
+      "sk": "META",
+      "sortOrder": 10000,
+      "updatedAt": "2026-07-26T09:17:51.918119+00:00"
+    },
+    "CONTENT#glossary_entry#claritate-optic|VARIANT#ro": {
+      "contentId": "claritate-optic",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Claritatea optic\u0103 reprezint\u0103 capacitatea r\u0103\u0219inii epoxidice de a transmite lumina f\u0103r\u0103 distorsiuni, tulbur\u0103ri sau modific\u0103ri vizibile ale imaginii. O claritate optic\u0103 ridicat\u0103 permite eviden\u021bierea detaliilor lemnului \u0219i ob\u021binerea unor turn\u0103ri transparente de calitate.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Claritate optic\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#claritate-optic",
+      "publishedAt": "2026-07-26T09:17:51.918119+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T09:17:51.918119+00:00"
+    },
+    "CONTENT#glossary_entry#clem-de-fixare|META": {
+      "contentId": "clem-de-fixare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:38:54.166920+00:00",
+      "pk": "CONTENT#clem-de-fixare",
+      "sk": "META",
+      "sortOrder": 11600,
+      "updatedAt": "2026-07-26T12:32:45.131386+00:00"
+    },
+    "CONTENT#glossary_entry#clem-de-fixare|VARIANT#ro": {
+      "contentId": "clem-de-fixare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Clema de fixare este un dispozitiv utilizat pentru men\u021binerea temporar\u0103 a pieselor sau a componentelor \u00een pozi\u021bia dorit\u0103 \u00een timpul lipirii, prelucr\u0103rii sau asambl\u0103rii. Exist\u0103 numeroase tipuri de cleme, adaptate diferitelor dimensiuni \u0219i aplica\u021bii.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "clema lemn",
+            "caption": null,
+            "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Clem\u0103 de fixare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#clem-de-fixare",
+      "publishedAt": "2026-07-26T12:32:45.131386+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:32:45.131386+00:00"
+    },
+    "CONTENT#glossary_entry#cnc|META": {
+      "contentId": "cnc",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:23:29.715254+00:00",
+      "pk": "CONTENT#cnc",
+      "sk": "META",
+      "sortOrder": 10700,
+      "updatedAt": "2026-07-26T09:26:44.037911+00:00"
+    },
+    "CONTENT#glossary_entry#cnc|VARIANT#ro": {
+      "contentId": "cnc",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "CNC (Computer Numerical Control) reprezint\u0103 un sistem de prelucrare automatizat\u0103 \u00een care mi\u0219c\u0103rile utilajului sunt controlate de un program informatic. \u00cen prelucrarea lemnului, utilajele CNC sunt utilizate pentru debitare, frezare, gravare \u0219i realizarea unor forme complexe cu un nivel ridicat de precizie \u0219i repetabilitate.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "cnc",
+            "caption": null,
+            "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "CNC"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cnc",
+      "publishedAt": "2026-07-26T09:26:44.037911+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T09:26:44.037911+00:00"
+    },
+    "CONTENT#glossary_entry#coaj-de-portocal|META": {
+      "contentId": "coaj-de-portocal",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:54:09.883248+00:00",
+      "pk": "CONTENT#coaj-de-portocal",
+      "sk": "META",
+      "sortOrder": 14500,
+      "updatedAt": "2026-07-26T10:54:31.261886+00:00"
+    },
+    "CONTENT#glossary_entry#coaj-de-portocal|VARIANT#ro": {
+      "contentId": "coaj-de-portocal",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Coaja de portocal\u0103, cunoscut\u0103 \u0219i sub denumirea de <em>Orange Peel</em>, este un defect de suprafa\u021b\u0103 caracterizat printr-o textur\u0103 neregulat\u0103 care seam\u0103n\u0103 cu coaja unei portocale. Acest defect poate ap\u0103rea din cauza condi\u021biilor de aplicare, a v\u00e2scozit\u0103\u021bii necorespunz\u0103toare sau a altor factori care afecteaz\u0103 nivelarea r\u0103\u0219inii.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Coaj\u0103 de portocal\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#coaj-de-portocal",
+      "publishedAt": "2026-07-26T10:54:31.261886+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:54:31.261886+00:00"
+    },
     "CONTENT#glossary_entry#cofraj|META": {
       "contentId": "cofraj",
       "contentType": "glossary_entry",
@@ -863,6 +1411,41 @@
       "status": "published",
       "updatedAt": "2026-07-23T09:27:16.171499+00:00"
     },
+    "CONTENT#glossary_entry#compatibilitatea-materialelor|META": {
+      "contentId": "compatibilitatea-materialelor",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:03:50.715409+00:00",
+      "pk": "CONTENT#compatibilitatea-materialelor",
+      "sk": "META",
+      "sortOrder": 13300,
+      "updatedAt": "2026-07-26T10:04:01.367249+00:00"
+    },
+    "CONTENT#glossary_entry#compatibilitatea-materialelor|VARIANT#ro": {
+      "contentId": "compatibilitatea-materialelor",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Compatibilitatea materialelor reprezint\u0103 capacitatea diferitelor materiale utilizate \u00eentr-un proiect de a func\u021biona \u00eempreun\u0103 f\u0103r\u0103 a produce reac\u021bii nedorite sau defecte. Alegerea unor materiale compatibile contribuie la ob\u021binerea unei bune aderen\u021be, a unei durabilit\u0103\u021bi ridicate \u0219i a unui comportament stabil \u00een exploatare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Compatibilitatea materialelor"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#compatibilitatea-materialelor",
+      "publishedAt": "2026-07-26T10:04:01.367249+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:04:01.367249+00:00"
+    },
     "CONTENT#glossary_entry#compozi-ia-proiectului|META": {
       "contentId": "compozi-ia-proiectului",
       "contentType": "glossary_entry",
@@ -897,6 +1480,48 @@
       "sourceTextRevision": 2,
       "status": "draft",
       "updatedAt": "2026-07-23T09:05:36.844006+00:00"
+    },
+    "CONTENT#glossary_entry#compus-de-polish|META": {
+      "contentId": "compus-de-polish",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:32:50.245936+00:00",
+      "pk": "CONTENT#compus-de-polish",
+      "sk": "META",
+      "sortOrder": 9300,
+      "updatedAt": "2026-07-26T12:23:05.973235+00:00"
+    },
+    "CONTENT#glossary_entry#compus-de-polish|VARIANT#ro": {
+      "contentId": "compus-de-polish",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Pasta abraziv\u0103 este un compus de lustruire care con\u021bine particule abrazive fine \u0219i este utilizat\u0103 pentru corectarea imperfec\u021biunilor r\u0103mase dup\u0103 \u0219lefuire. Alegerea tipului de past\u0103 depinde de starea suprafe\u021bei \u0219i de nivelul de finisare dorit.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "pasta abraziva",
+            "caption": null,
+            "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Past\u0103 abraziv\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#compus-de-polish",
+      "publishedAt": "2026-07-26T12:23:05.973235+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:23:05.973235+00:00"
     },
     "CONTENT#glossary_entry#configura-ia-proiectului|META": {
       "contentId": "configura-ia-proiectului",
@@ -972,6 +1597,76 @@
       "status": "published",
       "updatedAt": "2026-07-23T11:08:12.706955+00:00"
     },
+    "CONTENT#glossary_entry#contrac-ie|META": {
+      "contentId": "contrac-ie",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:02:32.820178+00:00",
+      "pk": "CONTENT#contrac-ie",
+      "sk": "META",
+      "sortOrder": 12900,
+      "updatedAt": "2026-07-26T10:02:43.530401+00:00"
+    },
+    "CONTENT#glossary_entry#contrac-ie|VARIANT#ro": {
+      "contentId": "contrac-ie",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Contrac\u021bia reprezint\u0103 reducerea dimensiunilor unui material ca urmare a pierderii umidit\u0103\u021bii, a procesului de \u00eent\u0103rire sau a varia\u021biilor de temperatur\u0103. \u00cen proiectele cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103, contrac\u021bia poate influen\u021ba precizia dimensional\u0103 \u0219i poate favoriza apari\u021bia fisurilor sau a tensiunilor interne.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Contrac\u021bie"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#contrac-ie",
+      "publishedAt": "2026-07-26T10:02:43.530401+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:02:43.530401+00:00"
+    },
+    "CONTENT#glossary_entry#controlul-calit-ii|META": {
+      "contentId": "controlul-calit-ii",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:05:35.754316+00:00",
+      "pk": "CONTENT#controlul-calit-ii",
+      "sk": "META",
+      "sortOrder": 13800,
+      "updatedAt": "2026-07-26T10:05:45.862072+00:00"
+    },
+    "CONTENT#glossary_entry#controlul-calit-ii|VARIANT#ro": {
+      "contentId": "controlul-calit-ii",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Controlul calit\u0103\u021bii reprezint\u0103 procesul de verificare a materialelor, etapelor de lucru \u0219i rezultatului final pentru a confirma c\u0103 proiectul respect\u0103 cerin\u021bele de calitate stabilite. Acesta permite identificarea \u0219i corectarea eventualelor probleme \u00eenainte ca piesa s\u0103 fie considerat\u0103 finalizat\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Controlul calit\u0103\u021bii"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#controlul-calit-ii",
+      "publishedAt": "2026-07-26T10:05:45.862072+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:05:45.862072+00:00"
+    },
     "CONTENT#glossary_entry#contur-exterior|META": {
       "contentId": "contur-exterior",
       "contentType": "glossary_entry",
@@ -1006,6 +1701,113 @@
       "sourceTextRevision": 2,
       "status": "draft",
       "updatedAt": "2026-07-23T09:06:19.995870+00:00"
+    },
+    "CONTENT#glossary_entry#conturul-cavit-ii|META": {
+      "contentId": "conturul-cavit-ii",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:26:37.589730+00:00",
+      "pk": "CONTENT#conturul-cavit-ii",
+      "sk": "META",
+      "sortOrder": 8000,
+      "updatedAt": "2026-07-24T11:27:09.188967+00:00"
+    },
+    "CONTENT#glossary_entry#conturul-cavit-ii|VARIANT#ro": {
+      "contentId": "conturul-cavit-ii",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Conturul cavit\u0103\u021bii reprezint\u0103 limita geometric\u0103 care delimiteaz\u0103 o cavitate din lemn destinat\u0103 umplerii cu r\u0103\u0219in\u0103 epoxidic\u0103. Definirea corect\u0103 a acestui contur permite calcularea precis\u0103 a suprafe\u021bei \u0219i a volumului cavit\u0103\u021bii.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [
+          "poligon-de-m-surare"
+        ],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Conturul cavit\u0103\u021bii"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#conturul-cavit-ii",
+      "publishedAt": "2026-07-24T11:27:09.188967+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:27:09.188967+00:00"
+    },
+    "CONTENT#glossary_entry#copie-de-siguran|META": {
+      "contentId": "copie-de-siguran",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:06:21.745528+00:00",
+      "pk": "CONTENT#copie-de-siguran",
+      "sk": "META",
+      "sortOrder": 16100,
+      "updatedAt": "2026-07-26T11:06:31.023314+00:00"
+    },
+    "CONTENT#glossary_entry#copie-de-siguran|VARIANT#ro": {
+      "contentId": "copie-de-siguran",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Copia de siguran\u021b\u0103, denumit\u0103 \u0219i <em>Backup</em>, reprezint\u0103 o copie suplimentar\u0103 a proiectelor sau a datelor, p\u0103strat\u0103 pentru a permite recuperarea acestora \u00een cazul pierderii, deterior\u0103rii sau \u0219tergerii accidentale a informa\u021biilor.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Copie de siguran\u021b\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#copie-de-siguran",
+      "publishedAt": "2026-07-26T11:06:31.023314+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:06:31.023314+00:00"
+    },
+    "CONTENT#glossary_entry#crater|META": {
+      "contentId": "crater",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:53:26.193962+00:00",
+      "pk": "CONTENT#crater",
+      "sk": "META",
+      "sortOrder": 14300,
+      "updatedAt": "2026-07-26T10:53:36.753044+00:00"
+    },
+    "CONTENT#glossary_entry#crater|VARIANT#ro": {
+      "contentId": "crater",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Craterul este un defect de suprafa\u021b\u0103 care apare sub forma unei mici depresiuni sau a unui gol circular \u00een r\u0103\u0219ina epoxidic\u0103 dup\u0103 \u00eent\u0103rire. Acesta poate fi provocat de contaminare, bule de aer sau alte condi\u021bii care \u00eempiedic\u0103 \u00eentinderea uniform\u0103 a r\u0103\u0219inii.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Crater"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#crater",
+      "publishedAt": "2026-07-26T10:53:36.753044+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:53:36.753044+00:00"
     },
     "CONTENT#glossary_entry#cristalizare|META": {
       "contentId": "cristalizare",
@@ -1182,6 +1984,41 @@
       "status": "published",
       "updatedAt": "2026-07-23T09:26:12.219191+00:00"
     },
+    "CONTENT#glossary_entry#defect-de-turnare|META": {
+      "contentId": "defect-de-turnare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:05:18.130312+00:00",
+      "pk": "CONTENT#defect-de-turnare",
+      "sk": "META",
+      "sortOrder": 13700,
+      "updatedAt": "2026-07-26T10:05:27.004515+00:00"
+    },
+    "CONTENT#glossary_entry#defect-de-turnare|VARIANT#ro": {
+      "contentId": "defect-de-turnare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Defectul de turnare reprezint\u0103 orice imperfec\u021biune ap\u0103rut\u0103 \u00een timpul procesului de turnare sau de \u00eent\u0103rire a r\u0103\u0219inii epoxidice, care afecteaz\u0103 aspectul, func\u021bionalitatea sau calitatea piesei finale. Printre cele mai frecvente defecte se num\u0103r\u0103 bulele de aer, golurile, scurgerile, fisurile \u0219i zonele care nu s-au \u00eent\u0103rit corespunz\u0103tor.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Defect de turnare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#defect-de-turnare",
+      "publishedAt": "2026-07-26T10:05:27.004515+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:05:27.004515+00:00"
+    },
     "CONTENT#glossary_entry#defect-structural|META": {
       "contentId": "defect-structural",
       "contentType": "glossary_entry",
@@ -1279,6 +2116,76 @@
       "status": "published",
       "updatedAt": "2026-07-22T20:17:02.800642+00:00"
     },
+    "CONTENT#glossary_entry#deformarea-cofrajului|META": {
+      "contentId": "deformarea-cofrajului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:57:40.400536+00:00",
+      "pk": "CONTENT#deformarea-cofrajului",
+      "sk": "META",
+      "sortOrder": 15100,
+      "updatedAt": "2026-07-26T10:57:54.173707+00:00"
+    },
+    "CONTENT#glossary_entry#deformarea-cofrajului|VARIANT#ro": {
+      "contentId": "deformarea-cofrajului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Deformarea cofrajului reprezint\u0103 modificarea formei sau pozi\u021biei cofrajului \u00een timpul turn\u0103rii ori al \u00eent\u0103ririi r\u0103\u0219inii epoxidice. Aceasta poate fi cauzat\u0103 de presiunea r\u0103\u0219inii, fixarea insuficient\u0103 sau rigiditatea redus\u0103 a cofrajului \u0219i poate conduce la modificarea dimensiunilor proiectului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Deformarea cofrajului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#deformarea-cofrajului",
+      "publishedAt": "2026-07-26T10:57:54.173707+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:57:54.173707+00:00"
+    },
+    "CONTENT#glossary_entry#deformarea-lemnului|META": {
+      "contentId": "deformarea-lemnului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:03:11.574602+00:00",
+      "pk": "CONTENT#deformarea-lemnului",
+      "sk": "META",
+      "sortOrder": 13100,
+      "updatedAt": "2026-07-26T10:03:20.261874+00:00"
+    },
+    "CONTENT#glossary_entry#deformarea-lemnului|VARIANT#ro": {
+      "contentId": "deformarea-lemnului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Deformarea lemnului reprezint\u0103 modificarea formei ini\u021biale a unei piese ca urmare a varia\u021biilor de umiditate, a tensiunilor interne sau a altor factori care influen\u021beaz\u0103 stabilitatea materialului. Cele mai frecvente forme de deformare sunt \u00eencovoierea, r\u0103sucirea \u0219i arcuirea.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Deformarea lemnului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#deformarea-lemnului",
+      "publishedAt": "2026-07-26T10:03:20.261874+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:03:20.261874+00:00"
+    },
     "CONTENT#glossary_entry#degazare-debulare|META": {
       "contentId": "degazare-debulare",
       "contentType": "glossary_entry",
@@ -1317,6 +2224,41 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T11:07:30.986376+00:00"
+    },
+    "CONTENT#glossary_entry#delaminare|META": {
+      "contentId": "delaminare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:04:31.994324+00:00",
+      "pk": "CONTENT#delaminare",
+      "sk": "META",
+      "sortOrder": 13500,
+      "updatedAt": "2026-07-26T10:04:45.324375+00:00"
+    },
+    "CONTENT#glossary_entry#delaminare|VARIANT#ro": {
+      "contentId": "delaminare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Delaminarea reprezint\u0103 desprinderea sau separarea straturilor unui material ori a suprafe\u021belor lipite \u00eentre ele. \u00cen proiectele cu r\u0103\u0219in\u0103 epoxidic\u0103, delaminarea indic\u0103 pierderea aderen\u021bei \u0219i poate compromite at\u00e2t rezisten\u021ba mecanic\u0103, c\u00e2t \u0219i aspectul final al piesei.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Delaminare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#delaminare",
+      "publishedAt": "2026-07-26T10:04:45.324375+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:04:45.324375+00:00"
     },
     "CONTENT#glossary_entry#demulare|META": {
       "contentId": "demulare",
@@ -1388,6 +2330,195 @@
       "status": "published",
       "updatedAt": "2026-07-23T11:52:50.476246+00:00"
     },
+    "CONTENT#glossary_entry#deschiderea-proiectului|META": {
+      "contentId": "deschiderea-proiectului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:04:32.107617+00:00",
+      "pk": "CONTENT#deschiderea-proiectului",
+      "sk": "META",
+      "sortOrder": 16000,
+      "updatedAt": "2026-07-26T11:05:45.511442+00:00"
+    },
+    "CONTENT#glossary_entry#deschiderea-proiectului|VARIANT#ro": {
+      "contentId": "deschiderea-proiectului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Deschiderea proiectului reprezint\u0103 opera\u021bia prin care un proiect salvat anterior este \u00eenc\u0103rcat \u00een aplica\u021bia HFZWood pentru vizualizare, modificare sau continuarea lucrului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Deschiderea proiectului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#deschiderea-proiectului",
+      "publishedAt": "2026-07-26T11:05:45.511442+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:05:45.511442+00:00"
+    },
+    "CONTENT#glossary_entry#dilatare|META": {
+      "contentId": "dilatare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:02:52.251517+00:00",
+      "pk": "CONTENT#dilatare",
+      "sk": "META",
+      "sortOrder": 13000,
+      "updatedAt": "2026-07-26T10:03:02.015908+00:00"
+    },
+    "CONTENT#glossary_entry#dilatare|VARIANT#ro": {
+      "contentId": "dilatare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Dilatarea reprezint\u0103 cre\u0219terea dimensiunilor unui material ca urmare a absorb\u021biei umidit\u0103\u021bii sau a modific\u0103rilor de temperatur\u0103. Deoarece lemnul \u0219i r\u0103\u0219ina epoxidic\u0103 au comportamente diferite la dilatare, acest fenomen trebuie luat \u00een considerare \u00een proiectarea \u0219i utilizarea pieselor.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Dilatare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#dilatare",
+      "publishedAt": "2026-07-26T10:03:02.015908+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:03:02.015908+00:00"
+    },
+    "CONTENT#glossary_entry#disc-de-p-sl|META": {
+      "contentId": "disc-de-p-sl",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:35:32.271069+00:00",
+      "pk": "CONTENT#disc-de-p-sl",
+      "sk": "META",
+      "sortOrder": 9600,
+      "updatedAt": "2026-07-24T11:35:50.032158+00:00"
+    },
+    "CONTENT#glossary_entry#disc-de-p-sl|VARIANT#ro": {
+      "contentId": "disc-de-p-sl",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Discul de p\u00e2sl\u0103 este un accesoriu utilizat pentru lustruirea suprafe\u021belor \u00eempreun\u0103 cu paste abrazive sau de finisare. Datorit\u0103 structurii sale compacte, este folosit \u00een special pentru ob\u021binerea unui luciu ridicat \u0219i a unei suprafe\u021be uniforme.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Disc de p\u00e2sl\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#disc-de-p-sl",
+      "publishedAt": "2026-07-24T11:35:50.032158+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:35:50.032158+00:00"
+    },
+    "CONTENT#glossary_entry#disc-din-spum|META": {
+      "contentId": "disc-din-spum",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:36:03.366339+00:00",
+      "pk": "CONTENT#disc-din-spum",
+      "sk": "META",
+      "sortOrder": 9700,
+      "updatedAt": "2026-07-26T12:24:36.327096+00:00"
+    },
+    "CONTENT#glossary_entry#disc-din-spum|VARIANT#ro": {
+      "contentId": "disc-din-spum",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Discul din spum\u0103 este un accesoriu pentru ma\u0219inile de polish, utilizat la aplicarea compu\u0219ilor abrazivi \u0219i de finisare. \u00cen func\u021bie de duritatea spumei, acesta poate fi folosit at\u00e2t pentru corectarea defectelor fine, c\u00e2t \u0219i pentru ob\u021binerea luciului final.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "pad plish",
+            "caption": null,
+            "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Disc din spum\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#disc-din-spum",
+      "publishedAt": "2026-07-26T12:24:36.327096+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:24:36.327096+00:00"
+    },
+    "CONTENT#glossary_entry#discuri-abrazive|META": {
+      "contentId": "discuri-abrazive",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:30:23.692923+00:00",
+      "pk": "CONTENT#discuri-abrazive",
+      "sk": "META",
+      "sortOrder": 8700,
+      "updatedAt": "2026-07-26T12:22:08.705459+00:00"
+    },
+    "CONTENT#glossary_entry#discuri-abrazive|VARIANT#ro": {
+      "contentId": "discuri-abrazive",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Discurile abrazive sunt consumabile circulare utilizate \u00eempreun\u0103 cu ma\u0219inile de \u0219lefuit pentru prelucrarea lemnului \u0219i a r\u0103\u0219inii epoxidice. Acestea sunt disponibile \u00een diferite granula\u021bii \u0219i permit \u00eendep\u0103rtarea controlat\u0103 a materialului \u00een func\u021bie de etapa de prelucrare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "disc abraziv",
+            "caption": null,
+            "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Discuri abrazive"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#discuri-abrazive",
+      "publishedAt": "2026-07-26T12:22:08.705459+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:22:08.705459+00:00"
+    },
     "CONTENT#glossary_entry#dozarea-pigmentului|META": {
       "contentId": "dozarea-pigmentului",
       "contentType": "glossary_entry",
@@ -1430,7 +2561,7 @@
       "pk": "CONTENT#duramen",
       "sk": "META",
       "sortOrder": 300,
-      "updatedAt": "2026-07-22T21:17:50.847524+00:00"
+      "updatedAt": "2026-07-26T12:14:31.665521+00:00"
     },
     "CONTENT#glossary_entry#duramen|VARIANT#en": {
       "contentId": "duramen",
@@ -1502,7 +2633,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "albur",
+            "caption": null,
+            "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "alburn"
         ],
@@ -1512,13 +2650,83 @@
       },
       "locale": "ro",
       "pk": "CONTENT#duramen",
-      "publishedAt": "2026-07-22T20:16:19.421552+00:00",
+      "publishedAt": "2026-07-26T12:14:31.665521+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 5,
+      "sourceRevision": 6,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:14:31.665521+00:00"
+    },
+    "CONTENT#glossary_entry#echipament-individual-de-protec-ie|META": {
+      "contentId": "echipament-individual-de-protec-ie",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:57:15.254705+00:00",
+      "pk": "CONTENT#echipament-individual-de-protec-ie",
+      "sk": "META",
+      "sortOrder": 11800,
+      "updatedAt": "2026-07-26T09:57:24.687897+00:00"
+    },
+    "CONTENT#glossary_entry#echipament-individual-de-protec-ie|VARIANT#ro": {
+      "contentId": "echipament-individual-de-protec-ie",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Echipamentul individual de protec\u021bie reprezint\u0103 ansamblul echipamentelor purtate de operator pentru reducerea riscurilor asociate prelucr\u0103rii lemnului \u0219i utiliz\u0103rii r\u0103\u0219inilor epoxidice. Din aceast\u0103 categorie fac parte, printre altele, m\u0103\u0219tile respiratorii, ochelarii de protec\u021bie, m\u0103nu\u0219ile \u0219i protec\u021bia auditiv\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Echipament individual de protec\u021bie"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#echipament-individual-de-protec-ie",
+      "publishedAt": "2026-07-26T09:57:24.687897+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-22T20:16:19.421552+00:00"
+      "updatedAt": "2026-07-26T09:57:24.687897+00:00"
+    },
+    "CONTENT#glossary_entry#estimarea-cantit-ii-de-r-in|META": {
+      "contentId": "estimarea-cantit-ii-de-r-in",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:16:42.603160+00:00",
+      "pk": "CONTENT#estimarea-cantit-ii-de-r-in",
+      "sk": "META",
+      "sortOrder": 17300,
+      "updatedAt": "2026-07-26T11:16:51.583693+00:00"
+    },
+    "CONTENT#glossary_entry#estimarea-cantit-ii-de-r-in|VARIANT#ro": {
+      "contentId": "estimarea-cantit-ii-de-r-in",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Estimarea cantit\u0103\u021bii de r\u0103\u0219in\u0103 reprezint\u0103 procesul prin care aplica\u021bia HFZWood calculeaz\u0103 volumul \u0219i cantitatea necesar\u0103 de r\u0103\u0219in\u0103 epoxidic\u0103 pentru realizarea unui proiect, pe baza geometriei definite de utilizator \u0219i a parametrilor de calcul disponibili.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Estimarea cantit\u0103\u021bii de r\u0103\u0219in\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#estimarea-cantit-ii-de-r-in",
+      "publishedAt": "2026-07-26T11:16:51.583693+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:16:51.583693+00:00"
     },
     "CONTENT#glossary_entry#etan-are|META": {
       "contentId": "etan-are",
@@ -1591,6 +2799,243 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T11:51:44.647201+00:00"
+    },
+    "CONTENT#glossary_entry#fier-str-u-circular|META": {
+      "contentId": "fier-str-u-circular",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:30:26.963665+00:00",
+      "pk": "CONTENT#fier-str-u-circular",
+      "sk": "META",
+      "sortOrder": 11000,
+      "updatedAt": "2026-07-26T12:28:34.179600+00:00"
+    },
+    "CONTENT#glossary_entry#fier-str-u-circular|VARIANT#ro": {
+      "contentId": "fier-str-u-circular",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Fier\u0103str\u0103ul circular este un utilaj sau o unealt\u0103 echipat\u0103 cu o p\u00e2nz\u0103 circular\u0103 rotativ\u0103, utilizat\u0103 pentru debitarea lemnului \u00een lungime, l\u0103\u021bime sau la diferite unghiuri. Precizia \u0219i stabilitatea t\u0103ierii depind de reglajele utilajului, de tipul p\u00e2nzei \u0219i de modul de ghidare a materialului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "fcb",
+            "caption": null,
+            "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+            "type": "image"
+          },
+          {
+            "alt": "fierastrau circular",
+            "caption": null,
+            "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Fier\u0103str\u0103u circular"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#fier-str-u-circular",
+      "publishedAt": "2026-07-26T12:28:34.179600+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:28:34.179600+00:00"
+    },
+    "CONTENT#glossary_entry#fier-str-u-panglic|META": {
+      "contentId": "fier-str-u-panglic",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:36:23.471468+00:00",
+      "pk": "CONTENT#fier-str-u-panglic",
+      "sk": "META",
+      "sortOrder": 11200,
+      "updatedAt": "2026-07-26T12:31:09.864157+00:00"
+    },
+    "CONTENT#glossary_entry#fier-str-u-panglic|VARIANT#ro": {
+      "contentId": "fier-str-u-panglic",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Fier\u0103str\u0103ul panglic\u0103 este un utilaj de debitare care utilizeaz\u0103 o p\u00e2nz\u0103 continu\u0103 montat\u0103 pe dou\u0103 sau mai multe volante. Acesta permite realizarea unor t\u0103ieri precise, at\u00e2t drepte, c\u00e2t \u0219i curbe, fiind utilizat frecvent pentru debitarea lemnului masiv \u0219i pentru prelucrarea pieselor cu forme neregulate.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "banzic",
+            "caption": null,
+            "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Fier\u0103str\u0103u panglic\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#fier-str-u-panglic",
+      "publishedAt": "2026-07-26T12:31:09.864157+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:31:09.864157+00:00"
+    },
+    "CONTENT#glossary_entry#fier-str-u-pendular|META": {
+      "contentId": "fier-str-u-pendular",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:35:37.649486+00:00",
+      "pk": "CONTENT#fier-str-u-pendular",
+      "sk": "META",
+      "sortOrder": 11100,
+      "updatedAt": "2026-07-26T12:29:07.740951+00:00"
+    },
+    "CONTENT#glossary_entry#fier-str-u-pendular|VARIANT#ro": {
+      "contentId": "fier-str-u-pendular",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Fier\u0103str\u0103ul pendular este o unealt\u0103 electric\u0103 prev\u0103zut\u0103 cu o p\u00e2nz\u0103 \u00eengust\u0103 care execut\u0103 o mi\u0219care alternativ\u0103 vertical\u0103, fiind utilizat\u0103 pentru t\u0103ieri drepte sau curbe \u00een lemn \u0219i alte materiale. Datorit\u0103 manevrabilit\u0103\u021bii sale, este potrivit pentru decupaje \u0219i contururi complexe.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "pendular",
+            "caption": null,
+            "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Fier\u0103str\u0103u pendular"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#fier-str-u-pendular",
+      "publishedAt": "2026-07-26T12:29:07.740951+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:29:07.740951+00:00"
+    },
+    "CONTENT#glossary_entry#finisaj-lucios|META": {
+      "contentId": "finisaj-lucios",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:36:24.925745+00:00",
+      "pk": "CONTENT#finisaj-lucios",
+      "sk": "META",
+      "sortOrder": 9800,
+      "updatedAt": "2026-07-24T11:36:37.548673+00:00"
+    },
+    "CONTENT#glossary_entry#finisaj-lucios|VARIANT#ro": {
+      "contentId": "finisaj-lucios",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Finisajul lucios este un tip de finisare caracterizat printr-un grad ridicat de reflexie a luminii \u0219i o suprafa\u021b\u0103 foarte neted\u0103. Ob\u021binerea acestui aspect necesit\u0103 o \u0219lefuire \u0219i o lustruire realizate corect, folosind materiale \u0219i tehnici adecvate.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Finisaj lucios"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#finisaj-lucios",
+      "publishedAt": "2026-07-24T11:36:37.548673+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:36:37.548673+00:00"
+    },
+    "CONTENT#glossary_entry#finisaj-satinat|META": {
+      "contentId": "finisaj-satinat",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:36:51.218281+00:00",
+      "pk": "CONTENT#finisaj-satinat",
+      "sk": "META",
+      "sortOrder": 9900,
+      "updatedAt": "2026-07-24T11:37:05.391002+00:00"
+    },
+    "CONTENT#glossary_entry#finisaj-satinat|VARIANT#ro": {
+      "contentId": "finisaj-satinat",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Finisajul satinat este un tip de finisare care ofer\u0103 un aspect uniform, cu reflexii discrete \u0219i un luciu moderat. Acesta eviden\u021biaz\u0103 textura materialului \u0219i este preferat \u00een proiectele \u00een care se dore\u0219te un aspect natural \u0219i elegant.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Finisaj satinat"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#finisaj-satinat",
+      "publishedAt": "2026-07-24T11:37:05.391002+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:37:05.391002+00:00"
+    },
+    "CONTENT#glossary_entry#fisurare-termic|META": {
+      "contentId": "fisurare-termic",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:57:20.365963+00:00",
+      "pk": "CONTENT#fisurare-termic",
+      "sk": "META",
+      "sortOrder": 15000,
+      "updatedAt": "2026-07-26T10:57:30.508902+00:00"
+    },
+    "CONTENT#glossary_entry#fisurare-termic|VARIANT#ro": {
+      "contentId": "fisurare-termic",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Fisurarea termic\u0103 reprezint\u0103 apari\u021bia fisurilor \u00een r\u0103\u0219ina epoxidic\u0103 sau \u00een lemn ca urmare a varia\u021biilor mari de temperatur\u0103 sau a dezvolt\u0103rii excesive de c\u0103ldur\u0103 \u00een timpul polimeriz\u0103rii. Acest defect poate compromite at\u00e2t aspectul estetic, c\u00e2t \u0219i rezisten\u021ba piesei finale.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Fisurare termic\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#fisurare-termic",
+      "publishedAt": "2026-07-26T10:57:30.508902+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:57:30.508902+00:00"
     },
     "CONTENT#glossary_entry#fisur|META": {
       "contentId": "fisur",
@@ -1736,6 +3181,153 @@
       "status": "published",
       "updatedAt": "2026-07-23T10:00:38.984363+00:00"
     },
+    "CONTENT#glossary_entry#frez-de-copiere|META": {
+      "contentId": "frez-de-copiere",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:19:19.742449+00:00",
+      "pk": "CONTENT#frez-de-copiere",
+      "sk": "META",
+      "sortOrder": 10400,
+      "updatedAt": "2026-07-26T09:19:32.106967+00:00"
+    },
+    "CONTENT#glossary_entry#frez-de-copiere|VARIANT#ro": {
+      "contentId": "frez-de-copiere",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Freza de copiere este o frez\u0103 prev\u0103zut\u0103 cu unul sau mai mul\u021bi rulmen\u021bi de ghidare care permit urm\u0103rirea unui \u0219ablon sau a unei muchii existente. Aceasta este utilizat\u0103 pentru reproducerea precis\u0103 a contururilor \u0219i pentru realizarea unor piese identice.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Frez\u0103 de copiere"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#frez-de-copiere",
+      "publishedAt": "2026-07-26T09:19:32.106967+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T09:19:32.106967+00:00"
+    },
+    "CONTENT#glossary_entry#frez-de-ndreptare|META": {
+      "contentId": "frez-de-ndreptare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:18:53.718908+00:00",
+      "pk": "CONTENT#frez-de-ndreptare",
+      "sk": "META",
+      "sortOrder": 10300,
+      "updatedAt": "2026-07-26T09:19:10.659845+00:00"
+    },
+    "CONTENT#glossary_entry#frez-de-ndreptare|VARIANT#ro": {
+      "contentId": "frez-de-ndreptare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Freza de \u00eendreptare este o frez\u0103 destinat\u0103 ob\u021binerii unor muchii sau suprafe\u021be perfect drepte. Aceasta este utilizat\u0103 pentru corectarea marginilor pieselor de lemn \u0219i pentru preg\u0103tirea acestora \u00eenainte de \u00eembinare sau alte opera\u021bii de prelucrare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Frez\u0103 de \u00eendreptare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#frez-de-ndreptare",
+      "publishedAt": "2026-07-26T09:19:10.659845+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T09:19:10.659845+00:00"
+    },
+    "CONTENT#glossary_entry#frez-de-nivelare|META": {
+      "contentId": "frez-de-nivelare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:19:44.900578+00:00",
+      "pk": "CONTENT#frez-de-nivelare",
+      "sk": "META",
+      "sortOrder": 10500,
+      "updatedAt": "2026-07-26T12:26:36.545164+00:00"
+    },
+    "CONTENT#glossary_entry#frez-de-nivelare|VARIANT#ro": {
+      "contentId": "frez-de-nivelare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Freza de nivelare este o frez\u0103 cu diametru mare, utilizat\u0103 pentru aducerea suprafe\u021belor la acela\u0219i nivel prin \u00eendep\u0103rtarea controlat\u0103 a materialului. Este folosit\u0103 frecvent \u00eempreun\u0103 cu un Router Sled pentru nivelarea blaturilor mari din lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Frez\u0103 de nivelare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#frez-de-nivelare",
+      "publishedAt": "2026-07-26T12:26:36.545164+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:26:36.545164+00:00"
+    },
+    "CONTENT#glossary_entry#frez|META": {
+      "contentId": "frez",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:18:26.619049+00:00",
+      "pk": "CONTENT#frez",
+      "sk": "META",
+      "sortOrder": 10200,
+      "updatedAt": "2026-07-26T12:25:59.247821+00:00"
+    },
+    "CONTENT#glossary_entry#frez|VARIANT#ro": {
+      "contentId": "frez",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Freza este scula a\u0219chietoare montat\u0103 pe oberfrez\u0103 sau pe alte utilaje de prelucrare, utilizat\u0103 pentru \u00eendep\u0103rtarea controlat\u0103 a materialului. Exist\u0103 numeroase tipuri de freze, fiecare fiind proiectat\u0103 pentru o anumit\u0103 opera\u021bie sau profil de prelucrare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "freza",
+            "caption": null,
+            "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Frez\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#frez",
+      "publishedAt": "2026-07-26T12:25:59.247821+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:25:59.247821+00:00"
+    },
     "CONTENT#glossary_entry#geometria-proiectului|META": {
       "contentId": "geometria-proiectului",
       "contentType": "glossary_entry",
@@ -1770,6 +3362,86 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T09:05:55.140375+00:00"
+    },
+    "CONTENT#glossary_entry#glosar|META": {
+      "contentId": "glosar",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:15:49.616795+00:00",
+      "pk": "CONTENT#glosar",
+      "sk": "META",
+      "sortOrder": 17100,
+      "updatedAt": "2026-07-26T11:15:58.405897+00:00"
+    },
+    "CONTENT#glossary_entry#glosar|VARIANT#ro": {
+      "contentId": "glosar",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Glosarul reprezint\u0103 colec\u021bia de termeni \u0219i defini\u021bii utiliza\u021bi \u00een cadrul aplica\u021biei HFZWood \u0219i al domeniului prelucr\u0103rii lemnului \u0219i r\u0103\u0219inii epoxidice. Rolul s\u0103u este de a asigura utilizarea consecvent\u0103 a terminologiei \u0219i o \u00een\u021belegere clar\u0103 a conceptelor prezentate \u00een aplica\u021bie.",
+            "type": "paragraph"
+          },
+          {
+            "align": null,
+            "text": "",
+            "type": "paragraph"
+          },
+          {
+            "align": null,
+            "text": "<br>",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Glosar"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#glosar",
+      "publishedAt": "2026-07-26T11:15:58.405897+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:15:58.405897+00:00"
+    },
+    "CONTENT#glossary_entry#granula-ie-abraziv|META": {
+      "contentId": "granula-ie-abraziv",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:30:05.067613+00:00",
+      "pk": "CONTENT#granula-ie-abraziv",
+      "sk": "META",
+      "sortOrder": 8600,
+      "updatedAt": "2026-07-24T11:30:18.144335+00:00"
+    },
+    "CONTENT#glossary_entry#granula-ie-abraziv|VARIANT#ro": {
+      "contentId": "granula-ie-abraziv",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Granula\u021bia abraziv\u0103 reprezint\u0103 dimensiunea particulelor abrazive de pe un material de \u0219lefuire, exprimat\u0103 printr-un num\u0103r specific. Granula\u021biile mici sunt utilizate pentru \u00eendep\u0103rtarea rapid\u0103 a materialului, iar cele mari pentru finisarea \u0219i netezirea suprafe\u021belor.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Granula\u021bie abraziv\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#granula-ie-abraziv",
+      "publishedAt": "2026-07-24T11:30:18.144335+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:30:18.144335+00:00"
     },
     "CONTENT#glossary_entry#grosime-uniform|META": {
       "contentId": "grosime-uniform",
@@ -1921,6 +3593,111 @@
       "status": "published",
       "updatedAt": "2026-07-23T11:12:36.043770+00:00"
     },
+    "CONTENT#glossary_entry#h-rtie-abraziv|META": {
+      "contentId": "h-rtie-abraziv",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:30:45.772161+00:00",
+      "pk": "CONTENT#h-rtie-abraziv",
+      "sk": "META",
+      "sortOrder": 8800,
+      "updatedAt": "2026-07-24T11:30:57.435031+00:00"
+    },
+    "CONTENT#glossary_entry#h-rtie-abraziv|VARIANT#ro": {
+      "contentId": "h-rtie-abraziv",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "H\u00e2rtia abraziv\u0103 este un material flexibil acoperit cu particule abrazive, utilizat pentru \u0219lefuirea manual\u0103 sau mecanic\u0103 a suprafe\u021belor. Alegerea granula\u021biei potrivite influen\u021beaz\u0103 calitatea finisajului \u0219i eficien\u021ba procesului de prelucrare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "H\u00e2rtie abraziv\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#h-rtie-abraziv",
+      "publishedAt": "2026-07-24T11:30:57.435031+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:30:57.435031+00:00"
+    },
+    "CONTENT#glossary_entry#imagine-de-referin|META": {
+      "contentId": "imagine-de-referin",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:00:39.822959+00:00",
+      "pk": "CONTENT#imagine-de-referin",
+      "sk": "META",
+      "sortOrder": 15400,
+      "updatedAt": "2026-07-26T11:00:49.178627+00:00"
+    },
+    "CONTENT#glossary_entry#imagine-de-referin|VARIANT#ro": {
+      "contentId": "imagine-de-referin",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Imaginea de referin\u021b\u0103 este fotografia utilizat\u0103 \u00een HFZWood ca baz\u0103 pentru m\u0103surarea \u0219i calcularea volumului de r\u0103\u0219in\u0103 necesar unui proiect. Aceasta reprezint\u0103 suportul pe care sunt definite elementele geometrice utilizate de aplica\u021bie \u0219i r\u0103m\u00e2ne asociat\u0103 permanent proiectului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Imagine de referin\u021b\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#imagine-de-referin",
+      "publishedAt": "2026-07-26T11:00:49.178627+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:00:49.178627+00:00"
+    },
+    "CONTENT#glossary_entry#importul-imaginii|META": {
+      "contentId": "importul-imaginii",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:01:22.009386+00:00",
+      "pk": "CONTENT#importul-imaginii",
+      "sk": "META",
+      "sortOrder": 15600,
+      "updatedAt": "2026-07-26T11:03:20.085244+00:00"
+    },
+    "CONTENT#glossary_entry#importul-imaginii|VARIANT#ro": {
+      "contentId": "importul-imaginii",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Importul imaginii reprezint\u0103 opera\u021bia prin care o fotografie este \u00eenc\u0103rcat\u0103 \u00een aplica\u021bia HFZWood pentru utilizarea \u00eentr-un proiect nou. Imaginea importat\u0103 devine baza tuturor m\u0103sur\u0103torilor \u0219i calculelor efectuate ulterior.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Importul imaginii"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#importul-imaginii",
+      "publishedAt": "2026-07-26T11:03:20.085244+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:03:20.085244+00:00"
+    },
     "CONTENT#glossary_entry#incapsularea-bulelor-de-aer|META": {
       "contentId": "incapsularea-bulelor-de-aer",
       "contentType": "glossary_entry",
@@ -1928,7 +3705,7 @@
       "pk": "CONTENT#incapsularea-bulelor-de-aer",
       "sk": "META",
       "sortOrder": 6300,
-      "updatedAt": "2026-07-23T11:15:48.487717+00:00"
+      "updatedAt": "2026-07-26T12:20:18.155759+00:00"
     },
     "CONTENT#glossary_entry#incapsularea-bulelor-de-aer|VARIANT#ro": {
       "contentId": "incapsularea-bulelor-de-aer",
@@ -1940,7 +3717,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "bule aer rasina",
+            "caption": null,
+            "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "bule-de-aer",
           "r-in-epoxidic",
@@ -1954,13 +3738,260 @@
       },
       "locale": "ro",
       "pk": "CONTENT#incapsularea-bulelor-de-aer",
-      "publishedAt": "2026-07-23T11:15:48.487717+00:00",
+      "publishedAt": "2026-07-26T12:20:18.155759+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:20:18.155759+00:00"
+    },
+    "CONTENT#glossary_entry#incluziuni-de-praf|META": {
+      "contentId": "incluziuni-de-praf",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:56:26.871535+00:00",
+      "pk": "CONTENT#incluziuni-de-praf",
+      "sk": "META",
+      "sortOrder": 14800,
+      "updatedAt": "2026-07-26T10:56:38.691403+00:00"
+    },
+    "CONTENT#glossary_entry#incluziuni-de-praf|VARIANT#ro": {
+      "contentId": "incluziuni-de-praf",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Incluziunile de praf reprezint\u0103 particule de praf sau alte impurit\u0103\u021bi r\u0103mase \u00eencorporate \u00een r\u0103\u0219ina epoxidic\u0103 \u00een timpul \u00eent\u0103ririi. Aceste defecte afecteaz\u0103 aspectul suprafe\u021bei \u0219i pot necesita \u0219lefuire \u0219i lustruire suplimentar\u0103 pentru a fi eliminate.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Incluziuni de praf"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#incluziuni-de-praf",
+      "publishedAt": "2026-07-26T10:56:38.691403+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
       "sourceRevision": 2,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-23T11:15:48.487717+00:00"
+      "updatedAt": "2026-07-26T10:56:38.691403+00:00"
+    },
+    "CONTENT#glossary_entry#inspec-ia-final|META": {
+      "contentId": "inspec-ia-final",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:00:19.930449+00:00",
+      "pk": "CONTENT#inspec-ia-final",
+      "sk": "META",
+      "sortOrder": 15300,
+      "updatedAt": "2026-07-26T11:00:31.710522+00:00"
+    },
+    "CONTENT#glossary_entry#inspec-ia-final|VARIANT#ro": {
+      "contentId": "inspec-ia-final",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Inspec\u021bia final\u0103 reprezint\u0103 verificarea complet\u0103 a proiectului dup\u0103 finalizarea tuturor etapelor de prelucrare \u0219i finisare. Aceasta urm\u0103re\u0219te identificarea eventualelor defecte r\u0103mase, verificarea dimensiunilor, a calit\u0103\u021bii suprafe\u021belor \u0219i confirmarea faptului c\u0103 piesa \u00eendepline\u0219te cerin\u021bele de calitate stabilite.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Inspec\u021bia final\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#inspec-ia-final",
+      "publishedAt": "2026-07-26T11:00:31.710522+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:00:31.710522+00:00"
+    },
+    "CONTENT#glossary_entry#insul-de-lemn|META": {
+      "contentId": "insul-de-lemn",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:27:18.695795+00:00",
+      "pk": "CONTENT#insul-de-lemn",
+      "sk": "META",
+      "sortOrder": 8100,
+      "updatedAt": "2026-07-24T11:28:13.487099+00:00"
+    },
+    "CONTENT#glossary_entry#insul-de-lemn|VARIANT#ro": {
+      "contentId": "insul-de-lemn",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Insula de lemn reprezint\u0103 o por\u021biune de lemn complet \u00eenconjurat\u0103 de o zon\u0103 de turnare cu r\u0103\u0219in\u0103 epoxidic\u0103, sau de cofraj, f\u0103r\u0103 leg\u0103tur\u0103 direct\u0103 cu restul piesei de lemn din aceea\u0219i zon\u0103. \u00cen HFZWood, insulele de lemn sunt definite separat pentru ca volumul \u0219i cantitatea necesar\u0103 de r\u0103\u0219in\u0103 s\u0103 fie calculate corect.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [
+          "cofraj"
+        ],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Insul\u0103 de lemn"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#insul-de-lemn",
+      "publishedAt": "2026-07-24T11:28:13.487099+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:28:13.487099+00:00"
+    },
+    "CONTENT#glossary_entry#int-rire-incomplet|META": {
+      "contentId": "int-rire-incomplet",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:52:49.795789+00:00",
+      "pk": "CONTENT#int-rire-incomplet",
+      "sk": "META",
+      "sortOrder": 14100,
+      "updatedAt": "2026-07-26T10:52:58.811336+00:00"
+    },
+    "CONTENT#glossary_entry#int-rire-incomplet|VARIANT#ro": {
+      "contentId": "int-rire-incomplet",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "\u00cent\u0103rirea incomplet\u0103 reprezint\u0103 situa\u021bia \u00een care r\u0103\u0219ina epoxidic\u0103 nu \u00ee\u0219i dezvolt\u0103 complet propriet\u0103\u021bile mecanice dup\u0103 timpul normal de \u00eent\u0103rire. Cauzele pot include un raport de amestec incorect, o amestecare insuficient\u0103 sau condi\u021bii de lucru necorespunz\u0103toare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Int\u0103rire incomplet\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#int-rire-incomplet",
+      "publishedAt": "2026-07-26T10:52:58.811336+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:52:58.811336+00:00"
+    },
+    "CONTENT#glossary_entry#lefuire-umed|META": {
+      "contentId": "lefuire-umed",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:31:29.562930+00:00",
+      "pk": "CONTENT#lefuire-umed",
+      "sk": "META",
+      "sortOrder": 9000,
+      "updatedAt": "2026-07-26T10:08:41.792445+00:00"
+    },
+    "CONTENT#glossary_entry#lefuire-umed|VARIANT#ro": {
+      "contentId": "lefuire-umed",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "\u0218lefuirea umed\u0103 este o metod\u0103 de finisare realizat\u0103 cu ajutorul apei sau al unui alt lichid compatibil, care reduce \u00eenc\u0103lzirea suprafe\u021bei \u0219i limiteaz\u0103 formarea prafului. Aceast\u0103 tehnic\u0103 este utilizat\u0103 \u00een special \u00een etapele finale pentru ob\u021binerea unor suprafe\u021be foarte fine \u0219i preg\u0103tite pentru lustruire.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Slefuire umed\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#lefuire-umed",
+      "publishedAt": "2026-07-26T10:08:41.792445+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:08:41.792445+00:00"
+    },
+    "CONTENT#glossary_entry#lefuire-uscat|META": {
+      "contentId": "lefuire-uscat",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:31:47.701544+00:00",
+      "pk": "CONTENT#lefuire-uscat",
+      "sk": "META",
+      "sortOrder": 9100,
+      "updatedAt": "2026-07-26T10:08:59.895584+00:00"
+    },
+    "CONTENT#glossary_entry#lefuire-uscat|VARIANT#ro": {
+      "contentId": "lefuire-uscat",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "\u0218lefuirea uscat\u0103 este procesul de \u0219lefuire efectuat f\u0103r\u0103 utilizarea lichidelor de r\u0103cire sau lubrifiere. Este metoda cel mai frecvent utilizat\u0103 \u00een prelucrarea lemnului \u0219i a r\u0103\u0219inii epoxidice \u0219i permite \u00eendep\u0103rtarea eficient\u0103 a materialului \u00een toate etapele de prelucrare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Slefuire uscat\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#lefuire-uscat",
+      "publishedAt": "2026-07-26T10:08:59.895584+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:08:59.895584+00:00"
+    },
+    "CONTENT#glossary_entry#lefuire|META": {
+      "contentId": "lefuire",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:29:40.493543+00:00",
+      "pk": "CONTENT#lefuire",
+      "sk": "META",
+      "sortOrder": 8500,
+      "updatedAt": "2026-07-26T10:07:52.502003+00:00"
+    },
+    "CONTENT#glossary_entry#lefuire|VARIANT#ro": {
+      "contentId": "lefuire",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "\u0218lefuirea este procesul de prelucrare a suprafe\u021bei lemnului sau a r\u0103\u0219inii epoxidice cu materiale abrazive, av\u00e2nd scopul de a \u00eendep\u0103rta imperfec\u021biunile \u0219i de a ob\u021bine o suprafa\u021b\u0103 neted\u0103, uniform\u0103 \u0219i preg\u0103tit\u0103 pentru etapele urm\u0103toare de finisare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Slefuire"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#lefuire",
+      "publishedAt": "2026-07-26T10:07:52.502003+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:07:52.502003+00:00"
     },
     "CONTENT#glossary_entry#lemn-higroscopic|META": {
       "contentId": "lemn-higroscopic",
@@ -2391,6 +4422,202 @@
       "status": "published",
       "updatedAt": "2026-07-23T12:26:29.766076+00:00"
     },
+    "CONTENT#glossary_entry#lustruire|META": {
+      "contentId": "lustruire",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:32:20.657807+00:00",
+      "pk": "CONTENT#lustruire",
+      "sk": "META",
+      "sortOrder": 9200,
+      "updatedAt": "2026-07-24T11:32:31.625704+00:00"
+    },
+    "CONTENT#glossary_entry#lustruire|VARIANT#ro": {
+      "contentId": "lustruire",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Lustruirea este etapa final\u0103 de finisare prin care suprafa\u021ba lemnului sau a r\u0103\u0219inii epoxidice este prelucrat\u0103 pentru a ob\u021bine un grad ridicat de netezime \u0219i aspectul dorit. Acest proces elimin\u0103 urmele fine de \u0219lefuire \u0219i \u00eembun\u0103t\u0103\u021be\u0219te claritatea, reflexia luminii \u0219i aspectul estetic al piesei.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Lustruire"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#lustruire",
+      "publishedAt": "2026-07-24T11:32:31.625704+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:32:31.625704+00:00"
+    },
+    "CONTENT#glossary_entry#ma-in-de-degro-at|META": {
+      "contentId": "ma-in-de-degro-at",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:30:00.900247+00:00",
+      "pk": "CONTENT#ma-in-de-degro-at",
+      "sk": "META",
+      "sortOrder": 10900,
+      "updatedAt": "2026-07-26T12:28:15.005125+00:00"
+    },
+    "CONTENT#glossary_entry#ma-in-de-degro-at|VARIANT#ro": {
+      "contentId": "ma-in-de-degro-at",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Ma\u0219ina de degro\u0219at este un utilaj utilizat pentru aducerea pieselor de lemn la o grosime uniform\u0103 \u0219i precis\u0103. Dup\u0103 rindeluire, aceasta \u00eendep\u0103rteaz\u0103 materialul \u00een mod controlat p\u00e2n\u0103 la atingerea dimensiunii finale dorite.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "degrosat",
+            "caption": null,
+            "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Ma\u0219in\u0103 de degro\u0219at"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ma-in-de-degro-at",
+      "publishedAt": "2026-07-26T12:28:15.005125+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:28:15.005125+00:00"
+    },
+    "CONTENT#glossary_entry#ma-in-de-g-urit|META": {
+      "contentId": "ma-in-de-g-urit",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:37:11.001065+00:00",
+      "pk": "CONTENT#ma-in-de-g-urit",
+      "sk": "META",
+      "sortOrder": 11300,
+      "updatedAt": "2026-07-26T12:31:26.828199+00:00"
+    },
+    "CONTENT#glossary_entry#ma-in-de-g-urit|VARIANT#ro": {
+      "contentId": "ma-in-de-g-urit",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Ma\u0219ina de g\u0103urit este o unealt\u0103 electric\u0103 utilizat\u0103 pentru realizarea g\u0103urilor \u00een lemn \u0219i \u00een alte materiale. \u00cen func\u021bie de accesoriile montate, aceasta poate fi folosit\u0103 \u0219i pentru \u00een\u0219urubare, l\u0103rgirea g\u0103urilor sau alte opera\u021bii de prelucrare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "bormasina",
+            "caption": null,
+            "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Ma\u0219in\u0103 de g\u0103urit"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ma-in-de-g-urit",
+      "publishedAt": "2026-07-26T12:31:26.828199+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:31:26.828199+00:00"
+    },
+    "CONTENT#glossary_entry#ma-in-de-rindeluit|META": {
+      "contentId": "ma-in-de-rindeluit",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:27:25.310609+00:00",
+      "pk": "CONTENT#ma-in-de-rindeluit",
+      "sk": "META",
+      "sortOrder": 10800,
+      "updatedAt": "2026-07-26T12:27:26.459536+00:00"
+    },
+    "CONTENT#glossary_entry#ma-in-de-rindeluit|VARIANT#ro": {
+      "contentId": "ma-in-de-rindeluit",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Ma\u0219ina de rindeluit este un utilaj utilizat pentru ob\u021binerea unei suprafe\u021be plane \u0219i a unei muchii perfect drepte pe piesele din lemn. Aceasta reprezint\u0103 una dintre opera\u021biile de baz\u0103 \u00een preg\u0103tirea materialului \u00eenainte de degro\u0219are \u0219i prelucrare. Ma\u0219in\u0103 de rindeluit poate sa fie manuala, sau cu masa.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "rindeluit mare",
+            "caption": null,
+            "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Ma\u0219in\u0103 de rindeluit"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ma-in-de-rindeluit",
+      "publishedAt": "2026-07-26T12:27:26.459536+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 4,
+      "sourceTextRevision": 4,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:27:26.459536+00:00"
+    },
+    "CONTENT#glossary_entry#manual-hfzwood|META": {
+      "contentId": "manual-hfzwood",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:11:04.955567+00:00",
+      "pk": "CONTENT#manual-hfzwood",
+      "sk": "META",
+      "sortOrder": 16900,
+      "updatedAt": "2026-07-26T11:11:13.709996+00:00"
+    },
+    "CONTENT#glossary_entry#manual-hfzwood|VARIANT#ro": {
+      "contentId": "manual-hfzwood",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Manualul HFZWood reprezint\u0103 documenta\u021bia principal\u0103 a aplica\u021biei, care explic\u0103 func\u021bionalit\u0103\u021bile, modul de utilizare \u0219i fluxurile de lucru disponibile. Acesta ofer\u0103 utilizatorilor informa\u021biile necesare pentru utilizarea corect\u0103 \u0219i eficient\u0103 a aplica\u021biei.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Manual HFZWood"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#manual-hfzwood",
+      "publishedAt": "2026-07-26T11:11:13.709996+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:11:13.709996+00:00"
+    },
     "CONTENT#glossary_entry#margine-natural|META": {
       "contentId": "margine-natural",
       "contentType": "glossary_entry",
@@ -2482,6 +4709,41 @@
       "status": "published",
       "updatedAt": "2026-07-22T18:44:04.751042+00:00"
     },
+    "CONTENT#glossary_entry#masc-respiratorie|META": {
+      "contentId": "masc-respiratorie",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:57:37.447477+00:00",
+      "pk": "CONTENT#masc-respiratorie",
+      "sk": "META",
+      "sortOrder": 11900,
+      "updatedAt": "2026-07-26T12:34:53.632538+00:00"
+    },
+    "CONTENT#glossary_entry#masc-respiratorie|VARIANT#ro": {
+      "contentId": "masc-respiratorie",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Masca respiratorie este un echipament individual de protec\u021bie destinat filtr\u0103rii particulelor, vaporilor sau altor contaminan\u021bi din aerul inhalat. Utilizarea unei m\u0103\u0219ti adecvate este recomandat\u0103 \u00een timpul \u0219lefuirii, prelucr\u0103rii lemnului \u0219i manipul\u0103rii produselor chimice, conform instruc\u021biunilor produc\u0103torilor.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Masc\u0103 respiratorie"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#masc-respiratorie",
+      "publishedAt": "2026-07-26T12:34:53.632538+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:34:53.632538+00:00"
+    },
     "CONTENT#glossary_entry#mdf-melaminat|META": {
       "contentId": "mdf-melaminat",
       "contentType": "glossary_entry",
@@ -2526,6 +4788,83 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T09:29:49.101882+00:00"
+    },
+    "CONTENT#glossary_entry#menghin|META": {
+      "contentId": "menghin",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:38:26.243295+00:00",
+      "pk": "CONTENT#menghin",
+      "sk": "META",
+      "sortOrder": 11500,
+      "updatedAt": "2026-07-26T12:32:27.323718+00:00"
+    },
+    "CONTENT#glossary_entry#menghin|VARIANT#ro": {
+      "contentId": "menghin",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Menghina este un dispozitiv de fixare utilizat pentru imobilizarea ferm\u0103 a pieselor \u00een timpul prelucr\u0103rii. O fixare corespunz\u0103toare cre\u0219te precizia opera\u021biilor \u0219i reduce riscul deplas\u0103rii accidentale a materialului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "menghina",
+            "caption": null,
+            "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Menghin\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#menghin",
+      "publishedAt": "2026-07-26T12:32:27.323718+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:32:27.323718+00:00"
+    },
+    "CONTENT#glossary_entry#microfisur|META": {
+      "contentId": "microfisur",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:04:53.932845+00:00",
+      "pk": "CONTENT#microfisur",
+      "sk": "META",
+      "sortOrder": 13600,
+      "updatedAt": "2026-07-26T10:05:09.129031+00:00"
+    },
+    "CONTENT#glossary_entry#microfisur|VARIANT#ro": {
+      "contentId": "microfisur",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Microfisura este o fisur\u0103 de dimensiuni foarte reduse, adesea dificil de observat cu ochiul liber. De\u0219i poate p\u0103rea nesemnificativ\u0103, aceasta poate evolua \u00een timp \u0219i poate afecta rezisten\u021ba, etan\u0219eitatea sau aspectul suprafe\u021bei.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Microfisur\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#microfisur",
+      "publishedAt": "2026-07-26T10:05:09.129031+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:05:09.129031+00:00"
     },
     "CONTENT#glossary_entry#ndreptarea-lemnului|META": {
       "contentId": "ndreptarea-lemnului",
@@ -2843,6 +5182,214 @@
       "status": "published",
       "updatedAt": "2026-07-23T10:04:45.772255+00:00"
     },
+    "CONTENT#glossary_entry#ntre-inerea-suprafe-ei|META": {
+      "contentId": "ntre-inerea-suprafe-ei",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:00:21.267886+00:00",
+      "pk": "CONTENT#ntre-inerea-suprafe-ei",
+      "sk": "META",
+      "sortOrder": 12300,
+      "updatedAt": "2026-07-26T10:00:36.190971+00:00"
+    },
+    "CONTENT#glossary_entry#ntre-inerea-suprafe-ei|VARIANT#ro": {
+      "contentId": "ntre-inerea-suprafe-ei",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "\u00centre\u021binerea suprafe\u021bei reprezint\u0103 ansamblul opera\u021biilor efectuate pentru p\u0103strarea aspectului \u0219i a propriet\u0103\u021bilor de protec\u021bie ale lemnului \u0219i ale finisajului \u00een timpul utiliz\u0103rii. Cur\u0103\u021barea periodic\u0103 \u0219i reaplicarea produselor de \u00eentre\u021binere contribuie la prelungirea duratei de via\u021b\u0103 a piesei.",
+            "type": "paragraph"
+          },
+          {
+            "align": null,
+            "text": "",
+            "type": "paragraph"
+          },
+          {
+            "align": null,
+            "text": "<br>",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Intre\u021binerea suprafe\u021bei"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ntre-inerea-suprafe-ei",
+      "publishedAt": "2026-07-26T10:00:36.190971+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:00:36.190971+00:00"
+    },
+    "CONTENT#glossary_entry#oberfrez-router|META": {
+      "contentId": "oberfrez-router",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:18:01.351514+00:00",
+      "pk": "CONTENT#oberfrez-router",
+      "sk": "META",
+      "sortOrder": 10100,
+      "updatedAt": "2026-07-26T12:25:41.902185+00:00"
+    },
+    "CONTENT#glossary_entry#oberfrez-router|VARIANT#ro": {
+      "contentId": "oberfrez-router",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Oberfreza, cunoscut\u0103 \u0219i sub denumirea de <em>Router</em>, este o unealt\u0103 electric\u0103 utilizat\u0103 pentru prelucrarea precis\u0103 a lemnului prin frezare. Aceasta permite realizarea muchiilor profilate, a canalelor, a decupajelor \u0219i a altor opera\u021bii de prelucrare necesare \u00een construc\u021bia \u0219i finisarea proiectelor din lemn.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "oberfreza",
+            "caption": null,
+            "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [
+          "frez"
+        ],
+        "term": "Oberfrez\u0103 (Router)"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#oberfrez-router",
+      "publishedAt": "2026-07-26T12:25:41.902185+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:25:41.902185+00:00"
+    },
+    "CONTENT#glossary_entry#ochelari-de-protec-ie|META": {
+      "contentId": "ochelari-de-protec-ie",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:59:25.069581+00:00",
+      "pk": "CONTENT#ochelari-de-protec-ie",
+      "sk": "META",
+      "sortOrder": 12000,
+      "updatedAt": "2026-07-26T12:36:19.499634+00:00"
+    },
+    "CONTENT#glossary_entry#ochelari-de-protec-ie|VARIANT#ro": {
+      "contentId": "ochelari-de-protec-ie",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Ochelarii de protec\u021bie sunt echipamente individuale de protec\u021bie concepute pentru a proteja ochii \u00eempotriva prafului, a particulelor proiectate \u0219i a stropilor accidentali. Purtarea lor este recomandat\u0103 \u00een toate etapele de prelucrare mecanic\u0103 \u0219i \u00een timpul lucrului cu r\u0103\u0219ini epoxidice.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "ochelari",
+            "caption": null,
+            "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Ochelari de protec\u021bie"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ochelari-de-protec-ie",
+      "publishedAt": "2026-07-26T12:36:19.499634+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:36:19.499634+00:00"
+    },
+    "CONTENT#glossary_entry#ochi-de-pe-te|META": {
+      "contentId": "ochi-de-pe-te",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:53:44.616823+00:00",
+      "pk": "CONTENT#ochi-de-pe-te",
+      "sk": "META",
+      "sortOrder": 14400,
+      "updatedAt": "2026-07-26T10:53:56.281817+00:00"
+    },
+    "CONTENT#glossary_entry#ochi-de-pe-te|VARIANT#ro": {
+      "contentId": "ochi-de-pe-te",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Ochii de pe\u0219te, cunoscu\u021bi \u0219i sub denumirea de <em>Fish Eyes</em>, sunt defecte de suprafa\u021b\u0103 care apar sub forma unor zone circulare \u00een care r\u0103\u0219ina se retrage \u0219i nu ader\u0103 uniform. Acestea sunt provocate, \u00een general, de contaminarea suprafe\u021bei cu uleiuri, silicon sau alte substan\u021be care reduc aderen\u021ba.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Ochi de pe\u0219te"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ochi-de-pe-te",
+      "publishedAt": "2026-07-26T10:53:56.281817+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:53:56.281817+00:00"
+    },
+    "CONTENT#glossary_entry#pad-de-polish|META": {
+      "contentId": "pad-de-polish",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:35:01.245229+00:00",
+      "pk": "CONTENT#pad-de-polish",
+      "sk": "META",
+      "sortOrder": 9500,
+      "updatedAt": "2026-07-26T12:24:58.160614+00:00"
+    },
+    "CONTENT#glossary_entry#pad-de-polish|VARIANT#ro": {
+      "contentId": "pad-de-polish",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Padul de polish este un accesoriu montat pe ma\u0219ina de lustruit, utilizat pentru aplicarea \u0219i distribuirea uniform\u0103 a compu\u0219ilor de polish pe suprafa\u021b\u0103. Padurile sunt fabricate din materiale diferite, fiecare fiind destinat unui anumit nivel de corec\u021bie sau finisare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "pad plish",
+            "caption": null,
+            "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Pad de polish"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#pad-de-polish",
+      "publishedAt": "2026-07-26T12:24:58.160614+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:24:58.160614+00:00"
+    },
     "CONTENT#glossary_entry#pal-melaminat|META": {
       "contentId": "pal-melaminat",
       "contentType": "glossary_entry",
@@ -2888,6 +5435,41 @@
       "status": "published",
       "updatedAt": "2026-07-23T09:29:27.956922+00:00"
     },
+    "CONTENT#glossary_entry#past-de-finisare|META": {
+      "contentId": "past-de-finisare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:33:43.029454+00:00",
+      "pk": "CONTENT#past-de-finisare",
+      "sk": "META",
+      "sortOrder": 9400,
+      "updatedAt": "2026-07-24T11:34:28.862920+00:00"
+    },
+    "CONTENT#glossary_entry#past-de-finisare|VARIANT#ro": {
+      "contentId": "past-de-finisare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Pasta de finisare este un compus cu abrazivitate foarte redus\u0103, utilizat \u00een ultima etap\u0103 a lustruirii pentru a \u00eembun\u0103t\u0103\u021bi luciul \u0219i claritatea suprafe\u021bei. Aceasta elimin\u0103 urmele foarte fine r\u0103mase dup\u0103 polish \u0219i contribuie la ob\u021binerea unui finisaj de \u00eenalt\u0103 calitate.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Past\u0103 de finisare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#past-de-finisare",
+      "publishedAt": "2026-07-24T11:34:28.862920+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:34:28.862920+00:00"
+    },
     "CONTENT#glossary_entry#past-pigmentar|META": {
       "contentId": "past-pigmentar",
       "contentType": "glossary_entry",
@@ -2924,6 +5506,41 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T11:10:34.771741+00:00"
+    },
+    "CONTENT#glossary_entry#permisiune-de-editare|META": {
+      "contentId": "permisiune-de-editare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:09:24.201692+00:00",
+      "pk": "CONTENT#permisiune-de-editare",
+      "sk": "META",
+      "sortOrder": 16600,
+      "updatedAt": "2026-07-26T11:09:54.426199+00:00"
+    },
+    "CONTENT#glossary_entry#permisiune-de-editare|VARIANT#ro": {
+      "contentId": "permisiune-de-editare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Permisiunea de editare reprezint\u0103 dreptul unui utilizator de a modifica con\u021binutul unui proiect. \u00cen func\u021bie de rolul utilizatorului \u0219i de regulile aplica\u021biei, un proiect poate fi editabil sau disponibil doar \u00een regim de vizualizare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Permisiune de editare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#permisiune-de-editare",
+      "publishedAt": "2026-07-26T11:09:54.426199+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:09:54.426199+00:00"
     },
     "CONTENT#glossary_entry#pierdere-tehnologic|META": {
       "contentId": "pierdere-tehnologic",
@@ -3004,7 +5621,7 @@
       "pk": "CONTENT#pistol-cu-aer-cald",
       "sk": "META",
       "sortOrder": 6500,
-      "updatedAt": "2026-07-23T11:17:02.372414+00:00"
+      "updatedAt": "2026-07-26T12:20:39.186855+00:00"
     },
     "CONTENT#glossary_entry#pistol-cu-aer-cald|VARIANT#ro": {
       "contentId": "pistol-cu-aer-cald",
@@ -3016,7 +5633,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "pistol aer cald",
+            "caption": null,
+            "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "bule-de-aer"
         ],
@@ -3026,13 +5650,57 @@
       },
       "locale": "ro",
       "pk": "CONTENT#pistol-cu-aer-cald",
-      "publishedAt": "2026-07-23T11:17:02.372414+00:00",
+      "publishedAt": "2026-07-26T12:20:39.186855+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-07-23T11:17:02.372414+00:00"
+      "updatedAt": "2026-07-26T12:20:39.186855+00:00"
+    },
+    "CONTENT#glossary_entry#plas-abraziv|META": {
+      "contentId": "plas-abraziv",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:31:06.211292+00:00",
+      "pk": "CONTENT#plas-abraziv",
+      "sk": "META",
+      "sortOrder": 8900,
+      "updatedAt": "2026-07-26T12:22:45.939160+00:00"
+    },
+    "CONTENT#glossary_entry#plas-abraziv|VARIANT#ro": {
+      "contentId": "plas-abraziv",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Plasa abraziv\u0103 este un material abraziv cu structur\u0103 perforat\u0103, conceput pentru a permite evacuarea eficient\u0103 a prafului \u00een timpul \u0219lefuirii. Utilizarea acesteia reduce \u00eenc\u0103rcarea cu praf a suprafe\u021bei abrazive, prelunge\u0219te durata de utilizare \u0219i contribuie la ob\u021binerea unui finisaj mai uniform.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "plasa abraziva",
+            "caption": null,
+            "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [
+          "discuri-abrazive"
+        ],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Plas\u0103 abraziv\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#plas-abraziv",
+      "publishedAt": "2026-07-26T12:22:45.939160+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:22:45.939160+00:00"
     },
     "CONTENT#glossary_entry#poligon-de-m-surare|META": {
       "contentId": "poligon-de-m-surare",
@@ -3154,6 +5822,146 @@
       "status": "published",
       "updatedAt": "2026-07-23T09:26:32.937204+00:00"
     },
+    "CONTENT#glossary_entry#precizia-m-sur-torii|META": {
+      "contentId": "precizia-m-sur-torii",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:29:17.515363+00:00",
+      "pk": "CONTENT#precizia-m-sur-torii",
+      "sk": "META",
+      "sortOrder": 8400,
+      "updatedAt": "2026-07-24T11:29:30.245808+00:00"
+    },
+    "CONTENT#glossary_entry#precizia-m-sur-torii|VARIANT#ro": {
+      "contentId": "precizia-m-sur-torii",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Precizia m\u0103sur\u0103torii reprezint\u0103 gradul de apropiere dintre valorile calculate de aplica\u021bie \u0219i dimensiunile reale ale proiectului. Aceasta depinde de calitatea imaginii, corectitudinea calibr\u0103rii \u0219i precizia cu care sunt definite punctele \u0219i contururile de m\u0103surare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Precizia m\u0103sur\u0103torii"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#precizia-m-sur-torii",
+      "publishedAt": "2026-07-24T11:29:30.245808+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:29:30.245808+00:00"
+    },
+    "CONTENT#glossary_entry#proiect-local|META": {
+      "contentId": "proiect-local",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:07:23.950825+00:00",
+      "pk": "CONTENT#proiect-local",
+      "sk": "META",
+      "sortOrder": 16300,
+      "updatedAt": "2026-07-26T11:07:32.987547+00:00"
+    },
+    "CONTENT#glossary_entry#proiect-local|VARIANT#ro": {
+      "contentId": "proiect-local",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Un proiect local este un proiect salvat pe dispozitivul utilizatorului, care poate fi deschis \u0219i editat f\u0103r\u0103 a depinde de o conexiune la internet. \u00cen arhitectura HFZWood, proiectele locale r\u0103m\u00e2n disponibile utilizatorului chiar \u0219i dup\u0103 expirarea abonamentului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Proiect local"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#proiect-local",
+      "publishedAt": "2026-07-26T11:07:32.987547+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:07:32.987547+00:00"
+    },
+    "CONTENT#glossary_entry#proiect-partajat|META": {
+      "contentId": "proiect-partajat",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:07:42.555483+00:00",
+      "pk": "CONTENT#proiect-partajat",
+      "sk": "META",
+      "sortOrder": 16400,
+      "updatedAt": "2026-07-26T11:08:00.093217+00:00"
+    },
+    "CONTENT#glossary_entry#proiect-partajat|VARIANT#ro": {
+      "contentId": "proiect-partajat",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Un proiect partajat (*Read-Only*) este un proiect pus la dispozi\u021bia altui utilizator exclusiv pentru vizualizare. Acesta poate fi deschis \u0219i analizat, \u00eens\u0103 con\u021binutul s\u0103u nu poate fi modificat de utilizatorii care nu sunt proprietarii proiectului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Proiect partajat"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#proiect-partajat",
+      "publishedAt": "2026-07-26T11:08:00.093217+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:08:00.093217+00:00"
+    },
+    "CONTENT#glossary_entry#proprietarul-proiectului|META": {
+      "contentId": "proprietarul-proiectului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:08:12.987469+00:00",
+      "pk": "CONTENT#proprietarul-proiectului",
+      "sk": "META",
+      "sortOrder": 16500,
+      "updatedAt": "2026-07-26T11:08:37.684483+00:00"
+    },
+    "CONTENT#glossary_entry#proprietarul-proiectului|VARIANT#ro": {
+      "contentId": "proprietarul-proiectului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Proprietarul proiectului este utilizatorul care a creat proiectul \u0219i de\u021bine drepturile de editare asupra acestuia. Identitatea proprietarului este asociat\u0103 permanent proiectului \u0219i st\u0103 la baza gestion\u0103rii permisiunilor de acces.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Proprietarul proiectului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#proprietarul-proiectului",
+      "publishedAt": "2026-07-26T11:08:37.684483+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:08:37.684483+00:00"
+    },
     "CONTENT#glossary_entry#protec-ia-suprafe-ei-n-timpul-nt-ririi|META": {
       "contentId": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
       "contentType": "glossary_entry",
@@ -3193,6 +6001,78 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T11:17:46.644140+00:00"
+    },
+    "CONTENT#glossary_entry#protec-ia-uv|META": {
+      "contentId": "protec-ia-uv",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:01:05.649212+00:00",
+      "pk": "CONTENT#protec-ia-uv",
+      "sk": "META",
+      "sortOrder": 12500,
+      "updatedAt": "2026-07-26T10:01:15.525958+00:00"
+    },
+    "CONTENT#glossary_entry#protec-ia-uv|VARIANT#ro": {
+      "contentId": "protec-ia-uv",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Protec\u021bia UV reprezint\u0103 capacitatea unui finisaj de a reduce efectele radia\u021biilor ultraviolete asupra lemnului \u0219i a r\u0103\u0219inii epoxidice. Un nivel adecvat de protec\u021bie contribuie la limitarea decolor\u0103rii, \u00eeng\u0103lbenirii \u0219i degrad\u0103rii produse de expunerea \u00eendelungat\u0103 la lumina soarelui.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Protec\u021bia UV"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#protec-ia-uv",
+      "publishedAt": "2026-07-26T10:01:15.525958+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:01:15.525958+00:00"
+    },
+    "CONTENT#glossary_entry#punct-de-control|META": {
+      "contentId": "punct-de-control",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:25:48.452722+00:00",
+      "pk": "CONTENT#punct-de-control",
+      "sk": "META",
+      "sortOrder": 7900,
+      "updatedAt": "2026-07-24T11:26:24.297647+00:00"
+    },
+    "CONTENT#glossary_entry#punct-de-control|VARIANT#ro": {
+      "contentId": "punct-de-control",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Punctul de control este un punct care define\u0219te forma \u0219i pozi\u021bia unui poligon de m\u0103surare. Mutarea unui punct de control modific\u0103 automat geometria suprafe\u021bei delimitate \u0219i influen\u021beaz\u0103 rezultatele calculate de aplica\u021bie.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [
+          "punct-de-referin"
+        ],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Punct de control"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#punct-de-control",
+      "publishedAt": "2026-07-24T11:26:24.297647+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:26:24.297647+00:00"
     },
     "CONTENT#glossary_entry#punct-de-referin|META": {
       "contentId": "punct-de-referin",
@@ -3352,6 +6232,216 @@
       "status": "published",
       "updatedAt": "2026-07-23T10:09:03.266616+00:00"
     },
+    "CONTENT#glossary_entry#recondi-ionarea-suprafe-ei|META": {
+      "contentId": "recondi-ionarea-suprafe-ei",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:00:46.013467+00:00",
+      "pk": "CONTENT#recondi-ionarea-suprafe-ei",
+      "sk": "META",
+      "sortOrder": 12400,
+      "updatedAt": "2026-07-26T10:00:56.449489+00:00"
+    },
+    "CONTENT#glossary_entry#recondi-ionarea-suprafe-ei|VARIANT#ro": {
+      "contentId": "recondi-ionarea-suprafe-ei",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Recondi\u021bionarea suprafe\u021bei este procesul prin care o pies\u0103 uzat\u0103 sau deteriorat\u0103 este readus\u0103 la un aspect \u0219i un nivel de protec\u021bie apropiate de cele ini\u021biale. \u00cen func\u021bie de starea suprafe\u021bei, aceasta poate include \u0219lefuirea, repararea defectelor \u0219i aplicarea unui nou strat de finisaj.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Recondi\u021bionarea suprafe\u021bei"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#recondi-ionarea-suprafe-ei",
+      "publishedAt": "2026-07-26T10:00:56.449489+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:00:56.449489+00:00"
+    },
+    "CONTENT#glossary_entry#referin-tehnic|META": {
+      "contentId": "referin-tehnic",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:16:16.232370+00:00",
+      "pk": "CONTENT#referin-tehnic",
+      "sk": "META",
+      "sortOrder": 17200,
+      "updatedAt": "2026-07-26T11:16:35.350796+00:00"
+    },
+    "CONTENT#glossary_entry#referin-tehnic|VARIANT#ro": {
+      "contentId": "referin-tehnic",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Referin\u021ba tehnic\u0103 reprezint\u0103 o informa\u021bie documentat\u0103 utilizat\u0103 pentru fundamentarea unei explica\u021bii, a unei recomand\u0103ri sau a unei proceduri. \u00cen cadrul aplica\u021biei, referin\u021bele tehnice sus\u021bin acurate\u021bea \u0219i credibilitatea con\u021binutului educa\u021bional.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Referin\u021b\u0103 tehnic\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#referin-tehnic",
+      "publishedAt": "2026-07-26T11:16:35.350796+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:16:35.350796+00:00"
+    },
+    "CONTENT#glossary_entry#repararea-defectelor|META": {
+      "contentId": "repararea-defectelor",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:00:01.377285+00:00",
+      "pk": "CONTENT#repararea-defectelor",
+      "sk": "META",
+      "sortOrder": 15200,
+      "updatedAt": "2026-07-26T11:00:10.110702+00:00"
+    },
+    "CONTENT#glossary_entry#repararea-defectelor|VARIANT#ro": {
+      "contentId": "repararea-defectelor",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Repararea defectelor reprezint\u0103 ansamblul opera\u021biilor efectuate pentru corectarea imperfec\u021biunilor ap\u0103rute \u00een timpul turn\u0103rii, \u00eent\u0103ririi sau finis\u0103rii unui proiect. \u00cen func\u021bie de natura defectului, repara\u021bia poate include cur\u0103\u021barea, \u0219lefuirea, completarea cu r\u0103\u0219in\u0103 epoxidic\u0103, relustruirea sau alte interven\u021bii necesare readucerii piesei la nivelul de calitate dorit.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Repararea defectelor"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#repararea-defectelor",
+      "publishedAt": "2026-07-26T11:00:10.110702+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:00:10.110702+00:00"
+    },
+    "CONTENT#glossary_entry#rezisten-chimic|META": {
+      "contentId": "rezisten-chimic",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:02:13.049584+00:00",
+      "pk": "CONTENT#rezisten-chimic",
+      "sk": "META",
+      "sortOrder": 12800,
+      "updatedAt": "2026-07-26T10:02:21.985493+00:00"
+    },
+    "CONTENT#glossary_entry#rezisten-chimic|VARIANT#ro": {
+      "contentId": "rezisten-chimic",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Rezisten\u021ba chimic\u0103 reprezint\u0103 capacitatea unui material sau a unui finisaj de a rezista la contactul cu diferite substan\u021be chimice f\u0103r\u0103 degrad\u0103ri semnificative ale aspectului sau propriet\u0103\u021bilor sale. Nivelul acestei rezisten\u021be variaz\u0103 \u00een func\u021bie de tipul produsului \u0219i de natura substan\u021belor cu care intr\u0103 \u00een contact.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Rezisten\u021b\u0103 chimic\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#rezisten-chimic",
+      "publishedAt": "2026-07-26T10:02:21.985493+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:02:21.985493+00:00"
+    },
+    "CONTENT#glossary_entry#rezisten-la-umiditate|META": {
+      "contentId": "rezisten-la-umiditate",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:01:42.915808+00:00",
+      "pk": "CONTENT#rezisten-la-umiditate",
+      "sk": "META",
+      "sortOrder": 12700,
+      "updatedAt": "2026-07-26T10:02:02.424289+00:00"
+    },
+    "CONTENT#glossary_entry#rezisten-la-umiditate|VARIANT#ro": {
+      "contentId": "rezisten-la-umiditate",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Rezisten\u021ba la umiditate reprezint\u0103 capacitatea unui material sau a unui finisaj de a-\u0219i p\u0103stra propriet\u0103\u021bile atunci c\u00e2nd este expus la ap\u0103 sau la un mediu umed. Un nivel ridicat de rezisten\u021b\u0103 la umiditate contribuie la men\u021binerea stabilit\u0103\u021bii \u0219i a aspectului piesei \u00een timp.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Rezisten\u021b\u0103 la umiditate"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#rezisten-la-umiditate",
+      "publishedAt": "2026-07-26T10:02:02.424289+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:02:02.424289+00:00"
+    },
+    "CONTENT#glossary_entry#rezisten-la-zg-riere|META": {
+      "contentId": "rezisten-la-zg-riere",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:01:24.235269+00:00",
+      "pk": "CONTENT#rezisten-la-zg-riere",
+      "sk": "META",
+      "sortOrder": 12600,
+      "updatedAt": "2026-07-26T10:01:34.098252+00:00"
+    },
+    "CONTENT#glossary_entry#rezisten-la-zg-riere|VARIANT#ro": {
+      "contentId": "rezisten-la-zg-riere",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Rezisten\u021ba la zg\u00e2riere reprezint\u0103 capacitatea unei suprafe\u021be de a suporta contactul cu obiecte dure f\u0103r\u0103 apari\u021bia zg\u00e2rieturilor vizibile. Aceast\u0103 proprietate depinde de materialul utilizat, de tipul finisajului \u0219i de condi\u021biile de exploatare ale piesei.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Rezisten\u021b\u0103 la zg\u00e2riere"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#rezisten-la-zg-riere",
+      "publishedAt": "2026-07-26T10:01:34.098252+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:01:34.098252+00:00"
+    },
     "CONTENT#glossary_entry#river-table|META": {
       "contentId": "river-table",
       "contentType": "glossary_entry",
@@ -3386,6 +6476,118 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T09:26:54.919438+00:00"
+    },
+    "CONTENT#glossary_entry#router-sled|META": {
+      "contentId": "router-sled",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:20:04.701062+00:00",
+      "pk": "CONTENT#router-sled",
+      "sk": "META",
+      "sortOrder": 10600,
+      "updatedAt": "2026-07-26T09:22:03.637456+00:00"
+    },
+    "CONTENT#glossary_entry#router-sled|VARIANT#ro": {
+      "contentId": "router-sled",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Router Sled este un sistem de ghidare care permite deplasarea controlat\u0103 a unei oberfreze deasupra unei piese de mari dimensiuni. Acest dispozitiv este utilizat pentru nivelarea suprafe\u021belor care nu pot fi prelucrate cu o ma\u0219in\u0103 de rindeluit, precum mesele de tip River Table sau alte panouri de mari dimensiuni.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "router sleed",
+            "caption": null,
+            "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Router Sled"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#router-sled",
+      "publishedAt": "2026-07-26T09:22:03.637456+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T09:22:03.637456+00:00"
+    },
+    "CONTENT#glossary_entry#salvarea-proiectului|META": {
+      "contentId": "salvarea-proiectului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:04:05.115954+00:00",
+      "pk": "CONTENT#salvarea-proiectului",
+      "sk": "META",
+      "sortOrder": 15900,
+      "updatedAt": "2026-07-26T11:04:13.696198+00:00"
+    },
+    "CONTENT#glossary_entry#salvarea-proiectului|VARIANT#ro": {
+      "contentId": "salvarea-proiectului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Salvarea proiectului reprezint\u0103 opera\u021bia prin care toate informa\u021biile unui proiect sunt \u00eenregistrate \u00eentr-un fi\u0219ier HFZWood, astfel \u00eenc\u00e2t acesta s\u0103 poat\u0103 fi redeschis \u0219i continuat ulterior f\u0103r\u0103 pierderea datelor.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Salvarea proiectului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#salvarea-proiectului",
+      "publishedAt": "2026-07-26T11:04:13.696198+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:04:13.696198+00:00"
+    },
+    "CONTENT#glossary_entry#scara-imaginii|META": {
+      "contentId": "scara-imaginii",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:00:58.852447+00:00",
+      "pk": "CONTENT#scara-imaginii",
+      "sk": "META",
+      "sortOrder": 15500,
+      "updatedAt": "2026-07-26T11:01:07.039245+00:00"
+    },
+    "CONTENT#glossary_entry#scara-imaginii|VARIANT#ro": {
+      "contentId": "scara-imaginii",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Scara imaginii reprezint\u0103 raportul dintre dimensiunile din fotografie \u0219i dimensiunile reale ale obiectului m\u0103surat. Stabilirea corect\u0103 a sc\u0103rii permite efectuarea unor calcule precise \u00een cadrul proiectului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Scara imaginii"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#scara-imaginii",
+      "publishedAt": "2026-07-26T11:01:07.039245+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:01:07.039245+00:00"
     },
     "CONTENT#glossary_entry#scoar-instabil|META": {
       "contentId": "scoar-instabil",
@@ -3525,6 +6727,76 @@
       "status": "published",
       "updatedAt": "2026-07-23T11:14:56.761445+00:00"
     },
+    "CONTENT#glossary_entry#sedimentarea-pigmentului|META": {
+      "contentId": "sedimentarea-pigmentului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:55:06.847554+00:00",
+      "pk": "CONTENT#sedimentarea-pigmentului",
+      "sk": "META",
+      "sortOrder": 14700,
+      "updatedAt": "2026-07-26T10:55:35.609784+00:00"
+    },
+    "CONTENT#glossary_entry#sedimentarea-pigmentului|VARIANT#ro": {
+      "contentId": "sedimentarea-pigmentului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Sedimentarea pigmentului este fenomenul prin care particulele de pigment se depun spre partea inferioar\u0103 a turn\u0103rii \u00eenainte ca r\u0103\u0219ina s\u0103 se \u00eent\u0103reasc\u0103 complet. Acest lucru poate modifica aspectul final al piesei \u0219i este influen\u021bat de tipul pigmentului, v\u00e2scozitatea r\u0103\u0219inii \u0219i durata procesului de \u00eent\u0103rire.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Sedimentarea pigmentului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#sedimentarea-pigmentului",
+      "publishedAt": "2026-07-26T10:55:35.609784+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:55:35.609784+00:00"
+    },
+    "CONTENT#glossary_entry#separarea-pigmentului|META": {
+      "contentId": "separarea-pigmentului",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:54:42.394885+00:00",
+      "pk": "CONTENT#separarea-pigmentului",
+      "sk": "META",
+      "sortOrder": 14600,
+      "updatedAt": "2026-07-26T10:54:55.244604+00:00"
+    },
+    "CONTENT#glossary_entry#separarea-pigmentului|VARIANT#ro": {
+      "contentId": "separarea-pigmentului",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Separarea pigmentului reprezint\u0103 distribuirea neuniform\u0103 a pigmentului \u00een masa r\u0103\u0219inii epoxidice, ceea ce conduce la diferen\u021be vizibile de culoare sau efect. Acest fenomen poate fi cauzat de o amestecare insuficient\u0103, de incompatibilitatea produselor sau de condi\u021biile de \u00eent\u0103rire.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Separarea pigmentului"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#separarea-pigmentului",
+      "publishedAt": "2026-07-26T10:54:55.244604+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:54:55.244604+00:00"
+    },
     "CONTENT#glossary_entry#sigilarea-lemnului|META": {
       "contentId": "sigilarea-lemnului",
       "contentType": "glossary_entry",
@@ -3653,6 +6925,111 @@
       "status": "published",
       "updatedAt": "2026-07-23T09:28:25.121884+00:00"
     },
+    "CONTENT#glossary_entry#spatiu-de-lucru|META": {
+      "contentId": "spatiu-de-lucru",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T11:06:50.923942+00:00",
+      "pk": "CONTENT#spatiu-de-lucru",
+      "sk": "META",
+      "sortOrder": 16200,
+      "updatedAt": "2026-07-26T11:07:13.892129+00:00"
+    },
+    "CONTENT#glossary_entry#spatiu-de-lucru|VARIANT#ro": {
+      "contentId": "spatiu-de-lucru",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Spatiul de lucru reprezint\u0103 spa\u021biul principal de lucru din aplica\u021bia HFZWood, \u00een care utilizatorul creeaz\u0103, deschide, editeaz\u0103 \u0219i gestioneaz\u0103 proiectele, precum \u0219i accesul la func\u021biile \u0219i resursele disponibile \u00een func\u021bie de rolul \u0219i abonamentul s\u0103u.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Spatiul de lucru"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#spatiu-de-lucru",
+      "publishedAt": "2026-07-26T11:07:13.892129+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T11:07:13.892129+00:00"
+    },
+    "CONTENT#glossary_entry#stabilitate-dimensional|META": {
+      "contentId": "stabilitate-dimensional",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:03:28.462798+00:00",
+      "pk": "CONTENT#stabilitate-dimensional",
+      "sk": "META",
+      "sortOrder": 13200,
+      "updatedAt": "2026-07-26T10:03:40.052743+00:00"
+    },
+    "CONTENT#glossary_entry#stabilitate-dimensional|VARIANT#ro": {
+      "contentId": "stabilitate-dimensional",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Stabilitatea dimensional\u0103 reprezint\u0103 capacitatea unui material de a-\u0219i men\u021bine forma \u0219i dimensiunile \u00een timp, \u00een ciuda varia\u021biilor de temperatur\u0103 \u0219i umiditate. O stabilitate dimensional\u0103 ridicat\u0103 contribuie la durabilitatea \u0219i func\u021bionarea corect\u0103 a proiectelor realizate din lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Stabilitate dimensional\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#stabilitate-dimensional",
+      "publishedAt": "2026-07-26T10:03:40.052743+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:03:40.052743+00:00"
+    },
+    "CONTENT#glossary_entry#strat-de-inhibi-ie-amine-blush|META": {
+      "contentId": "strat-de-inhibi-ie-amine-blush",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:06:02.671381+00:00",
+      "pk": "CONTENT#strat-de-inhibi-ie-amine-blush",
+      "sk": "META",
+      "sortOrder": 13900,
+      "updatedAt": "2026-07-26T10:06:20.329525+00:00"
+    },
+    "CONTENT#glossary_entry#strat-de-inhibi-ie-amine-blush|VARIANT#ro": {
+      "contentId": "strat-de-inhibi-ie-amine-blush",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Stratul de inhibi\u021bie, cunoscut \u0219i sub denumirea de <em>Amine Blush</em>, este o pelicul\u0103 sub\u021bire care poate ap\u0103rea la suprafa\u021ba r\u0103\u0219inii epoxidice \u00een timpul \u00eent\u0103ririi, \u00een special \u00een condi\u021bii de temperatur\u0103 sc\u0103zut\u0103 sau umiditate ridicat\u0103. \u00cenaintea aplic\u0103rii unui nou strat sau a finis\u0103rii, aceast\u0103 pelicul\u0103 trebuie \u00eendep\u0103rtat\u0103 pentru a asigura o aderen\u021b\u0103 corespunz\u0103toare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Strat de inhibi\u021bie (Amine Blush)"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#strat-de-inhibi-ie-amine-blush",
+      "publishedAt": "2026-07-26T10:06:20.329525+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:06:20.329525+00:00"
+    },
     "CONTENT#glossary_entry#strat-de-sigilare-seal-coat|META": {
       "contentId": "strat-de-sigilare-seal-coat",
       "contentType": "glossary_entry",
@@ -3694,6 +7071,86 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T10:12:52.748170+00:00"
+    },
+    "CONTENT#glossary_entry#supra-nc-lzire|META": {
+      "contentId": "supra-nc-lzire",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:06:31.791619+00:00",
+      "pk": "CONTENT#supra-nc-lzire",
+      "sk": "META",
+      "sortOrder": 14000,
+      "updatedAt": "2026-07-26T10:06:42.214380+00:00"
+    },
+    "CONTENT#glossary_entry#supra-nc-lzire|VARIANT#ro": {
+      "contentId": "supra-nc-lzire",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Supra\u00eenc\u0103lzirea, cunoscut\u0103 \u0219i sub denumirea de <em>Overheating</em>, reprezint\u0103 cre\u0219terea excesiv\u0103 a temperaturii r\u0103\u0219inii epoxidice \u00een timpul polimeriz\u0103rii. Acest fenomen apare de obicei la turn\u0103ri prea groase sau \u00een volume mari \u0219i poate provoca fisuri, deform\u0103ri, \u00eeng\u0103lbenire sau alte defecte ale piesei.",
+            "type": "paragraph"
+          },
+          {
+            "align": null,
+            "text": "",
+            "type": "paragraph"
+          },
+          {
+            "align": null,
+            "text": "<br>",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Supra\u00eenc\u0103lzire"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#supra-nc-lzire",
+      "publishedAt": "2026-07-26T10:06:42.214380+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:06:42.214380+00:00"
+    },
+    "CONTENT#glossary_entry#suprafa-lipicioas|META": {
+      "contentId": "suprafa-lipicioas",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:53:06.781513+00:00",
+      "pk": "CONTENT#suprafa-lipicioas",
+      "sk": "META",
+      "sortOrder": 14200,
+      "updatedAt": "2026-07-26T10:53:17.571029+00:00"
+    },
+    "CONTENT#glossary_entry#suprafa-lipicioas|VARIANT#ro": {
+      "contentId": "suprafa-lipicioas",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Suprafa\u021ba lipicioas\u0103 este un defect caracterizat prin faptul c\u0103 r\u0103\u0219ina r\u0103m\u00e2ne moale sau aderent\u0103 la atingere dup\u0103 perioada normal\u0103 de \u00eent\u0103rire. Acest fenomen indic\u0103, de regul\u0103, o problem\u0103 ap\u0103rut\u0103 \u00een timpul amestec\u0103rii, al polimeriz\u0103rii sau al respect\u0103rii condi\u021biilor recomandate de utilizare.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Suprafa\u021b\u0103 lipicioas\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#suprafa-lipicioas",
+      "publishedAt": "2026-07-26T10:53:17.571029+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:53:17.571029+00:00"
     },
     "CONTENT#glossary_entry#temperatur-ambiental|META": {
       "contentId": "temperatur-ambiental",
@@ -3944,7 +7401,7 @@
       "pk": "CONTENT#tor-cu-gaz",
       "sk": "META",
       "sortOrder": 6400,
-      "updatedAt": "2026-07-23T11:16:34.951908+00:00"
+      "updatedAt": "2026-07-26T12:21:36.638275+00:00"
     },
     "CONTENT#glossary_entry#tor-cu-gaz|VARIANT#ro": {
       "contentId": "tor-cu-gaz",
@@ -3966,7 +7423,14 @@
             "type": "paragraph"
           }
         ],
-        "media": [],
+        "media": [
+          {
+            "alt": "torta",
+            "caption": null,
+            "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+            "type": "image"
+          }
+        ],
         "relatedTermIds": [
           "bule-de-aer"
         ],
@@ -3976,13 +7440,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#tor-cu-gaz",
-      "publishedAt": "2026-07-23T11:16:34.951908+00:00",
+      "publishedAt": "2026-07-26T12:21:36.638275+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 3,
-      "sourceTextRevision": 2,
+      "sourceRevision": 4,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-07-23T11:16:34.951908+00:00"
+      "updatedAt": "2026-07-26T12:21:36.638275+00:00"
     },
     "CONTENT#glossary_entry#turnare-ad-nc-deep-pour|META": {
       "contentId": "turnare-ad-nc-deep-pour",
@@ -4111,6 +7575,83 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-23T11:11:46.411643+00:00"
+    },
+    "CONTENT#glossary_entry#ulei-pentru-lemn|META": {
+      "contentId": "ulei-pentru-lemn",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T09:59:45.387440+00:00",
+      "pk": "CONTENT#ulei-pentru-lemn",
+      "sk": "META",
+      "sortOrder": 12100,
+      "updatedAt": "2026-07-26T12:40:15.793748+00:00"
+    },
+    "CONTENT#glossary_entry#ulei-pentru-lemn|VARIANT#ro": {
+      "contentId": "ulei-pentru-lemn",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Uleiul pentru lemn este un produs de finisare care p\u0103trunde \u00een structura lemnului \u0219i \u00eei ofer\u0103 protec\u021bie \u00eempotriva umidit\u0103\u021bii \u0219i a uzurii, eviden\u021biind \u00een acela\u0219i timp textura \u0219i aspectul natural al fibrei. \u00cen func\u021bie de tipul utilizat, uleiul poate necesita \u00eentre\u021binere \u0219i reaplicare periodic\u0103.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [
+          {
+            "alt": "ulei",
+            "caption": null,
+            "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+            "type": "image"
+          }
+        ],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Ulei pentru lemn"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ulei-pentru-lemn",
+      "publishedAt": "2026-07-26T12:40:15.793748+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
+      "status": "published",
+      "updatedAt": "2026-07-26T12:40:15.793748+00:00"
+    },
+    "CONTENT#glossary_entry#umiditate-excesiv|META": {
+      "contentId": "umiditate-excesiv",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-26T10:56:48.618513+00:00",
+      "pk": "CONTENT#umiditate-excesiv",
+      "sk": "META",
+      "sortOrder": 14900,
+      "updatedAt": "2026-07-26T10:56:57.611391+00:00"
+    },
+    "CONTENT#glossary_entry#umiditate-excesiv|VARIANT#ro": {
+      "contentId": "umiditate-excesiv",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Umiditatea excesiv\u0103 reprezint\u0103 prezen\u021ba unei cantit\u0103\u021bi de ap\u0103 \u00een lemn sau \u00een mediul de lucru peste nivelul recomandat pentru utilizarea r\u0103\u0219inii epoxidice. Aceasta poate afecta aderen\u021ba, stabilitatea dimensional\u0103, procesul de \u00eent\u0103rire \u0219i calitatea final\u0103 a proiectului.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Umiditate excesiv\u0103"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#umiditate-excesiv",
+      "publishedAt": "2026-07-26T10:56:57.611391+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T10:56:57.611391+00:00"
     },
     "CONTENT#glossary_entry#umiditatea-lemnului|META": {
       "contentId": "umiditatea-lemnului",
@@ -4420,6 +7961,237 @@
       "status": "published",
       "updatedAt": "2026-07-23T11:51:03.941579+00:00"
     },
+    "CONTENT#glossary_entry#zon-de-turnare|META": {
+      "contentId": "zon-de-turnare",
+      "contentType": "glossary_entry",
+      "createdAt": "2026-07-24T11:28:23.524678+00:00",
+      "pk": "CONTENT#zon-de-turnare",
+      "sk": "META",
+      "sortOrder": 8200,
+      "updatedAt": "2026-07-24T11:28:39.305035+00:00"
+    },
+    "CONTENT#glossary_entry#zon-de-turnare|VARIANT#ro": {
+      "contentId": "zon-de-turnare",
+      "draftBody": {
+        "definitionBlocks": [
+          {
+            "align": null,
+            "text": "Zona de turnare reprezint\u0103 suprafa\u021ba proiectului destinat\u0103 umplerii cu r\u0103\u0219in\u0103 epoxidic\u0103. Aceasta poate include cavit\u0103\u021bi, spa\u021biile dintre piesele de lemn sau alte zone delimitate de utilizator pentru realizarea turn\u0103rii.",
+            "type": "paragraph"
+          }
+        ],
+        "media": [],
+        "relatedTermIds": [],
+        "seeAlso": [],
+        "synonymTermIds": [],
+        "term": "Zon\u0103 de turnare"
+      },
+      "locale": "ro",
+      "pk": "CONTENT#zon-de-turnare",
+      "publishedAt": "2026-07-24T11:28:39.305035+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/glossary/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-24T11:28:39.305035+00:00"
+    },
+    "CONTENT#kb_entry#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare|META": {
+      "category": "Epoxy",
+      "contentId": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T18:16:09.944585+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+      "sk": "META",
+      "sortOrder": 300,
+      "updatedAt": "2026-07-26T18:23:09.310888+00:00"
+    },
+    "CONTENT#kb_entry#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare|VARIANT#ro": {
+      "contentId": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Lemnul nu a fost verificat \u00eenainte de utilizare.",
+          "Uscarea a fost incomplet\u0103 sau neuniform\u0103.",
+          "Umiditatea difer\u0103 \u00eentre diferite zone ale piesei."
+        ],
+        "prevention": [
+          "Verific\u0103 at\u00e2t suprafa\u021ba, c\u00e2t \u0219i zonele diferite ale piesei.",
+          "Acord\u0103 o aten\u021bie suplimentar\u0103 pieselor groase."
+        ],
+        "problemSummary": "Umiditatea lemnului influen\u021beaz\u0103 direct comportamentul r\u0103\u0219inii \u0219i stabilitatea proiectului. Pentru majoritatea aplica\u021biilor se recomand\u0103 o umiditate cuprins\u0103 \u00eentre 6% \u0219i 12%.",
+        "relatedGlossaryEntryIds": [
+          "atac-biologic"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [
+          "Aparat de verificat umiditatea"
+        ],
+        "searchKeywords": [],
+        "solution": [
+          "M\u0103soar\u0103 umiditatea cu un aparat dedicat, \u00een mai multe puncte ale piesei. Utilizeaz\u0103 lemn cu o umiditate cuprins\u0103 \u00eentre 6% \u0219i 12%."
+        ],
+        "symptoms": [
+          "Nu cuno\u0219ti umiditatea lemnului.",
+          "Lemnul a fost depozitat \u00een condi\u021bii necunoscute.",
+          "Exist\u0103 suspiciuni c\u0103 piesa nu este complet uscat\u0103."
+        ],
+        "tips": [
+          "Verifica umiditatea in mai multe zone ale bucatii de lemn."
+        ],
+        "title": "Care este umiditatea recomandat\u0103 a lemnului \u00eenainte de turnare?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+      "publishedAt": "2026-07-26T18:23:09.310888+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T18:23:09.310888+00:00"
+    },
+    "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|META": {
+      "category": "Epoxy",
+      "contentId": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T18:44:54.959934+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+      "sk": "META",
+      "sortOrder": 400,
+      "updatedAt": "2026-07-26T18:47:48.123360+00:00"
+    },
+    "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|VARIANT#ro": {
+      "contentId": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Lemnul con\u021bine \u00eenc\u0103 o cantitate mare de umiditate.",
+          "Umiditatea nu a fost verificat\u0103 \u00eenainte de turnare."
+        ],
+        "prevention": [
+          "Verificarea umidit\u0103\u021bii dureaz\u0103 doar c\u00e2teva minute \u0219i poate preveni pierderea materialelor \u0219i a multor ore de lucru."
+        ],
+        "problemSummary": "Utilizarea unui lemn cu umiditate prea mare poate afecta procesul de polimerizare a r\u0103\u0219inii \u0219i poate compromite \u00eentregul proiect.",
+        "relatedGlossaryEntryIds": [
+          "coaj-de-portocal",
+          "contaminare",
+          "int-rire-incomplet",
+          "lemn-instabil",
+          "lemn-poros"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Opre\u0219te proiectul \u0219i usuc\u0103 lemnul p\u00e2n\u0103 c\u00e2nd ajunge \u00een intervalul recomandat. Verific\u0103 din nou umiditatea \u00eenainte de utilizare."
+        ],
+        "symptoms": [
+          "R\u0103\u0219ina nu se \u00eent\u0103re\u0219te complet.",
+          "Apar bule de aer.",
+          "Exist\u0103 zone lipicioase.",
+          "Apar fisuri sau deform\u0103ri \u00een timp.",
+          "R\u0103\u0219ina se desprinde de lemn."
+        ],
+        "tips": [],
+        "title": "Ce probleme pot ap\u0103rea dac\u0103 lemnul este prea umed?",
+        "warnings": [
+          "Nu presupune c\u0103 lemnul este uscat doar pentru c\u0103 a fost depozitat o perioad\u0103 \u00eendelungat\u0103."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+      "publishedAt": "2026-07-26T18:47:48.123360+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T18:47:48.123360+00:00"
+    },
+    "CONTENT#kb_entry#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic|META": {
+      "category": "Epoxy",
+      "contentId": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T18:05:50.351246+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+      "sk": "META",
+      "sortOrder": 200,
+      "updatedAt": "2026-07-26T18:11:51.776466+00:00"
+    },
+    "CONTENT#kb_entry#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic|VARIANT#ro": {
+      "contentId": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Alegerea lemnului se bazeaz\u0103 doar pe aspectul estetic.",
+          "Nu au fost verificate starea \u0219i stabilitatea materialului.",
+          "Nu s-a \u021binut cont de tipul proiectului care urmeaz\u0103 s\u0103 fie realizat."
+        ],
+        "prevention": [
+          "Aspectul frumos nu garanteaz\u0103 un lemn potrivit.",
+          "Verific\u0103 \u00eentotdeauna lemnul \u00eenainte de a \u00eencepe proiectul.",
+          "G\u00e2nde\u0219te alegerea lemnului \u00een func\u021bie de rezultatul final dorit."
+        ],
+        "problemSummary": "Alegerea lemnului este una dintre cele mai importante etape ale proiectului. Un lemn s\u0103n\u0103tos \u0219i stabil ofer\u0103 o baz\u0103 sigur\u0103 pentru turnare, \u00een timp ce un lemn ales gre\u0219it poate compromite rezultatul final.",
+        "relatedGlossaryEntryIds": [
+          "alburn",
+          "atac-biologic",
+          "calibrare",
+          "defect-structural",
+          "lemn-higroscopic",
+          "lemn-instabil",
+          "lemn-poros",
+          "lemn-s-n-tos",
+          "nod-in-lemn"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [
+          "Aparat de verificat umiditatea"
+        ],
+        "searchKeywords": [],
+        "solution": [
+          "Alege lemn bine uscat, s\u0103n\u0103tos \u0219i stabil. Verific\u0103 umiditatea, starea general\u0103 \u0219i compatibilitatea piesei cu proiectul pe care dore\u0219ti s\u0103 \u00eel realizezi."
+        ],
+        "symptoms": [
+          "Nu e\u0219ti sigur dac\u0103 lemnul este potrivit pentru turnare.",
+          "Lemnul are un aspect spectaculos, dar prezint\u0103 defecte.",
+          "Nu \u0219tii ce criterii trebuie verificate \u00eenainte de utilizare."
+        ],
+        "tips": [
+          "Verifica cu atentie umiditatea si gradul de sanatate al lemnului ales."
+        ],
+        "title": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?",
+        "warnings": [
+          "Un lemn instabil poate genera probleme chiar \u0219i dup\u0103 finalizarea proiectului."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+      "publishedAt": "2026-07-26T18:11:51.776466+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T18:11:51.776466+00:00"
+    },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|META": {
       "category": "Epoxy",
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
@@ -4429,7 +8201,7 @@
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
       "sk": "META",
       "sortOrder": 100,
-      "updatedAt": "2026-07-21T13:02:58.578886+00:00"
+      "updatedAt": "2026-07-26T18:31:13.239743+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|VARIANT#de": {
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
@@ -4623,7 +8395,12 @@
         ],
         "prevention": [],
         "problemSummary": "Dep\u0103\u0219irea grosimii maxime recomandate poate provoca reac\u021bii exoterme excesive \u0219i defecte care compromit proiectul.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cristalizare",
+          "incapsularea-bulelor-de-aer",
+          "reac-ie-exoterm",
+          "supra-nc-lzire"
+        ],
         "relatedKbEntryIds": [],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -4646,13 +8423,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
-      "publishedAt": "2026-07-21T12:24:07.815990+00:00",
+      "publishedAt": "2026-07-26T17:48:38.776829+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-21T12:52:45.567648+00:00"
+      "updatedAt": "2026-07-26T18:31:13.239743+00:00"
     },
     "CONTENT#website_page#about|META": {
       "adminLabel": "About HFZWood",
@@ -7760,10 +11537,500 @@
       "pk": "INDEX#glossary",
       "sk": "ORDER#007800"
     },
+    "INDEX#glossary|ORDER#007900": {
+      "contentId": "punct-de-control",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#007900"
+    },
+    "INDEX#glossary|ORDER#008000": {
+      "contentId": "conturul-cavit-ii",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008000"
+    },
+    "INDEX#glossary|ORDER#008100": {
+      "contentId": "insul-de-lemn",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008100"
+    },
+    "INDEX#glossary|ORDER#008200": {
+      "contentId": "zon-de-turnare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008200"
+    },
+    "INDEX#glossary|ORDER#008300": {
+      "contentId": "arie-calculat",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008300"
+    },
+    "INDEX#glossary|ORDER#008400": {
+      "contentId": "precizia-m-sur-torii",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008400"
+    },
+    "INDEX#glossary|ORDER#008500": {
+      "contentId": "lefuire",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008500"
+    },
+    "INDEX#glossary|ORDER#008600": {
+      "contentId": "granula-ie-abraziv",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008600"
+    },
+    "INDEX#glossary|ORDER#008700": {
+      "contentId": "discuri-abrazive",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008700"
+    },
+    "INDEX#glossary|ORDER#008800": {
+      "contentId": "h-rtie-abraziv",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008800"
+    },
+    "INDEX#glossary|ORDER#008900": {
+      "contentId": "plas-abraziv",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#008900"
+    },
+    "INDEX#glossary|ORDER#009000": {
+      "contentId": "lefuire-umed",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009000"
+    },
+    "INDEX#glossary|ORDER#009100": {
+      "contentId": "lefuire-uscat",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009100"
+    },
+    "INDEX#glossary|ORDER#009200": {
+      "contentId": "lustruire",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009200"
+    },
+    "INDEX#glossary|ORDER#009300": {
+      "contentId": "compus-de-polish",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009300"
+    },
+    "INDEX#glossary|ORDER#009400": {
+      "contentId": "past-de-finisare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009400"
+    },
+    "INDEX#glossary|ORDER#009500": {
+      "contentId": "pad-de-polish",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009500"
+    },
+    "INDEX#glossary|ORDER#009600": {
+      "contentId": "disc-de-p-sl",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009600"
+    },
+    "INDEX#glossary|ORDER#009700": {
+      "contentId": "disc-din-spum",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009700"
+    },
+    "INDEX#glossary|ORDER#009800": {
+      "contentId": "finisaj-lucios",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009800"
+    },
+    "INDEX#glossary|ORDER#009900": {
+      "contentId": "finisaj-satinat",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#009900"
+    },
+    "INDEX#glossary|ORDER#010000": {
+      "contentId": "claritate-optic",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010000"
+    },
+    "INDEX#glossary|ORDER#010100": {
+      "contentId": "oberfrez-router",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010100"
+    },
+    "INDEX#glossary|ORDER#010200": {
+      "contentId": "frez",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010200"
+    },
+    "INDEX#glossary|ORDER#010300": {
+      "contentId": "frez-de-ndreptare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010300"
+    },
+    "INDEX#glossary|ORDER#010400": {
+      "contentId": "frez-de-copiere",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010400"
+    },
+    "INDEX#glossary|ORDER#010500": {
+      "contentId": "frez-de-nivelare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010500"
+    },
+    "INDEX#glossary|ORDER#010600": {
+      "contentId": "router-sled",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010600"
+    },
+    "INDEX#glossary|ORDER#010700": {
+      "contentId": "cnc",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010700"
+    },
+    "INDEX#glossary|ORDER#010800": {
+      "contentId": "ma-in-de-rindeluit",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010800"
+    },
+    "INDEX#glossary|ORDER#010900": {
+      "contentId": "ma-in-de-degro-at",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#010900"
+    },
+    "INDEX#glossary|ORDER#011000": {
+      "contentId": "fier-str-u-circular",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011000"
+    },
+    "INDEX#glossary|ORDER#011100": {
+      "contentId": "fier-str-u-pendular",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011100"
+    },
+    "INDEX#glossary|ORDER#011200": {
+      "contentId": "fier-str-u-panglic",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011200"
+    },
+    "INDEX#glossary|ORDER#011300": {
+      "contentId": "ma-in-de-g-urit",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011300"
+    },
+    "INDEX#glossary|ORDER#011400": {
+      "contentId": "aspirare-a-prafului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011400"
+    },
+    "INDEX#glossary|ORDER#011500": {
+      "contentId": "menghin",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011500"
+    },
+    "INDEX#glossary|ORDER#011600": {
+      "contentId": "clem-de-fixare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011600"
+    },
+    "INDEX#glossary|ORDER#011700": {
+      "contentId": "banc-de-lucru",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011700"
+    },
+    "INDEX#glossary|ORDER#011800": {
+      "contentId": "echipament-individual-de-protec-ie",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011800"
+    },
+    "INDEX#glossary|ORDER#011900": {
+      "contentId": "masc-respiratorie",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#011900"
+    },
+    "INDEX#glossary|ORDER#012000": {
+      "contentId": "ochelari-de-protec-ie",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012000"
+    },
+    "INDEX#glossary|ORDER#012100": {
+      "contentId": "ulei-pentru-lemn",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012100"
+    },
+    "INDEX#glossary|ORDER#012200": {
+      "contentId": "cear-de-protec-ie",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012200"
+    },
+    "INDEX#glossary|ORDER#012300": {
+      "contentId": "ntre-inerea-suprafe-ei",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012300"
+    },
+    "INDEX#glossary|ORDER#012400": {
+      "contentId": "recondi-ionarea-suprafe-ei",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012400"
+    },
+    "INDEX#glossary|ORDER#012500": {
+      "contentId": "protec-ia-uv",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012500"
+    },
+    "INDEX#glossary|ORDER#012600": {
+      "contentId": "rezisten-la-zg-riere",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012600"
+    },
+    "INDEX#glossary|ORDER#012700": {
+      "contentId": "rezisten-la-umiditate",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012700"
+    },
+    "INDEX#glossary|ORDER#012800": {
+      "contentId": "rezisten-chimic",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012800"
+    },
+    "INDEX#glossary|ORDER#012900": {
+      "contentId": "contrac-ie",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#012900"
+    },
+    "INDEX#glossary|ORDER#013000": {
+      "contentId": "dilatare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013000"
+    },
+    "INDEX#glossary|ORDER#013100": {
+      "contentId": "deformarea-lemnului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013100"
+    },
+    "INDEX#glossary|ORDER#013200": {
+      "contentId": "stabilitate-dimensional",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013200"
+    },
+    "INDEX#glossary|ORDER#013300": {
+      "contentId": "compatibilitatea-materialelor",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013300"
+    },
+    "INDEX#glossary|ORDER#013400": {
+      "contentId": "aderen",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013400"
+    },
+    "INDEX#glossary|ORDER#013500": {
+      "contentId": "delaminare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013500"
+    },
+    "INDEX#glossary|ORDER#013600": {
+      "contentId": "microfisur",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013600"
+    },
+    "INDEX#glossary|ORDER#013700": {
+      "contentId": "defect-de-turnare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013700"
+    },
+    "INDEX#glossary|ORDER#013800": {
+      "contentId": "controlul-calit-ii",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013800"
+    },
+    "INDEX#glossary|ORDER#013900": {
+      "contentId": "strat-de-inhibi-ie-amine-blush",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#013900"
+    },
+    "INDEX#glossary|ORDER#014000": {
+      "contentId": "supra-nc-lzire",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014000"
+    },
+    "INDEX#glossary|ORDER#014100": {
+      "contentId": "int-rire-incomplet",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014100"
+    },
+    "INDEX#glossary|ORDER#014200": {
+      "contentId": "suprafa-lipicioas",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014200"
+    },
+    "INDEX#glossary|ORDER#014300": {
+      "contentId": "crater",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014300"
+    },
+    "INDEX#glossary|ORDER#014400": {
+      "contentId": "ochi-de-pe-te",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014400"
+    },
+    "INDEX#glossary|ORDER#014500": {
+      "contentId": "coaj-de-portocal",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014500"
+    },
+    "INDEX#glossary|ORDER#014600": {
+      "contentId": "separarea-pigmentului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014600"
+    },
+    "INDEX#glossary|ORDER#014700": {
+      "contentId": "sedimentarea-pigmentului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014700"
+    },
+    "INDEX#glossary|ORDER#014800": {
+      "contentId": "incluziuni-de-praf",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014800"
+    },
+    "INDEX#glossary|ORDER#014900": {
+      "contentId": "umiditate-excesiv",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#014900"
+    },
+    "INDEX#glossary|ORDER#015000": {
+      "contentId": "fisurare-termic",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015000"
+    },
+    "INDEX#glossary|ORDER#015100": {
+      "contentId": "deformarea-cofrajului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015100"
+    },
+    "INDEX#glossary|ORDER#015200": {
+      "contentId": "repararea-defectelor",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015200"
+    },
+    "INDEX#glossary|ORDER#015300": {
+      "contentId": "inspec-ia-final",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015300"
+    },
+    "INDEX#glossary|ORDER#015400": {
+      "contentId": "imagine-de-referin",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015400"
+    },
+    "INDEX#glossary|ORDER#015500": {
+      "contentId": "scara-imaginii",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015500"
+    },
+    "INDEX#glossary|ORDER#015600": {
+      "contentId": "importul-imaginii",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015600"
+    },
+    "INDEX#glossary|ORDER#015700": {
+      "contentId": "calibrarea-imaginii",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015700"
+    },
+    "INDEX#glossary|ORDER#015800": {
+      "contentId": "actualizarea-proiectului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015800"
+    },
+    "INDEX#glossary|ORDER#015900": {
+      "contentId": "salvarea-proiectului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#015900"
+    },
+    "INDEX#glossary|ORDER#016000": {
+      "contentId": "deschiderea-proiectului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016000"
+    },
+    "INDEX#glossary|ORDER#016100": {
+      "contentId": "copie-de-siguran",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016100"
+    },
+    "INDEX#glossary|ORDER#016200": {
+      "contentId": "spatiu-de-lucru",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016200"
+    },
+    "INDEX#glossary|ORDER#016300": {
+      "contentId": "proiect-local",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016300"
+    },
+    "INDEX#glossary|ORDER#016400": {
+      "contentId": "proiect-partajat",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016400"
+    },
+    "INDEX#glossary|ORDER#016500": {
+      "contentId": "proprietarul-proiectului",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016500"
+    },
+    "INDEX#glossary|ORDER#016600": {
+      "contentId": "permisiune-de-editare",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016600"
+    },
+    "INDEX#glossary|ORDER#016700": {
+      "contentId": "capabilitate",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016700"
+    },
+    "INDEX#glossary|ORDER#016800": {
+      "contentId": "abonament",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016800"
+    },
+    "INDEX#glossary|ORDER#016900": {
+      "contentId": "manual-hfzwood",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#016900"
+    },
+    "INDEX#glossary|ORDER#017000": {
+      "contentId": "baza-de-cunostinte",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#017000"
+    },
+    "INDEX#glossary|ORDER#017100": {
+      "contentId": "glosar",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#017100"
+    },
+    "INDEX#glossary|ORDER#017200": {
+      "contentId": "referin-tehnic",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#017200"
+    },
+    "INDEX#glossary|ORDER#017300": {
+      "contentId": "estimarea-cantit-ii-de-r-in",
+      "pk": "INDEX#glossary",
+      "sk": "ORDER#017300"
+    },
     "INDEX#kb|ORDER#000100": {
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
       "pk": "INDEX#kb",
       "sk": "ORDER#000100"
+    },
+    "INDEX#kb|ORDER#000200": {
+      "contentId": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000200"
+    },
+    "INDEX#kb|ORDER#000300": {
+      "contentId": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000300"
+    },
+    "INDEX#kb|ORDER#000400": {
+      "contentId": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000400"
     }
   }
 }

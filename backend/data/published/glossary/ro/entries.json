@@ -2,10 +2,50 @@
   "entries": [
     {
       "definition": [
+        "Abonamentul reprezint\u0103 forma de licen\u021biere prin care utilizatorul ob\u021bine acces la anumite capabilit\u0103\u021bi ale aplica\u021biei HFZWood. Tipul abonamentului stabile\u0219te func\u021bionalit\u0103\u021bile disponibile \u0219i eventualele limit\u0103ri de utilizare."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abonament"
+    },
+    {
+      "definition": [
+        "Actualizarea proiectului reprezint\u0103 opera\u021bia prin care modific\u0103rile efectuate asupra unui proiect existent sunt salvate f\u0103r\u0103 crearea unui proiect nou. Aceast\u0103 opera\u021bie p\u0103streaz\u0103 identitatea proiectului \u0219i \u00eenlocuie\u0219te versiunea salvat\u0103 anterior cu cea actualizat\u0103."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Actualizarea proiectului"
+    },
+    {
+      "definition": [
+        "Aderen\u021ba reprezint\u0103 capacitatea a dou\u0103 materiale aflate \u00een contact de a se fixa ferm unul de cel\u0103lalt. \u00cen proiectele cu r\u0103\u0219in\u0103 epoxidic\u0103, o aderen\u021b\u0103 corespunz\u0103toare \u00eentre r\u0103\u0219in\u0103 \u0219i lemn este esen\u021bial\u0103 pentru rezisten\u021ba \u0219i durabilitatea piesei finale."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aderen\u021b\u0103"
+    },
+    {
+      "definition": [
         "Agentul de demulare este o substan\u021b\u0103 aplicat\u0103 pe suprafa\u021ba cofrajului pentru a \u00eempiedica aderarea r\u0103\u0219inii epoxidice \u00een timpul \u00eent\u0103ririi. Utilizarea sa faciliteaz\u0103 demontarea cofrajului \u0219i reduce riscul deterior\u0103rii piesei sau al suprafe\u021belor de contact."
       ],
       "id": "agent-de-demulare",
-      "media": [],
+      "media": [
+        {
+          "alt": "agent demulare",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [],
       "seeAlso": [],
       "synonyms": [],
@@ -16,8 +56,20 @@
         "Alburnul este zona exterioar\u0103 a lemnului, situat\u0103 \u00eentre duramen \u0219i scoar\u021b\u0103. Aceast\u0103 parte a trunchiului transport\u0103 apa \u0219i substan\u021bele nutritive \u00een timpul vie\u021bii arborelui \u0219i este, de regul\u0103, mai deschis\u0103 la culoare \u0219i mai sensibil\u0103 la umiditate \u0219i atac biologic. \u00cen func\u021bie de proiect, alburnul poate fi p\u0103strat pentru efectul estetic sau \u00eendep\u0103rtat pentru o stabilitate mai bun\u0103."
       ],
       "id": "alburn",
-      "media": [],
-      "relatedTerms": [],
+      "media": [
+        {
+          "alt": "albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Duramen"
+        }
+      ],
       "seeAlso": [
         {
           "href": "/glossary#glossary-entry-duramen",
@@ -51,10 +103,39 @@
     },
     {
       "definition": [
+        "Aria calculat\u0103 reprezint\u0103 suprafa\u021ba determinat\u0103 automat de aplica\u021bie pe baza poligonului de m\u0103surare definit de utilizator. Aceast\u0103 valoare este utilizat\u0103 \u00een calculele geometrice \u0219i contribuie la estimarea volumului \u0219i a cantit\u0103\u021bii necesare de r\u0103\u0219in\u0103."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Arie calculat\u0103"
+    },
+    {
+      "definition": [
+        "Aspirarea prafului reprezint\u0103 procesul de colectare \u0219i \u00eendep\u0103rtare a prafului rezultat \u00een timpul prelucr\u0103rii lemnului \u0219i a r\u0103\u0219inii epoxidice. Utilizarea unui sistem eficient de aspirare contribuie la men\u021binerea unui mediu de lucru curat, protejeaz\u0103 s\u0103n\u0103tatea operatorului \u0219i \u00eembun\u0103t\u0103\u021be\u0219te calitatea finisajului."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aspirare a prafului"
+    },
+    {
+      "definition": [
         "Atacul biologic reprezint\u0103 degradarea lemnului provocat\u0103 de ciuperci, mucegaiuri, bacterii sau insecte xilofage. Intensitatea acestuia poate afecta at\u00e2t rezisten\u021ba mecanic\u0103, c\u00e2t \u0219i aspectul piesei. Lemnul afectat trebuie evaluat cu aten\u021bie \u00eenainte de utilizarea \u00eentr-un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103."
       ],
       "id": "atac-biologic",
-      "media": [],
+      "media": [
+        {
+          "alt": "atac biologic",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "lemn-instabil",
@@ -67,10 +148,39 @@
     },
     {
       "definition": [
+        "Bancul de lucru este suprafa\u021ba sau masa destinat\u0103 desf\u0103\u0219ur\u0103rii opera\u021biilor de prelucrare, asamblare \u0219i finisare. Un banc de lucru stabil \u0219i suficient de rigid contribuie la precizia opera\u021biilor \u0219i la desf\u0103\u0219urarea \u00een siguran\u021b\u0103 a activit\u0103\u021bilor din atelier."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Banc de lucru"
+    },
+    {
+      "definition": [
+        "Baza de cunostinte (Knowledge Base) reprezint\u0103 colec\u021bia de articole tehnice \u0219i informa\u021bii suplimentare care completeaz\u0103 manualul aplica\u021biei. Aceasta ofer\u0103 explica\u021bii detaliate, recomand\u0103ri \u0219i informa\u021bii utile despre materialele, procesele \u0219i tehnicile utilizate \u00een proiectele cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Baza de cunostinte"
+    },
+    {
+      "definition": [
         "Bolobocul, numit \u0219i nivel\u0103, este instrumentul utilizat pentru verificarea orizontalit\u0103\u021bii sau verticalit\u0103\u021bii unei suprafe\u021be. \u00cen realizarea proiectelor cu r\u0103\u0219in\u0103 epoxidic\u0103, acesta este folosit pentru nivelarea cofrajului \u0219i pentru verificarea pozi\u021biei corecte a pieselor \u00eenainte de turnare."
       ],
       "id": "boloboc-nivel",
-      "media": [],
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "nivelarea-cofrajului",
@@ -86,7 +196,14 @@
         "Bulele de aer sunt incluziuni de aer r\u0103mase \u00een r\u0103\u0219ina epoxidic\u0103 \u00een timpul amestec\u0103rii, turn\u0103rii sau degaj\u0103rii din porii lemnului. Dac\u0103 nu sunt eliminate, acestea pot afecta aspectul \u0219i, \u00een unele situa\u021bii, rezisten\u021ba piesei finale."
       ],
       "id": "bule-de-aer",
-      "media": [],
+      "media": [
+        {
+          "alt": "bule aer rasina",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "amestecare",
@@ -138,6 +255,17 @@
     },
     {
       "definition": [
+        "Calibrarea imaginii reprezint\u0103 procesul prin care aplica\u021bia stabile\u0219te coresponden\u021ba dintre dimensiunile din fotografie \u0219i dimensiunile reale, folosind o distan\u021b\u0103 de referin\u021b\u0103 cunoscut\u0103. O calibrare corect\u0103 este esen\u021bial\u0103 pentru ob\u021binerea unor rezultate precise."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibrarea imaginii"
+    },
+    {
+      "definition": [
         "Cantitatea necesar\u0103 de r\u0103\u0219in\u0103 reprezint\u0103 volumul sau masa de r\u0103\u0219in\u0103 epoxidic\u0103 estimat\u0103 pentru realizarea unui proiect, inclusiv eventualul factor de siguran\u021b\u0103 stabilit de utilizator. \u00cen HFZWood, aceast\u0103 valoare este calculat\u0103 automat pe baza geometriei proiectului \u0219i a parametrilor introdu\u0219i."
       ],
       "id": "cantitate-necesar-de-r-in",
@@ -157,6 +285,17 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Cantitate necesar\u0103 de \u00eent\u0103ritor"
+    },
+    {
+      "definition": [
+        "O capabilitate (*Capability*) reprezint\u0103 o func\u021bionalitate sau un grup de func\u021bionalit\u0103\u021bi pe care aplica\u021bia HFZWood le pune la dispozi\u021bia unui utilizator. Capabilit\u0103\u021bile disponibile sunt determinate de tipul abonamentului \u0219i de rolul asociat contului."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Capabilitate"
     },
     {
       "definition": [
@@ -183,6 +322,82 @@
     },
     {
       "definition": [
+        "Ceara de protec\u021bie este un produs de finisare aplicat pe suprafa\u021ba lemnului sau peste un strat de ulei pentru a \u00eembun\u0103t\u0103\u021bi protec\u021bia \u0219i aspectul final. Aceasta ofer\u0103 un finisaj pl\u0103cut la atingere, reduce absorb\u021bia murd\u0103riei \u0219i faciliteaz\u0103 \u00eentre\u021binerea suprafe\u021bei."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "ceara",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cear\u0103 de protec\u021bie"
+    },
+    {
+      "definition": [
+        "Claritatea optic\u0103 reprezint\u0103 capacitatea r\u0103\u0219inii epoxidice de a transmite lumina f\u0103r\u0103 distorsiuni, tulbur\u0103ri sau modific\u0103ri vizibile ale imaginii. O claritate optic\u0103 ridicat\u0103 permite eviden\u021bierea detaliilor lemnului \u0219i ob\u021binerea unor turn\u0103ri transparente de calitate."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Claritate optic\u0103"
+    },
+    {
+      "definition": [
+        "Clema de fixare este un dispozitiv utilizat pentru men\u021binerea temporar\u0103 a pieselor sau a componentelor \u00een pozi\u021bia dorit\u0103 \u00een timpul lipirii, prelucr\u0103rii sau asambl\u0103rii. Exist\u0103 numeroase tipuri de cleme, adaptate diferitelor dimensiuni \u0219i aplica\u021bii."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "clema lemn",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Clem\u0103 de fixare"
+    },
+    {
+      "definition": [
+        "CNC (Computer Numerical Control) reprezint\u0103 un sistem de prelucrare automatizat\u0103 \u00een care mi\u0219c\u0103rile utilajului sunt controlate de un program informatic. \u00cen prelucrarea lemnului, utilajele CNC sunt utilizate pentru debitare, frezare, gravare \u0219i realizarea unor forme complexe cu un nivel ridicat de precizie \u0219i repetabilitate."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC"
+    },
+    {
+      "definition": [
+        "Coaja de portocal\u0103, cunoscut\u0103 \u0219i sub denumirea de Orange Peel, este un defect de suprafa\u021b\u0103 caracterizat printr-o textur\u0103 neregulat\u0103 care seam\u0103n\u0103 cu coaja unei portocale. Acest defect poate ap\u0103rea din cauza condi\u021biilor de aplicare, a v\u00e2scozit\u0103\u021bii necorespunz\u0103toare sau a altor factori care afecteaz\u0103 nivelarea r\u0103\u0219inii."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Coaj\u0103 de portocal\u0103"
+    },
+    {
+      "definition": [
         "Cofrajul reprezint\u0103 structura temporar\u0103 utilizat\u0103 pentru a sus\u021bine \u0219i a delimita r\u0103\u0219ina epoxidic\u0103 pe durata turn\u0103rii \u0219i a \u00eent\u0103ririi. Acesta trebuie s\u0103 fie etan\u0219, stabil \u0219i realizat din materiale care permit desprinderea u\u0219oar\u0103 a piesei dup\u0103 finalizarea procesului."
       ],
       "id": "cofraj",
@@ -191,6 +406,17 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Cofraj"
+    },
+    {
+      "definition": [
+        "Compatibilitatea materialelor reprezint\u0103 capacitatea diferitelor materiale utilizate \u00eentr-un proiect de a func\u021biona \u00eempreun\u0103 f\u0103r\u0103 a produce reac\u021bii nedorite sau defecte. Alegerea unor materiale compatibile contribuie la ob\u021binerea unei bune aderen\u021be, a unei durabilit\u0103\u021bi ridicate \u0219i a unui comportament stabil \u00een exploatare."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Compatibilitatea materialelor"
     },
     {
       "definition": [
@@ -226,6 +452,66 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Contaminare"
+    },
+    {
+      "definition": [
+        "Contrac\u021bia reprezint\u0103 reducerea dimensiunilor unui material ca urmare a pierderii umidit\u0103\u021bii, a procesului de \u00eent\u0103rire sau a varia\u021biilor de temperatur\u0103. \u00cen proiectele cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103, contrac\u021bia poate influen\u021ba precizia dimensional\u0103 \u0219i poate favoriza apari\u021bia fisurilor sau a tensiunilor interne."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contrac\u021bie"
+    },
+    {
+      "definition": [
+        "Controlul calit\u0103\u021bii reprezint\u0103 procesul de verificare a materialelor, etapelor de lucru \u0219i rezultatului final pentru a confirma c\u0103 proiectul respect\u0103 cerin\u021bele de calitate stabilite. Acesta permite identificarea \u0219i corectarea eventualelor probleme \u00eenainte ca piesa s\u0103 fie considerat\u0103 finalizat\u0103."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Controlul calit\u0103\u021bii"
+    },
+    {
+      "definition": [
+        "Conturul cavit\u0103\u021bii reprezint\u0103 limita geometric\u0103 care delimiteaz\u0103 o cavitate din lemn destinat\u0103 umplerii cu r\u0103\u0219in\u0103 epoxidic\u0103. Definirea corect\u0103 a acestui contur permite calcularea precis\u0103 a suprafe\u021bei \u0219i a volumului cavit\u0103\u021bii."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "Poligon de m\u0103surare"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Conturul cavit\u0103\u021bii"
+    },
+    {
+      "definition": [
+        "Copia de siguran\u021b\u0103, denumit\u0103 \u0219i Backup, reprezint\u0103 o copie suplimentar\u0103 a proiectelor sau a datelor, p\u0103strat\u0103 pentru a permite recuperarea acestora \u00een cazul pierderii, deterior\u0103rii sau \u0219tergerii accidentale a informa\u021biilor."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Copie de siguran\u021b\u0103"
+    },
+    {
+      "definition": [
+        "Craterul este un defect de suprafa\u021b\u0103 care apare sub forma unei mici depresiuni sau a unui gol circular \u00een r\u0103\u0219ina epoxidic\u0103 dup\u0103 \u00eent\u0103rire. Acesta poate fi provocat de contaminare, bule de aer sau alte condi\u021bii care \u00eempiedic\u0103 \u00eentinderea uniform\u0103 a r\u0103\u0219inii."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Crater"
     },
     {
       "definition": [
@@ -275,6 +561,17 @@
     },
     {
       "definition": [
+        "Defectul de turnare reprezint\u0103 orice imperfec\u021biune ap\u0103rut\u0103 \u00een timpul procesului de turnare sau de \u00eent\u0103rire a r\u0103\u0219inii epoxidice, care afecteaz\u0103 aspectul, func\u021bionalitatea sau calitatea piesei finale. Printre cele mai frecvente defecte se num\u0103r\u0103 bulele de aer, golurile, scurgerile, fisurile \u0219i zonele care nu s-au \u00eent\u0103rit corespunz\u0103tor."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Defect de turnare"
+    },
+    {
+      "definition": [
         "Un defect structural este orice imperfec\u021biune a lemnului care \u00eei poate reduce rezisten\u021ba, stabilitatea sau capacitatea de a suporta solicit\u0103rile mecanice. Din aceast\u0103 categorie fac parte fisurile, cr\u0103p\u0103turile extinse, putregaiul, golurile sau alte degrad\u0103ri care influen\u021beaz\u0103 comportamentul piesei \u00een exploatare."
       ],
       "id": "defect-structural",
@@ -288,6 +585,28 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Defect structural"
+    },
+    {
+      "definition": [
+        "Deformarea cofrajului reprezint\u0103 modificarea formei sau pozi\u021biei cofrajului \u00een timpul turn\u0103rii ori al \u00eent\u0103ririi r\u0103\u0219inii epoxidice. Aceasta poate fi cauzat\u0103 de presiunea r\u0103\u0219inii, fixarea insuficient\u0103 sau rigiditatea redus\u0103 a cofrajului \u0219i poate conduce la modificarea dimensiunilor proiectului."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deformarea cofrajului"
+    },
+    {
+      "definition": [
+        "Deformarea lemnului reprezint\u0103 modificarea formei ini\u021biale a unei piese ca urmare a varia\u021biilor de umiditate, a tensiunilor interne sau a altor factori care influen\u021beaz\u0103 stabilitatea materialului. Cele mai frecvente forme de deformare sunt \u00eencovoierea, r\u0103sucirea \u0219i arcuirea."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deformarea lemnului"
     },
     {
       "definition": [
@@ -315,6 +634,17 @@
     },
     {
       "definition": [
+        "Delaminarea reprezint\u0103 desprinderea sau separarea straturilor unui material ori a suprafe\u021belor lipite \u00eentre ele. \u00cen proiectele cu r\u0103\u0219in\u0103 epoxidic\u0103, delaminarea indic\u0103 pierderea aderen\u021bei \u0219i poate compromite at\u00e2t rezisten\u021ba mecanic\u0103, c\u00e2t \u0219i aspectul final al piesei."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Delaminare"
+    },
+    {
+      "definition": [
         "Demularea reprezint\u0103 opera\u021bia de \u00eendep\u0103rtare a cofrajului dup\u0103 ce r\u0103\u0219ina epoxidic\u0103 s-a \u00eent\u0103rit suficient pentru a-\u0219i p\u0103stra forma. Aceast\u0103 etap\u0103 trebuie realizat\u0103 cu aten\u021bie pentru a evita deteriorarea proiectului sau a marginilor turnate."
       ],
       "id": "demulare",
@@ -337,6 +667,75 @@
     },
     {
       "definition": [
+        "Deschiderea proiectului reprezint\u0103 opera\u021bia prin care un proiect salvat anterior este \u00eenc\u0103rcat \u00een aplica\u021bia HFZWood pentru vizualizare, modificare sau continuarea lucrului."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deschiderea proiectului"
+    },
+    {
+      "definition": [
+        "Dilatarea reprezint\u0103 cre\u0219terea dimensiunilor unui material ca urmare a absorb\u021biei umidit\u0103\u021bii sau a modific\u0103rilor de temperatur\u0103. Deoarece lemnul \u0219i r\u0103\u0219ina epoxidic\u0103 au comportamente diferite la dilatare, acest fenomen trebuie luat \u00een considerare \u00een proiectarea \u0219i utilizarea pieselor."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dilatare"
+    },
+    {
+      "definition": [
+        "Discul de p\u00e2sl\u0103 este un accesoriu utilizat pentru lustruirea suprafe\u021belor \u00eempreun\u0103 cu paste abrazive sau de finisare. Datorit\u0103 structurii sale compacte, este folosit \u00een special pentru ob\u021binerea unui luciu ridicat \u0219i a unei suprafe\u021be uniforme."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disc de p\u00e2sl\u0103"
+    },
+    {
+      "definition": [
+        "Discul din spum\u0103 este un accesoriu pentru ma\u0219inile de polish, utilizat la aplicarea compu\u0219ilor abrazivi \u0219i de finisare. \u00cen func\u021bie de duritatea spumei, acesta poate fi folosit at\u00e2t pentru corectarea defectelor fine, c\u00e2t \u0219i pentru ob\u021binerea luciului final."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "pad plish",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disc din spum\u0103"
+    },
+    {
+      "definition": [
+        "Discurile abrazive sunt consumabile circulare utilizate \u00eempreun\u0103 cu ma\u0219inile de \u0219lefuit pentru prelucrarea lemnului \u0219i a r\u0103\u0219inii epoxidice. Acestea sunt disponibile \u00een diferite granula\u021bii \u0219i permit \u00eendep\u0103rtarea controlat\u0103 a materialului \u00een func\u021bie de etapa de prelucrare."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "disc abraziv",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Discuri abrazive"
+    },
+    {
+      "definition": [
         "Dozarea pigmentului reprezint\u0103 cantitatea de pigment ad\u0103ugat\u0103 \u00een r\u0103\u0219ina epoxidic\u0103 pentru ob\u021binerea culorii \u0219i opacit\u0103\u021bii dorite. Respectarea dozajului recomandat de produc\u0103tor este important\u0103 pentru a men\u021bine propriet\u0103\u021bile mecanice \u0219i procesul normal de polimerizare al r\u0103\u0219inii."
       ],
       "id": "dozarea-pigmentului",
@@ -351,7 +750,14 @@
         "Duramenul reprezint\u0103 partea central\u0103, matur\u0103 \u0219i mai dens\u0103 a trunchiului unui copac. \u00cen general, acesta are o rezisten\u021b\u0103 mai mare la umiditate, ciuperci \u0219i insecte dec\u00e2t alburnul \u0219i este preferat pentru realizarea pieselor de mobilier \u0219i a proiectelor decorative cu r\u0103\u0219in\u0103 epoxidic\u0103 datorit\u0103 stabilit\u0103\u021bii \u0219i aspectului s\u0103u."
       ],
       "id": "duramen",
-      "media": [],
+      "media": [
+        {
+          "alt": "albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "alburn",
@@ -361,6 +767,28 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Duramen"
+    },
+    {
+      "definition": [
+        "Echipamentul individual de protec\u021bie reprezint\u0103 ansamblul echipamentelor purtate de operator pentru reducerea riscurilor asociate prelucr\u0103rii lemnului \u0219i utiliz\u0103rii r\u0103\u0219inilor epoxidice. Din aceast\u0103 categorie fac parte, printre altele, m\u0103\u0219tile respiratorii, ochelarii de protec\u021bie, m\u0103nu\u0219ile \u0219i protec\u021bia auditiv\u0103."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Echipament individual de protec\u021bie"
+    },
+    {
+      "definition": [
+        "Estimarea cantit\u0103\u021bii de r\u0103\u0219in\u0103 reprezint\u0103 procesul prin care aplica\u021bia HFZWood calculeaz\u0103 volumul \u0219i cantitatea necesar\u0103 de r\u0103\u0219in\u0103 epoxidic\u0103 pentru realizarea unui proiect, pe baza geometriei definite de utilizator \u0219i a parametrilor de calcul disponibili."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Estimarea cantit\u0103\u021bii de r\u0103\u0219in\u0103"
     },
     {
       "definition": [
@@ -388,6 +816,99 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Factor de siguran\u021b\u0103"
+    },
+    {
+      "definition": [
+        "Fier\u0103str\u0103ul circular este un utilaj sau o unealt\u0103 echipat\u0103 cu o p\u00e2nz\u0103 circular\u0103 rotativ\u0103, utilizat\u0103 pentru debitarea lemnului \u00een lungime, l\u0103\u021bime sau la diferite unghiuri. Precizia \u0219i stabilitatea t\u0103ierii depind de reglajele utilajului, de tipul p\u00e2nzei \u0219i de modul de ghidare a materialului."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "fierastrau circular",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fier\u0103str\u0103u circular"
+    },
+    {
+      "definition": [
+        "Fier\u0103str\u0103ul panglic\u0103 este un utilaj de debitare care utilizeaz\u0103 o p\u00e2nz\u0103 continu\u0103 montat\u0103 pe dou\u0103 sau mai multe volante. Acesta permite realizarea unor t\u0103ieri precise, at\u00e2t drepte, c\u00e2t \u0219i curbe, fiind utilizat frecvent pentru debitarea lemnului masiv \u0219i pentru prelucrarea pieselor cu forme neregulate."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "banzic",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fier\u0103str\u0103u panglic\u0103"
+    },
+    {
+      "definition": [
+        "Fier\u0103str\u0103ul pendular este o unealt\u0103 electric\u0103 prev\u0103zut\u0103 cu o p\u00e2nz\u0103 \u00eengust\u0103 care execut\u0103 o mi\u0219care alternativ\u0103 vertical\u0103, fiind utilizat\u0103 pentru t\u0103ieri drepte sau curbe \u00een lemn \u0219i alte materiale. Datorit\u0103 manevrabilit\u0103\u021bii sale, este potrivit pentru decupaje \u0219i contururi complexe."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "pendular",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fier\u0103str\u0103u pendular"
+    },
+    {
+      "definition": [
+        "Finisajul lucios este un tip de finisare caracterizat printr-un grad ridicat de reflexie a luminii \u0219i o suprafa\u021b\u0103 foarte neted\u0103. Ob\u021binerea acestui aspect necesit\u0103 o \u0219lefuire \u0219i o lustruire realizate corect, folosind materiale \u0219i tehnici adecvate."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finisaj lucios"
+    },
+    {
+      "definition": [
+        "Finisajul satinat este un tip de finisare care ofer\u0103 un aspect uniform, cu reflexii discrete \u0219i un luciu moderat. Acesta eviden\u021biaz\u0103 textura materialului \u0219i este preferat \u00een proiectele \u00een care se dore\u0219te un aspect natural \u0219i elegant."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finisaj satinat"
+    },
+    {
+      "definition": [
+        "Fisurarea termic\u0103 reprezint\u0103 apari\u021bia fisurilor \u00een r\u0103\u0219ina epoxidic\u0103 sau \u00een lemn ca urmare a varia\u021biilor mari de temperatur\u0103 sau a dezvolt\u0103rii excesive de c\u0103ldur\u0103 \u00een timpul polimeriz\u0103rii. Acest defect poate compromite at\u00e2t aspectul estetic, c\u00e2t \u0219i rezisten\u021ba piesei finale."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fisurare termic\u0103"
     },
     {
       "definition": [
@@ -420,6 +941,57 @@
     },
     {
       "definition": [
+        "Freza este scula a\u0219chietoare montat\u0103 pe oberfrez\u0103 sau pe alte utilaje de prelucrare, utilizat\u0103 pentru \u00eendep\u0103rtarea controlat\u0103 a materialului. Exist\u0103 numeroase tipuri de freze, fiecare fiind proiectat\u0103 pentru o anumit\u0103 opera\u021bie sau profil de prelucrare."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "freza",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez\u0103"
+    },
+    {
+      "definition": [
+        "Freza de copiere este o frez\u0103 prev\u0103zut\u0103 cu unul sau mai mul\u021bi rulmen\u021bi de ghidare care permit urm\u0103rirea unui \u0219ablon sau a unei muchii existente. Aceasta este utilizat\u0103 pentru reproducerea precis\u0103 a contururilor \u0219i pentru realizarea unor piese identice."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez\u0103 de copiere"
+    },
+    {
+      "definition": [
+        "Freza de nivelare este o frez\u0103 cu diametru mare, utilizat\u0103 pentru aducerea suprafe\u021belor la acela\u0219i nivel prin \u00eendep\u0103rtarea controlat\u0103 a materialului. Este folosit\u0103 frecvent \u00eempreun\u0103 cu un Router Sled pentru nivelarea blaturilor mari din lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez\u0103 de nivelare"
+    },
+    {
+      "definition": [
+        "Freza de \u00eendreptare este o frez\u0103 destinat\u0103 ob\u021binerii unor muchii sau suprafe\u021be perfect drepte. Aceasta este utilizat\u0103 pentru corectarea marginilor pieselor de lemn \u0219i pentru preg\u0103tirea acestora \u00eenainte de \u00eembinare sau alte opera\u021bii de prelucrare."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez\u0103 de \u00eendreptare"
+    },
+    {
+      "definition": [
         "Geometria proiectului descrie forma, dimensiunile \u0219i rela\u021biile spa\u021biale dintre toate elementele care alc\u0103tuiesc proiectul. \u00cen HFZWood, geometria st\u0103 la baza calculului suprafe\u021belor, volumelor \u0219i a cantit\u0103\u021bii estimate de r\u0103\u0219in\u0103 necesare."
       ],
       "id": "geometria-proiectului",
@@ -428,6 +1000,28 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Geometria proiectului"
+    },
+    {
+      "definition": [
+        "Glosarul reprezint\u0103 colec\u021bia de termeni \u0219i defini\u021bii utiliza\u021bi \u00een cadrul aplica\u021biei HFZWood \u0219i al domeniului prelucr\u0103rii lemnului \u0219i r\u0103\u0219inii epoxidice. Rolul s\u0103u este de a asigura utilizarea consecvent\u0103 a terminologiei \u0219i o \u00een\u021belegere clar\u0103 a conceptelor prezentate \u00een aplica\u021bie."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Glosar"
+    },
+    {
+      "definition": [
+        "Granula\u021bia abraziv\u0103 reprezint\u0103 dimensiunea particulelor abrazive de pe un material de \u0219lefuire, exprimat\u0103 printr-un num\u0103r specific. Granula\u021biile mici sunt utilizate pentru \u00eendep\u0103rtarea rapid\u0103 a materialului, iar cele mari pentru finisarea \u0219i netezirea suprafe\u021belor."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Granula\u021bie abraziv\u0103"
     },
     {
       "definition": [
@@ -481,10 +1075,50 @@
     },
     {
       "definition": [
+        "H\u00e2rtia abraziv\u0103 este un material flexibil acoperit cu particule abrazive, utilizat pentru \u0219lefuirea manual\u0103 sau mecanic\u0103 a suprafe\u021belor. Alegerea granula\u021biei potrivite influen\u021beaz\u0103 calitatea finisajului \u0219i eficien\u021ba procesului de prelucrare."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "H\u00e2rtie abraziv\u0103"
+    },
+    {
+      "definition": [
+        "Imaginea de referin\u021b\u0103 este fotografia utilizat\u0103 \u00een HFZWood ca baz\u0103 pentru m\u0103surarea \u0219i calcularea volumului de r\u0103\u0219in\u0103 necesar unui proiect. Aceasta reprezint\u0103 suportul pe care sunt definite elementele geometrice utilizate de aplica\u021bie \u0219i r\u0103m\u00e2ne asociat\u0103 permanent proiectului."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Imagine de referin\u021b\u0103"
+    },
+    {
+      "definition": [
+        "Importul imaginii reprezint\u0103 opera\u021bia prin care o fotografie este \u00eenc\u0103rcat\u0103 \u00een aplica\u021bia HFZWood pentru utilizarea \u00eentr-un proiect nou. Imaginea importat\u0103 devine baza tuturor m\u0103sur\u0103torilor \u0219i calculelor efectuate ulterior."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Importul imaginii"
+    },
+    {
+      "definition": [
         "\u00cencapsularea bulelor de aer reprezint\u0103 re\u021binerea bulelor \u00een masa r\u0103\u0219inii epoxidice \u00een timpul procesului de \u00eent\u0103rire. Bulele r\u0103mase captive pot afecta transparen\u021ba, aspectul estetic \u0219i, \u00een anumite situa\u021bii, rezisten\u021ba piesei finale."
       ],
       "id": "incapsularea-bulelor-de-aer",
-      "media": [],
+      "media": [
+        {
+          "alt": "bule aer rasina",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "bule-de-aer",
@@ -513,6 +1147,17 @@
     },
     {
       "definition": [
+        "Incluziunile de praf reprezint\u0103 particule de praf sau alte impurit\u0103\u021bi r\u0103mase \u00eencorporate \u00een r\u0103\u0219ina epoxidic\u0103 \u00een timpul \u00eent\u0103ririi. Aceste defecte afecteaz\u0103 aspectul suprafe\u021bei \u0219i pot necesita \u0219lefuire \u0219i lustruire suplimentar\u0103 pentru a fi eliminate."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Incluziuni de praf"
+    },
+    {
+      "definition": [
         "\u00cendreptarea lemnului este opera\u021bia prin care suprafa\u021ba unei piese este adus\u0103 la un plan corect, elimin\u00e2nd deform\u0103rile, denivel\u0103rile \u0219i imperfec\u021biunile. Acest proces asigur\u0103 o baz\u0103 stabil\u0103 pentru prelucr\u0103rile ulterioare \u0219i contribuie la ob\u021binerea unor \u00eembin\u0103ri \u0219i turn\u0103ri de calitate."
       ],
       "id": "ndreptarea-lemnului",
@@ -533,6 +1178,55 @@
       ],
       "synonyms": [],
       "term": "Indreptarea lemnului"
+    },
+    {
+      "definition": [
+        "Inspec\u021bia final\u0103 reprezint\u0103 verificarea complet\u0103 a proiectului dup\u0103 finalizarea tuturor etapelor de prelucrare \u0219i finisare. Aceasta urm\u0103re\u0219te identificarea eventualelor defecte r\u0103mase, verificarea dimensiunilor, a calit\u0103\u021bii suprafe\u021belor \u0219i confirmarea faptului c\u0103 piesa \u00eendepline\u0219te cerin\u021bele de calitate stabilite."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inspec\u021bia final\u0103"
+    },
+    {
+      "definition": [
+        "Insula de lemn reprezint\u0103 o por\u021biune de lemn complet \u00eenconjurat\u0103 de o zon\u0103 de turnare cu r\u0103\u0219in\u0103 epoxidic\u0103, sau de cofraj, f\u0103r\u0103 leg\u0103tur\u0103 direct\u0103 cu restul piesei de lemn din aceea\u0219i zon\u0103. \u00cen HFZWood, insulele de lemn sunt definite separat pentru ca volumul \u0219i cantitatea necesar\u0103 de r\u0103\u0219in\u0103 s\u0103 fie calculate corect."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cofraj"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Insul\u0103 de lemn"
+    },
+    {
+      "definition": [
+        "\u00centre\u021binerea suprafe\u021bei reprezint\u0103 ansamblul opera\u021biilor efectuate pentru p\u0103strarea aspectului \u0219i a propriet\u0103\u021bilor de protec\u021bie ale lemnului \u0219i ale finisajului \u00een timpul utiliz\u0103rii. Cur\u0103\u021barea periodic\u0103 \u0219i reaplicarea produselor de \u00eentre\u021binere contribuie la prelungirea duratei de via\u021b\u0103 a piesei."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Intre\u021binerea suprafe\u021bei"
+    },
+    {
+      "definition": [
+        "\u00cent\u0103rirea incomplet\u0103 reprezint\u0103 situa\u021bia \u00een care r\u0103\u0219ina epoxidic\u0103 nu \u00ee\u0219i dezvolt\u0103 complet propriet\u0103\u021bile mecanice dup\u0103 timpul normal de \u00eent\u0103rire. Cauzele pot include un raport de amestec incorect, o amestecare insuficient\u0103 sau condi\u021bii de lucru necorespunz\u0103toare."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Int\u0103rire incomplet\u0103"
     },
     {
       "definition": [
@@ -607,6 +1301,28 @@
     },
     {
       "definition": [
+        "Lustruirea este etapa final\u0103 de finisare prin care suprafa\u021ba lemnului sau a r\u0103\u0219inii epoxidice este prelucrat\u0103 pentru a ob\u021bine un grad ridicat de netezime \u0219i aspectul dorit. Acest proces elimin\u0103 urmele fine de \u0219lefuire \u0219i \u00eembun\u0103t\u0103\u021be\u0219te claritatea, reflexia luminii \u0219i aspectul estetic al piesei."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lustruire"
+    },
+    {
+      "definition": [
+        "Manualul HFZWood reprezint\u0103 documenta\u021bia principal\u0103 a aplica\u021biei, care explic\u0103 func\u021bionalit\u0103\u021bile, modul de utilizare \u0219i fluxurile de lucru disponibile. Acesta ofer\u0103 utilizatorilor informa\u021biile necesare pentru utilizarea corect\u0103 \u0219i eficient\u0103 a aplica\u021biei."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Manual HFZWood"
+    },
+    {
+      "definition": [
         "Marginea natural\u0103 reprezint\u0103 conturul original al lemnului, p\u0103strat dup\u0103 \u00eendep\u0103rtarea scoar\u021bei. Acest tip de muchie este frecvent utilizat \u00een proiectele de tip River Table \u0219i \u00een alte piese decorative pentru a eviden\u021bia forma natural\u0103 a lemnului."
       ],
       "id": "margine-natural",
@@ -618,6 +1334,71 @@
     },
     {
       "definition": [
+        "Masca respiratorie este un echipament individual de protec\u021bie destinat filtr\u0103rii particulelor, vaporilor sau altor contaminan\u021bi din aerul inhalat. Utilizarea unei m\u0103\u0219ti adecvate este recomandat\u0103 \u00een timpul \u0219lefuirii, prelucr\u0103rii lemnului \u0219i manipul\u0103rii produselor chimice, conform instruc\u021biunilor produc\u0103torilor."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Masc\u0103 respiratorie"
+    },
+    {
+      "definition": [
+        "Ma\u0219ina de degro\u0219at este un utilaj utilizat pentru aducerea pieselor de lemn la o grosime uniform\u0103 \u0219i precis\u0103. Dup\u0103 rindeluire, aceasta \u00eendep\u0103rteaz\u0103 materialul \u00een mod controlat p\u00e2n\u0103 la atingerea dimensiunii finale dorite."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "degrosat",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ma\u0219in\u0103 de degro\u0219at"
+    },
+    {
+      "definition": [
+        "Ma\u0219ina de g\u0103urit este o unealt\u0103 electric\u0103 utilizat\u0103 pentru realizarea g\u0103urilor \u00een lemn \u0219i \u00een alte materiale. \u00cen func\u021bie de accesoriile montate, aceasta poate fi folosit\u0103 \u0219i pentru \u00een\u0219urubare, l\u0103rgirea g\u0103urilor sau alte opera\u021bii de prelucrare."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "bormasina",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ma\u0219in\u0103 de g\u0103urit"
+    },
+    {
+      "definition": [
+        "Ma\u0219ina de rindeluit este un utilaj utilizat pentru ob\u021binerea unei suprafe\u021be plane \u0219i a unei muchii perfect drepte pe piesele din lemn. Aceasta reprezint\u0103 una dintre opera\u021biile de baz\u0103 \u00een preg\u0103tirea materialului \u00eenainte de degro\u0219are \u0219i prelucrare. Ma\u0219in\u0103 de rindeluit poate sa fie manuala, sau cu masa."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "rindeluit mare",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ma\u0219in\u0103 de rindeluit"
+    },
+    {
+      "definition": [
         "MDF-ul melaminat este o plac\u0103 ob\u021binut\u0103 din fibre fine de lemn presate \u0219i acoperit\u0103 cu un strat melaminat. Suprafa\u021ba sa este foarte uniform\u0103 \u0219i permite realizarea unor cofraje cu finisaj de bun\u0103 calitate, fiind utilizat\u0103 \u00een special pentru proiectele care necesit\u0103 precizie \u0219i muchii curate."
       ],
       "id": "mdf-melaminat",
@@ -626,6 +1407,35 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "MDF melaminat"
+    },
+    {
+      "definition": [
+        "Menghina este un dispozitiv de fixare utilizat pentru imobilizarea ferm\u0103 a pieselor \u00een timpul prelucr\u0103rii. O fixare corespunz\u0103toare cre\u0219te precizia opera\u021biilor \u0219i reduce riscul deplas\u0103rii accidentale a materialului."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "menghina",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Menghin\u0103"
+    },
+    {
+      "definition": [
+        "Microfisura este o fisur\u0103 de dimensiuni foarte reduse, adesea dificil de observat cu ochiul liber. De\u0219i poate p\u0103rea nesemnificativ\u0103, aceasta poate evolua \u00een timp \u0219i poate afecta rezisten\u021ba, etan\u0219eitatea sau aspectul suprafe\u021bei."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Microfisur\u0103"
     },
     {
       "definition": [
@@ -661,6 +1471,76 @@
     },
     {
       "definition": [
+        "Oberfreza, cunoscut\u0103 \u0219i sub denumirea de Router, este o unealt\u0103 electric\u0103 utilizat\u0103 pentru prelucrarea precis\u0103 a lemnului prin frezare. Aceasta permite realizarea muchiilor profilate, a canalelor, a decupajelor \u0219i a altor opera\u021bii de prelucrare necesare \u00een construc\u021bia \u0219i finisarea proiectelor din lemn."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "oberfreza",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Frez\u0103"
+        }
+      ],
+      "term": "Oberfrez\u0103 (Router)"
+    },
+    {
+      "definition": [
+        "Ochelarii de protec\u021bie sunt echipamente individuale de protec\u021bie concepute pentru a proteja ochii \u00eempotriva prafului, a particulelor proiectate \u0219i a stropilor accidentali. Purtarea lor este recomandat\u0103 \u00een toate etapele de prelucrare mecanic\u0103 \u0219i \u00een timpul lucrului cu r\u0103\u0219ini epoxidice."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "ochelari",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochelari de protec\u021bie"
+    },
+    {
+      "definition": [
+        "Ochii de pe\u0219te, cunoscu\u021bi \u0219i sub denumirea de Fish Eyes, sunt defecte de suprafa\u021b\u0103 care apar sub forma unor zone circulare \u00een care r\u0103\u0219ina se retrage \u0219i nu ader\u0103 uniform. Acestea sunt provocate, \u00een general, de contaminarea suprafe\u021bei cu uleiuri, silicon sau alte substan\u021be care reduc aderen\u021ba."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochi de pe\u0219te"
+    },
+    {
+      "definition": [
+        "Padul de polish este un accesoriu montat pe ma\u0219ina de lustruit, utilizat pentru aplicarea \u0219i distribuirea uniform\u0103 a compu\u0219ilor de polish pe suprafa\u021b\u0103. Padurile sunt fabricate din materiale diferite, fiecare fiind destinat unui anumit nivel de corec\u021bie sau finisare."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "pad plish",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pad de polish"
+    },
+    {
+      "definition": [
         "PAL-ul melaminat este o plac\u0103 realizat\u0103 din a\u0219chii de lemn presate \u0219i acoperit\u0103 cu un strat melaminat care ofer\u0103 o suprafa\u021b\u0103 neted\u0103 \u0219i rezistent\u0103. Datorit\u0103 costului redus \u0219i a suprafe\u021bei relativ neaderente, este utilizat frecvent la construirea cofrajelor pentru turn\u0103rile cu r\u0103\u0219in\u0103 epoxidic\u0103."
       ],
       "id": "pal-melaminat",
@@ -669,6 +1549,35 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "PAL melaminat"
+    },
+    {
+      "definition": [
+        "Pasta abraziv\u0103 este un compus de lustruire care con\u021bine particule abrazive fine \u0219i este utilizat\u0103 pentru corectarea imperfec\u021biunilor r\u0103mase dup\u0103 \u0219lefuire. Alegerea tipului de past\u0103 depinde de starea suprafe\u021bei \u0219i de nivelul de finisare dorit."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "pasta abraziva",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Past\u0103 abraziv\u0103"
+    },
+    {
+      "definition": [
+        "Pasta de finisare este un compus cu abrazivitate foarte redus\u0103, utilizat \u00een ultima etap\u0103 a lustruirii pentru a \u00eembun\u0103t\u0103\u021bi luciul \u0219i claritatea suprafe\u021bei. Aceasta elimin\u0103 urmele foarte fine r\u0103mase dup\u0103 polish \u0219i contribuie la ob\u021binerea unui finisaj de \u00eenalt\u0103 calitate."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Past\u0103 de finisare"
     },
     {
       "definition": [
@@ -685,6 +1594,17 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Past\u0103 pigmentar\u0103"
+    },
+    {
+      "definition": [
+        "Permisiunea de editare reprezint\u0103 dreptul unui utilizator de a modifica con\u021binutul unui proiect. \u00cen func\u021bie de rolul utilizatorului \u0219i de regulile aplica\u021biei, un proiect poate fi editabil sau disponibil doar \u00een regim de vizualizare."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Permisiune de editare"
     },
     {
       "definition": [
@@ -718,7 +1638,14 @@
         "Pistolul cu aer cald este un echipament care genereaz\u0103 un flux de aer \u00eenc\u0103lzit \u0219i poate fi utilizat pentru eliminarea bulelor de aer de la suprafa\u021ba r\u0103\u0219inii epoxidice. Temperatura \u0219i distan\u021ba de lucru trebuie controlate cu aten\u021bie pentru a evita supra\u00eenc\u0103lzirea sau deformarea suprafe\u021bei."
       ],
       "id": "pistol-cu-aer-cald",
-      "media": [],
+      "media": [
+        {
+          "alt": "pistol aer cald",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "bule-de-aer",
@@ -728,6 +1655,29 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Pistol cu aer cald"
+    },
+    {
+      "definition": [
+        "Plasa abraziv\u0103 este un material abraziv cu structur\u0103 perforat\u0103, conceput pentru a permite evacuarea eficient\u0103 a prafului \u00een timpul \u0219lefuirii. Utilizarea acesteia reduce \u00eenc\u0103rcarea cu praf a suprafe\u021bei abrazive, prelunge\u0219te durata de utilizare \u0219i contribuie la ob\u021binerea unui finisaj mai uniform."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "plasa abraziva",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Discuri abrazive"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Plas\u0103 abraziv\u0103"
     },
     {
       "definition": [
@@ -781,6 +1731,50 @@
     },
     {
       "definition": [
+        "Precizia m\u0103sur\u0103torii reprezint\u0103 gradul de apropiere dintre valorile calculate de aplica\u021bie \u0219i dimensiunile reale ale proiectului. Aceasta depinde de calitatea imaginii, corectitudinea calibr\u0103rii \u0219i precizia cu care sunt definite punctele \u0219i contururile de m\u0103surare."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Precizia m\u0103sur\u0103torii"
+    },
+    {
+      "definition": [
+        "Un proiect local este un proiect salvat pe dispozitivul utilizatorului, care poate fi deschis \u0219i editat f\u0103r\u0103 a depinde de o conexiune la internet. \u00cen arhitectura HFZWood, proiectele locale r\u0103m\u00e2n disponibile utilizatorului chiar \u0219i dup\u0103 expirarea abonamentului."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Proiect local"
+    },
+    {
+      "definition": [
+        "Un proiect partajat (*Read-Only*) este un proiect pus la dispozi\u021bia altui utilizator exclusiv pentru vizualizare. Acesta poate fi deschis \u0219i analizat, \u00eens\u0103 con\u021binutul s\u0103u nu poate fi modificat de utilizatorii care nu sunt proprietarii proiectului."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Proiect partajat"
+    },
+    {
+      "definition": [
+        "Proprietarul proiectului este utilizatorul care a creat proiectul \u0219i de\u021bine drepturile de editare asupra acestuia. Identitatea proprietarului este asociat\u0103 permanent proiectului \u0219i st\u0103 la baza gestion\u0103rii permisiunilor de acces."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Proprietarul proiectului"
+    },
+    {
+      "definition": [
         "Protec\u021bia suprafe\u021bei \u00een timpul \u00eent\u0103ririi reprezint\u0103 m\u0103surile luate pentru a \u00eempiedica depunerea prafului, insectelor sau altor impurit\u0103\u021bi pe r\u0103\u0219ina epoxidic\u0103 p\u00e2n\u0103 la finalizarea procesului de \u00eent\u0103rire. O protec\u021bie corespunz\u0103toare contribuie la ob\u021binerea unui finisaj curat \u0219i reduce necesitatea interven\u021biilor ulterioare."
       ],
       "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
@@ -806,6 +1800,33 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Protec\u021bia suprafe\u021bei \u00een timpul \u00eent\u0103ririi"
+    },
+    {
+      "definition": [
+        "Protec\u021bia UV reprezint\u0103 capacitatea unui finisaj de a reduce efectele radia\u021biilor ultraviolete asupra lemnului \u0219i a r\u0103\u0219inii epoxidice. Un nivel adecvat de protec\u021bie contribuie la limitarea decolor\u0103rii, \u00eeng\u0103lbenirii \u0219i degrad\u0103rii produse de expunerea \u00eendelungat\u0103 la lumina soarelui."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protec\u021bia UV"
+    },
+    {
+      "definition": [
+        "Punctul de control este un punct care define\u0219te forma \u0219i pozi\u021bia unui poligon de m\u0103surare. Mutarea unui punct de control modific\u0103 automat geometria suprafe\u021bei delimitate \u0219i influen\u021beaz\u0103 rezultatele calculate de aplica\u021bie."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Punct de referin\u021b\u0103"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Punct de control"
     },
     {
       "definition": [
@@ -868,6 +1889,72 @@
     },
     {
       "definition": [
+        "Recondi\u021bionarea suprafe\u021bei este procesul prin care o pies\u0103 uzat\u0103 sau deteriorat\u0103 este readus\u0103 la un aspect \u0219i un nivel de protec\u021bie apropiate de cele ini\u021biale. \u00cen func\u021bie de starea suprafe\u021bei, aceasta poate include \u0219lefuirea, repararea defectelor \u0219i aplicarea unui nou strat de finisaj."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Recondi\u021bionarea suprafe\u021bei"
+    },
+    {
+      "definition": [
+        "Referin\u021ba tehnic\u0103 reprezint\u0103 o informa\u021bie documentat\u0103 utilizat\u0103 pentru fundamentarea unei explica\u021bii, a unei recomand\u0103ri sau a unei proceduri. \u00cen cadrul aplica\u021biei, referin\u021bele tehnice sus\u021bin acurate\u021bea \u0219i credibilitatea con\u021binutului educa\u021bional."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Referin\u021b\u0103 tehnic\u0103"
+    },
+    {
+      "definition": [
+        "Repararea defectelor reprezint\u0103 ansamblul opera\u021biilor efectuate pentru corectarea imperfec\u021biunilor ap\u0103rute \u00een timpul turn\u0103rii, \u00eent\u0103ririi sau finis\u0103rii unui proiect. \u00cen func\u021bie de natura defectului, repara\u021bia poate include cur\u0103\u021barea, \u0219lefuirea, completarea cu r\u0103\u0219in\u0103 epoxidic\u0103, relustruirea sau alte interven\u021bii necesare readucerii piesei la nivelul de calitate dorit."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Repararea defectelor"
+    },
+    {
+      "definition": [
+        "Rezisten\u021ba chimic\u0103 reprezint\u0103 capacitatea unui material sau a unui finisaj de a rezista la contactul cu diferite substan\u021be chimice f\u0103r\u0103 degrad\u0103ri semnificative ale aspectului sau propriet\u0103\u021bilor sale. Nivelul acestei rezisten\u021be variaz\u0103 \u00een func\u021bie de tipul produsului \u0219i de natura substan\u021belor cu care intr\u0103 \u00een contact."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rezisten\u021b\u0103 chimic\u0103"
+    },
+    {
+      "definition": [
+        "Rezisten\u021ba la umiditate reprezint\u0103 capacitatea unui material sau a unui finisaj de a-\u0219i p\u0103stra propriet\u0103\u021bile atunci c\u00e2nd este expus la ap\u0103 sau la un mediu umed. Un nivel ridicat de rezisten\u021b\u0103 la umiditate contribuie la men\u021binerea stabilit\u0103\u021bii \u0219i a aspectului piesei \u00een timp."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rezisten\u021b\u0103 la umiditate"
+    },
+    {
+      "definition": [
+        "Rezisten\u021ba la zg\u00e2riere reprezint\u0103 capacitatea unei suprafe\u021be de a suporta contactul cu obiecte dure f\u0103r\u0103 apari\u021bia zg\u00e2rieturilor vizibile. Aceast\u0103 proprietate depinde de materialul utilizat, de tipul finisajului \u0219i de condi\u021biile de exploatare ale piesei."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rezisten\u021b\u0103 la zg\u00e2riere"
+    },
+    {
+      "definition": [
         "River Table este un tip de mas\u0103 realizat\u0103 din dou\u0103 sau mai multe piese de lemn \u00eentre care se toarn\u0103 r\u0103\u0219in\u0103 epoxidic\u0103, form\u00e2nd o zon\u0103 central\u0103 ce aminte\u0219te de cursul unui r\u00e2u. Acest stil de proiect eviden\u021biaz\u0103 marginile naturale ale lemnului \u0219i reprezint\u0103 una dintre cele mai cunoscute aplica\u021bii ale r\u0103\u0219inii epoxidice \u00een mobilier."
       ],
       "id": "river-table",
@@ -879,6 +1966,24 @@
     },
     {
       "definition": [
+        "Router Sled este un sistem de ghidare care permite deplasarea controlat\u0103 a unei oberfreze deasupra unei piese de mari dimensiuni. Acest dispozitiv este utilizat pentru nivelarea suprafe\u021belor care nu pot fi prelucrate cu o ma\u0219in\u0103 de rindeluit, precum mesele de tip River Table sau alte panouri de mari dimensiuni."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "router sleed",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router Sled"
+    },
+    {
+      "definition": [
         "R\u0103\u0219ina epoxidic\u0103 este un material bicomponent care, dup\u0103 amestecarea cu \u00eent\u0103ritorul \u00een propor\u021bia recomandat\u0103, se transform\u0103 prin reac\u021bie chimic\u0103 \u00eentr-un material solid, rezistent \u0219i durabil. \u00cen prelucrarea lemnului, este utilizat\u0103 pentru umplerea cavit\u0103\u021bilor, realizarea turn\u0103rilor decorative sau structurale \u0219i ob\u021binerea unor suprafe\u021be transparente ori pigmentate."
       ],
       "id": "r-in-epoxidic",
@@ -887,6 +1992,28 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
+    },
+    {
+      "definition": [
+        "Salvarea proiectului reprezint\u0103 opera\u021bia prin care toate informa\u021biile unui proiect sunt \u00eenregistrate \u00eentr-un fi\u0219ier HFZWood, astfel \u00eenc\u00e2t acesta s\u0103 poat\u0103 fi redeschis \u0219i continuat ulterior f\u0103r\u0103 pierderea datelor."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Salvarea proiectului"
+    },
+    {
+      "definition": [
+        "Scara imaginii reprezint\u0103 raportul dintre dimensiunile din fotografie \u0219i dimensiunile reale ale obiectului m\u0103surat. Stabilirea corect\u0103 a sc\u0103rii permite efectuarea unor calcule precise \u00een cadrul proiectului."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scara imaginii"
     },
     {
       "definition": [
@@ -938,6 +2065,28 @@
     },
     {
       "definition": [
+        "Sedimentarea pigmentului este fenomenul prin care particulele de pigment se depun spre partea inferioar\u0103 a turn\u0103rii \u00eenainte ca r\u0103\u0219ina s\u0103 se \u00eent\u0103reasc\u0103 complet. Acest lucru poate modifica aspectul final al piesei \u0219i este influen\u021bat de tipul pigmentului, v\u00e2scozitatea r\u0103\u0219inii \u0219i durata procesului de \u00eent\u0103rire."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sedimentarea pigmentului"
+    },
+    {
+      "definition": [
+        "Separarea pigmentului reprezint\u0103 distribuirea neuniform\u0103 a pigmentului \u00een masa r\u0103\u0219inii epoxidice, ceea ce conduce la diferen\u021be vizibile de culoare sau efect. Acest fenomen poate fi cauzat de o amestecare insuficient\u0103, de incompatibilitatea produselor sau de condi\u021biile de \u00eent\u0103rire."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Separarea pigmentului"
+    },
+    {
+      "definition": [
         "Sigilarea lemnului este aplicarea unui strat sub\u021bire de r\u0103\u0219in\u0103 epoxidic\u0103 sau a unui alt material compatibil pentru a reduce absorb\u021bia excesiv\u0103 \u0219i degajarea aerului din porii lemnului \u00eenaintea turn\u0103rii principale. Aceast\u0103 etap\u0103 contribuie la ob\u021binerea unei suprafe\u021be curate \u0219i la reducerea apari\u021biei bulelor de aer."
       ],
       "id": "sigilarea-lemnului",
@@ -962,6 +2111,72 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Silicon de etan\u0219are"
+    },
+    {
+      "definition": [
+        "\u0218lefuirea este procesul de prelucrare a suprafe\u021bei lemnului sau a r\u0103\u0219inii epoxidice cu materiale abrazive, av\u00e2nd scopul de a \u00eendep\u0103rta imperfec\u021biunile \u0219i de a ob\u021bine o suprafa\u021b\u0103 neted\u0103, uniform\u0103 \u0219i preg\u0103tit\u0103 pentru etapele urm\u0103toare de finisare."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Slefuire"
+    },
+    {
+      "definition": [
+        "\u0218lefuirea umed\u0103 este o metod\u0103 de finisare realizat\u0103 cu ajutorul apei sau al unui alt lichid compatibil, care reduce \u00eenc\u0103lzirea suprafe\u021bei \u0219i limiteaz\u0103 formarea prafului. Aceast\u0103 tehnic\u0103 este utilizat\u0103 \u00een special \u00een etapele finale pentru ob\u021binerea unor suprafe\u021be foarte fine \u0219i preg\u0103tite pentru lustruire."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Slefuire umed\u0103"
+    },
+    {
+      "definition": [
+        "\u0218lefuirea uscat\u0103 este procesul de \u0219lefuire efectuat f\u0103r\u0103 utilizarea lichidelor de r\u0103cire sau lubrifiere. Este metoda cel mai frecvent utilizat\u0103 \u00een prelucrarea lemnului \u0219i a r\u0103\u0219inii epoxidice \u0219i permite \u00eendep\u0103rtarea eficient\u0103 a materialului \u00een toate etapele de prelucrare."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Slefuire uscat\u0103"
+    },
+    {
+      "definition": [
+        "Spatiul de lucru reprezint\u0103 spa\u021biul principal de lucru din aplica\u021bia HFZWood, \u00een care utilizatorul creeaz\u0103, deschide, editeaz\u0103 \u0219i gestioneaz\u0103 proiectele, precum \u0219i accesul la func\u021biile \u0219i resursele disponibile \u00een func\u021bie de rolul \u0219i abonamentul s\u0103u."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Spatiul de lucru"
+    },
+    {
+      "definition": [
+        "Stabilitatea dimensional\u0103 reprezint\u0103 capacitatea unui material de a-\u0219i men\u021bine forma \u0219i dimensiunile \u00een timp, \u00een ciuda varia\u021biilor de temperatur\u0103 \u0219i umiditate. O stabilitate dimensional\u0103 ridicat\u0103 contribuie la durabilitatea \u0219i func\u021bionarea corect\u0103 a proiectelor realizate din lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Stabilitate dimensional\u0103"
+    },
+    {
+      "definition": [
+        "Stratul de inhibi\u021bie, cunoscut \u0219i sub denumirea de Amine Blush, este o pelicul\u0103 sub\u021bire care poate ap\u0103rea la suprafa\u021ba r\u0103\u0219inii epoxidice \u00een timpul \u00eent\u0103ririi, \u00een special \u00een condi\u021bii de temperatur\u0103 sc\u0103zut\u0103 sau umiditate ridicat\u0103. \u00cenaintea aplic\u0103rii unui nou strat sau a finis\u0103rii, aceast\u0103 pelicul\u0103 trebuie \u00eendep\u0103rtat\u0103 pentru a asigura o aderen\u021b\u0103 corespunz\u0103toare."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Strat de inhibi\u021bie (Amine Blush)"
     },
     {
       "definition": [
@@ -998,6 +2213,28 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Strat de sigilare (Seal Coat)"
+    },
+    {
+      "definition": [
+        "Suprafa\u021ba lipicioas\u0103 este un defect caracterizat prin faptul c\u0103 r\u0103\u0219ina r\u0103m\u00e2ne moale sau aderent\u0103 la atingere dup\u0103 perioada normal\u0103 de \u00eent\u0103rire. Acest fenomen indic\u0103, de regul\u0103, o problem\u0103 ap\u0103rut\u0103 \u00een timpul amestec\u0103rii, al polimeriz\u0103rii sau al respect\u0103rii condi\u021biilor recomandate de utilizare."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Suprafa\u021b\u0103 lipicioas\u0103"
+    },
+    {
+      "definition": [
+        "Supra\u00eenc\u0103lzirea, cunoscut\u0103 \u0219i sub denumirea de Overheating, reprezint\u0103 cre\u0219terea excesiv\u0103 a temperaturii r\u0103\u0219inii epoxidice \u00een timpul polimeriz\u0103rii. Acest fenomen apare de obicei la turn\u0103ri prea groase sau \u00een volume mari \u0219i poate provoca fisuri, deform\u0103ri, \u00eeng\u0103lbenire sau alte defecte ale piesei."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Supra\u00eenc\u0103lzire"
     },
     {
       "definition": [
@@ -1094,7 +2331,14 @@
         "Tor\u021ba cu gaz este un instrument care produce o flac\u0103r\u0103 controlat\u0103 \u0219i este utilizat pentru eliminarea bulelor de aer de la suprafa\u021ba r\u0103\u0219inii epoxidice imediat dup\u0103 turnare. Folosirea sa necesit\u0103 aten\u021bie, deoarece expunerea excesiv\u0103 la c\u0103ldur\u0103 poate deteriora r\u0103\u0219ina sau materialele din jur."
       ],
       "id": "tor-cu-gaz",
-      "media": [],
+      "media": [
+        {
+          "alt": "torta",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
       "relatedTerms": [
         {
           "id": "bule-de-aer",
@@ -1220,6 +2464,35 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "Turnare \u00een straturi"
+    },
+    {
+      "definition": [
+        "Uleiul pentru lemn este un produs de finisare care p\u0103trunde \u00een structura lemnului \u0219i \u00eei ofer\u0103 protec\u021bie \u00eempotriva umidit\u0103\u021bii \u0219i a uzurii, eviden\u021biind \u00een acela\u0219i timp textura \u0219i aspectul natural al fibrei. \u00cen func\u021bie de tipul utilizat, uleiul poate necesita \u00eentre\u021binere \u0219i reaplicare periodic\u0103."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "ulei",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ulei pentru lemn"
+    },
+    {
+      "definition": [
+        "Umiditatea excesiv\u0103 reprezint\u0103 prezen\u021ba unei cantit\u0103\u021bi de ap\u0103 \u00een lemn sau \u00een mediul de lucru peste nivelul recomandat pentru utilizarea r\u0103\u0219inii epoxidice. Aceasta poate afecta aderen\u021ba, stabilitatea dimensional\u0103, procesul de \u00eent\u0103rire \u0219i calitatea final\u0103 a proiectului."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Umiditate excesiv\u0103"
     },
     {
       "definition": [
@@ -1361,6 +2634,17 @@
       "seeAlso": [],
       "synonyms": [],
       "term": "V\u00e2scozitate"
+    },
+    {
+      "definition": [
+        "Zona de turnare reprezint\u0103 suprafa\u021ba proiectului destinat\u0103 umplerii cu r\u0103\u0219in\u0103 epoxidic\u0103. Aceasta poate include cavit\u0103\u021bi, spa\u021biile dintre piesele de lemn sau alte zone delimitate de utilizator pentru realizarea turn\u0103rii."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zon\u0103 de turnare"
     }
   ],
   "locale": "ro"
