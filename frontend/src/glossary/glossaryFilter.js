@@ -119,6 +119,26 @@ export function getGlossaryEntryElementId(entryId) {
 }
 
 /**
+ * Parse a glossary entry content id from a location hash (e.g. `#glossary-entry-pot-life`).
+ * Uses the stable canonical entry id, not the translated term.
+ *
+ * @param {string} [hash]
+ * @returns {string | null}
+ */
+export function parseGlossaryEntryIdFromHash(hash) {
+  if (!hash || typeof hash !== "string") {
+    return null;
+  }
+  const value = hash.startsWith("#") ? hash.slice(1) : hash;
+  const prefix = "glossary-entry-";
+  if (!value.startsWith(prefix)) {
+    return null;
+  }
+  const entryId = value.slice(prefix.length).trim();
+  return entryId || null;
+}
+
+/**
  * @param {{ letter: string, entries: import("./glossaryContent.js").GlossaryEntry[] }[]} groups
  * @param {string} query
  * @param {string} [locale]

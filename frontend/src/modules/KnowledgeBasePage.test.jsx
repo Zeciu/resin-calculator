@@ -231,8 +231,61 @@ describe("KnowledgeBasePage", () => {
     await user.click(screen.getByRole("button", { name: "Resin remains sticky" }));
     const expandedEntry = document.getElementById("knowledge-base-entry-sticky-resin-after-cure");
     expect(within(expandedEntry).getByRole("button", { name: "Cloudy epoxy" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Pot life" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Pot life" })).toHaveAttribute(
+      "href",
+      "/glossary#glossary-entry-pot-life",
+    );
     expect(screen.getByRole("link", { name: "Mixing basics" })).toBeInTheDocument();
+  });
+
+  it("navigates from a related glossary term to the exact glossary entry", async () => {
+    mockPublishedKnowledgeBaseFetch([
+      {
+        id: "min-thickness",
+        title: "Why is a minimum resin thickness recommended?",
+        problemSummary: "Thin pours can fail to cure evenly.",
+        symptoms: [],
+        possibleCauses: [],
+        solution: ["Follow recommended thickness."],
+        prevention: [],
+        tips: [],
+        warnings: [],
+        relatedGlossaryTerms: [{ id: "exothermic-reaction", label: "Exothermic reaction" }],
+      },
+    ]);
+
+    seedAuthenticatedSession();
+    const scrollIntoView = vi.fn();
+    HTMLElement.prototype.scrollIntoView = scrollIntoView;
+    const user = userEvent.setup();
+    const { router } = renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    await user.click(
+      screen.getByRole("button", { name: "Why is a minimum resin thickness recommended?" }),
+    );
+    await user.click(screen.getByRole("link", { name: "Exothermic reaction" }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Glossary", level: 1 })).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Exothermic reaction" })).toHaveAttribute(
+        "aria-expanded",
+        "true",
+      );
+    });
+    expect(router.state.location.pathname).toBe(ROUTES.GLOSSARY);
+    expect(router.state.location.hash).toBe("#glossary-entry-exothermic-reaction");
+    await waitFor(() => {
+      expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "auto", block: "start" });
+    });
+
+    router.navigate(-1);
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "Knowledge Base", level: 1 })).toBeInTheDocument();
+    });
+    expect(router.state.location.pathname).toBe(ROUTES.KNOWLEDGE_BASE);
   });
 
   it("blocks guest access in the dedicated module layout", () => {

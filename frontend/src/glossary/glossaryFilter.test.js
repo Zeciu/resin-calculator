@@ -8,6 +8,7 @@ import {
   getGlossaryLetterSectionId,
   groupGlossaryEntriesByLetter,
   normalizeSearchText,
+  parseGlossaryEntryIdFromHash,
 } from "./glossaryFilter.js";
 
 describe("glossaryFilter", () => {
@@ -15,6 +16,17 @@ describe("glossaryFilter", () => {
     expect(normalizeSearchText("pot life")).toBe("potlife");
     expect(normalizeSearchText("pot-life")).toBe("potlife");
     expect(normalizeSearchText("pot_life")).toBe("potlife");
+  });
+
+  it("parses canonical glossary entry ids from location hashes", () => {
+    expect(parseGlossaryEntryIdFromHash("#glossary-entry-exothermic-reaction")).toBe(
+      "exothermic-reaction",
+    );
+    expect(parseGlossaryEntryIdFromHash("glossary-entry-pot-life")).toBe("pot-life");
+    expect(parseGlossaryEntryIdFromHash("#glossary-entry-")).toBeNull();
+    expect(parseGlossaryEntryIdFromHash("#other-anchor")).toBeNull();
+    expect(parseGlossaryEntryIdFromHash("")).toBeNull();
+    expect(parseGlossaryEntryIdFromHash(undefined)).toBeNull();
   });
   it("filters by synonym terms", () => {
     const filtered = filterGlossaryEntries(

@@ -17,6 +17,7 @@ import { getGlossaryEntryElementId } from "./glossaryFilter.js";
  *     seeAlso?: { targetType: string; targetId: string; label: string; href: string }[];
  *   };
  *   isExpanded: boolean;
+ *   isDeepLinkTarget?: boolean;
  *   onToggle: (entryId: string) => void;
  *   onNavigateToEntry?: (entryId: string) => void;
  *   publishedEntryIds?: Set<string>;
@@ -25,6 +26,7 @@ import { getGlossaryEntryElementId } from "./glossaryFilter.js";
 export default function GlossaryEntry({
   entry,
   isExpanded,
+  isDeepLinkTarget = false,
   onToggle,
   onNavigateToEntry,
   publishedEntryIds,
@@ -57,7 +59,10 @@ export default function GlossaryEntry({
   }
 
   return (
-    <article className="glossary-entry" id={getGlossaryEntryElementId(entry.id)}>
+    <article
+      className={`glossary-entry${isDeepLinkTarget ? " glossary-entry--deep-link-target" : ""}`}
+      id={getGlossaryEntryElementId(entry.id)}
+    >
       <h3 className="glossary-entry__heading">
         <button
           type="button"

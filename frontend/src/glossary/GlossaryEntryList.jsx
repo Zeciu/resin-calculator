@@ -5,6 +5,7 @@ import { getGlossaryLetterSectionId } from "./glossaryFilter.js";
  * @param {{
  *   groups: { letter: string; entries: import("./glossaryContent.js").GlossaryEntry[] }[];
  *   expandedEntryId: string | null;
+ *   highlightedEntryId?: string | null;
  *   onToggleEntry: (entryId: string) => void;
  *   onNavigateToEntry?: (entryId: string) => void;
  *   publishedEntryIds?: Set<string>;
@@ -13,6 +14,7 @@ import { getGlossaryLetterSectionId } from "./glossaryFilter.js";
 export default function GlossaryEntryList({
   groups,
   expandedEntryId,
+  highlightedEntryId = null,
   onToggleEntry,
   onNavigateToEntry,
   publishedEntryIds,
@@ -47,6 +49,7 @@ export default function GlossaryEntryList({
                 key={entry.id}
                 entry={entry}
                 isExpanded={expandedEntryId === entry.id}
+                isDeepLinkTarget={highlightedEntryId === entry.id}
                 onToggle={onToggleEntry}
                 onNavigateToEntry={onNavigateToEntry}
                 publishedEntryIds={publishedEntryIds}

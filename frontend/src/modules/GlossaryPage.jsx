@@ -1,4 +1,5 @@
-﻿import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import GlossaryEntryList from "../glossary/GlossaryEntryList.jsx";
 import GlossaryToolbar from "../glossary/GlossaryToolbar.jsx";
 import { fetchPublishedGlossary } from "../glossary/glossaryApi.js";
@@ -9,17 +10,22 @@ import {
   getGlossaryEntryElementId,
   getGlossaryLetterSectionId,
   groupGlossaryEntriesByLetter,
+  parseGlossaryEntryIdFromHash,
 } from "../glossary/glossaryFilter.js";
 import ContentUnavailableMessage from "../content/ContentUnavailableMessage.jsx";
 import { usePublishedContent } from "../content/usePublishedContent.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 
+const DEEP_LINK_HIGHLIGHT_MS = 1600;
+
 export default function GlossaryPage() {
+  const location = useLocation();
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
   const { t } = useI18n();
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
+  const [deepLinkHighlightId, setDeepLinkHighlightId] = useState(null);
   const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedGlossary);
   const entries = payload?.entries ?? [];
 
@@ -74,6 +80,35 @@ export default function GlossaryPage() {
       scrollToEntry(entryId);
     });
   }, [scrollToEntry]);
+
+  // Knowledge Base (and other) deep links: /glossary#glossary-entry-{canonicalId}
+  useEffect(() => {
+    if (loadState !== "ready") {
+      return;
+    }
+
+    const entryId = parseGlossaryEntryIdFromHash(location.hash);
+    if (!entryId) {
+      return;
+    }
+
+    // Missing entry: open Glossary normally; do not throw.
+    if (!publishedEntryIds.has(entryId)) {
+      return;
+    }
+
+    setSearchQuery("");
+    setExpandedEntryId(entryId);
+    setDeepLinkHighlightId(entryId);
+
+    const highlightTimer = window.setTimeout(() => {
+      setDeepLinkHighlightId((current) => (current === entryId ? null : current));
+    }, DEEP_LINK_HIGHLIGHT_MS);
+
+    return () => {
+      window.clearTimeout(highlightTimer);
+    };
+  }, [loadState, location.hash, publishedEntryIds]);
 
   useLayoutEffect(() => {
     if (!expandedEntryId) {
@@ -170,6 +205,7 @@ export default function GlossaryPage() {
             <GlossaryEntryList
               groups={filteredGroups}
               expandedEntryId={expandedEntryId}
+              highlightedEntryId={deepLinkHighlightId}
               onToggleEntry={handleToggleEntry}
               onNavigateToEntry={handleNavigateToEntry}
               publishedEntryIds={publishedEntryIds}

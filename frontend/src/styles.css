@@ -3390,6 +3390,19 @@ button.workspace-sidebar__link {
   scroll-margin-top: 132px;
 }
 
+.glossary-entry--deep-link-target {
+  animation: glossary-deep-link-highlight 1.6s ease;
+}
+
+@keyframes glossary-deep-link-highlight {
+  0% {
+    background-color: rgba(157, 108, 59, 0.16);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
 .glossary-entry__heading {
   margin: 0;
   font-size: inherit;

@@ -97,6 +97,103 @@ describe("GlossaryPage", () => {
     expect(screen.getByRole("button", { name: "Hardener" })).toHaveAttribute("aria-expanded", "true");
   });
 
+  it("opens and scrolls to a glossary entry from a canonical hash deep link", async () => {
+    seedAuthenticatedSession();
+    const scrollIntoView = vi.fn();
+    HTMLElement.prototype.scrollIntoView = scrollIntoView;
+
+    renderWorkspace(`${ROUTES.GLOSSARY}#glossary-entry-exothermic-reaction`);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Exothermic reaction" })).toHaveAttribute(
+        "aria-expanded",
+        "true",
+      );
+    });
+    expect(document.getElementById("glossary-entry-exothermic-reaction")).toBeTruthy();
+    expect(document.getElementById("glossary-entry-exothermic-reaction")).toHaveClass(
+      "glossary-entry--deep-link-target",
+    );
+    await waitFor(() => {
+      expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "auto", block: "start" });
+    });
+  });
+
+  it("deep-links by canonical entry id while preserving the active UI language", async () => {
+    seedAuthenticatedSession();
+    const { seedDevicePreferences } = await import("../preferences/testHelpers.js");
+    seedDevicePreferences({ interfaceLanguage: "ro" });
+    const entries = [
+      {
+        id: "exothermic-reaction",
+        term: "Reacție exotermă",
+        definition: ["Reacție care eliberează căldură."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
+    ];
+    const fetchMock = vi.fn(async (url) => {
+      const requestUrl = String(url);
+      if (requestUrl.includes("/api/content/public-languages")) {
+        return {
+          ok: true,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro"],
+          }),
+        };
+      }
+      if (requestUrl.includes("/api/content/glossary")) {
+        const locale = new URL(requestUrl, "http://local").searchParams.get("locale");
+        return {
+          ok: true,
+          json: async () => ({
+            ...buildPublishedGlossaryResponse(entries),
+            locale,
+            requestedLocale: locale,
+          }),
+        };
+      }
+      if (requestUrl.includes("/api/preferences")) {
+        return {
+          ok: true,
+          json: async () => ({
+            interfaceLanguage: "ro",
+            lengthUnit: "mm",
+            volumeUnit: "L",
+            exists: true,
+          }),
+        };
+      }
+      return { ok: false, status: 404, json: async () => ({}) };
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    renderWorkspace(`${ROUTES.GLOSSARY}#glossary-entry-exothermic-reaction`);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Reacție exotermă" })).toHaveAttribute(
+        "aria-expanded",
+        "true",
+      );
+    });
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("locale=ro"));
+    expect(document.getElementById("glossary-entry-exothermic-reaction")).toBeTruthy();
+  });
+
+  it("opens the glossary root when a deep-linked entry id is missing", async () => {
+    seedAuthenticatedSession();
+    renderWorkspace(`${ROUTES.GLOSSARY}#glossary-entry-does-not-exist`);
+
+    await waitFor(() => {
+      expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    });
+    expect(screen.queryByRole("button", { expanded: true })).not.toBeInTheDocument();
+    expect(document.querySelector(".glossary-entry--deep-link-target")).not.toBeInTheDocument();
+  });
+
   it("jumps directly to a letter section from the A–Z index", async () => {
     seedAuthenticatedSession();
     const scrollIntoView = vi.fn();
