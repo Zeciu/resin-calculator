@@ -72,4 +72,47 @@ describe("CrossReferencePicker publishedOnly", () => {
     });
     expect(screen.queryByRole("list", { name: "Synonyms options" })).not.toBeInTheDocument();
   });
+
+  it("does not re-search when parent re-renders with equivalent array props", async () => {
+    vi.mocked(searchEditorialReferences).mockResolvedValue([
+      {
+        contentId: "epoxy-resin",
+        contentType: "glossary_entry",
+        label: "Epoxy resin",
+        detail: "Glossary entry",
+      },
+    ]);
+
+    const onChange = vi.fn();
+    const { rerender } = render(
+      <CrossReferencePicker
+        label="Related terms"
+        selected={[]}
+        onChange={onChange}
+        locale="ro"
+        excludeIds={["self"]}
+        allowTypes={["glossary_entry"]}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(searchEditorialReferences).toHaveBeenCalledTimes(1);
+    });
+
+    rerender(
+      <CrossReferencePicker
+        label="Related terms"
+        selected={[]}
+        onChange={onChange}
+        locale="ro"
+        excludeIds={["self"]}
+        allowTypes={["glossary_entry"]}
+      />,
+    );
+
+    await new Promise((resolve) => {
+      window.setTimeout(resolve, 250);
+    });
+    expect(searchEditorialReferences).toHaveBeenCalledTimes(1);
+  });
 });

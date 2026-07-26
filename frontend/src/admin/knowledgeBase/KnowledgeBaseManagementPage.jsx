@@ -24,6 +24,10 @@ import {
   variantToEditor,
 } from "./knowledgeBaseEditorAdapter.js";
 
+const RELATED_KB_ALLOW_TYPES = ["kb_entry"];
+const RELATED_GLOSSARY_ALLOW_TYPES = ["glossary_entry"];
+const RELATED_MANUAL_ALLOW_TYPES = ["manual_chapter"];
+
 function enrichKbSelected(ids, entries) {
   return (ids ?? []).map((contentId) => {
     const match = entries.find((entry) => entry.contentId === contentId);
@@ -196,7 +200,7 @@ export default function KnowledgeBaseManagementPage() {
               }
               locale={workspace.locale}
               excludeIds={[workspace.selectedItemId]}
-              allowTypes={["kb_entry"]}
+              allowTypes={RELATED_KB_ALLOW_TYPES}
             />
             <CrossReferencePicker
               label="Related Glossary Entries"
@@ -210,7 +214,7 @@ export default function KnowledgeBaseManagementPage() {
               }
               locale={workspace.locale}
               excludeIds={[]}
-              allowTypes={["glossary_entry"]}
+              allowTypes={RELATED_GLOSSARY_ALLOW_TYPES}
             />
             <CrossReferencePicker
               label="Related Manual Chapters"
@@ -224,7 +228,7 @@ export default function KnowledgeBaseManagementPage() {
               }
               locale={workspace.locale}
               excludeIds={[]}
-              allowTypes={["manual_chapter"]}
+              allowTypes={RELATED_MANUAL_ALLOW_TYPES}
             />
           </div>
         </>

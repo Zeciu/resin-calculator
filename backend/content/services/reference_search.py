@@ -2,9 +2,9 @@ from ..repositories.filesystem import DEFAULT_LOCALE
 from ..schemas.editorial import EditorialReferenceOption
 from ..schemas.glossary import parse_admin_locale
 from .editorial_identity import (
-    chapter_identity_title,
-    entry_identity_term,
-    entry_identity_title,
+    chapter_identity_title_from_store,
+    entry_identity_term_from_store,
+    entry_identity_title_from_store,
 )
 
 
@@ -32,15 +32,22 @@ class ReferenceSearchService:
         parsed_locale = parse_admin_locale(locale)
         normalized = query.strip().lower()
         options: list[EditorialReferenceOption] = []
+        # One store read per search request — derive ids, variants, and identity
+        # labels in memory (same load-once pattern as admin list/snapshot paths).
+        records = self._repository.read_editorial_records()
 
-        for content_id in self._repository.list_manual_chapter_ids():
-            variant = self._repository.get_manual_variant(content_id, parsed_locale)
+        for content_id in self._repository.list_manual_chapter_ids_from_store(records):
+            variant = self._repository.get_manual_variant_from_store(
+                records, content_id, parsed_locale
+            )
             if published_only and not _variant_is_published(variant):
                 continue
             if published_only and variant:
                 title = (variant.get("draftBody") or {}).get("title", "").strip()
             else:
-                title = chapter_identity_title(self._repository, content_id)
+                title = chapter_identity_title_from_store(
+                    self._repository, records, content_id
+                )
             if normalized and normalized not in title.lower() and normalized not in content_id.lower():
                 continue
             options.append(
@@ -52,14 +59,18 @@ class ReferenceSearchService:
                 )
             )
 
-        for content_id in self._repository.list_glossary_entry_ids():
-            variant = self._repository.get_glossary_variant(content_id, parsed_locale)
+        for content_id in self._repository.list_glossary_entry_ids_from_store(records):
+            variant = self._repository.get_glossary_variant_from_store(
+                records, content_id, parsed_locale
+            )
             if published_only and not _variant_is_published(variant):
                 continue
             if published_only and variant:
                 term = (variant.get("draftBody") or {}).get("term", "").strip()
             else:
-                term = entry_identity_term(self._repository, content_id)
+                term = entry_identity_term_from_store(
+                    self._repository, records, content_id
+                )
             if normalized and normalized not in term.lower() and normalized not in content_id.lower():
                 continue
             options.append(
@@ -71,14 +82,18 @@ class ReferenceSearchService:
                 )
             )
 
-        for content_id in self._repository.list_kb_entry_ids():
-            variant = self._repository.get_kb_variant(content_id, parsed_locale)
+        for content_id in self._repository.list_kb_entry_ids_from_store(records):
+            variant = self._repository.get_kb_variant_from_store(
+                records, content_id, parsed_locale
+            )
             if published_only and not _variant_is_published(variant):
                 continue
             if published_only and variant:
                 title = (variant.get("draftBody") or {}).get("title", "").strip()
             else:
-                title = entry_identity_title(self._repository, content_id)
+                title = entry_identity_title_from_store(
+                    self._repository, records, content_id
+                )
             if normalized and normalized not in title.lower() and normalized not in content_id.lower():
                 continue
             options.append(

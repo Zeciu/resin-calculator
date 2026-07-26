@@ -28,8 +28,19 @@ export default function CrossReferencePicker({
   const [options, setOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Stabilize effect deps: parent pages often pass fresh array literals for
+  // excludeIds / allowTypes / selected on every render (including Save Draft
+  // isSaving toggles). Re-searching on identity-only changes flooded the API
+  // and contended with content-store writes.
+  const excludeKey = excludeIds.join("\0");
+  const allowKey = allowTypes ? allowTypes.join("\0") : "";
+  const selectedKey = selected.map((item) => item.contentId).join("\0");
+
   useEffect(() => {
     let cancelled = false;
+    const excludeSet = new Set(excludeKey ? excludeKey.split("\0") : []);
+    const allowSet = allowKey ? new Set(allowKey.split("\0")) : null;
+    const selectedSet = new Set(selectedKey ? selectedKey.split("\0") : []);
     const handle = window.setTimeout(async () => {
       setIsLoading(true);
       try {
@@ -38,13 +49,13 @@ export default function CrossReferencePicker({
           return;
         }
         const filtered = results.filter((option) => {
-          if (excludeIds.includes(option.contentId)) {
+          if (excludeSet.has(option.contentId)) {
             return false;
           }
-          if (allowTypes && !allowTypes.includes(option.contentType)) {
+          if (allowSet && !allowSet.has(option.contentType)) {
             return false;
           }
-          if (selected.some((item) => item.contentId === option.contentId)) {
+          if (selectedSet.has(option.contentId)) {
             return false;
           }
           return true;
@@ -65,7 +76,7 @@ export default function CrossReferencePicker({
       cancelled = true;
       window.clearTimeout(handle);
     };
-  }, [query, locale, excludeIds, allowTypes, selected, publishedOnly]);
+  }, [query, locale, excludeKey, allowKey, selectedKey, publishedOnly]);
 
   function addOption(option) {
     if (seeAlsoMode) {
