@@ -8005,7 +8005,7 @@
       "pk": "CONTENT#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
       "sk": "META",
       "sortOrder": 300,
-      "updatedAt": "2026-07-26T18:23:09.310888+00:00"
+      "updatedAt": "2026-07-26T19:20:43.938708+00:00"
     },
     "CONTENT#kb_entry#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare|VARIANT#ro": {
       "contentId": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
@@ -8026,7 +8026,9 @@
         "relatedGlossaryEntryIds": [
           "atac-biologic"
         ],
-        "relatedKbEntryIds": [],
+        "relatedKbEntryIds": [
+          "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [
@@ -8049,13 +8051,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
-      "publishedAt": "2026-07-26T18:23:09.310888+00:00",
+      "publishedAt": "2026-07-26T19:20:43.938708+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T18:23:09.310888+00:00"
+      "updatedAt": "2026-07-26T19:20:43.938708+00:00"
     },
     "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|META": {
       "category": "Epoxy",
@@ -8066,7 +8068,7 @@
       "pk": "CONTENT#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
       "sk": "META",
       "sortOrder": 400,
-      "updatedAt": "2026-07-26T18:47:48.123360+00:00"
+      "updatedAt": "2026-07-26T19:21:43.561207+00:00"
     },
     "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|VARIANT#ro": {
       "contentId": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
@@ -8089,7 +8091,9 @@
           "lemn-instabil",
           "lemn-poros"
         ],
-        "relatedKbEntryIds": [],
+        "relatedKbEntryIds": [
+          "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8112,13 +8116,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
-      "publishedAt": "2026-07-26T18:47:48.123360+00:00",
+      "publishedAt": "2026-07-26T19:21:43.561207+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T18:47:48.123360+00:00"
+      "updatedAt": "2026-07-26T19:21:43.561207+00:00"
     },
     "CONTENT#kb_entry#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic|META": {
       "category": "Epoxy",
@@ -8192,6 +8196,307 @@
       "status": "published",
       "updatedAt": "2026-07-26T18:11:51.776466+00:00"
     },
+    "CONTENT#kb_entry#cum-influen-eaz-tipul-proiectului-alegerea-lemnului|META": {
+      "category": "Epoxy",
+      "contentId": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:13:18.692539+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+      "sk": "META",
+      "sortOrder": 700,
+      "updatedAt": "2026-07-26T19:22:07.683151+00:00"
+    },
+    "CONTENT#kb_entry#cum-influen-eaz-tipul-proiectului-alegerea-lemnului|VARIANT#ro": {
+      "contentId": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Alegerea lemnului a fost f\u0103cut\u0103 \u00eenainte de definirea proiectului.",
+          "Nu a fost planificat\u0103 compozi\u021bia final\u0103."
+        ],
+        "prevention": [
+          "G\u00e2nde\u0219te \u00eentotdeauna proiectul \u00eenainte de a cump\u0103ra sau debita lemnul. O planificare bun\u0103 simplific\u0103 toate etapele urm\u0103toare."
+        ],
+        "problemSummary": "Tipul proiectului determin\u0103 modul \u00een care va fi ales \u0219i utilizat lemnul \u00eenc\u0103 din prima etap\u0103.",
+        "relatedGlossaryEntryIds": [
+          "finisaj-lucios",
+          "finisaj-satinat",
+          "lemn-s-n-tos",
+          "lemn-instabil"
+        ],
+        "relatedKbEntryIds": [
+          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Stabile\u0219te de la \u00eenceput ce dore\u0219ti s\u0103 realizezi: river table, umplerea unor cavit\u0103\u021bi, blat decorativ, panou, obiect decorativ sau un proiect cu lemn complet \u00eencastrat \u00een r\u0103\u0219in\u0103. Aceste decizii vor influen\u021ba toate etapele urm\u0103toare."
+        ],
+        "symptoms": [
+          "Nu ai stabilit \u00eenc\u0103 proiectul final.",
+          "Nu \u0219tii ce dimensiuni sau form\u0103 trebuie s\u0103 aib\u0103 lemnul."
+        ],
+        "tips": [],
+        "title": "Cum influen\u021beaz\u0103 tipul proiectului alegerea lemnului?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+      "publishedAt": "2026-07-26T19:22:07.683151+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:22:07.683151+00:00"
+    },
+    "CONTENT#kb_entry#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare|META": {
+      "category": "Epoxy",
+      "contentId": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:59:31.340273+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+      "sk": "META",
+      "sortOrder": 1400,
+      "updatedAt": "2026-07-26T20:01:30.253296+00:00"
+    },
+    "CONTENT#kb_entry#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare|VARIANT#ro": {
+      "contentId": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Pozi\u021bionarea a fost f\u0103cut\u0103 \u00een grab\u0103.",
+          "Nu au fost \u00eencercate mai multe variante."
+        ],
+        "prevention": [],
+        "problemSummary": "Pozi\u021bionarea lemnului stabile\u0219te aspectul final al proiectului. Aceast\u0103 etap\u0103 este una creativ\u0103 \u0219i necesit\u0103 timp pentru a g\u0103si compozi\u021bia cea mai potrivit\u0103.",
+        "relatedGlossaryEntryIds": [
+          "configura-ia-proiectului",
+          "compozi-ia-proiectului",
+          "cofraj"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "A\u0219az\u0103 piesele pe masa de lucru \u0219i experimenteaz\u0103 diferite pozi\u021bii, orient\u0103ri \u0219i distan\u021be p\u00e2n\u0103 c\u00e2nd ob\u021bii compozi\u021bia dorit\u0103."
+        ],
+        "symptoms": [
+          "Nu e\u0219ti mul\u021bumit de aspectul proiectului.",
+          "Nu \u0219tii cum s\u0103 a\u0219ezi piesele de lemn.",
+          "Exist\u0103 mai multe variante de compozi\u021bie."
+        ],
+        "tips": [
+          "Prive\u0219te proiectul din mai multe unghiuri \u0219i nu lua decizia final\u0103 la prima \u00eencercare."
+        ],
+        "title": "Cum pozi\u021bionez corect piesele de lemn \u00eenainte de turnare?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+      "publishedAt": null,
+      "sk": "VARIANT#ro",
+      "snapshotKey": null,
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "draft",
+      "updatedAt": "2026-07-26T20:01:30.253296+00:00"
+    },
+    "CONTENT#kb_entry#cum-trebuie-cur-at-lemnul-nainte-de-turnare|META": {
+      "category": "Epoxy",
+      "contentId": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:42:36.518743+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+      "sk": "META",
+      "sortOrder": 1000,
+      "updatedAt": "2026-07-26T19:44:36.793702+00:00"
+    },
+    "CONTENT#kb_entry#cum-trebuie-cur-at-lemnul-nainte-de-turnare|VARIANT#ro": {
+      "contentId": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Lemnul nu a fost cur\u0103\u021bat corespunz\u0103tor.",
+          "Au r\u0103mas impurit\u0103\u021bi \u00een cr\u0103p\u0103turi \u0219i cavit\u0103\u021bi."
+        ],
+        "prevention": [],
+        "problemSummary": "\u00cenainte de turnare, lemnul trebuie cur\u0103\u021bat p\u00e2n\u0103 la material s\u0103n\u0103tos. Resturile organice \u0219i impurit\u0103\u021bile pot afecta at\u00e2t aspectul, c\u00e2t \u0219i calitatea proiectului.",
+        "relatedGlossaryEntryIds": [
+          "atac-biologic",
+          "lemn-s-n-tos",
+          "lemn-higroscopic",
+          "lemn-poros",
+          "lemn-instabil"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "\u00cendep\u0103rteaz\u0103 toate materialele instabile \u0219i cur\u0103\u021b\u0103 cavit\u0103\u021bile p\u00e2n\u0103 la lemn s\u0103n\u0103tos. Elimin\u0103 praful, scoar\u021ba desprins\u0103 \u0219i orice impuritate care poate r\u0103m\u00e2ne \u00eencorporat\u0103 \u00een r\u0103\u0219in\u0103."
+        ],
+        "symptoms": [
+          "Exist\u0103 praf, p\u0103m\u00e2nt sau nisip \u00een cavit\u0103\u021bi.",
+          "Sunt prezente fibre desprinse sau lemn putrezit.",
+          "Cavit\u0103\u021bile con\u021bin resturi organice."
+        ],
+        "tips": [
+          "Cur\u0103\u021b\u0103 cavit\u0103\u021bile pe \u00eentreaga lor ad\u00e2ncime ori de c\u00e2te ori este posibil. Astfel, r\u0103\u0219ina va p\u0103trunde mai bine \u0219i va reduce riscul apari\u021biei bulelor."
+        ],
+        "title": "Cum trebuie cur\u0103\u021bat lemnul \u00eenainte de turnare?",
+        "warnings": [
+          "Nu turna r\u0103\u0219ina peste materiale friabile sau impurit\u0103\u021bi. Acestea pot compromite aspectul \u0219i rezisten\u021ba proiectului."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+      "publishedAt": "2026-07-26T19:44:36.793702+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:44:36.793702+00:00"
+    },
+    "CONTENT#kb_entry#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in|META": {
+      "category": "Epoxy",
+      "contentId": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:09:41.035751+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+      "sk": "META",
+      "sortOrder": 500,
+      "updatedAt": "2026-07-26T19:21:55.195919+00:00"
+    },
+    "CONTENT#kb_entry#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in|VARIANT#ro": {
+      "contentId": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Lemnul nu a fost inspectat \u00eenainte de utilizare.",
+          "Defectele structurale au fost ignorate."
+        ],
+        "prevention": [
+          "Nu toate defectele reprezint\u0103 un risc. Important este s\u0103 faci diferen\u021ba \u00eentre imperfec\u021biunile decorative \u0219i cele structurale."
+        ],
+        "problemSummary": "\u00cenainte de utilizare, fiecare pies\u0103 trebuie inspectat\u0103 pentru a identifica defectele care pot afecta rezisten\u021ba sau stabilitatea proiectului.",
+        "relatedGlossaryEntryIds": [
+          "lemn-higroscopic",
+          "lemn-instabil",
+          "lemn-poros",
+          "lemn-s-n-tos"
+        ],
+        "relatedKbEntryIds": [
+          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Examineaz\u0103 cu aten\u021bie \u00eentreaga pies\u0103. Verific\u0103 existen\u021ba cr\u0103p\u0103turilor, nodurilor, zonelor putrezite, atacului biologic \u0219i a oric\u0103ror defecte care pot afecta rezisten\u021ba."
+        ],
+        "symptoms": [
+          "Lemnul prezint\u0103 cr\u0103p\u0103turi, noduri sau alte imperfec\u021biuni.",
+          "Exist\u0103 zone suspecte sau instabile.",
+          "Nu \u0219tii dac\u0103 piesa poate fi folosit\u0103 \u00een siguran\u021b\u0103."
+        ],
+        "tips": [],
+        "title": "Cum verific dac\u0103 o bucat\u0103 de lemn este potrivit\u0103 pentru un proiect cu r\u0103\u0219in\u0103?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+      "publishedAt": "2026-07-26T19:21:55.195919+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:21:55.195919+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn|META": {
+      "category": "Epoxy",
+      "contentId": "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:55:43.943549+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+      "sk": "META",
+      "sortOrder": 1200,
+      "updatedAt": "2026-07-26T19:57:35.032610+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn|VARIANT#ro": {
+      "contentId": "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Lemnul a fost afectat de umiditate sau atac biologic.",
+          "Defectele naturale nu au fost \u00eendep\u0103rtate."
+        ],
+        "prevention": [
+          "Este mai sigur s\u0103 elimini o zon\u0103 problematic\u0103 \u00eenainte de turnare dec\u00e2t s\u0103 \u00eencerci s\u0103 o repari dup\u0103 \u00eent\u0103rirea r\u0103\u0219inii."
+        ],
+        "problemSummary": "Zonele putrezite, friabile sau afectate biologic trebuie eliminate \u00eenainte de turnare pentru a ob\u021bine un proiect durabil.",
+        "relatedGlossaryEntryIds": [
+          "lemn-higroscopic",
+          "lemn-instabil",
+          "lemn-poros",
+          "lemn-s-n-tos"
+        ],
+        "relatedKbEntryIds": [
+          "trebuie-p-strat-sau-ndep-rtat-scoar-a"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "\u00cendep\u0103rteaz\u0103 toate zonele instabile p\u00e2n\u0103 la lemn s\u0103n\u0103tos \u0219i verific\u0103 \u00eentreaga pies\u0103 \u00eenainte de turnare."
+        ],
+        "symptoms": [
+          "Lemnul prezint\u0103 zone moi sau putrezite.",
+          "Exist\u0103 fibre desprinse sau noduri sl\u0103bite.",
+          "Sunt vizibile defecte structurale."
+        ],
+        "tips": [],
+        "title": "De ce este important\u0103 \u00eendep\u0103rtarea zonelor instabile din lemn?",
+        "warnings": [
+          "R\u0103\u0219ina conserv\u0103 defectele existente, dar nu le repar\u0103 \u0219i nu le transform\u0103 \u00een zone stabile."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+      "publishedAt": "2026-07-26T19:57:35.032610+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:57:35.032610+00:00"
+    },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|META": {
       "category": "Epoxy",
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
@@ -8201,7 +8506,7 @@
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
       "sk": "META",
       "sortOrder": 100,
-      "updatedAt": "2026-07-26T18:31:13.239743+00:00"
+      "updatedAt": "2026-07-26T20:05:15.406635+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|VARIANT#de": {
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
@@ -8423,13 +8728,307 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
-      "publishedAt": "2026-07-26T17:48:38.776829+00:00",
+      "publishedAt": "2026-07-26T20:05:15.406635+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
       "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T18:31:13.239743+00:00"
+      "updatedAt": "2026-07-26T20:05:15.406635+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare|META": {
+      "category": "Epoxy",
+      "contentId": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:16:48.349911+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+      "sk": "META",
+      "sortOrder": 900,
+      "updatedAt": "2026-07-26T19:19:43.558292+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare|VARIANT#ro": {
+      "contentId": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Lemnul provine din depozitare sau usc\u0103tor.",
+          "Exist\u0103 tensiuni interne sau deform\u0103ri naturale."
+        ],
+        "prevention": [
+          "Calibrarea realizat\u0103 la \u00eenceput simplific\u0103 at\u00e2t turnarea, c\u00e2t \u0219i prelucr\u0103rile finale."
+        ],
+        "problemSummary": "Calibrarea \u0219i \u00eendreptarea asigur\u0103 o grosime uniform\u0103 \u0219i fe\u021be paralele, facilit\u00e2nd pozi\u021bionarea corect\u0103 \u00een cofraj \u0219i prelucr\u0103rile ulterioare.",
+        "relatedGlossaryEntryIds": [
+          "frez",
+          "ma-in-de-rindeluit",
+          "oberfrez-router"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Calibreaz\u0103 piesa astfel \u00eenc\u00e2t fe\u021bele superioar\u0103 \u0219i inferioar\u0103 s\u0103 fie paralele \u0219i grosimea s\u0103 fie uniform\u0103 pe \u00eentreaga suprafa\u021b\u0103."
+        ],
+        "symptoms": [
+          "Lemnul are grosimi diferite.",
+          "Piesa este deformat\u0103.",
+          "Exist\u0103 diferen\u021be de nivel \u00eentre suprafe\u021be."
+        ],
+        "tips": [],
+        "title": "De ce trebuie calibrat \u0219i \u00eendreptat lemnul \u00eenainte de turnare?",
+        "warnings": [
+          "Lipsa calibrarii duce la folosirea inutila a rasinii"
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+      "publishedAt": "2026-07-26T19:19:43.558292+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:19:43.558292+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii|META": {
+      "category": "Epoxy",
+      "contentId": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:15:09.493641+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+      "sk": "META",
+      "sortOrder": 800,
+      "updatedAt": "2026-07-26T19:22:25.214095+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii|VARIANT#ro": {
+      "contentId": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Etapa de preg\u0103tire a fost omis\u0103.",
+          "Lemnul nu a fost verificat \u0219i cur\u0103\u021bat corespunz\u0103tor.",
+          "Au r\u0103mas zone instabile sau materiale friabile."
+        ],
+        "prevention": [
+          "Timpul investit \u00een preg\u0103tirea lemnului reduce considerabil riscul apari\u021biei defectelor \u00een etapele urm\u0103toare."
+        ],
+        "problemSummary": "Preg\u0103tirea lemnului este o etap\u0103 esen\u021bial\u0103 \u00eenainte de turnarea r\u0103\u0219inii. Un lemn curat \u0219i stabil reduce riscul apari\u021biei problemelor \u00een timpul turn\u0103rii \u0219i al prelucr\u0103rii ulterioare.",
+        "relatedGlossaryEntryIds": [
+          "lemn-s-n-tos",
+          "lemn-instabil",
+          "lemn-higroscopic",
+          "lemn-poros"
+        ],
+        "relatedKbEntryIds": [
+          "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Preg\u0103te\u0219te lemnul \u00eenainte de turnare prin calibrare, inspec\u021bie \u0219i cur\u0103\u021bare complet\u0103. Scopul acestei etape este ob\u021binerea unui material stabil \u0219i predictibil."
+        ],
+        "symptoms": [
+          "Nu \u0219tii dac\u0103 lemnul este preg\u0103tit pentru turnare.",
+          "Lemnul provine direct din depozitare sau usc\u0103tor.",
+          "Exist\u0103 impurit\u0103\u021bi sau zone instabile."
+        ],
+        "tips": [],
+        "title": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+      "publishedAt": "2026-07-26T19:22:25.214095+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 3,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:22:25.214095+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului|META": {
+      "category": "Epoxy",
+      "contentId": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:57:46.347267+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+      "sk": "META",
+      "sortOrder": 1300,
+      "updatedAt": "2026-07-26T19:59:21.655180+00:00"
+    },
+    "CONTENT#kb_entry#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului|VARIANT#ro": {
+      "contentId": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Ordinea etapelor nu este respectat\u0103.",
+          "Geometria proiectului nu a fost definit\u0103 \u00eenainte de construc\u021bia cofrajului."
+        ],
+        "prevention": [
+          "G\u00e2nde\u0219te proiectul \u00eenainte de a construi cofrajul. Un cofraj bine realizat \u00eencepe \u00eentotdeauna cu o geometrie bine stabilit\u0103."
+        ],
+        "problemSummary": "Geometria proiectului trebuie definit\u0103 \u00eenainte de construirea cofrajului. Forma \u0219i dimensiunile finale ale proiectului sunt cele care determin\u0103 dimensiunile \u0219i configura\u021bia cofrajului.",
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "pal-melaminat",
+          "mdf-melaminat"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Stabile\u0219te mai \u00eent\u00e2i compozi\u021bia \u0219i geometria proiectului. Construie\u0219te cofrajul doar dup\u0103 ce forma final\u0103 \u0219i dimensiunile au fost clar definite."
+        ],
+        "symptoms": [
+          "Nu \u0219tii c\u00e2nd trebuie construit cofrajul.",
+          "Vrei s\u0103 \u00eencepi direct realizarea cofrajului.",
+          "Forma final\u0103 a proiectului nu este \u00eenc\u0103 stabilit\u0103."
+        ],
+        "tips": [],
+        "title": "De ce trebuie stabilit\u0103 geometria proiectului \u00eenainte de construirea cofrajului?",
+        "warnings": [
+          "Construirea cofrajului \u00eenainte de definirea proiectului poate duce la modific\u0103ri inutile \u0219i pierdere de material."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+      "publishedAt": "2026-07-26T19:59:21.655180+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:59:21.655180+00:00"
+    },
+    "CONTENT#kb_entry#trebuie-eliminate-toate-defectele-naturale-ale-lemnului|META": {
+      "category": "Epoxy",
+      "contentId": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:11:40.527142+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+      "sk": "META",
+      "sortOrder": 600,
+      "updatedAt": "2026-07-26T19:13:07.356259+00:00"
+    },
+    "CONTENT#kb_entry#trebuie-eliminate-toate-defectele-naturale-ale-lemnului|VARIANT#ro": {
+      "contentId": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Defectele sunt considerate automat probleme.",
+          "Nu este evaluat\u0103 influen\u021ba lor asupra stabilit\u0103\u021bii piesei."
+        ],
+        "prevention": [],
+        "problemSummary": "Nu toate defectele naturale trebuie \u00eendep\u0103rtate. \u00cen multe proiecte, ele contribuie la aspectul unic al piesei.",
+        "relatedGlossaryEntryIds": [
+          "lemn-higroscopic",
+          "lemn-instabil",
+          "lemn-poros",
+          "lemn-s-n-tos",
+          "insul-de-lemn"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Scopul nu este s\u0103 g\u0103se\u0219ti un lemn perfect, ci unul stabil \u0219i potrivit proiectului."
+        ],
+        "symptoms": [
+          "Lemnul are cr\u0103p\u0103turi naturale.",
+          "Exist\u0103 noduri sau cavit\u0103\u021bi.",
+          "Nu \u0219tii dac\u0103 acestea trebuie eliminate."
+        ],
+        "tips": [],
+        "title": "Trebuie eliminate toate defectele naturale ale lemnului?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+      "publishedAt": "2026-07-26T19:13:07.356259+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:13:07.356259+00:00"
+    },
+    "CONTENT#kb_entry#trebuie-p-strat-sau-ndep-rtat-scoar-a|META": {
+      "category": "Epoxy",
+      "contentId": "trebuie-p-strat-sau-ndep-rtat-scoar-a",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-26T19:53:29.727266+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#trebuie-p-strat-sau-ndep-rtat-scoar-a",
+      "sk": "META",
+      "sortOrder": 1100,
+      "updatedAt": "2026-07-26T19:55:31.673323+00:00"
+    },
+    "CONTENT#kb_entry#trebuie-p-strat-sau-ndep-rtat-scoar-a|VARIANT#ro": {
+      "contentId": "trebuie-p-strat-sau-ndep-rtat-scoar-a",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Scoar\u021ba nu este bine ancorat\u0103 \u00een lemn.",
+          "Lemnul prezint\u0103 zone instabile."
+        ],
+        "prevention": [
+          "P\u0103strarea marginii naturale este posibil\u0103 doar atunci c\u00e2nd aceasta este suficient de stabil\u0103."
+        ],
+        "problemSummary": "Scoar\u021ba poate fi p\u0103strat\u0103 doar dac\u0103 este perfect stabil\u0103. Dac\u0103 exist\u0103 riscul desprinderii, este recomandat\u0103 \u00eendep\u0103rtarea ei \u00eenainte de turnare.",
+        "relatedGlossaryEntryIds": [],
+        "relatedKbEntryIds": [
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Verific\u0103 atent stabilitatea scoar\u021bei. Dac\u0103 exist\u0103 orice risc de desprindere ulterioar\u0103, \u00eendep\u0103rteaz-o \u00eenainte de turnare."
+        ],
+        "symptoms": [
+          "Scoar\u021ba este par\u021bial desprins\u0103.",
+          "Nu e\u0219ti sigur dac\u0103 este bine fixat\u0103.",
+          "Dore\u0219ti s\u0103 p\u0103strezi marginea natural\u0103 a lemnului."
+        ],
+        "tips": [],
+        "title": "Trebuie p\u0103strat\u0103 sau \u00eendep\u0103rtat\u0103 scoar\u021ba?",
+        "warnings": [
+          "R\u0103\u0219ina nu stabilizeaz\u0103 scoar\u021ba desprins\u0103 \u0219i nu poate repara un material instabil."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#trebuie-p-strat-sau-ndep-rtat-scoar-a",
+      "publishedAt": "2026-07-26T19:55:31.673323+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-26T19:55:31.673323+00:00"
     },
     "CONTENT#website_page#about|META": {
       "adminLabel": "About HFZWood",
@@ -12031,6 +12630,56 @@
       "contentId": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
       "pk": "INDEX#kb",
       "sk": "ORDER#000400"
+    },
+    "INDEX#kb|ORDER#000500": {
+      "contentId": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000500"
+    },
+    "INDEX#kb|ORDER#000600": {
+      "contentId": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000600"
+    },
+    "INDEX#kb|ORDER#000700": {
+      "contentId": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000700"
+    },
+    "INDEX#kb|ORDER#000800": {
+      "contentId": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000800"
+    },
+    "INDEX#kb|ORDER#000900": {
+      "contentId": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#000900"
+    },
+    "INDEX#kb|ORDER#001000": {
+      "contentId": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001000"
+    },
+    "INDEX#kb|ORDER#001100": {
+      "contentId": "trebuie-p-strat-sau-ndep-rtat-scoar-a",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001100"
+    },
+    "INDEX#kb|ORDER#001200": {
+      "contentId": "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001200"
+    },
+    "INDEX#kb|ORDER#001300": {
+      "contentId": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001300"
+    },
+    "INDEX#kb|ORDER#001400": {
+      "contentId": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001400"
     }
   }
 }
