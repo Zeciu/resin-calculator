@@ -4,10 +4,12 @@ import os
 import re
 import shutil
 import tempfile
+import threading
 import time
 from collections.abc import Callable
 from copy import deepcopy
 from datetime import datetime, timezone
+from functools import wraps
 from pathlib import Path
 from typing import Any, TypeVar
 
@@ -597,8 +599,19 @@ def _build_knowledge_base_legacy_document() -> dict[str, Any]:
 
 
 # Transient Windows/local file-access contention (replace and store open/read).
-TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS = 7
-TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS = (0.05, 0.10, 0.20, 0.40, 0.80, 1.00)
+TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS = 10
+# Bounded backoff for Windows AV/indexer locks and brief sharing conflicts.
+TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS = (
+    0.05,
+    0.10,
+    0.20,
+    0.40,
+    0.80,
+    1.00,
+    1.50,
+    2.00,
+    2.50,
+)
 # Backward-compatible aliases for callers/tests that referred to replace-only names.
 ATOMIC_REPLACE_MAX_ATTEMPTS = TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS
 ATOMIC_REPLACE_RETRY_DELAYS_SECONDS = TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS
@@ -606,6 +619,40 @@ _WINERROR_ACCESS_DENIED = 5
 _WINERROR_SHARING_VIOLATION = 32
 
 _T = TypeVar("_T")
+
+# Serialize in-process readers/writers of the same path. FastAPI sync routes run in a
+# thread pool, so concurrent Save/Publish without this lock can exhaust os.replace
+# retries on Windows (WinError 5 / Access denied).
+_path_locks_guard = threading.Lock()
+_path_locks: dict[str, threading.RLock] = {}
+
+
+def _path_lock_key(path: Path) -> str:
+    try:
+        return str(path.resolve())
+    except OSError:
+        return str(path)
+
+
+def _lock_for_path(path: Path) -> threading.RLock:
+    key = _path_lock_key(path)
+    with _path_locks_guard:
+        lock = _path_locks.get(key)
+        if lock is None:
+            lock = threading.RLock()
+            _path_locks[key] = lock
+        return lock
+
+
+def _editorial_store_mutation(method):
+    """Serialize a full editorial content-store read-modify-write in-process."""
+
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        with _lock_for_path(self._store_path):
+            return method(self, *args, **kwargs)
+
+    return wrapper
 
 
 def _is_retryable_transient_file_access_error(exc: BaseException) -> bool:
@@ -651,28 +698,29 @@ def atomic_write_json(
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temp_path: Path | None = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            "w",
-            encoding="utf-8",
-            dir=path.parent,
-            prefix=f".{path.name}.tmp-",
-            delete=False,
-        ) as handle:
-            json.dump(payload, handle, indent=2, sort_keys=True)
-            handle.flush()
-            os.fsync(handle.fileno())
-            temp_path = Path(handle.name)
+    with _lock_for_path(path):
+        try:
+            with tempfile.NamedTemporaryFile(
+                "w",
+                encoding="utf-8",
+                dir=path.parent,
+                prefix=f".{path.name}.tmp-",
+                delete=False,
+            ) as handle:
+                json.dump(payload, handle, indent=2, sort_keys=True)
+                handle.flush()
+                os.fsync(handle.fileno())
+                temp_path = Path(handle.name)
 
-        _retry_transient_file_access(
-            lambda: os.replace(temp_path, path),
-            sleep=sleep,
-        )
-        # replace() moves the temp file into place; skip cleanup unlink.
-        temp_path = None
-    finally:
-        if temp_path is not None and temp_path.exists():
-            temp_path.unlink()
+            _retry_transient_file_access(
+                lambda: os.replace(temp_path, path),
+                sleep=sleep,
+            )
+            # replace() moves the temp file into place; skip cleanup unlink.
+            temp_path = None
+        finally:
+            if temp_path is not None and temp_path.exists():
+                temp_path.unlink()
 
 
 def initialization_marker_path(root: Path) -> Path:
@@ -850,6 +898,7 @@ class FilesystemContentRepository:
             self._write_store({})
         self.ensure_website_pages_exist()
 
+    @_editorial_store_mutation
     def ensure_website_pages_exist(self) -> dict[str, Any]:
         """Ensure fixed website pages exist; return the in-memory store used for the check."""
         records = self._read_store()
@@ -910,12 +959,16 @@ class FilesystemContentRepository:
             with self._store_path.open("r", encoding="utf-8") as handle:
                 return handle.read()
 
-        # Retry only transient open/read access failures — not JSON parse errors.
-        text = _retry_transient_file_access(read_store_text)
+        # Share the path lock with writers so Windows cannot open a read handle
+        # during an in-process os.replace of content-store.json.
+        with _lock_for_path(self._store_path):
+            # Retry only transient open/read access failures — not JSON parse errors.
+            text = _retry_transient_file_access(read_store_text)
         payload = json.loads(text)
         return payload.get("records", {})
 
     def _write_store(self, records: dict[str, Any]) -> None:
+        # atomic_write_json acquires the same path lock used by _read_store.
         atomic_write_json(self._store_path, {"records": records})
 
     def _get_record(self, records: dict[str, Any], key: str) -> dict[str, Any] | None:
@@ -987,6 +1040,7 @@ class FilesystemContentRepository:
     def get_manual_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
         return self.get_manual_variant_from_store(self._read_store(), content_id, locale)
 
+    @_editorial_store_mutation
     def create_manual_chapter(
         self, title: str, content_id: str | None = None, locale: str = DEFAULT_LOCALE
     ) -> dict[str, Any]:
@@ -1039,6 +1093,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(meta)
 
+    @_editorial_store_mutation
     def save_manual_variant(
         self,
         content_id: str,
@@ -1104,6 +1159,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def publish_manual_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
@@ -1143,6 +1199,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def unpublish_manual_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
@@ -1180,6 +1237,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def delete_manual_chapter_variant(self, content_id: str, locale: str) -> None:
         normalized = locale.strip().lower()
         if normalized == CANONICAL_EDITORIAL_LOCALE:
@@ -1201,6 +1259,7 @@ class FilesystemContentRepository:
         records.pop(variant_key, None)
         self._write_store(records)
 
+    @_editorial_store_mutation
     def delete_manual_chapter(self, content_id: str) -> None:
         records = self._read_store()
         if not _meta_exists(records, content_id, CONTENT_TYPE_MANUAL_CHAPTER, make_manual_meta_key):
@@ -1231,6 +1290,7 @@ class FilesystemContentRepository:
             removed.append(content_id)
         return removed
 
+    @_editorial_store_mutation
     def reorder_manual_chapters(self, chapter_ids: list[str]) -> None:
         records = self._read_store()
         current_ids = self.list_manual_chapter_ids()
@@ -1492,6 +1552,7 @@ class FilesystemContentRepository:
     def get_glossary_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
         return self.get_glossary_variant_from_store(self._read_store(), content_id, locale)
 
+    @_editorial_store_mutation
     def create_glossary_entry(self, term: str, content_id: str | None = None) -> dict[str, Any]:
         records = self._read_store()
         entry_id = content_id or self._allocate_content_id(records, term, make_glossary_meta_key)
@@ -1540,6 +1601,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(meta)
 
+    @_editorial_store_mutation
     def save_glossary_variant(
         self,
         content_id: str,
@@ -1605,6 +1667,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def publish_glossary_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
@@ -1644,6 +1707,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def unpublish_glossary_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
@@ -1681,6 +1745,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def delete_glossary_entry_variant(self, content_id: str, locale: str) -> None:
         normalized = locale.strip().lower()
         if normalized == CANONICAL_EDITORIAL_LOCALE:
@@ -1702,6 +1767,7 @@ class FilesystemContentRepository:
         records.pop(variant_key, None)
         self._write_store(records)
 
+    @_editorial_store_mutation
     def delete_glossary_entry(self, content_id: str) -> None:
         records = self._read_store()
         if not _meta_exists(records, content_id, CONTENT_TYPE_GLOSSARY_ENTRY, make_glossary_meta_key):
@@ -1790,6 +1856,7 @@ class FilesystemContentRepository:
     def get_kb_variant(self, content_id: str, locale: str) -> dict[str, Any] | None:
         return self.get_kb_variant_from_store(self._read_store(), content_id, locale)
 
+    @_editorial_store_mutation
     def create_kb_entry(
         self,
         title: str,
@@ -1861,6 +1928,7 @@ class FilesystemContentRepository:
             "relatedManualChapterIds": [],
         }
 
+    @_editorial_store_mutation
     def save_kb_variant(
         self,
         content_id: str,
@@ -1924,6 +1992,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def publish_kb_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
@@ -1957,6 +2026,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def unpublish_kb_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
@@ -1988,6 +2058,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def delete_kb_entry_variant(self, content_id: str, locale: str) -> None:
         normalized = locale.strip().lower()
         if normalized == CANONICAL_EDITORIAL_LOCALE:
@@ -2007,6 +2078,7 @@ class FilesystemContentRepository:
         records.pop(variant_key, None)
         self._write_store(records)
 
+    @_editorial_store_mutation
     def delete_kb_entry(self, content_id: str) -> None:
         records = self._read_store()
         if not _meta_exists(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key):
@@ -2088,6 +2160,7 @@ class FilesystemContentRepository:
     def get_website_variant(self, page_key: str, locale: str) -> dict[str, Any] | None:
         return self.get_website_variant_from_store(self._read_store(), page_key, locale)
 
+    @_editorial_store_mutation
     def save_website_variant(
         self,
         page_key: str,
@@ -2160,6 +2233,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def publish_website_variant(self, page_key: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
@@ -2199,6 +2273,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def unpublish_website_variant(self, page_key: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(
@@ -2236,6 +2311,7 @@ class FilesystemContentRepository:
         self._write_store(records)
         return deepcopy(variant)
 
+    @_editorial_store_mutation
     def delete_website_page_variant(self, page_key: str, locale: str) -> None:
         normalized = locale.strip().lower()
         if normalized == CANONICAL_EDITORIAL_LOCALE:

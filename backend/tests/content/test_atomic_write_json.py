@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import errno
 import json
+import time
 from pathlib import Path
 
 import pytest
@@ -441,3 +442,132 @@ class TestSharedPersistenceRegression:
         variant = repository.get_manual_variant("capitol", "ro")
         assert variant is not None
         assert variant["draftBody"]["title"] == "Capitol"
+
+
+class TestEditorialStorePathLockAndConcurrency:
+    def test_glossary_save_recovers_from_transient_replace_permission_error(
+        self, tmp_path: Path, monkeypatch
+    ):
+        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+        repository = FilesystemContentRepository(tmp_path)
+        meta = repository.create_glossary_entry("Salvare", content_id="salvare")
+        content_id = meta["contentId"]
+
+        store_path = repository._store_path
+        attempts = {"n": 0}
+        real_replace = filesystem_module.os.replace
+
+        def flaky_replace(source, dest):
+            if Path(dest) == store_path:
+                attempts["n"] += 1
+                if attempts["n"] <= 3:
+                    raise _access_denied(5)
+            return real_replace(source, dest)
+
+        monkeypatch.setattr(filesystem_module.os, "replace", flaky_replace)
+        monkeypatch.setattr(filesystem_module.time, "sleep", lambda _seconds: None)
+
+        repository.save_glossary_variant(
+            content_id, "ro", _glossary_body("Salvare", "Text salvat după retry.")
+        )
+        variant = repository.get_glossary_variant(content_id, "ro")
+        assert variant is not None
+        assert variant["draftBody"]["term"] == "Salvare"
+        assert variant["draftBody"]["definitionBlocks"][0]["text"] == "Text salvat după retry."
+        assert attempts["n"] == 4
+        assert list(store_path.parent.glob(".content-store.json.tmp-*")) == []
+
+    def test_concurrent_glossary_saves_do_not_raise_access_denied(self, tmp_path: Path, monkeypatch):
+        import threading
+
+        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+        repository = FilesystemContentRepository(tmp_path)
+        content_ids = []
+        for index in range(4):
+            meta = repository.create_glossary_entry(
+                f"Concurrent {index}", content_id=f"concurrent-{index}"
+            )
+            content_ids.append(meta["contentId"])
+
+        errors: list[BaseException] = []
+        barrier = threading.Barrier(len(content_ids))
+
+        def worker(content_id: str, worker_index: int) -> None:
+            # Separate repository instances mirror FastAPI Depends() wiring.
+            local_repo = FilesystemContentRepository(tmp_path)
+            try:
+                barrier.wait(timeout=5)
+                for round_index in range(12):
+                    local_repo.save_glossary_variant(
+                        content_id,
+                        "ro",
+                        _glossary_body(
+                            f"Concurrent {worker_index}",
+                            f"Round {round_index} for {content_id}.",
+                        ),
+                    )
+            except BaseException as exc:  # noqa: BLE001 — collect any failure for assertion
+                errors.append(exc)
+
+        threads = [
+            threading.Thread(target=worker, args=(content_id, index), daemon=True)
+            for index, content_id in enumerate(content_ids)
+        ]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join(timeout=60)
+            assert not thread.is_alive()
+
+        assert errors == []
+        for index, content_id in enumerate(content_ids):
+            variant = repository.get_glossary_variant(content_id, "ro")
+            assert variant is not None
+            assert variant["draftBody"]["term"] == f"Concurrent {index}"
+            assert f"for {content_id}" in variant["draftBody"]["definitionBlocks"][0]["text"]
+        assert list(repository._store_path.parent.glob(".content-store.json.tmp-*")) == []
+
+    def test_path_lock_serializes_concurrent_atomic_writes(
+        self, tmp_path: Path, monkeypatch
+    ):
+        import threading
+
+        target = tmp_path / "content-store.json"
+        target.write_text('{"records": {}}', encoding="utf-8")
+        active = {"n": 0}
+        max_active = {"n": 0}
+        gate = threading.Lock()
+        real_replace = filesystem_module.os.replace
+        errors: list[BaseException] = []
+
+        def tracking_replace(source, dest):
+            with gate:
+                active["n"] += 1
+                max_active["n"] = max(max_active["n"], active["n"])
+            try:
+                # Hold briefly so overlapping writers would be visible without a lock.
+                time.sleep(0.02)
+                return real_replace(source, dest)
+            finally:
+                with gate:
+                    active["n"] -= 1
+
+        monkeypatch.setattr(filesystem_module.os, "replace", tracking_replace)
+
+        def writer(value: int) -> None:
+            try:
+                for _ in range(8):
+                    atomic_write_json(target, {"records": {"value": value}})
+            except BaseException as exc:  # noqa: BLE001
+                errors.append(exc)
+
+        threads = [threading.Thread(target=writer, args=(index,), daemon=True) for index in range(6)]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join(timeout=30)
+            assert not thread.is_alive()
+
+        assert errors == []
+        assert max_active["n"] == 1
+        assert "records" in json.loads(target.read_text(encoding="utf-8"))
