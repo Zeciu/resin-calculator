@@ -22,7 +22,6 @@ describe("My Account page", () => {
     localStorage.clear();
     sessionStorage.clear();
     vi.restoreAllMocks();
-    vi.stubEnv("VITE_MOCK_ADMIN", "false");
     mockCapabilitiesFetch();
     seedDevicePreferences({ interfaceLanguage: "en", lengthUnit: "mm", volumeUnit: "L" });
   });

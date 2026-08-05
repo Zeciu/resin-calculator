@@ -1,9 +1,9 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
+import { renderWorkspace } from "../../../public/src/workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
-import { handleGlobalReferenceSearch, isAdministratorFetchRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
+import { handleGlobalReferenceSearch, isAuthenticatedEditorialRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 vi.mock("./WebsiteRichTextEditor.jsx", () => ({
   default: function MockWebsiteRichTextEditor({ onDocumentChange, ariaLabel }) {
@@ -42,15 +42,15 @@ const WEBSITE_PAGES = [
   { pageKey: "contact", adminLabel: "Contact", pageKind: "contact", sortOrder: 600, slug: "/contact" },
 ];
 
-function seedAdministrator() {
+function seedEditorialUser() {
   sessionStorage.setItem(
     SESSION_STORAGE_KEY,
     JSON.stringify({
       user: {
         id: "stub-user",
-        email: "admin@example.com",
-        username: "admin",
-        role: "administrator",
+        email: "editor@example.com",
+        username: "editor",
+        role: "user",
       },
     }),
   );
@@ -133,7 +133,7 @@ function createInMemoryWebsiteApi() {
       const parsed = new URL(url, "http://localhost");
       const path = parsed.pathname.replace(API_ROOT, "") || "/";
 
-      if (!isAdministratorFetchRequest(init)) {
+      if (!isAuthenticatedEditorialRequest(init)) {
         return Promise.resolve({ ok: false, status: 403, json: async () => ({ detail: "Forbidden" }) });
       }
 
@@ -341,7 +341,6 @@ describe("Website management editors (Stage 5B)", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.unstubAllEnvs();
-    vi.stubEnv("VITE_MOCK_ADMIN", "true");
     memoryApi.reset();
     setupWebsiteFetchMock();
   });
@@ -353,7 +352,7 @@ describe("Website management editors (Stage 5B)", () => {
 
   it("renders user-oriented editing header without internal keys", async () => {
     memoryApi.seedVariant("home", "ro", { ...emptyHomeBody(), publicTitle: "HFZWood Home" });
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
     await waitFor(() => {
@@ -365,7 +364,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("lists exactly six fixed website pages with Home selected by default", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
     const sidebar = await screen.findByRole("navigation", { name: "Website pages" });
@@ -377,7 +376,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("saves home draft edits and clears dirty state", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -400,7 +399,7 @@ describe("Website management editors (Stage 5B)", () => {
       publicTitle: "HFZWood",
       subtitle: "Welcome",
     });
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -418,7 +417,7 @@ describe("Website management editors (Stage 5B)", () => {
 
   it("shows unsaved changes guard when switching pages", async () => {
     memoryApi.seedVariant("home", "ro", { ...emptyHomeBody(), publicTitle: "Home" });
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -432,7 +431,7 @@ describe("Website management editors (Stage 5B)", () => {
 
   it("generates an English translation from Romanian source", async () => {
     memoryApi.seedVariant("home", "ro", { ...emptyHomeBody(), publicTitle: "Acasă" });
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -446,7 +445,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("renders pricing editor with fixed plans only", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -460,7 +459,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("validates contact email on save", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -485,7 +484,7 @@ describe("Website management editors (Stage 5B)", () => {
         { id: "story", title: "Story", blocks: [{ type: "paragraph", text: "Body" }] },
       ],
     });
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -516,7 +515,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("saves pricing offer visibility toggle", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -541,7 +540,7 @@ describe("Website management editors (Stage 5B)", () => {
       publicTitle: "Home with CTA",
       cta: { label: "View Pricing", destination: "/pricing", visible: true },
     });
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -562,7 +561,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("shows explicit home visibility toggle labels", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
     await screen.findByLabelText("Hero title");
@@ -572,7 +571,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("renders website checkboxes inline with their labels", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
     const toggle = await screen.findByRole("checkbox", { name: "Show hero image" });
@@ -581,7 +580,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("shows About main heading and content sections labels", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -594,7 +593,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("shows Sections heading on Privacy and Terms editors", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -609,7 +608,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("disables deleting the final Privacy and Terms section", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -622,7 +621,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("saves contact built-in link labels", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -646,7 +645,7 @@ describe("Website management editors (Stage 5B)", () => {
   });
 
   it("saves contact official links", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
@@ -669,7 +668,6 @@ describe("Admin navigation", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.unstubAllEnvs();
-    vi.stubEnv("VITE_MOCK_ADMIN", "true");
     memoryApi.reset();
     setupWebsiteFetchMock();
   });
@@ -680,7 +678,7 @@ describe("Admin navigation", () => {
   });
 
   it("shows Website in admin navigation and removes Future content sections", () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
     const adminNav = screen.getByRole("navigation", { name: "Administration navigation" });
@@ -689,7 +687,7 @@ describe("Admin navigation", () => {
   });
 
   it("marks Website as the active admin navigation item on /admin/website", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.WEBSITE);
 
     const adminNav = screen.getByRole("navigation", { name: "Administration navigation" });
@@ -700,7 +698,7 @@ describe("Admin navigation", () => {
 
   it("keeps manual, glossary and knowledge base routes available", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
     const adminNav = screen.getByRole("navigation", { name: "Administration navigation" });

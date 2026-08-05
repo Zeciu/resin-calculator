@@ -3,9 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ADMIN_ROUTES } from "./adminRoutes.js";
 import { ADMIN_EDITORIAL_LOCALES, ADMIN_LOCALE_LABELS } from "../editorial/editorialLocales.js";
-import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
-import { ROUTES } from "../workspace/routes.js";
-import { seedDevicePreferences } from "../preferences/testHelpers.js";
+import { renderWorkspace } from "../../public/src/workspace/renderWorkspaceRouter.jsx";
+import { ROUTES } from "../../public/src/workspace/routes.js";
+import { seedDevicePreferences } from "../../public/src/preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -19,15 +19,17 @@ const ALL_LANGUAGES = ADMIN_EDITORIAL_LOCALES.map((locale) => ({
   canDeactivate: false,
 }));
 
-function seedAdministrator() {
+// Editorial routes require authentication only: no administrator role and no
+// entitlement tier are involved.
+function seedEditorialUser() {
   sessionStorage.setItem(
     SESSION_STORAGE_KEY,
     JSON.stringify({
       user: {
         id: "stub-user",
-        email: "admin@example.com",
-        username: "admin",
-        role: "administrator",
+        email: "editor@example.com",
+        username: "editor",
+        role: "user",
       },
     }),
   );
@@ -70,8 +72,8 @@ function mockPublicLanguagesAdminApi(initialActive = ["en"]) {
         ok: true,
         status: 200,
         json: async () => ({
-          role: "administrator",
-          accessTier: "administrator_unlimited",
+          role: "user",
+          accessTier: "free",
           catalogVersion: 1,
           capabilities: {},
         }),
@@ -156,7 +158,6 @@ describe("Admin Public Languages dashboard", () => {
     localStorage.clear();
     sessionStorage.clear();
     vi.unstubAllEnvs();
-    vi.stubEnv("VITE_MOCK_ADMIN", "true");
     vi.restoreAllMocks();
     seedDevicePreferences({ interfaceLanguage: "en" });
   });
@@ -166,7 +167,7 @@ describe("Admin Public Languages dashboard", () => {
   });
 
   it("renders the Public Languages table with all configured languages", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     mockPublicLanguagesAdminApi(["en"]);
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
@@ -181,7 +182,7 @@ describe("Admin Public Languages dashboard", () => {
 
   it("activates and deactivates a non-default language", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     mockPublicLanguagesAdminApi(["en"]);
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
@@ -202,7 +203,7 @@ describe("Admin Public Languages dashboard", () => {
   });
 
   it("does not allow deactivating English", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     mockPublicLanguagesAdminApi(["en"]);
     renderWorkspace(ADMIN_ROUTES.ROOT);
 

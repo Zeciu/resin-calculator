@@ -110,7 +110,6 @@ export function AuthProvider({ children, authAdapter = resolveAuthAdapter() }) {
   const value = useMemo(
     () => ({
       isAuthenticated: user !== null,
-      isAdministrator: user?.role === "administrator",
       isLoading,
       user,
       login,

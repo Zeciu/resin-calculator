@@ -1,9 +1,9 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { ADMIN_ROUTES } from "./adminRoutes.js";
-import { ROUTES } from "../workspace/routes.js";
-import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
+import { ROUTES } from "../../public/src/workspace/routes.js";
+import { renderWorkspace } from "../../public/src/workspace/renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -11,49 +11,26 @@ function seedSession(user) {
   sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify({ user }));
 }
 
-function seedStandardUser() {
+// Editorial routes are local-only and role-free: ordinary Cognito
+// authentication is the single requirement, so every seeded user below is a
+// standard user with no special role or entitlement.
+function seedEditorialUser() {
   seedSession({
     id: "stub-user",
-    email: "user@example.com",
-    username: "user",
+    email: "editor@example.com",
+    username: "editor",
     role: "user",
   });
-}
-
-function seedAdministrator() {
-  seedSession({
-    id: "stub-user",
-    email: "admin@example.com",
-    username: "admin",
-    role: "administrator",
-  });
-}
-
-function expectLoggedInHome() {
-  expect(
-    screen.getByRole("heading", {
-      name: /Welcome to HFZWood — your workspace for resin estimation and woodworking knowledge/i,
-    }),
-  ).toBeInTheDocument();
 }
 
 describe("Admin Panel foundation", () => {
   beforeEach(() => {
     sessionStorage.clear();
-    vi.unstubAllEnvs();
   });
 
-  afterEach(() => {
-    vi.unstubAllEnvs();
-  });
-
-  describe("with mock administrator enabled", () => {
-    beforeEach(() => {
-      vi.stubEnv("VITE_MOCK_ADMIN", "true");
-    });
-
-    it("renders the admin dashboard for an administrator", () => {
-      seedAdministrator();
+  describe("with an authenticated user", () => {
+    it("renders the admin dashboard", () => {
+      seedEditorialUser();
       renderWorkspace(ADMIN_ROUTES.ROOT);
 
       expect(
@@ -65,7 +42,7 @@ describe("Admin Panel foundation", () => {
     });
 
     it("does not show Admin Panel in workspace navigation", () => {
-      seedAdministrator();
+      seedEditorialUser();
       renderWorkspace(ROUTES.HOME);
 
       expect(screen.queryByRole("link", { name: "Admin Panel" })).not.toBeInTheDocument();
@@ -73,7 +50,7 @@ describe("Admin Panel foundation", () => {
 
     it("renders the manual management workspace", async () => {
       const user = userEvent.setup();
-      seedAdministrator();
+      seedEditorialUser();
       renderWorkspace(ADMIN_ROUTES.ROOT);
 
       const adminNav = screen.getByRole("navigation", { name: "Administration navigation" });
@@ -82,42 +59,10 @@ describe("Admin Panel foundation", () => {
       expect(screen.getByRole("region", { name: "Manual management" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "Add New Chapter" })).toBeInTheDocument();
     });
-  });
 
-  describe("with standard user", () => {
-    beforeEach(() => {
-      vi.stubEnv("VITE_MOCK_ADMIN", "false");
-    });
-
-    it("redirects standard users away from admin routes", () => {
-      seedStandardUser();
-      renderWorkspace(ADMIN_ROUTES.ROOT);
-
-      expectLoggedInHome();
-      expect(
-        screen.queryByRole("navigation", { name: "Administration navigation" }),
-      ).not.toBeInTheDocument();
-    });
-
-    it("redirects guests away from admin routes", () => {
-      renderWorkspace(ADMIN_ROUTES.ROOT);
-
-      expect(screen.getByText(/Create your free HFZWood account/i)).toBeInTheDocument();
-      expect(
-        screen.queryByRole("navigation", { name: "Administration navigation" }),
-      ).not.toBeInTheDocument();
-    });
-
-    it("does not show Admin Panel in workspace navigation", () => {
-      seedStandardUser();
-      renderWorkspace(ROUTES.HOME);
-
-      expect(screen.queryByRole("link", { name: "Admin Panel" })).not.toBeInTheDocument();
-    });
-
-    it("keeps existing user-facing routes working for standard users", async () => {
+    it("keeps existing user-facing routes working", async () => {
       const user = userEvent.setup();
-      seedStandardUser();
+      seedEditorialUser();
       renderWorkspace(ROUTES.HOME);
 
       await user.click(screen.getByRole("link", { name: "Projects" }));
@@ -125,6 +70,17 @@ describe("Admin Panel foundation", () => {
       const main = screen.getByRole("main");
       expect(within(main).getByRole("heading", { name: "Projects" })).toBeInTheDocument();
       expect(within(main).getByRole("button", { name: "Open Project" })).toBeInTheDocument();
+    });
+  });
+
+  describe("without authentication", () => {
+    it("blocks guests from admin routes", () => {
+      renderWorkspace(ADMIN_ROUTES.ROOT);
+
+      expect(screen.getByText(/Create your free HFZWood account/i)).toBeInTheDocument();
+      expect(
+        screen.queryByRole("navigation", { name: "Administration navigation" }),
+      ).not.toBeInTheDocument();
     });
   });
 });

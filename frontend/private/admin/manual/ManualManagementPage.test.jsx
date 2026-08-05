@@ -1,9 +1,9 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
+import { renderWorkspace } from "../../../public/src/workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
-import { handleGlobalReferenceSearch, isAdministratorFetchRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
+import { handleGlobalReferenceSearch, isAuthenticatedEditorialRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 const { getNextDocumentText, setNextDocumentText } = vi.hoisted(() => {
   let nextDocumentText = "Edited chapter body.";
@@ -73,28 +73,14 @@ async function editDocument(user, text) {
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const API_ROOT = "/api/admin/manual/chapters";
 
-function seedAdministrator() {
+function seedEditorialUser() {
   sessionStorage.setItem(
     SESSION_STORAGE_KEY,
     JSON.stringify({
       user: {
         id: "stub-user",
-        email: "admin@example.com",
-        username: "admin",
-        role: "administrator",
-      },
-    }),
-  );
-}
-
-function seedStandardUser() {
-  sessionStorage.setItem(
-    SESSION_STORAGE_KEY,
-    JSON.stringify({
-      user: {
-        id: "stub-user",
-        email: "user@example.com",
-        username: "user",
+        email: "editor@example.com",
+        username: "editor",
         role: "user",
       },
     }),
@@ -155,7 +141,7 @@ function createInMemoryManualApi() {
       const path = parsed.pathname.replace(API_ROOT, "") || "/";
       const headers = init.headers || {};
 
-      if (!isAdministratorFetchRequest(init)) {
+      if (!isAuthenticatedEditorialRequest(init)) {
         return Promise.resolve({ ok: false, status: 403, json: async () => ({ detail: "Forbidden" }) });
       }
 
@@ -438,7 +424,6 @@ describe("Manual management workspace (Task 59B)", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.unstubAllEnvs();
-    vi.stubEnv("VITE_MOCK_ADMIN", "true");
     setNextDocumentText("Edited chapter body.");
     memoryApi.reset();
     vi.stubGlobal(
@@ -459,7 +444,7 @@ describe("Manual management workspace (Task 59B)", () => {
   });
 
   it("opens with an empty chapter list", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
     await waitFor(() => {
@@ -472,7 +457,7 @@ describe("Manual management workspace (Task 59B)", () => {
   });
 
   it("shows only chapter navigation in the left column", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     memoryApi.seedChapter({
       contentId: "media-chapter",
       title: "Media Chapter",
@@ -511,7 +496,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("loads admin chapter content with embedded image blocks", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     memoryApi.seedChapter({
       contentId: "media-chapter",
       title: "Media Chapter",
@@ -555,8 +540,8 @@ describe("Manual management workspace (Task 59B)", () => {
     expect(screen.queryByText(/failed to load chapter/i)).not.toBeInTheDocument();
   });
 
-  it("renders /admin/manual for administrators", async () => {
-    seedAdministrator();
+  it("renders /admin/manual for any authenticated user", async () => {
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
     expect(screen.getByRole("region", { name: "Manual management" })).toBeInTheDocument();
@@ -565,22 +550,16 @@ describe("Manual management workspace (Task 59B)", () => {
     });
   });
 
-  it("blocks standard users from /admin/manual", () => {
-    vi.stubEnv("VITE_MOCK_ADMIN", "false");
-    seedStandardUser();
+  it("blocks unauthenticated visitors from /admin/manual", () => {
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
-    expect(
-      screen.getByRole("heading", {
-        name: /Welcome to HFZWood — your workspace for resin estimation and woodworking knowledge/i,
-      }),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Create your free HFZWood account/i)).toBeInTheDocument();
     expect(screen.queryByRole("region", { name: "Manual management" })).not.toBeInTheDocument();
   });
 
   it("loads chapters from the backend and opens a created chapter", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Calibration Basics");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -596,7 +575,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("does not autosave while typing", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Sample Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -616,7 +595,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("saves only when Save is clicked", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Sample Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -639,7 +618,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("publishes when Publish is clicked", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Publish Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -663,7 +642,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("stays on the current chapter when Cancel is chosen in the unsaved changes dialog", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Chapter One").mockReturnValueOnce("Chapter Two");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -686,7 +665,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("continues navigation after Discard is chosen in the unsaved changes dialog", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Chapter One").mockReturnValueOnce("Chapter Two");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -712,7 +691,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("saves and continues navigation when Save is chosen in the unsaved changes dialog", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Chapter One").mockReturnValueOnce("Chapter Two");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -741,7 +720,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("stays on the current locale when Cancel is chosen in the unsaved changes dialog", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Locale Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -762,7 +741,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("loads an empty EN variant instead of keeping RO content", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Romanian Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -789,7 +768,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("keeps RO-only chapters in the EN sidebar and shows missing EN content", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Romanian Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -816,7 +795,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("does not ask to save again after Save when adding a new chapter", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     const promptSpy = vi
       .spyOn(window, "prompt")
       .mockReturnValueOnce("Chapter One")
@@ -846,7 +825,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("saves the current chapter before prompting for a new chapter title", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     const promptSpy = vi
       .spyOn(window, "prompt")
       .mockReturnValueOnce("Chapter One")
@@ -884,7 +863,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("does not prompt when switching chapters without edits", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt")
       .mockReturnValueOnce("Chapter One")
       .mockReturnValueOnce("Chapter Two");
@@ -907,7 +886,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("never creates a chapter when Save is clicked", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Only Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -932,7 +911,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("deletes the selected chapter after confirmation", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt")
       .mockReturnValueOnce("Chapter One")
       .mockReturnValueOnce("Chapter Two");
@@ -957,7 +936,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("saves document edits without creating a new chapter", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     const promptSpy = vi.spyOn(window, "prompt").mockReturnValueOnce("Media Chapter");
     memoryApi.seedChapter({
       contentId: "media-chapter",
@@ -1003,7 +982,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("creates the RO variant by default when adding a chapter", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Capitol Nou");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -1038,7 +1017,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("creates the EN variant (not RO) when adding a chapter on the EN tab", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("English Only Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -1067,7 +1046,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("warns that deleting a chapter removes it in all languages", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("Deletable Chapter");
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(false);
     renderWorkspace(ADMIN_ROUTES.MANUAL);
@@ -1089,7 +1068,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("deletes only the active non-RO translation and keeps the entity selected", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
     memoryApi.seedChapter({
       contentId: "multi-locale",
@@ -1158,7 +1137,7 @@ describe("Manual management workspace (Task 59B)", () => {
 
   it("does not offer isolated Romanian translation deletion", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("RO Chapter");
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
@@ -1207,7 +1186,7 @@ describe("Manual management workspace (Task 59B)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
     renderWorkspace(ADMIN_ROUTES.MANUAL);
@@ -1237,7 +1216,7 @@ describe("Manual management workspace (Task 59B)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.MANUAL);
 
     await waitFor(() => {

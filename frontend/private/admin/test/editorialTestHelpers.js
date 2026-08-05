@@ -1,4 +1,4 @@
-import { mockAuthAdapter } from "../../../public/src/auth/authAdapter.js";
+import { sessionStorageTestAuthAdapter } from "../../../public/src/test/sessionStorageTestAuthAdapter.js";
 
 export function computeMockEditorialVisibility({
   exists = true,
@@ -31,16 +31,11 @@ export function withEditorialVisibility(variant) {
   };
 }
 
-export function isAdministratorFetchRequest(init = {}) {
-  const headers = init?.headers ?? {};
-  const headerRole =
-    typeof headers.get === "function"
-      ? headers.get("X-Mock-Role") ?? headers.get("x-mock-role")
-      : headers["X-Mock-Role"] ?? headers["x-mock-role"];
-  if (headerRole === "administrator") {
-    return true;
-  }
-  return mockAuthAdapter.restoreSession()?.role === "administrator";
+// Editorial routes require an authenticated user and nothing more: there is no
+// administrator role and no entitlement gate. Mock editorial endpoints therefore
+// answer 403 only when no test session is seeded at all.
+export function isAuthenticatedEditorialRequest() {
+  return sessionStorageTestAuthAdapter.restoreSession() !== null;
 }
 
 export function handleGlobalReferenceSearch(url) {

@@ -1,9 +1,9 @@
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { renderWorkspace } from "../../workspace/renderWorkspaceRouter.jsx";
+import { renderWorkspace } from "../../../public/src/workspace/renderWorkspaceRouter.jsx";
 import { ADMIN_ROUTES } from "../adminRoutes.js";
-import { handleGlobalReferenceSearch, isAdministratorFetchRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
+import { handleGlobalReferenceSearch, isAuthenticatedEditorialRequest, withEditorialVisibility } from "../test/editorialTestHelpers.js";
 
 vi.mock("./GlossaryEntryEditor.jsx", () => ({
   default: function MockGlossaryEntryEditor({ onDocumentChange }) {
@@ -38,15 +38,15 @@ vi.mock("../../editorial/CrossReferencePicker.jsx", () => ({
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const API_ROOT = "/api/admin/glossary/entries";
 
-function seedAdministrator() {
+function seedEditorialUser() {
   sessionStorage.setItem(
     SESSION_STORAGE_KEY,
     JSON.stringify({
       user: {
         id: "stub-user",
-        email: "admin@example.com",
-        username: "admin",
-        role: "administrator",
+        email: "editor@example.com",
+        username: "editor",
+        role: "user",
       },
     }),
   );
@@ -114,7 +114,7 @@ function createInMemoryGlossaryApi() {
       const path = parsed.pathname.replace(API_ROOT, "") || "/";
       const headers = init.headers || {};
 
-      if (!isAdministratorFetchRequest(init)) {
+      if (!isAuthenticatedEditorialRequest(init)) {
         return Promise.resolve({ ok: false, status: 403, json: async () => ({ detail: "Forbidden" }) });
       }
 
@@ -423,7 +423,6 @@ describe("Glossary management workspace (Task 60)", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.unstubAllEnvs();
-    vi.stubEnv("VITE_MOCK_ADMIN", "true");
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
@@ -445,7 +444,7 @@ describe("Glossary management workspace (Task 60)", () => {
   });
 
   it("opens with an empty entry list", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
     expect(screen.getByRole("region", { name: "Glossary management" })).toBeInTheDocument();
@@ -456,7 +455,7 @@ describe("Glossary management workspace (Task 60)", () => {
   });
 
   it("creates, saves, and publishes a glossary entry", async () => {
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -487,7 +486,7 @@ describe("Glossary management workspace (Task 60)", () => {
       },
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -512,7 +511,7 @@ describe("Glossary management workspace (Task 60)", () => {
       status: "published",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -557,7 +556,7 @@ describe("Glossary management workspace (Task 60)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -587,7 +586,7 @@ describe("Glossary management workspace (Task 60)", () => {
 
   it("deletes only the active non-RO translation and keeps the entry selected", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
     memoryApi.seedEntry({
       contentId: "multi-locale",
@@ -644,7 +643,7 @@ describe("Glossary management workspace (Task 60)", () => {
 
   it("does not offer isolated Romanian translation deletion", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     vi.spyOn(window, "prompt").mockReturnValueOnce("RO Entry");
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -668,7 +667,7 @@ describe("Glossary management workspace (Task 60)", () => {
       },
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(false);
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
@@ -697,7 +696,7 @@ describe("Glossary management workspace (Task 60)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -736,7 +735,7 @@ describe("Glossary management workspace (Task 60)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
@@ -784,7 +783,7 @@ describe("Glossary management workspace (Task 60)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     const confirmSpy = vi.spyOn(window, "confirm").mockReturnValue(true);
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
@@ -815,7 +814,7 @@ describe("Glossary management workspace (Task 60)", () => {
       locale: "ro",
     });
 
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
 
     await waitFor(() => {
@@ -862,7 +861,7 @@ describe("Glossary management workspace (Task 60)", () => {
       return originalHandler(url, method, init);
     };
 
-    seedAdministrator();
+    seedEditorialUser();
     const user = userEvent.setup();
     vi.spyOn(window, "confirm").mockReturnValue(true);
     renderWorkspace(ADMIN_ROUTES.GLOSSARY);
@@ -886,7 +885,6 @@ describe("Admin navigation", () => {
   beforeEach(() => {
     sessionStorage.clear();
     vi.unstubAllEnvs();
-    vi.stubEnv("VITE_MOCK_ADMIN", "true");
     memoryApi.reset();
     vi.stubGlobal(
       "fetch",
@@ -907,7 +905,7 @@ describe("Admin navigation", () => {
 
   it("renders the glossary management workspace from admin navigation", async () => {
     const user = userEvent.setup();
-    seedAdministrator();
+    seedEditorialUser();
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
     const adminNav = screen.getByRole("navigation", { name: "Administration navigation" });

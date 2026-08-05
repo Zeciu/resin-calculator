@@ -63,6 +63,11 @@ export default defineConfig(({ command }) => {
       environment: "jsdom",
       globals: true,
       setupFiles: ["./src/test-setup.js"],
+      // The public application is the Vite root, but the local-only editorial
+      // suite lives in the sibling frontend/private tree. Collect from the
+      // frontend directory so both are part of `npm test`; production builds
+      // still resolve the null editorial route module above.
+      dir: rootDir,
     },
   };
 });
