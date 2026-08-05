@@ -1,0 +1,555 @@
+{
+  "locale": "ro",
+  "pages": {
+    "about": {
+      "body": {
+        "pageKind": "about",
+        "publicTitle": "Despre HFZWood",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "<strong>Construit pe experien\u021b\u0103 real\u0103</strong>",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood este rezultatul a peste cincisprezece ani de experien\u021b\u0103 practic\u0103 \u00een realizarea proiectelor din lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103. \u00cen tot acest timp am construit piese unicat, am experimentat tehnici diferite, am \u00eent\u00e2lnit situa\u021bii dificile \u0219i am \u00eenv\u0103\u021bat, proiect dup\u0103 proiect, ce func\u021bioneaz\u0103 cu adev\u0103rat \u00een atelier.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Toat\u0103 aceast\u0103 experien\u021b\u0103 practic\u0103 a fost transpus\u0103 \u00een HFZWood. Fluxul de lucru pe care \u00eel urmezi \u00een aplica\u021bie nu este unul teoretic \u0219i nici conceput doar pentru a simplifica interfa\u021ba. El reproduce un proces de lucru validat \u00een numeroase proiecte reale, conceput pentru a reduce erorile, a cre\u0219te precizia estim\u0103rilor \u0219i a oferi rezultate consecvente de la un proiect la altul.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood nu \u00ee\u0219i propune s\u0103 \u00eenlocuiasc\u0103 experien\u021ba, creativitatea sau judecata profesional\u0103 a utilizatorului. Dimpotriv\u0103, aplica\u021bia a fost creat\u0103 pentru a le sus\u021bine prin calcule precise \u0219i un proces de lucru clar, astfel \u00eenc\u00e2t deciziile importante s\u0103 r\u0103m\u00e2n\u0103 \u00eentotdeauna \u00een m\u00e2inile celui care realizeaz\u0103 proiectul.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Fiecare proiect este diferit, iar niciun software nu poate \u00eenlocui aten\u021bia la detalii \u0219i experien\u021ba acumulat\u0103 \u00een timp. Din acest motiv, HFZWood nu \u00eencearc\u0103 s\u0103 ia decizii \u00een locul utilizatorului \u0219i nu face estim\u0103ri bazate pe presupuneri. Aplica\u021bia calculeaz\u0103 exclusiv pe baza informa\u021biilor definite de utilizator, oferind rezultate reproductibile \u0219i u\u0219or de verificat. Scopul nostru este simplu: s\u0103 \u00ee\u021bi oferim mai mult\u0103 \u00eencredere \u00een estim\u0103rile tale, s\u0103 reducem risipa de material \u0219i s\u0103 te ajut\u0103m s\u0103 ob\u021bii rezultate previzibile, proiect dup\u0103 proiect.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "",
+                "type": "paragraph"
+              }
+            ],
+            "id": "hero",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Mai mult dec\u00e2t un calculator pentru r\u0103\u0219in\u0103 epoxidic\u0103"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Oricine a lucrat cu r\u0103\u0219in\u0103 epoxidic\u0103 \u0219tie c\u0103 o estimare gre\u0219it\u0103 poate \u00eensemna costuri suplimentare, \u00eent\u00e2rzieri sau compromisuri \u00een timpul proiectului. \u00cen multe situa\u021bii, calculele sunt f\u0103cute \u201edin ochi\u201d sau pe baza experien\u021bei, iar rezultatele pot varia de la un proiect la altul.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood a fost creat pentru a oferi o metod\u0103 practic\u0103 \u0219i consecvent\u0103 de estimare, astfel \u00eenc\u00e2t fiecare proiect s\u0103 poat\u0103 \u00eencepe cu o planificare mai bun\u0103 \u0219i cu mai mult\u0103 \u00eencredere \u00een cantitatea de material necesar\u0103.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-vigvsh",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "De ce am creat HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Aplica\u021bia este conceput\u0103 at\u00e2t pentru cei care realizeaz\u0103 primele proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103, c\u00e2t \u0219i pentru t\u00e2mplari, artizani, makeri \u0219i ateliere care folosesc frecvent aceast\u0103 tehnologie.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Indiferent de nivelul de experien\u021b\u0103, HFZWood ofer\u0103 un flux de lucru u\u0219or de urm\u0103rit, care ajut\u0103 la reducerea erorilor \u0219i la ob\u021binerea unor estim\u0103ri consecvente de la un proiect la altul.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-cac06z",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Cui se adreseaz\u0103"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood nu \u00eenseamn\u0103 doar calcule de volum.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Aplica\u021bia include un Manual complet de utilizare, tutoriale video, un Glosar al termenilor utiliza\u021bi \u00een domeniu \u0219i o Knowledge Base aflat\u0103 \u00een continu\u0103 dezvoltare. Aceste resurse sunt concepute pentru a r\u0103spunde at\u00e2t \u00eentreb\u0103rilor de baz\u0103, c\u00e2t \u0219i celor \u00eent\u00e2lnite \u00een proiectele mai complexe, transform\u00e2nd aplica\u021bia \u00eentr-o platform\u0103 de \u00eenv\u0103\u021bare \u0219i lucru, nu doar \u00eentr-un instrument de calcul.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-h4j804",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Mai mult dec\u00e2t un calculator"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Credem c\u0103 un rezultat de calitate \u00eencepe cu o planificare corect\u0103.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "De aceea dezvolt\u0103m HFZWood av\u00e2nd \u00een vedere trei principii simple: precizie, claritate \u0219i \u00eenv\u0103\u021bare continu\u0103. Ne dorim ca fiecare utilizator s\u0103 poat\u0103 lua decizii bazate pe informa\u021bii corecte, s\u0103 reduc\u0103 risipa de materiale \u0219i s\u0103 abordeze fiecare proiect cu mai mult\u0103 \u00eencredere.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood este un proiect aflat \u00eentr-o evolu\u021bie permanent\u0103, iar aplica\u021bia \u0219i resursele educa\u021bionale vor continua s\u0103 fie dezvoltate \u0219i \u00eembun\u0103t\u0103\u021bite pe m\u0103sur\u0103 ce comunitatea cre\u0219te \u0219i apar noi nevoi.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-9v4a5y",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Filosofia noastr\u0103"
+          }
+        ]
+      },
+      "pageKey": "about",
+      "pageKind": "about",
+      "slug": "/about"
+    },
+    "contact": {
+      "body": {
+        "intro": "Suntem aici dac\u0103 ai nevoie de ajutor\nNe dorim ca utilizarea HFZWood s\u0103 fie c\u00e2t mai simpl\u0103 \u0219i pl\u0103cut\u0103. Dac\u0103 ai \u00eentreb\u0103ri despre aplica\u021bie, \u00eent\u00e2mpini o problem\u0103 sau dore\u0219ti s\u0103 ne transmi\u021bi o sugestie, ne po\u021bi contacta folosind informa\u021biile de mai jos.\n\u00cencerc\u0103m s\u0103 r\u0103spundem tuturor mesajelor \u00eentr-un timp c\u00e2t mai scurt \u0219i apreciem orice feedback care ne ajut\u0103 s\u0103 \u00eembun\u0103t\u0103\u021bim aplica\u021bia.\n\n\u00cenainte de a ne scrie\nEste posibil ca r\u0103spunsul pe care \u00eel cau\u021bi s\u0103 existe deja \u00een aplica\u021bie.\nTe \u00eencuraj\u0103m s\u0103 consul\u021bi:\nManualul de utilizare \u2013 explica\u021bii complete pentru toate func\u021bionalit\u0103\u021bile aplica\u021biei.\nTutorialele video \u2013 demonstra\u021bii pas cu pas pentru principalele fluxuri de lucru.\nGlosarul \u2013 explica\u021bii pentru termenii utiliza\u021bi \u00een domeniul lemnului \u0219i al r\u0103\u0219inii epoxidice.\nKnowledge Base \u2013 recomand\u0103ri practice, \u00eentreb\u0103ri frecvente \u0219i informa\u021bii utile pentru proiectele tale.\n\nFeedback\nHFZWood este un proiect aflat \u00eentr-o dezvoltare continu\u0103.\nIdeile, observa\u021biile \u0219i sugestiile utilizatorilor contribuie direct la \u00eembun\u0103t\u0103\u021birea aplica\u021biei \u0219i la dezvoltarea func\u021bionalit\u0103\u021bilor viitoare. Dac\u0103 ai o propunere care poate face HFZWood mai util pentru \u00eentreaga comunitate, ne-ar face pl\u0103cere s\u0103 o afl\u0103m.\n\n\u00ce\u021bi mul\u021bumim c\u0103 ai ales s\u0103 folose\u0219ti HFZWood \u0219i c\u0103 faci parte din comunitatea noastr\u0103.",
+        "knowledgeBaseLinkLabel": "Baza de cuno\u0219tin\u021be",
+        "links": [],
+        "manualLinkLabel": "Manual \u0219i tutoriale",
+        "officialLinks": {
+          "facebook": "",
+          "instagram": "",
+          "linkedin": "",
+          "tiktok": "",
+          "website": "",
+          "youtube": "https://www.youtube.com/@Hefzech"
+        },
+        "pageKind": "contact",
+        "publicTitle": "Suntem aici dac\u0103 ai nevoie de ajutor",
+        "showKnowledgeBaseLink": true,
+        "showManualLink": true,
+        "supportEmail": "hefzech@gmail.com"
+      },
+      "pageKey": "contact",
+      "pageKind": "contact",
+      "slug": "/contact"
+    },
+    "home": {
+      "body": {
+        "cta": {
+          "destination": "",
+          "label": "",
+          "visible": false
+        },
+        "description": "HFZWood transform\u0103 o simpl\u0103 fotografie \u00eentr-un instrument de calcul precis \u0219i u\u0219or de utilizat. Aplica\u021bia te ghideaz\u0103 pas cu pas \u00een definirea zonei de turnare, excluderea insulelor de lemn \u0219i a cavit\u0103\u021bilor, oferindu-\u021bi o estimare de \u00eencredere care te ajut\u0103 s\u0103 planifici corect materialele, s\u0103 reduci pierderile \u0219i s\u0103 \u00eencepi fiecare proiect cu mai mult\u0103 \u00eencredere.\n\nMai mult dec\u00e2t un simplu calculator, HFZWood este o platform\u0103 dedicat\u0103 pasiona\u021bilor \u0219i profesioni\u0219tilor care lucreaz\u0103 cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103. Pe l\u00e2ng\u0103 instrumentele de calcul, ai acces la un Manual complet de utilizare, tutoriale video care explic\u0103 fiecare etap\u0103 a fluxului de lucru, un Glosar cu termenii utiliza\u021bi \u00een domeniu \u0219i o Knowledge Base aflat\u0103 \u00een continu\u0103 dezvoltare, care reune\u0219te informa\u021bii practice, recomand\u0103ri \u0219i r\u0103spunsuri la \u00eentreb\u0103rile frecvente.\n\nIndiferent dac\u0103 realizezi primul t\u0103u proiect sau ai deja experien\u021b\u0103 \u00een turn\u0103rile cu r\u0103\u0219in\u0103 epoxidic\u0103, HFZWood \u00ee\u021bi ofer\u0103 instrumentele \u0219i informa\u021biile necesare pentru a lucra mai organizat, a lua decizii bazate pe estim\u0103ri corecte \u0219i a ob\u021bine rezultate predictibile de la un proiect la altul.",
+        "image": {
+          "alt": "",
+          "src": "",
+          "visible": false
+        },
+        "pageKind": "home",
+        "publicTitle": " HFZWood - Aplicatia ta pentru proiectele cu lemn si rasina",
+        "subtitle": "Calcule precise pentru proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103",
+        "video": {
+          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "visible": true
+        }
+      },
+      "pageKey": "home",
+      "pageKind": "home",
+      "slug": "/"
+    },
+    "pricing": {
+      "body": {
+        "footnote": "Po\u021bi \u00eencepe gratuit \u0219i po\u021bi trece la un plan superior \u00een orice moment, f\u0103r\u0103 s\u0103 pierzi proiectele deja realizate.",
+        "intro": "HFZWood ofer\u0103 trei variante de utilizare, astfel \u00eenc\u00e2t s\u0103 po\u021bi \u00eencepe gratuit \u0219i s\u0103 alegi ulterior planul care se potrive\u0219te cel mai bine nevoilor tale. Indiferent de op\u021biune, toate proiectele create r\u0103m\u00e2n ale tale \u0219i pot fi dezvoltate \u00een continuare atunci c\u00e2nd decizi s\u0103 treci la un plan superior.",
+        "offers": [
+          {
+            "benefits": [
+              "Acces complet la calculatorul de estimare a r\u0103\u0219inii.",
+              "Maximum 4 puncte pentru fiecare poligon desenat.",
+              "Salvarea \u0219i redeschiderea proiectelor realizate.",
+              "Acces la Manualul de utilizare.",
+              "Acces la tutorialele video.",
+              "Posibilitatea de a continua ulterior acelea\u0219i proiecte dup\u0103 trecerea la un plan superior."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "0 USD",
+            "id": "free",
+            "title": "Plan Gratuit",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Include tot ce ofer\u0103 Planul Gratuit, plus:",
+              "Num\u0103r nelimitat de puncte pentru toate poligoanele.",
+              "F\u0103r\u0103 limit\u0103ri pentru proiectele complexe.",
+              "Acces complet la Glosar.",
+              "Acces complet la Knowledge Base.",
+              "Actualiz\u0103ri continue ale con\u021binutului educa\u021bional.",
+              "Acces la func\u021bionalit\u0103\u021bile noi imediat ce sunt disponibile."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "4,99 USD",
+            "id": "subscriber",
+            "title": "Plan Professional",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "O singur\u0103 plat\u0103 pentru utilizarea permanent\u0103 a aplica\u021biei.",
+              "Acces permanent, f\u0103r\u0103 abonament lunar.",
+              "Toate actualiz\u0103rile viitoare ale aplica\u021biei incluse.",
+              "Acces permanent la Manual, Tutoriale, Glosar \u0219i Knowledge Base.",
+              "Prioritate pentru func\u021bionalit\u0103\u021bile noi dedicate utilizatorilor cu licen\u021b\u0103 permanent\u0103."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "59.99 USD",
+            "id": "lifetime",
+            "title": "Licen\u021b\u0103 Permanent\u0103",
+            "visible": true
+          }
+        ],
+        "pageKind": "pricing",
+        "publicTitle": "Alege planul potrivit pentru modul t\u0103u de lucru"
+      },
+      "pageKey": "pricing",
+      "pageKind": "pricing",
+      "slug": "/pricing"
+    },
+    "privacy": {
+      "body": {
+        "pageKind": "privacy",
+        "publicTitle": "Politica de confiden\u021bialitate",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Protejarea informa\u021biilor utilizatorilor este o prioritate pentru HFZWood. Colect\u0103m doar datele necesare func\u021bion\u0103rii aplica\u021biei \u0219i ne str\u0103duim s\u0103 le proces\u0103m \u00eentr-un mod transparent, responsabil \u0219i \u00een conformitate cu legisla\u021bia aplicabil\u0103 privind protec\u021bia datelor cu caracter personal.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Respect\u0103m confiden\u021bialitatea datelor tale"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Pentru utilizarea aplica\u021biei este posibil s\u0103 colect\u0103m informa\u021bii precum adresa de e-mail utilizat\u0103 pentru autentificare, preferin\u021bele aplica\u021biei, proiectele salvate \u0219i alte date necesare func\u021bion\u0103rii serviciilor oferite.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Nu solicit\u0103m informa\u021bii care nu sunt necesare utiliz\u0103rii aplica\u021biei.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-te5a1a",
+            "title": "Ce informa\u021bii colect\u0103m"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Datele colectate sunt utilizate exclusiv pentru:",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 administrarea contului de utilizator;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 salvarea \u0219i sincronizarea proiectelor;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 furnizarea func\u021bionalit\u0103\u021bilor aplica\u021biei;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 \u00eembun\u0103t\u0103\u021birea serviciilor \u0219i a experien\u021bei utilizatorilor;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 gestionarea abonamentelor \u0219i a licen\u021belor.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Nu folosim datele tale pentru a crea profiluri comerciale \u0219i nu le vindem c\u0103tre ter\u021bi.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-nu3u5w",
+            "title": "Cum folosim aceste informa\u021bii"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Implement\u0103m m\u0103suri tehnice \u0219i organizatorice menite s\u0103 protejeze informa\u021biile utilizatorilor \u00eempotriva accesului neautorizat, pierderii sau modific\u0103rii accidentale.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "De\u0219i niciun sistem conectat la internet nu poate garanta securitate absolut\u0103, depunem toate eforturile rezonabile pentru protejarea datelor \u00eencredin\u021bate nou\u0103.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-drs6kj",
+            "title": "Siguran\u021ba datelor"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood utilizeaz\u0103 servicii externe necesare func\u021bion\u0103rii aplica\u021biei, precum autentificarea utilizatorilor \u0219i procesarea pl\u0103\u021bilor.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Aceste servicii sunt furnizate de companii specializate care aplic\u0103 propriile politici de securitate \u0219i confiden\u021bialitate.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-0abtcs",
+            "title": "Servicii ter\u021be"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "\u00cen func\u021bie de legisla\u021bia aplicabil\u0103, po\u021bi solicita accesul la datele tale, corectarea acestora, \u0219tergerea lor sau alte drepturi prev\u0103zute de reglement\u0103rile privind protec\u021bia datelor.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Vom r\u0103spunde solicit\u0103rilor \u00eentr-un termen rezonabil \u0219i \u00een conformitate cu obliga\u021biile legale.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-iipswe",
+            "title": "Drepturile tale"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Pe m\u0103sur\u0103 ce aplica\u021bia evolueaz\u0103, aceast\u0103 Politic\u0103 de confiden\u021bialitate poate fi actualizat\u0103 pentru a reflecta modific\u0103rile aduse serviciilor oferite sau cerin\u021belor legale.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Recomand\u0103m consultarea periodic\u0103 a acestei pagini pentru a fi la curent cu eventualele modific\u0103ri.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-qyxaxt",
+            "title": "Actualizarea acestei politici"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Dac\u0103 ai \u00eentreb\u0103ri referitoare la modul \u00een care sunt prelucrate datele tale, ne po\u021bi contacta folosind informa\u021biile disponibile \u00een pagina <strong>Contact</strong>.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-ofnkyg",
+            "title": "Contact"
+          }
+        ]
+      },
+      "pageKey": "privacy",
+      "pageKind": "privacy",
+      "slug": "/privacy"
+    },
+    "terms": {
+      "body": {
+        "pageKind": "terms",
+        "publicTitle": "Termeni \u0219i condi\u021bii",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Prin utilizarea aplica\u021biei HFZWood, accep\u021bi termenii \u0219i condi\u021biile prezentate \u00een aceast\u0103 pagin\u0103. Scopul lor este de a asigura o experien\u021b\u0103 corect\u0103 \u0219i transparent\u0103 pentru to\u021bi utilizatorii \u0219i de a clarifica modul \u00een care pot fi utilizate serviciile oferite de aplica\u021bie.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Reguli simple pentru utilizarea HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood este un instrument software destinat estim\u0103rii volumului de r\u0103\u0219in\u0103 epoxidic\u0103 pentru proiecte realizate din lemn \u0219i r\u0103\u0219in\u0103.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Rezultatele generate de aplica\u021bie reprezint\u0103 estim\u0103ri calculate pe baza informa\u021biilor introduse de utilizator \u0219i trebuie utilizate ca suport pentru planificarea proiectelor. Utilizatorul r\u0103m\u00e2ne responsabil pentru verificarea tuturor datelor \u00eenainte de \u00eenceperea execu\u021biei unui proiect.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-i41f94",
+            "title": "Utilizarea aplica\u021biei"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Pentru accesarea anumitor func\u021bionalit\u0103\u021bi este necesar\u0103 crearea unui cont.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Utilizatorul este responsabil pentru p\u0103strarea confiden\u021bialit\u0103\u021bii datelor de autentificare \u0219i pentru activitatea desf\u0103\u0219urat\u0103 prin intermediul propriului cont.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pmpk5b",
+            "title": "Contul de utilizator"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood ofer\u0103 at\u00e2t un plan gratuit, c\u00e2t \u0219i op\u021biuni comerciale bazate pe abonament sau licen\u021b\u0103 permanent\u0103.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Func\u021bionalit\u0103\u021bile disponibile depind de planul ales \u0219i pot fi consultate \u00een pagina <strong>Pre\u021buri</strong>.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u00cen cazul modific\u0103rii planului de utilizare, proiectele existente r\u0103m\u00e2n disponibile \u0219i pot fi continuate conform func\u021bionalit\u0103\u021bilor oferite de noul plan activ.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-muom6q",
+            "title": "Abonamente \u0219i licen\u021be"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Aplica\u021bia este dezvoltat\u0103 \u00een mod continuu.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Ne rezerv\u0103m dreptul de a \u00eembun\u0103t\u0103\u021bi func\u021bionalit\u0103\u021bile, interfa\u021ba \u0219i con\u021binutul educa\u021bional pentru a oferi o experien\u021b\u0103 c\u00e2t mai bun\u0103 utilizatorilor.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-mub4em",
+            "title": "Actualiz\u0103ri"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Codul aplica\u021biei, interfa\u021ba, documenta\u021bia, tutorialele, imaginile \u0219i celelalte materiale puse la dispozi\u021bie prin HFZWood sunt protejate de legisla\u021bia privind drepturile de autor \u0219i nu pot fi copiate, redistribuite sau utilizate \u00een alte scopuri f\u0103r\u0103 acordul titularului drepturilor.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Proiectele create de utilizatori \u0219i imaginile \u00eenc\u0103rcate \u00een aplica\u021bie r\u0103m\u00e2n proprietatea utilizatorilor.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pz330d",
+            "title": "Proprietate intelectual\u0103"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood depune toate eforturile pentru a furniza estim\u0103ri c\u00e2t mai precise \u0219i informa\u021bii corecte.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Totu\u0219i, utilizatorul este responsabil pentru verificarea rezultatelor \u00eenainte de utilizarea lor \u00eentr-un proiect real, precum \u0219i pentru respectarea recomand\u0103rilor produc\u0103torilor de r\u0103\u0219ini, materiale \u0219i echipamente utilizate.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-26nw02",
+            "title": "Limitarea r\u0103spunderii"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Ace\u0219ti Termeni \u0219i Condi\u021bii pot fi actualiza\u021bi periodic pentru a reflecta evolu\u021bia aplica\u021biei sau modific\u0103rile legislative.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Versiunea publicat\u0103 pe aceast\u0103 pagin\u0103 este \u00eentotdeauna cea mai recent\u0103.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-jifxt8",
+            "title": "Modificarea termenilor"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Pentru orice \u00eentrebare referitoare la utilizarea aplica\u021biei sau la ace\u0219ti Termeni \u0219i Condi\u021bii, ne po\u021bi contacta folosind informa\u021biile disponibile \u00een pagina <strong>Contact</strong>.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-udmshq",
+            "title": "Contact"
+          }
+        ]
+      },
+      "pageKey": "terms",
+      "pageKind": "terms",
+      "slug": "/terms"
+    }
+  }
+}

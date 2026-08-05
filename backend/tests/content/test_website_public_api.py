@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_public_languages, admin_website, public_content, public_languages
 from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body, website_page_definition
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 PNG_1X1 = (
     b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
@@ -39,14 +40,13 @@ FORBIDDEN_PUBLIC_KEYS = {
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_website.reset_repository_cache()
     admin_public_languages.reset_repository_cache()
     public_content.reset_repository_cache()
     public_languages.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers() -> dict[str, str]:

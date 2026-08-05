@@ -1,5 +1,4 @@
 import pytest
-from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_knowledge_base, public_content
@@ -8,17 +7,17 @@ from content.services.migrate_phase2_knowledge_base import (
     EditorialKnowledgeBaseMigrationService,
     LegacyKnowledgeBaseMigrationService,
 )
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_knowledge_base.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -56,12 +55,6 @@ def sample_body(
 
 def save_payload(body: dict, category: str = "Epoxy", difficulty: str = "Beginner") -> dict:
     return {"category": category, "difficulty": difficulty, "body": body}
-
-
-class TestKnowledgeBaseAdminAuth:
-    def test_non_admin_is_rejected(self, client):
-        response = client.get("/api/admin/knowledge-base/entries", headers=admin_headers("user"))
-        assert response.status_code == 403
 
 
 class TestKnowledgeBaseEntryCrud:

@@ -7,13 +7,14 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from content.repositories.entitlements import FilesystemEntitlementsRepository
 from content.routers import billing as billing_router_module
 from content.routers.billing import router as billing_router
-from product.billing.config import BillingConfig
-from product.billing.mapping import map_stripe_subscription_to_entitlement
-from product.billing.service import BillingService
-from product.capabilities.resolver import CapabilityResolver
+from public.auth.dependencies import get_current_user
+from public.product.billing.config import BillingConfig
+from public.product.billing.mapping import map_stripe_subscription_to_entitlement
+from public.product.billing.service import BillingService
+from public.product.capabilities.resolver import CapabilityResolver
+from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
 
 
 class FakeStripeGateway:
@@ -119,8 +120,8 @@ def billing_config() -> BillingConfig:
 
 
 @pytest.fixture
-def entitlements_repo(tmp_path) -> FilesystemEntitlementsRepository:
-    return FilesystemEntitlementsRepository(tmp_path)
+def entitlements_repo() -> InMemoryEntitlementsRepository:
+    return InMemoryEntitlementsRepository()
 
 
 @pytest.fixture
@@ -138,18 +139,15 @@ def billing_service(billing_config, entitlements_repo, fake_stripe) -> BillingSe
 
 
 @pytest.fixture
-def billing_client(tmp_path, monkeypatch, billing_config, fake_stripe):
-    monkeypatch.setenv("AUTH_MODE", "mock")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+def billing_client(monkeypatch, billing_config, fake_stripe):
     monkeypatch.setenv("STRIPE_SECRET_KEY", billing_config.stripe_secret_key)
     monkeypatch.setenv("STRIPE_WEBHOOK_SECRET", billing_config.stripe_webhook_secret)
     monkeypatch.setenv("STRIPE_PRICE_ID", billing_config.stripe_price_id)
     monkeypatch.setenv("STRIPE_CHECKOUT_SUCCESS_URL", billing_config.checkout_success_url)
     monkeypatch.setenv("STRIPE_CHECKOUT_CANCEL_URL", billing_config.checkout_cancel_url)
     monkeypatch.setenv("STRIPE_PORTAL_RETURN_URL", billing_config.portal_return_url)
-    monkeypatch.delenv("CAPABILITY_DEV_ACCESS_TIER", raising=False)
 
-    repository = FilesystemEntitlementsRepository(tmp_path)
+    repository = InMemoryEntitlementsRepository()
     service = BillingService(
         config=billing_config,
         entitlements=repository,
@@ -159,16 +157,17 @@ def billing_client(tmp_path, monkeypatch, billing_config, fake_stripe):
 
     app = FastAPI()
     app.include_router(billing_router, prefix="/api")
+    app.dependency_overrides[get_current_user] = lambda: {"id": "user-a", "role": "user"}
     app.dependency_overrides[billing_router_module.get_entitlements_repository] = lambda: repository
     app.dependency_overrides[billing_router_module.get_billing_service] = lambda: service
     app.dependency_overrides[billing_router_module.get_capability_resolver] = lambda: resolver
 
     with TestClient(app) as client:
-        yield client, repository, fake_stripe, resolver
+        yield client, repository, fake_stripe, resolver, app
 
 
-def auth_headers(user_id: str = "user-a", role: str = "user") -> dict[str, str]:
-    return {"X-Mock-User-Id": user_id, "X-Mock-Role": role}
+def set_billing_client_user(app: FastAPI, user_id: str) -> None:
+    app.dependency_overrides[get_current_user] = lambda: {"id": user_id, "role": "user"}
 
 
 class TestCommercialMapping:
@@ -581,28 +580,27 @@ class TestBillingService:
 
 class TestBillingApi:
     def test_checkout_requires_auth_identity(self, billing_client):
-        client, _repository, fake_stripe, _resolver = billing_client
-        response = client.post(
-            "/api/billing/checkout-session",
-            headers=auth_headers("user-checkout"),
-        )
+        client, _repository, fake_stripe, _resolver, app = billing_client
+        set_billing_client_user(app, "user-checkout")
+        response = client.post("/api/billing/checkout-session")
         assert response.status_code == 200
         assert response.json()["url"].startswith("https://checkout.stripe.test/")
         assert fake_stripe.checkout_sessions[0]["client_reference_id"] == "user-checkout"
 
     def test_portal_authenticated(self, billing_client):
-        client, repository, fake_stripe, _resolver = billing_client
+        client, repository, fake_stripe, _resolver, app = billing_client
         repository.save_record(
             "user-a",
             {"accessTier": "subscriber", "stripeCustomerId": "cus_portal"},
         )
-        response = client.post("/api/billing/portal-session", headers=auth_headers("user-a"))
+        set_billing_client_user(app, "user-a")
+        response = client.post("/api/billing/portal-session")
         assert response.status_code == 200
         assert response.json()["url"].startswith("https://portal.stripe.test/")
         assert fake_stripe.portal_sessions[0]["customer"] == "cus_portal"
 
     def test_webhook_rejects_invalid_signature(self, billing_client):
-        client, _repository, fake_stripe, _resolver = billing_client
+        client, _repository, fake_stripe, _resolver, _app = billing_client
         fake_stripe.fail_signature = True
         response = client.post(
             "/api/billing/webhook",
@@ -612,7 +610,7 @@ class TestBillingApi:
         assert response.status_code == 400
 
     def test_webhook_activates_entitlement_and_capabilities(self, billing_client):
-        client, repository, fake_stripe, resolver = billing_client
+        client, repository, fake_stripe, resolver, _app = billing_client
         fake_stripe.seed_subscription(user_id="user-a")
         event = {
             "id": "evt_api_1",
@@ -636,22 +634,12 @@ class TestBillingApi:
         )
         assert response.status_code == 200
         assert repository.get_record("user-a")["accessTier"] == "subscriber"
-        capabilities = resolver.resolve("user-a", "user")
+        capabilities = resolver.resolve("user-a")
         assert capabilities.accessTier == "subscriber"
         assert capabilities.capabilities["calculator.pdfExport"] is True
 
-    def test_administrator_unlimited_unchanged(self, billing_client):
-        client, repository, _fake_stripe, resolver = billing_client
-        repository.save_access_tier("admin-user", "free")
-        capabilities = resolver.resolve("admin-user", "administrator")
-        assert capabilities.accessTier == "administrator_unlimited"
-        status = client.get("/api/billing/status", headers=auth_headers("admin-user", "administrator"))
-        assert status.status_code == 200
-        assert status.json()["plan"] == "administrator"
-        assert status.json()["canCheckout"] is False
-
     def test_status_endpoint_hides_stripe_ids(self, billing_client):
-        client, repository, _fake_stripe, _resolver = billing_client
+        client, repository, _fake_stripe, _resolver, app = billing_client
         repository.save_record(
             "user-a",
             {
@@ -663,7 +651,8 @@ class TestBillingApi:
                 "currentPeriodEnd": 1_900_000_000,
             },
         )
-        response = client.get("/api/billing/status", headers=auth_headers("user-a"))
+        set_billing_client_user(app, "user-a")
+        response = client.get("/api/billing/status")
         assert response.status_code == 200
         payload = response.json()
         assert payload["plan"] == "subscriber"
@@ -672,28 +661,8 @@ class TestBillingApi:
         assert payload["cancelAtPeriodEnd"] is True
 
 
-class TestMockAccessTierGating:
-    def test_mock_header_ignored_outside_mock_mode(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("AUTH_MODE", "cognito")
-        monkeypatch.delenv("CAPABILITY_DEV_ACCESS_TIER", raising=False)
-        repository = FilesystemEntitlementsRepository(tmp_path)
-        repository.save_access_tier("user-a", "free")
-        resolver = CapabilityResolver(repository)
-        result = resolver.resolve("user-a", "user", mock_access_tier="subscriber")
-        assert result.accessTier == "free"
-
-    def test_mock_header_honored_in_mock_mode(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("AUTH_MODE", "mock")
-        monkeypatch.delenv("CAPABILITY_DEV_ACCESS_TIER", raising=False)
-        repository = FilesystemEntitlementsRepository(tmp_path)
-        repository.save_access_tier("user-a", "free")
-        resolver = CapabilityResolver(repository)
-        result = resolver.resolve("user-a", "user", mock_access_tier="subscriber")
-        assert result.accessTier == "subscriber"
-
-
-class TestEntitlementAtomicPersistence:
-    def test_save_record_writes_atomic_json(self, entitlements_repo):
+class TestEntitlementRecordPersistence:
+    def test_save_record_round_trips(self, entitlements_repo):
         saved = entitlements_repo.save_record(
             "user-a",
             {

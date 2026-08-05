@@ -21,12 +21,12 @@ from content.services.translation_update import (
     TranslationUpdateService,
     TranslationUpdateState,
 )
-from content.translation.exceptions import (
+from private.translation.exceptions import (
     TranslationError,
     TranslationQuotaExceededError,
     TranslationRateLimitedError,
 )
-from content.translation.provider import TranslationProvider
+from private.translation.provider import TranslationProvider
 from content.translation_metadata import CANONICAL_SOURCE_LOCALE
 
 BulkStopReason = Literal["rate_limited", "quota_exceeded"]

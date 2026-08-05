@@ -1,0 +1,312 @@
+{
+  "entries": [
+    {
+      "definition": [
+        "Sapwood is the outer layer of wood, located between the heartwood and the bark. This part of the trunk transports water and nutrients during the tree\u2019s lifetime and is generally lighter in color and more susceptible to moisture and biological attack. Depending on the project, the sapwood may be left intact for aesthetic purposes or removed to improve stability."
+      ],
+      "id": "alburn",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Heartwood",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "Biological attack refers to the degradation of wood caused by fungi, molds, bacteria, or wood-boring insects. The severity of this damage can affect both the mechanical strength and the appearance of the piece. Affected wood must be carefully evaluated before use in a project involving epoxy resin."
+      ],
+      "id": "atac-biologic",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Unstable wood"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Biological attack"
+    },
+    {
+      "definition": [
+        "Calibration is the process by which an image is brought to a true-to-scale measurement using a known dimension. In HFZWood, calibration allows measurements taken on the image to be converted to actual dimensions, ensuring the accuracy of area and volume calculations."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Straightening Wood"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibration"
+    },
+    {
+      "definition": [
+        "A cavity is a natural hollow or one resulting from wood decay, which can be filled with epoxy resin for structural or decorative purposes. The shape and size of the cavities directly influence the amount of resin needed to complete the project."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Wooden knot"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Crack",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Cavity"
+    },
+    {
+      "definition": [
+        "Cleaning cavities involves removing dust, wood debris, loose bark, and other impurities from the wood\u2019s natural voids before pouring the epoxy resin. Proper cleaning improves resin adhesion and reduces the risk of defects."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cleaning the cavities"
+    },
+    {
+      "definition": [
+        "A crack is a fissure that forms in the structure of wood as a result of internal stresses, drying, or mechanical stress. Depending on their size and location, cracks may require stabilization, filling with epoxy resin, or removal of the affected section."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Cavity",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Crack"
+    },
+    {
+      "definition": [
+        "Healthy wood is wood that shows no signs of biological decay or significant structural defects and retains its mechanical and aesthetic properties. Choosing healthy wood is one of the essential requirements for achieving sustainable, high-quality projects."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Healthy wood"
+    },
+    {
+      "definition": [
+        "Heartwood is the central, mature, and denser part of a tree trunk. In general, it is more resistant to moisture, fungi, and insects than sapwood and is preferred for making furniture and decorative projects using epoxy resin due to its stability and appearance."
+      ],
+      "id": "duramen",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Heartwood"
+    },
+    {
+      "definition": [
+        "Hygroscopic wood is wood that has the natural ability to absorb and release moisture from the surrounding environment until it reaches equilibrium with the atmosphere. For this reason, its dimensions and properties may change depending on temperature and humidity conditions. This behavior must be taken into account when designing and manufacturing parts cast with epoxy resin."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hygroscopic wood"
+    },
+    {
+      "definition": [
+        "Internal stresses are stresses present within the wood structure as a result of the natural growth process or uneven drying. These can cause warping, cracks, or dimensional changes during processing and use. Identifying and reducing the effects of internal stresses helps ensure stable and durable projects."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Internal Tensions"
+    },
+    {
+      "definition": [
+        "A natural edge is the original contour of the wood, preserved after the bark has been removed. This type of edge is commonly used in River Table projects and other decorative pieces to highlight the wood\u2019s natural shape."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Natural edge"
+    },
+    {
+      "definition": [
+        "Porous wood is wood that contains a high number of pores or microscopic cavities through which it can absorb liquids, including epoxy resin. The degree of porosity affects resin consumption, the need for a sealing coat, and the final appearance of the surface."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Porous wood"
+    },
+    {
+      "definition": [
+        "Sealing wood involves applying a thin layer of epoxy resin or another compatible material to reduce excessive absorption and the release of air from the wood\u2019s pores prior to the main pour. This step helps ensure a clean surface and reduces the formation of air bubbles."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sealing Wood"
+    },
+    {
+      "definition": [
+        "Wood planing is the process of bringing the surface of a piece of wood to a straight plane, eliminating warping, unevenness, and imperfections. This process ensures a stable foundation for subsequent machining and contributes to high-quality joints and fittings."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Calibration"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Uniform thickness",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Straightening Wood"
+    },
+    {
+      "definition": [
+        "A structural defect is any imperfection in the wood that may reduce its strength, stability, or ability to withstand mechanical stresses. This category includes cracks, extensive fissures, rot, voids, or other forms of deterioration that affect the behavior of the piece during use."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Wooden knot"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Structural defect"
+    },
+    {
+      "definition": [
+        "Uniform thickness refers to a situation in which a piece of wood has the same thickness across its entire surface. Maintaining a constant thickness facilitates processing, joining, and the accurate calculation of volume in projects using epoxy resin."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Straightening the wood",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Uniform thickness"
+    },
+    {
+      "definition": [
+        "Unstable bark is bark that does not adhere firmly to the wood and may peel off during processing or after the resin is poured. In most projects, it must be removed to prevent voids, delamination, or other adhesion problems."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Natural edge"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Unstable bark"
+    },
+    {
+      "definition": [
+        "Unstable wood is wood that tends to warp, crack, or change dimensions after processing or during use. Instability is influenced by moisture content, internal stresses, the drying process, and the material\u2019s structure. Using such wood can compromise the quality of an epoxy resin casting."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Unstable wood"
+    },
+    {
+      "definition": [
+        "Wood moisture content refers to the amount of water contained in the wood mass, expressed as a percentage relative to the dry wood mass. This parameter influences dimensional stability, long-term behavior, and the wood\u2019s compatibility with epoxy resin. In projects using HFZWood, using wood with the appropriate moisture content reduces the risk of cracks, warping, and adhesion problems."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Hygroscopic wood"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Hygroscopic wood",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Wood Moisture Content"
+    },
+    {
+      "definition": [
+        "A knot is the area of wood where a branch was inserted during the tree\u2019s growth. Knots can affect the aesthetic appearance, mechanical strength, and behavior of the wood during processing; they are evaluated individually based on their size, position, and stability."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Cavity"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wooden knot"
+    }
+  ],
+  "locale": "en"
+}

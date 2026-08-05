@@ -12,6 +12,7 @@ from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_translation_bulk, admin_website, public_content
 from content.services.translation_bulk import TranslationBulkService, reset_bulk_run_locks_for_tests
 from content.services.translation_generation import TranslationGenerationService
+from tests.support.authenticated_client import AuthenticatedTestClient
 from content.services.translation_update import (
     TranslationUpdateService,
     classify_translation_update,
@@ -103,14 +104,13 @@ def repository(tmp_path, monkeypatch):
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_website.reset_repository_cache()
     admin_translation_bulk.reset_repository_cache()
     public_content.reset_repository_cache()
     reset_bulk_run_locks_for_tests()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers() -> dict[str, str]:

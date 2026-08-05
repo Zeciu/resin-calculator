@@ -1,12 +1,11 @@
 import * as cdk from 'aws-cdk-lib';
-import * as backup from 'aws-cdk-lib/aws-backup';
 import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';
+import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecsPatterns from 'aws-cdk-lib/aws-ecs-patterns';
-import * as efs from 'aws-cdk-lib/aws-efs';
-import * as events from 'aws-cdk-lib/aws-events';
+import * as iam from 'aws-cdk-lib/aws-iam';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
@@ -17,14 +16,14 @@ import { Construct } from 'constructs';
 const DOMAIN = 'hfzwood.com';
 /** Packaged editorial release corpus inside the container image (read-only in release mode). */
 const PACKAGED_EDITORIAL_CONTENT_DIR = '/app/content';
-/**
- * Existing EFS mount path — now the durable commercial/user root only
- * (entitlements, preferences). Construct IDs keep historical names to avoid
- * replacing the filesystem.
- */
-const COMMERCIAL_DATA_MOUNT_PATH = '/mnt/hfzwood-content';
 const PRODUCTION_ORIGIN = `https://${DOMAIN}`;
 const STRIPE_SECRET_NAME = 'hfzwood/stripe';
+/**
+ * Deployer IAM user. Trusted to assume the ECS task role locally (Option A) so local
+ * development exercises the exact same DynamoDB permissions as the running task, instead
+ * of maintaining a second, potentially drifting permission set on this user directly.
+ */
+const HFZWOOD_DEPLOYER_USER_ARN = 'arn:aws:iam::325866321073:user/hfzwood';
 
 interface AppStackProps extends cdk.StackProps {
   repository: ecr.Repository;
@@ -54,42 +53,25 @@ export class AppStack extends cdk.Stack {
       vpc,
     });
 
-    // Durable commercial/user filesystem (construct IDs preserved to keep existing EFS).
-    const editorialContentFilesystem = new efs.FileSystem(this, 'EditorialContentFilesystem', {
-      vpc,
-      encrypted: true,
+    // Durable per-user commercial entitlements, with a reverse lookup by Stripe customer id
+    // (replaces the filesystem-era hand-maintained customer index / fallback scan).
+    const entitlementsTable = new dynamodb.Table(this, 'EntitlementsTable', {
+      tableName: 'hfzwood-entitlements',
+      partitionKey: { name: 'userId', type: dynamodb.AttributeType.STRING },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      pointInTimeRecoverySpecification: { pointInTimeRecoveryEnabled: true },
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
-
-    const editorialContentAccessPoint = editorialContentFilesystem.addAccessPoint(
-      'EditorialContentAccessPoint',
-      {
-        path: '/hfzwood-content',
-        createAcl: {
-          ownerUid: '1000',
-          ownerGid: '1000',
-          permissions: '750',
-        },
-        posixUser: {
-          uid: '1000',
-          gid: '1000',
-        },
-      },
-    );
+    entitlementsTable.addGlobalSecondaryIndex({
+      indexName: 'stripeCustomerId-index',
+      partitionKey: { name: 'stripeCustomerId', type: dynamodb.AttributeType.STRING },
+      projectionType: dynamodb.ProjectionType.KEYS_ONLY,
+    });
 
     const taskDef = new ecs.FargateTaskDefinition(this, 'TaskDef', {
       family: 'resin-calculator',
       cpu: 256,
       memoryLimitMiB: 512,
-    });
-    taskDef.addVolume({
-      name: 'commercial-data',
-      efsVolumeConfiguration: {
-        fileSystemId: editorialContentFilesystem.fileSystemId,
-        transitEncryption: 'ENABLED',
-        authorizationConfig: {
-          accessPointId: editorialContentAccessPoint.accessPointId,
-        },
-      },
     });
 
     const stripePriceId =
@@ -112,11 +94,10 @@ export class AppStack extends cdk.Stack {
         COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
         COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
         COGNITO_REGION: this.region,
-        // Editorial: packaged image corpus (no EFS seeding/writes in release mode).
+        // Public content: packaged image corpus; no authoring code or mutation routes are deployed.
         CONTENT_DATA_DIR: PACKAGED_EDITORIAL_CONTENT_DIR,
-        EDITORIAL_CONTENT_MODE: 'release',
-        // Commercial: durable writable EFS root (entitlements + preferences).
-        COMMERCIAL_DATA_DIR: COMMERCIAL_DATA_MOUNT_PATH,
+        // Commercial/user state: DynamoDB (see EntitlementsTable below).
+        ENTITLEMENTS_TABLE_NAME: entitlementsTable.tableName,
         CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,
         STRIPE_PRICE_ID: stripePriceId,
         STRIPE_CHECKOUT_SUCCESS_URL: `${PRODUCTION_ORIGIN}/account?billing=success`,
@@ -128,18 +109,34 @@ export class AppStack extends cdk.Stack {
         STRIPE_WEBHOOK_SECRET: ecs.Secret.fromSecretsManager(stripeSecret, 'webhook_secret'),
       },
     });
-    appContainer.addMountPoints({
-      containerPath: COMMERCIAL_DATA_MOUNT_PATH,
-      sourceVolume: 'commercial-data',
-      readOnly: false,
-    });
+    entitlementsTable.grantReadWriteData(taskDef.taskRole);
+
+    // Local development (Option A): let the hfzwood deployer user assume this exact task
+    // role so `boto3` running locally gets the same DynamoDB permissions as the running
+    // ECS task, rather than a second, separately maintained permission set.
+    // `taskRole` is a concrete `iam.Role` at runtime (created internally by
+    // `FargateTaskDefinition`), but is exposed only via the narrower `IRole` interface,
+    // which does not include `assumeRolePolicy`; `grantAssumeRole` does not add a trust
+    // statement for an external `ArnPrincipal` grantee, so the trust policy is updated
+    // directly here instead.
+    (taskDef.taskRole as iam.Role).assumeRolePolicy?.addStatements(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        principals: [new iam.ArnPrincipal(HFZWOOD_DEPLOYER_USER_ARN)],
+        actions: ['sts:AssumeRole'],
+      }),
+    );
 
     const fargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(this, 'Service', {
       cluster,
       taskDefinition: taskDef,
       desiredCount: 1,
       minHealthyPercent: 0,
-      maxHealthyPercent: 100,
+      // AWS now defaults new/updated services to AvailabilityZoneRebalancing.ENABLED, which
+      // requires maximumPercent > 100 (ApplicationLoadBalancedFargateService does not expose a
+      // prop to disable AZ rebalancing directly). 200% allows at most one extra task briefly
+      // during deployment; desiredCount remains 1.
+      maxHealthyPercent: 200,
       circuitBreaker: { rollback: true },
       listenerPort: 443,
       protocol: elbv2.ApplicationProtocol.HTTPS,
@@ -158,32 +155,6 @@ export class AppStack extends cdk.Stack {
       fargateService.loadBalancer,
       ec2.Port.tcp(5000),
     );
-    editorialContentFilesystem.connections.allowDefaultPortFrom(
-      fargateService.service,
-      'Allow ECS tasks to mount commercial EFS'
-    );
-
-    const editorialEfsBackupVault = new backup.BackupVault(this, 'EditorialEfsBackupVault', {
-      backupVaultName: 'resin-calculator-efs-backup',
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-    });
-
-    const editorialEfsBackupPlan = new backup.BackupPlan(this, 'EditorialEfsBackupPlan', {
-      backupPlanName: 'resin-calculator-efs-daily',
-      backupVault: editorialEfsBackupVault,
-    });
-
-    editorialEfsBackupPlan.addRule(
-      new backup.BackupPlanRule({
-        ruleName: 'DailyEfsBackup',
-        scheduleExpression: events.Schedule.cron({ minute: '0', hour: '5' }),
-        deleteAfter: cdk.Duration.days(14),
-      }),
-    );
-
-    editorialEfsBackupPlan.addSelection('EditorialEfsSelection', {
-      resources: [backup.BackupResource.fromEfsFileSystem(editorialContentFilesystem)],
-    });
 
     new cloudwatch.Alarm(this, 'AlbUnhealthyHostsAlarm', {
       alarmName: 'resin-calculator-alb-unhealthy-hosts',
@@ -217,5 +188,7 @@ export class AppStack extends cdk.Stack {
     });
 
     new cdk.CfnOutput(this, 'AppUrl', { value: `https://${DOMAIN}` });
+    new cdk.CfnOutput(this, 'EntitlementsTableName', { value: entitlementsTable.tableName });
+    new cdk.CfnOutput(this, 'TaskRoleArn', { value: taskDef.taskRole.roleArn });
   }
 }

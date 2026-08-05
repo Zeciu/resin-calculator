@@ -12,7 +12,7 @@ def repo_root() -> Path:
 
 
 def knowledge_base_content_js_path() -> Path:
-    return repo_root() / "frontend" / "src" / "knowledgeBase" / "knowledgeBaseContent.js"
+    return repo_root() / "frontend" / "public" / "src" / "knowledgeBase" / "knowledgeBaseContent.js"
 
 
 def export_knowledge_base_entries_script() -> Path:

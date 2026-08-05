@@ -2,8 +2,8 @@ import pytest
 from fastapi import HTTPException
 from starlette.requests import Request
 
-from auth.cognito import user_id_from_claims
-from auth.dependencies import get_current_user
+from public.auth.cognito import user_id_from_claims
+from public.auth.dependencies import get_current_user
 
 
 def _request_with_claims(claims):
@@ -46,7 +46,10 @@ class TestGetCurrentUserCognitoMode:
         assert user["id"] == "cognito-sub-123"
         assert user["role"] == "user"
 
-    def test_maps_administrator_group(self, monkeypatch):
+    def test_all_authenticated_identities_are_role_user(self, monkeypatch):
+        # The public application has no administrator role or entitlement bypass;
+        # every authenticated Cognito identity resolves to "user" regardless of
+        # any cognito:groups claim.
         monkeypatch.setenv("AUTH_MODE", "cognito")
         request = _request_with_claims(
             {
@@ -58,7 +61,7 @@ class TestGetCurrentUserCognitoMode:
         user = get_current_user(request)
 
         assert user["id"] == "admin-sub"
-        assert user["role"] == "administrator"
+        assert user["role"] == "user"
 
     def test_rejects_missing_sub_claim(self, monkeypatch):
         monkeypatch.setenv("AUTH_MODE", "cognito")

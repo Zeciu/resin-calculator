@@ -20,7 +20,7 @@ def main() -> int:
         "--source",
         type=Path,
         default=None,
-        help="Optional path to manualContent.js (defaults to frontend/src/manual/manualContent.js).",
+        help="Optional path to manualContent.js (defaults to frontend/public/src/manual/manualContent.js).",
     )
     args = parser.parse_args()
 

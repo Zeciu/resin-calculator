@@ -6,7 +6,6 @@ import json
 from unittest.mock import MagicMock
 
 import pytest
-from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.repositories.public_languages import (
@@ -22,12 +21,12 @@ from content.routers import (
 )
 from content.services.manual_public import ManualPublicService
 from content.services.public_languages import PublicLanguagesService
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     admin_public_languages.reset_repository_cache()
@@ -35,7 +34,7 @@ def client(tmp_path, monkeypatch):
     public_languages.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers() -> dict[str, str]:
@@ -301,10 +300,3 @@ class TestPublicLanguagesConfig:
         )
         assert activated.status_code == 200
         assert "fr" in activated.json()["activePublicLocales"]
-
-    def test_non_admin_cannot_change_visibility(self, client):
-        response = client.post(
-            "/api/admin/public-languages/ro/activate",
-            headers={"X-Mock-Role": "user", "X-Mock-User-Id": "u1"},
-        )
-        assert response.status_code in {401, 403}

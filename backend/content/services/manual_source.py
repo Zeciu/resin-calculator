@@ -12,7 +12,7 @@ def repo_root() -> Path:
 
 
 def manual_content_js_path() -> Path:
-    return repo_root() / "frontend" / "src" / "manual" / "manualContent.js"
+    return repo_root() / "frontend" / "public" / "src" / "manual" / "manualContent.js"
 
 
 def export_manual_sections_script() -> Path:

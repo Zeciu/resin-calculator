@@ -9,6 +9,7 @@ from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_manual, admin_translation_bulk, public_content
+from tests.support.authenticated_client import AuthenticatedTestClient
 from content.services.translation_bulk import (
     TranslationBulkService,
     reset_bulk_run_locks_for_tests,
@@ -88,14 +89,13 @@ def repository(tmp_path, monkeypatch):
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     admin_translation_bulk.reset_repository_cache()
     public_content.reset_repository_cache()
     reset_bulk_run_locks_for_tests()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers():

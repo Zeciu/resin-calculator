@@ -10,7 +10,7 @@ The resin estimation calculator (Standard Resin Area and Wood Boundary modes) wa
 - **New Project** workspace (calculator)
 - **Projects** hub — Open Project, Recent Projects, `.hfzproject` files
 - **Manual and Tutorials**, **Glossary**, and **Knowledge Base** dedicated reading modules
-- Authentication: local development uses mock/session auth; production uses AWS Cognito (see `deployment/README.md`)
+- Authentication: AWS Cognito in every environment, including local development (see `deployment/README.md`)
 
 ## Calculator features
 
@@ -113,6 +113,14 @@ Do not commit `dev.local.cmd`. Startup scripts must never echo the auth key.
 
 Before restarting, ensure no orphan backend is already bound to port `5000`; otherwise the new window may fail to bind or you may keep talking to an older process that lacks the DeepL variables.
 
+### Local DynamoDB access (Windows)
+
+Entitlements use DynamoDB in every environment; there is no filesystem fallback. `dev.cmd` requires the AWS CLI and the `hfzwood` profile, resolves the deployed ECS task role, assumes it, and exports temporary credentials plus `ENTITLEMENTS_TABLE_NAME=hfzwood-entitlements` for the backend.
+
+If the AWS CLI, credentials, role assumption, or network access is unavailable, startup fails. This is intentional: entitlement state must never silently move to local files.
+
+The current table is shared by the development team while the application is pre-launch. Treat changes as real shared development data.
+
 ### Manual startup
 
 Use these commands when you need to start services manually. Run each command from the repository root in a **separate terminal**.
@@ -169,23 +177,21 @@ You can also open the health URL in a browser.
 
 ### Environment variables
 
-The current local development baseline uses mock-first authentication by default.
+The backend and frontend require Cognito configuration in every environment, including local development; there is no mock-authentication fallback.
 
 | Variable | Scope | Notes |
 |---|---|---|
-| `AUTH_MODE` | Backend | Defaults to `mock` for local development. Production uses `cognito`. |
-| `VITE_AUTH_MODE` | Frontend | Unset or non-`cognito` values use the mock authentication path. Production Docker builds must set `cognito`. |
-| `VITE_MOCK_ADMIN` | Frontend | `true` enables local mock administrator behavior after login or session restoration. |
-| `CAPABILITY_DEV_ACCESS_TIER` | Backend | When `AUTH_MODE=mock`, may override the local development commercial tier (`free` or `subscriber`) where supported. |
-| `VITE_COGNITO_USER_POOL_ID` | Frontend | Required for Cognito-mode frontend builds. |
-| `VITE_COGNITO_CLIENT_ID` | Frontend | Required for Cognito-mode frontend builds. |
+| `VITE_AUTH_MODE` | Frontend | Must be `cognito` for both local development and production Docker builds. |
+| `VITE_COGNITO_USER_POOL_ID` | Frontend | Required for Cognito frontend builds. |
+| `VITE_COGNITO_CLIENT_ID` | Frontend | Required for Cognito frontend builds. |
 | `VITE_COGNITO_DOMAIN` | Frontend | Cognito Hosted UI domain host. |
 | `VITE_COGNITO_REDIRECT_URI` | Frontend | Must match the Cognito app-client callback URL. |
-| `COGNITO_USER_POOL_ID` | Backend | Required when `AUTH_MODE=cognito`. |
-| `COGNITO_CLIENT_ID` | Backend | Required when `AUTH_MODE=cognito`; used to validate JWT client/audience. |
-| `COGNITO_REGION` | Backend | Required when `AUTH_MODE=cognito`. |
-| `CONTENT_DATA_DIR` | Backend | Filesystem root for editorial repositories (and related local filesystem stores). Production mounts EFS at `/mnt/hfzwood-content`. |
+| `COGNITO_USER_POOL_ID` | Backend | Required; startup fails if unset. |
+| `COGNITO_CLIENT_ID` | Backend | Required; used to validate JWT client/audience. Startup fails if unset. |
+| `COGNITO_REGION` | Backend | Required; startup fails if unset. |
+| `CONTENT_DATA_DIR` | Backend | Filesystem root for editorial repositories (and related local filesystem stores). Production uses a packaged read-only corpus at `/app/content`. |
 | `REQUIRE_CONTENT_DATA_DIR` | Backend | Set to `1` in production so startup fails closed instead of using ephemeral container storage. |
+| `ENTITLEMENTS_TABLE_NAME` | Backend | Required DynamoDB table name for commercial entitlements. |
 | `CORS_ALLOWED_ORIGINS` | Backend | Optional comma-separated origins. Unset defaults to `*` for local development. Production sets `https://hfzwood.com`. |
 | `STRIPE_SECRET_KEY` | Backend | Stripe secret key. Required for Checkout, Portal, and webhooks. |
 | `STRIPE_WEBHOOK_SECRET` | Backend | Stripe webhook signing secret. |
@@ -199,29 +205,23 @@ The current local development baseline uses mock-first authentication by default
 
 Local frontend-only configuration can be placed in an untracked `frontend/.env.local` file. Restart the Vite development server after relevant environment changes.
 
-Production deployment procedure, Cognito Docker build arguments, and ECS/EFS details live in `deployment/README.md` (do not duplicate that workflow here).
+Production deployment procedure, Cognito Docker build arguments, and ECS/DynamoDB details live in `deployment/README.md` (do not duplicate that workflow here).
 
 Do not commit secrets, tokens, or private credentials.
 
 ### Local mock authentication
 
-The current local development model is **mock-first**.
+Local development uses the same Cognito authentication as production; there is no mock/stub authentication mode or admin-role bypass.
 
-- Developers still enter through the normal login flow; authentication is not automatic.
-- The mock adapter does not provide production credential validation.
-- Mock session state is browser-session based.
-- Backend `AUTH_MODE` defaults to `mock` unless configured otherwise.
+- Developers enter through the normal login flow against the real Cognito user pool configured in `dev.cmd`.
+- The backend requires `COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID`, and `COGNITO_REGION` to start; there is no `AUTH_MODE=mock` fallback.
 - Production Cognito configuration is described in `deployment/README.md`.
 
-### Local administrator access
+### Local editorial authoring
 
-Local administrator access is **development-only** and is not production administrator security.
+Editorial authoring runs only from the local source tree. `dev.cmd` enables the sibling `frontend/private` and `backend/private` modules for local development; they are not part of the production Docker build. DeepL credentials remain in the gitignored `dev.local.cmd` file.
 
-- `VITE_MOCK_ADMIN=true` gives the mock user the `administrator` role after login or session restoration.
-- Administrator pages are available under `/admin` and related routes.
-- The normal workspace navigation does not expose an administrator sidebar entry; direct local access may be used.
-- Frontend route guards require the administrator role.
-- Backend administrator API routes independently enforce administrator authorization.
+The public application has no administrator role or entitlement bypass. Customer capabilities are derived only from persisted `free` or `subscriber` entitlements.
 
 ### Known startup failure conditions
 
@@ -230,7 +230,7 @@ Local administrator access is **development-only** and is not production adminis
 - Required runtime tooling (`uv`, Node.js) or project dependencies unavailable.
 - Incomplete setup (for example, missing `uv sync` or `npm install`).
 - Vite environment changes requiring a frontend development server restart.
-- Missing local mock-admin configuration (`VITE_MOCK_ADMIN`) causing non-administrator behavior.
+- Incomplete Cognito configuration (`COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID`, `COGNITO_REGION`, or the matching `VITE_COGNITO_*` variables) causing backend startup failure or frontend login failure.
 
 For automated validation commands, see **Automated validation** below.
 
@@ -275,7 +275,6 @@ During implementation, targeted validation may be used for faster feedback on a 
 
 ```powershell
 uv run --project backend pytest backend/test_app.py -q
-uv run --project backend pytest backend/tests/content/test_preferences_api.py -q
 npm test --prefix frontend -- src/workspace/projectFileSave.test.js
 ```
 

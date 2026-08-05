@@ -5,13 +5,13 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 
-from auth.dependencies import get_current_user
-from content.repositories.entitlements import EntitlementsRepository, FilesystemEntitlementsRepository
-from product.billing.config import load_billing_config
-from product.billing.mapping import public_billing_status
-from product.billing.service import BillingConfigurationError, BillingService
-from product.billing.stripe_gateway import StripeApiGateway
-from product.capabilities.resolver import CapabilityResolver
+from public.auth.dependencies import get_current_user
+from content.repositories.entitlements import EntitlementsRepository, get_entitlements_repository as _get_entitlements_repository
+from public.product.billing.config import load_billing_config
+from public.product.billing.mapping import public_billing_status
+from public.product.billing.service import BillingConfigurationError, BillingService
+from public.product.billing.stripe_gateway import StripeApiGateway
+from public.product.capabilities.resolver import CapabilityResolver
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ router = APIRouter(prefix="/billing", tags=["billing"])
 
 
 def get_entitlements_repository() -> EntitlementsRepository:
-    return FilesystemEntitlementsRepository()
+    return _get_entitlements_repository()
 
 
 def get_billing_service(
@@ -44,11 +44,6 @@ def create_checkout_session(
     user: dict = Depends(get_current_user),
     billing: BillingService = Depends(get_billing_service),
 ) -> dict:
-    if user.get("role") == "administrator":
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Administrators do not use commercial checkout.",
-        )
     try:
         # Email is never authoritative for identity; optional Stripe receipt convenience only.
         return billing.create_checkout_session(user_id=user["id"], email=None)
@@ -70,11 +65,6 @@ def create_portal_session(
     user: dict = Depends(get_current_user),
     billing: BillingService = Depends(get_billing_service),
 ) -> dict:
-    if user.get("role") == "administrator":
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Administrators do not use the billing portal.",
-        )
     try:
         return billing.create_portal_session(user_id=user["id"])
     except BillingConfigurationError:
@@ -101,7 +91,7 @@ def get_billing_status(
     entitlements_repository: EntitlementsRepository = Depends(get_entitlements_repository),
     resolver: CapabilityResolver = Depends(get_capability_resolver),
 ) -> dict:
-    capabilities = resolver.resolve(user["id"], user["role"], mock_access_tier=None)
+    capabilities = resolver.resolve(user["id"])
     record = entitlements_repository.get_record(user["id"])
     return public_billing_status(
         record,

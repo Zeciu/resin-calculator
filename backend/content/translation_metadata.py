@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from enum import Enum
 from typing import Any
 
-from content.translation.editorial_text import EditorialModule, extract_translatable_items
+from private.translation.editorial_text import EditorialModule, extract_translatable_items
 
 
 # Must match content.repositories.filesystem.CANONICAL_EDITORIAL_LOCALE.

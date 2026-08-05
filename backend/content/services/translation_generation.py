@@ -14,8 +14,8 @@ from content.services.translation_update import (
     TranslationUpdateService,
     TranslationUpdateState,
 )
-from content.translation.exceptions import TranslationError
-from content.translation.provider import TranslationProvider
+from private.translation.exceptions import TranslationError
+from private.translation.provider import TranslationProvider
 
 GenerateModule = Literal["manual", "glossary", "knowledge_base", "website"]
 
@@ -62,7 +62,7 @@ class TranslationGenerationService:
 
 def map_provider_error_to_http(exc: TranslationError) -> tuple[int, str]:
     """Map provider-neutral errors to (status_code, safe_detail)."""
-    from content.translation.exceptions import (
+    from private.translation.exceptions import (
         TranslationAuthError,
         TranslationConfigurationError,
         TranslationInvalidRequestError,

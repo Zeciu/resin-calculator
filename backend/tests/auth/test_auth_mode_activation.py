@@ -8,7 +8,7 @@ from fastapi import HTTPException
 from starlette.requests import Request
 from unittest.mock import patch, AsyncMock
 
-from auth.dependencies import get_current_user
+from public.auth.dependencies import get_current_user
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 CALCULATE_BODY = (
@@ -30,7 +30,6 @@ def _env(**updates) -> dict[str, str]:
             env.pop(key, None)
         else:
             env[key] = value
-    env.setdefault("AUTH_MODE", "mock")
     env["PYTHONPATH"] = str(BACKEND_DIR)
     return env
 
@@ -46,22 +45,9 @@ def _run_backend_script(script: str, env: dict[str, str]) -> subprocess.Complete
     )
 
 
-MOCK_CALCULATOR_SCRIPT = f"""
-from fastapi.testclient import TestClient
-import app
-
-client = TestClient(app.app)
-response = client.post(
-    "/calculate",
-    content={CALCULATE_BODY!r},
-    headers={{"Content-Type": "application/json"}},
-)
-print(response.status_code)
-"""
-
 COGNITO_STARTUP_SCRIPT = """
 try:
-    import app  # noqa: F401
+    import public.app as app  # noqa: F401
 except RuntimeError as exc:
     print(f"STARTUP_FAILED:{exc}")
 else:
@@ -70,7 +56,7 @@ else:
 
 COGNITO_MIDDLEWARE_SCRIPT = """
 from fastapi.testclient import TestClient
-import app
+import public.app as app
 
 client = TestClient(app.app)
 calc = client.post(
@@ -92,34 +78,10 @@ print(f"AUTH_ENABLED={app._AUTH_ENABLED}")
 
 
 class TestAuthModeActivation:
-    def test_mock_mode_without_cognito_variables(self):
-        result = _run_backend_script(
-            MOCK_CALCULATOR_SCRIPT,
-            _env(AUTH_MODE="mock"),
-        )
-
-        assert result.returncode == 0, result.stderr
-        assert result.stdout.strip() == "400"
-
-    def test_mock_mode_with_cognito_variables_present(self):
-        result = _run_backend_script(
-            MOCK_CALCULATOR_SCRIPT,
-            _env(
-                AUTH_MODE="mock",
-                COGNITO_USER_POOL_ID="eu-central-1_test",
-                COGNITO_REGION="eu-central-1",
-                COGNITO_CLIENT_ID="test-client",
-            ),
-        )
-
-        assert result.returncode == 0, result.stderr
-        assert result.stdout.strip() == "400"
-
     def test_cognito_mode_with_complete_configuration_activates_middleware(self):
         result = _run_backend_script(
             COGNITO_MIDDLEWARE_SCRIPT,
             _env(
-                AUTH_MODE="cognito",
                 COGNITO_USER_POOL_ID="eu-central-1_test",
                 COGNITO_REGION="eu-central-1",
                 COGNITO_CLIENT_ID="test-client",
@@ -131,11 +93,13 @@ class TestAuthModeActivation:
         assert "CALC=401" in result.stdout
         assert "ME=401" in result.stdout
 
-    def test_cognito_mode_with_incomplete_configuration_fails_startup(self):
+    def test_incomplete_configuration_fails_startup(self):
+        # The public application has no mock-auth mode; Cognito configuration
+        # is mandatory in every environment, and the module fails to import
+        # (fail-closed) when it is incomplete.
         result = _run_backend_script(
             COGNITO_STARTUP_SCRIPT,
             _env(
-                AUTH_MODE="cognito",
                 COGNITO_REGION="eu-central-1",
             ),
         )
@@ -144,11 +108,10 @@ class TestAuthModeActivation:
         assert "STARTUP_FAILED:" in result.stdout
         assert "COGNITO_USER_POOL_ID" in result.stdout
 
-    def test_cognito_mode_without_client_id_fails_startup(self):
+    def test_missing_client_id_fails_startup(self):
         result = _run_backend_script(
             COGNITO_STARTUP_SCRIPT,
             _env(
-                AUTH_MODE="cognito",
                 COGNITO_USER_POOL_ID="eu-central-1_test",
                 COGNITO_REGION="eu-central-1",
             ),
@@ -160,8 +123,7 @@ class TestAuthModeActivation:
 
 
 class TestCognitoModeIdentityGuards:
-    def test_mock_headers_cannot_authenticate_in_cognito_mode(self, monkeypatch):
-        monkeypatch.setenv("AUTH_MODE", "cognito")
+    def test_mock_headers_cannot_authenticate(self, monkeypatch):
         scope = {
             "type": "http",
             "method": "GET",
@@ -183,7 +145,7 @@ class TestCognitoModeIdentityGuards:
         from fastapi.testclient import TestClient
 
         client = TestClient(app)
-        with patch("app._AUTH_ENABLED", True):
+        with patch("public.app._AUTH_ENABLED", True):
             response = client.post(
                 "/calculate",
                 json={
@@ -200,13 +162,13 @@ class TestCognitoModeIdentityGuards:
         from fastapi.testclient import TestClient
 
         client = TestClient(app)
-        with patch("app._AUTH_ENABLED", True), patch(
-            "app._COGNITO_CLIENT_ID", "test-client"
+        with patch("public.app._AUTH_ENABLED", True), patch(
+            "public.app._COGNITO_CLIENT_ID", "test-client"
         ), patch(
-            "app._get_jwks",
+            "public.app._get_jwks",
             AsyncMock(return_value={"keys": [{"kty": "RSA", "kid": "test-key"}]}),
         ), patch(
-            "app.jwt.decode",
+            "public.app.jwt.decode",
             return_value={
                 "sub": "user-123",
                 "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_test",

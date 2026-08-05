@@ -75,6 +75,11 @@ def _require_active_public_locale(locale: str) -> None:
     get_public_languages_service().require_active_public_locale(locale)
 
 
+@router.get("/public-languages")
+def get_public_languages() -> dict:
+    return get_public_languages_service().get_config().model_dump()
+
+
 @router.get("/manual", response_model=PublicManualResponse)
 def get_published_manual(
     locale: str = "en",

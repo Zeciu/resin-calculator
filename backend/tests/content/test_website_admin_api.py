@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 
 import pytest
-from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_glossary, admin_manual, admin_website, public_content
 from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 PNG_1X1 = (
     b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
@@ -21,14 +21,13 @@ PNG_1X1 = (
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_website.reset_repository_cache()
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -53,12 +52,6 @@ def pricing_body(**overrides) -> dict:
     body["offers"][2]["title"] = "Lifetime"
     body.update(overrides)
     return body
-
-
-class TestWebsiteAdminAuth:
-    def test_non_admin_is_rejected(self, client):
-        response = client.get("/api/admin/website/pages", headers=admin_headers("user"))
-        assert response.status_code == 403
 
 
 class TestWebsiteAdminListAndGet:

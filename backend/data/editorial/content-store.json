@@ -8248,7 +8248,7 @@
       "pk": "CONTENT#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
       "sk": "META",
       "sortOrder": 200,
-      "updatedAt": "2026-07-26T18:11:51.776466+00:00"
+      "updatedAt": "2026-08-05T11:33:59.501993+00:00"
     },
     "CONTENT#kb_entry#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic|VARIANT#ro": {
       "contentId": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
@@ -8303,13 +8303,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
-      "publishedAt": "2026-07-26T18:11:51.776466+00:00",
+      "publishedAt": "2026-08-05T11:33:59.501993+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
       "sourceRevision": 2,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T18:11:51.776466+00:00"
+      "updatedAt": "2026-08-05T11:33:59.501993+00:00"
     },
     "CONTENT#kb_entry#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii|META": {
       "category": "Epoxy",
@@ -8857,7 +8857,7 @@
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
       "sk": "META",
       "sortOrder": 100,
-      "updatedAt": "2026-07-26T20:05:15.406635+00:00"
+      "updatedAt": "2026-08-05T11:33:56.561425+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|VARIANT#de": {
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
@@ -9079,13 +9079,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
-      "publishedAt": "2026-07-26T20:05:15.406635+00:00",
+      "publishedAt": "2026-08-05T11:33:56.561425+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
       "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T20:05:15.406635+00:00"
+      "updatedAt": "2026-08-05T11:33:56.561425+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare|META": {
       "category": "Epoxy",

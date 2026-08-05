@@ -1,0 +1,37 @@
+
+Am terminat calculele făcute de aplicație și putem trece la prima turnare, respectiv stratul de izolare de 3 mm. 
+Înainte de a începe turnarea, verificăm dacă proiectul este perfect orizontal, cu ajutorul unui boloboc. 
+O suprafață înclinată va determina rășina să se adune într o singură zonă și va afecta rezultatul final. 
+Temperatura din spațiul în care facem turnarea trebuie să fie, de preferat, între 19 și 21°C, iar umiditatea cât mai scăzută. 
+Dacă aceste condiții nu sunt respectate, există riscul ca rășina să nu se întărească în mod corespunzător.
+Apoi, pregătim cantitatea de rășină calculată de aplicație și amestecăm foarte bine cele două componente, respectând recomandările producătorului.
+Primul strat are rolul de a pătrunde în toate crăpăturile și cavitățile, de a se scurge sub lemn, acolo unde este necesar și de a izola marginile cofrajului.
+Turnăm rășina pe întreaga suprafață a proiectului, astfel încât toate zonele care vor fi umplute în etapele următoare, inclusiv crăpăturile fine de la suprafața lemnului, să fie acoperite uniform de acest prim strat de izolare.
+
+-----------
+
+<speak>
+<prosody rate="88%">
+We have finished the calculations made by the application and we can move on to the first pouring, namely the 3 mm insulation layer.
+<break time="1s"/>
+Before starting the pour, we check that the project is perfectly horizontal, using a spirit level.
+<break time="1s"/>
+A sloping surface will cause the resin to flow toward a corner and will affect the final result.
+<break time="2s"/>
+The temperature in the space where we are pouring should be between 19 and 21°C, and the humidity as low as possible.
+<break time="1s"/>
+If these conditions are not met, there is a risk that the resin will not harden properly.
+<break time="2s"/>
+Then, we prepare the amount of resin calculated by the application and mix the two components very well, following the manufacturer's recommendations.
+<break time="2s"/>
+The first layer has the role of penetrating all cracks and cavities, of draining under the wood, where necessary, and of insulating the edges of the formwork.
+<break time="2s"/>
+We pour the resin over the entire surface of the project so that all areas that will be filled in the following stages, including fine cracks in the surface of the wood, are evenly covered by this first layer of insulation.
+</prosody>
+</speak>
+
+-----------
+
+Translated with Google translate and adjusted manually.
+Voiced with Amazon Pollym Generative engine, en-us, Mathew 
+

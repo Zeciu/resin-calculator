@@ -15,8 +15,9 @@ ENV VITE_COGNITO_REDIRECT_URI=$VITE_COGNITO_REDIRECT_URI
 ENV VITE_AUTH_MODE=$VITE_AUTH_MODE
 
 COPY frontend/package*.json ./
+COPY frontend/vite.config.js ./
+COPY frontend/public ./public
 RUN npm ci
-COPY frontend/ ./
 RUN npm run build
 
 # Stage 1b: export deterministic editorial seed data
@@ -25,9 +26,9 @@ WORKDIR /app
 COPY backend/scripts/export_manual_sections.mjs ./backend/scripts/export_manual_sections.mjs
 COPY backend/scripts/export_glossary_entries.mjs ./backend/scripts/export_glossary_entries.mjs
 COPY backend/scripts/export_knowledge_base_entries.mjs ./backend/scripts/export_knowledge_base_entries.mjs
-COPY frontend/src/manual/manualContent.js ./frontend/src/manual/manualContent.js
-COPY frontend/src/glossary/glossaryContent.js ./frontend/src/glossary/glossaryContent.js
-COPY frontend/src/knowledgeBase/knowledgeBaseContent.js ./frontend/src/knowledgeBase/knowledgeBaseContent.js
+COPY frontend/public/src/manual/manualContent.js ./frontend/src/manual/manualContent.js
+COPY frontend/public/src/glossary/glossaryContent.js ./frontend/src/glossary/glossaryContent.js
+COPY frontend/public/src/knowledgeBase/knowledgeBaseContent.js ./frontend/src/knowledgeBase/knowledgeBaseContent.js
 RUN mkdir -p /app/seed-data
 RUN node ./backend/scripts/export_manual_sections.mjs ./frontend/src/manual/manualContent.js > /app/seed-data/manual-sections.json
 RUN node ./backend/scripts/export_glossary_entries.mjs ./frontend/src/glossary/glossaryContent.js > /app/seed-data/glossary-entries.json
@@ -45,10 +46,8 @@ COPY backend/pyproject.toml backend/uv.lock ./
 RUN uv pip install --system --no-cache -r pyproject.toml
 
 # Copy backend source and built frontend static files
-COPY backend/app.py ./
-COPY backend/auth ./auth
+COPY backend/public ./public
 COPY backend/content ./content
-COPY backend/product ./product
 COPY --from=editorial-seed-build /app/seed-data ./seed-data
 COPY --from=frontend-build /app/frontend/dist ./static
 
@@ -67,4 +66,4 @@ COPY backend/data/knowledge-base/images/ /app/content/knowledge-base/images/
 COPY backend/data/website/images/ /app/content/website/images/
 
 EXPOSE 5000
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "public.app:app", "--host", "0.0.0.0", "--port", "5000"]

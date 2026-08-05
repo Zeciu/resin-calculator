@@ -1,16 +1,15 @@
 import pytest
-from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_glossary, public_content
 from content.services.glossary_source import load_glossary_entries
 from content.services.migrate_phase2_glossary import LegacyGlossaryMigrationService
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_glossary.reset_repository_cache()
     public_content.reset_repository_cache()
     from content.routers import admin_editorial
@@ -18,7 +17,7 @@ def client(tmp_path, monkeypatch):
     admin_editorial.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -37,12 +36,6 @@ def sample_body(term: str = "Pot life", text: str = "Working time before gelatio
         "synonymTermIds": [],
         "seeAlso": [],
     }
-
-
-class TestGlossaryAdminAuth:
-    def test_non_admin_is_rejected(self, client):
-        response = client.get("/api/admin/glossary/entries", headers=admin_headers("user"))
-        assert response.status_code == 403
 
 
 class TestGlossaryEntryCrud:

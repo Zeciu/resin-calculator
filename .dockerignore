@@ -98,10 +98,17 @@ backend/data/config/*
 !backend/data/config/public-languages.json
 
 # Keep commercial/user/runtime artifacts out of the image build context
-backend/data/preferences/
 backend/data/entitlements/
 backend/data/legacy/
 backend/data/.hfzwood-initialized.json
 backend/data/**/*.tmp*
 backend/data/**/.hfzwood-write-check-*
 backend/data/**/.hfzwood-init-*
+
+# Local-only editorial/admin source. Dockerfiles must also use explicit public allowlists.
+frontend/private/
+backend/private/
+
+backend/content/routers/admin_*.py
+backend/content/routers/generate_translation.py
+backend/content/translation/

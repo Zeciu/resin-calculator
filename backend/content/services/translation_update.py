@@ -8,13 +8,13 @@ from typing import Any, Literal
 
 from content.repositories.filesystem import utc_now
 from content.schemas.common import parse_admin_locale
-from content.translation.deepl import DeepLTranslationProvider, PROVIDER_NAME
-from content.translation.editorial_text import (
+from private.translation.deepl import DeepLTranslationProvider, PROVIDER_NAME
+from private.translation.editorial_text import (
     EditorialModule,
     extract_translatable_items,
     reconstruct_draft_body,
 )
-from content.translation.provider import TranslationProvider
+from private.translation.provider import TranslationProvider
 from content.translation_metadata import (
     CANONICAL_SOURCE_LOCALE,
     effective_source_text_revision,

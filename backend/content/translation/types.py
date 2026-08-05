@@ -1,15 +1,2 @@
-"""Immutable provider-neutral translation result."""
-
-from __future__ import annotations
-
-from dataclasses import dataclass
-
-
-@dataclass(frozen=True, slots=True)
-class TranslationResult:
-    text: str
-    provider: str
-    source_locale: str
-    target_locale: str
-    detected_source_language: str | None = None
-    billed_characters: int | None = None
+# Test-only compatibility shim. Production Docker excludes this file.
+from private.translation.types import *  # noqa: F401,F403

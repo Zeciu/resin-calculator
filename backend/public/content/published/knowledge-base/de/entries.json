@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Die Produktspezifikationen wurden nicht eingehalten.",
+        "Es wurde versucht, den Arbeitsprozess zu verk\u00fcrzen."
+      ],
+      "prevention": [],
+      "problemSummary": "Das \u00dcberschreiten der empfohlenen maximalen Dicke kann zu \u00fcberm\u00e4\u00dfigen exothermen Reaktionen und M\u00e4ngeln f\u00fchren, die das Projekt gef\u00e4hrden.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Halten Sie die im technischen Datenblatt angegebene maximale Dicke ein und planen Sie den Guss gegebenenfalls in mehreren Schritten."
+      ],
+      "symptoms": [
+        "Beabsichtigen Sie, eine dickere Schicht als vom Hersteller empfohlen aufzutragen?",
+        "Du m\u00f6chtest die Anzahl der Gussvorg\u00e4nge reduzieren."
+      ],
+      "tips": [
+        "In vielen F\u00e4llen sind zwei d\u00fcnnere Sch\u00fcttungen sicherer als eine sehr dicke."
+      ],
+      "title": "Warum darf die empfohlene maximale Dicke f\u00fcr einen Guss nicht \u00fcberschritten werden?",
+      "warnings": [
+        "Das \u00dcberschreiten der empfohlenen Grenzwerte kann zu \u00dcberhitzung, Rissen, Verformungen oder einer Beeintr\u00e4chtigung des Bauvorhabens f\u00fchren."
+      ]
+    }
+  ],
+  "locale": "de"
+}

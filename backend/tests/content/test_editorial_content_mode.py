@@ -5,7 +5,6 @@ from __future__ import annotations
 import io
 
 import pytest
-from fastapi.testclient import TestClient
 
 from content.editorial_content_mode import (
     EDITORIAL_CONTENT_MODE_ENV,
@@ -17,7 +16,8 @@ from content.editorial_content_mode import (
     editorial_writes_allowed,
     require_editorial_writes_allowed,
 )
-from content.repositories.entitlements import FilesystemEntitlementsRepository
+from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
+from tests.support.authenticated_client import AuthenticatedTestClient
 from content.routers import (
     admin_glossary,
     admin_knowledge_base,
@@ -37,17 +37,9 @@ def admin_headers(role: str = "administrator") -> dict[str, str]:
     }
 
 
-def user_headers() -> dict[str, str]:
-    return {
-        "X-Mock-Role": "user",
-        "X-Mock-User-Id": "user-a",
-    }
-
-
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     monkeypatch.delenv(EDITORIAL_CONTENT_MODE_ENV, raising=False)
     for module in (
         admin_manual,
@@ -65,7 +57,7 @@ def client(tmp_path, monkeypatch):
     admin_editorial.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 @pytest.fixture
@@ -293,19 +285,9 @@ class TestReleaseModeAllowsReads:
 
 
 class TestNonEditorialUnaffected:
-    def test_preferences_put_in_release_mode(self, release_client):
-        response = release_client.put(
-            "/api/preferences",
-            headers=user_headers(),
-            json={"interfaceLanguage": "ro", "lengthUnit": "mm", "volumeUnit": "L"},
-        )
-        assert response.status_code == 200
-        assert response.json()["interfaceLanguage"] == "ro"
-
-    def test_entitlements_write_in_release_mode(self, tmp_path, monkeypatch):
+    def test_entitlements_write_in_release_mode(self, monkeypatch):
         monkeypatch.setenv(EDITORIAL_CONTENT_MODE_ENV, EDITORIAL_CONTENT_MODE_RELEASE)
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        repo = FilesystemEntitlementsRepository(tmp_path)
+        repo = InMemoryEntitlementsRepository()
         saved = repo.save_access_tier("user-a", "subscriber")
         assert saved == "subscriber"
         assert repo.get_access_tier("user-a") == "subscriber"

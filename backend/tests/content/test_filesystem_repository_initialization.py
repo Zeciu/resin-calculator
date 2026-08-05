@@ -15,6 +15,7 @@ from content.routers import admin_glossary, admin_knowledge_base, admin_manual, 
 from content.services.glossary_source import load_glossary_entries
 from content.services.knowledge_base_source import load_knowledge_base_entries
 from content.services.manual_source import load_manual_sections
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -27,9 +28,6 @@ def admin_headers(role: str = "administrator") -> dict[str, str]:
 def import_strict_app(monkeypatch: pytest.MonkeyPatch, root: Path):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(root))
     monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("AUTH_MODE", "mock")
-    monkeypatch.delenv("COGNITO_USER_POOL_ID", raising=False)
-    monkeypatch.delenv("COGNITO_REGION", raising=False)
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     admin_knowledge_base.reset_repository_cache()
@@ -47,7 +45,7 @@ def import_strict_app(monkeypatch: pytest.MonkeyPatch, root: Path):
 @pytest.fixture
 def strict_client(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> TestClient:
     app_module = import_strict_app(monkeypatch, tmp_path)
-    return TestClient(app_module.app)
+    return AuthenticatedTestClient(app_module.app)
 
 
 def test_first_initialization_seeds_real_admin_cms_content(strict_client: TestClient) -> None:
@@ -260,7 +258,7 @@ def test_editing_and_publishing_one_seeded_kb_entry_preserves_all_other_seeded_c
 
 def test_initialized_content_is_not_overwritten_on_restart(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     first_app = import_strict_app(monkeypatch, tmp_path)
-    first_client = TestClient(first_app.app)
+    first_client = AuthenticatedTestClient(first_app.app)
 
     first_section = first_client.get("/api/content/manual?locale=en").json()["sections"][0]
     first_client.put(
@@ -281,7 +279,7 @@ def test_initialized_content_is_not_overwritten_on_restart(tmp_path: Path, monke
     )
 
     second_app = import_strict_app(monkeypatch, tmp_path)
-    second_client = TestClient(second_app.app)
+    second_client = AuthenticatedTestClient(second_app.app)
     payload = second_client.get("/api/content/manual?locale=en").json()
     assert payload["sections"][0]["title"] == "Restart-Safe Title"
     assert payload["sections"][0]["blocks"][0]["text"] == "Restart-safe body."

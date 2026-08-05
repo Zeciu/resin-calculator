@@ -8,6 +8,8 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from tests.support.authenticated_client import AuthenticatedTestClient
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DOCKERFILE = REPO_ROOT / "Dockerfile"
 DOCKERIGNORE = REPO_ROOT / ".dockerignore"
@@ -30,7 +32,6 @@ APPROVED_TREE_PREFIXES = (
 )
 
 FORBIDDEN_TOP_LEVEL = (
-    "preferences",
     "entitlements",
     "legacy",
     ".hfzwood-initialized.json",
@@ -99,7 +100,6 @@ class TestDockerEditorialPackagingFiles:
             assert f"!backend/data/{prefix}/" in text
             assert f"!backend/data/{prefix}/**" in text
         for blocked in (
-            "backend/data/preferences/",
             "backend/data/entitlements/",
             "backend/data/legacy/",
             "backend/data/.hfzwood-initialized.json",
@@ -128,7 +128,6 @@ class TestPackagedReleaseCorpusSmoke:
         monkeypatch.setenv("CONTENT_DATA_DIR", str(CORPUS_ROOT))
         monkeypatch.setenv("COMMERCIAL_DATA_DIR", str(tmp_path / "commercial"))
         monkeypatch.setenv("EDITORIAL_CONTENT_MODE", "release")
-        monkeypatch.setenv("AUTH_MODE", "mock")
         monkeypatch.delenv("REQUIRE_CONTENT_DATA_DIR", raising=False)
 
         from content.repositories.filesystem import validate_release_editorial_root
@@ -161,7 +160,7 @@ class TestPackagedReleaseCorpusSmoke:
 
         from app import app
 
-        return TestClient(app)
+        return AuthenticatedTestClient(app)
 
     def test_release_startup_and_public_reads(self, release_client: TestClient, tmp_path: Path):
         store_path = CORPUS_ROOT / "editorial" / "content-store.json"
@@ -213,10 +212,7 @@ class TestPackagedReleaseCorpusSmoke:
         assert admin_list.status_code == 200, admin_list.text
 
         assert store_path.stat().st_mtime_ns == store_mtime_before
-        assert not (CORPUS_ROOT / "preferences").exists() or not any(
-            (CORPUS_ROOT / "preferences").glob("admin-a.json")
-        )
         assert not any(CORPUS_ROOT.glob("**/.hfzwood-write-check-*"))
         assert not any(CORPUS_ROOT.glob("**/*.tmp"))
-        # Commercial isolation for any incidental preference/entitlement mkdir
+        # Commercial isolation for any incidental entitlement mkdir
         assert not (CORPUS_ROOT / "entitlements").joinpath("admin-a.json").exists()

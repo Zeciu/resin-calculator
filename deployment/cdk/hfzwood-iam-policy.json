@@ -60,7 +60,6 @@
         "iam:DeleteRolePolicy",
         "iam:GetRole",
         "iam:GetRolePolicy",
-        "iam:PassRole",
         "iam:TagRole",
         "iam:UntagRole",
         "iam:CreatePolicy",
@@ -72,6 +71,21 @@
         "iam:DeletePolicyVersion"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "IAMPassRole",
+      "Effect": "Allow",
+      "Action": ["iam:PassRole"],
+      "Resource": [
+        "arn:aws:iam::325866321073:role/AppStack-*",
+        "arn:aws:iam::325866321073:role/InfraStack-*",
+        "arn:aws:iam::325866321073:role/cdk-hnb659fds-cfn-exec-role-*"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": ["ecs-tasks.amazonaws.com", "cloudformation.amazonaws.com"]
+        }
+      }
     },
     {
       "Sid": "Cognito",
@@ -137,6 +151,30 @@
         "secretsmanager:DeleteResourcePolicy"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "DynamoDB",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DeleteTable",
+        "dynamodb:DescribeTable",
+        "dynamodb:UpdateTable",
+        "dynamodb:UpdateTimeToLive",
+        "dynamodb:DescribeTimeToLive",
+        "dynamodb:UpdateContinuousBackups",
+        "dynamodb:DescribeContinuousBackups",
+        "dynamodb:TagResource",
+        "dynamodb:UntagResource",
+        "dynamodb:ListTagsOfResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "AssumeTaskRoleForLocalDev",
+      "Effect": "Allow",
+      "Action": ["sts:AssumeRole"],
+      "Resource": "arn:aws:iam::325866321073:role/AppStack-*"
     }
   ]
 }

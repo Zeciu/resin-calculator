@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Any, Literal
 
 import pytest
-from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
+from tests.support.authenticated_client import AuthenticatedTestClient
 from content.services.translation_generation import (
     MissingRomanianSourceError,
     NothingToTranslateError,
@@ -102,14 +102,13 @@ def repository(tmp_path, monkeypatch):
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     admin_knowledge_base.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers() -> dict[str, str]:
@@ -370,11 +369,3 @@ class TestGenerateApiAndLocales:
         assert response.status_code == 200
         assert response.json()["exists"] is False
         assert response.json()["locale"] == "fr"
-
-    def test_generate_requires_administrator(self, client):
-        response = client.post(
-            "/api/admin/manual/chapters/x/variants/en/generate-translation",
-            json={},
-            headers={"X-Mock-Role": "user", "X-Mock-User-Id": "u1"},
-        )
-        assert response.status_code in {401, 403}

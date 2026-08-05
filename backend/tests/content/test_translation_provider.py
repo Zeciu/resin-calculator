@@ -288,7 +288,6 @@ class TestConfiguration:
         monkeypatch.delenv("DEEPL_API_BASE_URL", raising=False)
         monkeypatch.delenv("DEEPL_ENABLED", raising=False)
         monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        monkeypatch.setenv("AUTH_MODE", "mock")
         from app import app
 
         client = TestClient(app)

@@ -1,16 +1,15 @@
 import pytest
-from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_manual, public_content
 from content.services.manual_source import load_manual_sections
 from content.services.migrate_phase2_manual import LegacyManualMigrationService
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     public_content.reset_repository_cache()
     from content.routers import admin_public_languages, public_languages
@@ -19,7 +18,7 @@ def client(tmp_path, monkeypatch):
     public_languages.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def assert_sections_match_source(source_sections: list[dict], api_sections: list[dict]) -> None:

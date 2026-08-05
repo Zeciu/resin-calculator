@@ -953,7 +953,7 @@ local Project deletion UI; Remove from Recent Projects UI; thumbnails; tab-close
 ### Delivered
 
 * **Device-local authority:** `interfaceLanguage`, `lengthUnit`, and `volumeUnit` stored in `localStorage` (`hfzwood.devicePreferences`); sole frontend preference authority.
-* **No frontend `/api/preferences` dependency:** normal initialization and save use `devicePreferencesStorage.js` only; orphaned `preferencesApi.js` removed; backend endpoint remains dormant.
+* **No `/api/preferences` dependency:** normal initialization and save use `devicePreferencesStorage.js` only; the orphaned `preferencesApi.js` and now-unneeded backend endpoint were removed.
 * **Persistence:** preferences survive refresh, logout, login, and account switch on the same browser/device; auth lifecycle does not reset preferences.
 * **First launch:** browser language detection with `mm` and `L`; malformed or unavailable storage falls back safely; failed writes throw (no false success).
 * **Calculator i18n:** primary workflow, result summary, optional pour-planning tools, detailed breakdown, and related validation messages follow selected interface language via `calculatorUi.js` and shared `I18nContext`.
@@ -976,7 +976,7 @@ Task 2.2 live AWS Cognito E2E validation remains a release-certification require
 
 ### Intentional deferrals
 
-Cloud or cross-device preference sync; account-level preference authority; backend preference API removal or migration; regional unit auto-detection; new preference categories; broad Settings UI redesign; guest-accessible Settings expansion; PDF document localization; API-provided pour-plan row labels; remaining calculator secondary strings; Cloud Workspace; Stripe/billing; unrelated cleanup.
+Cloud or cross-device preference sync; account-level preference authority; regional unit auto-detection; new preference categories; broad Settings UI redesign; guest-accessible Settings expansion; PDF document localization; API-provided pour-plan row labels; remaining calculator secondary strings; Cloud Workspace; Stripe/billing; unrelated cleanup.
 
 ### Implementation commit
 
@@ -1042,6 +1042,37 @@ For the approved initial HFZWood launch, production-durable editorial persistenc
 DynamoDB + S3 is not required for initial launch: the editorial CMS already uses filesystem repositories and JSON content structures, and EFS solves the launch-blocking failure mode (editorial content loss during Fargate task replacement) while preserving existing CMS behavior.
 
 The initial production deployment remains constrained to a single active Fargate task/writer unless a separate concurrency-safe persistence design is approved. Future migration to DynamoDB + S3 remains possible as a bounded replacement behind the existing repository boundary.
+
+### Superseding production editorial release decision — 2026-08-04
+
+This decision supersedes the production-editorial portions of the preceding EFS decision and every earlier reference in this plan to production EFS-backed editorial authoring. The historical Task 4.1 record is retained below as implementation history.
+
+For the current release model:
+
+* the Admin module is operated only on the administrator's local computer; its current purpose is updating Manuals and generating/reviewing translations;
+* DeepL credentials are local-only development configuration (`dev.local.cmd`) and must not be added to AWS Secrets Manager, ECS task secrets, or the production container environment;
+* the administrator commits the reviewed, published editorial changes to Git; the deployer builds the Docker image from that commit, pushes it to ECR, and deploys it to ECS;
+* production serves the Git-packaged corpus from `/app/content` with `EDITORIAL_CONTENT_MODE=release`, so editorial mutations, uploads, language changes, and translation generation are blocked there;
+* commercial entitlements and the Stripe customer index persist in DynamoDB; interface and unit preferences are device-local browser `localStorage`, not server-side data — see the superseding decision immediately below.
+
+The production frontend bundle may still contain the Admin route, but production is not an operational CMS and must not be used for authoring or translation. The canonical operational procedure is [`deployment/README.md`](../deployment/README.md#editorial-authoring-and-release-policy).
+
+### Superseding commercial/user persistence decision — 2026-08-04
+
+This decision further supersedes the EFS-based commercial/user persistence portion of the original Block 4 decision above. User preferences and commercial entitlements move from EFS-backed filesystem repositories to two DynamoDB tables:
+
+* `hfzwood-preferences` — partition key `userId`; on-demand capacity; point-in-time recovery.
+* `hfzwood-entitlements` — partition key `userId`, with a `stripeCustomerId-index` global secondary index replacing the filesystem-era manual Stripe-customer index/fallback scan; on-demand capacity; point-in-time recovery.
+
+Rationale: EFS plus its AWS Backup plan carries fixed infrastructure cost and operational complexity (mount targets, NFS, single-writer constraint, a separate backup vault/plan/schedule) that is disproportionate to storing small per-user key-value records. DynamoDB on-demand capacity has near-zero idle cost, built-in point-in-time recovery in place of a separate backup mechanism, and removes the single-writer constraint.
+
+This requires new `DynamoDbPreferencesRepository` and `DynamoDbEntitlementsRepository` backend classes (boto3-based) behind the existing `PreferencesRepository`/`EntitlementsRepository` abstractions; the frontend is unaffected and never accesses AWS directly. As of 2026-08-04, CDK provisioning of the two tables is complete, the EFS filesystem, its access point, and its AWS Backup vault/plan were fully removed from `AppStack`, and both DynamoDB-backed repository classes are implemented and wired behind an environment-variable-gated factory (`PREFERENCES_TABLE_NAME`/`ENTITLEMENTS_TABLE_NAME`): unset or blank continues to use the filesystem repositories for local development; set, it uses DynamoDB. The reverse Stripe-customer lookup uses the `stripeCustomerId-index` GSI via a native `Query`, replacing the filesystem-era manual customer index and fallback scan. Both classes are covered by dedicated tests using `moto`'s `mock_aws` (25 tests total). See [`deployment/README.md`](../deployment/README.md#dynamodb-tables) for the operational detail.
+
+### Superseding preferences persistence decision — 2026-08-05
+
+This supersedes only the preferences portion of the 2026-08-04 decision. Interface language and measurement-unit preferences remain device-local in browser `localStorage` (`hfzwood.devicePreferences`); they are not sent to, stored by, or restored from the backend.
+
+The preferences API router, service, repository implementations, schemas, and their backend tests are removed. `AppStack` no longer defines or grants access to `hfzwood-preferences`, and it no longer injects `PREFERENCES_TABLE_NAME`. DynamoDB is retained solely for `hfzwood-entitlements` and its `stripeCustomerId-index` GSI. The canonical operational detail is [`deployment/README.md`](../deployment/README.md#dynamodb-tables).
 
 ---
 

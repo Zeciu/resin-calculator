@@ -1,14 +1,14 @@
 # Production Deployment (ECS Fargate)
 
 Deploys HFZWood as a single Fargate task behind an HTTPS Application Load Balancer,
-with Cognito authentication and EFS-backed editorial persistence.
+with Cognito authentication, a packaged read-only editorial release corpus, and DynamoDB-backed commercial/user state.
 
 Infrastructure is managed with AWS CDK (TypeScript) as **two stacks**:
 
 | Stack | Purpose |
 |---|---|
 | `InfraStack` | ECR repository, Cognito user pool / app client / Hosted UI domain, CloudWatch log group |
-| `AppStack` | ECS cluster, ALB, ACM certificate, Route 53 record, Fargate service, encrypted EFS mount |
+| `AppStack` | ECS cluster, ALB, ACM certificate, Route 53 record, Fargate service, packaged editorial corpus, DynamoDB table for entitlements |
 
 ## Repository layout
 
@@ -16,7 +16,7 @@ Infrastructure is managed with AWS CDK (TypeScript) as **two stacks**:
 |---|---|
 | `cdk/bin/app.ts` | CDK entry point (wires InfraStack → AppStack) |
 | `cdk/lib/infra-stack.ts` | Shared infrastructure (ECR, Cognito, logs) |
-| `cdk/lib/app-stack.ts` | Application runtime (ECS, ALB, EFS, DNS/TLS) |
+| `cdk/lib/app-stack.ts` | Application runtime (ECS, ALB, DynamoDB, DNS/TLS) |
 | `cdk/package.json` | CDK TypeScript dependencies |
 | `cdk/tsconfig.json` | TypeScript config |
 | `cdk/cdk.json` | CDK toolkit config |
@@ -25,22 +25,93 @@ Infrastructure is managed with AWS CDK (TypeScript) as **two stacks**:
 | `deploy-app.cmd` | Forces a new ECS deployment after an image push |
 | `old/` | Legacy shell scripts (reference only) |
 
+## Editorial authoring and release policy
+
+Production is a **public reader and application runtime**, not an editorial-authoring environment.
+
+- The administrator runs the Admin module locally, with local mock-admin access and DeepL credentials in the gitignored `dev.local.cmd` file described in the root [`README.md`](../README.md).
+- The administrator edits, translates, reviews, and publishes the Manual, Glossary, Knowledge Base, and website content locally. DeepL credentials must never be placed in AWS Secrets Manager, ECS task secrets, or the production container environment.
+- After the editorial change is complete, the administrator commits the updated Git-tracked content. The deployer builds an image from that commit, pushes it to ECR, and forces a new ECS deployment.
+- The production image reads the resulting frozen public corpus from `/app/content`. The Docker build copies only public frontend/backend source; it does not contain editorial routes, authoring UI, or DeepL code.
+
+Production `/admin` and `/api/admin/**` are absent. Do not use production for authoring or translation.
+
+### Editorial release workflow
+
+1. On the administrator workstation, configure local DeepL as described in the root [`README.md`](../README.md#local-deepl-configuration-windows) and start `./dev.cmd`.
+2. Use the local Admin module to update the Romanian source content, generate/review translations, and publish the local snapshots.
+3. Review and commit the changed editorial files to Git. Never commit `dev.local.cmd` or a DeepL key.
+4. The deployer builds and pushes the Docker image from that commit, then runs `deploy-app.cmd` as described below.
+5. Verify the public Manual, Glossary, Knowledge Base, and website pages after deployment.
+
 ## Prerequisites
 
-- AWS CLI v2 configured
+- AWS CLI v2 configured (see "Install and configure the AWS CLI" below)
 - Node.js 24 LTS
 - AWS CDK CLI (`npm install -g aws-cdk`)
 - Docker available on the machine that builds and pushes the image
 
-## IAM profile
+## Install and configure the AWS CLI
 
-The `hfzwood` IAM user policy lives in `cdk/hfzwood-iam-policy.json`.
+This is required for `cdk deploy`, and optionally for local development to access the real DynamoDB tables (see the root [`README.md`](../README.md#local-dynamodb-access-windows-optional)).
+
+### 1. Install (Windows)
+
+```powershell
+winget install Amazon.AWSCLI
+```
+
+Verify it installed correctly:
+
+```cmd
+aws --version
+```
+
+Expect output like `aws-cli/2.x.x Python/... Windows/...`. If the command is not found, open a new terminal (PATH changes from `winget` require a fresh shell) before trying again.
+
+### 2. Configure the `hfzwood` profile
+
+You need an access key ID and secret access key for the `hfzwood` IAM user (obtain these from whoever administers the AWS account — do not create a new IAM user for this).
 
 ```cmd
 aws configure --profile hfzwood
 ```
 
-Use region `eu-central-1`. When CDK adds new AWS resource types, update the IAM policy and re-apply it.
+Enter:
+
+- **AWS Access Key ID:** (provided by the account administrator)
+- **AWS Secret Access Key:** (provided by the account administrator)
+- **Default region name:** `eu-central-1`
+- **Default output format:** `json` (or leave blank)
+
+This writes to `%USERPROFILE%\.aws\credentials` and `%USERPROFILE%\.aws\config`; nothing is written into this repository.
+
+### 3. Verify authentication
+
+```cmd
+aws sts get-caller-identity --profile hfzwood
+```
+
+Expected output includes `"Account": "325866321073"` and `"Arn": ".../user/hfzwood"`. This is a read-only identity check — it does not create, modify, or delete anything, and is safe to run at any time to confirm which AWS account/identity a profile currently resolves to.
+
+If this fails, double-check the access key/secret entered in step 2, and confirm you were given credentials for the `hfzwood` user specifically (not a different AWS account).
+
+## IAM profile
+
+The `hfzwood` IAM user's deploy permissions are defined in `cdk/hfzwood-iam-policy.json`, but this file is a **reference copy only** — updating it in this repository does not change anything on AWS. `cdk deploy` never applies this file; it manages the CDK-generated *application* roles (the ECS task role, execution role, etc.), not the *deployer's own* IAM permissions.
+
+### Applying policy changes to AWS (manual, console)
+
+The policy is attached to the `hfzwood` user as a **customer-managed policy** (not inline), so it must be created/updated manually through the AWS Console:
+
+1. Sign in to the AWS Console with an **admin/root** identity — the `hfzwood` user cannot grant itself new permissions.
+2. Go to **IAM → Policies** and open the managed policy attached to `hfzwood` (for example `hfzwood-deploy-policy`).
+3. Edit the policy → JSON tab → replace the contents with the current `cdk/hfzwood-iam-policy.json` from this repository → **Save changes** (this creates a new policy version).
+4. If the policy is not yet attached, create it via **Create policy** → JSON tab → paste the file contents → attach it to the `hfzwood` user under **IAM → Users → hfzwood → Permissions → Add permissions → Attach policies directly**.
+
+**Why a managed policy, not inline:** IAM inline policies (attached directly on a user, no separate ARN) are capped at **2,048 characters**. Customer-managed policies (created under IAM → Policies, then attached to the user) are capped at **6,144 characters**. This policy already exceeds 2,048 characters, so it must be a managed policy, not inline, or the console will reject the update with a "characters exceeding limit" error.
+
+When CDK adds new AWS resource types to `AppStack`/`InfraStack`, update `cdk/hfzwood-iam-policy.json` in this repository first, then repeat step 3 above to actually apply it — the file and the live AWS policy must be kept in sync manually.
 
 ## First-time setup
 
@@ -118,7 +189,7 @@ cd deployment\cdk
 cdk deploy AppStack --profile hfzwood
 ```
 
-Creates the ECS cluster, HTTPS ALB, ACM certificate, Route 53 alias, Fargate service (`desiredCount: 1`), and encrypted EFS volume mounted at `/mnt/hfzwood-content`.
+Creates the ECS cluster, HTTPS ALB, ACM certificate, Route 53 alias, Fargate service (`desiredCount: 1`), and the `hfzwood-entitlements` DynamoDB table.
 
 Requires:
 
@@ -135,8 +206,8 @@ Injected by `AppStack` (do not rely on container-local `/app/data`):
 | `COGNITO_USER_POOL_ID` | InfraStack user pool |
 | `COGNITO_CLIENT_ID` | InfraStack app client |
 | `COGNITO_REGION` | Stack region (`eu-central-1`) |
-| `CONTENT_DATA_DIR` | `/mnt/hfzwood-content` (EFS mount) |
-| `REQUIRE_CONTENT_DATA_DIR` | `1` (fail closed if storage is missing/unwritable) |
+| `CONTENT_DATA_DIR` | `/app/content` (packaged, read-only editorial corpus) |
+| `ENTITLEMENTS_TABLE_NAME` | `hfzwood-entitlements` (DynamoDB table name) |
 | `CORS_ALLOWED_ORIGINS` | `https://hfzwood.com` |
 | `STRIPE_PRICE_ID` | Monthly Price ID from CDK context `stripePriceId` or env `HFZWOOD_STRIPE_PRICE_ID` |
 | `STRIPE_CHECKOUT_SUCCESS_URL` | `https://hfzwood.com/account?billing=success` |
@@ -145,7 +216,7 @@ Injected by `AppStack` (do not rely on container-local `/app/data`):
 | `STRIPE_SECRET_KEY` | From Secrets Manager secret `hfzwood/stripe` field `secret_key` |
 | `STRIPE_WEBHOOK_SECRET` | From Secrets Manager secret `hfzwood/stripe` field `webhook_secret` |
 
-Editorial CMS state, published snapshots, entitlement/commercial records, and related filesystem repositories persist on EFS under `CONTENT_DATA_DIR`.
+Editorial content and public snapshots are packaged into the Docker image from Git. Commercial entitlements persist in the `hfzwood-entitlements` DynamoDB table. User preferences are stored client-side (browser local storage) and are not persisted server-side. There is no EFS or other filesystem-backed persistence in production.
 
 ### Stripe secrets (required before commercial Checkout works)
 
@@ -199,10 +270,11 @@ Internet
 Application Load Balancer  (resin-calculator-alb)
    │  :5000
    ▼
-Fargate Task  (desiredCount=1, single editorial writer)
+Fargate Task  (desiredCount=1)
    ├── FastAPI + Cognito JWT validation
    ├── React SPA from /static
-   └── EFS mount → /mnt/hfzwood-content  (CONTENT_DATA_DIR)
+   ├── Packaged editorial corpus → /app/content  (read-only release mode)
+   └── DynamoDB → hfzwood-entitlements  (commercial/user state)
 
 Cognito User Pool + Hosted UI
 ECR image :latest
@@ -214,49 +286,40 @@ After deploy:
 
 1. `GET https://hfzwood.com/health` → `{"status":"ok"}`
 2. Open `https://hfzwood.com` and complete Cognito login
-3. Confirm Manual / Glossary / Knowledge Base public pages load
-4. As an `administrators` group user, open `/admin` and confirm CMS access
-5. After a forced task replacement (`deploy-app.cmd`), confirm editorial content still present (no unexpected reseed)
+3. Confirm Manual / Glossary / Knowledge Base public pages load the content from the released Git commit
+4. Confirm no `DEEPL_*` values or DeepL secrets are configured for the ECS task
+5. Confirm `hfzwood-entitlements` exists and the ECS task role can read/write it (see "DynamoDB tables" below)
+6. After a forced task replacement (`deploy-app.cmd`), confirm public editorial content is unchanged and commercial/user state remains available
 
-Full release certification (EFS durability matrix, commercial flows, backup restore drill, and CloudWatch alarm verification) remains outside this document’s deploy steps and is recorded as **PENDING — LIVE VALIDATION REQUIRED** under Task 5.3B in `documentation/phase-6-simplified-execution-plan.md` §26.5.
+Full release certification (commercial flows and CloudWatch alarm verification) remains outside this document’s deploy steps and is recorded as **PENDING — LIVE VALIDATION REQUIRED** under Task 5.3B in `documentation/phase-6-simplified-execution-plan.md` §26.5.
 
-## EFS backup and recovery
+## DynamoDB tables
 
-`AppStack` provisions AWS Backup for the editorial/commercial EFS filesystem.
+`AppStack` provisions a DynamoDB table for durable per-user commercial state, replacing the filesystem-backed EFS design for this data.
 
-| Setting | Value |
-|---|---|
-| Backup vault | `resin-calculator-efs-backup` |
-| Backup plan | `resin-calculator-efs-daily` |
-| Schedule | Daily at 05:00 UTC |
-| Retention | 14 days |
-| Protected resource | Editorial/commercial EFS (`EditorialContentFilesystem`) |
+| Table | Purpose | Key schema | Capacity | Recovery |
+|---|---|---|---|---|
+| `hfzwood-entitlements` | Commercial access tier, Stripe subscription state | PK `userId` (String); GSI `stripeCustomerId-index` on `stripeCustomerId` | On-demand (`PAY_PER_REQUEST`) | Point-in-time recovery enabled |
 
-**What is backed up:** all data under the EFS mount used as `CONTENT_DATA_DIR`, including editorial CMS state, published snapshots, entitlement/commercial records, and the Stripe customer index.
+The table uses `RemovalPolicy.RETAIN`: deleting the CDK stack does not delete the table or its data.
 
-**Verify backups exist (operator):**
+The `stripeCustomerId-index` GSI supports looking up a user by Stripe customer ID (used by webhook processing) without a manual index file or a full table scan.
+
+The ECS task role is granted read/write access to the table (`grantReadWriteData`); no additional Secrets Manager configuration is required for DynamoDB access.
+
+### Local development access
+
+The ECS task role's trust policy also allows the `hfzwood` deployer user to assume it directly (`sts:AssumeRole`), so local development can exercise the exact same DynamoDB permissions the running task has, without a second, separately maintained permission set on `hfzwood` itself. `hfzwood-iam-policy.json` grants `hfzwood` the corresponding `sts:AssumeRole` permission, scoped to `AppStack-*` role ARNs.
+
+`dev.cmd` always resolves and assumes the ECS task role locally, then exports temporary credentials and `ENTITLEMENTS_TABLE_NAME` for the backend. DynamoDB is the only entitlement store; startup fails if this access cannot be established. The current table is shared development data until a separate development environment is deliberately provisioned.
+
+**Verify the table exists (operator):**
 
 ```cmd
-aws backup list-recovery-points-by-backup-vault --backup-vault-name resin-calculator-efs-backup --region eu-central-1 --profile hfzwood
+aws dynamodb describe-table --table-name hfzwood-entitlements --region eu-central-1 --profile hfzwood
 ```
 
-Confirm recent recovery points appear after the daily schedule.
-
-**High-level recovery (operator):**
-
-1. Identify the target recovery point from the backup vault.
-2. Restore the EFS filesystem to a new or existing filesystem using the AWS Backup console or CLI restore workflow for Amazon EFS.
-3. If recovery requires remounting, update the ECS task definition / AppStack EFS reference only after operator review — do not automate filesystem replacement in this task.
-4. Redeploy or restart the ECS service after the restored mount is available.
-
-A live restore drill is **not** part of Task 6.1. Full restore validation on real AWS remains part of Task 5.3B / operator certification.
-
-**Post-restore checks:**
-
-1. `GET https://hfzwood.com/health` → `{"status":"ok"}`
-2. Manual / Glossary / Knowledge Base public pages load expected published content
-3. Administrator CMS access still works
-4. Existing editorial content and entitlement files are present on the mounted path (no unexpected reseed)
+**Recovery:** use DynamoDB point-in-time recovery (restore to a new table, then repoint if needed). No AWS Backup vault or schedule is used for this table.
 
 ## Operational monitoring (ALB + ECS)
 
@@ -283,7 +346,8 @@ cd deployment\cdk
 | Fargate (0.25 vCPU / 0.5 GB) | ~$9 |
 | ALB | ~$18 base + LCU |
 | Cognito (≤50k MAU free tier) | $0 |
-| EFS + ECR + CloudWatch | usage-based |
+| ECR + CloudWatch | usage-based |
+| DynamoDB (`hfzwood-entitlements`, on-demand) | usage-based; near-zero at low traffic |
 
 Stop the service when idle:
 
@@ -291,4 +355,4 @@ Stop the service when idle:
 aws ecs update-service --cluster resin-calculator-cluster --service resin-calculator-service --desired-count 0 --region eu-central-1 --profile hfzwood
 ```
 
-Keep `desiredCount` at `1` for production editorial writes unless a separate multi-writer design is approved.
+Keep `desiredCount` at `1` for the current deployment unless an independently validated scaling design is approved. Editorial changes are made locally and released through Git.

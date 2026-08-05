@@ -1,0 +1,35 @@
+După ce am ales lemnul pentru proiectul nostru, primul lucru pe care îl facem este să îl aducem la dimensiuni cât mai apropiate de ceea ce vrem să obținem.
+
+În cazul de față am ales o bucată de lemn care să cuprindă cât mai multe goluri, formă cât mai puțin regulată, astfel încât să exploatăm la maxim aplicația pe care o vom folosi la calculul rășinii.
+
+Pentru că lemnul era destul de gros și pentru a încerca obținerea unei simetrii, l-am despicat in două, obținând în final o grosime de aproximativ 15 mm.
+
+Pentru a completa distanțele dintre cele două plăci, am creat și aceste două mici insule.
+
+---------------
+
+<speak>
+<prosody rate="88%">
+<break time="2s"/>
+After choosing the wood for our project, the first thing we did was to bring it, as close as possible, to the dimensions of what we wanted to achieve.
+<break time="2s"/>
+In this case, we chose a piece of wood that would include as many holes as possible, and with a shape that was as irregular as possible.
+<break time="2s"/>
+Because the wood was quite thick, and to try to achieve some symmetry, we decided to split it into two.
+<break time="6s"/>
+We obtained a final thickness of approximately 15 millimeters.
+<break time="4s"/>
+We wanted to have a complex shape, which would give us the opportunity to illustrate all the features of the application for resin calculation.
+<break time="2s"/>
+To complete the distances between the two boards, we also created these two small islands.
+<break time="4s"/>
+</prosody>
+</speak>
+
+---------------
+
+Translated with Google translate and adjusted manually.
+Voiced with Amazon Polly Generative engine, en-us, Mathew 
+
+
+https://www.youtube.com/watch?v=wotYtDR0kTE

@@ -1,7 +1,7 @@
 import pytest
-from fastapi.testclient import TestClient
 
 from content.routers import admin_manual, public_content
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 PNG_1X1 = (
     b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01"
@@ -14,12 +14,11 @@ PNG_1X1 = (
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
 
-    return TestClient(app)
+    return AuthenticatedTestClient(app)
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:

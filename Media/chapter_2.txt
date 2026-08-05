@@ -1,0 +1,54 @@
+Următoarea etapă a proiectului este curățarea lemnului.
+
+Primul lucru pe care îl facem este să îndepărtăm toate zonele instabile.
+
+Eliminăm lemnul putrezit, fibrele desprinse și orice alt element care nu este suficient de solid și care ar putea să ne creeze probleme în etapele următoare. 
+
+Este foarte important să acordăm atenția acestei operațiuni, deoarece orice bucată de lemn rămasă insuficient fixată se poate desprinde ulterior și poate afecta rezultatul final. 
+
+Pentru curățare putem folosi o gamă foarte largă de unelte în funcție de ceea ce avem la dispoziție în atelier. 
+
+Putem utiliza periI de sârmă manuală, periI de sârmă montate pe bormașină, dălți, cuțite de sculptură, sau orice altă sculă potrivită pentru forma și starea lemnului. 
+
+Scopul nu este neapărat să obținem o suprafață perfectă, ci să eliminăm toate elementele instabile și să ajungem la un material sănătos și solid.
+
+Cu cât această etapă este realizată mai atent, cu atât reducem riscul apariției bulelor de aer și al desprinderilor unor fragmente de lemn după turnarea rășinii.
+
+În exemplul de față, eu am folosit inclusiv o freză mică cu profil rotund, ceea ce mi a permis să curăț corect toate zonele exterioare vizibile și să ajung în locuri mai greu accesibile. 
+
+La final am folosit o freză conică cu vârf ascuțit pentru a putea curăța în profunzime toate crăpăturile din lemn și pentru a îndepărta cât se poate de mult din materialul rămas în interiorul acestora.
+
+---------------
+
+<speak>
+<prosody rate="88%">
+<break time="2s"/>
+The next stage of the project is cleaning the wood.
+<break time="3s"/>
+The first thing we do is remove all unstable areas.
+<break time="3s"/>
+We eliminate rotten wood, loose fibers and any other element that is not solid enough and that could cause us problems in the following stages.
+<break time="3s"/>
+It is very important to pay attention to this operation, because any piece of wood that remains insufficiently fixed can later come off and affect the final result.
+<break time="3s"/>
+For cleaning we can use a very wide range of tools depending on what we have available in the workshop.
+<break time="3s"/>
+We can use hand wire brushes, wire brushes mounted on a drill, chisels, carving knives, or any other tool suitable for the shape and condition of the wood.
+<break time="3s"/>
+The goal is not necessarily to obtain a perfect surface, but to eliminate all unstable elements and reach a healthy and solid material.
+<break time="3s"/>
+The more carefully this step is carried out, the less likely it is that air bubbles will appear and pieces of wood will come loose after the resin has been poured.
+<break time="3s"/>
+In this example, I also used a small round-profile router bit, which allowed me to properly clean all the visible exterior areas and reach places that were harder to reach.
+<break time="3s"/>
+Finally, I used a tapered router bit with a sharp tip to thoroughly clean all the cracks in the wood and remove as much of the remaining material inside as possible.
+<break time="2s"/>
+</prosody>
+</speak>
+
+---------------
+
+Translated with Google translate and adjusted manually.
+Voiced with Amazon Polly Generative engine, en-us, Mathew 
+
+https://www.youtube.com/watch?v=4F4kMwa6BhQ

@@ -3,12 +3,9 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from copy import deepcopy
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any
-import json
-import re
+import os
 
-from content.repositories.filesystem import atomic_write_json, commercial_data_root
 
 VALID_STORED_ACCESS_TIERS = frozenset({"free", "subscriber"})
 VALID_COMMERCIAL_STATUSES = frozenset(
@@ -16,11 +13,6 @@ VALID_COMMERCIAL_STATUSES = frozenset(
 )
 PROCESSED_EVENT_ID_LIMIT = 100
 HFZWOOD_USER_METADATA_KEY = "hfzwood_user_id"
-
-
-def _safe_user_id(user_id: str) -> str:
-    normalized = re.sub(r"[^a-zA-Z0-9._-]+", "_", user_id.strip())
-    return normalized or "anonymous"
 
 
 def _utc_now_iso() -> str:
@@ -114,64 +106,32 @@ class EntitlementsRepository(ABC):
         raise NotImplementedError
 
 
-class FilesystemEntitlementsRepository(EntitlementsRepository):
-    """EFS-backed commercial entitlement storage; one JSON file per authenticated user."""
+ENTITLEMENTS_TABLE_NAME_ENV = "ENTITLEMENTS_TABLE_NAME"
+STRIPE_CUSTOMER_ID_INDEX_NAME = "stripeCustomerId-index"
 
-    def __init__(self, data_dir: Path | None = None) -> None:
-        root = Path(data_dir) if data_dir is not None else commercial_data_root()
-        self._root = Path(root)
-        self._entitlements_dir = self._root / "entitlements"
-        self._entitlements_dir.mkdir(parents=True, exist_ok=True)
-        self._customer_index_path = self._entitlements_dir / "_stripe_customers.json"
 
-    def _path_for_user(self, user_id: str) -> Path:
-        return self._entitlements_dir / f"{_safe_user_id(user_id)}.json"
+class DynamoDbEntitlementsRepository(EntitlementsRepository):
+    """Production storage backed by a DynamoDB table keyed by `userId` (partition key).
 
-    def _read_customer_index(self) -> dict[str, str]:
-        if not self._customer_index_path.is_file():
-            return {}
-        try:
-            payload = json.loads(self._customer_index_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            return {}
-        if not isinstance(payload, dict):
-            return {}
-        index: dict[str, str] = {}
-        for customer_id, mapped_user_id in payload.items():
-            if (
-                isinstance(customer_id, str)
-                and customer_id.strip()
-                and isinstance(mapped_user_id, str)
-                and mapped_user_id.strip()
-            ):
-                index[customer_id.strip()] = mapped_user_id.strip()
-        return index
+    Uses the `stripeCustomerId-index` GSI for reverse lookup by Stripe customer id,
+    replacing the filesystem-era hand-maintained customer index / fallback scan.
+    """
 
-    def _write_customer_index(self, index: dict[str, str]) -> None:
-        atomic_write_json(self._customer_index_path, dict(sorted(index.items())))
+    def __init__(self, table_name: str, resource=None) -> None:
+        if not table_name or not table_name.strip():
+            raise ValueError("table_name must be a non-empty string.")
+        if resource is None:
+            import boto3
 
-    def _update_customer_index(self, user_id: str, stripe_customer_id: str | None) -> None:
-        index = self._read_customer_index()
-        changed = False
-        for existing_customer_id, mapped_user_id in list(index.items()):
-            if mapped_user_id == user_id and existing_customer_id != stripe_customer_id:
-                del index[existing_customer_id]
-                changed = True
-        if stripe_customer_id:
-            if index.get(stripe_customer_id) != user_id:
-                index[stripe_customer_id] = user_id
-                changed = True
-        if changed:
-            self._write_customer_index(index)
+            resource = boto3.resource("dynamodb")
+        self._table = resource.Table(table_name)
 
     def get_record(self, user_id: str) -> dict[str, Any]:
-        path = self._path_for_user(user_id)
-        if not path.is_file():
+        response = self._table.get_item(Key={"userId": user_id})
+        item = response.get("Item")
+        if item is None:
             return empty_entitlement_record()
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            return empty_entitlement_record()
+        payload = {key: value for key, value in item.items() if key != "userId"}
         return normalize_entitlement_record(payload)
 
     def save_record(self, user_id: str, record: dict[str, Any]) -> dict[str, Any]:
@@ -179,16 +139,22 @@ class FilesystemEntitlementsRepository(EntitlementsRepository):
         if normalized["accessTier"] not in VALID_STORED_ACCESS_TIERS:
             raise ValueError(f"Unsupported access tier: {normalized['accessTier']}")
         normalized["updatedAt"] = _utc_now_iso()
-        path = self._path_for_user(user_id)
-        atomic_write_json(path, normalized)
-        self._update_customer_index(user_id, normalized.get("stripeCustomerId"))
+        item = {"userId": user_id, **normalized}
+        # DynamoDB rejects empty strings as GSI key attribute values; omit when unset
+        # rather than writing None (attributes must be present with a real value or absent).
+        if not item.get("stripeCustomerId"):
+            item.pop("stripeCustomerId", None)
+        self._table.put_item(Item=item)
         return deepcopy(normalized)
 
     def get_access_tier(self, user_id: str) -> str | None:
-        path = self._path_for_user(user_id)
-        if not path.is_file():
+        response = self._table.get_item(Key={"userId": user_id})
+        item = response.get("Item")
+        if item is None:
             return None
-        record = self.get_record(user_id)
+        record = normalize_entitlement_record(
+            {key: value for key, value in item.items() if key != "userId"}
+        )
         tier = record.get("accessTier")
         if tier in VALID_STORED_ACCESS_TIERS:
             return tier
@@ -206,17 +172,30 @@ class FilesystemEntitlementsRepository(EntitlementsRepository):
         if not isinstance(stripe_customer_id, str) or not stripe_customer_id.strip():
             return None
         customer_id = stripe_customer_id.strip()
-        indexed = self._read_customer_index().get(customer_id)
-        if indexed:
-            return indexed
-        # Fallback scan for records written before the index existed.
-        for path in self._entitlements_dir.glob("*.json"):
-            if path.name.startswith("_"):
-                continue
-            try:
-                payload = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
-                continue
-            if isinstance(payload, dict) and payload.get("stripeCustomerId") == customer_id:
-                return path.stem
-        return None
+        response = self._table.query(
+            IndexName=STRIPE_CUSTOMER_ID_INDEX_NAME,
+            KeyConditionExpression="stripeCustomerId = :cid",
+            ExpressionAttributeValues={":cid": customer_id},
+            Limit=1,
+        )
+        items = response.get("Items") or []
+        if not items:
+            return None
+        user_id = items[0].get("userId")
+        return user_id if isinstance(user_id, str) and user_id.strip() else None
+
+
+def get_entitlements_repository() -> EntitlementsRepository:
+    """Return the required DynamoDB entitlement repository.
+
+    Local and production environments both use DynamoDB. Missing configuration is
+    an explicit startup/configuration error; filesystem entitlement persistence is
+    intentionally unsupported.
+    """
+    table_name = os.environ.get(ENTITLEMENTS_TABLE_NAME_ENV, "").strip()
+    if not table_name:
+        raise RuntimeError(
+            f"{ENTITLEMENTS_TABLE_NAME_ENV} must be configured; "
+            "filesystem entitlement storage is not supported."
+        )
+    return DynamoDbEntitlementsRepository(table_name)

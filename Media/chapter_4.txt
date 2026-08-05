@@ -1,0 +1,53 @@
+
+<speak>
+<prosody rate="88%">
+<break time="2s"/>
+Building the mold is a relatively simple stage, but it is important to carry it out as correctly as possible, because any mistake at this stage may lead to resin leaks and problems that can be difficult to fix after the pour.
+<break time="1s"/>
+To build the mold, we use inexpensive and easy-to-find materials. In this case, I used a few leftover pieces of melamine board to build the frame required for the project. 
+<break time="1s"/>
+The first step was drilling pilot holes in the areas where the side walls will be fixed.
+<break time="1s"/>
+To make demolding easier after the resin has cured, I applied adhesive tape to all surfaces that will come into contact with the resin.
+<break time="1s"/>
+After that, I positioned the frame on the mold base and traced its outline with a pencil. 
+<break time="1s"/>
+This allows us to know exactly where the side walls will be placed and where the sealant must be applied.
+<break time="1s"/>
+Along the traced outline, I drilled all the holes required for fixing the frame with screws, allowing the assembly to be completed quickly and accurately.
+<break time="1s"/>
+The next step is covering the entire surface of the mold base with adhesive tape. 
+<break time="1s"/>
+It is important that it is stretched and applied properly, without wrinkles or loose areas, in order to obtain a surface that is as uniform as possible.
+<break time="3s"/>
+Before the final assembly of the frame, we apply a continuous bead of silicone along the previously marked outline. 
+<break time="1s"/>
+Its purpose is to create a sealing gasket between the mold base and the side walls and to prevent resin leaks during the pour. 
+<break time="1s"/>
+Once the frame has been positioned, the screws are tightened progressively, and the pressure created compresses the silicone and forms the sealing layer between the components. 
+<break time="1s"/>
+If some of the silicone is pushed toward the inside of the mold, it can be removed or smoothed before it cures. 
+<break time="2s"/>
+For additional protection, we also apply silicone along the outside joints, paying particular attention to corners and areas where leaks could occur.
+<break time="1s"/>
+After the silicone has cured and we are confident that the entire assembly is stable, we can move on to positioning the wooden elements inside the mold.
+<break time="2s"/>
+Depending on the project, we may choose to seal larger pieces of wood by applying a perimeter bead of silicone. 
+<break time="1s"/>
+This method reduces the amount of resin that flows beneath the wood and can help reduce material consumption.
+<break time="1s"/>
+In this particular project, I did not use this approach. 
+<break time="1s"/>
+The wood contains numerous cavities and voids, and my goal is for the resin to penetrate uniformly, including beneath the wooden pieces. 
+<break time="1s"/>
+In this way, the first sealing coat covers the entire surface as evenly as possible and contributes to achieving a final result that is more uniform and more reliable.
+<break time="2s"/>
+</prosody>
+</speak>
+
+---------------
+
+Already translated.
+Voiced with Amazon Polly Generative engine, en-us, Mathew 
+
+https://www.youtube.com/watch?v=YuQWQZqUhrA

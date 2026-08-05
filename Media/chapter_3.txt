@@ -1,0 +1,32 @@
+<speak>
+<prosody rate="88%">
+<break time="1s"/>
+The next step in the project is sealing the wood. 
+<break time="2s"/>
+For this operation, we prepare a small amount of resin, which we apply with the help of a brush over the entire surface of the wood.
+<break time="2s"/>
+It is very important to cover all exposed areas as thoroughly as possible and to work the resin into the walls of cavities, cracks, and all voids present in the material. 
+<break time="2s"/>
+The main purpose of this step is to reduce as much as possible the formation of air bubbles during the pour. 
+<break time="2s"/>
+Without proper sealing, the air trapped in the pores and cavities of the wood will be released gradually into the resin. 
+<break time="2s"/>
+These bubbles don't always appear in the first minutes after pouring. 
+<break time="2s"/>
+In many situations, they may continue to appear for several hours, including when we are no longer near the project to notice and try to remove them. 
+<break time="2s"/>
+For this reason, sealing the wood is one of the steps that directly influence the quality of the final result and should not be treated lightly.
+<break time="2s"/>
+When using resins designed for deep pours, the chances that small bubbles will dissipate on their own are very high. 
+<break time="2s"/>
+Even so, proper sealing remains one of the most effective methods of preventing problems before they have a chance to appear.
+<break time="2s"/>
+</prosody>
+</speak>
+
+---------------
+
+Alfredy translated.
+Voiced with Amazon Polly Generative engine, en-us, Mathew 
+
+https://www.youtube.com/watch?v=3r0RyLEe9as

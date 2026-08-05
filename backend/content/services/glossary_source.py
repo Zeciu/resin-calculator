@@ -12,7 +12,7 @@ def repo_root() -> Path:
 
 
 def glossary_content_js_path() -> Path:
-    return repo_root() / "frontend" / "src" / "glossary" / "glossaryContent.js"
+    return repo_root() / "frontend" / "public" / "src" / "glossary" / "glossaryContent.js"
 
 
 def export_glossary_entries_script() -> Path:

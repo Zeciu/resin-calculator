@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+      "media": [],
+      "possibleCauses": [
+        "No se han respetado las especificaciones del producto.",
+        "Se ha intentado acortar el proceso de trabajo."
+      ],
+      "prevention": [],
+      "problemSummary": "Superar el espesor m\u00e1ximo recomendado puede provocar reacciones exot\u00e9rmicas excesivas y defectos que pongan en peligro el proyecto.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respeta el espesor m\u00e1ximo indicado en la ficha t\u00e9cnica y, si es necesario, planifica el vertido en varias fases."
+      ],
+      "symptoms": [
+        "\u00bfTienes pensado aplicar una capa m\u00e1s gruesa que la recomendada por el fabricante?",
+        "Quieres reducir el n\u00famero de coladas."
+      ],
+      "tips": [
+        "En muchos casos, dos vertidos m\u00e1s finos son m\u00e1s seguros que uno muy grueso."
+      ],
+      "title": "\u00bfPor qu\u00e9 no se debe superar el espesor m\u00e1ximo recomendado para un moldeado?",
+      "warnings": [
+        "Superar los l\u00edmites recomendados puede provocar sobrecalentamiento, grietas, deformaciones o comprometer la integridad del proyecto."
+      ]
+    }
+  ],
+  "locale": "es"
+}

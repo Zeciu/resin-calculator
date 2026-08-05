@@ -5,19 +5,19 @@ from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
+from tests.support.authenticated_client import AuthenticatedTestClient
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    monkeypatch.setenv("AUTH_MODE", "mock")
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     admin_knowledge_base.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
 
-    return TestClient(app), tmp_path
+    return AuthenticatedTestClient(app), tmp_path
 
 
 def admin_headers():
