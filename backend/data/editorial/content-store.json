@@ -7996,6 +7996,63 @@
       "status": "published",
       "updatedAt": "2026-07-24T11:28:39.305035+00:00"
     },
+    "CONTENT#kb_entry#alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului|META": {
+      "category": "Epoxy",
+      "contentId": "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T11:38:07.264259+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+      "sk": "META",
+      "sortOrder": 1600,
+      "updatedAt": "2026-07-28T11:44:25.696694+00:00"
+    },
+    "CONTENT#kb_entry#alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului|VARIANT#ro": {
+      "contentId": "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Ordinea etapelor nu este respectat\u0103.",
+          "Forma final\u0103 nu este \u00eenc\u0103 definit\u0103."
+        ],
+        "prevention": [
+          "Planific\u0103 fiecare t\u0103iere astfel \u00eenc\u00e2t s\u0103 reduci cantitatea de material care va trebui \u00eendep\u0103rtat\u0103 ulterior."
+        ],
+        "problemSummary": "Debit\u0103rile se realizeaz\u0103 dup\u0103 stabilirea geometriei proiectului. T\u0103ierile trebuie s\u0103 urmeze forma final\u0103 \u0219i s\u0103 reduc\u0103 prelucr\u0103rile ulterioare.",
+        "relatedGlossaryEntryIds": [
+          "fier-str-u-circular",
+          "fier-str-u-panglic"
+        ],
+        "relatedKbEntryIds": [],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Realizeaz\u0103 debit\u0103rile doar dup\u0103 trasarea conturului exterior \u0219i dup\u0103 stabilirea configura\u021biei finale a proiectului."
+        ],
+        "symptoms": [
+          "Nu \u0219tii c\u00e2nd trebuie t\u0103iat lemnul.",
+          "Vrei s\u0103 debitezi piesele \u00eenainte de stabilirea proiectului."
+        ],
+        "tips": [],
+        "title": "Alege forma \u00een func\u021bie de proiect \u0219i de aspectul pe care \u00eel urm\u0103re\u0219ti, nu \u00een func\u021bie de forma ini\u021bial\u0103 a lemnului.",
+        "warnings": [
+          "Debit\u0103rile f\u0103cute prea devreme pot limita posibilit\u0103\u021bile de modificare a compozi\u021biei."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+      "publishedAt": "2026-07-28T11:44:25.696694+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T11:44:25.696694+00:00"
+    },
     "CONTENT#kb_entry#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare|META": {
       "category": "Epoxy",
       "contentId": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
@@ -8058,6 +8115,64 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-26T19:20:43.938708+00:00"
+    },
+    "CONTENT#kb_entry#ce-material-este-recomandat-pentru-construirea-cofrajului|META": {
+      "category": "Epoxy",
+      "contentId": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T12:02:15.941320+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#ce-material-este-recomandat-pentru-construirea-cofrajului",
+      "sk": "META",
+      "sortOrder": 1900,
+      "updatedAt": "2026-07-28T12:07:11.026326+00:00"
+    },
+    "CONTENT#kb_entry#ce-material-este-recomandat-pentru-construirea-cofrajului|VARIANT#ro": {
+      "contentId": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Alegerea unui material nepotrivit.",
+          "Utilizarea unor materiale care se pot deforma."
+        ],
+        "prevention": [],
+        "problemSummary": "Materialul utilizat trebuie s\u0103 fie rigid, stabil \u0219i s\u0103 permit\u0103 desprinderea u\u0219oar\u0103 a proiectului dup\u0103 \u00eent\u0103rirea r\u0103\u0219inii.",
+        "relatedGlossaryEntryIds": [
+          "cofraj"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+          "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Pentru majoritatea proiectelor se recomand\u0103 PAL melaminat. Pot fi utilizate \u0219i MDF melaminat, placaj sau alte materiale rigide care nu se deformeaz\u0103 sub greutatea r\u0103\u0219inii."
+        ],
+        "symptoms": [
+          "Nu \u0219tii ce material s\u0103 folose\u0219ti.",
+          "Vrei s\u0103 construie\u0219ti primul cofraj."
+        ],
+        "tips": [
+          "Suprafa\u021ba melaminat\u0103 faciliteaz\u0103 desprinderea proiectului dup\u0103 \u00eent\u0103rirea r\u0103\u0219inii."
+        ],
+        "title": "Ce material este recomandat pentru construirea cofrajului?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#ce-material-este-recomandat-pentru-construirea-cofrajului",
+      "publishedAt": "2026-07-28T12:07:11.026326+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T12:07:11.026326+00:00"
     },
     "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|META": {
       "category": "Epoxy",
@@ -8196,6 +8311,128 @@
       "status": "published",
       "updatedAt": "2026-07-26T18:11:51.776466+00:00"
     },
+    "CONTENT#kb_entry#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii|META": {
+      "category": "Epoxy",
+      "contentId": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T11:48:57.168880+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+      "sk": "META",
+      "sortOrder": 1800,
+      "updatedAt": "2026-07-28T11:51:24.095470+00:00"
+    },
+    "CONTENT#kb_entry#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii|VARIANT#ro": {
+      "contentId": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Cofrajul nu a fost planificat corespunz\u0103tor.",
+          "Materialele sau metoda de construc\u021bie nu sunt potrivite."
+        ],
+        "prevention": [],
+        "problemSummary": "Cofrajul este matri\u021ba temporar\u0103 \u00een care va fi turnat\u0103 r\u0103\u0219ina. Un cofraj bine construit previne scurgerile \u0219i contribuie la ob\u021binerea unui proiect de calitate.",
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "silicon-de-etan-are",
+          "sigilarea-lemnului"
+        ],
+        "relatedKbEntryIds": [
+          "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Construie\u0219te cofrajul dup\u0103 stabilirea geometriei proiectului. Asigur\u0103 o structur\u0103 rigid\u0103, bine fixat\u0103 \u0219i complet etan\u0219at\u0103 \u00eenainte de turnare."
+        ],
+        "symptoms": [
+          "Nu \u0219tii de unde s\u0103 \u00eencepi construc\u021bia cofrajului.",
+          "Vrei s\u0103 preg\u0103te\u0219ti cofrajul pentru prima turnare.",
+          "Nu e\u0219ti sigur dac\u0103 structura este suficient de solid\u0103."
+        ],
+        "tips": [
+          "Un cofraj bine realizat reduce semnificativ riscul apari\u021biei problemelor \u00een timpul turn\u0103rii."
+        ],
+        "title": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+      "publishedAt": "2026-07-28T11:51:24.095470+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T11:51:24.095470+00:00"
+    },
+    "CONTENT#kb_entry#cum-etan-ez-corect-cofrajul|META": {
+      "category": "Epoxy",
+      "contentId": "cum-etan-ez-corect-cofrajul",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T12:33:26.718033+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-etan-ez-corect-cofrajul",
+      "sk": "META",
+      "sortOrder": 2100,
+      "updatedAt": "2026-07-28T12:36:46.490455+00:00"
+    },
+    "CONTENT#kb_entry#cum-etan-ez-corect-cofrajul|VARIANT#ro": {
+      "contentId": "cum-etan-ez-corect-cofrajul",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "\u00cembin\u0103rile nu au fost sigilate complet.",
+          "Siliconul a fost aplicat insuficient sau neuniform."
+        ],
+        "prevention": [
+          "Acord\u0103 timp etan\u0219\u0103rii. Este mult mai u\u0219or s\u0103 previi o scurgere dec\u00e2t s\u0103 o opre\u0219ti dup\u0103 \u00eenceperea turn\u0103rii."
+        ],
+        "problemSummary": "Etan\u0219area este una dintre cele mai importante etape ale construc\u021biei cofrajului. Chiar \u0219i o scurgere mic\u0103 poate duce la pierderi importante de r\u0103\u0219in\u0103.",
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "silicon-de-etan-are",
+          "strat-de-sigilare-seal-coat"
+        ],
+        "relatedKbEntryIds": [
+          "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Aplic\u0103 un cordon de silicon \u00eenainte de montarea lateralelor \u0219i etan\u0219eaz\u0103 toate \u00eembin\u0103rile dup\u0103 asamblare. Verific\u0103 atent col\u021burile \u0219i zonele de contact dintre fund \u0219i laterale."
+        ],
+        "symptoms": [
+          "Exist\u0103 rosturi \u00eentre elementele cofrajului.",
+          "Te temi c\u0103 r\u0103\u0219ina poate curge."
+        ],
+        "tips": [],
+        "title": "Cum etan\u0219ez corect cofrajul?",
+        "warnings": [
+          "O scurgere aparent minor\u0103 poate produce pierderi importante de r\u0103\u0219in\u0103."
+        ]
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-etan-ez-corect-cofrajul",
+      "publishedAt": "2026-07-28T12:36:46.490455+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T12:36:46.490455+00:00"
+    },
     "CONTENT#kb_entry#cum-influen-eaz-tipul-proiectului-alegerea-lemnului|META": {
       "category": "Epoxy",
       "contentId": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
@@ -8311,6 +8548,120 @@
       "sourceTextRevision": 2,
       "status": "draft",
       "updatedAt": "2026-07-26T20:01:30.253296+00:00"
+    },
+    "CONTENT#kb_entry#cum-stabilesc-dimensiunile-corecte-ale-cofrajului|META": {
+      "category": "Epoxy",
+      "contentId": "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T12:21:19.266249+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+      "sk": "META",
+      "sortOrder": 2000,
+      "updatedAt": "2026-07-28T12:23:20.704470+00:00"
+    },
+    "CONTENT#kb_entry#cum-stabilesc-dimensiunile-corecte-ale-cofrajului|VARIANT#ro": {
+      "contentId": "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Dimensiunile au fost calculate dup\u0103 piesele de lemn, nu dup\u0103 proiectul final.",
+          "Nu a fost prev\u0103zut spa\u021biu pentru prelucr\u0103rile ulterioare."
+        ],
+        "prevention": [
+          "O rezerv\u0103 de c\u00e2\u021biva milimetri simplific\u0103 ajust\u0103rile \u0219i finisarea proiectului."
+        ],
+        "problemSummary": "Dimensiunile cofrajului trebuie s\u0103 permit\u0103 at\u00e2t turnarea \u00een siguran\u021b\u0103, c\u00e2t \u0219i prelucr\u0103rile finale ale proiectului.",
+        "relatedGlossaryEntryIds": [
+          "cofraj"
+        ],
+        "relatedKbEntryIds": [
+          "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+          "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Construie\u0219te cofrajul pu\u021bin mai mare dec\u00e2t dimensiunile finale ale proiectului \u0219i realizeaz\u0103 lateralele cu cel pu\u021bin 20\u201330 mm mai \u00eenalte dec\u00e2t nivelul final al r\u0103\u0219inii."
+        ],
+        "symptoms": [
+          "Nu \u0219tii c\u00e2t de mare trebuie construit cofrajul.",
+          "Nu \u0219tii ce \u00een\u0103l\u021bime trebuie s\u0103 aib\u0103 lateralele."
+        ],
+        "tips": [],
+        "title": "Cum stabilesc dimensiunile corecte ale cofrajului?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+      "publishedAt": "2026-07-28T12:23:20.704470+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T12:23:20.704470+00:00"
+    },
+    "CONTENT#kb_entry#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului|META": {
+      "category": "Epoxy",
+      "contentId": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T11:34:45.376093+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+      "sk": "META",
+      "sortOrder": 1500,
+      "updatedAt": "2026-07-28T11:37:53.267675+00:00"
+    },
+    "CONTENT#kb_entry#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului|VARIANT#ro": {
+      "contentId": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Conturul exterior nu a fost trasat.",
+          "Forma final\u0103 nu a fost definit\u0103."
+        ],
+        "prevention": [],
+        "problemSummary": "Dup\u0103 stabilirea compozi\u021biei, trebuie definit conturul exterior al proiectului. Acesta va reprezenta forma final\u0103 a piesei \u0219i baza pentru construirea cofrajului.",
+        "relatedGlossaryEntryIds": [
+          "cofraj"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "Stabile\u0219te forma \u0219i dimensiunile finale \u00eenainte de orice alt\u0103 opera\u021biune. Conturul proiectului trebuie s\u0103 reflecte rezultatul pe care dore\u0219ti s\u0103 \u00eel ob\u021bii."
+        ],
+        "symptoms": [
+          "Nu ai stabilit \u00eenc\u0103 dimensiunile finale.",
+          "Nu \u0219tii ce form\u0103 va avea proiectul."
+        ],
+        "tips": [
+          "Alege forma \u00een func\u021bie de proiect \u0219i de aspectul pe care \u00eel urm\u0103re\u0219ti, nu \u00een func\u021bie de forma ini\u021bial\u0103 a lemnului."
+        ],
+        "title": "Cum stabilesc forma \u0219i dimensiunile finale ale proiectului?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+      "publishedAt": "2026-07-28T11:37:53.267675+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T11:37:53.267675+00:00"
     },
     "CONTENT#kb_entry#cum-trebuie-cur-at-lemnul-nainte-de-turnare|META": {
       "category": "Epoxy",
@@ -8915,6 +9266,63 @@
       "sourceTextRevision": 2,
       "status": "published",
       "updatedAt": "2026-07-26T19:59:21.655180+00:00"
+    },
+    "CONTENT#kb_entry#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului|META": {
+      "category": "Epoxy",
+      "contentId": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+      "contentType": "kb_entry",
+      "createdAt": "2026-07-28T11:44:42.452731+00:00",
+      "difficulty": "Beginner",
+      "pk": "CONTENT#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+      "sk": "META",
+      "sortOrder": 1700,
+      "updatedAt": "2026-07-28T11:48:44.286777+00:00"
+    },
+    "CONTENT#kb_entry#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului|VARIANT#ro": {
+      "contentId": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+      "draftBody": {
+        "bodyBlocks": [],
+        "estimatedRepairTime": null,
+        "media": [],
+        "possibleCauses": [
+          "Compozi\u021bia nu a fost analizat\u0103 suficient.",
+          "Lemnul a fost pozi\u021bionat din prima variant\u0103 disponibil\u0103."
+        ],
+        "prevention": [
+          "Nu te gr\u0103bi \u00een aceast\u0103 etap\u0103. C\u00e2teva minute petrecute experiment\u00e2nd diferite variante pot schimba semnificativ aspectul final al proiectului."
+        ],
+        "problemSummary": "Da. \u00cen aceast\u0103 etap\u0103 este recomandat s\u0103 experimentezi diferite variante de pozi\u021bionare p\u00e2n\u0103 c\u00e2nd ob\u021bii compozi\u021bia dorit\u0103.",
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "margine-natural"
+        ],
+        "relatedKbEntryIds": [
+          "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului"
+        ],
+        "relatedManualChapterIds": [],
+        "requiredMaterials": [],
+        "requiredTools": [],
+        "searchKeywords": [],
+        "solution": [
+          "\u00cenainte de construirea cofrajului, mut\u0103, rote\u0219te \u0219i repozi\u021bioneaz\u0103 piesele ori de c\u00e2te ori este necesar. Dup\u0103 realizarea cofrajului, modific\u0103rile devin mult mai dificile."
+        ],
+        "symptoms": [
+          "Nu e\u0219ti convins de pozi\u021bia actual\u0103 a lemnului.",
+          "Ai impresia c\u0103 proiectul poate ar\u0103ta mai bine."
+        ],
+        "tips": [],
+        "title": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?",
+        "warnings": []
+      },
+      "locale": "ro",
+      "pk": "CONTENT#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+      "publishedAt": "2026-07-28T11:48:44.286777+00:00",
+      "sk": "VARIANT#ro",
+      "snapshotKey": "published/knowledge-base/ro/entries.json",
+      "sourceRevision": 2,
+      "sourceTextRevision": 2,
+      "status": "published",
+      "updatedAt": "2026-07-28T11:48:44.286777+00:00"
     },
     "CONTENT#kb_entry#trebuie-eliminate-toate-defectele-naturale-ale-lemnului|META": {
       "category": "Epoxy",
@@ -12680,6 +13088,41 @@
       "contentId": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
       "pk": "INDEX#kb",
       "sk": "ORDER#001400"
+    },
+    "INDEX#kb|ORDER#001500": {
+      "contentId": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001500"
+    },
+    "INDEX#kb|ORDER#001600": {
+      "contentId": "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001600"
+    },
+    "INDEX#kb|ORDER#001700": {
+      "contentId": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001700"
+    },
+    "INDEX#kb|ORDER#001800": {
+      "contentId": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001800"
+    },
+    "INDEX#kb|ORDER#001900": {
+      "contentId": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#001900"
+    },
+    "INDEX#kb|ORDER#002000": {
+      "contentId": "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#002000"
+    },
+    "INDEX#kb|ORDER#002100": {
+      "contentId": "cum-etan-ez-corect-cofrajul",
+      "pk": "INDEX#kb",
+      "sk": "ORDER#002100"
     }
   }
 }
