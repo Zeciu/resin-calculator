@@ -1,12 +1,10 @@
 import tempfile
-import importlib.util
 from pathlib import Path
 
 import pytest
 
 from content.repositories.filesystem import (
     FilesystemContentRepository,
-    INITIALIZATION_MARKER,
     default_content_root,
     validate_strict_content_root,
 )
@@ -14,30 +12,6 @@ from content.repositories.filesystem import (
 
 def assert_no_probe_files(root: Path) -> None:
     assert list(root.glob(".hfzwood-write-check-*")) == []
-
-
-def import_app_with_env(monkeypatch: pytest.MonkeyPatch, *, content_data_dir: str | None, require: bool):
-    if require:
-        monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    else:
-        monkeypatch.delenv("REQUIRE_CONTENT_DATA_DIR", raising=False)
-    if content_data_dir is None:
-        monkeypatch.delenv("CONTENT_DATA_DIR", raising=False)
-    else:
-        monkeypatch.setenv("CONTENT_DATA_DIR", content_data_dir)
-    monkeypatch.setenv("AUTH_MODE", "mock")
-    monkeypatch.delenv("COGNITO_USER_POOL_ID", raising=False)
-    monkeypatch.delenv("COGNITO_REGION", raising=False)
-    monkeypatch.delenv("EDITORIAL_CONTENT_MODE", raising=False)
-
-    app_path = Path(__file__).resolve().parents[2] / "app.py"
-    spec = importlib.util.spec_from_file_location("strict_startup_validation_probe", app_path)
-    assert spec is not None
-    assert spec.loader is not None
-    app_module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(app_module)
-
-    return app_module
 
 
 def test_strict_root_requires_explicit_content_data_dir(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -121,25 +95,3 @@ def test_non_strict_mode_preserves_existing_local_fallback_behavior(
     repository = FilesystemContentRepository()
 
     assert repository._root == default_content_root()
-
-
-def test_strict_startup_import_initializes_empty_storage(
-    monkeypatch: pytest.MonkeyPatch,
-    tmp_path: Path,
-) -> None:
-    import_app_with_env(monkeypatch, content_data_dir=str(tmp_path), require=True)
-
-    assert_no_probe_files(tmp_path)
-    assert (tmp_path / "editorial" / "content-store.json").is_file()
-    assert (tmp_path / "published").is_dir()
-    assert (tmp_path / "legacy" / "manual" / "en" / "document.json").is_file()
-    assert (tmp_path / "legacy" / "glossary" / "en" / "entries.json").is_file()
-    assert (tmp_path / "legacy" / "knowledge-base" / "en" / "entries.json").is_file()
-    assert (tmp_path / INITIALIZATION_MARKER).is_file()
-
-
-def test_strict_startup_validation_import_fails_without_content_root(
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    with pytest.raises(RuntimeError, match="CONTENT_DATA_DIR must be set"):
-        import_app_with_env(monkeypatch, content_data_dir=None, require=True)

@@ -187,3 +187,30 @@ class TestCognitoModeIdentityGuards:
             )
 
         assert response.status_code == 400
+
+
+    def test_authenticated_user_without_special_role_can_use_local_editorial_route(self):
+        from app import app
+        from fastapi.testclient import TestClient
+
+        client = TestClient(app)
+        with patch("public.app._AUTH_ENABLED", True), patch(
+            "public.app._COGNITO_CLIENT_ID", "test-client"
+        ), patch(
+            "public.app._get_jwks",
+            AsyncMock(return_value={"keys": [{"kty": "RSA", "kid": "test-key"}]}),
+        ), patch(
+            "public.app.jwt.decode",
+            return_value={
+                "sub": "ordinary-user",
+                "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_test",
+                "token_use": "access",
+                "client_id": "test-client",
+            },
+        ):
+            response = client.get(
+                "/api/admin/references/search",
+                headers={"Authorization": "Bearer valid.token.here"},
+            )
+
+        assert response.status_code == 200

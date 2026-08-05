@@ -11,7 +11,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from content.translation.config import DeepLConfig, DEFAULT_TIMEOUT_SECONDS, load_deepl_config
-from content.translation.deepl import (
+from private.translation.deepl import (
     DEFAULT_RETRY_DELAY_SECONDS,
     MAX_ATTEMPTS,
     MAX_BACKOFF_SECONDS,
@@ -814,7 +814,7 @@ class TestSecurityAndLogging:
             )
 
         provider, _ = _provider_with_handler(handler)
-        with caplog.at_level(logging.INFO, logger="content.translation.deepl"):
+        with caplog.at_level(logging.INFO, logger="private.translation.deepl"):
             provider.translate(
                 "SOURCE_SECRET_TEXT",
                 source_locale="ro",
@@ -833,7 +833,7 @@ class TestSecurityAndLogging:
             raise httpx.ReadTimeout("read", request=request)
 
         provider, _ = _provider_with_handler(handler)
-        with caplog.at_level(logging.INFO, logger="content.translation.deepl"):
+        with caplog.at_level(logging.INFO, logger="private.translation.deepl"):
             with pytest.raises(TranslationTimeoutError):
                 provider.translate("text", source_locale="ro", target_locale="en")
         joined = "\n".join(record.getMessage() for record in caplog.records)
@@ -848,7 +848,7 @@ class TestSecurityAndLogging:
             return httpx.Response(500, json={})
 
         provider, _ = _provider_with_handler(handler)
-        with caplog.at_level(logging.INFO, logger="content.translation.deepl"):
+        with caplog.at_level(logging.INFO, logger="private.translation.deepl"):
             with pytest.raises(TranslationTemporaryProviderError):
                 provider.translate("text", source_locale="ro", target_locale="en")
         messages = [record.getMessage() for record in caplog.records]

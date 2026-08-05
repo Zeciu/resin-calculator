@@ -74,8 +74,8 @@ describe("RegisterPage", () => {
 
   it("resets safely after async confirmation-required registration", async () => {
     const user = userEvent.setup();
-    const { cognitoAuthAdapter } = await import("./cognitoAuthAdapter.js");
-    vi.spyOn(cognitoAuthAdapter, "register").mockImplementation(
+    const { sessionStorageTestAuthAdapter } = await import("../test/sessionStorageTestAuthAdapter.js");
+    vi.spyOn(sessionStorageTestAuthAdapter, "register").mockImplementation(
       () =>
         new Promise((resolve) => {
           setTimeout(() => {

@@ -1,14 +1,14 @@
 # Production Deployment (ECS Fargate)
 
 Deploys HFZWood as a single Fargate task behind an HTTPS Application Load Balancer,
-with Cognito authentication, a packaged read-only editorial release corpus, and DynamoDB-backed commercial/user state.
+with Cognito authentication, a packaged public release corpus, and DynamoDB-backed commercial/user state.
 
 Infrastructure is managed with AWS CDK (TypeScript) as **two stacks**:
 
 | Stack | Purpose |
 |---|---|
 | `InfraStack` | ECR repository, Cognito user pool / app client / Hosted UI domain, CloudWatch log group |
-| `AppStack` | ECS cluster, ALB, ACM certificate, Route 53 record, Fargate service, packaged editorial corpus, DynamoDB table for entitlements |
+| `AppStack` | ECS cluster, ALB, ACM certificate, Route 53 record, Fargate service, packaged public corpus, DynamoDB table for entitlements |
 
 ## Repository layout
 
@@ -29,10 +29,10 @@ Infrastructure is managed with AWS CDK (TypeScript) as **two stacks**:
 
 Production is a **public reader and application runtime**, not an editorial-authoring environment.
 
-- The administrator runs the Admin module locally, with local mock-admin access and DeepL credentials in the gitignored `dev.local.cmd` file described in the root [`README.md`](../README.md).
+- The administrator runs the Admin module locally with ordinary Cognito authentication and DeepL credentials in the gitignored `dev.local.cmd` file described in the root [`README.md`](../README.md). Editorial routes require no administrator role or commercial entitlement.
 - The administrator edits, translates, reviews, and publishes the Manual, Glossary, Knowledge Base, and website content locally. DeepL credentials must never be placed in AWS Secrets Manager, ECS task secrets, or the production container environment.
 - After the editorial change is complete, the administrator commits the updated Git-tracked content. The deployer builds an image from that commit, pushes it to ECR, and forces a new ECS deployment.
-- The production image reads the resulting frozen public corpus from `/app/content`. The Docker build copies only public frontend/backend source; it does not contain editorial routes, authoring UI, or DeepL code.
+- The production image reads the resulting frozen public corpus from `/app/public/content`. The Docker build copies only the public frontend/backend runtime plus explicit billing and entitlement modules; it does not contain editorial routes, authoring UI, DeepL code, or legacy editorial data.
 
 Production `/admin` and `/api/admin/**` are absent. Do not use production for authoring or translation.
 
@@ -206,7 +206,6 @@ Injected by `AppStack` (do not rely on container-local `/app/data`):
 | `COGNITO_USER_POOL_ID` | InfraStack user pool |
 | `COGNITO_CLIENT_ID` | InfraStack app client |
 | `COGNITO_REGION` | Stack region (`eu-central-1`) |
-| `CONTENT_DATA_DIR` | `/app/content` (packaged, read-only editorial corpus) |
 | `ENTITLEMENTS_TABLE_NAME` | `hfzwood-entitlements` (DynamoDB table name) |
 | `CORS_ALLOWED_ORIGINS` | `https://hfzwood.com` |
 | `STRIPE_PRICE_ID` | Monthly Price ID from CDK context `stripePriceId` or env `HFZWOOD_STRIPE_PRICE_ID` |
@@ -273,7 +272,7 @@ Application Load Balancer  (resin-calculator-alb)
 Fargate Task  (desiredCount=1)
    ├── FastAPI + Cognito JWT validation
    ├── React SPA from /static
-   ├── Packaged editorial corpus → /app/content  (read-only release mode)
+   ├── Packaged public corpus → /app/public/content  (read-only)
    └── DynamoDB → hfzwood-entitlements  (commercial/user state)
 
 Cognito User Pool + Hosted UI

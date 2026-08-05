@@ -1,13 +1,12 @@
-"""Access dependency for source-only local editorial routes."""
+"""Compatibility dependency for local editorial routes without special authorization."""
 
 from __future__ import annotations
 
-import os
 
-from fastapi import HTTPException, status
+def require_local_editorial_access() -> None:
+    """Add no role or entitlement requirement to a local editorial route.
 
-
-def require_local_editorial_access() -> dict[str, str]:
-    if os.environ.get("HFZWOOD_LOCAL_EDITORIAL") != "1":
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found")
-    return {"id": "local-editor", "role": "local-editor"}
+    The public application's normal Cognito middleware still requires an
+    authenticated user. Any authenticated local user may use editorial routes.
+    """
+    return None

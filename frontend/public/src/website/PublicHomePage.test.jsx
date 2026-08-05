@@ -47,7 +47,10 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     renderWorkspace(ROUTES.HOME);
 
     await waitFor(() => {
-      expect(fetchMock).toHaveBeenCalledWith("/api/content/website/home?locale=en");
+      expect(fetchMock).toHaveBeenCalledWith(
+        "/api/content/website/home?locale=en",
+        expect.objectContaining({ headers: expect.any(Object) }),
+      );
     });
   });
 

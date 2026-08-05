@@ -11,7 +11,10 @@ describe("websitePublicApi", () => {
 
     await fetchPublishedWebsitePage("about", "ro");
 
-    expect(fetchMock).toHaveBeenCalledWith("/api/content/website/about?locale=ro");
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/content/website/about?locale=ro",
+      expect.objectContaining({ headers: expect.any(Object) }),
+    );
   });
 
   it("throws when the response is not ok", async () => {

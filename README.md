@@ -189,8 +189,8 @@ The backend and frontend require Cognito configuration in every environment, inc
 | `COGNITO_USER_POOL_ID` | Backend | Required; startup fails if unset. |
 | `COGNITO_CLIENT_ID` | Backend | Required; used to validate JWT client/audience. Startup fails if unset. |
 | `COGNITO_REGION` | Backend | Required; startup fails if unset. |
-| `CONTENT_DATA_DIR` | Backend | Filesystem root for editorial repositories (and related local filesystem stores). Production uses a packaged read-only corpus at `/app/content`. |
-| `REQUIRE_CONTENT_DATA_DIR` | Backend | Set to `1` in production so startup fails closed instead of using ephemeral container storage. |
+| `CONTENT_DATA_DIR` | Backend | Filesystem root for source-only local editorial repositories and related local filesystem stores. The production public reader serves the packaged corpus at `/app/public/content` and does not rely on this directory. |
+| `REQUIRE_CONTENT_DATA_DIR` | Backend | Optional local strict-mode safeguard for source-only editorial storage. It is not required by the production public reader. |
 | `ENTITLEMENTS_TABLE_NAME` | Backend | Required DynamoDB table name for commercial entitlements. |
 | `CORS_ALLOWED_ORIGINS` | Backend | Optional comma-separated origins. Unset defaults to `*` for local development. Production sets `https://hfzwood.com`. |
 | `STRIPE_SECRET_KEY` | Backend | Stripe secret key. Required for Checkout, Portal, and webhooks. |
@@ -219,7 +219,7 @@ Local development uses the same Cognito authentication as production; there is n
 
 ### Local editorial authoring
 
-Editorial authoring runs only from the local source tree. `dev.cmd` enables the sibling `frontend/private` and `backend/private` modules for local development; they are not part of the production Docker build. DeepL credentials remain in the gitignored `dev.local.cmd` file.
+Editorial authoring runs only from the local source tree. `dev.cmd` enables the sibling `frontend/private` and `backend/private` modules for local development; they are not part of the production Docker build. Editorial routes use normal Cognito authentication, but any authenticated local user may use them—there is no administrator role or commercial-entitlement gate. DeepL credentials remain in the gitignored `dev.local.cmd` file.
 
 The public application has no administrator role or entitlement bypass. Customer capabilities are derived only from persisted `free` or `subscriber` entitlements.
 

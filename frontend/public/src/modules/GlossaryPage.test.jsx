@@ -168,7 +168,7 @@ describe("GlossaryPage", () => {
         "true",
       );
     });
-    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("locale=ro"));
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("locale=ro"), expect.any(Object));
     expect(document.getElementById("glossary-entry-exothermic-reaction")).toBeTruthy();
   });
 
@@ -357,7 +357,7 @@ describe("GlossaryPage", () => {
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Alburn" })).toBeInTheDocument();
     });
-    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("locale=ro"));
+    expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("locale=ro"), expect.any(Object));
 
     await user.click(screen.getByRole("button", { name: "Alburn" }));
     const alburnEntry = document.getElementById("glossary-entry-alburn");

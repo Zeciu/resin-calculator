@@ -74,7 +74,10 @@ describe("Public Website infrastructure (Stage 6B)", () => {
     });
 
     expect(screen.getByRole("article", { name: label })).toHaveAttribute("data-page-key", pageKey);
-    expect(fetchMock).toHaveBeenCalledWith(`/api/content/website/${pageKey}?locale=en`);
+    expect(fetchMock).toHaveBeenCalledWith(
+      `/api/content/website/${pageKey}?locale=en`,
+      expect.objectContaining({ headers: expect.any(Object) }),
+    );
     expectFooter();
   });
 

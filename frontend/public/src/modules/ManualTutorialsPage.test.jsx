@@ -44,7 +44,10 @@ describe("ManualTutorialsPage", () => {
       expect(screen.getByRole("heading", { name: "Introduction", level: 2 })).toBeInTheDocument();
     });
 
-    expect(fetchMock).toHaveBeenCalledWith("/api/content/manual?locale=en");
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/content/manual?locale=en",
+      expect.objectContaining({ headers: expect.any(Object) }),
+    );
   });
 
   it("renders the dedicated manual module for authenticated users", async () => {

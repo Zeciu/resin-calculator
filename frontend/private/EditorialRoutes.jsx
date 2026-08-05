@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import AuthRouteGuard from "../public/src/workspace/AuthRouteGuard.jsx";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import AdminLayout from "./admin/AdminLayout.jsx";
 import ManualManagementPage from "./admin/manual/ManualManagementPage.jsx";
@@ -9,11 +10,18 @@ import AdminPlaceholderPage from "./admin/AdminPlaceholderPage.jsx";
 import { getAdminPlaceholderNavItems } from "./admin/adminNavigation.js";
 import { ADMIN_ROUTES } from "./admin/adminRoutes.js";
 
-// This tree is only resolved by Vite's local serve/test configuration. It is
-// deliberately not role or subscription gated: editorial access is local-only
-// and is not a customer entitlement.
+// This tree is only resolved by Vite's local serve/test configuration. It
+// requires ordinary Cognito authentication, but is deliberately not role or
+// subscription gated: any authenticated local user may author content.
 export const editorialRoutes = (
-  <Route path="admin" element={<AdminLayout />}>
+  <Route
+    path="admin"
+    element={
+      <AuthRouteGuard>
+        <AdminLayout />
+      </AuthRouteGuard>
+    }
+  >
     <Route index element={<AdminDashboard />} />
     <Route
       path={ADMIN_ROUTES.MANUAL.replace(/^\/admin\//, "")}

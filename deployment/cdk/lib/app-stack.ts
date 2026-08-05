@@ -14,8 +14,6 @@ import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 
 const DOMAIN = 'hfzwood.com';
-/** Packaged editorial release corpus inside the container image (read-only in release mode). */
-const PACKAGED_EDITORIAL_CONTENT_DIR = '/app/content';
 const PRODUCTION_ORIGIN = `https://${DOMAIN}`;
 const STRIPE_SECRET_NAME = 'hfzwood/stripe';
 /**
@@ -94,8 +92,8 @@ export class AppStack extends cdk.Stack {
         COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
         COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
         COGNITO_REGION: this.region,
-        // Public content: packaged image corpus; no authoring code or mutation routes are deployed.
-        CONTENT_DATA_DIR: PACKAGED_EDITORIAL_CONTENT_DIR,
+        // Public content is embedded in backend/public/content; no editorial filesystem,
+        // authoring code, or mutation routes are deployed.
         // Commercial/user state: DynamoDB (see EntitlementsTable below).
         ENTITLEMENTS_TABLE_NAME: entitlementsTable.tableName,
         CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,

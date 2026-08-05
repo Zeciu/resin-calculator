@@ -9,7 +9,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_translation_bulk, admin_website, public_content
+from private.routers import admin_translation_bulk
+from content.routers import admin_website, public_content
 from content.services.translation_bulk import TranslationBulkService, reset_bulk_run_locks_for_tests
 from content.services.translation_generation import TranslationGenerationService
 from tests.support.authenticated_client import AuthenticatedTestClient
@@ -467,7 +468,7 @@ class TestWebsiteBulkTranslation:
 
         fake = FakeTranslationProvider()
         monkeypatch.setattr(
-            "content.routers.admin_translation_bulk.TranslationBulkService",
+            "private.routers.admin_translation_bulk.TranslationBulkService",
             lambda repo, provider=None: TranslationBulkService(repo, provider=provider or fake),
         )
         admin_translation_bulk.reset_repository_cache()
