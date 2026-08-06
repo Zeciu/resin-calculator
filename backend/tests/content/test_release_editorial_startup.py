@@ -13,6 +13,22 @@ from content.repositories.filesystem import (
     required_release_artifacts,
     validate_release_editorial_root,
 )
+from public.product.capabilities.catalog import CAPABILITY_CATALOG
+
+
+def test_packaged_english_knowledge_base_can_satisfy_free_article_limit() -> None:
+    corpus_path = (
+        Path(__file__).resolve().parents[2]
+        / "public"
+        / "content"
+        / "published"
+        / "knowledge-base"
+        / "en"
+        / "entries.json"
+    )
+    snapshot = json.loads(corpus_path.read_text(encoding="utf-8"))
+
+    assert len(snapshot["entries"]) >= CAPABILITY_CATALOG["free"]["knowledgeBase.maxArticles"]
 
 
 def _write_json(path: Path, payload: dict) -> None:

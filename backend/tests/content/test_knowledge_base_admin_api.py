@@ -17,7 +17,11 @@ def client(tmp_path, monkeypatch):
     public_content.reset_repository_cache()
     from app import app
 
-    return AuthenticatedTestClient(app)
+    test_client = AuthenticatedTestClient(app)
+    try:
+        yield test_client
+    finally:
+        test_client.close()
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -508,3 +512,36 @@ class TestKnowledgeBasePublicApi:
         titles = [entry["title"] for entry in payload["entries"]]
         assert "Bubbles after curing" in titles
         assert titles.index("Bubbles after curing") < titles.index("Resin remains sticky")
+
+
+class TestKnowledgeBaseEntitlements:
+    def test_free_users_receive_at_most_five_published_entries(self, client):
+        for index in range(6):
+            title = f"Free article {index}"
+            entry_id = client.post(
+                "/api/admin/knowledge-base/entries",
+                json={"title": title, "category": "Epoxy", "difficulty": "Beginner"},
+                headers=admin_headers(),
+            ).json()["contentId"]
+            client.put(
+                f"/api/admin/knowledge-base/entries/{entry_id}/variants/en",
+                json=save_payload(sample_body(title)),
+                headers=admin_headers(),
+            )
+            publish_response = client.post(
+                f"/api/admin/knowledge-base/entries/{entry_id}/variants/en/publish",
+                headers=admin_headers(),
+            )
+            assert publish_response.status_code == 200
+
+        admin_response = client.get(
+            "/api/admin/knowledge-base/entries?locale=en",
+            headers=admin_headers(),
+        )
+        assert admin_response.status_code == 200
+        assert len(admin_response.json()) == 6
+
+        response = client.get("/api/content/knowledge-base?locale=en")
+
+        assert response.status_code == 200
+        assert len(response.json()["entries"]) == 5

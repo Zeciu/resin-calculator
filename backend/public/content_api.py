@@ -10,6 +10,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 
 from public.auth.dependencies import get_current_user
+from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
 from public.product.capabilities.resolver import CapabilityResolver
 from public.content_routers import get_capability_resolver
 
@@ -95,9 +96,9 @@ def glossary(locale: str = "en", user: dict = Depends(get_current_user), resolve
 def knowledge_base(locale: str = "en", user: dict = Depends(get_current_user), resolver: CapabilityResolver = Depends(get_capability_resolver)) -> dict:
     capabilities = _require_user_capabilities(user, resolver)
     response = _list_response("knowledge-base", _require_locale(locale), "entries.json", KB_TITLE, KB_LEDE, "entries")
-    limit = capabilities.capabilities["knowledgeBase.maxArticles"]
-    if isinstance(limit, int):
-        response["entries"] = response["entries"][:limit]
+    response["entries"] = limit_knowledge_base_entries(
+        response["entries"], capabilities.capabilities["knowledgeBase.maxArticles"]
+    )
     return response
 
 

@@ -61,15 +61,13 @@ describe("KnowledgeBasePage", () => {
     expect(screen.queryByText(/Coming in a future phase/i)).not.toBeInTheDocument();
   });
 
-  it("limits visible articles for free accounts", async () => {
+  it("renders the server-provided entries without a client-side limit", async () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
     await waitForKnowledgeBaseReady();
 
     expect(screen.getByRole("button", { name: "Sanding scratches visible through finish" })).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: "Pour overheating" }),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Pour overheating" })).toBeInTheDocument();
   });
 
   it("shows unlimited articles for subscriber accounts", async () => {

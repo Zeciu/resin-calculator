@@ -253,7 +253,11 @@ def test_editing_and_publishing_one_seeded_kb_entry_preserves_all_other_seeded_c
     assert updated["title"] == "Updated Seeded KB Title"
     assert updated["solution"] == ["Updated KB solution step."]
     assert any(entry["id"] == second_entry["id"] for entry in after_payload["entries"])
-    assert [entry["id"] for entry in kb_entries] == [entry["id"] for entry in after_payload["entries"]]
+
+    # The public endpoint is entitlement-gated (free tier sees a limited slice),
+    # so verify full-corpus ordering/preservation through the ungated admin listing.
+    admin_items = strict_client.get("/api/admin/knowledge-base/entries?locale=en", headers=admin_headers()).json()
+    assert [item["contentId"] for item in admin_items] == [entry["id"] for entry in kb_entries]
 
 
 def test_initialized_content_is_not_overwritten_on_restart(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:

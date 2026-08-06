@@ -92,3 +92,11 @@ class TestCapabilityResolver:
     def test_numeric_unlimited_values_validate(self):
         validate_catalog()
         assert CAPABILITY_CATALOG["subscriber"]["projects.maxSavedProjects"] is None
+
+
+    def test_knowledge_base_entry_limit_supports_free_and_unlimited_tiers(self):
+        from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
+
+        entries = ["one", "two", "three"]
+        assert limit_knowledge_base_entries(entries, 2) == ["one", "two"]
+        assert limit_knowledge_base_entries(entries, None) == entries

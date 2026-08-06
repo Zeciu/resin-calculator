@@ -3,6 +3,10 @@ from functools import lru_cache
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
+from public.auth.dependencies import get_current_user
+from public.content_routers import get_capability_resolver
+from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
+from public.product.capabilities.resolver import CapabilityResolver
 from content.repositories.filesystem import FilesystemContentRepository
 from content.schemas.glossary import PublicGlossaryResponse
 from content.schemas.knowledge_base import PublicKnowledgeBaseResponse
@@ -108,10 +112,20 @@ def get_published_glossary(
 def get_published_knowledge_base(
     locale: str = "en",
     service: KnowledgeBasePublicService = Depends(get_kb_public_service),
+    user: dict = Depends(get_current_user),
+    resolver: CapabilityResolver = Depends(get_capability_resolver),
 ) -> PublicKnowledgeBaseResponse:
     try:
         _require_active_public_locale(locale)
-        return service.get_published_knowledge_base(locale)
+        response = service.get_published_knowledge_base(locale)
+        return response.model_copy(
+            update={
+                "entries": limit_knowledge_base_entries(
+                    response.entries,
+                    resolver.resolve(user["id"]).capabilities["knowledgeBase.maxArticles"],
+                )
+            }
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
