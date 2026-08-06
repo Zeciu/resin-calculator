@@ -1,10 +1,7 @@
-# Home Hub Specification
+# Home hub specification
 
-The central post-login navigation screen is implemented as the **logged-in Home hub** (Task 43).
+The dashboard is the **Home** hub, not an analytics dashboard.
 
-Long-term design references to the **Dashboard** describe the same role. See:
+Home is publicly reachable. Signed-in users can navigate to New Project, Projects, Manual, Glossary, Knowledge Base, Account, and preferences. Each major activity opens in its dedicated module layout.
 
-- [`phase-2-implementation-plan.md`](phase-2-implementation-plan.md) — Task 43
-- [`application-design.md`](application-design.md) — §2.1 Current Release (Phase 2) and §6 Dashboard
-
-This file is retained for historical reference to the original dashboard specification filename.
+No separate analytics, notifications, support, or administration dashboard is implemented.
