@@ -20,7 +20,7 @@
 
 - Copy `dev.local.example.cmd` to `dev.local.cmd` (gitignored) and set a real `DEEPL_AUTH_KEY`/`DEEPL_API_BASE_URL`. `dev.cmd` loads it automatically if present.
 - AWS CLI must be installed and configured with an `hfzwood` profile (or set `HFZWOOD_AWS_PROFILE` to override). `dev.cmd` assumes the ECS task role through that profile to reach DynamoDB entitlements, and fails fast if the CLI or role assumption is unavailable.
-- `dev.cmd` sets `HFZWOOD_LOCAL_EDITORIAL=1`, which currently gates whether the local editorial routes mount at all (see `product-architecture-decisions.md` TODO-004 — this flag is redundant with the fact that editorial routes are never deployed, and should be removed).
+- Local editorial routes mount whenever `backend/private` is importable, which is only true when running from source. Production never has that source, since `backend/private` is excluded from the Docker build context.
 
 ## Open work
 

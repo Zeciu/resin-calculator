@@ -11,12 +11,7 @@ Production is a FastAPI application with a packaged React SPA and read-only publ
 
 ## Deployment blockers
 
-Do **not** release the current Docker image until these implementation defects are fixed:
-
-1. The Dockerfile copies frontend assets to `/app/static`, but FastAPI serves `/app/public/static`. The SPA and `/callback` will not be mounted.
-2. The Dockerfile copies `backend/uv.lock` but installs with `uv pip install -r pyproject.toml`, which does not use the lock file.
-
-The intended fixes are to make the static copy path and FastAPI static path agree, and to install Python dependencies from `uv.lock`. This guide documents the intended deployment procedure but cannot make the current image deployable.
+None currently known. The Dockerfile's static asset path and Python dependency install previously mismatched FastAPI's serving path and `uv.lock`; both are fixed.
 
 ## Prerequisites
 
@@ -54,7 +49,7 @@ Run these from the repository root unless stated otherwise.
    cdk deploy InfraStack --profile hfzwood
    ```
 
-3. Build and push the image **after fixing the blockers above**. This is PowerShell, not Bash:
+3. Build and push the image. This is PowerShell, not Bash:
 
    ```powershell
    Set-Location ..\..
@@ -101,7 +96,7 @@ Run these from the repository root unless stated otherwise.
 | Stripe URLs | Fixed `https://hfzwood.com/account` routes |
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | Secrets Manager secret `hfzwood/stripe` |
 
-`AUTH_MODE=cognito` is currently set by CDK but is not read by the backend; Cognito is enforced by the required `COGNITO_*` variables. `CONTENT_DATA_DIR`, `REQUIRE_CONTENT_DATA_DIR`, `HFZWOOD_LOCAL_EDITORIAL`, and `DEEPL_*` must not be set in production.
+`AUTH_MODE=cognito` is currently set by CDK but is not read by the backend; Cognito is enforced by the required `COGNITO_*` variables. `CONTENT_DATA_DIR`, `REQUIRE_CONTENT_DATA_DIR`, and `DEEPL_*` must not be set in production.
 
 Create Stripe secrets before commercial Checkout is enabled:
 

@@ -27,7 +27,7 @@ This document records implemented architecture and explicit implementation TODOs
 ### AD-004 — Content release
 
 - Manual, glossary, knowledge-base, and website content are published snapshots.
-- Editorial authoring, publishing, uploads, and DeepL translation currently run locally only, gated by the `HFZWOOD_LOCAL_EDITORIAL` flag. Any authenticated local user can use those routes; there is no separate editorial role or entitlement gate. Editorial routes are never deployed to AWS, so the deployment boundary is already the access control — see TODO-004 to remove the redundant flag gate.
+- Editorial authoring, publishing, uploads, and DeepL translation currently run locally only. Any authenticated local user can use those routes; there is no separate editorial role or entitlement gate. Editorial routes are never deployed to AWS — `backend/private` is excluded from the Docker build context — so the deployment boundary is already the access control.
 - Production packages a read-only public corpus and excludes editorial routes, UI, data, and DeepL integration. Content changes require a new image deployment.
 
 ### AD-005 — Device preferences
@@ -52,7 +52,3 @@ There is no cloud project storage, backup, sharing, collaboration, or synchroniz
 ### TODO-003 — Implement or remove AI capability fields
 
 The capability catalog reserves AI fields and enables them for subscribers, but no AI endpoint, UI, request limit, or provider integration exists. Implement those pieces with server-side limit enforcement, or remove the fields from the catalog.
-
-### TODO-004 — Remove the local-only flag gate on editorial content
-
-Editorial routes are never deployed to AWS; only the dev team runs them, and only locally. That deployment boundary is the access control, so no additional authorization is needed — authentication alone is sufficient, matching the no-editorial-role model. The `HFZWOOD_LOCAL_EDITORIAL` environment-flag gate in `backend/public/app.py` (and the corresponding `dev.cmd` setting) is redundant with that deployment boundary and should be removed, so the editorial routers mount whenever Cognito authentication is configured, without a separate local-only flag.

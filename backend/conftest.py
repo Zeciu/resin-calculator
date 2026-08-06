@@ -6,9 +6,9 @@ import boto3
 import pytest
 from moto import mock_aws
 
-# Editorial tests exercise the source-only local composition. Production does
-# not set this flag and does not package backend/private.
-os.environ.setdefault("HFZWOOD_LOCAL_EDITORIAL", "1")
+# Editorial tests exercise the source-only local composition, available
+# because backend/private is present on the local filesystem (it is excluded
+# from the Docker build context, so production never mounts these routes).
 
 # public.app requires complete Cognito configuration to import at all (no
 # mock-auth fallback). Tests that import the app module (directly or via the

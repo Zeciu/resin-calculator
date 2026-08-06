@@ -47,7 +47,6 @@ if "%AWS_ACCESS_KEY_ID%"=="" (
 )
 set AWS_DEFAULT_REGION=eu-central-1
 set ENTITLEMENTS_TABLE_NAME=hfzwood-entitlements
-set HFZWOOD_LOCAL_EDITORIAL=1
 
 echo Starting HFZWood with Cognito and DynamoDB entitlements...
 call npm install --prefix "%ROOT%\frontend"

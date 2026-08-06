@@ -17,4 +17,4 @@ HFZWood is a browser application for estimating epoxy resin volume from photogra
 | Product QA status | [`documentation/product-qa-observations.md`](documentation/product-qa-observations.md) |
 | Phase history and implementation summaries | [`documentation/`](documentation/) |
 
-The deployment guide records current Docker deployment blockers. Do not deploy until they are fixed.
+See [`deployment/README.md`](deployment/README.md) for the deployment procedure.

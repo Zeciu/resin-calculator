@@ -27,9 +27,12 @@ WORKDIR /app
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Install Python dependencies from lock file (no venv, no dev deps)
+# Install Python dependencies from the lock file (no venv, no dev deps).
+# `uv pip install -r` requires a requirements-style file, so the lock file is
+# exported to one first; this keeps installs pinned to uv.lock.
 COPY backend/pyproject.toml backend/uv.lock ./
-RUN uv pip install --system --no-cache -r pyproject.toml
+RUN uv export --locked --no-dev -o requirements.txt \
+    && uv pip install --system --no-cache -r requirements.txt
 
 # Public runtime plus the minimal shared commercial modules it imports. Do not
 # broaden this allowlist: editorial authoring code is local-only source.
@@ -40,7 +43,7 @@ COPY backend/content/repositories/entitlements.py ./content/repositories/entitle
 COPY backend/content/routers/__init__.py ./content/routers/__init__.py
 COPY backend/content/routers/billing.py ./content/routers/billing.py
 COPY backend/content/routers/me.py ./content/routers/me.py
-COPY --from=frontend-build /app/frontend/dist ./static
+COPY --from=frontend-build /app/frontend/dist ./public/static
 
 EXPOSE 5000
 CMD ["uvicorn", "public.app:app", "--host", "0.0.0.0", "--port", "5000"]
