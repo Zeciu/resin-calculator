@@ -7,12 +7,12 @@ from typing import Any, Literal
 
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.services.translation_generation import (
+from private.repositories.filesystem import FilesystemContentRepository
+from private.services.translation_generation import (
     OverwriteConfirmationRequired,
     TranslationGenerationService,
 )
-from content.services.translation_update import (
+from private.services.translation_update import (
     MediaSyncIncompatibleError,
     TranslationUpdateAction,
     TranslationUpdateState,
@@ -20,7 +20,7 @@ from content.services.translation_update import (
     classify_translation_update,
     sync_media_only_body,
 )
-from content.translation.types import TranslationResult
+from private.translation.types import TranslationResult
 
 
 class FakeTranslationProvider:
@@ -267,7 +267,7 @@ class TestSourceTextRevision:
         variant = repository.get_manual_variant(cid, "ro")
         del variant["sourceTextRevision"]
         records = repository._read_store()
-        from content.repositories.filesystem import make_manual_variant_key
+        from private.repositories.filesystem import make_manual_variant_key
 
         records[make_manual_variant_key(cid, "ro")] = variant
         repository._write_store(records)
@@ -574,7 +574,7 @@ class TestUpdateEngineActions:
         repository.save_manual_variant(cid, "ro", manual_body(blocks=blocks2))
         service.update(module="manual", content_id=cid, target_locale="en")
 
-        from content.services.manual_chapters import ManualChapterService
+        from private.services.manual_chapters import ManualChapterService
 
         response = ManualChapterService(repository).get_variant(cid, "en")
         assert response.translationUpdateState == "current"
@@ -617,7 +617,7 @@ class TestBatchedFieldTranslation:
         assert saved["draftBody"]["sections"][0]["blocks"][1]["text"] == "[en]Al doilea."
 
     def test_provider_failure_mid_item_saves_no_partial_draft(self, repository):
-        from content.translation.exceptions import TranslationTemporaryProviderError
+        from private.translation.exceptions import TranslationTemporaryProviderError
 
         class ExplodingProvider(FakeTranslationProvider):
             def translate_many(self, texts, **kwargs):

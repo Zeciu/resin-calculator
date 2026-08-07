@@ -1,6 +1,6 @@
 import pytest
 
-from content.routers import admin_manual, public_content
+from private.routers import admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -9,7 +9,7 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
     admin_manual.reset_repository_cache()
     public_content.reset_repository_cache()
-    from content.routers import admin_public_languages, public_languages
+    from private.routers import admin_public_languages, public_languages
 
     admin_public_languages.reset_repository_cache()
     public_languages.reset_repository_cache()

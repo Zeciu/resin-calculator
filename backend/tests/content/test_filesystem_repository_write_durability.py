@@ -9,8 +9,8 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories import filesystem as filesystem_module
-from content.repositories.filesystem import FilesystemContentRepository
+from private.repositories import filesystem as filesystem_module
+from private.repositories.filesystem import FilesystemContentRepository
 
 
 def test_interrupted_store_write_does_not_corrupt_existing_json(tmp_path: Path) -> None:

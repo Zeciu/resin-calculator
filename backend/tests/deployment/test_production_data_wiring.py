@@ -37,8 +37,9 @@ class TestProductionDataWiringSource:
     def test_dockerfile_packages_public_runtime_without_editorial_build_stages(self):
         dockerfile = DOCKERFILE.read_text(encoding="utf-8")
         assert "COPY backend/public ./public" in dockerfile
-        assert "COPY backend/content ./content" not in dockerfile
+        assert "COPY backend/content" not in dockerfile
         assert "COPY backend/data" not in dockerfile
+        assert "COPY backend/private" not in dockerfile
         assert "editorial-seed-build" not in dockerfile
         assert "/app/content" not in dockerfile
 

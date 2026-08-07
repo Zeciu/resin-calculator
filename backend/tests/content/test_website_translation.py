@@ -8,25 +8,25 @@ from typing import Any, Literal
 import pytest
 from fastapi.testclient import TestClient
 
-from content.repositories.filesystem import FilesystemContentRepository
+from private.repositories.filesystem import FilesystemContentRepository
 from private.routers import admin_translation_bulk
-from content.routers import admin_website, public_content
-from content.services.translation_bulk import TranslationBulkService, reset_bulk_run_locks_for_tests
-from content.services.translation_generation import TranslationGenerationService
+from private.routers import admin_website, public_content
+from private.services.translation_bulk import TranslationBulkService, reset_bulk_run_locks_for_tests
+from private.services.translation_generation import TranslationGenerationService
 from tests.support.authenticated_client import AuthenticatedTestClient
-from content.services.translation_update import (
+from private.services.translation_update import (
     TranslationUpdateService,
     classify_translation_update,
 )
-from content.translation.editorial_text import extract_translatable_items, reconstruct_draft_body
-from content.translation.exceptions import TranslationConfigurationError, TranslationTemporaryProviderError
-from content.translation.types import TranslationResult
-from content.translation_metadata import (
+from private.translation.editorial_text import extract_translatable_items, reconstruct_draft_body
+from private.translation.exceptions import TranslationConfigurationError, TranslationTemporaryProviderError
+from private.translation.types import TranslationResult
+from private.translation_metadata import (
     read_generated_from_source_revision,
     read_generated_from_source_text_revision,
     read_source_revision,
 )
-from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
+from private.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
 
 
 class FakeTranslationProvider:
@@ -388,7 +388,7 @@ class TestWebsiteTranslationGeneration:
 
 class TestWebsiteTranslationApi:
     def test_generate_translation_endpoint(self, client, tmp_path, monkeypatch):
-        from content.services import translation_generation as tg_module
+        from private.services import translation_generation as tg_module
 
         fake = FakeTranslationProvider()
 
@@ -420,7 +420,7 @@ class TestWebsiteTranslationApi:
             def translate(self, *args, **kwargs):
                 raise TranslationConfigurationError("not configured")
 
-        from content.services import website_pages as website_pages_module
+        from private.services import website_pages as website_pages_module
 
         original = website_pages_module.WebsitePageService.generate_translation
 
@@ -464,7 +464,7 @@ class TestWebsiteBulkTranslation:
         }
 
     def test_bulk_update_generates_missing_pages_only(self, client, monkeypatch):
-        from content.services.translation_bulk import TranslationBulkService
+        from private.services.translation_bulk import TranslationBulkService
 
         fake = FakeTranslationProvider()
         monkeypatch.setattr(

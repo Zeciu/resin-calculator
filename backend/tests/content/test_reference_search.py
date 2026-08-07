@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.services.reference_search import ReferenceSearchService
+from private.repositories.filesystem import FilesystemContentRepository
+from private.services.reference_search import ReferenceSearchService
 
 
 def _glossary_body(term: str, definition: str) -> dict:

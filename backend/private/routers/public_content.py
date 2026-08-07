@@ -7,21 +7,21 @@ from public.auth.dependencies import get_current_user
 from public.content_routers import get_capability_resolver
 from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
 from public.product.capabilities.resolver import CapabilityResolver
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.glossary import PublicGlossaryResponse
-from content.schemas.knowledge_base import PublicKnowledgeBaseResponse
-from content.schemas.manual import PublicManualResponse
-from content.schemas.website import PublicWebsiteResponse
-from content.services.glossary_images import GlossaryImageService
-from content.services.glossary_public import GlossaryPublicService
-from content.services.knowledge_base_images import KnowledgeBaseImageService
-from content.services.knowledge_base_public import KnowledgeBasePublicService
-from content.services.manual_images import ManualImageService
-from content.services.manual_public import ManualPublicService
-from content.services.public_languages import PublicLanguagesService
-from content.services.website_images import WebsiteImageService
-from content.services.website_public import WebsitePublicService
-from content.repositories.public_languages import PublicLanguagesRepository
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.glossary import PublicGlossaryResponse
+from private.schemas.knowledge_base import PublicKnowledgeBaseResponse
+from private.schemas.manual import PublicManualResponse
+from private.schemas.website import PublicWebsiteResponse
+from private.services.glossary_images import GlossaryImageService
+from private.services.glossary_public import GlossaryPublicService
+from private.services.knowledge_base_images import KnowledgeBaseImageService
+from private.services.knowledge_base_public import KnowledgeBasePublicService
+from private.services.manual_images import ManualImageService
+from private.services.manual_public import ManualPublicService
+from private.services.public_languages import PublicLanguagesService
+from private.services.website_images import WebsiteImageService
+from private.services.website_public import WebsitePublicService
+from private.repositories.public_languages import PublicLanguagesRepository
 
 router = APIRouter(prefix="/content", tags=["public-content"])
 

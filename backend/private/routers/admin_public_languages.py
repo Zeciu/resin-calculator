@@ -8,11 +8,11 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, HTTPException
 
 from private.access import require_local_editorial_access
-from content.editorial_content_mode import require_editorial_writes_allowed
-from content.repositories.filesystem import FilesystemContentRepository
-from content.repositories.public_languages import PublicLanguagesRepository
-from content.schemas.public_languages import AdminPublicLanguagesResponse
-from content.services.public_languages import PublicLanguagesService
+from private.editorial_content_mode import require_editorial_writes_allowed
+from private.repositories.filesystem import FilesystemContentRepository
+from private.repositories.public_languages import PublicLanguagesRepository
+from private.schemas.public_languages import AdminPublicLanguagesResponse
+from private.services.public_languages import PublicLanguagesService
 
 router = APIRouter(prefix="/admin/public-languages", tags=["admin-public-languages"])
 

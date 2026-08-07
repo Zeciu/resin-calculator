@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Protocol
 
-from content.repositories.entitlements import (
+from public.product.entitlements import (
     HFZWOOD_USER_METADATA_KEY,
     PROCESSED_EVENT_ID_LIMIT,
     EntitlementsRepository,

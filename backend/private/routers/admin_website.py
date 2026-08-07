@@ -4,19 +4,19 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from private.access import require_local_editorial_access
-from content.editorial_content_mode import require_editorial_writes_allowed
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.website import (
+from private.editorial_content_mode import require_editorial_writes_allowed
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.website import (
     PublishWebsiteVariantResponse,
     SaveWebsiteVariantRequest,
     WebsitePageListItem,
     WebsiteVariantResponse,
 )
-from content.schemas.glossary import GenerateTranslationRequest
+from private.schemas.glossary import GenerateTranslationRequest
 from private.routers.generate_translation import run_generate
-from content.services.website_images import WebsiteImageService
-from content.services.website_pages import WebsitePageService
-from content.services.website_publish import WebsitePublishService
+from private.services.website_images import WebsiteImageService
+from private.services.website_pages import WebsitePageService
+from private.services.website_publish import WebsitePublishService
 
 router = APIRouter(prefix="/admin/website/pages", tags=["admin-website"])
 

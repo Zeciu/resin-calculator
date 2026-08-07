@@ -23,13 +23,13 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-# content.repositories.entitlements.get_entitlements_repository() requires
+# public.product.entitlements.get_entitlements_repository() requires
 # ENTITLEMENTS_TABLE_NAME (DynamoDB) in every environment; there is no
 # filesystem fallback. A session-wide moto-mocked table backs this env var so
 # any test that reaches the entitlements repository gets a real, working
 # (in-memory, isolated-per-test-run) DynamoDB table instead of crashing or
 # making real AWS calls. Tests that need bespoke entitlements behavior still
-# use content.repositories.entitlements.DynamoDbEntitlementsRepository or
+# use public.product.entitlements.DynamoDbEntitlementsRepository or
 # tests.support.in_memory_entitlements_repository.InMemoryEntitlementsRepository
 # directly via dependency overrides.
 ENTITLEMENTS_TEST_TABLE_NAME = "test-hfzwood-entitlements-shared"

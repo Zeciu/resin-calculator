@@ -4,8 +4,8 @@
 
 ## Architecture
 
-- `frontend/private/` and `backend/private/` contain local-only editorial UI, routes, and DeepL integration.
-- Local editorial data is stored through `FilesystemContentRepository` under `CONTENT_DATA_DIR`.
+- `frontend/private/` and `backend/private/` contain local-only editorial UI, routes, DeepL integration, and editorial content.
+- Local editorial data is stored through `FilesystemContentRepository`, rooted at `backend/private/content/` unless `CONTENT_DATA_DIR` overrides it.
 - Manual, Glossary, Knowledge Base, and website variants are drafted locally and published to snapshots.
 - Production copies only the public frontend/backend runtime and the published corpus. It has no editorial routes, authoring UI, or DeepL credentials.
 - Public content readers require Cognito authentication. Knowledge Base entries are limited by the resolved capability tier.

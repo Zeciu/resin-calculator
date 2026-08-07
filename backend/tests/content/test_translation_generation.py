@@ -6,22 +6,22 @@ from typing import Any, Literal
 
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
+from private.repositories.filesystem import FilesystemContentRepository
+from private.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
-from content.services.translation_generation import (
+from private.services.translation_generation import (
     MissingRomanianSourceError,
     NothingToTranslateError,
     OverwriteConfirmationRequired,
     TranslationGenerationService,
 )
-from content.translation.editorial_text import (
+from private.translation.editorial_text import (
     extract_translatable_items,
     reconstruct_draft_body,
 )
-from content.translation.exceptions import TranslationConfigurationError, TranslationTemporaryProviderError
-from content.translation.types import TranslationResult
-from content.translation_metadata import read_generated_from_source_revision, read_source_revision
+from private.translation.exceptions import TranslationConfigurationError, TranslationTemporaryProviderError
+from private.translation.types import TranslationResult
+from private.translation_metadata import read_generated_from_source_revision, read_source_revision
 
 
 class FakeTranslationProvider:
@@ -263,7 +263,7 @@ class TestGenerationService:
         # Delete RO variant by writing empty store entry removal — chapter has RO from create.
         # Create only creates RO; remove it via store mutation.
         records = repository._read_store()
-        from content.repositories.filesystem import make_manual_variant_key
+        from private.repositories.filesystem import make_manual_variant_key
 
         del records[make_manual_variant_key(content_id, "ro")]
         repository._write_store(records)
@@ -292,7 +292,7 @@ class TestGenerationService:
 
 class TestGenerateApiAndLocales:
     def test_admin_can_generate_english_draft(self, client, monkeypatch):
-        from content.services import translation_generation as tg_module
+        from private.services import translation_generation as tg_module
 
         fake = FakeTranslationProvider()
 

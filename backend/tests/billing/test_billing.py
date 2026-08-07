@@ -7,8 +7,8 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from content.routers import billing as billing_router_module
-from content.routers.billing import router as billing_router
+from public.routers import billing as billing_router_module
+from public.routers.billing import router as billing_router
 from public.auth.dependencies import get_current_user
 from public.product.billing.config import BillingConfig
 from public.product.billing.mapping import map_stripe_subscription_to_entitlement
@@ -516,7 +516,7 @@ class TestBillingService:
         self, billing_service, entitlements_repo, fake_stripe
     ):
         import json
-        from content.repositories.entitlements import PROCESSED_EVENT_ID_LIMIT
+        from public.product.entitlements import PROCESSED_EVENT_ID_LIMIT
 
         fake_stripe.seed_subscription(user_id="user-a", subscription_id="sub_b")
         billing_service.process_webhook(

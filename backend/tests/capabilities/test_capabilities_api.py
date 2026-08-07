@@ -1,6 +1,6 @@
 import pytest
 
-from content.routers import admin_manual
+from private.routers import admin_manual
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 import boto3
 import pytest
 
-from content.repositories.entitlements import (
+from public.product.entitlements import (
     DynamoDbEntitlementsRepository,
     ENTITLEMENTS_TABLE_NAME_ENV,
     STRIPE_CUSTOMER_ID_INDEX_NAME,

@@ -6,7 +6,7 @@ import io
 
 import pytest
 
-from content.editorial_content_mode import (
+from private.editorial_content_mode import (
     EDITORIAL_CONTENT_MODE_ENV,
     EDITORIAL_CONTENT_MODE_RELEASE,
     EDITORIAL_CONTENT_MODE_WRITABLE,
@@ -18,7 +18,7 @@ from content.editorial_content_mode import (
 )
 from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
 from tests.support.authenticated_client import AuthenticatedTestClient
-from content.routers import (
+from private.routers import (
     admin_glossary,
     admin_knowledge_base,
     admin_manual,
@@ -52,7 +52,7 @@ def client(tmp_path, monkeypatch):
     ):
         if hasattr(module, "reset_repository_cache"):
             module.reset_repository_cache()
-    from content.routers import admin_editorial
+    from private.routers import admin_editorial
 
     admin_editorial.reset_repository_cache()
     from app import app

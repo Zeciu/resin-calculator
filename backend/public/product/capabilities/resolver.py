@@ -1,4 +1,4 @@
-from content.repositories.entitlements import EntitlementsRepository
+from public.product.entitlements import EntitlementsRepository
 
 from .catalog import catalog_for_tier
 from .schema import CATALOG_VERSION, CapabilitiesResponse

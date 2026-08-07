@@ -2,7 +2,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from content.routers.me import get_entitlements_repository, get_capability_resolver, router as me_router
+from public.routers.me import get_entitlements_repository, get_capability_resolver, router as me_router
 from public.auth.dependencies import get_current_user
 from public.product.capabilities.catalog import CAPABILITY_CATALOG, validate_catalog
 from public.product.capabilities.resolver import CapabilityResolver

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-from content.services.translation_update import (
+from private.services.translation_update import (
     MissingRomanianSourceError,
     NothingToTranslateError,
     OverwriteConfirmationRequired,

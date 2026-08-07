@@ -3,10 +3,10 @@
 ## Current implementation
 
 - Frontend: React/Vite under `frontend/public/src/`; local-only editorial UI under `frontend/private/`.
-- Backend: FastAPI public runtime under `backend/public/`; local-only editorial routes and DeepL integration under `backend/private/`.
+- Backend: FastAPI public runtime under `backend/public/`; local-only editorial routes, DeepL integration, and editorial content under `backend/private/`.
 - Authentication: Cognito in every environment; no mock-auth or administrator-role bypass.
 - Projects: local canonical `.hfzproject` v2 files. Foreign-owned or ownerless files are read-only in the application.
-- Content: authored locally, committed to Git, then packaged as the read-only production corpus at `/app/public/content`.
+- Content: authored locally into `backend/private/content/`, published (copied) to `backend/public/content/`, committed to Git, then packaged as the read-only production corpus at `/app/public/content`.
 - Commercial access: Stripe webhooks update DynamoDB entitlements; the backend resolves `free` or `subscriber` capabilities.
 - Deployment: CDK defines Cognito, ECR, ECS/Fargate, ALB, DNS/TLS, CloudWatch alarms, and DynamoDB entitlements.
 

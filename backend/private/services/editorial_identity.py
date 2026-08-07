@@ -1,4 +1,4 @@
-from content.repositories.filesystem import EDITORIAL_LOCALES
+from private.repositories.filesystem import EDITORIAL_LOCALES
 
 
 def chapter_identity_title(repository, content_id: str) -> str:

@@ -12,14 +12,14 @@ from functools import wraps
 from pathlib import Path
 from typing import Any, TypeVar
 
-from content.website_pages import (
+from private.website_pages import (
     WEBSITE_PAGE_DEFINITIONS,
     WEBSITE_PAGE_KEYS,
     empty_website_draft_body,
     empty_website_snapshot_document,
     website_page_definition,
 )
-from content.translation_metadata import (
+from private.translation_metadata import (
     apply_translation_metadata_on_save,
     initial_translation_metadata_on_create,
 )
@@ -313,7 +313,14 @@ def _migrate_legacy_keys_for_content(
 
 
 def default_content_root() -> Path:
-    return Path(os.environ.get("CONTENT_DATA_DIR", Path(__file__).resolve().parents[2] / "data"))
+    """Editorial source of truth: backend/private/content (never deployed).
+
+    Publishing copies the resulting corpus to backend/public/content, which is
+    the only content tree packaged into the production image.
+    """
+    return Path(
+        os.environ.get("CONTENT_DATA_DIR", Path(__file__).resolve().parents[1] / "content")
+    )
 
 
 def required_release_artifacts(root: Path) -> list[Path]:
@@ -499,7 +506,7 @@ def atomic_write_json(
 
 class FilesystemContentRepository:
     def __init__(self, data_dir: Path | None = None) -> None:
-        from content.editorial_content_mode import (
+        from private.editorial_content_mode import (
             EDITORIAL_CONTENT_MODE_RELEASE,
             editorial_content_mode,
         )

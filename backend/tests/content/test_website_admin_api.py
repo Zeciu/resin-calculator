@@ -6,9 +6,9 @@ import json
 
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_glossary, admin_manual, admin_website, public_content
-from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
+from private.repositories.filesystem import FilesystemContentRepository
+from private.routers import admin_glossary, admin_manual, admin_website, public_content
+from private.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 PNG_1X1 = (

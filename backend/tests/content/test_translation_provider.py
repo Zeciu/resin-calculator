@@ -10,7 +10,7 @@ import httpx
 import pytest
 from fastapi.testclient import TestClient
 
-from content.translation.config import DeepLConfig, DEFAULT_TIMEOUT_SECONDS, load_deepl_config
+from private.translation.config import DeepLConfig, DEFAULT_TIMEOUT_SECONDS, load_deepl_config
 from private.translation.deepl import (
     DEFAULT_RETRY_DELAY_SECONDS,
     MAX_ATTEMPTS,
@@ -19,7 +19,7 @@ from private.translation.deepl import (
     MAX_RETRY_AFTER_SECONDS,
     DeepLTranslationProvider,
 )
-from content.translation.exceptions import (
+from private.translation.exceptions import (
     TranslationAuthError,
     TranslationConfigurationError,
     TranslationInvalidRequestError,
@@ -31,7 +31,7 @@ from content.translation.exceptions import (
     TranslationTimeoutError,
     TranslationUnsupportedLocaleError,
 )
-from content.translation.locales import TARGET_LOCALE_TO_DEEPL
+from private.translation.locales import TARGET_LOCALE_TO_DEEPL
 
 
 AUTH_KEY = "test-deepl-auth-key-secret-value"

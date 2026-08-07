@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories.filesystem import (
+from private.repositories.filesystem import (
     CONTENT_TYPE_GLOSSARY_ENTRY,
     CONTENT_TYPE_KB_ENTRY,
     CONTENT_TYPE_MANUAL_CHAPTER,
@@ -485,7 +485,7 @@ def test_legacy_multi_locale_promotes_all_siblings_on_single_save(tmp_path: Path
 
 
 def test_legacy_migration_refuses_to_drop_unpromoted_siblings(tmp_path: Path) -> None:
-    from content.repositories import filesystem as filesystem_module
+    from private.repositories import filesystem as filesystem_module
 
     _write_store(tmp_path, _legacy_glossary_store_records("bubble-removal"))
     records = json.loads(

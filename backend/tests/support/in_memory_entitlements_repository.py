@@ -1,7 +1,7 @@
 """In-memory EntitlementsRepository test double.
 
 Production entitlement storage is DynamoDB-only (see
-content.repositories.entitlements.DynamoDbEntitlementsRepository); there is no
+public.product.entitlements.DynamoDbEntitlementsRepository); there is no
 filesystem fallback. Tests that previously constructed a filesystem-backed
 repository as a lightweight fixture use this in-memory implementation of the
 same EntitlementsRepository contract instead.
@@ -12,7 +12,7 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Any
 
-from content.repositories.entitlements import (
+from public.product.entitlements import (
     EntitlementsRepository,
     VALID_STORED_ACCESS_TIERS,
     empty_entitlement_record,

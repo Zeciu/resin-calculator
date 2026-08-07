@@ -2,9 +2,9 @@ from datetime import datetime, timezone
 
 import pytest
 
-from content.schemas.common import ContentStatus
-from content.schemas.editorial import EditorialVisibility
-from content.services.editorial_status import compute_editorial_visibility
+from private.schemas.common import ContentStatus
+from private.schemas.editorial import EditorialVisibility
+from private.services.editorial_status import compute_editorial_visibility
 
 
 def test_empty_visibility_when_variant_missing():

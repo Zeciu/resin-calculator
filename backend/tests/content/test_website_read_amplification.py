@@ -6,14 +6,14 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories import filesystem as filesystem_module
-from content.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
-from content.schemas.common import ContentStatus
-from content.schemas.website import WebsitePageListItem, WebsiteVariantSummary
-from content.services.website_pages import WebsitePageService, resolve_public_title
-from content.services.website_public import WebsitePublicService
-from content.services.website_publish import WebsitePublishService
-from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
+from private.repositories import filesystem as filesystem_module
+from private.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
+from private.schemas.common import ContentStatus
+from private.schemas.website import WebsitePageListItem, WebsiteVariantSummary
+from private.services.website_pages import WebsitePageService, resolve_public_title
+from private.services.website_public import WebsitePublicService
+from private.services.website_publish import WebsitePublishService
+from private.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body
 
 
 @pytest.fixture
@@ -36,8 +36,8 @@ def _count_reads(repository: FilesystemContentRepository) -> dict[str, int]:
 
 
 def _legacy_list_pages(repository: FilesystemContentRepository, locale: str) -> list[dict]:
-    from content.repositories.filesystem import parse_iso
-    from content.schemas.website import parse_admin_locale
+    from private.repositories.filesystem import parse_iso
+    from private.schemas.website import parse_admin_locale
 
     parsed_locale = parse_admin_locale(locale)
     repository.ensure_website_pages_exist()
@@ -72,7 +72,7 @@ def _legacy_list_pages(repository: FilesystemContentRepository, locale: str) -> 
 
 
 def _legacy_build_admin_snapshot(repository: FilesystemContentRepository, locale: str) -> dict:
-    from content.schemas.website import parse_admin_locale
+    from private.schemas.website import parse_admin_locale
 
     parsed_locale = parse_admin_locale(locale)
     pages: dict[str, dict] = {}

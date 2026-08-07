@@ -62,14 +62,9 @@ test.cmd
 test
 changed-files.txt
 
-# Local editorial data is never part of the production build context. The
-# production reader serves the released public corpus under backend/public/content.
-backend/data/
-
-# Local-only editorial/admin source. Dockerfiles must also use explicit public allowlists.
+# Local-only editorial source and editorial content are never part of the
+# production build context. The production reader serves the released public
+# corpus under backend/public/content, which is published (copied) out of
+# backend/private/content. Dockerfiles must also use explicit public allowlists.
 frontend/private/
 backend/private/
-
-backend/content/routers/admin_*.py
-backend/content/routers/generate_translation.py
-backend/content/translation/

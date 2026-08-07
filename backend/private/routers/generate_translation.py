@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import HTTPException
 
-from content.services.translation_generation import (
+from private.services.translation_generation import (
     MissingRomanianSourceError,
     NothingToTranslateError,
     OverwriteConfirmationRequired,

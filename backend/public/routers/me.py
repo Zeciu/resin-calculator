@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from public.auth.dependencies import get_current_user
-from content.repositories.entitlements import EntitlementsRepository, get_entitlements_repository as _get_entitlements_repository
+from public.product.entitlements import EntitlementsRepository, get_entitlements_repository as _get_entitlements_repository
 from public.product.capabilities.resolver import CapabilityResolver
 from public.product.capabilities.schema import CapabilitiesResponse
 

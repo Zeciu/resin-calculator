@@ -1,6 +1,6 @@
 from fastapi import Depends
 
-from content.repositories.entitlements import EntitlementsRepository, get_entitlements_repository
+from public.product.entitlements import EntitlementsRepository, get_entitlements_repository
 from public.product.capabilities.resolver import CapabilityResolver
 
 

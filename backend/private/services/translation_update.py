@@ -6,8 +6,8 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Literal
 
-from content.repositories.filesystem import utc_now
-from content.schemas.common import parse_admin_locale
+from private.repositories.filesystem import utc_now
+from private.schemas.common import parse_admin_locale
 from private.translation.deepl import DeepLTranslationProvider, PROVIDER_NAME
 from private.translation.editorial_text import (
     EditorialModule,
@@ -15,7 +15,7 @@ from private.translation.editorial_text import (
     reconstruct_draft_body,
 )
 from private.translation.provider import TranslationProvider
-from content.translation_metadata import (
+from private.translation_metadata import (
     CANONICAL_SOURCE_LOCALE,
     effective_source_text_revision,
     read_generated_from_source_revision,

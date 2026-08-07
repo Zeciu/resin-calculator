@@ -34,15 +34,10 @@ COPY backend/pyproject.toml backend/uv.lock ./
 RUN uv export --locked --no-dev -o requirements.txt \
     && uv pip install --system --no-cache -r requirements.txt
 
-# Public runtime plus the minimal shared commercial modules it imports. Do not
-# broaden this allowlist: editorial authoring code is local-only source.
+# Public runtime only. The whole production import graph lives under
+# backend/public; editorial authoring code and content are local-only source
+# under backend/private and must never be copied here.
 COPY backend/public ./public
-COPY backend/content/__init__.py ./content/__init__.py
-COPY backend/content/repositories/__init__.py ./content/repositories/__init__.py
-COPY backend/content/repositories/entitlements.py ./content/repositories/entitlements.py
-COPY backend/content/routers/__init__.py ./content/routers/__init__.py
-COPY backend/content/routers/billing.py ./content/routers/billing.py
-COPY backend/content/routers/me.py ./content/routers/me.py
 COPY --from=frontend-build /app/frontend/dist ./public/static
 
 EXPOSE 5000

@@ -6,14 +6,14 @@ import threading
 from dataclasses import dataclass
 from typing import Any, Literal
 
-from content.schemas.common import parse_admin_locale
-from content.services.editorial_identity import (
+from private.schemas.common import parse_admin_locale
+from private.services.editorial_identity import (
     chapter_identity_title,
     entry_identity_term,
     entry_identity_title,
 )
-from content.services.website_pages import resolve_public_title
-from content.services.translation_update import (
+from private.services.website_pages import resolve_public_title
+from private.services.translation_update import (
     GenerateModule,
     OverwriteConfirmationRequired,
     TranslationUpdateAction,
@@ -27,7 +27,7 @@ from private.translation.exceptions import (
     TranslationRateLimitedError,
 )
 from private.translation.provider import TranslationProvider
-from content.translation_metadata import CANONICAL_SOURCE_LOCALE
+from private.translation_metadata import CANONICAL_SOURCE_LOCALE
 
 BulkStopReason = Literal["rate_limited", "quota_exceeded"]
 

@@ -7,21 +7,21 @@ from typing import Literal
 from fastapi import APIRouter, Depends, HTTPException, Response
 
 from private.access import require_local_editorial_access
-from content.editorial_content_mode import require_editorial_writes_allowed
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.translation_bulk import (
+from private.editorial_content_mode import require_editorial_writes_allowed
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.translation_bulk import (
     BulkPreviewResponse,
     BulkTranslationPreviewRequest,
     BulkTranslationRequest,
     BulkUpdateResponse,
 )
-from content.services.translation_bulk import (
+from private.services.translation_bulk import (
     BulkRunConflictError,
     TranslationBulkService,
 )
-from content.services.translation_update import TranslationUpdateError
+from private.services.translation_update import TranslationUpdateError
 from private.translation.exceptions import TranslationError
-from content.services.translation_generation import map_provider_error_to_http
+from private.services.translation_generation import map_provider_error_to_http
 
 BulkModulePath = Literal["manual", "glossary", "knowledge-base", "website"]
 
@@ -41,18 +41,18 @@ def _repository_for_module(module: BulkModulePath) -> FilesystemContentRepositor
     for the selected editorial module (identical draft source of truth).
     """
     if module == "manual":
-        from content.routers.admin_manual import get_repository
+        from private.routers.admin_manual import get_repository
 
         return get_repository()
     if module == "glossary":
-        from content.routers.admin_glossary import get_repository
+        from private.routers.admin_glossary import get_repository
 
         return get_repository()
     if module == "website":
-        from content.routers.admin_website import get_repository
+        from private.routers.admin_website import get_repository
 
         return get_repository()
-    from content.routers.admin_knowledge_base import get_repository
+    from private.routers.admin_knowledge_base import get_repository
 
     return get_repository()
 
@@ -65,7 +65,7 @@ def get_bulk_service(
 
 def reset_repository_cache() -> None:
     """Clear module repository caches used by bulk (shared with single-item routes)."""
-    from content.routers import admin_glossary, admin_knowledge_base, admin_manual, admin_website
+    from private.routers import admin_glossary, admin_knowledge_base, admin_manual, admin_website
 
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()

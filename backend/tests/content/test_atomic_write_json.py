@@ -9,16 +9,16 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories import filesystem as filesystem_module
-from content.repositories.filesystem import (
+from private.repositories import filesystem as filesystem_module
+from private.repositories.filesystem import (
     TRANSIENT_FILE_ACCESS_MAX_ATTEMPTS,
     TRANSIENT_FILE_ACCESS_RETRY_DELAYS_SECONDS,
     FilesystemContentRepository,
     _retry_transient_file_access,
     atomic_write_json,
 )
-from content.services.glossary_publish import GlossaryPublishService
-from content.services.reference_search import ReferenceSearchService
+from private.services.glossary_publish import GlossaryPublishService
+from private.services.reference_search import ReferenceSearchService
 
 
 def _access_denied(winerror: int = 5) -> PermissionError:

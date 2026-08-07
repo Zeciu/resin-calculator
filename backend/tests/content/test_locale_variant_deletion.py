@@ -3,8 +3,8 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
+from private.repositories.filesystem import FilesystemContentRepository
+from private.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 

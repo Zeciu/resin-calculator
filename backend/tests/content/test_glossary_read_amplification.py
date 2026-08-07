@@ -7,14 +7,14 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories import filesystem as filesystem_module
-from content.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
-from content.schemas.common import ContentStatus
-from content.schemas.glossary import GlossaryEntryListItem, GlossaryVariantSummary
-from content.services.editorial_identity import entry_identity_term
-from content.services.glossary_entries import GlossaryEntryService
-from content.services.glossary_public import GlossaryPublicService
-from content.services.glossary_publish import GlossaryPublishService
+from private.repositories import filesystem as filesystem_module
+from private.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
+from private.schemas.common import ContentStatus
+from private.schemas.glossary import GlossaryEntryListItem, GlossaryVariantSummary
+from private.services.editorial_identity import entry_identity_term
+from private.services.glossary_entries import GlossaryEntryService
+from private.services.glossary_public import GlossaryPublicService
+from private.services.glossary_publish import GlossaryPublishService
 
 
 def _iso(dt: datetime) -> str:
@@ -34,8 +34,8 @@ def _definition_body(term: str, text: str = "Definition text.") -> dict:
 
 def _legacy_list_entries(repository: FilesystemContentRepository, locale: str) -> list[dict]:
     """Pre-optimization list algorithm: one store read per getter call."""
-    from content.repositories.filesystem import parse_iso
-    from content.schemas.glossary import parse_admin_locale
+    from private.repositories.filesystem import parse_iso
+    from private.schemas.glossary import parse_admin_locale
 
     parsed_locale = parse_admin_locale(locale)
     items: list[dict] = []
@@ -170,7 +170,7 @@ def _seed_mixed_glossary(repository: FilesystemContentRepository) -> dict[str, s
     assert variant is not None
     variant["publishedAt"] = _iso(earlier)
     variant["updatedAt"] = _iso(now)
-    from content.repositories.filesystem import make_glossary_variant_key
+    from private.repositories.filesystem import make_glossary_variant_key
 
     records[make_glossary_variant_key(outdated["contentId"], "ro")] = variant
     repository._write_store(records)

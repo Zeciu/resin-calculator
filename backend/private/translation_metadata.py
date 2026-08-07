@@ -9,7 +9,7 @@ from typing import Any
 from private.translation.editorial_text import EditorialModule, extract_translatable_items
 
 
-# Must match content.repositories.filesystem.CANONICAL_EDITORIAL_LOCALE.
+# Must match private.repositories.filesystem.CANONICAL_EDITORIAL_LOCALE.
 CANONICAL_SOURCE_LOCALE = "ro"
 
 

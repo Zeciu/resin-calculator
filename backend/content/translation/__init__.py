@@ -1,1 +1,0 @@
-# Test-only compatibility package. Production Docker excludes this directory.`n

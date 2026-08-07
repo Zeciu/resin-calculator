@@ -3,9 +3,9 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, HTTPException, Query
 
 from private.access import require_local_editorial_access
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.editorial import EditorialReferenceOption
-from content.services.reference_search import ReferenceSearchService
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.editorial import EditorialReferenceOption
+from private.services.reference_search import ReferenceSearchService
 
 router = APIRouter(prefix="/admin/references", tags=["admin-editorial"])
 

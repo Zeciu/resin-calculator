@@ -4,9 +4,9 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from private.access import require_local_editorial_access
-from content.editorial_content_mode import require_editorial_writes_allowed
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.knowledge_base import (
+from private.editorial_content_mode import require_editorial_writes_allowed
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.knowledge_base import (
     BulkPublishKnowledgeBaseDraftsResponse,
     CreateKnowledgeBaseEntryRequest,
     GenerateTranslationRequest,
@@ -18,9 +18,9 @@ from content.schemas.knowledge_base import (
     PublishKnowledgeBaseVariantResponse,
     SaveKnowledgeBaseVariantRequest,
 )
-from content.services.knowledge_base_entries import KnowledgeBaseEntryService
-from content.services.knowledge_base_images import KnowledgeBaseImageService
-from content.services.knowledge_base_publish import KnowledgeBasePublishService
+from private.services.knowledge_base_entries import KnowledgeBaseEntryService
+from private.services.knowledge_base_images import KnowledgeBaseImageService
+from private.services.knowledge_base_publish import KnowledgeBasePublishService
 from private.routers.generate_translation import run_generate
 
 router = APIRouter(prefix="/admin/knowledge-base/entries", tags=["admin-knowledge-base"])

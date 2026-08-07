@@ -4,16 +4,16 @@ from __future__ import annotations
 
 from typing import Any
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.repositories.public_languages import PublicLanguagesRepository
-from content.schemas.common import (
+from private.repositories.filesystem import FilesystemContentRepository
+from private.repositories.public_languages import PublicLanguagesRepository
+from private.schemas.common import (
     ADMIN_EDITORIAL_LOCALE_ORDER,
     DEFAULT_PUBLIC_LOCALE,
     PUBLIC_LANGUAGE_LABELS,
     parse_admin_locale,
     parse_public_locale,
 )
-from content.schemas.public_languages import (
+from private.schemas.public_languages import (
     AdminPublicLanguagesResponse,
     PublicLanguageRow,
     PublicLanguagesConfigResponse,

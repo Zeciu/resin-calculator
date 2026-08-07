@@ -7,23 +7,23 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories import filesystem as filesystem_module
-from content.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
-from content.schemas.common import ContentStatus
-from content.schemas.glossary import GlossaryVariantBody
-from content.schemas.knowledge_base import (
+from private.repositories import filesystem as filesystem_module
+from private.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
+from private.schemas.common import ContentStatus
+from private.schemas.glossary import GlossaryVariantBody
+from private.schemas.knowledge_base import (
     KnowledgeBaseEntryListItem,
     KnowledgeBaseVariantBody,
     KnowledgeBaseVariantSummary,
 )
-from content.schemas.manual import ManualVariantBody
-from content.services.editorial_identity import entry_identity_title
-from content.services.glossary_entries import GlossaryEntryService
-from content.services.knowledge_base_entries import KnowledgeBaseEntryService, empty_variant_body
-from content.services.knowledge_base_public import KnowledgeBasePublicService
-from content.services.knowledge_base_publish import KnowledgeBasePublishService
-from content.services.manual_chapters import ManualChapterService, empty_variant_body as empty_manual_body
-from content.services.manual_publish import ManualPublishService
+from private.schemas.manual import ManualVariantBody
+from private.services.editorial_identity import entry_identity_title
+from private.services.glossary_entries import GlossaryEntryService
+from private.services.knowledge_base_entries import KnowledgeBaseEntryService, empty_variant_body
+from private.services.knowledge_base_public import KnowledgeBasePublicService
+from private.services.knowledge_base_publish import KnowledgeBasePublishService
+from private.services.manual_chapters import ManualChapterService, empty_variant_body as empty_manual_body
+from private.services.manual_publish import ManualPublishService
 
 
 def _iso(dt: datetime) -> str:
@@ -43,8 +43,8 @@ def _kb_body(title: str, **overrides) -> KnowledgeBaseVariantBody:
 
 
 def _legacy_list_entries(repository: FilesystemContentRepository, locale: str) -> list[dict]:
-    from content.repositories.filesystem import parse_iso
-    from content.schemas.knowledge_base import parse_admin_locale
+    from private.repositories.filesystem import parse_iso
+    from private.schemas.knowledge_base import parse_admin_locale
 
     parsed_locale = parse_admin_locale(locale)
     items: list[dict] = []
@@ -194,7 +194,7 @@ def _seed_mixed_kb(repository: FilesystemContentRepository) -> dict[str, str]:
     )
 
     records = repository.read_editorial_records()
-    from content.repositories.filesystem import make_kb_variant_key
+    from private.repositories.filesystem import make_kb_variant_key
 
     variant = repository.get_kb_variant_from_store(records, outdated.contentId, "ro")
     assert variant is not None
@@ -342,7 +342,7 @@ class TestKnowledgeBaseSnapshotReadAmplification:
                 }
             ),
         )
-        from content.services.glossary_publish import GlossaryPublishService
+        from private.services.glossary_publish import GlossaryPublishService
 
         GlossaryPublishService(repository).publish_variant(g_meta.contentId, "ro")
 

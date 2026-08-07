@@ -7,10 +7,10 @@ from functools import lru_cache
 
 from fastapi import APIRouter
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.repositories.public_languages import PublicLanguagesRepository
-from content.schemas.public_languages import PublicLanguagesConfigResponse
-from content.services.public_languages import PublicLanguagesService
+from private.repositories.filesystem import FilesystemContentRepository
+from private.repositories.public_languages import PublicLanguagesRepository
+from private.schemas.public_languages import PublicLanguagesConfigResponse
+from private.services.public_languages import PublicLanguagesService
 
 router = APIRouter(prefix="/content", tags=["public-languages"])
 

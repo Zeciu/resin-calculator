@@ -7,20 +7,20 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.repositories.public_languages import (
+from private.repositories.filesystem import FilesystemContentRepository
+from private.repositories.public_languages import (
     PublicLanguagesRepository,
     default_public_languages_config,
 )
-from content.routers import (
+from private.routers import (
     admin_glossary,
     admin_manual,
     admin_public_languages,
     public_content,
     public_languages,
 )
-from content.services.manual_public import ManualPublicService
-from content.services.public_languages import PublicLanguagesService
+from private.services.manual_public import ManualPublicService
+from private.services.public_languages import PublicLanguagesService
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -185,12 +185,12 @@ class TestPublicLanguagesConfig:
         translation_mock = MagicMock()
         publish_mock = MagicMock()
         monkeypatch.setattr(
-            "content.services.translation_update.TranslationUpdateService",
+            "private.services.translation_update.TranslationUpdateService",
             translation_mock,
             raising=False,
         )
         monkeypatch.setattr(
-            "content.services.snapshot_publish.SnapshotPublishService",
+            "private.services.snapshot_publish.SnapshotPublishService",
             publish_mock,
             raising=False,
         )

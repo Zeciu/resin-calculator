@@ -7,15 +7,15 @@ from typing import Any, Literal
 import pytest
 from fastapi.testclient import TestClient
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_manual, admin_translation_bulk, public_content
+from private.repositories.filesystem import FilesystemContentRepository
+from private.routers import admin_manual, admin_translation_bulk, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
-from content.services.translation_bulk import (
+from private.services.translation_bulk import (
     TranslationBulkService,
     reset_bulk_run_locks_for_tests,
 )
-from content.services.translation_update import TranslationUpdateService
-from content.translation.types import TranslationResult
+from private.services.translation_update import TranslationUpdateService
+from private.translation.types import TranslationResult
 
 
 class FakeTranslationProvider:
@@ -64,7 +64,7 @@ class FakeTranslationProvider:
         for text in texts:
             self.calls.append({"text": text, "target_locale": target_locale})
             if text in self.fail_on_titles or (context and context in self.fail_on_titles):
-                from content.translation.exceptions import TranslationTemporaryProviderError
+                from private.translation.exceptions import TranslationTemporaryProviderError
 
                 raise TranslationTemporaryProviderError("provider boom")
             results.append(
@@ -331,7 +331,7 @@ class TestBulkPreviewAndUpdate:
         seed_chapter(repository, "Lock")
         provider = FakeTranslationProvider()
         bulk = TranslationBulkService(repository, provider=provider)
-        from content.services import translation_bulk as tb
+        from private.services import translation_bulk as tb
 
         key = ("manual", "en")
         with tb._bulk_locks_guard:
@@ -354,12 +354,12 @@ class TestBulkPreviewAndUpdate:
             bulk.preview(module="manual", target_locale="ro")
 
     def test_api_preview_and_chunk(self, client, monkeypatch):
-        from content.services import translation_bulk as bulk_mod
+        from private.services import translation_bulk as bulk_mod
 
         fake = FakeTranslationProvider()
 
         monkeypatch.setattr(
-            "content.routers.admin_translation_bulk.TranslationBulkService",
+            "private.routers.admin_translation_bulk.TranslationBulkService",
             lambda repo, provider=None: TranslationBulkService(repo, provider=provider or fake),
         )
 
@@ -410,7 +410,7 @@ class RateLimitedProvider(FakeTranslationProvider):
         for text in texts:
             self.calls.append({"text": text, "target_locale": kwargs.get("target_locale")})
             if text in self.fail_on_titles or (context and context in self.fail_on_titles):
-                from content.translation.exceptions import TranslationRateLimitedError
+                from private.translation.exceptions import TranslationRateLimitedError
 
                 raise TranslationRateLimitedError(
                     "DeepL rate limit exceeded.",
@@ -438,7 +438,7 @@ class QuotaExceededProvider(FakeTranslationProvider):
         for text in texts:
             self.calls.append({"text": text, "target_locale": kwargs.get("target_locale")})
             if text in self.fail_on_titles or (context and context in self.fail_on_titles):
-                from content.translation.exceptions import TranslationQuotaExceededError
+                from private.translation.exceptions import TranslationQuotaExceededError
 
                 raise TranslationQuotaExceededError(
                     "DeepL quota exceeded.",

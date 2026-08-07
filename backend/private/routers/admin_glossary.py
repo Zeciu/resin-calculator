@@ -4,9 +4,9 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from private.access import require_local_editorial_access
-from content.editorial_content_mode import require_editorial_writes_allowed
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.glossary import (
+from private.editorial_content_mode import require_editorial_writes_allowed
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.glossary import (
     BulkPublishGlossaryDraftsResponse,
     CreateGlossaryEntryRequest,
     GenerateTranslationRequest,
@@ -18,9 +18,9 @@ from content.schemas.glossary import (
     PublishGlossaryVariantResponse,
     SaveGlossaryVariantRequest,
 )
-from content.services.glossary_entries import GlossaryEntryService
-from content.services.glossary_images import GlossaryImageService
-from content.services.glossary_publish import GlossaryPublishService
+from private.services.glossary_entries import GlossaryEntryService
+from private.services.glossary_images import GlossaryImageService
+from private.services.glossary_publish import GlossaryPublishService
 from private.routers.generate_translation import run_generate
 
 router = APIRouter(prefix="/admin/glossary/entries", tags=["admin-glossary"])

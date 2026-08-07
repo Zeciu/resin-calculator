@@ -5,8 +5,8 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Any
 
-from content.repositories.filesystem import atomic_write_json, default_content_root
-from content.schemas.common import (
+from private.repositories.filesystem import atomic_write_json, default_content_root
+from private.schemas.common import (
     ADMIN_EDITORIAL_LOCALE_ORDER,
     ADMIN_EDITORIAL_LOCALES,
     DEFAULT_PUBLIC_LOCALE,

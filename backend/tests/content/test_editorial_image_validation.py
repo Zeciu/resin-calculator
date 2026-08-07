@@ -1,6 +1,6 @@
 import pytest
 
-from content.routers import admin_manual, public_content
+from private.routers import admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 PNG_1X1 = (

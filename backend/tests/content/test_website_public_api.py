@@ -7,9 +7,9 @@ import json
 import pytest
 from fastapi.testclient import TestClient
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_public_languages, admin_website, public_content, public_languages
-from content.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body, website_page_definition
+from private.repositories.filesystem import FilesystemContentRepository
+from private.routers import admin_public_languages, admin_website, public_content, public_languages
+from private.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body, website_page_definition
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 PNG_1X1 = (
@@ -281,7 +281,7 @@ class TestWebsitePublicServiceUnit:
         body["publicTitle"] = "Draft only"
         repository.save_website_variant("home", "en", body)
 
-        from content.services.website_public import WebsitePublicService
+        from private.services.website_public import WebsitePublicService
 
         service = WebsitePublicService(repository)
         response = service.get_published_page("home", "en")

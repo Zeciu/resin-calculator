@@ -4,7 +4,7 @@ from typing import Any
 
 import stripe
 
-from content.repositories.entitlements import HFZWOOD_USER_METADATA_KEY
+from public.product.entitlements import HFZWOOD_USER_METADATA_KEY
 from public.product.billing.config import BillingConfig
 
 

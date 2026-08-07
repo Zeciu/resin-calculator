@@ -8,35 +8,46 @@ DOCKERFILE = REPO_ROOT / "Dockerfile"
 DOCKERIGNORE = REPO_ROOT / ".dockerignore"
 PUBLIC_ROUTER = REPO_ROOT / "frontend" / "public" / "src" / "workspace" / "WorkspaceRouter.jsx"
 
-REQUIRED_SHARED_RUNTIME_COPIES = (
-    "COPY backend/content/__init__.py ./content/__init__.py",
-    "COPY backend/content/repositories/__init__.py ./content/repositories/__init__.py",
-    "COPY backend/content/repositories/entitlements.py ./content/repositories/entitlements.py",
-    "COPY backend/content/routers/__init__.py ./content/routers/__init__.py",
-    "COPY backend/content/routers/billing.py ./content/routers/billing.py",
-    "COPY backend/content/routers/me.py ./content/routers/me.py",
-)
-
 
 def test_private_source_and_editorial_data_have_explicit_docker_exclusions() -> None:
     dockerignore = DOCKERIGNORE.read_text(encoding="utf-8")
     assert "frontend/private/" in dockerignore
     assert "backend/private/" in dockerignore
-    assert "backend/data/" in dockerignore
 
 
-def test_docker_build_allowlists_only_public_and_commercial_backend_runtime() -> None:
+def test_editorial_content_lives_under_private_and_is_excluded_from_the_image() -> None:
+    """Editorial content is the private source of truth; only the published copy ships."""
+    assert (REPO_ROOT / "backend" / "private" / "content" / "editorial" / "content-store.json").is_file()
+    assert not (REPO_ROOT / "backend" / "data").exists()
+    dockerfile = DOCKERFILE.read_text(encoding="utf-8")
+    assert "backend/private/content" not in dockerfile
+
+
+def test_docker_build_allowlists_only_the_public_backend_runtime() -> None:
     dockerfile = DOCKERFILE.read_text(encoding="utf-8")
     assert "COPY frontend/public ./public" in dockerfile
     assert "COPY backend/public ./public" in dockerfile
     assert "COPY frontend/ ./" not in dockerfile
-    assert "COPY backend/content ./content" not in dockerfile
+    assert "COPY backend/content" not in dockerfile
     assert "COPY backend/data" not in dockerfile
     assert "editorial-seed-build" not in dockerfile
     assert "COPY frontend/private" not in dockerfile
     assert "COPY backend/private" not in dockerfile
-    for line in REQUIRED_SHARED_RUNTIME_COPIES:
-        assert line in dockerfile
+
+
+def test_public_backend_has_no_static_import_of_private_modules() -> None:
+    """Production must be importable without backend/private on disk."""
+    offenders = []
+    for path in sorted((REPO_ROOT / "backend" / "public").rglob("*.py")):
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+            stripped = line.strip()
+            if not stripped.startswith(("import private", "from private")):
+                continue
+            # public.app mounts editorial routes only via a guarded local import.
+            if path.name == "app.py" and line.startswith("        "):
+                continue
+            offenders.append(f"{path.relative_to(REPO_ROOT)}:{number}: {stripped}")
+    assert offenders == []
 
 
 def test_public_router_has_no_direct_private_source_import() -> None:

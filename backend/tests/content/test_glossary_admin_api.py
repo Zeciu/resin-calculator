@@ -1,6 +1,6 @@
 import pytest
 
-from content.routers import admin_glossary, public_content
+from private.routers import admin_glossary, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -9,7 +9,7 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
     admin_glossary.reset_repository_cache()
     public_content.reset_repository_cache()
-    from content.routers import admin_editorial
+    from private.routers import admin_editorial
 
     admin_editorial.reset_repository_cache()
     from app import app
@@ -484,7 +484,7 @@ class TestGlossaryRelationshipPublishQa:
         )
         assert publish_response.status_code == 200
 
-        from content.routers import admin_public_languages, public_languages
+        from private.routers import admin_public_languages, public_languages
 
         admin_public_languages.reset_repository_cache()
         public_languages.reset_repository_cache()
@@ -727,7 +727,7 @@ class TestGlossaryBulkPublishDrafts:
             headers=admin_headers(),
         )
 
-        from content.services import glossary_publish
+        from private.services import glossary_publish
 
         def raise_runtime(self, content_id, locale):
             raise RuntimeError(
@@ -806,7 +806,7 @@ class TestGlossaryBulkPublishDrafts:
         assert second_id in public_ids
 
     def test_published_only_reference_search_excludes_unpublished_locale_variants(self, client):
-        from content.routers import admin_editorial
+        from private.routers import admin_editorial
 
         admin_editorial.reset_repository_cache()
 

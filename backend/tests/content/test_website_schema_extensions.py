@@ -7,8 +7,8 @@ from copy import deepcopy
 
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.website import (
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.website import (
     AboutWebsiteBody,
     ContactWebsiteBody,
     PublicWebsitePage,
@@ -16,9 +16,9 @@ from content.schemas.website import (
     SaveContactWebsiteBody,
     SavePricingWebsiteBody,
 )
-from content.services.translation_update import TranslationUpdateService, classify_translation_update
-from content.translation.editorial_text import extract_translatable_items, reconstruct_draft_body
-from content.website_pages import (
+from private.services.translation_update import TranslationUpdateService, classify_translation_update
+from private.translation.editorial_text import extract_translatable_items, reconstruct_draft_body
+from private.website_pages import (
     DEFAULT_KNOWLEDGE_BASE_LINK_LABEL,
     DEFAULT_MANUAL_LINK_LABEL,
     empty_website_draft_body,
@@ -104,7 +104,7 @@ class TestAboutSectionImages:
         assert rebuilt["sections"][0]["image"]["alt"].startswith("[en]")
 
     def test_image_only_change_is_media_only(self, repository):
-        from content.translation.types import TranslationResult
+        from private.translation.types import TranslationResult
 
         class FakeProvider:
             def translate(self, text, **kwargs):
@@ -173,7 +173,7 @@ class TestPricingOfferVisibility:
     def test_visible_preserved_during_translation(self, repository):
         class FakeProvider:
             def translate(self, text, **kwargs):
-                from content.translation.types import TranslationResult
+                from private.translation.types import TranslationResult
 
                 return TranslationResult(
                     text=f"[en]{text}",
@@ -292,7 +292,7 @@ class TestContactBuiltInLinkLabels:
         assert "image" not in loaded["draftBody"]["sections"][0]
 
     def test_legacy_published_snapshot_readable(self, repository):
-        from content.services.website_publish import WebsitePublishService
+        from private.services.website_publish import WebsitePublishService
 
         repository.ensure_website_pages_exist()
         legacy_body = {

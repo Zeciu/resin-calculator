@@ -177,7 +177,7 @@ class WebsitePageService:
         confirm_overwrite: bool = False,
         provider=None,
     ) -> WebsiteVariantResponse:
-        from content.services.translation_generation import TranslationGenerationService
+        from private.services.translation_generation import TranslationGenerationService
 
         service = TranslationGenerationService(self._repository, provider=provider)
         saved = service.generate(

@@ -4,9 +4,9 @@ from functools import lru_cache
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 
 from private.access import require_local_editorial_access
-from content.editorial_content_mode import require_editorial_writes_allowed
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.manual import (
+from private.editorial_content_mode import require_editorial_writes_allowed
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.manual import (
     BulkPublishManualDraftsResponse,
     CreateManualChapterRequest,
     GenerateTranslationRequest,
@@ -18,9 +18,9 @@ from content.schemas.manual import (
     ReorderManualChaptersRequest,
     SaveManualVariantRequest,
 )
-from content.services.manual_chapters import ManualChapterService
-from content.services.manual_images import ManualImageService
-from content.services.manual_publish import ManualPublishService
+from private.services.manual_chapters import ManualChapterService
+from private.services.manual_images import ManualImageService
+from private.services.manual_publish import ManualPublishService
 from private.routers.generate_translation import run_generate
 
 router = APIRouter(prefix="/admin/manual/chapters", tags=["admin-manual"])

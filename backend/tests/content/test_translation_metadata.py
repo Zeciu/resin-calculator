@@ -4,10 +4,10 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
+from private.repositories.filesystem import FilesystemContentRepository
+from private.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
-from content.translation_metadata import (
+from private.translation_metadata import (
     TranslationFreshness,
     derive_translation_freshness,
     next_source_revision,
@@ -205,7 +205,7 @@ class TestManualRepositoryMetadata:
         variant = repository.get_manual_variant(content_id, "ro")
         del variant["sourceRevision"]
         records = repository._read_store()
-        from content.repositories.filesystem import make_manual_variant_key
+        from private.repositories.filesystem import make_manual_variant_key
 
         records[make_manual_variant_key(content_id, "ro")] = variant
         repository._write_store(records)
@@ -227,7 +227,7 @@ class TestManualRepositoryMetadata:
         en["translationProvider"] = "deepl"
         en["generatedAt"] = "2026-01-01T00:00:00+00:00"
         records = repository._read_store()
-        from content.repositories.filesystem import make_manual_variant_key
+        from private.repositories.filesystem import make_manual_variant_key
 
         records[make_manual_variant_key(content_id, "en")] = en
         repository._write_store(records)

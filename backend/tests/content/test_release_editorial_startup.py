@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories.filesystem import (
+from private.repositories.filesystem import (
     FilesystemContentRepository,
     atomic_write_json,
     required_release_artifacts,
@@ -101,7 +101,7 @@ class TestReleaseRepository:
             writes.append(path)
             raise AssertionError(f"unexpected write to {path}")
 
-        monkeypatch.setattr("content.repositories.filesystem.atomic_write_json", forbid_write)
+        monkeypatch.setattr("private.repositories.filesystem.atomic_write_json", forbid_write)
 
         repository = FilesystemContentRepository(tmp_path)
         assert repository._root == tmp_path

@@ -21,12 +21,12 @@ def test_public_corpus_is_packaged_with_the_public_backend() -> None:
 def test_dockerfile_does_not_package_editorial_release_data_or_seed_builds() -> None:
     dockerfile = DOCKERFILE.read_text(encoding="utf-8")
     assert "backend/data" not in dockerfile
+    assert "COPY backend/private" not in dockerfile
     assert "editorial-seed-build" not in dockerfile
     assert "/app/content" not in dockerfile
 
 
-def test_dockerignore_excludes_local_editorial_data() -> None:
+def test_dockerignore_excludes_local_editorial_source_and_content() -> None:
     dockerignore = DOCKERIGNORE.read_text(encoding="utf-8")
-    assert "backend/data/" in dockerignore
     assert "backend/private/" in dockerignore
     assert "frontend/private/" in dockerignore

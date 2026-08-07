@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 
 from public.auth.dependencies import get_current_user
-from content.repositories.entitlements import EntitlementsRepository, get_entitlements_repository as _get_entitlements_repository
+from public.product.entitlements import EntitlementsRepository, get_entitlements_repository as _get_entitlements_repository
 from public.product.billing.config import load_billing_config
 from public.product.billing.mapping import public_billing_status
 from public.product.billing.service import BillingConfigurationError, BillingService

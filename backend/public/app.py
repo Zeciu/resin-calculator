@@ -11,8 +11,8 @@ from jose import jwt, JWTError
 from jose.exceptions import ExpiredSignatureError
 
 from public.content_routers import get_capability_resolver
-from content.routers.billing import router as billing_router
-from content.routers.me import router as me_router
+from public.routers.billing import router as billing_router
+from public.routers.me import router as me_router
 from public.safety.input_limits import (
     CALCULATOR_MAX_BODY_BYTES,
     CALCULATOR_PATHS,
@@ -43,7 +43,7 @@ def _include_local_editorial_routes() -> bool:
         from private.routers.admin_public_languages import router as admin_public_languages_router
         from private.routers.admin_translation_bulk import router as admin_translation_bulk_router
         from private.routers.admin_website import router as admin_website_router
-        from content.routers.public_content import router as local_public_content_router
+        from private.routers.public_content import router as local_public_content_router
     except ImportError:
         return False
 
@@ -59,7 +59,7 @@ def _include_local_editorial_routes() -> bool:
 
 
 # Local editorial authoring writes to a CONTENT_DATA_DIR-backed filesystem
-# repository (content.routers.public_content) and must read back from that
+# repository (private.routers.public_content) and must read back from that
 # same repository. Production (and any process without local editorial
 # enabled) serves the packaged, entitlement-gated read-only corpus instead
 # (public.content_api). Both routers answer the same /api/content/* paths,

@@ -7,10 +7,10 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from content.repositories.filesystem import FilesystemContentRepository
-from content.schemas.website import SaveHomeWebsiteBody, SavePricingWebsiteBody
-from content.translation.editorial_text import extract_website_items
-from content.website_pages import (
+from private.repositories.filesystem import FilesystemContentRepository
+from private.schemas.website import SaveHomeWebsiteBody, SavePricingWebsiteBody
+from private.translation.editorial_text import extract_website_items
+from private.website_pages import (
     WEBSITE_PAGE_DEFINITIONS,
     WEBSITE_PAGE_KEYS,
     empty_website_draft_body,

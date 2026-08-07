@@ -7,13 +7,13 @@ from pathlib import Path
 
 import pytest
 
-from content.repositories import filesystem as filesystem_module
-from content.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
-from content.schemas.common import ContentStatus
-from content.schemas.manual import ManualChapterListItem, ManualVariantBody, ManualVariantSummary
-from content.services.editorial_identity import chapter_identity_title
-from content.services.manual_chapters import ManualChapterService, empty_variant_body
-from content.services.manual_publish import ManualPublishService
+from private.repositories import filesystem as filesystem_module
+from private.repositories.filesystem import EDITORIAL_LOCALES, FilesystemContentRepository
+from private.schemas.common import ContentStatus
+from private.schemas.manual import ManualChapterListItem, ManualVariantBody, ManualVariantSummary
+from private.services.editorial_identity import chapter_identity_title
+from private.services.manual_chapters import ManualChapterService, empty_variant_body
+from private.services.manual_publish import ManualPublishService
 
 
 def _iso(dt: datetime) -> str:
@@ -28,8 +28,8 @@ def _manual_body(title: str, text: str = "Body text.") -> ManualVariantBody:
 
 def _legacy_list_chapters(repository: FilesystemContentRepository, locale: str) -> list[dict]:
     """Pre-optimization list algorithm: one store read per getter call."""
-    from content.repositories.filesystem import parse_iso
-    from content.schemas.manual import parse_admin_locale
+    from private.repositories.filesystem import parse_iso
+    from private.schemas.manual import parse_admin_locale
 
     parsed_locale = parse_admin_locale(locale)
     items: list[dict] = []
@@ -150,7 +150,7 @@ def _seed_mixed_manual(repository: FilesystemContentRepository) -> dict[str, str
     )
 
     records = repository.read_editorial_records()
-    from content.repositories.filesystem import make_manual_variant_key
+    from private.repositories.filesystem import make_manual_variant_key
 
     variant = repository.get_manual_variant_from_store(records, outdated.contentId, "ro")
     assert variant is not None
