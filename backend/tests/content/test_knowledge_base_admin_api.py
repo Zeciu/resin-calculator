@@ -1,12 +1,6 @@
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_knowledge_base, public_content
-from content.services.knowledge_base_source import load_knowledge_base_entries
-from content.services.migrate_phase2_knowledge_base import (
-    EditorialKnowledgeBaseMigrationService,
-    LegacyKnowledgeBaseMigrationService,
-)
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -470,48 +464,6 @@ class TestKnowledgeBaseUnpublishAndDelete:
         public_ids = [item["id"] for item in client.get("/api/content/knowledge-base?locale=en").json()["entries"]]
         assert remove_id not in public_ids
         assert keep_id in public_ids
-
-
-class TestKnowledgeBaseSourceLoader:
-    def test_reads_knowledge_base_content_js(self):
-        entries = load_knowledge_base_entries()
-        assert len(entries) >= 12
-        assert entries[0]["id"]
-        assert entries[0]["category"]
-        assert entries[0]["difficulty"]
-
-
-class TestLegacyKnowledgeBaseMigration:
-    def test_migration_writes_legacy_public_entries_only(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        source_entries = load_knowledge_base_entries()
-        repository = FilesystemContentRepository()
-        repository.create_kb_entry("Admin article", "Epoxy", "Beginner", content_id="admin-article")
-
-        result = LegacyKnowledgeBaseMigrationService(repository).migrate()
-
-        assert result["entryCount"] == len(source_entries)
-        legacy_document = repository.read_legacy_kb_document("en")
-        assert legacy_document is not None
-        assert len(legacy_document["entries"]) == len(source_entries)
-        assert repository.list_kb_entry_ids() == ["admin-article"]
-        assert repository.read_kb_snapshot("en") == {"locale": "en", "entries": []}
-
-
-class TestKnowledgeBasePublicApi:
-    def test_legacy_knowledge_base_served_when_no_admin_snapshot(self, client, tmp_path, monkeypatch):
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        admin_knowledge_base.reset_repository_cache()
-        public_content.reset_repository_cache()
-        LegacyKnowledgeBaseMigrationService(FilesystemContentRepository()).migrate()
-
-        response = client.get("/api/content/knowledge-base?locale=en")
-        assert response.status_code == 200
-        payload = response.json()
-        assert payload["available"] is True
-        titles = [entry["title"] for entry in payload["entries"]]
-        assert "Bubbles after curing" in titles
-        assert titles.index("Bubbles after curing") < titles.index("Resin remains sticky")
 
 
 class TestKnowledgeBaseEntitlements:

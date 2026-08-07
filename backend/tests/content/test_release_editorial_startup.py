@@ -123,13 +123,23 @@ class TestWritableModeUnchanged:
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
     ):
         monkeypatch.delenv("EDITORIAL_CONTENT_MODE", raising=False)
-        monkeypatch.delenv("REQUIRE_CONTENT_DATA_DIR", raising=False)
         monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
 
         repository = FilesystemContentRepository()
         assert (tmp_path / "editorial" / "content-store.json").is_file()
         assert (tmp_path / "published").is_dir()
         assert "website" in json.dumps(repository._read_store())
+
+    def test_writable_root_creates_no_legacy_tree(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ):
+        monkeypatch.delenv("EDITORIAL_CONTENT_MODE", raising=False)
+        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+
+        FilesystemContentRepository()
+
+        assert not (tmp_path / "legacy").exists()
+        assert sorted(entry.name for entry in tmp_path.iterdir()) == ["editorial", "published"]
 
     def test_writable_allows_atomic_write_after_init(
         self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch

@@ -2,7 +2,6 @@ import errno
 import json
 import os
 import re
-import shutil
 import tempfile
 import threading
 import time
@@ -13,9 +12,6 @@ from functools import wraps
 from pathlib import Path
 from typing import Any, TypeVar
 
-from content.services.glossary_source import load_glossary_entries
-from content.services.knowledge_base_source import load_knowledge_base_entries
-from content.services.manual_source import load_manual_sections
 from content.website_pages import (
     WEBSITE_PAGE_DEFINITIONS,
     WEBSITE_PAGE_KEYS,
@@ -49,7 +45,6 @@ EDITORIAL_LOCALES = (
     "cs",
     "it",
 )
-INITIALIZATION_MARKER = ".hfzwood-initialized.json"
 
 
 def utc_now() -> datetime:
@@ -317,141 +312,8 @@ def _migrate_legacy_keys_for_content(
             records.pop(key, None)
 
 
-def _load_store_records(root: Path) -> dict[str, Any] | None:
-    store_path = root / "editorial" / "content-store.json"
-    if not store_path.is_file():
-        return None
-    try:
-        payload = json.loads(store_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return None
-    records = payload.get("records")
-    if not isinstance(records, dict):
-        return None
-    return records
-
-
-def _snapshot_has_corpus(path: Path, module: str) -> bool:
-    if not path.is_file():
-        return False
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return False
-    if module == "manual":
-        return bool(payload.get("chapters")) or bool(payload.get("sections"))
-    return bool(payload.get("entries"))
-
-
-def root_has_authoritative_editorial_records(root: Path) -> bool:
-    records = _load_store_records(root)
-    return bool(records)
-
-
-def _module_snapshot_filename(module: str) -> str:
-    return "document.json" if module == "manual" else "entries.json"
-
-
-def _iter_locale_snapshot_checks(root: Path, tree: str) -> list[tuple[Path, str]]:
-    """Discover published/legacy snapshots for any locale (language-neutral)."""
-    module_dirs = (
-        ("manual", "manual"),
-        ("glossary", "glossary"),
-        ("knowledge-base", "kb"),
-    )
-    checks: list[tuple[Path, str]] = []
-    for dir_name, module in module_dirs:
-        base = root / tree / dir_name
-        if not base.is_dir():
-            continue
-        filename = _module_snapshot_filename(module)
-        for locale_dir in sorted(base.iterdir()):
-            if locale_dir.is_dir():
-                checks.append((locale_dir / filename, module))
-    return checks
-
-
-def root_has_authoritative_published_corpus(root: Path) -> bool:
-    checks = _iter_locale_snapshot_checks(root, "published")
-    return any(_snapshot_has_corpus(path, module) for path, module in checks)
-
-
-def root_has_authoritative_content(root: Path) -> bool:
-    return root_has_authoritative_editorial_records(root) or root_has_authoritative_published_corpus(root)
-
-
-def _validate_required_artifact_payloads(root: Path) -> None:
-    store_path = root / "editorial" / "content-store.json"
-    if store_path.exists() and _load_store_records(root) is None:
-        raise RuntimeError(
-            "CONTENT_DATA_DIR contains authoritative editorial content but editorial/content-store.json is invalid; "
-            "refusing automatic adoption."
-        )
-
-    snapshot_checks = _iter_locale_snapshot_checks(root, "published") + _iter_locale_snapshot_checks(
-        root, "legacy"
-    )
-    for path, module in snapshot_checks:
-        if not path.is_file():
-            continue
-        if not _snapshot_has_corpus(path, module):
-            try:
-                json.loads(path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError as exc:
-                raise RuntimeError(
-                    f"CONTENT_DATA_DIR contains authoritative editorial content but {path.name} is invalid; "
-                    "refusing automatic adoption."
-                ) from exc
-
-
-def _adopt_authoritative_existing_root(root: Path) -> None:
-    missing_artifacts = [
-        path
-        for path in required_initialization_artifacts(root)
-        if path != initialization_marker_path(root) and not path.exists()
-    ]
-    if missing_artifacts:
-        relative_paths = ", ".join(str(path.relative_to(root)).replace("\\", "/") for path in missing_artifacts)
-        raise RuntimeError(
-            "CONTENT_DATA_DIR contains authoritative editorial content but required artifacts are missing "
-            f"({relative_paths}); refusing initialization."
-        )
-
-    _validate_required_artifact_payloads(root)
-    _ensure_website_artifacts(root)
-    _write_initialization_marker(root)
-
-
-def strict_content_root_required() -> bool:
-    return os.environ.get("REQUIRE_CONTENT_DATA_DIR", "").strip() == "1"
-
-
 def default_content_root() -> Path:
     return Path(os.environ.get("CONTENT_DATA_DIR", Path(__file__).resolve().parents[2] / "data"))
-
-
-def validate_strict_content_root(root: Path) -> None:
-    configured = os.environ.get("CONTENT_DATA_DIR", "").strip()
-    if not configured:
-        raise RuntimeError(
-            "CONTENT_DATA_DIR must be set when REQUIRE_CONTENT_DATA_DIR=1."
-        )
-    if not root.exists():
-        raise RuntimeError(
-            f"Configured CONTENT_DATA_DIR does not exist: {root}"
-        )
-    if not root.is_dir():
-        raise RuntimeError(
-            f"Configured CONTENT_DATA_DIR is not a directory: {root}"
-        )
-
-    try:
-        with tempfile.NamedTemporaryFile(dir=root, prefix=".hfzwood-write-check-", delete=True):
-            pass
-    except OSError as exc:
-        raise RuntimeError(
-            f"Configured CONTENT_DATA_DIR is not writable: {root}"
-        ) from exc
 
 
 def required_release_artifacts(root: Path) -> list[Path]:
@@ -508,78 +370,6 @@ def validate_release_editorial_root(root: Path) -> None:
             raise RuntimeError(
                 f"Release editorial required artifact must be a JSON object: {relative}"
             )
-
-
-def seed_data_root() -> Path:
-    return Path(__file__).resolve().parents[2] / "seed-data"
-
-
-def _load_seed_dataset(filename: str, fallback_loader) -> list[dict]:
-    seed_path = seed_data_root() / filename
-    if seed_path.is_file():
-        payload = json.loads(seed_path.read_text(encoding="utf-8"))
-        if not isinstance(payload, list):
-            raise ValueError(f"Seed dataset must be an array: {seed_path}")
-        return payload
-    return fallback_loader()
-
-
-def _build_manual_legacy_document() -> dict[str, Any]:
-    return {
-        "locale": "en",
-        "sections": _load_seed_dataset("manual-sections.json", load_manual_sections),
-    }
-
-
-def _build_glossary_legacy_document() -> dict[str, Any]:
-    entries = _load_seed_dataset("glossary-entries.json", load_glossary_entries)
-    return {
-        "locale": "en",
-        "entries": sorted(
-            [
-                {
-                    "id": entry["id"],
-                    "term": entry["term"],
-                    "definition": entry.get("definition", []),
-                    "media": entry.get("media", []),
-                    "relatedTerms": [],
-                    "synonyms": [],
-                    "seeAlso": [],
-                }
-                for entry in entries
-            ],
-            key=lambda item: item["term"].casefold(),
-        ),
-    }
-
-
-def _build_knowledge_base_legacy_document() -> dict[str, Any]:
-    entries = _load_seed_dataset("knowledge-base-entries.json", load_knowledge_base_entries)
-    return {
-        "locale": "en",
-        "entries": [
-            {
-                "id": entry["id"],
-                "title": entry["title"],
-                "problemSummary": entry.get("problemSummary", ""),
-                "symptoms": entry.get("symptoms", []),
-                "possibleCauses": entry.get("possibleCauses", []),
-                "solution": entry.get("solution", []),
-                "prevention": entry.get("prevention", []),
-                "tips": entry.get("tips", []),
-                "warnings": entry.get("warnings", []),
-                "searchKeywords": entry.get("searchKeywords", []),
-                "estimatedRepairTime": entry.get("estimatedRepairTime"),
-                "requiredTools": entry.get("requiredTools", []),
-                "requiredMaterials": entry.get("requiredMaterials", []),
-                "media": entry.get("media", []),
-                "relatedKbArticles": [],
-                "relatedGlossaryTerms": [],
-                "relatedManualChapters": [],
-            }
-            for entry in entries
-        ],
-    }
 
 
 # Transient Windows/local file-access contention (replace and store open/read).
@@ -707,149 +497,6 @@ def atomic_write_json(
                 temp_path.unlink()
 
 
-def initialization_marker_path(root: Path) -> Path:
-    return root / INITIALIZATION_MARKER
-
-
-def required_initialization_artifacts(root: Path) -> list[Path]:
-    return [
-        root / "editorial" / "content-store.json",
-        root / "published" / "manual" / "en" / "document.json",
-        root / "published" / "glossary" / "en" / "entries.json",
-        root / "published" / "knowledge-base" / "en" / "entries.json",
-        root / "published" / "website" / "en" / "pages.json",
-        root / "legacy" / "manual" / "en" / "document.json",
-        root / "legacy" / "glossary" / "en" / "entries.json",
-        root / "legacy" / "knowledge-base" / "en" / "entries.json",
-        initialization_marker_path(root),
-    ]
-
-
-def is_fully_initialized(root: Path) -> bool:
-    return all(path.exists() for path in required_initialization_artifacts(root))
-
-
-def _recognized_root_entry_names() -> set[str]:
-    return {"editorial", "published", "legacy", INITIALIZATION_MARKER}
-
-
-def _existing_root_entries(root: Path) -> list[Path]:
-    return [
-        entry
-        for entry in root.iterdir()
-        if not entry.name.startswith(".hfzwood-write-check-")
-        and not entry.name.startswith(".hfzwood-init-")
-    ]
-
-
-def _is_recognized_incomplete_entry(entry: Path) -> bool:
-    return entry.name in _recognized_root_entry_names()
-
-
-def _safe_remove_path(path: Path) -> None:
-    if not path.exists():
-        return
-    if path.is_symlink():
-        path.unlink()
-        return
-    if path.is_dir():
-        shutil.rmtree(path)
-        return
-    path.unlink()
-
-
-def _remove_recognized_initialization_artifacts(root: Path) -> None:
-    if root_has_authoritative_content(root):
-        raise RuntimeError(
-            "Configured CONTENT_DATA_DIR contains authoritative editorial content; "
-            "refusing to remove initialization artifacts."
-        )
-
-    for name in ("editorial", "published", "legacy"):
-        _safe_remove_path(root / name)
-    _safe_remove_path(initialization_marker_path(root))
-
-
-def _build_legacy_compatibility_documents(repository: "FilesystemContentRepository") -> None:
-    repository.write_legacy_manual_document("en", _build_manual_legacy_document())
-    repository.write_legacy_glossary_document("en", _build_glossary_legacy_document())
-    repository.write_legacy_kb_document("en", _build_knowledge_base_legacy_document())
-
-
-def _seed_canonical_editorial_content(repository: "FilesystemContentRepository") -> None:
-    from content.services.migrate_phase2_glossary import EditorialGlossaryMigrationService
-    from content.services.migrate_phase2_knowledge_base import EditorialKnowledgeBaseMigrationService
-    from content.services.migrate_phase2_manual import EditorialManualMigrationService
-
-    EditorialManualMigrationService(repository).migrate()
-    EditorialGlossaryMigrationService(repository).migrate()
-    EditorialKnowledgeBaseMigrationService(repository).migrate()
-    repository.ensure_website_pages_exist()
-
-
-def _ensure_website_artifacts(root: Path) -> None:
-    repository = FilesystemContentRepository(root)
-    repository.ensure_website_pages_exist()
-
-
-def _write_initialization_marker(root: Path) -> None:
-    atomic_write_json(
-        initialization_marker_path(root),
-        {
-            "version": 1,
-            "artifacts": [
-                str(path.relative_to(root)).replace("\\", "/")
-                for path in required_initialization_artifacts(root)
-                if path != initialization_marker_path(root)
-            ],
-        },
-    )
-
-
-def initialize_production_content_root(root: Path) -> None:
-    validate_strict_content_root(root)
-    if is_fully_initialized(root):
-        return
-
-    if root_has_authoritative_content(root):
-        _adopt_authoritative_existing_root(root)
-        return
-
-    existing_entries = _existing_root_entries(root)
-    if existing_entries and not all(_is_recognized_incomplete_entry(entry) for entry in existing_entries):
-        raise RuntimeError(
-            "Configured CONTENT_DATA_DIR is not empty but is not a recognized incomplete initialization state; "
-            "refusing initialization."
-        )
-
-    if existing_entries:
-        _remove_recognized_initialization_artifacts(root)
-
-    staging_dir = Path(tempfile.mkdtemp(prefix=".hfzwood-init-", dir=root))
-    created_targets: list[Path] = []
-    try:
-        repository = FilesystemContentRepository(staging_dir)
-        _seed_canonical_editorial_content(repository)
-        _build_legacy_compatibility_documents(repository)
-        _write_initialization_marker(staging_dir)
-
-        for name in ("editorial", "published", "legacy", INITIALIZATION_MARKER):
-            source = staging_dir / name
-            target = root / name
-            os.replace(source, target)
-            created_targets.append(target)
-    except Exception:
-        for target in reversed(created_targets):
-            if target.exists():
-                if target.is_dir():
-                    shutil.rmtree(target, ignore_errors=True)
-                else:
-                    target.unlink()
-        raise
-    finally:
-        shutil.rmtree(staging_dir, ignore_errors=True)
-
-
 class FilesystemContentRepository:
     def __init__(self, data_dir: Path | None = None) -> None:
         from content.editorial_content_mode import (
@@ -867,15 +514,12 @@ class FilesystemContentRepository:
             self._store_path = self._editorial_dir / "content-store.json"
             return
 
-        strict_root = data_dir is None and strict_content_root_required()
-        if strict_root:
-            initialize_production_content_root(root)
+        # Local editorial authoring: create the writable root on demand.
         self._root = root
         self._editorial_dir = self._root / "editorial"
         self._published_dir = self._root / "published"
         self._store_path = self._editorial_dir / "content-store.json"
-        if not strict_root:
-            self._root.mkdir(parents=True, exist_ok=True)
+        self._root.mkdir(parents=True, exist_ok=True)
         self._editorial_dir.mkdir(parents=True, exist_ok=True)
         self._published_dir.mkdir(parents=True, exist_ok=True)
         if not self._store_path.exists():
@@ -1334,19 +978,6 @@ class FilesystemContentRepository:
     def get_manual_image_path(self, filename: str) -> Path | None:
         image_path = self._root / "manual" / "images" / filename
         return image_path if image_path.is_file() else None
-
-    def write_legacy_manual_document(self, locale: str, document: dict[str, Any]) -> str:
-        snapshot_key = f"legacy/manual/{locale}/document.json"
-        snapshot_path = self._root / snapshot_key
-        atomic_write_json(snapshot_path, document)
-        return snapshot_key
-
-    def read_legacy_manual_document(self, locale: str) -> dict[str, Any] | None:
-        snapshot_path = self._root / f"legacy/manual/{locale}/document.json"
-        if not snapshot_path.exists():
-            return None
-        with snapshot_path.open("r", encoding="utf-8") as handle:
-            return json.load(handle)
 
     def _allocate_content_id(self, records: dict[str, Any], title: str, meta_key_builder) -> str:
         stem = slugify_title(title)
@@ -1811,19 +1442,6 @@ class FilesystemContentRepository:
         image_path = self._root / "glossary" / "images" / filename
         return image_path if image_path.is_file() else None
 
-    def write_legacy_glossary_document(self, locale: str, document: dict[str, Any]) -> str:
-        snapshot_key = f"legacy/glossary/{locale}/entries.json"
-        snapshot_path = self._root / snapshot_key
-        atomic_write_json(snapshot_path, document)
-        return snapshot_key
-
-    def read_legacy_glossary_document(self, locale: str) -> dict[str, Any] | None:
-        snapshot_path = self._root / f"legacy/glossary/{locale}/entries.json"
-        if not snapshot_path.exists():
-            return None
-        with snapshot_path.open("r", encoding="utf-8") as handle:
-            return json.load(handle)
-
     def _next_kb_sort_order(self, records: dict[str, Any]) -> int:
         orders = []
         for key in records:
@@ -2121,19 +1739,6 @@ class FilesystemContentRepository:
     def get_kb_image_path(self, filename: str) -> Path | None:
         image_path = self._root / "knowledge-base" / "images" / filename
         return image_path if image_path.is_file() else None
-
-    def write_legacy_kb_document(self, locale: str, document: dict[str, Any]) -> str:
-        snapshot_key = f"legacy/knowledge-base/{locale}/entries.json"
-        snapshot_path = self._root / snapshot_key
-        atomic_write_json(snapshot_path, document)
-        return snapshot_key
-
-    def read_legacy_kb_document(self, locale: str) -> dict[str, Any] | None:
-        snapshot_path = self._root / f"legacy/knowledge-base/{locale}/entries.json"
-        if not snapshot_path.exists():
-            return None
-        with snapshot_path.open("r", encoding="utf-8") as handle:
-            return json.load(handle)
 
     def list_website_page_ids(self) -> list[str]:
         return self.list_website_page_ids_from_store(self._read_store())

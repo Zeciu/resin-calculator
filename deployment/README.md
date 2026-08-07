@@ -96,7 +96,7 @@ Run these from the repository root unless stated otherwise.
 | Stripe URLs | Fixed `https://hfzwood.com/account` routes |
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | Secrets Manager secret `hfzwood/stripe` |
 
-`AUTH_MODE=cognito` is currently set by CDK but is not read by the backend; Cognito is enforced by the required `COGNITO_*` variables. `CONTENT_DATA_DIR`, `REQUIRE_CONTENT_DATA_DIR`, and `DEEPL_*` must not be set in production.
+`AUTH_MODE=cognito` is currently set by CDK but is not read by the backend; Cognito is enforced by the required `COGNITO_*` variables. `CONTENT_DATA_DIR` and `DEEPL_*` must not be set in production.
 
 Create Stripe secrets before commercial Checkout is enabled:
 

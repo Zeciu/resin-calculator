@@ -1,9 +1,6 @@
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_glossary, public_content
-from content.services.glossary_source import load_glossary_entries
-from content.services.migrate_phase2_glossary import LegacyGlossaryMigrationService
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -148,47 +145,6 @@ class TestGlossaryPublish:
         payload = public_response.json()
         assert payload["available"] is True
         assert any(entry["term"] == "Sealing" for entry in payload["entries"])
-
-
-class TestGlossarySourceLoader:
-    def test_reads_glossary_content_js(self):
-        entries = load_glossary_entries()
-        assert len(entries) >= 10
-        assert entries[0]["id"]
-        assert entries[0]["term"]
-
-
-class TestLegacyGlossaryMigration:
-    def test_migration_writes_legacy_public_entries_only(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        source_entries = load_glossary_entries()
-        repository = FilesystemContentRepository()
-        repository.create_glossary_entry("Admin Term", content_id="admin-term")
-
-        result = LegacyGlossaryMigrationService(repository).migrate()
-
-        assert result["entryCount"] == len(source_entries)
-        legacy_document = repository.read_legacy_glossary_document("en")
-        assert legacy_document is not None
-        assert len(legacy_document["entries"]) == len(source_entries)
-        assert repository.list_glossary_entry_ids() == ["admin-term"]
-        assert repository.read_glossary_snapshot("en") == {"locale": "en", "entries": []}
-
-
-class TestGlossaryPublicApi:
-    def test_legacy_glossary_served_when_no_admin_snapshot(self, client, tmp_path, monkeypatch):
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        admin_glossary.reset_repository_cache()
-        public_content.reset_repository_cache()
-        LegacyGlossaryMigrationService(FilesystemContentRepository()).migrate()
-
-        response = client.get("/api/content/glossary?locale=en")
-        assert response.status_code == 200
-        payload = response.json()
-        assert payload["available"] is True
-        terms = [entry["term"] for entry in payload["entries"]]
-        assert "Epoxy resin" in terms
-        assert terms == sorted(terms, key=str.casefold)
 
 
 class TestGlossaryRelationshipValidation:

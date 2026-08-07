@@ -1,9 +1,6 @@
 import pytest
 
-from content.repositories.filesystem import FilesystemContentRepository
 from content.routers import admin_manual, public_content
-from content.services.manual_source import load_manual_sections
-from content.services.migrate_phase2_manual import LegacyManualMigrationService
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -19,14 +16,6 @@ def client(tmp_path, monkeypatch):
     from app import app
 
     return AuthenticatedTestClient(app)
-
-
-def assert_sections_match_source(source_sections: list[dict], api_sections: list[dict]) -> None:
-    assert len(source_sections) == len(api_sections)
-    for source_section, api_section in zip(source_sections, api_sections, strict=True):
-        assert source_section["id"] == api_section["id"]
-        assert source_section["title"] == api_section["title"]
-        assert source_section["blocks"] == api_section["blocks"]
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -49,82 +38,40 @@ def sample_body(title: str = "Chapter One", text: str = "Body text.") -> dict:
     }
 
 
-class TestManualSourceLoader:
-    def test_reads_manual_content_js_not_fixture(self):
-        sections = load_manual_sections()
-        assert len(sections) >= 4
-        assert sections[0]["id"] == "introduction"
-        assert any(block.get("type") == "image" for section in sections for block in section["blocks"])
-        assert any(block.get("type") == "video" for section in sections for block in section["blocks"])
-
-
-class TestLegacyManualMigration:
-    def test_migration_writes_legacy_public_document_only(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        source_sections = load_manual_sections()
-        repository = FilesystemContentRepository()
-        repository.create_manual_chapter("Introduction", content_id="introduction")
-        repository.create_manual_chapter("Admin Chapter", content_id="admin-chapter")
-
-        result = LegacyManualMigrationService(repository).migrate()
-
-        assert result["locale"] == "en"
-        assert result["sectionCount"] == len(source_sections)
-        assert result["sectionIds"] == [section["id"] for section in source_sections]
-        assert "introduction" in result["removedFromEditorial"]
-
-        legacy_document = repository.read_legacy_manual_document("en")
-        assert legacy_document is not None
-        assert legacy_document["sections"] == source_sections
-        assert repository.list_manual_chapter_ids() == ["admin-chapter"]
-        assert repository.read_manual_snapshot("en") == {"locale": "en", "chapters": []}
-
-    def test_migration_removes_stale_legacy_editorial_chapters(self, client, tmp_path, monkeypatch):
-        monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-        repository = FilesystemContentRepository()
-        for section in load_manual_sections():
-            repository.create_manual_chapter(section["title"], content_id=section["id"])
-
-        LegacyManualMigrationService(repository).migrate()
-
-        response = client.get("/api/admin/manual/chapters", headers={"X-Mock-Role": "administrator"})
-        assert response.status_code == 200
-        assert response.json() == []
-
-    def test_public_api_matches_manual_sections_after_migration(self, client):
-        source_sections = load_manual_sections()
-        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
-
-        response = client.get("/api/content/manual?locale=en")
-        assert response.status_code == 200
-        payload = response.json()
-        assert payload["available"] is True
-        assert payload["requestedLocale"] == "en"
-        assert_sections_match_source(source_sections, payload["sections"])
-
-    def test_migration_does_not_populate_admin_chapters(self, client):
-        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
-
-        response = client.get("/api/admin/manual/chapters", headers={"X-Mock-Role": "administrator"})
-        assert response.status_code == 200
-        assert response.json() == []
-
-    def test_public_api_requires_no_auth(self, client):
-        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
-        response = client.get("/api/content/manual?locale=en")
-        assert response.status_code == 200
+def publish_en_chapter(client, title: str = "Chapter One", text: str = "Body text.") -> str:
+    """Create, save and publish one English chapter through the admin API."""
+    chapter_id = client.post(
+        "/api/admin/manual/chapters",
+        json={"title": title},
+        headers=admin_headers(),
+    ).json()["contentId"]
+    client.put(
+        f"/api/admin/manual/chapters/{chapter_id}/variants/en",
+        json={"body": sample_body(title, text)},
+        headers=admin_headers(),
+    )
+    client.post(
+        f"/api/admin/manual/chapters/{chapter_id}/variants/en/publish",
+        headers=admin_headers(),
+    )
+    return chapter_id
 
 
 class TestPublicManualApi:
+    def test_public_api_requires_no_auth(self, client):
+        publish_en_chapter(client)
+        response = client.get("/api/content/manual?locale=en")
+        assert response.status_code == 200
+
     def test_inactive_ro_locale_is_rejected(self, client):
-        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
+        publish_en_chapter(client)
 
         response = client.get("/api/content/manual?locale=ro")
         assert response.status_code == 400
         assert "not active" in response.json()["detail"].lower()
 
     def test_active_ro_locale_is_unavailable_without_autofallback(self, client):
-        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
+        publish_en_chapter(client)
         assert (
             client.post(
                 "/api/admin/public-languages/ro/activate",
@@ -141,7 +88,7 @@ class TestPublicManualApi:
         assert payload["englishAvailable"] is True
         assert payload["sections"] == []
 
-    def test_en_locale_unavailable_before_migration(self, client):
+    def test_en_locale_unavailable_without_published_content(self, client):
         response = client.get("/api/content/manual?locale=en")
         assert response.status_code == 200
         payload = response.json()
@@ -157,24 +104,8 @@ class TestPublicManualApi:
         response = client.get("/api/content/manual?locale=xx")
         assert response.status_code == 400
 
-    def test_admin_published_manual_takes_priority_over_legacy(self, client):
-        LegacyManualMigrationService(FilesystemContentRepository()).migrate()
-
-        chapter_id = client.post(
-            "/api/admin/manual/chapters",
-            json={"title": "Capitolul 1"},
-            headers=admin_headers(),
-        ).json()["contentId"]
-
-        client.put(
-            f"/api/admin/manual/chapters/{chapter_id}/variants/en",
-            json={"body": sample_body("Capitolul 1", "Admin chapter body.")},
-            headers=admin_headers(),
-        )
-        client.post(
-            f"/api/admin/manual/chapters/{chapter_id}/variants/en/publish",
-            headers=admin_headers(),
-        )
+    def test_published_admin_chapter_is_served(self, client):
+        chapter_id = publish_en_chapter(client, "Capitolul 1", "Admin chapter body.")
 
         response = client.get("/api/content/manual?locale=en")
         payload = response.json()
@@ -183,3 +114,19 @@ class TestPublicManualApi:
         assert payload["sections"][0]["title"] == "Capitolul 1"
         assert payload["sections"][0]["id"] == chapter_id
         assert payload["sections"][0]["blocks"][0]["text"] == "Admin chapter body."
+
+    def test_unpublished_draft_is_not_served(self, client):
+        chapter_id = client.post(
+            "/api/admin/manual/chapters",
+            json={"title": "Draft Only"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/manual/chapters/{chapter_id}/variants/en",
+            json={"body": sample_body("Draft Only", "Draft body.")},
+            headers=admin_headers(),
+        )
+
+        payload = client.get("/api/content/manual?locale=en").json()
+        assert payload["available"] is False
+        assert payload["sections"] == []

@@ -206,26 +206,11 @@ class TestPublicLanguagesConfig:
         assert content.read_glossary_snapshot("de") is None
         assert content.read_kb_snapshot("de") is None
 
-    def test_no_legacy_seed_resurrection_when_empty_snapshot_and_inactive(
-        self, client, tmp_path
-    ):
+    def test_empty_published_snapshot_stays_unavailable(self, client, tmp_path):
         repository = FilesystemContentRepository(tmp_path)
-        repository.write_legacy_manual_document(
-            "de",
-            {
-                "locale": "de",
-                "sections": [
-                    {
-                        "id": "legacy-intro",
-                        "title": "Introduction",
-                        "blocks": [{"type": "paragraph", "text": "Legacy seed"}],
-                    }
-                ],
-            },
-        )
         repository.write_manual_snapshot("de", {"locale": "de", "chapters": []})
 
-        # Even after activating DE, empty published snapshot must not resurrect legacy.
+        # An empty published snapshot owns the locale: no content, and no substitute.
         client.post("/api/admin/public-languages/de/activate", headers=admin_headers())
         response = client.get("/api/content/manual?locale=de")
         assert response.status_code == 200
@@ -233,7 +218,7 @@ class TestPublicLanguagesConfig:
         assert payload["available"] is False
         assert payload["sections"] == []
 
-        # Inactive again: rejected, still no legacy resurrection path via public API.
+        # Inactive again: rejected at the activation gate.
         client.post("/api/admin/public-languages/de/deactivate", headers=admin_headers())
         inactive = client.get("/api/content/manual?locale=de")
         assert inactive.status_code == 400

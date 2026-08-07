@@ -1,5 +1,4 @@
 import json
-import os
 from copy import deepcopy
 from pathlib import Path
 
@@ -10,9 +9,6 @@ from content.repositories.filesystem import (
     CONTENT_TYPE_KB_ENTRY,
     CONTENT_TYPE_MANUAL_CHAPTER,
     FilesystemContentRepository,
-    INITIALIZATION_MARKER,
-    initialize_production_content_root,
-    is_fully_initialized,
     make_glossary_meta_key,
     make_glossary_variant_key,
     make_kb_meta_key,
@@ -22,7 +18,6 @@ from content.repositories.filesystem import (
     make_manual_meta_key,
     make_manual_variant_key,
     make_order_key,
-    root_has_authoritative_content,
 )
 
 
@@ -159,179 +154,6 @@ def _write_store(root: Path, records: dict) -> None:
     store_path = root / "editorial" / "content-store.json"
     store_path.parent.mkdir(parents=True, exist_ok=True)
     store_path.write_text(json.dumps({"records": records}, indent=2), encoding="utf-8")
-
-
-def _write_required_artifacts_from_repository(repository: FilesystemContentRepository, root: Path) -> None:
-    repository.write_manual_snapshot(
-        "en",
-        {
-            "locale": "en",
-            "chapters": [
-                {
-                    "contentId": "introduction",
-                    "sortOrder": 100,
-                    "title": "Legacy Introduction",
-                    "sections": [
-                        {
-                            "id": "main",
-                            "title": "",
-                            "blocks": [{"type": "paragraph", "text": "Legacy body."}],
-                        }
-                    ],
-                }
-            ],
-        },
-    )
-    repository.write_glossary_snapshot(
-        "en",
-        {
-            "locale": "en",
-            "entries": [
-                {
-                    "id": "calibration",
-                    "term": "Calibration",
-                    "definition": ["Legacy glossary definition."],
-                    "media": [],
-                    "relatedTerms": [],
-                    "synonyms": [],
-                    "seeAlso": [],
-                }
-            ],
-        },
-    )
-    repository.write_kb_snapshot(
-        "en",
-        {
-            "locale": "en",
-            "entries": [
-                {
-                    "id": "bubbles-after-curing",
-                    "title": "Legacy KB Title",
-                    "problemSummary": "Legacy summary",
-                    "symptoms": ["Legacy symptom"],
-                    "possibleCauses": [],
-                    "solution": ["Legacy solution"],
-                    "prevention": [],
-                    "tips": [],
-                    "warnings": [],
-                    "searchKeywords": [],
-                    "estimatedRepairTime": None,
-                    "requiredTools": [],
-                    "requiredMaterials": [],
-                    "media": [],
-                    "relatedKbArticles": [],
-                    "relatedGlossaryTerms": [],
-                    "relatedManualChapters": [],
-                }
-            ],
-        },
-    )
-    repository.write_legacy_manual_document(
-        "en",
-        {
-            "locale": "en",
-            "sections": [
-                {
-                    "id": "introduction",
-                    "title": "Legacy Introduction",
-                    "blocks": [{"type": "paragraph", "text": "Legacy body."}],
-                }
-            ],
-        },
-    )
-    repository.write_legacy_glossary_document(
-        "en",
-        {
-            "locale": "en",
-            "entries": [
-                {
-                    "id": "calibration",
-                    "term": "Calibration",
-                    "definition": ["Legacy glossary definition."],
-                    "media": [],
-                    "relatedTerms": [],
-                    "synonyms": [],
-                    "seeAlso": [],
-                }
-            ],
-        },
-    )
-    repository.write_legacy_kb_document(
-        "en",
-        {
-            "locale": "en",
-            "entries": [
-                {
-                    "id": "bubbles-after-curing",
-                    "title": "Legacy KB Title",
-                    "problemSummary": "Legacy summary",
-                    "symptoms": ["Legacy symptom"],
-                    "possibleCauses": [],
-                    "solution": ["Legacy solution"],
-                    "prevention": [],
-                    "tips": [],
-                    "warnings": [],
-                    "searchKeywords": [],
-                    "estimatedRepairTime": None,
-                    "requiredTools": [],
-                    "requiredMaterials": [],
-                    "media": [],
-                    "relatedKbArticles": [],
-                    "relatedGlossaryTerms": [],
-                    "relatedManualChapters": [],
-                }
-            ],
-        },
-    )
-
-
-def test_authoritative_existing_root_without_marker_is_adopted_not_reseeded(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-
-    records = {
-        **_legacy_manual_store_records(),
-        **_legacy_glossary_store_records(),
-        **_legacy_kb_store_records(),
-    }
-    _write_store(tmp_path, records)
-    repository = FilesystemContentRepository(tmp_path)
-    _write_required_artifacts_from_repository(repository, tmp_path)
-
-    store_before = (tmp_path / "editorial" / "content-store.json").read_text(encoding="utf-8")
-    published_before = (tmp_path / "published" / "manual" / "en" / "document.json").read_text(encoding="utf-8")
-    assert not (tmp_path / INITIALIZATION_MARKER).exists()
-
-    initialize_production_content_root(tmp_path)
-
-    assert is_fully_initialized(tmp_path)
-    assert (tmp_path / INITIALIZATION_MARKER).is_file()
-    assert (tmp_path / "editorial" / "content-store.json").read_text(encoding="utf-8") == store_before
-    assert (
-        (tmp_path / "published" / "manual" / "en" / "document.json").read_text(encoding="utf-8")
-        == published_before
-    )
-    assert repository.list_manual_chapter_ids() == ["introduction"]
-    assert repository.get_manual_variant("introduction", "en")["draftBody"]["title"] == "Legacy Introduction"
-
-
-def test_authoritative_root_with_missing_required_artifact_fails_closed_without_modification(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    _write_store(tmp_path, _legacy_manual_store_records())
-    store_before = (tmp_path / "editorial" / "content-store.json").read_text(encoding="utf-8")
-
-    with pytest.raises(RuntimeError, match="required artifacts are missing"):
-        initialize_production_content_root(tmp_path)
-
-    assert (tmp_path / "editorial" / "content-store.json").read_text(encoding="utf-8") == store_before
-    assert not (tmp_path / INITIALIZATION_MARKER).exists()
 
 
 def test_legacy_manual_store_is_readable_editable_and_migrates_on_write(tmp_path: Path) -> None:
@@ -887,91 +709,3 @@ def test_observation_008_delete_semantics_unchanged_after_migration(tmp_path: Pa
     repository.delete_glossary_entry("bubble-removal")
     assert "bubble-removal" not in repository.list_glossary_entry_ids()
     assert repository.get_glossary_variant("bubble-removal", "ro") is None
-
-
-def test_cleanup_refuses_authoritative_editorial_records(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    _write_store(tmp_path, _legacy_manual_store_records())
-    (tmp_path / "published").mkdir(parents=True, exist_ok=True)
-
-    assert root_has_authoritative_content(tmp_path)
-
-    with pytest.raises(RuntimeError, match="required artifacts are missing"):
-        initialize_production_content_root(tmp_path)
-
-    assert (tmp_path / "editorial" / "content-store.json").is_file()
-
-
-def test_cleanup_refuses_non_empty_published_snapshot(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    snapshot_path = tmp_path / "published" / "manual" / "en" / "document.json"
-    snapshot_path.parent.mkdir(parents=True, exist_ok=True)
-    snapshot_path.write_text(
-        json.dumps({"locale": "en", "chapters": [{"contentId": "existing", "title": "Existing"}]}),
-        encoding="utf-8",
-    )
-
-    with pytest.raises(RuntimeError, match="required artifacts are missing"):
-        initialize_production_content_root(tmp_path)
-
-    assert snapshot_path.read_text(encoding="utf-8")
-
-
-def test_unrelated_files_still_cause_safe_refusal(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    unrelated = tmp_path / "preexisting-note.txt"
-    unrelated.write_text("keep me", encoding="utf-8")
-
-    with pytest.raises(RuntimeError, match="refusing initialization"):
-        initialize_production_content_root(tmp_path)
-
-    assert unrelated.read_text(encoding="utf-8") == "keep me"
-
-
-def test_empty_partial_initialization_artifacts_remain_recoverable(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    _write_store(tmp_path, {})
-    (tmp_path / "published").mkdir(parents=True, exist_ok=True)
-
-    assert not root_has_authoritative_content(tmp_path)
-    initialize_production_content_root(tmp_path)
-
-    assert is_fully_initialized(tmp_path)
-    assert len(FilesystemContentRepository(tmp_path).list_manual_chapter_ids()) > 0
-
-
-@pytest.mark.skipif(os.name == "nt", reason="Symlink ownership semantics differ on Windows.")
-def test_cleanup_does_not_follow_symlink_outside_root(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    outside_dir = tmp_path / "outside"
-    outside_dir.mkdir()
-    sentinel = outside_dir / "sentinel.txt"
-    sentinel.write_text("outside", encoding="utf-8")
-
-    editorial_link = tmp_path / "editorial"
-    editorial_link.symlink_to(outside_dir, target_is_directory=True)
-    assert not root_has_authoritative_content(tmp_path)
-
-    monkeypatch.setenv("REQUIRE_CONTENT_DATA_DIR", "1")
-    monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    initialize_production_content_root(tmp_path)
-
-    assert sentinel.read_text(encoding="utf-8") == "outside"

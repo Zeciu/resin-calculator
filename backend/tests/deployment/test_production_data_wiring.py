@@ -24,7 +24,6 @@ class TestProductionDataWiringSource:
         assert "PACKAGED_EDITORIAL_CONTENT_DIR" not in source
         assert "CONTENT_DATA_DIR:" not in source
         assert "EDITORIAL_CONTENT_MODE" not in source
-        assert "REQUIRE_CONTENT_DATA_DIR" not in source
 
     def test_app_stack_points_commercial_user_state_at_dynamodb(self):
         source = _app_stack_source()
@@ -58,7 +57,6 @@ class TestSynthesizedTaskDefinition:
         env = {item["Name"]: item["Value"] for item in container["Environment"]}
         assert "CONTENT_DATA_DIR" not in env
         assert "EDITORIAL_CONTENT_MODE" not in env
-        assert "REQUIRE_CONTENT_DATA_DIR" not in env
         assert "COMMERCIAL_DATA_DIR" not in env
         assert "ENTITLEMENTS_TABLE_NAME" in env
         assert "MountPoints" not in container or container["MountPoints"] == []

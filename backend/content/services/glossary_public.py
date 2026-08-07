@@ -163,18 +163,11 @@ class GlossaryPublicService:
         entries = snapshot.get("entries", [])
         return sorted(entries, key=lambda item: item.get("term", "").casefold())
 
-    def entries_from_legacy_document(self, document: dict | None) -> list[dict]:
-        if not document:
-            return []
-        entries = document.get("entries", [])
-        return sorted(entries, key=lambda item: item.get("term", "").casefold())
-
     def _resolve_locale_entries(self, locale: str) -> list[dict]:
         snapshot = self._repository.read_glossary_snapshot(locale)
-        if snapshot is not None:
-            # Published snapshot owns this locale — never mask with legacy seed.
-            return self.entries_from_admin_snapshot(snapshot)
-        return self.entries_from_legacy_document(self._repository.read_legacy_glossary_document(locale))
+        if snapshot is None:
+            return []
+        return self.entries_from_admin_snapshot(snapshot)
 
     def _locale_has_content(self, locale: str) -> bool:
         return bool(self._resolve_locale_entries(locale))

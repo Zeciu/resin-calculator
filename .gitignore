@@ -50,11 +50,7 @@ backend/data/config/*
 
 # Keep commercial/user/runtime artifacts ignored (even if paths appear under data/)
 backend/data/entitlements/
-backend/data/legacy/
-backend/data/.hfzwood-initialized.json
 backend/data/**/*.tmp*
-backend/data/**/.hfzwood-write-check-*
-backend/data/**/.hfzwood-init-*
 
 # Local-only editorial/admin source is tracked, but never included in production Docker builds.
 # See frontend/private/README.md and backend/private/README.md.

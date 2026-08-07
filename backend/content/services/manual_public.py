@@ -33,22 +33,15 @@ def sections_from_admin_snapshot(snapshot: dict | None) -> list[dict]:
     return sections
 
 
-def sections_from_legacy_document(document: dict | None) -> list[dict]:
-    if not document:
-        return []
-    return document.get("sections", [])
-
-
 class ManualPublicService:
     def __init__(self, repository: FilesystemContentRepository):
         self._repository = repository
 
     def _resolve_locale_sections(self, locale: str) -> list[dict]:
         snapshot = self._repository.read_manual_snapshot(locale)
-        if snapshot is not None:
-            # Published snapshot owns this locale — never mask with legacy seed.
-            return sections_from_admin_snapshot(snapshot)
-        return sections_from_legacy_document(self._repository.read_legacy_manual_document(locale))
+        if snapshot is None:
+            return []
+        return sections_from_admin_snapshot(snapshot)
 
     def _locale_has_content(self, locale: str) -> bool:
         return bool(self._resolve_locale_sections(locale))
