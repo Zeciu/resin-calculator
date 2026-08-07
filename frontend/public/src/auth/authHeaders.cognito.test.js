@@ -13,7 +13,6 @@ describe("buildAuthHeaders cognito mode", () => {
   });
 
   it("uses bearer token in cognito mode and does not send mock headers", async () => {
-    vi.stubEnv("VITE_AUTH_MODE", "cognito");
     fetchAuthSession.mockResolvedValue({
       tokens: {
         accessToken: {

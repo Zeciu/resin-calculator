@@ -72,7 +72,7 @@ Run these from the repository root unless stated otherwise.
    docker push "${EcrUri}:latest"
    ```
 
-   Required frontend build arguments are `VITE_COGNITO_USER_POOL_ID`, `VITE_COGNITO_CLIENT_ID`, `VITE_COGNITO_DOMAIN`, and `VITE_COGNITO_REDIRECT_URI`. `VITE_AUTH_MODE` is currently unused: the frontend always uses Cognito and has no mock-auth path.
+   Required frontend build arguments are `VITE_COGNITO_USER_POOL_ID`, `VITE_COGNITO_CLIENT_ID`, `VITE_COGNITO_DOMAIN`, and `VITE_COGNITO_REDIRECT_URI`. The frontend always uses Cognito.
 
 4. Deploy the application stack:
 

@@ -17,7 +17,7 @@
 
 ## TODO
 
-- Build a public marketing landing page; `LandingPage.jsx` is a retired component that intentionally renders nothing (the app enters through the workspace shell instead). Add a real public route if a marketing landing page is still needed, or remove the retired component.
+- Build a public marketing landing page; the app currently enters through the workspace shell and has no marketing route.
 - Add project rename, duplicate, archive, delete, and organization operations to the local project workflow.
 - Add per-project calculation history.
 - Add cross-module content search and article bookmarks.

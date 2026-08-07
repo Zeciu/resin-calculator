@@ -11,9 +11,6 @@ export const CONFIGURED_PUBLIC_LANGUAGES = [
   "it",
 ];
 
-/** @deprecated Use CONFIGURED_PUBLIC_LANGUAGES; kept for preference normalization. */
-export const INTERFACE_LANGUAGES = CONFIGURED_PUBLIC_LANGUAGES;
-
 export const INTERFACE_LANGUAGE_LABELS = {
   en: "English",
   ro: "Română",
@@ -39,7 +36,7 @@ export const DEFAULT_PREFERENCES = {
 
 export function normalizePreferences(payload = {}) {
   return {
-    interfaceLanguage: INTERFACE_LANGUAGES.includes(payload.interfaceLanguage)
+    interfaceLanguage: CONFIGURED_PUBLIC_LANGUAGES.includes(payload.interfaceLanguage)
       ? payload.interfaceLanguage
       : DEFAULT_PREFERENCES.interfaceLanguage,
     lengthUnit: LENGTH_UNITS.includes(payload.lengthUnit)

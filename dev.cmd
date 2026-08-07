@@ -10,7 +10,6 @@ if exist "%ROOT%\dev.local.cmd" (
 )
 
 :: Cognito configuration is required for both the Vite client and FastAPI backend.
-set VITE_AUTH_MODE=cognito
 set VITE_COGNITO_USER_POOL_ID=eu-central-1_cM7UmwtpB
 set VITE_COGNITO_CLIENT_ID=2kb538fbaa8udmh32ov0q7bm9
 set VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.eu-central-1.amazoncognito.com

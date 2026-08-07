@@ -21,7 +21,6 @@ import DedicatedModuleLayout from "./DedicatedModuleLayout.jsx";
 import HomeHubLayout from "./HomeHubLayout.jsx";
 import HomeRoute from "./HomeRoute.jsx";
 import NewProjectWorkspace from "./NewProjectWorkspace.jsx";
-import RoutePlaceholder from "./RoutePlaceholder.jsx";
 import { ROUTES } from "./routes.js";
 
 export const WORKSPACE_ROUTE_PATHS = [
@@ -49,8 +48,6 @@ export function isWorkspacePath(pathname) {
 function workspaceRoutePath(route) {
   return route.replace(/^\//, "");
 }
-
-const WORKSPACE_ROUTE_PLACEHOLDERS = [];
 
 export default function WorkspaceRouter() {
   return (
@@ -80,13 +77,6 @@ export default function WorkspaceRouter() {
               </AuthRouteGuard>
             }
           />
-          {WORKSPACE_ROUTE_PLACEHOLDERS.map(({ path, title }) => (
-            <Route
-              key={path}
-              path={workspaceRoutePath(path)}
-              element={<RoutePlaceholder title={title} />}
-            />
-          ))}
         </Route>
 
         <Route element={<PublicWebsiteLayout />}>
