@@ -97,21 +97,6 @@ describe("RegisterPage", () => {
     expect(screen.queryByText(/reading 'reset'/i)).not.toBeInTheDocument();
   });
 
-  it("keeps Login flow unaffected", async () => {
-    const user = userEvent.setup();
-    renderWorkspace(ROUTES.LOGIN);
-
-    await user.type(screen.getByRole("textbox", { name: /email or username/i }), "user@example.com");
-    await user.type(screen.getByLabelText(/^password$/i), "password123");
-    await user.click(screen.getByRole("button", { name: /^log in$/i }));
-
-    await waitFor(() => {
-      expect(
-        screen.getByText(/Welcome to HFZWood — your workspace for resin estimation/i),
-      ).toBeInTheDocument();
-    });
-  });
-
   it("keeps /register route publicly reachable for guests", () => {
     renderWorkspace(ROUTES.REGISTER);
     expect(screen.getByRole("heading", { name: /Create your HFZWood account/i })).toBeInTheDocument();

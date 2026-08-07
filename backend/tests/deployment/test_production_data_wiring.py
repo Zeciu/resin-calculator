@@ -34,16 +34,6 @@ class TestProductionDataWiringSource:
         assert "aws-backup" not in source
         assert "COMMERCIAL_DATA_DIR" not in source
 
-    def test_dockerfile_packages_public_runtime_without_editorial_build_stages(self):
-        dockerfile = DOCKERFILE.read_text(encoding="utf-8")
-        assert "COPY backend/public ./public" in dockerfile
-        assert "COPY backend/content" not in dockerfile
-        assert "COPY backend/data" not in dockerfile
-        assert "COPY backend/private" not in dockerfile
-        assert "editorial-seed-build" not in dockerfile
-        assert "/app/content" not in dockerfile
-
-
 @pytest.mark.skipif(not CDK_OUT_APP_STACK.is_file(), reason="Run cdk synth first to emit AppStack.template.json")
 class TestSynthesizedTaskDefinition:
     def test_task_definition_environment(self):

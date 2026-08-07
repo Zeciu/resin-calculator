@@ -23,6 +23,13 @@ def test_editorial_content_lives_under_private_and_is_excluded_from_the_image() 
     assert "backend/private/content" not in dockerfile
 
 
+def test_public_corpus_is_packaged_with_the_public_backend() -> None:
+    assert (REPO_ROOT / "backend" / "public" / "content" / "published" / "manual" / "en" / "document.json").is_file()
+    assert (REPO_ROOT / "backend" / "public" / "content" / "published" / "glossary" / "en" / "entries.json").is_file()
+    assert (REPO_ROOT / "backend" / "public" / "content" / "published" / "knowledge-base" / "en" / "entries.json").is_file()
+    assert (REPO_ROOT / "backend" / "public" / "content" / "published" / "website" / "en" / "pages.json").is_file()
+
+
 def test_docker_build_allowlists_only_the_public_backend_runtime() -> None:
     dockerfile = DOCKERFILE.read_text(encoding="utf-8")
     assert "COPY frontend/public ./public" in dockerfile

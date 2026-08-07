@@ -7,7 +7,9 @@ describe("computeProjectDirtyState", () => {
   });
 
   it("does not treat image-only state as dirty", () => {
-    expect(computeProjectDirtyState({})).toBe(false);
+    expect(
+      computeProjectDirtyState({ image: { dataUrl: "data:image/png;base64,uploaded" } }),
+    ).toBe(false);
   });
 
   it("returns true when reference measurements exist", () => {

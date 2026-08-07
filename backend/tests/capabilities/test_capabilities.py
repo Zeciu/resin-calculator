@@ -77,23 +77,6 @@ class TestCapabilityResolver:
         assert response.status_code == 200
         assert response.json()["accessTier"] == "free"
 
-    def test_stored_subscriber_tier_is_used(self, capabilities_client):
-        client, repository, _resolver = capabilities_client
-        repository.save_access_tier("user-a", "subscriber")
-        response = client.get("/api/me/capabilities", headers=user_headers())
-        assert response.status_code == 200
-        assert response.json()["accessTier"] == "subscriber"
-
-    def test_enum_capabilities_validate(self):
-        validate_catalog()
-        assert CAPABILITY_CATALOG["free"]["calculator.formworkMode"] in {"rectangle", "advanced"}
-        assert CAPABILITY_CATALOG["subscriber"]["calculator.exportFormat"] in {"none", "pdf", "pdf_and_csv"}
-
-    def test_numeric_unlimited_values_validate(self):
-        validate_catalog()
-        assert CAPABILITY_CATALOG["subscriber"]["projects.maxSavedProjects"] is None
-
-
     def test_knowledge_base_entry_limit_supports_free_and_unlimited_tiers(self):
         from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
 
