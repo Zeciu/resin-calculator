@@ -680,6 +680,49 @@
     },
     {
       "estimatedRepairTime": null,
+      "id": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Pozi\u021bionarea a fost f\u0103cut\u0103 \u00een grab\u0103.",
+        "Nu au fost \u00eencercate mai multe variante."
+      ],
+      "prevention": [],
+      "problemSummary": "Pozi\u021bionarea lemnului stabile\u0219te aspectul final al proiectului. Aceast\u0103 etap\u0103 este una creativ\u0103 \u0219i necesit\u0103 timp pentru a g\u0103si compozi\u021bia cea mai potrivit\u0103.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "configura-ia-proiectului",
+          "label": "Configura\u021bia proiectului"
+        },
+        {
+          "id": "compozi-ia-proiectului",
+          "label": "Compozi\u021bia proiectului"
+        },
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "A\u0219az\u0103 piesele pe masa de lucru \u0219i experimenteaz\u0103 diferite pozi\u021bii, orient\u0103ri \u0219i distan\u021be p\u00e2n\u0103 c\u00e2nd ob\u021bii compozi\u021bia dorit\u0103."
+      ],
+      "symptoms": [
+        "Nu e\u0219ti mul\u021bumit de aspectul proiectului.",
+        "Nu \u0219tii cum s\u0103 a\u0219ezi piesele de lemn.",
+        "Exist\u0103 mai multe variante de compozi\u021bie."
+      ],
+      "tips": [
+        "Prive\u0219te proiectul din mai multe unghiuri \u0219i nu lua decizia final\u0103 la prima \u00eencercare."
+      ],
+      "title": "Cum pozi\u021bionez corect piesele de lemn \u00eenainte de turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
       "id": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
       "media": [],
       "possibleCauses": [
@@ -1002,6 +1045,2790 @@
       "warnings": [
         "O scurgere aparent minor\u0103 poate produce pierderi importante de r\u0103\u0219in\u0103."
       ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
+      "media": [],
+      "possibleCauses": [
+        "Cofrajul nu a fost protejat \u00eenainte de turnare.",
+        "Banda adeziv\u0103 sau agentul de demulare nu au fost aplicate."
+      ],
+      "prevention": [
+        "Aplic\u0103 banda f\u0103r\u0103 cute, goluri de aer sau zone desprinse. Orice imperfec\u021biune se poate imprima \u00een r\u0103\u0219in\u0103."
+      ],
+      "problemSummary": "Protejarea suprafe\u021bei interioare \u00eempiedic\u0103 lipirea r\u0103\u0219inii de cofraj \u0219i faciliteaz\u0103 demularea proiectului.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "agent-de-demulare",
+          "label": "Agent de demulare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "label": "Ce material este recomandat pentru construirea cofrajului?"
+        },
+        {
+          "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-etan-ez-corect-cofrajul",
+          "label": "Cum etan\u0219ez corect cofrajul?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [
+        "Banda adeziva, Spray pentru demulare"
+      ],
+      "searchKeywords": [],
+      "solution": [
+        "Acoper\u0103 fundul \u0219i lateralele cu band\u0103 adeziv\u0103 neted\u0103 sau utilizeaz\u0103 un spray special de demulare \u00eenainte de turnare."
+      ],
+      "symptoms": [
+        "R\u0103\u0219ina ader\u0103 la materialul cofrajului.",
+        "Exist\u0103 riscul deterior\u0103rii proiectului la demulare."
+      ],
+      "tips": [],
+      "title": "De ce trebuie protejat\u0103 suprafa\u021ba interioar\u0103 a cofrajului?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+      "media": [],
+      "possibleCauses": [
+        "Nu a fost respectat timpul de \u00eent\u0103rire recomandat.",
+        "Turnarea \u00eencepe imediat dup\u0103 etan\u0219are."
+      ],
+      "prevention": [
+        "C\u00e2teva ore de a\u0219teptare pot preveni pierderi importante de r\u0103\u0219in\u0103."
+      ],
+      "problemSummary": "Siliconul utilizat pentru etan\u0219are trebuie s\u0103 se \u00eent\u0103reasc\u0103 \u00eenainte de \u00eenceperea turn\u0103rii.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "silicon-de-etan-are",
+          "label": "Silicon de etan\u0219are"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-etan-ez-corect-cofrajul",
+          "label": "Cum etan\u0219ez corect cofrajul?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 timpul de \u00eent\u0103rire recomandat de produc\u0103torul siliconului \u00eenainte de a introduce lemnul \u0219i de a \u00eencepe turnarea."
+      ],
+      "symptoms": [
+        "Cofrajul a fost finalizat \u0219i urmeaz\u0103 turnarea.",
+        "Siliconul este \u00eenc\u0103 proasp\u0103t."
+      ],
+      "tips": [],
+      "title": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?",
+      "warnings": [
+        "Nu \u00eencepe turnarea dac\u0103 siliconul nu este complet \u00eent\u0103rit."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
+      "media": [],
+      "possibleCauses": [
+        "Cofrajul nu a fost verificat cu bolobocul.",
+        "Masa de lucru nu este perfect plan\u0103."
+      ],
+      "prevention": [
+        "Controleaz\u0103 din nou nivelul dup\u0103 pozi\u021bionarea cofrajului \u00een locul unde va avea loc turnarea."
+      ],
+      "problemSummary": "Un cofraj nealiniat poate produce diferen\u021be de grosime, consum suplimentar de r\u0103\u0219in\u0103 \u0219i un aspect neuniform al proiectului.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "boloboc-nivel",
+          "label": "Boloboc (nivel\u0103)"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-etan-ez-corect-cofrajul",
+          "label": "Cum etan\u0219ez corect cofrajul?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 nivelul cofrajului at\u00e2t pe lungime, c\u00e2t \u0219i pe l\u0103\u021bime \u00eenainte de introducerea lemnului \u0219i \u00eenainte de turnare."
+      ],
+      "symptoms": [
+        "Suprafa\u021ba proiectului nu este uniform\u0103.",
+        "Exist\u0103 diferen\u021be de nivel \u00eentre laturi.",
+        "Consumul de r\u0103\u0219in\u0103 este mai mare dec\u00e2t estimarea."
+      ],
+      "tips": [],
+      "title": "De ce trebuie verificat dac\u0103 cofrajul este perfect orizontal?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-pozi-ionez-corect-lemnul-n-cofraj",
+      "media": [],
+      "possibleCauses": [
+        "Pozi\u021bionarea a fost f\u0103cut\u0103 \u00een grab\u0103.",
+        "Nu au fost reverificate orientarea \u0219i distan\u021bele dintre piese."
+      ],
+      "prevention": [],
+      "problemSummary": "Pozi\u021bionarea corect\u0103 a lemnului determin\u0103 aspectul final al proiectului. \u00cenainte de fixare trebuie verificat\u0103 orientarea pieselor \u0219i echilibrul compozi\u021biei. Daca nu sunteti sigur ca lemnul nu este perfect plan pe spate, izolati perimetral la 2 sau 3 cm spre interior, cu un cordon de silicon. In acest fel minimizati pierderile de rasina care se pot duce inutil sub lemn.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "silicon-de-etan-are",
+          "label": "Silicon de etan\u0219are"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-etan-ez-corect-cofrajul",
+          "label": "Cum etan\u0219ez corect cofrajul?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "A\u0219az\u0103 lemnul \u00een cofraj conform compozi\u021biei stabilite anterior \u0219i verific\u0103 orientarea fibrei, pozi\u021bia elementelor decorative \u0219i distan\u021bele dintre piese \u00eenainte de fixare."
+      ],
+      "symptoms": [
+        "Nu e\u0219ti sigur dac\u0103 lemnul este pozi\u021bionat corect.",
+        "Proiectul este alc\u0103tuit din una sau mai multe piese.",
+        "Ai dubii privind aspectul final."
+      ],
+      "tips": [
+        "Prive\u0219te proiectul ca pe produsul final. Acum este cel mai u\u0219or moment pentru mici ajust\u0103ri de compozi\u021bie."
+      ],
+      "title": "Cum pozi\u021bionez corect lemnul \u00een cofraj?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
+      "media": [],
+      "possibleCauses": [
+        "Suprafe\u021bele nu au fost cur\u0103\u021bate \u00eenainte de montaj.",
+        "Au r\u0103mas impurit\u0103\u021bi \u00eentre lemn \u0219i cofraj."
+      ],
+      "prevention": [],
+      "problemSummary": "Praful, rumegu\u0219ul \u0219i alte impurit\u0103\u021bi pot afecta pozi\u021bionarea lemnului \u0219i calitatea turn\u0103rii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Cur\u0103\u021b\u0103 complet at\u00e2t lemnul, c\u00e2t \u0219i interiorul cofrajului \u00eenainte de pozi\u021bionare. Elimin\u0103 orice urm\u0103 de praf, rumegu\u0219 sau alte resturi."
+      ],
+      "symptoms": [
+        "Exist\u0103 praf sau rumegu\u0219 \u00een cofraj.",
+        "Lemnul nu se a\u0219az\u0103 perfect pe fundul cofrajului.",
+        "Apar spa\u021bii sau diferen\u021be de nivel."
+      ],
+      "tips": [
+        "O verificare de c\u00e2teva minute \u00eenainte de montaj poate preveni probleme greu de corectat ulterior."
+      ],
+      "title": "De ce trebuie cur\u0103\u021bate lemnul \u0219i cofrajul \u00eenainte de pozi\u021bionare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul este men\u021binut doar prin propria greutate, fiind prea mis sau usor.",
+        "Nu a fost utilizat\u0103 nicio metod\u0103 de fixare.",
+        "Nu este perfect plan pe suprafata de pe spate."
+      ],
+      "prevention": [
+        "Chiar \u0219i piesele masive pot fi influen\u021bate de for\u021ba de flotabilitate a r\u0103\u0219inii."
+      ],
+      "problemSummary": "\u00cen timpul turn\u0103rii, r\u0103\u0219ina exercit\u0103 o for\u021b\u0103 de flotabilitate asupra lemnului. F\u0103r\u0103 fixare, piesele se pot ridica sau deplasa. Daca lemnul este suficient de mare si greu, nu este necesarea fixarea, decat in situatia in care nu este perfect plan pe spate. Daca nu este perfect plan pe spate, atunci se recomanda fixarea cu un cordon de silicon perimetral, la 2 sau 3 cm in interior.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "silicon-de-etan-are",
+          "label": "Silicon de etan\u0219are"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Fixeaz\u0103 lemnul \u00eenainte de turnare pentru a preveni deplasarea sau ridicarea acestuia pe parcursul umplerii cofrajului cu r\u0103\u0219in\u0103."
+      ],
+      "symptoms": [
+        "Lemnul se poate mi\u0219ca \u00een timpul turn\u0103rii.",
+        "Piesele nu sunt fixate \u00een cofraj.",
+        "Exist\u0103 riscul modific\u0103rii pozi\u021biei ini\u021biale."
+      ],
+      "tips": [],
+      "title": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?",
+      "warnings": [
+        "O deplasare a lemnului \u00een timpul turn\u0103rii poate compromite geometria \u0219i aspectul final al proiectului."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-folosesc-siliconul-pentru-fixarea-lemnului",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul nu este fixat \u00eenainte de turnare.",
+        "Nu exist\u0103 o barier\u0103 \u00eempotriva p\u0103trunderii r\u0103\u0219inii sub pies\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Un cordon de silicon aplicat pe partea inferioar\u0103 a lemnului asigur\u0103 fixarea piesei \u0219i limiteaz\u0103 p\u0103trunderea r\u0103\u0219inii sub aceasta. Cordonul trebue pus la 2 sau 3 cm de la margine, astfel incat sa nu iasain afara lemnului atunci cand este asezat in cofrag.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "silicon-de-etan-are",
+          "label": "Silicon de etan\u0219are"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
+          "label": "De ce trebuie cur\u0103\u021bate lemnul \u0219i cofrajul \u00eenainte de pozi\u021bionare?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 un cordon sub\u021bire de silicon pe partea inferioar\u0103 a lemnului, la aproximativ 20\u201330 mm spre interior fa\u021b\u0103 de margini, apoi preseaz\u0103 u\u0219or piesa pe fundul cofrajului."
+      ],
+      "symptoms": [
+        "Nu \u0219tii cum s\u0103 fixezi lemnul.",
+        "Vrei o metod\u0103 simpl\u0103 \u0219i sigur\u0103 de montaj."
+      ],
+      "tips": [
+        "Pe l\u00e2ng\u0103 fixare, siliconul reduce \u0219i consumul inutil de r\u0103\u0219in\u0103 \u00een zonele care nu vor fi vizibile."
+      ],
+      "title": "Cum folosesc siliconul pentru fixarea lemnului?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-pot-ncastra-complet-lemnul-n-r-in",
+      "media": [],
+      "possibleCauses": [
+        "Configura\u021bia proiectului impune \u00eencastrarea complet\u0103 a lemnului."
+      ],
+      "prevention": [
+        "Planific\u0103 aceast\u0103 metod\u0103 de la \u00eenceput, deoarece presupune un consum mai mare de r\u0103\u0219in\u0103 \u0219i o etap\u0103 suplimentar\u0103 de lucru."
+      ],
+      "problemSummary": "Dac\u0103 dore\u0219ti ca lemnul s\u0103 fie \u00eenconjurat complet de r\u0103\u0219in\u0103, inclusiv pe partea inferioar\u0103, este necesar\u0103 o metod\u0103 diferit\u0103 de pozi\u021bionare.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-etan-ez-corect-cofrajul",
+          "label": "Cum etan\u0219ez corect cofrajul?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Toarn\u0103 mai \u00eent\u00e2i un strat sub\u021bire de r\u0103\u0219in\u0103 pe fundul cofrajului. Dup\u0103 \u00eent\u0103rirea acestuia, pozi\u021bioneaz\u0103 lemnul peste stratul format \u0219i continu\u0103 turnarea."
+      ],
+      "symptoms": [
+        "Vrei ca lemnul s\u0103 fie complet \u00eencastrat \u00een r\u0103\u0219in\u0103.",
+        "Proiectul necesit\u0103 r\u0103\u0219in\u0103 \u0219i sub piesa de lemn."
+      ],
+      "tips": [],
+      "title": "Cum pot \u00eencastra complet lemnul \u00een r\u0103\u0219in\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+      "media": [],
+      "possibleCauses": [
+        "Pozi\u021bionarea final\u0103 nu a fost verificat\u0103.",
+        "Au fost f\u0103cute modific\u0103ri \u00een timpul montajului."
+      ],
+      "prevention": [
+        "Consider\u0103 aceast\u0103 verificare ca ultimul control de calitate \u00eenainte de o etap\u0103 care nu mai poate fi reversat\u0103 f\u0103r\u0103 costuri suplimentare."
+      ],
+      "problemSummary": "\u00cenainte de turnare trebuie f\u0103cut\u0103 o ultim\u0103 verificare a pozi\u021biei tuturor pieselor. Dup\u0103 \u00eenceperea turn\u0103rii, corectarea pozi\u021biei devine dificil\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 \u00eenc\u0103 o dat\u0103 pozi\u021bia lemnului, distan\u021bele dintre piese \u0219i aspectul general al proiectului \u00eenainte de prepararea \u0219i turnarea r\u0103\u0219inii."
+      ],
+      "symptoms": [
+        "E\u0219ti preg\u0103tit s\u0103 \u00eencepi turnarea.",
+        "Nu e\u0219ti sigur dac\u0103 toate piesele sunt \u00een pozi\u021bia corect\u0103."
+      ],
+      "tips": [],
+      "title": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+      "media": [],
+      "possibleCauses": [
+        "Aerul r\u0103mas \u00een porii \u0219i cavit\u0103\u021bile lemnului este eliberat \u00een timpul turn\u0103rii.",
+        "Lemnul nu a fost sigilat \u00eenainte de aplicarea stratului principal de r\u0103\u0219in\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Sigilarea lemnului reduce riscul apari\u021biei bulelor de aer \u0219i preg\u0103te\u0219te suprafa\u021ba pentru turnarea principal\u0103 a r\u0103\u0219inii.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 unul sau mai multe straturi de r\u0103\u0219in\u0103 pe toate suprafe\u021bele care vor intra \u00een contact cu r\u0103\u0219ina din proiect \u00eenainte de turnarea principal\u0103."
+      ],
+      "symptoms": [
+        "Apar frecvent bule de aer \u00een proiect.",
+        "Lemnul este foarte poros.",
+        "Nu \u0219tii dac\u0103 sigilarea este necesar\u0103."
+      ],
+      "tips": [
+        "Sigilarea necesit\u0103 pu\u021bin timp \u0219i poate reduce considerabil num\u0103rul de defecte care apar ulterior."
+      ],
+      "title": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+      "media": [],
+      "possibleCauses": [
+        "Stratul este aplicat neuniform.",
+        "Unele zone ale lemnului sunt omise.",
+        "Numar insuficient de straturi de izolare."
+      ],
+      "prevention": [],
+      "problemSummary": "Sigilarea const\u0103 \u00een aplicarea unui strat sub\u021bire \u0219i uniform de r\u0103\u0219in\u0103 care impregneaz\u0103 suprafa\u021ba lemnului.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 r\u0103\u0219ina cu o pensul\u0103 pe toate suprafe\u021bele care vor intra \u00een contact cu r\u0103\u0219ina: fe\u021be, laterale, margini, cavit\u0103\u021bi, cr\u0103p\u0103turi \u0219i noduri."
+      ],
+      "symptoms": [
+        "Nu \u0219tii cum trebuie aplicat\u0103 r\u0103\u0219ina de sigilare.",
+        "Nu e\u0219ti sigur ce suprafe\u021be trebuie acoperite."
+      ],
+      "tips": [
+        "Scopul sigil\u0103rii este impregnarea lemnului, nu realizarea unui strat gros de r\u0103\u0219in\u0103."
+      ],
+      "title": "Cum se realizeaz\u0103 corect sigilarea lemnului?",
+      "warnings": [
+        "Sunt situatii in care lemnul absoarbe foarte mult din primul strat de izolare, de aceea trebuie verificat si daca este cazul, se aplica straturi suplimentare."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul este poros.",
+        "Lemnul nu a fost sigilat \u00eenainte de turnare.",
+        "Exist\u0103 numeroase fisuri sau cavit\u0103\u021bi."
+      ],
+      "prevention": [],
+      "problemSummary": "Lemnul con\u021bine pori \u0219i cavit\u0103\u021bi \u00een care r\u0103m\u00e2ne aer. \u00cen timpul turn\u0103rii, acest aer este evacuat \u0219i formeaz\u0103 bule \u00een r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Sigileaz\u0103 lemnul \u00eenainte de turnarea principal\u0103 \u0219i insist\u0103 \u00een special \u00een zonele cu fisuri, cavit\u0103\u021bi \u0219i pori deschi\u0219i."
+      ],
+      "symptoms": [
+        "Apar bule \u00een jurul lemnului.",
+        "Se observ\u0103 bule \u00een cavit\u0103\u021bi \u0219i cr\u0103p\u0103turi."
+      ],
+      "tips": [],
+      "title": "De ce apar bulele de aer \u00een timpul turn\u0103rii?",
+      "warnings": [
+        "Cu c\u00e2t lemnul este mai poros, cu at\u00e2t sigilarea devine mai important\u0103."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul favorizeaz\u0103 formarea bulelor de aer.",
+        "Configura\u021bia proiectului este complex\u0103."
+      ],
+      "prevention": [
+        "Sigilarea este una dintre cele mai eficiente metode de prevenire a defectelor provocate de aerul din lemn."
+      ],
+      "problemSummary": "Sigilarea este recomandat\u0103 \u00een majoritatea proiectelor, dar devine deosebit de important\u0103 atunci c\u00e2nd lemnul prezint\u0103 numeroase pori, fisuri sau forme naturale complexe.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Sigileaz\u0103 toate suprafe\u021bele \u00eenainte de turnare \u0219i acord\u0103 aten\u021bie suplimentar\u0103 zonelor cu cavit\u0103\u021bi \u0219i fisuri."
+      ],
+      "symptoms": [
+        "Lemnul are multe cavit\u0103\u021bi.",
+        "Exist\u0103 cr\u0103p\u0103turi ad\u00e2nci.",
+        "Proiectul folose\u0219te r\u0103d\u0103cini sau margini naturale.",
+        "Transparen\u021ba r\u0103\u0219inii este important\u0103."
+      ],
+      "tips": [],
+      "title": "\u00cen ce situa\u021bii este recomandat\u0103 sigilarea lemnului?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+      "media": [],
+      "possibleCauses": [
+        "Lemnul este foarte poros.",
+        "R\u0103\u0219ina p\u0103trunde \u00een porii \u0219i cavit\u0103\u021bile materialului."
+      ],
+      "prevention": [],
+      "problemSummary": "Este normal ca primul strat de r\u0103\u0219in\u0103 s\u0103 fie absorbit aproape complet de lemn, \u00een special \u00een cazul esen\u021belor poroase.",
+      "relatedGlossaryTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "label": "\u00cen ce situa\u021bii este recomandat\u0103 sigilarea lemnului?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [
+        "Rasina epoxidica",
+        "Pensula"
+      ],
+      "requiredTools": [
+        "Pensula"
+      ],
+      "searchKeywords": [],
+      "solution": [
+        "Continu\u0103 procesul de sigilare conform recomand\u0103rilor pentru proiect. Absorb\u021bia primului strat este un comportament normal \u0219i face parte din procesul de impregnare."
+      ],
+      "symptoms": [
+        "Stratul de r\u0103\u0219in\u0103 pare s\u0103 dispar\u0103 dup\u0103 aplicare.",
+        "Lemnul continu\u0103 s\u0103 absoarb\u0103 r\u0103\u0219ina."
+      ],
+      "tips": [
+        "Insist\u0103 cu pensula \u00een cavit\u0103\u021bi \u0219i fisuri pentru a favoriza p\u0103trunderea uniform\u0103 a r\u0103\u0219inii."
+      ],
+      "title": "Ce fac dac\u0103 lemnul absoarbe complet stratul de sigilare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+      "media": [],
+      "possibleCauses": [
+        "Nu au fost consulta\u021bi timpii de reac\u021bie ai r\u0103\u0219inii.",
+        "Nu este clar dac\u0103 stratul trebuie s\u0103 fie lipicios sau complet \u00eent\u0103rit."
+      ],
+      "prevention": [],
+      "problemSummary": "Momentul turn\u0103rii principale depinde de sistemul de r\u0103\u0219in\u0103 utilizat \u0219i de recomand\u0103rile produc\u0103torului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+          "label": "Ce fac dac\u0103 lemnul absoarbe complet stratul de sigilare?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 instruc\u021biunile produc\u0103torului r\u0103\u0219inii. \u00cen func\u021bie de sistemul utilizat, turnarea principal\u0103 se face fie peste un strat \u00eenc\u0103 lipicios, fie dup\u0103 \u00eent\u0103rirea complet\u0103 \u0219i preg\u0103tirea mecanic\u0103 a suprafe\u021bei."
+      ],
+      "symptoms": [
+        "Sigilarea a fost finalizat\u0103.",
+        "Nu \u0219tii c\u00e2nd poate \u00eencepe turnarea principal\u0103."
+      ],
+      "tips": [
+        "Nu gr\u0103bi aceast\u0103 etap\u0103. Respectarea timpilor recomanda\u021bi contribuie la ob\u021binerea unei aderen\u021be optime \u00eentre straturile de r\u0103\u0219in\u0103."
+      ],
+      "title": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 sigilarea lemnului \u00eenainte de turnarea principal\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+      "media": [],
+      "possibleCauses": [
+        "Proiectul are forme neregulate.",
+        "Exist\u0103 cavit\u0103\u021bi \u0219i margini naturale greu de estimat."
+      ],
+      "prevention": [
+        "Fotografia trebuie facuta cat mai simetric si vertical deasupra proiectului."
+      ],
+      "problemSummary": "Calculatorul HFZWood determin\u0103 cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pe baza fotografiei proiectului, a dimensiunilor reale \u0219i a geometriei definite de utilizator.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Fotografiaz\u0103 proiectul, introdu dimensiunile \u0219i define\u0219te geometria \u00een aplica\u021bie pentru a ob\u021bine calculul volumului necesar."
+      ],
+      "symptoms": [
+        "Nu \u0219tii c\u00e2t\u0103 r\u0103\u0219in\u0103 trebuie preg\u0103tit\u0103.",
+        "Vrei un calcul mai precis dec\u00e2t o estimare vizual\u0103."
+      ],
+      "tips": [
+        "Verific\u0103 \u00eentotdeauna dac\u0103 rezultatul este logic \u00eenainte de prepararea r\u0103\u0219inii."
+      ],
+      "title": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-trebuie-realizat-fotografia-proiectului",
+      "media": [],
+      "possibleCauses": [
+        "Fotografia este realizat\u0103 dintr-un unghi oblic.",
+        "Exist\u0103 umbre sau reflexii.",
+        "Imaginea nu este clar\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Calitatea fotografiei influen\u021beaz\u0103 direct precizia calculelor efectuate de aplica\u021bie.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+          "label": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Realizeaz\u0103 fotografia c\u00e2t mai perpendicular pe proiect, cu iluminare uniform\u0103 \u0219i cu \u00eentregul cofraj vizibil."
+      ],
+      "symptoms": [
+        "Contururile sunt greu de trasat.",
+        "Rezultatele par inexacte."
+      ],
+      "tips": [
+        "O fotografie realizat\u0103 cu telefonul mobil este, \u00een majoritatea cazurilor, suficient\u0103."
+      ],
+      "title": "Cum trebuie realizat\u0103 fotografia proiectului?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-introduc-corect-reperele-dimensionale",
+      "media": [],
+      "possibleCauses": [
+        "Repere insuficiente.",
+        "Repere concentrate \u00eentr-o singur\u0103 zon\u0103.",
+        "Dimensiuni introduse gre\u0219it."
+      ],
+      "prevention": [],
+      "problemSummary": "Reperele dimensionale permit aplica\u021biei s\u0103 transforme fotografia \u00een dimensiuni reale.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+          "label": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Introdu minimum patru repere distribuite uniform (stanga - dreapta, sus - jos) \u0219i m\u0103soar\u0103 cu aten\u021bie distan\u021bele reale."
+      ],
+      "symptoms": [
+        "Nu \u0219tii unde trebuie plasate m\u0103sur\u0103torile.",
+        "Rezultatele par dispropor\u021bionate."
+      ],
+      "tips": [
+        "Mai pu\u021bine m\u0103sur\u0103tori corecte sunt preferabile unui num\u0103r mare de m\u0103sur\u0103tori gre\u0219ite."
+      ],
+      "title": "Cum introduc corect reperele dimensionale?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-trasez-corect-conturul-interior-al-cofrajului",
+      "media": [],
+      "possibleCauses": [
+        "Conturul este desenat pe exteriorul pere\u021bilor.",
+        "Au fost plasate puncte incorect."
+      ],
+      "prevention": [],
+      "problemSummary": "Conturul cofrajului stabile\u0219te volumul maxim disponibil pentru r\u0103\u0219in\u0103 \u0219i reprezint\u0103 baza tuturor calculelor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Traseaz\u0103 poligonul pe muchia interioar\u0103 a cofrajului \u0219i verific\u0103-l atent \u00eenainte de continuare."
+      ],
+      "symptoms": [
+        "Volumul calculat pare prea mare sau prea mic.",
+        "Nu e\u0219ti sigur unde trebuie trasat conturul."
+      ],
+      "tips": [
+        "Adaug\u0103 puncte suplimentare doar \u00een zonele unde geometria se modific\u0103."
+      ],
+      "title": "Cum trasez corect conturul interior al cofrajului?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+      "media": [],
+      "possibleCauses": [
+        "Contururile nu urm\u0103resc marginea real\u0103.",
+        "O pies\u0103 a fost omis\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Piesele de lemn trebuie delimitate separat pentru ca aplica\u021bia s\u0103 le exclud\u0103 din volumul ocupat de r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-introduc-corect-reperele-dimensionale",
+          "label": "Cum introduc corect reperele dimensionale?"
+        },
+        {
+          "id": "cum-trasez-corect-conturul-interior-al-cofrajului",
+          "label": "Cum trasez corect conturul interior al cofrajului?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Traseaz\u0103 fiecare pies\u0103 separat \u0219i urm\u0103re\u0219te c\u00e2t mai fidel conturul vizibil."
+      ],
+      "symptoms": [
+        "Cantitatea calculat\u0103 pare incorect\u0103.",
+        "Proiectul con\u021bine mai multe buc\u0103\u021bi de lemn."
+      ],
+      "tips": [
+        "Nu este necesar s\u0103 reproduci fiecare mic\u0103 neregularitate f\u0103r\u0103 influen\u021b\u0103 asupra volumului."
+      ],
+      "title": "Cum trasez corect piesele de lemn \u00een aplica\u021bie?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
+      "media": [],
+      "possibleCauses": [
+        "Cavit\u0103\u021bile nu au fost incluse \u00een calcul."
+      ],
+      "prevention": [],
+      "problemSummary": "Cavit\u0103\u021bile trebuie introduse separat atunci c\u00e2nd urmeaz\u0103 s\u0103 fie umplute cu r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "label": "Cum trasez corect piesele de lemn \u00een aplica\u021bie?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Traseaz\u0103 fiecare cavitate \u0219i introdu ad\u00e2ncimea m\u0103surat\u0103 direct pe pies\u0103."
+      ],
+      "symptoms": [
+        "Lemnul are noduri, cr\u0103p\u0103turi sau goluri.",
+        "Proiectul con\u021bine cavit\u0103\u021bi importante."
+      ],
+      "tips": [
+        "Dac\u0103 o cavitate are ad\u00e2ncimi foarte diferite, \u00eemparte-o \u00een mai multe zone."
+      ],
+      "title": "C\u00e2nd trebuie definite cavit\u0103\u021bile \u00een aplica\u021bie?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Nu este luat\u0103 \u00een calcul pozi\u021bia real\u0103 a lemnului."
+      ],
+      "prevention": [
+        "\u021aine cont de orice strat de r\u0103\u0219in\u0103 existent sub lemn si de cei trei mm care trebuie turnati in plus. Rasina care este deasupra nivelului lemnului se contracta pe masura ce se matureaza."
+      ],
+      "problemSummary": "Ad\u00e2ncimea de turnare reprezint\u0103 distan\u021ba dintre fundul cofrajului \u0219i nivelul final al r\u0103\u0219inii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Introdu ad\u00e2ncimea total\u0103 a r\u0103\u0219inii, nu doar grosimea sc\u00e2ndurii."
+      ],
+      "symptoms": [
+        "Nu \u0219tii ce valoare trebuie introdus\u0103.",
+        "O confunzi cu grosimea lemnului."
+      ],
+      "tips": [],
+      "title": "Cum introduc corect ad\u00e2ncimea principal\u0103 de turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-este-rezerva-de-siguran-i-c-nd-trebuie-folosit",
+      "media": [],
+      "possibleCauses": [
+        "Pierderi pe recipiente \u0219i unelte.",
+        "Diferen\u021be minore \u00eentre geometria real\u0103 \u0219i cea digital\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Rezerva de siguran\u021b\u0103 compenseaz\u0103 pierderile normale de r\u0103\u0219in\u0103 din timpul lucrului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Adaug\u0103 o rezerv\u0103 rezonabil\u0103 dup\u0103 calcularea volumului geometric."
+      ],
+      "symptoms": [
+        "\u00ce\u021bi este team\u0103 c\u0103 r\u0103\u0219ina nu va fi suficient\u0103.",
+        "Vrei s\u0103 evi\u021bi preg\u0103tirea unei cantit\u0103\u021bi suplimentare."
+      ],
+      "tips": [
+        "Rezerva completeaz\u0103 un calcul corect, nu \u00eenlocuie\u0219te m\u0103sur\u0103torile precise."
+      ],
+      "title": "Ce este rezerva de siguran\u021b\u0103 \u0219i c\u00e2nd trebuie folosit\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-planific-turn-rile-succesive",
+      "media": [],
+      "possibleCauses": [
+        "Limita maxim\u0103 admis\u0103 pentru o singur\u0103 turnare este dep\u0103\u0219it\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Majoritatea r\u0103\u0219inilor trebuie turnate \u00een mai multe straturi pentru a respecta grosimea maxim\u0103 recomandat\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "label": "Cum introduc corect ad\u00e2ncimea principal\u0103 de turnare?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Introdu grosimea maxim\u0103 permis\u0103 pentru r\u0103\u0219ina utilizat\u0103 \u0219i folose\u0219te planificarea automat\u0103 a turn\u0103rilor."
+      ],
+      "symptoms": [
+        "Nu \u0219tii c\u00e2te turn\u0103ri sunt necesare.",
+        "Proiectul presupune o grosime mare."
+      ],
+      "tips": [
+        "Respect\u0103 \u00eentotdeauna recomand\u0103rile produc\u0103torului r\u0103\u0219inii."
+      ],
+      "title": "Cum planific turn\u0103rile succesive?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-calculeaz-aplica-ia-componentele-a-i-b",
+      "media": [],
+      "possibleCauses": [
+        "Raportul de amestec nu este introdus."
+      ],
+      "prevention": [
+        "Verific\u0103 \u00eentotdeauna fi\u0219a tehnic\u0103 \u00eenainte de introducerea raportului."
+      ],
+      "problemSummary": "HFZWood \u00eemparte automat cantitatea total\u0103 \u00eentre componentele A \u0219i B folosind raportul introdus de utilizator.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Introdu raportul exact recomandat de produc\u0103tor \u0219i precizeaz\u0103 dac\u0103 acesta este exprimat \u00een greutate sau \u00een volum."
+      ],
+      "symptoms": [
+        "Nu \u0219tii c\u00e2t trebuie c\u00e2nt\u0103rit din fiecare component\u0103."
+      ],
+      "tips": [],
+      "title": "Cum calculeaz\u0103 aplica\u021bia componentele A \u0219i B?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie",
+      "media": [],
+      "possibleCauses": [
+        "Fotografie necorespunz\u0103toare.",
+        "Repere dimensionale gre\u0219ite.",
+        "Contururi incorecte.",
+        "Cavit\u0103\u021bi omise.",
+        "Ad\u00e2ncimi introduse gre\u0219it."
+      ],
+      "prevention": [],
+      "problemSummary": "Rezultatele neobi\u0219nuite sunt cauzate, de cele mai multe ori, de informa\u021bii introduse incorect.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 proiectul \u00een aceea\u0219i ordine \u00een care au fost introduse informa\u021biile: repere, cofraj, lemn, cavit\u0103\u021bi, ad\u00e2ncimi \u0219i parametri de calcul."
+      ],
+      "symptoms": [
+        "Volumul este mult prea mare.",
+        "Volumul este mult prea mic."
+      ],
+      "tips": [],
+      "title": "De ce pare gre\u0219it rezultatul calculat de aplica\u021bie?",
+      "warnings": [
+        "Nu prepara r\u0103\u0219ina \u00eenainte de a confirma c\u0103 rezultatul este plauzibil."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele",
+      "media": [],
+      "possibleCauses": [
+        "Un punct a fost plasat gre\u0219it.",
+        "O dimensiune a fost introdus\u0103 incorect."
+      ],
+      "prevention": [],
+      "problemSummary": "Da. Aplica\u021bia permite corectarea m\u0103sur\u0103torilor \u0219i a geometriei f\u0103r\u0103 refacerea \u00eentregului proiect.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Editeaz\u0103 elementele necesare \u0219i verific\u0103 din nou rezultatul \u00eenainte de prepararea r\u0103\u0219inii."
+      ],
+      "symptoms": [
+        "Ai observat o eroare dup\u0103 finalizarea calculelor.",
+        "Vrei s\u0103 ajustezi un contur sau o m\u0103sur\u0103toare."
+      ],
+      "tips": [
+        "Corecteaz\u0103 informa\u021biile \u00een aceea\u0219i ordine \u00een care au fost introduse. Astfel identifici mai u\u0219or cauza diferen\u021belor \u0219i evi\u021bi modific\u0103rile inutile."
+      ],
+      "title": "Pot modifica geometria proiectului dup\u0103 ce am terminat calculele?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
+      "media": [],
+      "possibleCauses": [
+        "Proiectul are cerin\u021be diferite de grosime \u0219i timp de lucru.",
+        "Nu ai analizat caracteristicile r\u0103\u0219inii."
+      ],
+      "prevention": [],
+      "problemSummary": "Nu exist\u0103 o r\u0103\u0219in\u0103 potrivit\u0103 pentru toate proiectele. Alegerea trebuie f\u0103cut\u0103 \u00een func\u021bie de caracteristicile proiectului \u0219i de recomand\u0103rile produc\u0103torului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Alege r\u0103\u0219ina \u00een func\u021bie de grosimea turn\u0103rii, dimensiunea \u0219i complexitatea proiectului, temperatura din atelier, timpul disponibil \u0219i experien\u021ba ta."
+      ],
+      "symptoms": [
+        "Nu \u0219tii ce tip de r\u0103\u0219in\u0103 s\u0103 alegi.",
+        "Ai de ales \u00eentre mai multe produse."
+      ],
+      "tips": [
+        "Consult\u0103 \u00eentotdeauna fi\u0219a tehnic\u0103 a produsului \u00eenainte de utilizare."
+      ],
+      "title": "Cum aleg r\u0103\u0219ina potrivit\u0103 pentru proiectul meu?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase",
+      "media": [],
+      "possibleCauses": [
+        "Caracteristicile r\u0103\u0219inilor nu sunt cunoscute."
+      ],
+      "prevention": [],
+      "problemSummary": "R\u0103\u0219inile pentru straturi sub\u021biri \u0219i cele pentru turn\u0103ri groase sunt concepute pentru aplica\u021bii diferite \u0219i nu sunt interschimbabile.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te r\u0103\u0219ini pentru straturi sub\u021biri la aplica\u021bii de mic\u0103 grosime \u0219i r\u0103\u0219ini de tip Deep Pour sau Casting Resin pentru turn\u0103ri groase, respect\u00e2nd limitele recomandate de produc\u0103tor."
+      ],
+      "symptoms": [
+        "Nu \u0219tii ce tip de r\u0103\u0219in\u0103 este potrivit pentru proiect.",
+        "Vrei s\u0103 \u00een\u021belegi diferen\u021bele dintre produse."
+      ],
+      "tips": [
+        "Alege produsul \u00een func\u021bie de proiect, nu doar dup\u0103 timpul de \u00eent\u0103rire."
+      ],
+      "title": "Care este diferen\u021ba dintre r\u0103\u0219inile pentru straturi sub\u021biri \u0219i cele pentru turn\u0103ri groase?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare-2",
+      "media": [],
+      "possibleCauses": [
+        "Nu au fost respectate specifica\u021biile produsului.",
+        "S-a \u00eencercat scurtarea procesului de lucru."
+      ],
+      "prevention": [
+        "\u00cen multe situa\u021bii, dou\u0103 turn\u0103ri mai sub\u021biri sunt mai sigure dec\u00e2t una foarte groas\u0103."
+      ],
+      "problemSummary": "Dep\u0103\u0219irea grosimii maxime recomandate poate provoca reac\u021bii exoterme excesive \u0219i defecte care compromit proiectul.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 grosimea maxim\u0103 indicat\u0103 \u00een fi\u0219a tehnic\u0103 \u0219i, dac\u0103 este necesar, planific\u0103 turnarea \u00een mai multe etape."
+      ],
+      "symptoms": [
+        "Inten\u021bionezi s\u0103 torni un strat mai gros dec\u00e2t recomandarea produc\u0103torului.",
+        "Vrei s\u0103 reduci num\u0103rul de turn\u0103ri."
+      ],
+      "tips": [],
+      "title": "De ce nu trebuie dep\u0103\u0219it\u0103 grosimea maxim\u0103 recomandat\u0103 pentru o turnare?",
+      "warnings": [
+        "Dep\u0103\u0219irea limitelor recomandate poate conduce la supra\u00eenc\u0103lzire, fisuri, deform\u0103ri sau compromiterea proiectului."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-planific-corect-turn-rile-succesive",
+      "media": [],
+      "possibleCauses": [
+        "Planificarea a fost omis\u0103.",
+        "Nu au fost lua\u021bi \u00een calcul parametrii r\u0103\u0219inii utilizate."
+      ],
+      "prevention": [],
+      "problemSummary": "Planificarea turn\u0103rilor permite organizarea \u00eentregului proces \u00eenainte de prepararea r\u0103\u0219inii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Stabile\u0219te \u00eenainte de \u00eenceperea lucrului num\u0103rul de turn\u0103ri, grosimea fiec\u0103rui strat, cantitatea necesar\u0103 \u0219i intervalele dintre turn\u0103ri."
+      ],
+      "symptoms": [
+        "Nu \u0219tii c\u00e2te turn\u0103ri vor fi necesare.",
+        "Nu ai stabilit cantitatea pentru fiecare etap\u0103."
+      ],
+      "tips": [
+        "O planificare bun\u0103 reduce improviza\u021biile \u0219i riscul de erori \u00een timpul execu\u021biei."
+      ],
+      "title": "Cum planific corect turn\u0103rile succesive?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-este-recomandat-o-prim-turnare-sub-ire",
+      "media": [],
+      "possibleCauses": [
+        "Se dore\u0219te \u00eenceperea direct\u0103 cu turnarea principal\u0103."
+      ],
+      "prevention": [
+        "Acest strat poate eviden\u021bia rapid eventualele scurgeri \u0219i contribuie la stabilizarea ansamblului."
+      ],
+      "problemSummary": "Prima turnare are rolul de a verifica proiectul \u0219i de a reduce riscul apari\u021biei problemelor \u00een timpul turn\u0103rilor principale.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Realizeaz\u0103 o prim\u0103 turnare sub\u021bire, de aproximativ 3 mm, \u00eenainte de turn\u0103rile principale."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 prima turnare.",
+        "Nu \u0219tii dac\u0103 este necesar un strat ini\u021bial."
+      ],
+      "tips": [],
+      "title": "De ce este recomandat\u0103 o prim\u0103 turnare sub\u021bire?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
+      "media": [],
+      "possibleCauses": [
+        "Planificarea este f\u0103cut\u0103 doar pe baza estim\u0103rilor."
+      ],
+      "prevention": [],
+      "problemSummary": "HFZWood organizeaz\u0103 informa\u021biile necesare turn\u0103rii \u0219i ajut\u0103 la planificarea \u00eentregului proces.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te aplica\u021bia pentru a calcula \u0219i organiza cantitatea de r\u0103\u0219in\u0103, num\u0103rul de turn\u0103ri \u0219i distribu\u021bia r\u0103\u0219inii pe fiecare etap\u0103."
+      ],
+      "symptoms": [
+        "Nu \u0219tii cum s\u0103 organizezi turn\u0103rile.",
+        "Vrei s\u0103 evi\u021bi calculele \u0219i estim\u0103rile manuale."
+      ],
+      "tips": [],
+      "title": "Ce rol are aplica\u021bia HFZWood \u00een planificarea turn\u0103rii?",
+      "warnings": [
+        "Verific\u0103 planul complet \u00eenainte de prepararea primei cantit\u0103\u021bi de r\u0103\u0219in\u0103."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Planificarea este incomplet\u0103.",
+        "Parametrii proiectului nu au fost verifica\u021bi."
+      ],
+      "prevention": [
+        "\u00cencepe prepararea r\u0103\u0219inii doar dup\u0103 ce \u00eentregul plan de lucru este clar \u0219i verificat."
+      ],
+      "problemSummary": "\u00cenainte de prepararea r\u0103\u0219inii trebuie s\u0103 existe un plan complet al procesului de turnare.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Asigur\u0103-te c\u0103 ai stabilit tipul de r\u0103\u0219in\u0103, num\u0103rul de turn\u0103ri, grosimea fiec\u0103rui strat, cantitatea de r\u0103\u0219in\u0103 pentru fiecare etap\u0103 \u0219i intervalele dintre turn\u0103ri."
+      ],
+      "symptoms": [
+        "E\u0219ti preg\u0103tit s\u0103 \u00eencepi turnarea.",
+        "Nu ai stabilit \u00eenc\u0103 toate etapele."
+      ],
+      "tips": [],
+      "title": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-m-preg-tesc-nainte-de-prepararea-r-inii",
+      "media": [],
+      "possibleCauses": [
+        "Organizarea atelierului este incomplet\u0103.",
+        "Unele unelte sau materiale lipsesc."
+      ],
+      "prevention": [],
+      "problemSummary": "\u00cenainte de amestecarea r\u0103\u0219inii, toate materialele \u0219i uneltele trebuie preg\u0103tite, deoarece reac\u021bia chimic\u0103 \u00eencepe imediat dup\u0103 combinarea componentelor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Preg\u0103te\u0219te dinainte recipientele de amestecare, c\u00e2ntarul, spatulele, pigmen\u021bii, m\u0103nu\u0219ile \u0219i toate accesoriile necesare \u00eenainte de combinarea componentelor."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 s\u0103 prepari prima cantitate de r\u0103\u0219in\u0103.",
+        "Nu e\u0219ti sigur dac\u0103 ai preg\u0103tit tot ce este necesar."
+      ],
+      "tips": [
+        "Evit\u0103 s\u0103 cau\u021bi unelte dup\u0103 ce ai \u00eenceput amestecarea r\u0103\u0219inii. Timpul de lucru este limitat."
+      ],
+      "title": "Cum m\u0103 preg\u0103tesc \u00eenainte de prepararea r\u0103\u0219inii?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
+      "media": [],
+      "possibleCauses": [
+        "Componentele au fost c\u00e2nt\u0103rite incorect.",
+        "Nu a fost respectat raportul recomandat de produc\u0103tor."
+      ],
+      "prevention": [
+        "Verific\u0103 \u00eentotdeauna dac\u0103 raportul este exprimat \u00een greutate sau \u00een volum."
+      ],
+      "problemSummary": "Fiecare sistem epoxidic are propriul raport de amestec, iar nerespectarea acestuia poate compromite \u00eent\u0103rirea r\u0103\u0219inii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te raportul indicat \u00een fi\u0219a tehnic\u0103 \u0219i c\u00e2nt\u0103re\u0219te cu aten\u021bie fiecare component\u0103 \u00eenainte de amestecare."
+      ],
+      "symptoms": [
+        "Nu \u0219tii ce raport trebuie utilizat.",
+        "R\u0103\u0219ina r\u0103m\u00e2ne lipicioas\u0103 sau nu se \u00eent\u0103re\u0219te corect."
+      ],
+      "tips": [],
+      "title": "De ce este important s\u0103 respect raportul de amestec al r\u0103\u0219inii?",
+      "warnings": [
+        "Un raport de amestec incorect poate \u00eempiedica \u00eent\u0103rirea complet\u0103 a r\u0103\u0219inii."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-se-amestec-corect-r-ina-epoxidic",
+      "media": [],
+      "possibleCauses": [
+        "Amestecare insuficient\u0103.",
+        "Zone r\u0103mase neomogenizate pe pere\u021bii recipientului."
+      ],
+      "prevention": [],
+      "problemSummary": "O amestecare corect\u0103 asigur\u0103 omogenizarea complet\u0103 a componentelor \u0219i reduce riscul apari\u021biei defectelor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Amestec\u0103 lent \u0219i uniform, acord\u00e2nd aten\u021bie pere\u021bilor \u0219i fundului recipientului. Dac\u0103 produc\u0103torul recomand\u0103, transfer\u0103 apoi amestecul \u00eentr-un al doilea recipient curat \u0219i continu\u0103 omogenizarea."
+      ],
+      "symptoms": [
+        "Nu \u0219tii c\u00e2t de energic trebuie amestecat\u0103 r\u0103\u0219ina.",
+        "\u00ce\u021bi este team\u0103 s\u0103 nu introduci aer \u00een amestec."
+      ],
+      "tips": [
+        "Respect\u0103 \u00eentotdeauna metoda de amestec recomandat\u0103 pentru r\u0103\u0219ina utilizat\u0103."
+      ],
+      "title": "Cum se amestec\u0103 corect r\u0103\u0219ina epoxidic\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-se-adaug-pigmen-ii-n-r-in",
+      "media": [],
+      "possibleCauses": [
+        "Ordinea etapelor de preparare nu este clar\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Pigmen\u021bii trebuie ad\u0103uga\u021bi numai dup\u0103 omogenizarea complet\u0103 a componentelor A \u0219i B.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Amestec\u0103 mai \u00eent\u00e2i complet componentele r\u0103\u0219inii, apoi adaug\u0103 pigmen\u021bii conform recomand\u0103rilor produc\u0103torului."
+      ],
+      "symptoms": [
+        "Vrei s\u0103 colorezi r\u0103\u0219ina.",
+        "Nu \u0219tii \u00een ce moment trebuie ad\u0103uga\u021bi pigmen\u021bii."
+      ],
+      "tips": [
+        "Folose\u0219te doar pigmen\u021bi compatibili cu sistemul epoxidic utilizat."
+      ],
+      "title": "C\u00e2nd se adaug\u0103 pigmen\u021bii \u00een r\u0103\u0219in\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-este-recomandat-o-prim-turnare-sub-ire-2",
+      "media": [],
+      "possibleCauses": [
+        "Se dore\u0219te umplerea proiectului dintr-o singur\u0103 etap\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Prima turnare are rolul de a verifica proiectul \u0219i de a preg\u0103ti condi\u021biile pentru turn\u0103rile principale.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Realizeaz\u0103 un prim strat sub\u021bire, de aproximativ 3 mm, pentru verificarea \u0219i stabilizarea proiectului \u00eenainte de turn\u0103rile principale."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 prima turnare.",
+        "Nu \u0219tii dac\u0103 este necesar un strat ini\u021bial."
+      ],
+      "tips": [
+        "Prima turnare permite identificarea rapid\u0103 a eventualelor probleme \u00eenainte de consumarea unei cantit\u0103\u021bi mari de r\u0103\u0219in\u0103."
+      ],
+      "title": "De ce este recomandat\u0103 o prim\u0103 turnare sub\u021bire?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-verificat-dup-prima-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Nu a fost efectuat un control al proiectului."
+      ],
+      "prevention": [],
+      "problemSummary": "Dup\u0103 prima turnare trebuie inspectat \u00eentregul proiect pentru a identifica eventualele probleme \u00eenainte de continuarea lucr\u0103rii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 eventualele scurgeri, stabilitatea lemnului, distribu\u021bia r\u0103\u0219inii, umplerea cavit\u0103\u021bilor \u0219i apari\u021bia bulelor de aer."
+      ],
+      "symptoms": [
+        "Prima turnare a fost finalizat\u0103.",
+        "Urmeaz\u0103 perioada de \u00eent\u0103rire."
+      ],
+      "tips": [
+        "Problemele descoperite dup\u0103 primul strat sunt, de regul\u0103, mult mai u\u0219or de remediat dec\u00e2t dup\u0103 turn\u0103rile principale."
+      ],
+      "title": "Ce trebuie verificat dup\u0103 prima turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-elimin-bulele-de-aer-dup-prima-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Aer r\u0103mas \u00een lemn sau introdus \u00een timpul amestec\u0103rii."
+      ],
+      "prevention": [],
+      "problemSummary": "\u00cen timpul primei turn\u0103ri pot ap\u0103rea bule de aer la suprafa\u021ba r\u0103\u0219inii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Dac\u0103 sistemul epoxidic utilizat permite acest lucru, elimin\u0103 bulele folosind metodele recomandate de produc\u0103tor; pistol cu aer cald sau torta cu flacara deschisa. In ambele situati, mare grija sa nu tineti sursa de caldura prea aproape de proiect si prea mult timp in acelasi loc."
+      ],
+      "symptoms": [
+        "Se observ\u0103 bule pe suprafa\u021ba r\u0103\u0219inii proasp\u0103t turnate."
+      ],
+      "tips": [
+        "Nu utiliza metode care nu sunt recomandate pentru r\u0103\u0219ina folosit\u0103."
+      ],
+      "title": "Cum elimin bulele de aer dup\u0103 prima turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+      "media": [],
+      "possibleCauses": [
+        "Nu sunt respecta\u021bi timpii de reac\u021bie ai r\u0103\u0219inii."
+      ],
+      "prevention": [],
+      "problemSummary": "Timpul dintre turn\u0103ri influen\u021beaz\u0103 aderen\u021ba dintre straturile de r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 timpul de \u00eent\u0103rire \u0219i intervalul dintre turn\u0103ri recomandate de produc\u0103torul sistemului epoxidic utilizat."
+      ],
+      "symptoms": [
+        "Prima turnare s-a \u00eencheiat.",
+        "Nu \u0219tii c\u00e2nd poate \u00eencepe urm\u0103torul strat."
+      ],
+      "tips": [
+        "Nu gr\u0103bi continuarea lucr\u0103rii. Un prim strat bine \u00eent\u0103rit \u0219i verificat reprezint\u0103 baza tuturor turn\u0103rilor ulterioare."
+      ],
+      "title": "C\u00e2t trebuie s\u0103 a\u0219tept \u00eenainte de turnarea urm\u0103torului strat?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+      "media": [],
+      "possibleCauses": [
+        "Nu au fost verificate condi\u021biile de lucru.",
+        "Stratul anterior nu a fost inspectat."
+      ],
+      "prevention": [],
+      "problemSummary": "\u00cenaintea fiec\u0103rei turn\u0103ri trebuie verificat at\u00e2t mediul de lucru, c\u00e2t \u0219i starea proiectului, pentru a reduce riscul apari\u021biei defectelor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 temperatura atelierului, starea stratului anterior \u0219i cur\u0103\u021benia suprafe\u021bei \u00eenainte de prepararea unei noi cantit\u0103\u021bi de r\u0103\u0219in\u0103."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 o nou\u0103 turnare.",
+        "Nu e\u0219ti sigur dac\u0103 proiectul este preg\u0103tit."
+      ],
+      "tips": [
+        "C\u00e2teva minute de verificare \u00eenainte de fiecare turnare pot preveni probleme dificil de corectat ulterior."
+      ],
+      "title": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-influen-eaz-temperatura-turnarea-r-inii",
+      "media": [],
+      "possibleCauses": [
+        "Temperatura atelierului este prea sc\u0103zut\u0103 sau prea ridicat\u0103.",
+        "Exist\u0103 varia\u021bii mari de temperatur\u0103 \u00een timpul matur\u0103rii."
+      ],
+      "prevention": [],
+      "problemSummary": "Temperatura influen\u021beaz\u0103 v\u00e2scozitatea r\u0103\u0219inii, timpul de lucru \u0219i procesul de \u00eent\u0103rire.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 intervalul de temperatur\u0103 recomandat de produc\u0103tor \u0219i evit\u0103 schimb\u0103rile bru\u0219te de temperatur\u0103 \u0219i umiditate pe durata \u00eent\u0103ririi."
+      ],
+      "symptoms": [
+        "R\u0103\u0219ina este prea fluid\u0103 sau prea v\u00e2scoas\u0103.",
+        "Timpul de lucru pare diferit fa\u021b\u0103 de cel obi\u0219nuit."
+      ],
+      "tips": [
+        "Condi\u021biile constante din atelier contribuie la ob\u021binerea unor rezultate mai predictibile."
+      ],
+      "title": "Cum influen\u021beaz\u0103 temperatura turnarea r\u0103\u0219inii?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare",
+      "media": [],
+      "possibleCauses": [
+        "A trecut prea mult timp de la turnarea precedent\u0103.",
+        "Sistemul epoxidic utilizat impune aceast\u0103 etap\u0103."
+      ],
+      "prevention": [
+        "Dup\u0103 \u0219lefuire, elimin\u0103 complet praful din col\u021buri \u0219i cavit\u0103\u021bi."
+      ],
+      "problemSummary": "\u00cen anumite situa\u021bii este necesar\u0103 preg\u0103tirea mecanic\u0103 a stratului anterior pentru a ob\u021bine o aderen\u021b\u0103 optim\u0103 \u00eentre straturile de r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 recomand\u0103rile produc\u0103torului. Dac\u0103 este necesar\u0103 \u0219lefuirea, cur\u0103\u021b\u0103 complet suprafa\u021ba \u00eenainte de turnarea urm\u0103torului strat."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 aplicarea unui nou strat.",
+        "Nu \u0219tii dac\u0103 este necesar\u0103 \u0219lefuirea."
+      ],
+      "tips": [],
+      "title": "Trebuie \u0219lefuit stratul anterior \u00eenainte de urm\u0103toarea turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-se-realizeaz-corect-turn-rile-intermediare",
+      "media": [],
+      "possibleCauses": [
+        "Procesul nu este urmat consecvent."
+      ],
+      "prevention": [],
+      "problemSummary": "Fiecare turnare intermediar\u0103 trebuie executat\u0103 respect\u00e2nd aceea\u0219i procedur\u0103 pentru a ob\u021bine un rezultat uniform.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 pentru fiecare turnare aceea\u0219i succesiune: m\u0103surarea componentelor, respectarea raportului de amestec, omogenizarea complet\u0103, ad\u0103ugarea pigmen\u021bilor (dac\u0103 este cazul) \u0219i turnarea uniform\u0103."
+      ],
+      "symptoms": [
+        "Proiectul necesit\u0103 mai multe turn\u0103ri.",
+        "Nu \u0219tii dac\u0103 procedura difer\u0103 de la un strat la altul."
+      ],
+      "tips": [
+        "Inspecteaz\u0103 suprafa\u021ba dup\u0103 fiecare strat \u0219i corecteaz\u0103 eventualele defecte \u00eenainte de continuare."
+      ],
+      "title": "Cum se realizeaz\u0103 corect turn\u0103rile intermediare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final",
+      "media": [],
+      "possibleCauses": [
+        "Contrac\u021bia r\u0103\u0219inii nu este luat\u0103 \u00een calcul."
+      ],
+      "prevention": [],
+      "problemSummary": "Ultimul strat trebuie s\u0103 compenseze contrac\u021bia normal\u0103 a r\u0103\u0219inii din timpul matur\u0103rii \u0219i s\u0103 permit\u0103 prelucrarea mecanic\u0103 final\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Realizeaz\u0103 ultima turnare cu un surplus de aproximativ 2\u20134 mm, conform recomand\u0103rilor produc\u0103torului, pentru a permite calibrarea \u0219i \u0219lefuirea ulterioar\u0103."
+      ],
+      "symptoms": [
+        "Preg\u0103te\u0219ti turnarea final\u0103.",
+        "Vrei ca lemnul \u0219i r\u0103\u0219ina s\u0103 ajung\u0103 la acela\u0219i nivel dup\u0103 finisare."
+      ],
+      "tips": [
+        "Nu \u00eencerca s\u0103 ob\u021bii nivelul final direct din turnare. Prelucrarea mecanic\u0103 face parte din procesul normal."
+      ],
+      "title": "De ce trebuie turnat ultimul strat pu\u021bin peste nivelul final?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "la-ce-folose-te-bariera-perimetral-de-silicon",
+      "media": [],
+      "possibleCauses": [
+        "Nu exist\u0103 o limit\u0103 care s\u0103 re\u021bin\u0103 surplusul de r\u0103\u0219in\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Bariera temporar\u0103 de silicon \u00eempiedic\u0103 r\u0103\u0219ina s\u0103 se r\u0103sp\u00e2ndeasc\u0103 pe suprafa\u021ba lemnului \u0219i re\u021bine surplusul necesar pentru compensarea contrac\u021biei.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 o barier\u0103 temporar\u0103 de silicon pe suprafa\u021ba lemnului, \u00een jurul zonei care urmeaz\u0103 s\u0103 fie umplut\u0103 cu r\u0103\u0219in\u0103. \u00cendep\u0103rteaz-o dup\u0103 maturarea complet\u0103 \u0219i elimin\u0103 surplusul \u00een etapa de prelucrare mecanic\u0103."
+      ],
+      "symptoms": [
+        "Preg\u0103te\u0219ti turnarea final\u0103.",
+        "Vrei s\u0103 controlezi mai bine nivelul r\u0103\u0219inii."
+      ],
+      "tips": [
+        "Aceast\u0103 metod\u0103 este util\u0103 atunci c\u00e2nd urm\u0103re\u0219ti ca lemnul \u0219i r\u0103\u0219ina s\u0103 ajung\u0103 perfect la acela\u0219i nivel dup\u0103 finisare."
+      ],
+      "title": "La ce folose\u0219te bariera perimetral\u0103 de silicon?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+      "media": [],
+      "possibleCauses": [
+        "Nu a fost respectat timpul complet de maturare."
+      ],
+      "prevention": [
+        "Respectarea timpului complet de maturare contribuie la stabilitatea dimensional\u0103 \u0219i la calitatea finisajului."
+      ],
+      "problemSummary": "Chiar dac\u0103 r\u0103\u0219ina pare \u00eent\u0103rit\u0103, maturarea complet\u0103 poate continua o perioad\u0103 mai lung\u0103, \u00een func\u021bie de produsul utilizat.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "A\u0219teapt\u0103 perioada de maturare recomandat\u0103 de produc\u0103tor \u00eenainte de \u00eenceperea prelucr\u0103rii mecanice."
+      ],
+      "symptoms": [
+        "Ultima turnare este finalizat\u0103.",
+        "Vrei s\u0103 \u00eencepi calibrarea \u0219i \u0219lefuirea."
+      ],
+      "tips": [],
+      "title": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 ultima turnare \u00eenainte de prelucrarea mecanic\u0103?",
+      "warnings": [
+        "Prelucrarea prematur\u0103 poate afecta aspectul final \u0219i poate compromite rezultatul ob\u021binut dup\u0103 toate etapele de turnare."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-pot-scoate-proiectul-din-cofraj",
+      "media": [],
+      "possibleCauses": [
+        "Nu a fost respectat timpul complet de maturare.",
+        "Se confund\u0103 \u00eent\u0103rirea superficial\u0103 cu maturarea complet\u0103."
+      ],
+      "prevention": [
+        "\u0103bdarea \u00een aceast\u0103 etap\u0103 reduce riscul deterior\u0103rii muchiilor \u0219i al deform\u0103rii proiectului."
+      ],
+      "problemSummary": "Demularea trebuie f\u0103cut\u0103 numai dup\u0103 maturarea complet\u0103 a r\u0103\u0219inii, conform recomand\u0103rilor produc\u0103torului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "\u00cencepe demularea numai dup\u0103 expirarea perioadei de maturare recomandate pentru r\u0103\u0219ina utilizat\u0103."
+      ],
+      "symptoms": [
+        "R\u0103\u0219ina pare \u00eent\u0103rit\u0103 la suprafa\u021b\u0103.",
+        "Vrei s\u0103 sco\u021bi proiectul din cofraj."
+      ],
+      "tips": [],
+      "title": "C\u00e2nd pot scoate proiectul din cofraj?",
+      "warnings": [
+        "Demularea prematur\u0103 poate afecta integritatea piesei."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-demontez-corect-cofrajul",
+      "media": [],
+      "possibleCauses": [
+        "Elementele de fixare nu au fost \u00eendep\u0103rtate complet.",
+        "Cofrajul este for\u021bat \u00een timpul demont\u0103rii."
+      ],
+      "prevention": [],
+      "problemSummary": "Demontarea trebuie realizat\u0103 metodic pentru a evita deteriorarea proiectului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "\u00cendep\u0103rteaz\u0103 toate elementele de fixare, apoi demonteaz\u0103 lateralele progresiv, folosind o unealt\u0103 potrivit\u0103 doar pentru a ini\u021bia desprinderea controlat\u0103."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 scoaterea piesei din cofraj.",
+        "Nu \u0219tii \u00een ce ordine trebuie demontate elementele."
+      ],
+      "tips": [
+        "Nu for\u021ba cofrajul. O desprindere lent\u0103 este mai sigur\u0103 dec\u00e2t aplicarea unei for\u021be mari."
+      ],
+      "title": "Cum demontez corect cofrajul?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect",
+      "media": [],
+      "possibleCauses": [
+        "Materialele de protec\u021bie au r\u0103mas lipite de suprafa\u021b\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Dup\u0103 demulare este normal ca pe partea inferioar\u0103 a piesei s\u0103 r\u0103m\u00e2n\u0103 urme ale materialelor folosite la construirea cofrajului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Nu \u00eencerca s\u0103 elimini aceste urme \u00een timpul demul\u0103rii. Ele vor fi \u00eendep\u0103rtate ulterior prin debitare, calibrare \u0219i \u0219lefuire."
+      ],
+      "symptoms": [
+        "Pe proiect au r\u0103mas resturi de PAL, MDF, melamin\u0103 sau band\u0103 adeziv\u0103.",
+        "Crezi c\u0103 proiectul este defect."
+      ],
+      "tips": [
+        "Rezerva dimensional\u0103 prev\u0103zut\u0103 la construirea cofrajului exist\u0103 tocmai pentru eliminarea acestor imperfec\u021biuni."
+      ],
+      "title": "De ce r\u0103m\u00e2n urme de PAL, MDF sau band\u0103 adeziv\u0103 pe proiect?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-verificat-imediat-dup-demulare",
+      "media": [],
+      "possibleCauses": [
+        "Defectele de turnare nu au fost \u00eenc\u0103 identificate."
+      ],
+      "prevention": [],
+      "problemSummary": "Dup\u0103 scoaterea piesei din cofraj este recomandat\u0103 o inspec\u021bie complet\u0103 \u00eenainte de \u00eenceperea prelucr\u0103rii mecanice.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 eventualele goluri, fisuri, zone insuficient umplute, urme de scurgeri \u0219i starea muchiilor \u0219i col\u021burilor."
+      ],
+      "symptoms": [
+        "Proiectul a fost demulat.",
+        "Vrei s\u0103 verifici dac\u0103 exist\u0103 defecte."
+      ],
+      "tips": [
+        "Este mai u\u0219or s\u0103 planifici eventualele repara\u021bii \u00eenainte de \u00eenceperea calibr\u0103rii \u0219i \u0219lefuirii."
+      ],
+      "title": "Ce trebuie verificat imediat dup\u0103 demulare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
+      "media": [],
+      "possibleCauses": [
+        "Piesa este ridicat\u0103 sau transportat\u0103 necorespunz\u0103tor.",
+        "Col\u021burile sunt lovite accidental."
+      ],
+      "prevention": [
+        "Protejeaz\u0103 muchiile \u0219i col\u021burile \u00een timpul manipul\u0103rii. Acestea sunt cele mai expuse deterior\u0103rii."
+      ],
+      "problemSummary": "Dup\u0103 demulare, proiectul trebuie manipulat cu grij\u0103 pentru a evita deteriorarea muchiilor \u0219i a col\u021burilor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Manipuleaz\u0103 proiectul cu aten\u021bie \u0219i, dac\u0103 este greu, folose\u0219te ajutorul unei a doua persoane pentru ridicare \u0219i transport."
+      ],
+      "symptoms": [
+        "Proiectul este greu sau voluminos.",
+        "Urmeaz\u0103 mutarea lui \u00een atelier."
+      ],
+      "tips": [],
+      "title": "Cum manipulez proiectul dup\u0103 scoaterea din cofraj?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "proiectul-este-gata-dup-demulare",
+      "media": [],
+      "possibleCauses": [
+        "Surplusul de r\u0103\u0219in\u0103 \u0219i urmele procesului de turnare sunt \u00eenc\u0103 prezente."
+      ],
+      "prevention": [
+        "Nu evalua aspectul final al proiectului imediat dup\u0103 demulare. \u00cen aceast\u0103 etap\u0103 piesa se afl\u0103 \u00eenc\u0103 \u00eentr-un stadiu brut"
+      ],
+      "problemSummary": "Nu. Demularea marcheaz\u0103 sf\u00e2r\u0219itul etapei de turnare \u0219i \u00eenceputul prelucr\u0103rii mecanice.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Continu\u0103 cu etapele de debitare, calibrare, \u0219lefuire \u0219i finisare p\u00e2n\u0103 la ob\u021binerea dimensiunilor \u0219i aspectului final."
+      ],
+      "symptoms": [
+        "Proiectul a fost scos din cofraj.",
+        "Aspectul final nu este \u00eenc\u0103 ob\u021binut."
+      ],
+      "tips": [],
+      "title": "Proiectul este gata dup\u0103 demulare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+      "media": [],
+      "possibleCauses": [
+        "Ultimul strat a fost turnat cu un surplus de material."
+      ],
+      "prevention": [
+        "Nu \u00eencerca s\u0103 ob\u021bii aspectul final \u00een aceast\u0103 etap\u0103. Obiectivul este planeitatea suprafe\u021bei."
+      ],
+      "problemSummary": "Surplusul de r\u0103\u0219in\u0103 este turnat inten\u021bionat pentru a compensa contrac\u021bia din timpul matur\u0103rii \u0219i trebuie eliminat \u00eenainte de finisare.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "\u00cendep\u0103rteaz\u0103 surplusul p\u00e2n\u0103 c\u00e2nd lemnul \u0219i r\u0103\u0219ina ajung perfect la acela\u0219i nivel."
+      ],
+      "symptoms": [
+        "Dup\u0103 demulare, r\u0103\u0219ina este mai sus dec\u00e2t lemnul.",
+        "Suprafa\u021ba nu este plan\u0103."
+      ],
+      "tips": [],
+      "title": "De ce trebuie \u00eendep\u0103rtat surplusul de r\u0103\u0219in\u0103 dup\u0103 turnare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
+      "media": [],
+      "possibleCauses": [
+        "Siliconul utilizat \u00een timpul turn\u0103rii nu a fost \u00eendep\u0103rtat complet."
+      ],
+      "prevention": [
+        "Cur\u0103\u021barea complet\u0103 \u00eenainte de prelucrare reduce riscul apari\u021biei problemelor \u00een etapele de finisare."
+      ],
+      "problemSummary": "Resturile de silicon pot afecta at\u00e2t procesul de \u0219lefuire, c\u00e2t \u0219i aplicarea finisajului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Elimin\u0103 toate urmele de silicon \u0219i verific\u0103 \u00eentreaga pies\u0103 pentru resturi de band\u0103 adeziv\u0103, adeziv sau alte materiale temporare."
+      ],
+      "symptoms": [
+        "Pe proiect au r\u0103mas urme de silicon dup\u0103 demulare.",
+        "Abrazivele se \u00eencarc\u0103 rapid."
+      ],
+      "tips": [],
+      "title": "De ce trebuie \u00eendep\u0103rtate toate urmele de silicon \u00eenainte de prelucrare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
+      "media": [],
+      "possibleCauses": [
+        "Atelierul dispune de echipamente diferite."
+      ],
+      "prevention": [
+        "Alege metoda potrivit\u0103 atelierului \u0219i tipului de proiect, nu doar pe cea mai rapid\u0103."
+      ],
+      "problemSummary": "Exist\u0103 mai multe metode de calibrare, fiecare av\u00e2nd avantaje \u0219i limit\u0103ri.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Pentru precizie maxim\u0103 poate fi utilizat\u0103 frezarea pe CNC. Alte variante sunt ma\u0219ina de calibrat sau \u0219lefuitorul cu band\u0103, \u00een func\u021bie de echipamentele disponibile."
+      ],
+      "symptoms": [
+        "Nu \u0219tii ce metod\u0103 s\u0103 alegi pentru calibrare."
+      ],
+      "tips": [],
+      "title": "Care este cea mai precis\u0103 metod\u0103 de calibrare a unei piese cu r\u0103\u0219in\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
+      "media": [],
+      "possibleCauses": [
+        "Presiune prea mare \u00eentr-o singur\u0103 zon\u0103.",
+        "Mi\u0219c\u0103ri neuniforme."
+      ],
+      "prevention": [
+        "Scopul acestei etape este ob\u021binerea unei suprafe\u021be plane, nu finisarea acesteia."
+      ],
+      "problemSummary": "\u0218lefuitorul cu band\u0103 este una dintre cele mai accesibile metode pentru aducerea lemnului \u0219i r\u0103\u0219inii la acela\u0219i nivel.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te un abraziv agresiv, de regul\u0103 P40, \u0219i execut\u0103 mi\u0219c\u0103ri uniforme. Redu presiunea pe m\u0103sur\u0103 ce surplusul de r\u0103\u0219in\u0103 dispare."
+      ],
+      "symptoms": [
+        "Vrei s\u0103 calibrezi proiectul f\u0103r\u0103 CNC.",
+        "\u00ce\u021bi este team\u0103 s\u0103 nu creezi denivel\u0103ri."
+      ],
+      "tips": [],
+      "title": "Cum folosesc corect \u0219lefuitorul cu band\u0103 pentru calibrare?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
+      "media": [],
+      "possibleCauses": [
+        "Ordinea opera\u021biilor nu este clar\u0103."
+      ],
+      "prevention": [
+        "Urmele l\u0103sate de scule vor fi eliminate mai u\u0219or \u00een etapele ulterioare de \u0219lefuire."
+      ],
+      "problemSummary": "Dimensiunile finale \u0219i profil\u0103rile trebuie executate \u00eenainte de \u0219lefuirea fin\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Execut\u0103 toate t\u0103ierile, \u00eendrept\u0103rile \u0219i frez\u0103rile \u00eenainte de \u00eenceperea \u0219lefuirii progresive."
+      ],
+      "symptoms": [
+        "Proiectul este calibrat.",
+        "Urmeaz\u0103 finisarea suprafe\u021bei."
+      ],
+      "tips": [],
+      "title": "C\u00e2nd trebuie realizate debitarea \u0219i profilarea muchiilor?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+      "media": [],
+      "possibleCauses": [
+        "Exist\u0103 diferen\u021be de nivel sau mici defecte r\u0103mase."
+      ],
+      "prevention": [],
+      "problemSummary": "\u00cenainte de \u0219lefuirea fin\u0103 trebuie confirmat c\u0103 suprafa\u021ba este preg\u0103tit\u0103 corespunz\u0103tor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Verific\u0103 planeitatea suprafe\u021bei \u0219i identific\u0103 eventualele goluri, pori sau imperfec\u021biuni care pot fi \u00eenc\u0103 remediate."
+      ],
+      "symptoms": [
+        "Calibrarea este finalizat\u0103.",
+        "Urmeaz\u0103 \u0219lefuirea progresiv\u0103."
+      ],
+      "tips": [
+        "Corectarea defectelor \u00een aceast\u0103 etap\u0103 este mult mai simpl\u0103 dec\u00e2t dup\u0103 \u00eenceperea finisajului."
+      ],
+      "title": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+      "media": [],
+      "possibleCauses": [
+        "Nu toate opera\u021biunile preg\u0103titoare au fost finalizate."
+      ],
+      "prevention": [],
+      "problemSummary": "Proiectul este preg\u0103tit pentru \u0219lefuirea progresiv\u0103 numai dup\u0103 finalizarea tuturor opera\u021biunilor de calibrare \u0219i prelucrare mecanic\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "\u00cencepe \u0219lefuirea progresiv\u0103 numai dup\u0103 ce au fost \u00eendep\u0103rtate materialele temporare, surplusul de r\u0103\u0219in\u0103, au fost realizate dimensiunile finale \u0219i muchiile, iar suprafa\u021ba este perfect plan\u0103."
+      ],
+      "symptoms": [
+        "Ai terminat demularea \u0219i calibrarea.",
+        "Vrei s\u0103 \u00eencepi \u0219lefuirea fin\u0103."
+      ],
+      "tips": [
+        "Timpul investit \u00een aceast\u0103 etap\u0103 influen\u021beaz\u0103 direct calitatea \u0219lefuirii \u0219i aspectul final al proiectului."
+      ],
+      "title": "C\u00e2nd este proiectul preg\u0103tit pentru \u0219lefuirea progresiv\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-este-at-t-de-important-lefuirea-progresiv",
+      "media": [],
+      "possibleCauses": [
+        "\u0218lefuirea a fost f\u0103cut\u0103 superficial.",
+        "Unele etape au fost gr\u0103bite."
+      ],
+      "prevention": [
+        "\u00cen majoritatea proiectelor, calitatea finisajului depinde mai mult de \u0219lefuire dec\u00e2t de produsul de finisare utilizat."
+      ],
+      "problemSummary": "Calitatea \u0219lefuirii influen\u021beaz\u0103 direct aspectul final al proiectului, indiferent c\u00e2t de bine au fost realizate etapele anterioare.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Parcurge toate etapele \u0219lefuirii progresive \u0219i verific\u0103 atent rezultatul \u00eenainte de schimbarea granula\u021biei."
+      ],
+      "symptoms": [
+        "Suprafa\u021ba nu arat\u0103 uniform.",
+        "Dup\u0103 finisare apar zg\u00e2rieturi vizibile."
+      ],
+      "tips": [],
+      "title": "De ce este at\u00e2t de important\u0103 \u0219lefuirea progresiv\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-func-ioneaz-lefuirea-progresiv",
+      "media": [],
+      "possibleCauses": [
+        "Granula\u021biile au fost schimbate prea devreme.",
+        "Zg\u00e2rieturile anterioare nu au fost eliminate complet."
+      ],
+      "prevention": [
+        "Progresia trebuie s\u0103 fie gradual\u0103, f\u0103r\u0103 salturi mari \u00eentre granula\u021bii."
+      ],
+      "problemSummary": "Fiecare granula\u021bie are rolul de a elimina zg\u00e2rieturile produse de granula\u021bia anterioar\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Treci la urm\u0103toarea granula\u021bie numai dup\u0103 ce zg\u00e2rieturile produse de abrazivul anterior au disp\u0103rut complet."
+      ],
+      "symptoms": [
+        "Dup\u0103 \u0219lefuire r\u0103m\u00e2n urme vizibile.",
+        "Nu \u0219tii c\u00e2nd trebuie schimbat\u0103 granula\u021bia."
+      ],
+      "tips": [],
+      "title": "Cum func\u021bioneaz\u0103 \u0219lefuirea progresiv\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-cur-at-suprafa-a-ntre-schimb-rile-de-granula-ie",
+      "media": [],
+      "possibleCauses": [
+        "Praful nu a fost \u00eendep\u0103rtat \u00eentre etape."
+      ],
+      "prevention": [
+        "Inspecteaz\u0103 suprafa\u021ba folosind lumin\u0103 lateral\u0103 pentru a observa mai u\u0219or zg\u00e2rieturile \u0219i diferen\u021bele de nivel."
+      ],
+      "problemSummary": "Praful r\u0103mas pe suprafa\u021b\u0103 poate produce zg\u00e2rieturi noi \u0219i poate ascunde defectele existente.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Cur\u0103\u021b\u0103 complet suprafa\u021ba dup\u0103 fiecare schimbare de granula\u021bie \u00eenainte de a continua \u0219lefuirea."
+      ],
+      "symptoms": [
+        "Dup\u0103 schimbarea abrazivului apar zg\u00e2rieturi nea\u0219teptate.",
+        "Suprafa\u021ba pare curat\u0103, dar defectele reapar ulterior."
+      ],
+      "tips": [],
+      "title": "De ce trebuie cur\u0103\u021bat\u0103 suprafa\u021ba \u00eentre schimb\u0103rile de granula\u021bie?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor",
+      "media": [],
+      "possibleCauses": [
+        "Ordinea opera\u021biilor nu este respectat\u0103."
+      ],
+      "prevention": [
+        "Astfel evi\u021bi reluarea unei p\u0103r\u021bi importante din procesul de \u0219lefuire."
+      ],
+      "problemSummary": "Toate opera\u021biunile care modific\u0103 forma piesei trebuie finalizate \u00eenainte de \u0219lefuirea fin\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Execut\u0103 debitarea final\u0103, profil\u0103rile \u0219i rotunjirile \u00eenainte de etapele finale de \u0219lefuire."
+      ],
+      "symptoms": [
+        "Vrei s\u0103 profilezi sau s\u0103 rotunje\u0219ti muchiile.",
+        "Ai \u00eenceput deja \u0219lefuirea fin\u0103."
+      ],
+      "tips": [],
+      "title": "C\u00e2nd trebuie realizate rotunjirile \u0219i profil\u0103rile muchiilor?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "trebuie-lefuite-i-muchiile-nu-doar-suprafa-a-principal",
+      "media": [],
+      "possibleCauses": [
+        "Au fost \u0219lefuite doar suprafe\u021bele principale."
+      ],
+      "prevention": [
+        "Uniformitatea \u00eentregii piese este la fel de important\u0103 ca aspectul suprafe\u021bei principale."
+      ],
+      "problemSummary": "Da. Toate suprafe\u021bele vizibile trebuie prelucrate \u00een aceea\u0219i succesiune de granula\u021bii pentru a ob\u021bine un aspect uniform.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 aceea\u0219i progresie de granula\u021bii pe fe\u021be, muchii, canturi \u0219i laterale."
+      ],
+      "symptoms": [
+        "Fa\u021ba principal\u0103 arat\u0103 bine, dar muchiile au alt aspect.",
+        "Finisajul este neuniform."
+      ],
+      "tips": [],
+      "title": "Trebuie \u0219lefuite \u0219i muchiile, nu doar suprafa\u021ba principal\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+      "media": [],
+      "possibleCauses": [
+        "Se urm\u0103re\u0219te o suprafa\u021b\u0103 prea fin\u0103."
+      ],
+      "prevention": [
+        "\u0218lefuirea peste aceast\u0103 zon\u0103 este justificat\u0103 doar \u00een situa\u021bii speciale."
+      ],
+      "problemSummary": "O \u0219lefuire excesiv de fin\u0103 poate reduce capacitatea lemnului de a absorbi produsele de finisare penetrante.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "\u00cen majoritatea proiectelor, o granula\u021bie final\u0103 \u00eentre P180 \u0219i P240 ofer\u0103 un echilibru foarte bun \u00eentre aspect \u0219i absorb\u021bia finisajului."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 aplicarea unui ulei sau a altui finisaj penetrant.",
+        "Nu \u0219tii c\u00e2nd trebuie oprit\u0103 \u0219lefuirea."
+      ],
+      "tips": [],
+      "title": "P\u00e2n\u0103 la ce granula\u021bie trebuie \u0219lefuit lemnul \u00eenainte de aplicarea uleiului?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
+      "media": [],
+      "possibleCauses": [
+        "Se confund\u0103 preg\u0103tirea pentru finisaj cu preg\u0103tirea pentru un nou strat de r\u0103\u0219in\u0103."
+      ],
+      "prevention": [
+        "Respect\u0103 procedura recomandat\u0103 pentru sistemul epoxidic utilizat."
+      ],
+      "problemSummary": "Pentru aplicarea unui strat final de r\u0103\u0219in\u0103 nu este necesar\u0103 o \u0219lefuire foarte fin\u0103, ci o suprafa\u021b\u0103 uniform\u0103 \u0219i cu aderen\u021b\u0103 bun\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Preg\u0103te\u0219te o suprafa\u021b\u0103 uniform\u0103, curat\u0103 \u0219i capabil\u0103 s\u0103 asigure aderen\u021ba noului strat."
+      ],
+      "symptoms": [
+        "Proiectul va primi un strat transparent de r\u0103\u0219in\u0103.",
+        "Nu \u0219tii c\u00e2t de fin trebuie \u0219lefuit."
+      ],
+      "tips": [],
+      "title": "Cum preg\u0103tesc suprafa\u021ba dac\u0103 voi aplica un strat final transparent de r\u0103\u0219in\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii",
+      "media": [],
+      "possibleCauses": [
+        "Au fost omise una sau mai multe granula\u021bii.",
+        "Trecerea la granula\u021bia urm\u0103toare s-a f\u0103cut prea devreme."
+      ],
+      "prevention": [
+        "Timpul economisit prin omiterea unor granula\u021bii este, de regul\u0103, pierdut ulterior \u00eencerc\u00e2nd s\u0103 elimini defectele r\u0103mase"
+      ],
+      "problemSummary": "Salturile mari \u00eentre granula\u021bii reduc eficien\u021ba \u0219lefuirii \u0219i fac mult mai dificil\u0103 eliminarea zg\u00e2rieturilor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 progresia normal\u0103 a granula\u021biilor \u0219i verific\u0103 rezultatul dup\u0103 fiecare etap\u0103 \u00eenainte de a continua."
+      ],
+      "symptoms": [
+        "Vrei s\u0103 reduci timpul de \u0219lefuire.",
+        "Dup\u0103 finisare apar urme vizibile."
+      ],
+      "tips": [],
+      "title": "De ce nu este recomandat s\u0103 sar peste anumite granula\u021bii?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+      "media": [],
+      "possibleCauses": [
+        "Finisajul dorit nu poate fi ob\u021binut doar prin aplicarea unui ulei sau lac."
+      ],
+      "prevention": [
+        "Top Coating-ul este o etap\u0103 op\u021bional\u0103 \u0219i se utilizeaz\u0103 doar atunci c\u00e2nd aspectul proiectului o justific\u0103."
+      ],
+      "problemSummary": "Top Coating-ul este aplicarea unui strat final transparent de r\u0103\u0219in\u0103 peste \u00eentreaga suprafa\u021b\u0103 a proiectului pentru ob\u021binerea unui finisaj lucios \u0219i uniform.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 un strat final transparent de r\u0103\u0219in\u0103 dup\u0103 ce proiectul a fost adus la forma final\u0103 \u0219i preg\u0103tit corespunz\u0103tor."
+      ],
+      "symptoms": [
+        "Dore\u0219ti un aspect complet lucios.",
+        "Vrei ca lemnul \u0219i r\u0103\u0219ina s\u0103 formeze o suprafa\u021b\u0103 continu\u0103."
+      ],
+      "tips": [],
+      "title": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+      "media": [],
+      "possibleCauses": [
+        "Piesa nu este perfect orizontal\u0103.",
+        "Supor\u021bii sunt pozi\u021biona\u021bi necorespunz\u0103tor."
+      ],
+      "prevention": [],
+      "problemSummary": "Preg\u0103tirea corect\u0103 a piesei influen\u021beaz\u0103 uniformitatea stratului final de r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "A\u0219az\u0103 piesa pe suporturi temporare stabile \u0219i verific\u0103 atent ca suprafa\u021ba s\u0103 fie perfect orizontal\u0103 \u00eenainte de turnare."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 aplicarea Top Coating-ului.",
+        "Nu \u0219tii cum trebuie pozi\u021bionat\u0103 piesa."
+      ],
+      "tips": [
+        "Pozi\u021bioneaz\u0103 punctele de sprijin c\u00e2t mai aproape de centrul piesei pentru a reduce urmele r\u0103mase dup\u0103 \u00eendep\u0103rtarea lor."
+      ],
+      "title": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
+      "media": [],
+      "possibleCauses": [
+        "Partea inferioar\u0103 nu a fost protejat\u0103 \u00eenainte de turnare."
+      ],
+      "prevention": [
+        "\u00cendep\u0103rtarea benzii dup\u0103 \u00eent\u0103rire elimin\u0103 \u0219i cea mai mare parte a pic\u0103turilor formate \u00een timpul scurgerii."
+      ],
+      "problemSummary": "Protejarea p\u0103r\u021bii inferioare reduce timpul necesar cur\u0103\u021b\u0103rii dup\u0103 \u00eent\u0103rirea r\u0103\u0219inii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 o band\u0103 adeziv\u0103 pe partea inferioar\u0103, c\u00e2t mai aproape de margini, \u00eenainte de aplicarea stratului final."
+      ],
+      "symptoms": [
+        "R\u0103\u0219ina curge pe muchii \u0219i formeaz\u0103 pic\u0103turi dedesubt."
+      ],
+      "tips": [],
+      "title": "De ce trebuie protejat\u0103 partea inferioar\u0103 \u00eenainte de Top Coating?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "la-ce-folose-te-bariera-temporar-din-band-adeziv",
+      "media": [],
+      "possibleCauses": [
+        "Nu exist\u0103 o limit\u0103 temporar\u0103 care s\u0103 re\u021bin\u0103 r\u0103\u0219ina pe suprafa\u021b\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Bariera temporar\u0103 permite distribuirea uniform\u0103 a r\u0103\u0219inii \u00eenainte ca aceasta s\u0103 curg\u0103 peste muchii.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 pe conturul superior o band\u0103 adeziv\u0103 ridicat\u0103 aproximativ 5\u201310 mm deasupra suprafe\u021bei \u0219i \u00eendep\u0103rteaz-o treptat dup\u0103 nivelarea r\u0103\u0219inii."
+      ],
+      "symptoms": [
+        "R\u0103\u0219ina se scurge prea repede de pe margini.",
+        "Stratul final nu este uniform."
+      ],
+      "tips": [
+        "\u00cendep\u0103rtarea progresiv\u0103 a benzii ajut\u0103 la formarea unei pelicule uniforme pe muchii \u0219i canturi."
+      ],
+      "title": "La ce folose\u0219te bariera temporar\u0103 din band\u0103 adeziv\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+      "media": [],
+      "possibleCauses": [
+        "Tipurile de r\u0103\u0219in\u0103 sunt confundate."
+      ],
+      "prevention": [],
+      "problemSummary": "Top Coating-ul necesit\u0103 r\u0103\u0219ini formulate special pentru aplicarea \u00een straturi sub\u021biri.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te produse dedicate pentru straturi sub\u021biri, precum Art Resin, Coating Resin, Table Top Resin sau Top Coating Resin, respect\u00e2nd recomand\u0103rile produc\u0103torului."
+      ],
+      "symptoms": [
+        "Nu \u0219tii ce r\u0103\u0219in\u0103 trebuie utilizat\u0103.",
+        "Ai la dispozi\u021bie \u0219i r\u0103\u0219ini pentru turn\u0103ri groase."
+      ],
+      "tips": [
+        "Nu utiliza r\u0103\u0219ini de tip Deep Pour pentru aceast\u0103 opera\u021biune."
+      ],
+      "title": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-aplic-corect-stratul-final-de-r-in",
+      "media": [],
+      "possibleCauses": [
+        "Materialul nu este repartizat uniform."
+      ],
+      "prevention": [
+        "Verific\u0103 permanent uniformitatea peliculei \u00een primele minute dup\u0103 aplicare."
+      ],
+      "problemSummary": "Aplicarea uniform\u0103 a r\u0103\u0219inii este esen\u021bial\u0103 pentru ob\u021binerea unui finisaj continuu \u0219i f\u0103r\u0103 defecte.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Distribuie r\u0103\u0219ina uniform pe \u00eentreaga suprafa\u021b\u0103 folosind o spatul\u0103, un pieptene special sau o m\u0103nu\u0219\u0103 din nitril, apoi las-o s\u0103 curg\u0103 controlat peste muchii."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 turnarea stratului final.",
+        "Nu \u0219tii cum trebuie distribuit\u0103 r\u0103\u0219ina."
+      ],
+      "tips": [],
+      "title": "Cum aplic corect stratul final de r\u0103\u0219in\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
+      "media": [],
+      "possibleCauses": [
+        "Aer r\u0103mas \u00een r\u0103\u0219in\u0103 sau lemn la supratafa.",
+        "Pelicula se retrage local pe muchii.",
+        "Suprafata nu a fost corect curatata."
+      ],
+      "prevention": [],
+      "problemSummary": "Primele minute dup\u0103 turnare sunt importante pentru identificarea \u0219i corectarea eventualelor imperfec\u021biuni.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Elimin\u0103 bulele folosind metoda recomandat\u0103 de produc\u0103tor \u0219i verific\u0103 periodic muchiile p\u00e2n\u0103 la \u00eenceputul gelific\u0103rii."
+      ],
+      "symptoms": [
+        "Stratul final a fost aplicat.",
+        "Apar bule sau zone neuniforme."
+      ],
+      "tips": [
+        "Micile corec\u021bii f\u0103cute imediat dup\u0103 turnare pot \u00eembun\u0103t\u0103\u021bi semnificativ aspectul final."
+      ],
+      "title": "Ce trebuie verificat imediat dup\u0103 aplicarea Top Coating-ului?",
+      "warnings": [
+        "Aveti grija sa nu aveti particule in aer. Chiar daca sunt foarte mici, daca se aseaza pe suprafata rasinii, acestea pot creea imperfectiuni vizivile. Aveti grija sa nu aveti insecte in incapare, acestea sunt atrase de rasina si pot ramane blocate pe suprafata."
+      ]
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
+      "media": [],
+      "possibleCauses": [
+        "Imperfec\u021biuni ap\u0103rute \u00een timpul matur\u0103rii."
+      ],
+      "prevention": [],
+      "problemSummary": "\u0218lefuirea progresiv\u0103 elimin\u0103 imperfec\u021biunile \u0219i preg\u0103te\u0219te suprafa\u021ba pentru lustruire.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 aceea\u0219i succesiune de granula\u021bii pe suprafa\u021ba principal\u0103, muchii \u0219i canturi."
+      ],
+      "symptoms": [
+        "Dup\u0103 \u00eent\u0103rire exist\u0103 particule de praf sau mici defecte.",
+        "Vrei un finisaj de calitate superioar\u0103."
+      ],
+      "tips": [],
+      "title": "Cum \u0219lefuiesc stratul final de r\u0103\u0219in\u0103 \u00eenainte de lustruire?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-ob-in-un-luciu-perfect-dup-top-coating",
+      "media": [],
+      "possibleCauses": [
+        "Microzg\u00e2rieturi r\u0103mase dup\u0103 \u0219lefuirea fin\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Lustruirea elimin\u0103 microzg\u00e2rieturile r\u0103mase dup\u0103 \u0219lefuire \u0219i red\u0103 transparen\u021ba stratului de r\u0103\u0219in\u0103.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Lustruie\u0219te suprafa\u021ba cu o ma\u0219in\u0103 de polisat cu tura\u021bie reglabil\u0103, folosind un burete adecvat \u0219i o past\u0103 de polish destinat\u0103 r\u0103\u0219inilor sau suprafe\u021belor lucioase."
+      ],
+      "symptoms": [
+        "\u0218lefuirea este finalizat\u0103.",
+        "Suprafa\u021ba este mat\u0103 \u0219i trebuie polisat\u0103."
+      ],
+      "tips": [
+        "Nu \u00eencepe lustruirea \u00eenainte ca \u0219lefuirea progresiv\u0103 s\u0103 fie complet finalizat\u0103. Calitatea luciului depinde direct de calitatea preg\u0103tirii suprafe\u021bei"
+      ],
+      "title": "Cum ob\u021bin un luciu perfect dup\u0103 Top Coating?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+      "media": [],
+      "possibleCauses": [
+        "Exist\u0103 mai multe sisteme de finisare disponibile.",
+        "Fiecare ofer\u0103 avantaje diferite."
+      ],
+      "prevention": [
+        "Decizia dintre un finisaj care formeaz\u0103 o pelicul\u0103 \u0219i unul pe baz\u0103 de ulei \u0219i cear\u0103 influen\u021beaz\u0103 at\u00e2t aspectul, c\u00e2t \u0219i \u00eentre\u021binerea proiectului."
+      ],
+      "problemSummary": "Nu exist\u0103 un finisaj potrivit pentru toate proiectele. Alegerea depinde de aspectul dorit, modul de utilizare \u0219i nivelul de protec\u021bie necesar.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Alege finisajul \u00een func\u021bie de destina\u021bia proiectului \u0219i de aspectul pe care dore\u0219ti s\u0103 \u00eel ob\u021bii."
+      ],
+      "symptoms": [
+        "Proiectul este preg\u0103tit pentru finisare.",
+        "Nu \u0219tii ce tip de finisaj s\u0103 alegi."
+      ],
+      "tips": [],
+      "title": "Ce tip de finisaj ar trebui s\u0103 aleg pentru proiectul meu?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
+      "media": [],
+      "possibleCauses": [
+        "Piesa este expus\u0103 frecvent la uzur\u0103."
+      ],
+      "prevention": [
+        "Pentru rezultate de calitate, aplicarea cu pistolul de pulverizare este de regul\u0103 cea mai bun\u0103 alegere."
+      ],
+      "problemSummary": "Lacurile \u0219i finisajele poliuretanice ofer\u0103 o protec\u021bie ridicat\u0103 \u00eempotriva apei, petelor \u0219i uzurii mecanice.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te un finisaj care formeaz\u0103 o pelicul\u0103 protectoare atunci c\u00e2nd prioritatea este rezisten\u021ba \u00een exploatare."
+      ],
+      "symptoms": [
+        "Proiectul va fi utilizat intensiv.",
+        "Vrei o \u00eentre\u021binere redus\u0103."
+      ],
+      "tips": [],
+      "title": "C\u00e2nd este recomandat un finisaj care formeaz\u0103 o pelicul\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
+      "media": [],
+      "possibleCauses": [
+        "Preferi s\u0103 eviden\u021biezi fibra \u0219i caracterul natural al lemnului."
+      ],
+      "prevention": [
+        "Acest tip de finisaj pune \u00een valoare contrastul \u0219i profunzimea fibrei lemnului."
+      ],
+      "problemSummary": "Finisajele pe baz\u0103 de ulei \u0219i cear\u0103 p\u0103streaz\u0103 aspectul \u0219i textura natural\u0103 a lemnului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 un sistem de finisare pe baz\u0103 de ulei \u0219i cear\u0103 atunci c\u00e2nd urm\u0103re\u0219ti un aspect autentic \u0219i o suprafa\u021b\u0103 pl\u0103cut\u0103 la atingere."
+      ],
+      "symptoms": [
+        "Dore\u0219ti un aspect c\u00e2t mai natural.",
+        "Nu vrei o pelicul\u0103 groas\u0103 pe suprafa\u021ba lemnului."
+      ],
+      "tips": [],
+      "title": "De ce aleg mul\u021bi constructori finisarea cu ulei \u0219i cear\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-aplic-corect-uleiul-pentru-lemn",
+      "media": [],
+      "possibleCauses": [
+        "Se aplic\u0103 prea mult ulei dintr-o singur\u0103 etap\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Uleiul trebuie aplicat \u00een straturi sub\u021biri pentru a impregna lemnul uniform.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 straturi foarte sub\u021biri \u0219i \u00eendep\u0103rteaz\u0103 excesul conform recomand\u0103rilor produc\u0103torului."
+      ],
+      "symptoms": [
+        "Urmeaz\u0103 aplicarea uleiului.",
+        "Nu \u0219tii c\u00e2t produs trebuie folosit."
+      ],
+      "tips": [
+        "Mai multe straturi sub\u021biri ofer\u0103 rezultate mai bune dec\u00e2t unul sau dou\u0103 straturi groase."
+      ],
+      "title": "Cum aplic corect uleiul pentru lemn?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "c-te-straturi-de-ulei-trebuie-aplicate",
+      "media": [],
+      "possibleCauses": [
+        "Esen\u021bele de lemn absorb diferit finisajul."
+      ],
+      "prevention": [],
+      "problemSummary": "Num\u0103rul optim de straturi difer\u0103 \u00een func\u021bie de esen\u021ba lemnului \u0219i de capacitatea sa de absorb\u021bie.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Aplic\u0103 num\u0103rul de straturi necesar p\u00e2n\u0103 c\u00e2nd lemnul atinge nivelul dorit de protec\u021bie \u0219i aspect."
+      ],
+      "symptoms": [
+        "Nu \u0219tii c\u00e2nd trebuie oprit\u0103 aplicarea uleiului."
+      ],
+      "tips": [
+        "Lemnele cu absorb\u021bie ridicat\u0103 pot necesita trei sau patru aplic\u0103ri succesive."
+      ],
+      "title": "C\u00e2te straturi de ulei trebuie aplicate?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-se-aplic-corect-ceara-pentru-lemn",
+      "media": [],
+      "possibleCauses": [
+        "Suprafa\u021ba nu a fost preg\u0103tit\u0103 corespunz\u0103tor."
+      ],
+      "prevention": [],
+      "problemSummary": "Ceara completeaz\u0103 protec\u021bia oferit\u0103 de ulei \u0219i contribuie la aspectul final al suprafe\u021bei.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Cur\u0103\u021b\u0103 atent piesa \u0219i aplic\u0103 ceara uniform pe toate suprafe\u021bele expuse, inclusiv pe muchii \u0219i canturi."
+      ],
+      "symptoms": [
+        "Ultimul strat de ulei este complet uscat.",
+        "Urmeaz\u0103 aplicarea cerii."
+      ],
+      "tips": [
+        "Produsele care con\u021bin cear\u0103 de carnauba ofer\u0103, \u00een general, o rezisten\u021b\u0103 mecanic\u0103 mai bun\u0103."
+      ],
+      "title": "Cum se aplic\u0103 corect ceara pentru lemn?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
+      "media": [],
+      "possibleCauses": [
+        "Ceara nu a fost \u00eenc\u0103 lustruit\u0103."
+      ],
+      "prevention": [],
+      "problemSummary": "Lustruirea uniformizeaz\u0103 stratul de cear\u0103 \u0219i confer\u0103 suprafe\u021bei un aspect neted \u0219i un luciu natural.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Lustruie\u0219te manual sau cu o ma\u0219in\u0103 de lustruit cu tura\u021bie redus\u0103 \u0219i un disc de p\u00e2sl\u0103."
+      ],
+      "symptoms": [
+        "Ceara a fost aplicat\u0103, intr-un strat subtire si uniform.",
+        "Suprafa\u021ba trebuie finisat\u0103."
+      ],
+      "tips": [
+        "Nu este necesar\u0103 aplicarea unei presiuni mari. O lustruire uniform\u0103 produce cele mai bune rezultate."
+      ],
+      "title": "Cum se realizeaz\u0103 lustruirea dup\u0103 aplicarea cerii?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
+      "media": [],
+      "possibleCauses": [
+        "Uzura normal\u0103 produs\u0103 de utilizarea proiectului."
+      ],
+      "prevention": [
+        "\u00centre\u021binerea periodic\u0103 prelunge\u0219te semnificativ durata de via\u021b\u0103 a finisajului \u0219i p\u0103streaz\u0103 aspectul natural al lemnului f\u0103r\u0103 a fi necesar\u0103 decaparea complet\u0103."
+      ],
+      "problemSummary": "Finisajele pe baz\u0103 de ulei \u0219i cear\u0103 pot fi \u00eentre\u021binute u\u0219or f\u0103r\u0103 refacerea complet\u0103 a suprafe\u021bei.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Cur\u0103\u021b\u0103 suprafa\u021ba \u0219i aplic\u0103 un nou strat sub\u021bire de cear\u0103 sau produsul de \u00eentre\u021binere recomandat de produc\u0103tor."
+      ],
+      "symptoms": [
+        "Dup\u0103 utilizare, finisajul \u00eencepe s\u0103 se uzeze.",
+        "Suprafa\u021ba \u0219i-a pierdut din protec\u021bie sau din aspect."
+      ],
+      "tips": [],
+      "title": "Cum \u00eentre\u021bin \u00een timp un finisaj cu ulei \u0219i cear\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
+      "media": [],
+      "possibleCauses": [
+        "Exist\u0103 foarte multe recomand\u0103ri \u0219i echipamente disponibile.",
+        "Nu este clar care sunt indispensabile."
+      ],
+      "prevention": [],
+      "problemSummary": "Nu este necesar un atelier industrial pentru realizarea primelor proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103. Un set de echipamente de baz\u0103 este suficient pentru majoritatea lucr\u0103rilor.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "\u00cencepe cu un atelier echipat minimal, care s\u0103 includ\u0103: c\u00e2ntar digital de precizie;  recipiente \u0219i unelte pentru amestecarea r\u0103\u0219inii;  fier\u0103str\u0103u;  frez\u0103;  \u0219lefuitor cu band\u0103;  \u0219lefuitor orbital;  aspirator pentru praf;  scule de m\u0103surare \u0219i asamblare;  consumabilele necesare;  echipamente de protec\u021bie."
+      ],
+      "symptoms": [
+        "Vrei s\u0103 \u00eencepi primul proiect.",
+        "Nu \u0219tii ce scule sunt cu adev\u0103rat necesare."
+      ],
+      "tips": [
+        "Nu investi de la \u00eenceput \u00een echipamente costisitoare. Completeaz\u0103 atelierul pe m\u0103sur\u0103 ce experien\u021ba"
+      ],
+      "title": "De ce echipament minim am nevoie pentru a \u00eencepe s\u0103 lucrez cu r\u0103\u0219in\u0103 epoxidic\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic",
+      "media": [],
+      "possibleCauses": [
+        "Gr\u0103birea etapelor de lucru.",
+        "Planificare insuficient\u0103.",
+        "Lemn insuficient stabilizat.",
+        "Dorin\u021ba de a ob\u021bine rezultate perfecte \u00eenc\u0103 de la primul proiect."
+      ],
+      "prevention": [],
+      "problemSummary": "Majoritatea problemelor nu sunt provocate de materialele folosite, ci de graba \u0219i lipsa unei planific\u0103ri corecte.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Respect\u0103 timpul necesar fiec\u0103rei etape, planific\u0103 atent proiectul \u0219i trateaz\u0103 fiecare opera\u021biune ca funda\u021bie pentru urm\u0103toarea."
+      ],
+      "symptoms": [
+        "Primele proiecte nu ies a\u0219a cum te a\u0219teptai.",
+        "Apar defecte repetate."
+      ],
+      "tips": [
+        "Fiecare proiect reprezint\u0103 o experien\u021b\u0103 de \u00eenv\u0103\u021bare. Analizeaz\u0103 gre\u0219elile \u0219i folose\u0219te-le pentru a-\u021bi \u00eembun\u0103t\u0103\u021bi tehnica."
+      ],
+      "title": "Care sunt cele mai frecvente gre\u0219eli ale \u00eencep\u0103torilor \u00een proiectele cu r\u0103\u0219in\u0103 epoxidic\u0103?",
+      "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "cum-ntre-in-atelierul-pentru-a-ob-ine-rezultate-mai-bune",
+      "media": [],
+      "possibleCauses": [
+        "Atelier dezordonat.",
+        "Cur\u0103\u021benie insuficient\u0103.",
+        "Organizare improprie a echipamentelor."
+      ],
+      "prevention": [
+        "Un atelier bine organizat reduce riscul apari\u021biei defectelor \u0219i face \u00eentregul proces de lucru mai eficient."
+      ],
+      "problemSummary": "Organizarea atelierului influen\u021beaz\u0103 direct calitatea \u0219i eficien\u021ba lucrului.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Men\u021bine atelierul curat \u0219i organizat, p\u0103streaz\u0103 sculele la \u00eendem\u00e2n\u0103 \u0219i elimin\u0103 regulat praful \u0219i resturile rezultate din prelucrare."
+      ],
+      "symptoms": [
+        "Apar impurit\u0103\u021bi \u00een r\u0103\u0219in\u0103.",
+        "Lucrul este dificil \u0219i dezorganizat.",
+        "Pierzi timp c\u0103ut\u00e2nd sculele."
+      ],
+      "tips": [],
+      "title": "Cum \u00eentre\u021bin atelierul pentru a ob\u021bine rezultate mai bune?",
+      "warnings": []
     }
   ],
   "locale": "ro"

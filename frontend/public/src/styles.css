@@ -3121,6 +3121,11 @@ button.workspace-sidebar__link {
   margin-bottom: 0;
 }
 
+.manual-module__section > .manual-module__paragraph {
+  margin: 0 0 0.65em;
+  line-height: 1.45;
+}
+
 .manual-module__figure {
   margin: 1.75em 0;
 }
@@ -4252,6 +4257,17 @@ button.workspace-sidebar__link {
 
 .manual-admin-editor__content .ProseMirror > *:last-child {
   margin-bottom: 0;
+}
+
+.manual-admin-editor__content .ProseMirror > p {
+  margin: 0 0 0.65em;
+  line-height: 1.45;
+}
+
+.manual-admin-editor__content .ProseMirror > h2,
+.manual-admin-editor__content .ProseMirror > h3,
+.manual-admin-editor__content .ProseMirror > h4 {
+  margin: 1.5em 0 0.75em;
 }
 
 .manual-admin-editor__file-input {
