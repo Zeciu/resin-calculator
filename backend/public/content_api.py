@@ -76,7 +76,7 @@ def _require_user_capabilities(user: dict, resolver: CapabilityResolver):
 
 
 @router.get("/public-languages")
-def public_languages(user: dict = Depends(get_current_user)) -> dict:
+def public_languages() -> dict:
     return _languages()
 
 
@@ -103,8 +103,7 @@ def knowledge_base(locale: str = "en", user: dict = Depends(get_current_user), r
 
 
 @router.get("/website/{page_key}")
-def website(page_key: str, locale: str = "en", user: dict = Depends(get_current_user), resolver: CapabilityResolver = Depends(get_capability_resolver)) -> dict:
-    _require_user_capabilities(user, resolver)
+def website(page_key: str, locale: str = "en") -> dict:
     document = _document("website", _require_locale(locale), "pages.json")
     english = _document("website", "en", "pages.json")
     page = ((document or {}).get("pages") or {}).get(page_key)
@@ -113,12 +112,23 @@ def website(page_key: str, locale: str = "en", user: dict = Depends(get_current_
     return {"locale": locale, "requestedLocale": locale, "available": page is not None, "englishAvailable": page_key in ((english or {}).get("pages") or {}), "page": page}
 
 
-@router.get("/{module}/images/{filename}")
-def image(module: str, filename: str, user: dict = Depends(get_current_user), resolver: CapabilityResolver = Depends(get_capability_resolver)) -> FileResponse:
-    _require_user_capabilities(user, resolver)
-    if module not in {"manual", "glossary", "knowledge-base", "website"} or Path(filename).name != filename:
+def _image_response(module: str, filename: str) -> FileResponse:
+    if Path(filename).name != filename:
         raise HTTPException(status_code=404, detail="Image not found.")
     path = CORPUS_ROOT / module / "images" / filename
     if not path.is_file():
         raise HTTPException(status_code=404, detail="Image not found.")
     return FileResponse(path, media_type=mimetypes.guess_type(path.name)[0])
+
+
+@router.get("/website/images/{filename}")
+def website_image(filename: str) -> FileResponse:
+    return _image_response("website", filename)
+
+
+@router.get("/{module}/images/{filename}")
+def image(module: str, filename: str, user: dict = Depends(get_current_user), resolver: CapabilityResolver = Depends(get_capability_resolver)) -> FileResponse:
+    _require_user_capabilities(user, resolver)
+    if module not in {"manual", "glossary", "knowledge-base"}:
+        raise HTTPException(status_code=404, detail="Image not found.")
+    return _image_response(module, filename)

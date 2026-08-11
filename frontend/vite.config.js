@@ -21,7 +21,7 @@ export default defineConfig(({ command }) => {
 
   return {
     root: publicSource,
-    publicDir: "public",
+    publicDir: "static",
     plugins: [react()],
     resolve: {
       alias: {

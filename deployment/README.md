@@ -49,35 +49,37 @@ Run these from the repository root unless stated otherwise.
    cdk deploy InfraStack --profile hfzwood
    ```
 
-3. Build and push the image. This is PowerShell, not Bash:
+3. Build and push the image. Run this from WSL so you don't have to install docker in Windows:
 
-   ```powershell
-   Set-Location ..\..
-   $Region = 'eu-central-1'
-   $AccountId = '325866321073'
-   $EcrUri = "$AccountId.dkr.ecr.$Region.amazonaws.com/resin-calculator"
-
-   $PoolId = aws cloudformation describe-stacks --stack-name InfraStack --region $Region --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text
-   $ClientId = aws cloudformation describe-stacks --stack-name InfraStack --region $Region --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text
-
-   docker build -t resin-calculator `
-     --build-arg VITE_COGNITO_USER_POOL_ID=$PoolId `
-     --build-arg VITE_COGNITO_CLIENT_ID=$ClientId `
-     --build-arg VITE_COGNITO_DOMAIN="resin-calculator-$AccountId.auth.$Region.amazoncognito.com" `
-     --build-arg VITE_COGNITO_REDIRECT_URI='https://hfzwood.com/callback' `
-     .
-
-   aws ecr get-login-password --region $Region --profile hfzwood | docker login --username AWS --password-stdin "$AccountId.dkr.ecr.$Region.amazonaws.com"
-   docker tag resin-calculator:latest "${EcrUri}:latest"
-   docker push "${EcrUri}:latest"
+   ```bash
+   cd /mnt/e/Programare/resin-calculator/deployment
+   aws login --profile hfzwood
+   
+   REGION=eu-central-1
+   ACCOUNT_ID=325866321073
+   ECR_URI=$ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/resin-calculator
+   
+   POOL_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $REGION --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
+   CLIENT_ID=$(aws cloudformation describe-stacks --stack-name InfraStack --region $REGION --profile hfzwood --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
+   
+   docker build -f Dockerfile -t resin-calculator \
+     --build-arg VITE_AUTH_MODE=cognito \
+     --build-arg VITE_COGNITO_USER_POOL_ID=$POOL_ID \
+     --build-arg VITE_COGNITO_CLIENT_ID=$CLIENT_ID \
+     --build-arg VITE_COGNITO_DOMAIN=resin-calculator-325866321073.auth.$REGION.amazoncognito.com \
+     --build-arg VITE_COGNITO_REDIRECT_URI=https://hfzwood.com/callback \
+     ..
+   
+   aws ecr get-login-password --region $REGION --profile hfzwood | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+   docker tag resin-calculator:latest $ECR_URI:latest
+   docker push $ECR_URI:latest
    ```
 
    Required frontend build arguments are `VITE_COGNITO_USER_POOL_ID`, `VITE_COGNITO_CLIENT_ID`, `VITE_COGNITO_DOMAIN`, and `VITE_COGNITO_REDIRECT_URI`. The frontend always uses Cognito.
 
 4. Deploy the application stack:
 
-   ```powershell
-   Set-Location deployment\cdk
+   ```commandline
    cdk deploy AppStack --profile hfzwood
    ```
 
@@ -125,9 +127,8 @@ Production has no `/admin` or `/api/admin/**` routes and must not receive DeepL 
 
 After pushing a replacement image:
 
-```powershell
-Set-Location deployment
-.\deploy-app.cmd eu-central-1 hfzwood
+```commandline
+deploy-app.cmd eu-central-1 hfzwood
 ```
 
 The script forces a new ECS deployment and waits for stability. Its internal comments still use the obsolete name `deploy.cmd`; invoke `deploy-app.cmd`.

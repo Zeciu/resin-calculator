@@ -1,5 +1,6 @@
 import os
 import logging
+from pathlib import Path
 import httpx
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
@@ -102,6 +103,29 @@ _COGNITO_CONFIGURED = bool(
 )
 _AUTH_ENABLED = _COGNITO_CONFIGURED
 _UNPROTECTED_PATHS = {"/health", "/callback", "/api/billing/webhook"}
+_PUBLIC_GUEST_CONTENT_PATHS = {"/api/content/public-languages"}
+_PUBLIC_GUEST_CONTENT_PREFIXES = ("/api/content/website/",)
+
+
+def _is_public_spa_request(request: Request) -> bool:
+    """Allow the public SPA shell, guest website content, and static assets.
+
+    StaticFiles is mounted at `/`, so a browser must be able to request the
+    initial HTML document, hashed assets, and public images without a bearer
+    token. The published language configuration and public marketing website
+    are also needed before sign-in. All other APIs and calculation routes
+    remain Cognito-protected.
+    """
+    path = request.url.path
+    is_static_or_spa_route = not path.startswith("/api") and path not in CALCULATOR_PATHS
+    is_guest_content_route = (
+        path in _PUBLIC_GUEST_CONTENT_PATHS
+        or path.startswith(_PUBLIC_GUEST_CONTENT_PREFIXES)
+    )
+    return request.method in {"GET", "HEAD"} and (
+        is_static_or_spa_route or is_guest_content_route
+    )
+
 
 if not _COGNITO_CONFIGURED:
     raise RuntimeError(
@@ -173,7 +197,11 @@ async def calculator_request_size_limit_middleware(request: Request, call_next):
 
 @app.middleware("http")
 async def cognito_auth_middleware(request: Request, call_next):
-    if not _AUTH_ENABLED or request.url.path in _UNPROTECTED_PATHS:
+    if (
+        not _AUTH_ENABLED
+        or request.url.path in _UNPROTECTED_PATHS
+        or _is_public_spa_request(request)
+    ):
         return await call_next(request)
 
     auth_header = request.headers.get("Authorization", "")
@@ -604,6 +632,42 @@ def health():
     return {"status": "ok"}
 
 
+class SpaStaticFiles(StaticFiles):
+    """Serve index.html for extensionless client-side SPA routes.
+
+    Missing API paths and missing files retain their 404 responses so frontend
+    routing does not conceal backend or asset errors.
+    """
+
+    async def get_response(self, path: str, scope):
+        raw_path = scope.get("raw_path", path)
+        if isinstance(raw_path, bytes):
+            raw_path = raw_path.decode("ascii", errors="ignore")
+        request_path = str(raw_path).lstrip("/")
+        relative_path = path.lstrip("/")
+        is_api_path = request_path.startswith("api/") or relative_path.startswith("api/")
+        try:
+            response = await super().get_response(path, scope)
+        except Exception as exc:
+            if (
+                getattr(exc, "status_code", None) != 404
+                or scope["method"] not in {"GET", "HEAD"}
+                or is_api_path
+                or Path(relative_path).suffix
+            ):
+                raise
+            return await super().get_response("index.html", scope)
+
+        if (
+            response.status_code != 404
+            or scope["method"] not in {"GET", "HEAD"}
+            or is_api_path
+            or Path(relative_path).suffix
+        ):
+            return response
+        return await super().get_response("index.html", scope)
+
+
 # Serve built frontend in production (static/ folder is present in the Docker image)
 _static_dir = os.path.join(os.path.dirname(__file__), "static")
 if os.path.isdir(_static_dir):
@@ -613,7 +677,7 @@ if os.path.isdir(_static_dir):
     async def spa_callback():
         return FileResponse(_index_html)
 
-    app.mount("/", StaticFiles(directory=_static_dir, html=True), name="static")
+    app.mount("/", SpaStaticFiles(directory=_static_dir, html=True), name="static")
 
 
 if __name__ == "__main__":
