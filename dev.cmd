@@ -29,6 +29,12 @@ if errorlevel 1 (
 if "%HFZWOOD_AWS_PROFILE%"=="" set HFZWOOD_AWS_PROFILE=hfzwood
 set HFZWOOD_AWS_PROFILE_ARG=--profile %HFZWOOD_AWS_PROFILE%
 
+aws sts get-caller-identity --region eu-central-1 %HFZWOOD_AWS_PROFILE_ARG% >nul 2>nul
+if errorlevel 1 (
+  echo Session expired, please run 'aws login'
+  exit /b 1
+)
+
 for /f "delims=" %%r in ('aws cloudformation describe-stacks --stack-name AppStack --region eu-central-1 %HFZWOOD_AWS_PROFILE_ARG% --query "Stacks[0].Outputs[?OutputKey=='TaskRoleArn'].OutputValue" --output text 2^>nul') do set HFZWOOD_TASK_ROLE_ARN=%%r
 if "%HFZWOOD_TASK_ROLE_ARN%"=="" (
   echo ERROR: Could not resolve the ECS task role ARN for DynamoDB entitlements.
