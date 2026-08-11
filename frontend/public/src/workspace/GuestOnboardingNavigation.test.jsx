@@ -113,7 +113,6 @@ describe("Guest onboarding and Home navigation", () => {
       "Glossary",
       "Knowledge Base",
       "Login / Register",
-      "My Account",
     ];
     const labels = within(sidebar)
       .getAllByRole("listitem")
@@ -123,7 +122,7 @@ describe("Guest onboarding and Home navigation", () => {
 
     expect(within(sidebar).getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
     expect(within(sidebar).getAllByLabelText("Locked feature")).toHaveLength(
-      WORKSPACE_NAV_ITEMS.filter((item) => item.requiresAuth).length,
+      WORKSPACE_NAV_ITEMS.filter((item) => item.requiresAuth && item.id !== "my-account").length,
     );
 
     for (const label of [
@@ -132,7 +131,6 @@ describe("Guest onboarding and Home navigation", () => {
       "Manual & Tutorials",
       "Glossary",
       "Knowledge Base",
-      "My Account",
     ]) {
       await user.click(within(sidebar).getByRole("button", { name: new RegExp(label, "i") }));
       expect(

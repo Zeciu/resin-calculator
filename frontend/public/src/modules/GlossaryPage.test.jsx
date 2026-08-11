@@ -24,11 +24,11 @@ function seedAuthenticatedSession() {
 }
 
 function expectDedicatedGlossaryShell() {
-  expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+  const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+  expect(within(sidebar).getByText("Glossary")).toBeInTheDocument();
   const header = screen.getByRole("banner", { name: "Module header" });
   expect(within(header).getByText("Glossary")).toBeInTheDocument();
-  expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+  expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();
 }
 
 describe("GlossaryPage", () => {

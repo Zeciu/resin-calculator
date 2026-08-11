@@ -22,11 +22,11 @@ function seedAuthenticatedSession() {
 }
 
 function expectDedicatedKnowledgeBaseShell() {
-  expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+  const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+  expect(within(sidebar).getByText("Knowledge Base")).toBeInTheDocument();
   const header = screen.getByRole("banner", { name: "Module header" });
   expect(within(header).getByText("Knowledge Base")).toBeInTheDocument();
-  expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+  expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();
 }
 
 async function waitForKnowledgeBaseReady() {

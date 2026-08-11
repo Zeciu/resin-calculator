@@ -8,7 +8,9 @@ import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
-const PROTECTED_NAV_ITEMS = WORKSPACE_NAV_ITEMS.filter((item) => item.requiresAuth);
+const GUEST_LOCKED_NAV_ITEMS = WORKSPACE_NAV_ITEMS.filter(
+  (item) => item.requiresAuth && item.id !== "my-account",
+);
 const HOME_HUB_NAV_ITEMS = getLoggedInHomeNavItems();
 
 function seedAuthenticatedSession() {
@@ -50,7 +52,7 @@ describe("Authenticated Mode navigation", () => {
     const user = userEvent.setup();
     renderWorkspace(ROUTES.LOGIN);
 
-    for (const item of PROTECTED_NAV_ITEMS) {
+    for (const item of GUEST_LOCKED_NAV_ITEMS) {
       const label = translate("en", item.labelKey);
       expect(
         screen.getByRole("button", { name: new RegExp(label, "i") }),
@@ -58,7 +60,7 @@ describe("Authenticated Mode navigation", () => {
     }
 
     expect(screen.getAllByLabelText("Locked feature")).toHaveLength(
-      PROTECTED_NAV_ITEMS.length,
+      GUEST_LOCKED_NAV_ITEMS.length,
     );
     expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
 
@@ -84,10 +86,10 @@ describe("Authenticated Mode navigation", () => {
     expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
   });
 
-  it("shows Login / Register and locked My Account for guests", () => {
+  it("shows Login / Register but no My Account control for guests", () => {
     renderWorkspace(ROUTES.LOGIN);
     expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /My Account/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /My Account/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
   });
 
@@ -98,7 +100,7 @@ describe("Authenticated Mode navigation", () => {
 
     await user.click(screen.getByRole("link", { name: "New Project" }));
     expectCalculatorRoute();
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Home" }));
@@ -106,7 +108,7 @@ describe("Authenticated Mode navigation", () => {
 
     await user.click(screen.getByRole("link", { name: "Projects" }));
     expectProjectsHub();
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Home" }));
@@ -120,7 +122,7 @@ describe("Authenticated Mode navigation", () => {
 
     for (const { label, navName, searchName } of dedicatedModules) {
       await user.click(screen.getByRole("link", { name: label }));
-      expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+      expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
       expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
       if (navName) {
         await waitFor(() => {

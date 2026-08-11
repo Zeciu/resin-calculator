@@ -33,6 +33,10 @@ function newProjectNavItem() {
   return WORKSPACE_NAV_ITEMS.find((item) => item.id === "new-project");
 }
 
+function knowledgeBaseNavItem() {
+  return WORKSPACE_NAV_ITEMS.find((item) => item.id === "knowledge-base");
+}
+
 function loginNavItem() {
   return WORKSPACE_NAV_ITEMS.find((item) => item.id === "login-register");
 }
@@ -51,6 +55,12 @@ describe("isWorkspaceNavItemActive", () => {
     expect(isWorkspaceNavItemActive(newProjectNavItem(), ROUTES.HOME)).toBe(false);
     expect(isWorkspaceNavItemActive(newProjectNavItem(), ROUTES.LOGIN)).toBe(false);
     expect(isWorkspaceNavItemActive(newProjectNavItem(), ROUTES.PREFERENCES)).toBe(false);
+  });
+
+  it("marks Knowledge Base active only on its own route", () => {
+    expect(isWorkspaceNavItemActive(knowledgeBaseNavItem(), ROUTES.KNOWLEDGE_BASE)).toBe(true);
+    expect(isWorkspaceNavItemActive(knowledgeBaseNavItem(), ROUTES.HOME)).toBe(false);
+    expect(isWorkspaceNavItemActive(knowledgeBaseNavItem(), ROUTES.MANUAL)).toBe(false);
   });
 });
 
@@ -89,6 +99,15 @@ describe("Workspace navigation active state — auth and preferences flow", () =
     expect(
       within(getSidebar()).getByRole("link", { name: "Login / Register" }),
     ).toHaveClass("workspace-sidebar__link--active");
+  });
+
+  it("highlights Knowledge Base on its dedicated module route", () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+
+    const knowledgeBaseLink = within(getSidebar()).getByRole("link", { name: "Knowledge Base" });
+    expect(knowledgeBaseLink).toHaveClass("workspace-sidebar__link--active");
+    expect(knowledgeBaseLink).toHaveAttribute("aria-current", "page");
   });
 
   it("does not highlight New Project during the preferences step", () => {

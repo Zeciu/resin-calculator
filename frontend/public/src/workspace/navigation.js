@@ -86,6 +86,9 @@ export function getVisibleWorkspaceNavItems(isAuthenticated) {
     if (item.id === "login-register") {
       return !isAuthenticated;
     }
+    if (item.id === "my-account") {
+      return isAuthenticated;
+    }
     return true;
   });
 }

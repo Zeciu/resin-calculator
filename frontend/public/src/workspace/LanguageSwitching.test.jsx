@@ -114,8 +114,8 @@ describe("Preferences reachability and language switching", () => {
     seedDevicePreferences({ interfaceLanguage: "en" });
     renderWorkspace(ROUTES.NEW_PROJECT);
 
-    const header = await screen.findByRole("banner", { name: "Module header" });
-    expect(within(header).getByRole("link", { name: "My Account" })).toBeInTheDocument();
-    expect(within(header).getByRole("link", { name: "Home" })).toBeInTheDocument();
+    const sidebar = await screen.findByRole("navigation", { name: "Workspace navigation" });
+    expect(within(sidebar).getByRole("link", { name: "My Account" })).toBeInTheDocument();
+    expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();
   });
 });

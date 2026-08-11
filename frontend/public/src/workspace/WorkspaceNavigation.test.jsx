@@ -22,8 +22,8 @@ function seedAuthenticatedSession() {
   );
 }
 
-function expectNoHomeHubSidebar() {
-  expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+function expectWorkspaceSidebar() {
+  expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 }
 
 describe("Workspace navigation matrix — guest", () => {
@@ -37,7 +37,10 @@ describe("Workspace navigation matrix — guest", () => {
 
     for (const item of WORKSPACE_NAV_ITEMS) {
       const label = translate("en", item.labelKey);
-      if (item.requiresAuth) {
+      if (item.id === "my-account") {
+        expect(screen.queryByRole("button", { name: new RegExp(label, "i") })).not.toBeInTheDocument();
+        expect(screen.queryByRole("link", { name: label })).not.toBeInTheDocument();
+      } else if (item.requiresAuth) {
         expect(
           screen.getByRole("button", { name: new RegExp(label, "i") }),
         ).toBeInTheDocument();
@@ -58,10 +61,9 @@ describe("Workspace navigation matrix — guest", () => {
   it("blocks direct /new-project URL access with LockedModuleMessage in dedicated layout", () => {
     renderWorkspace("/new-project");
 
-    expectNoHomeHubSidebar();
+    expectWorkspaceSidebar();
     expect(screen.getByRole("banner", { name: "Module header" })).toBeInTheDocument();
-    expect(screen.getByText("New Project")).toBeInTheDocument();
-    expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
+    expect(within(screen.getByRole("banner", { name: "Module header" })).getByText("New Project")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(
       screen.getByText(/Create your free HFZWood account to unlock this section/i),
@@ -97,10 +99,9 @@ describe("Workspace navigation matrix — authenticated", () => {
 
     await user.click(screen.getByRole("link", { name: "New Project" }));
 
-    expectNoHomeHubSidebar();
+    expectWorkspaceSidebar();
     expect(screen.getByRole("banner", { name: "Module header" })).toBeInTheDocument();
-    expect(screen.getByText("New Project")).toBeInTheDocument();
-    expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
+    expect(within(screen.getByRole("banner", { name: "Module header" })).getByText("New Project")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Import Project/i })).not.toBeInTheDocument();
     expect(screen.getByText("References")).toBeInTheDocument();
@@ -127,14 +128,14 @@ describe("Workspace navigation matrix — authenticated", () => {
 
     await user.click(screen.getByRole("link", { name: "Projects" }));
     expect(screen.getByRole("button", { name: "Open Project" })).toBeInTheDocument();
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Home" }));
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Manual & Tutorials" }));
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
@@ -147,7 +148,7 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Glossary" }));
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
@@ -161,7 +162,7 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
 
     await user.click(screen.getByRole("link", { name: "Knowledge Base" }));
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(screen.getByRole("searchbox", { name: "Search knowledge base" })).toBeInTheDocument();
     expect(

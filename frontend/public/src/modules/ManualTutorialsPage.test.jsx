@@ -21,11 +21,11 @@ function seedAuthenticatedSession() {
 }
 
 function expectDedicatedManualShell() {
-  expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+  const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+  expect(within(sidebar).getByText("Manual & Tutorials")).toBeInTheDocument();
   const header = screen.getByRole("banner", { name: "Module header" });
   expect(within(header).getByText("Manual & Tutorials")).toBeInTheDocument();
-  expect(screen.getByRole("navigation", { name: "Module navigation" })).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+  expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();
 }
 
 describe("ManualTutorialsPage", () => {
