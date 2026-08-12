@@ -8062,7 +8062,7 @@
       "pk": "CONTENT#c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
       "sk": "META",
       "sortOrder": 8300,
-      "updatedAt": "2026-08-09T13:44:06.931359+00:00"
+      "updatedAt": "2026-08-10T19:03:04.882290+00:00"
     },
     "CONTENT#kb_entry#c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv|VARIANT#ro": {
       "contentId": "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
@@ -8075,8 +8075,15 @@
         ],
         "prevention": [],
         "problemSummary": "Proiectul este preg\u0103tit pentru \u0219lefuirea progresiv\u0103 numai dup\u0103 finalizarea tuturor opera\u021biunilor de calibrare \u0219i prelucrare mecanic\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "calibrare",
+          "demulare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "de-ce-este-at-t-de-important-lefuirea-progresiv",
+          "cum-func-ioneaz-lefuirea-progresiv"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8096,13 +8103,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
-      "publishedAt": "2026-08-09T13:44:06.931359+00:00",
+      "publishedAt": "2026-08-10T19:03:04.882290+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:44:06.931359+00:00"
+      "updatedAt": "2026-08-10T19:03:04.882290+00:00"
     },
     "CONTENT#kb_entry#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul|META": {
       "category": "Epoxy",
@@ -8113,7 +8120,7 @@
       "pk": "CONTENT#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
       "sk": "META",
       "sortOrder": 10200,
-      "updatedAt": "2026-08-09T15:05:43.036183+00:00"
+      "updatedAt": "2026-08-10T16:27:05.456802+00:00"
     },
     "CONTENT#kb_entry#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul|VARIANT#ro": {
       "contentId": "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
@@ -8128,8 +8135,15 @@
           "Pentru rezultate de calitate, aplicarea cu pistolul de pulverizare este de regul\u0103 cea mai bun\u0103 alegere."
         ],
         "problemSummary": "Lacurile \u0219i finisajele poliuretanice ofer\u0103 o protec\u021bie ridicat\u0103 \u00eempotriva apei, petelor \u0219i uzurii mecanice.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "finisaj-satinat",
+          "finisaj-lucios"
+        ],
+        "relatedKbEntryIds": [
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8147,13 +8161,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
-      "publishedAt": "2026-08-09T15:05:43.036183+00:00",
+      "publishedAt": "2026-08-10T16:27:05.456802+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:05:43.036183+00:00"
+      "updatedAt": "2026-08-10T16:27:05.456802+00:00"
     },
     "CONTENT#kb_entry#c-nd-pot-scoate-proiectul-din-cofraj|META": {
       "category": "Epoxy",
@@ -8164,7 +8178,7 @@
       "pk": "CONTENT#c-nd-pot-scoate-proiectul-din-cofraj",
       "sk": "META",
       "sortOrder": 7100,
-      "updatedAt": "2026-08-09T13:09:50.102978+00:00"
+      "updatedAt": "2026-08-12T07:24:23.950803+00:00"
     },
     "CONTENT#kb_entry#c-nd-pot-scoate-proiectul-din-cofraj|VARIANT#ro": {
       "contentId": "c-nd-pot-scoate-proiectul-din-cofraj",
@@ -8180,8 +8194,15 @@
           "\u0103bdarea \u00een aceast\u0103 etap\u0103 reduce riscul deterior\u0103rii muchiilor \u0219i al deform\u0103rii proiectului."
         ],
         "problemSummary": "Demularea trebuie f\u0103cut\u0103 numai dup\u0103 maturarea complet\u0103 a r\u0103\u0219inii, conform recomand\u0103rilor produc\u0103torului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "demulare"
+        ],
+        "relatedKbEntryIds": [
+          "cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
+          "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8201,13 +8222,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-pot-scoate-proiectul-din-cofraj",
-      "publishedAt": "2026-08-09T13:09:50.102978+00:00",
+      "publishedAt": "2026-08-12T07:24:23.950803+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:09:50.102978+00:00"
+      "updatedAt": "2026-08-12T07:24:23.950803+00:00"
     },
     "CONTENT#kb_entry#c-nd-se-adaug-pigmen-ii-n-r-in|META": {
       "category": "Epoxy",
@@ -8322,7 +8343,7 @@
       "pk": "CONTENT#c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
       "sk": "META",
       "sortOrder": 8100,
-      "updatedAt": "2026-08-09T13:38:36.952219+00:00"
+      "updatedAt": "2026-08-10T19:06:17.120002+00:00"
     },
     "CONTENT#kb_entry#c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor|VARIANT#ro": {
       "contentId": "c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
@@ -8337,11 +8358,20 @@
           "Urmele l\u0103sate de scule vor fi eliminate mai u\u0219or \u00een etapele ulterioare de \u0219lefuire."
         ],
         "problemSummary": "Dimensiunile finale \u0219i profil\u0103rile trebuie executate \u00eenainte de \u0219lefuirea fin\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "debitare",
+          "lefuire",
+          "frez"
+        ],
+        "relatedKbEntryIds": [
+          "c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor",
+          "c-nd-trebuie-definite-cavit-ile-n-aplica-ie"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "Frez\u0103"
+        ],
         "searchKeywords": [],
         "solution": [
           "Execut\u0103 toate t\u0103ierile, \u00eendrept\u0103rile \u0219i frez\u0103rile \u00eenainte de \u00eenceperea \u0219lefuirii progresive."
@@ -8356,13 +8386,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
-      "publishedAt": "2026-08-09T13:38:36.952219+00:00",
+      "publishedAt": "2026-08-10T19:06:17.120002+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:38:36.952219+00:00"
+      "updatedAt": "2026-08-10T19:06:17.120002+00:00"
     },
     "CONTENT#kb_entry#c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor|META": {
       "category": "Epoxy",
@@ -8373,7 +8403,7 @@
       "pk": "CONTENT#c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor",
       "sk": "META",
       "sortOrder": 8700,
-      "updatedAt": "2026-08-09T13:50:44.163078+00:00"
+      "updatedAt": "2026-08-10T18:57:11.363036+00:00"
     },
     "CONTENT#kb_entry#c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor|VARIANT#ro": {
       "contentId": "c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor",
@@ -8388,8 +8418,14 @@
           "Astfel evi\u021bi reluarea unei p\u0103r\u021bi importante din procesul de \u0219lefuire."
         ],
         "problemSummary": "Toate opera\u021biunile care modific\u0103 forma piesei trebuie finalizate \u00eenainte de \u0219lefuirea fin\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lefuire",
+          "debitare"
+        ],
+        "relatedKbEntryIds": [
+          "c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
+          "c-nd-trebuie-definite-cavit-ile-n-aplica-ie"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8407,13 +8443,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor",
-      "publishedAt": "2026-08-09T13:50:44.163078+00:00",
+      "publishedAt": "2026-08-10T18:57:11.363036+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:50:44.163078+00:00"
+      "updatedAt": "2026-08-10T18:57:11.363036+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-dup-etan-area-cofrajului|META": {
       "category": "Epoxy",
@@ -8538,7 +8574,7 @@
       "pk": "CONTENT#c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
       "sk": "META",
       "sortOrder": 7000,
-      "updatedAt": "2026-08-09T13:08:27.312948+00:00"
+      "updatedAt": "2026-08-12T07:27:20.156901+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic|VARIANT#ro": {
       "contentId": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
@@ -8553,8 +8589,15 @@
           "Respectarea timpului complet de maturare contribuie la stabilitatea dimensional\u0103 \u0219i la calitatea finisajului."
         ],
         "problemSummary": "Chiar dac\u0103 r\u0103\u0219ina pare \u00eent\u0103rit\u0103, maturarea complet\u0103 poate continua o perioad\u0103 mai lung\u0103, \u00een func\u021bie de produsul utilizat.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "lefuire"
+        ],
+        "relatedKbEntryIds": [
+          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8574,13 +8617,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
-      "publishedAt": "2026-08-09T13:08:27.312948+00:00",
+      "publishedAt": "2026-08-12T07:27:20.156901+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:08:27.312948+00:00"
+      "updatedAt": "2026-08-12T07:27:20.156901+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat|META": {
       "category": "Epoxy",
@@ -8642,7 +8685,7 @@
       "pk": "CONTENT#c-te-straturi-de-ulei-trebuie-aplicate",
       "sk": "META",
       "sortOrder": 10500,
-      "updatedAt": "2026-08-09T15:09:11.611398+00:00"
+      "updatedAt": "2026-08-10T16:23:59.703697+00:00"
     },
     "CONTENT#kb_entry#c-te-straturi-de-ulei-trebuie-aplicate|VARIANT#ro": {
       "contentId": "c-te-straturi-de-ulei-trebuie-aplicate",
@@ -8655,8 +8698,14 @@
         ],
         "prevention": [],
         "problemSummary": "Num\u0103rul optim de straturi difer\u0103 \u00een func\u021bie de esen\u021ba lemnului \u0219i de capacitatea sa de absorb\u021bie.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare-n-straturi",
+          "ulei-pentru-lemn"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aplic-corect-uleiul-pentru-lemn",
+          "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8675,13 +8724,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-te-straturi-de-ulei-trebuie-aplicate",
-      "publishedAt": "2026-08-09T15:09:11.611398+00:00",
+      "publishedAt": "2026-08-10T16:23:59.703697+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:09:11.611398+00:00"
+      "updatedAt": "2026-08-10T16:23:59.703697+00:00"
     },
     "CONTENT#kb_entry#care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in|META": {
       "category": "Epoxy",
@@ -8692,7 +8741,7 @@
       "pk": "CONTENT#care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
       "sk": "META",
       "sortOrder": 7900,
-      "updatedAt": "2026-08-09T13:35:34.348670+00:00"
+      "updatedAt": "2026-08-10T19:09:18.331649+00:00"
     },
     "CONTENT#kb_entry#care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in|VARIANT#ro": {
       "contentId": "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
@@ -8707,11 +8756,20 @@
           "Alege metoda potrivit\u0103 atelierului \u0219i tipului de proiect, nu doar pe cea mai rapid\u0103."
         ],
         "problemSummary": "Exist\u0103 mai multe metode de calibrare, fiecare av\u00e2nd avantaje \u0219i limit\u0103ri.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "calibrare",
+          "frez"
+        ],
+        "relatedKbEntryIds": [
+          "cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
+          "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
+          "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "Frez\u0103 - \u0218lefuitor"
+        ],
         "searchKeywords": [],
         "solution": [
           "Pentru precizie maxim\u0103 poate fi utilizat\u0103 frezarea pe CNC. Alte variante sunt ma\u0219ina de calibrat sau \u0219lefuitorul cu band\u0103, \u00een func\u021bie de echipamentele disponibile."
@@ -8725,13 +8783,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
-      "publishedAt": "2026-08-09T13:35:34.348670+00:00",
+      "publishedAt": "2026-08-10T19:09:18.331649+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:35:34.348670+00:00"
+      "updatedAt": "2026-08-10T19:09:18.331649+00:00"
     },
     "CONTENT#kb_entry#care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase|META": {
       "category": "Epoxy",
@@ -8856,7 +8914,7 @@
       "pk": "CONTENT#care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic",
       "sk": "META",
       "sortOrder": 11000,
-      "updatedAt": "2026-08-09T15:22:09.121477+00:00"
+      "updatedAt": "2026-08-10T15:26:51.369436+00:00"
     },
     "CONTENT#kb_entry#care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic|VARIANT#ro": {
       "contentId": "care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic",
@@ -8872,8 +8930,15 @@
         ],
         "prevention": [],
         "problemSummary": "Majoritatea problemelor nu sunt provocate de materialele folosite, ci de graba \u0219i lipsa unei planific\u0103ri corecte.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "r-in-epoxidic",
+          "aderen"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8893,13 +8958,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic",
-      "publishedAt": "2026-08-09T15:22:09.121477+00:00",
+      "publishedAt": "2026-08-10T15:26:51.369436+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:22:09.121477+00:00"
+      "updatedAt": "2026-08-10T15:26:51.369436+00:00"
     },
     "CONTENT#kb_entry#ce-este-rezerva-de-siguran-i-c-nd-trebuie-folosit|META": {
       "category": "Epoxy",
@@ -8962,7 +9027,7 @@
       "pk": "CONTENT#ce-este-top-coating-ul-i-c-nd-este-recomandat",
       "sk": "META",
       "sortOrder": 9200,
-      "updatedAt": "2026-08-09T13:57:29.292324+00:00"
+      "updatedAt": "2026-08-10T18:49:46.782022+00:00"
     },
     "CONTENT#kb_entry#ce-este-top-coating-ul-i-c-nd-este-recomandat|VARIANT#ro": {
       "contentId": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
@@ -8977,8 +9042,14 @@
           "Top Coating-ul este o etap\u0103 op\u021bional\u0103 \u0219i se utilizeaz\u0103 doar atunci c\u00e2nd aspectul proiectului o justific\u0103."
         ],
         "problemSummary": "Top Coating-ul este aplicarea unui strat final transparent de r\u0103\u0219in\u0103 peste \u00eentreaga suprafa\u021b\u0103 a proiectului pentru ob\u021binerea unui finisaj lucios \u0219i uniform.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "finisaj-lucios"
+        ],
+        "relatedKbEntryIds": [
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8996,13 +9067,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-este-top-coating-ul-i-c-nd-este-recomandat",
-      "publishedAt": "2026-08-09T13:57:29.292324+00:00",
+      "publishedAt": "2026-08-10T18:49:46.782022+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:57:29.292324+00:00"
+      "updatedAt": "2026-08-10T18:49:46.782022+00:00"
     },
     "CONTENT#kb_entry#ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare|META": {
       "category": "Epoxy",
@@ -9249,7 +9320,7 @@
       "pk": "CONTENT#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
       "sk": "META",
       "sortOrder": 10100,
-      "updatedAt": "2026-08-09T14:50:08.168136+00:00"
+      "updatedAt": "2026-08-10T16:28:10.000993+00:00"
     },
     "CONTENT#kb_entry#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu|VARIANT#ro": {
       "contentId": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
@@ -9265,8 +9336,15 @@
           "Decizia dintre un finisaj care formeaz\u0103 o pelicul\u0103 \u0219i unul pe baz\u0103 de ulei \u0219i cear\u0103 influen\u021beaz\u0103 at\u00e2t aspectul, c\u00e2t \u0219i \u00eentre\u021binerea proiectului."
         ],
         "problemSummary": "Nu exist\u0103 un finisaj potrivit pentru toate proiectele. Alegerea depinde de aspectul dorit, modul de utilizare \u0219i nivelul de protec\u021bie necesar.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "finisaj-satinat",
+          "finisaj-lucios"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9284,13 +9362,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
-      "publishedAt": "2026-08-09T14:50:08.168136+00:00",
+      "publishedAt": "2026-08-10T16:28:10.000993+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T14:50:08.168136+00:00"
+      "updatedAt": "2026-08-10T16:28:10.000993+00:00"
     },
     "CONTENT#kb_entry#ce-tip-de-r-in-trebuie-folosit-pentru-top-coating|META": {
       "category": "Epoxy",
@@ -9301,7 +9379,7 @@
       "pk": "CONTENT#ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
       "sk": "META",
       "sortOrder": 9600,
-      "updatedAt": "2026-08-09T14:19:19.327846+00:00"
+      "updatedAt": "2026-08-10T16:41:38.421124+00:00"
     },
     "CONTENT#kb_entry#ce-tip-de-r-in-trebuie-folosit-pentru-top-coating|VARIANT#ro": {
       "contentId": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
@@ -9314,8 +9392,15 @@
         ],
         "prevention": [],
         "problemSummary": "Top Coating-ul necesit\u0103 r\u0103\u0219ini formulate special pentru aplicarea \u00een straturi sub\u021biri.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare-ad-nc-deep-pour",
+          "calculator-de-r-in"
+        ],
+        "relatedKbEntryIds": [
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9335,13 +9420,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
-      "publishedAt": "2026-08-09T14:19:19.327846+00:00",
+      "publishedAt": "2026-08-10T16:41:38.421124+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T14:19:19.327846+00:00"
+      "updatedAt": "2026-08-10T16:41:38.421124+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-s-stabilesc-nainte-de-prima-turnare|META": {
       "category": "Epoxy",
@@ -9455,7 +9540,7 @@
       "pk": "CONTENT#ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
       "sk": "META",
       "sortOrder": 9800,
-      "updatedAt": "2026-08-09T14:46:52.980375+00:00"
+      "updatedAt": "2026-08-10T16:39:16.998271+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului|VARIANT#ro": {
       "contentId": "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
@@ -9470,8 +9555,15 @@
         ],
         "prevention": [],
         "problemSummary": "Primele minute dup\u0103 turnare sunt importante pentru identificarea \u0219i corectarea eventualelor imperfec\u021biuni.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "polimerizare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-imediat-dup-demulare",
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9493,13 +9585,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
-      "publishedAt": "2026-08-09T14:46:52.980375+00:00",
+      "publishedAt": "2026-08-10T16:39:16.998271+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T14:46:52.980375+00:00"
+      "updatedAt": "2026-08-10T16:39:16.998271+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-imediat-dup-demulare|META": {
       "category": "Epoxy",
@@ -9510,7 +9602,7 @@
       "pk": "CONTENT#ce-trebuie-verificat-imediat-dup-demulare",
       "sk": "META",
       "sortOrder": 7400,
-      "updatedAt": "2026-08-09T13:13:33.425218+00:00"
+      "updatedAt": "2026-08-11T07:42:37.879944+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-imediat-dup-demulare|VARIANT#ro": {
       "contentId": "ce-trebuie-verificat-imediat-dup-demulare",
@@ -9523,8 +9615,16 @@
         ],
         "prevention": [],
         "problemSummary": "Dup\u0103 scoaterea piesei din cofraj este recomandat\u0103 o inspec\u021bie complet\u0103 \u00eenainte de \u00eenceperea prelucr\u0103rii mecanice.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "demulare",
+          "cofraj",
+          "turnare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
+          "proiectul-este-gata-dup-demulare",
+          "ce-trebuie-verificat-nainte-de-nceperea-turn-rii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9544,13 +9644,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-verificat-imediat-dup-demulare",
-      "publishedAt": "2026-08-09T13:13:33.425218+00:00",
+      "publishedAt": "2026-08-11T07:42:37.879944+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:13:33.425218+00:00"
+      "updatedAt": "2026-08-11T07:42:37.879944+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in|META": {
       "category": "Epoxy",
@@ -9613,7 +9713,7 @@
       "pk": "CONTENT#ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
       "sk": "META",
       "sortOrder": 8200,
-      "updatedAt": "2026-08-09T13:42:51.317903+00:00"
+      "updatedAt": "2026-08-10T19:04:16.683724+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-nainte-de-lefuirea-progresiv|VARIANT#ro": {
       "contentId": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
@@ -9626,8 +9726,15 @@
         ],
         "prevention": [],
         "problemSummary": "\u00cenainte de \u0219lefuirea fin\u0103 trebuie confirmat c\u0103 suprafa\u021ba este preg\u0103tit\u0103 corespunz\u0103tor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "calibrare",
+          "lefuire"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9647,13 +9754,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
-      "publishedAt": "2026-08-09T13:42:51.317903+00:00",
+      "publishedAt": "2026-08-10T19:04:16.683724+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:42:51.317903+00:00"
+      "updatedAt": "2026-08-10T19:04:16.683724+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-nainte-de-nceperea-turn-rii|META": {
       "category": "Epoxy",
@@ -9840,7 +9947,7 @@
       "pk": "CONTENT#cum-aplic-corect-stratul-final-de-r-in",
       "sk": "META",
       "sortOrder": 9700,
-      "updatedAt": "2026-08-09T14:24:59.482216+00:00"
+      "updatedAt": "2026-08-10T16:40:20.938586+00:00"
     },
     "CONTENT#kb_entry#cum-aplic-corect-stratul-final-de-r-in|VARIANT#ro": {
       "contentId": "cum-aplic-corect-stratul-final-de-r-in",
@@ -9855,8 +9962,15 @@
           "Verific\u0103 permanent uniformitatea peliculei \u00een primele minute dup\u0103 aplicare."
         ],
         "problemSummary": "Aplicarea uniform\u0103 a r\u0103\u0219inii este esen\u021bial\u0103 pentru ob\u021binerea unui finisaj continuu \u0219i f\u0103r\u0103 defecte.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "scurgeri-de-r-in"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aplic-corect-uleiul-pentru-lemn",
+          "cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
+          "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9874,13 +9988,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-aplic-corect-stratul-final-de-r-in",
-      "publishedAt": "2026-08-09T14:24:59.482216+00:00",
+      "publishedAt": "2026-08-10T16:40:20.938586+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T14:24:59.482216+00:00"
+      "updatedAt": "2026-08-10T16:40:20.938586+00:00"
     },
     "CONTENT#kb_entry#cum-aplic-corect-uleiul-pentru-lemn|META": {
       "category": "Epoxy",
@@ -9891,7 +10005,7 @@
       "pk": "CONTENT#cum-aplic-corect-uleiul-pentru-lemn",
       "sk": "META",
       "sortOrder": 10400,
-      "updatedAt": "2026-08-09T15:08:11.716950+00:00"
+      "updatedAt": "2026-08-10T16:25:02.734806+00:00"
     },
     "CONTENT#kb_entry#cum-aplic-corect-uleiul-pentru-lemn|VARIANT#ro": {
       "contentId": "cum-aplic-corect-uleiul-pentru-lemn",
@@ -9904,8 +10018,15 @@
         ],
         "prevention": [],
         "problemSummary": "Uleiul trebuie aplicat \u00een straturi sub\u021biri pentru a impregna lemnul uniform.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "ulei-pentru-lemn",
+          "turnare-n-straturi"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aplic-corect-stratul-final-de-r-in",
+          "cum-se-aplic-corect-ceara-pentru-lemn",
+          "care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9925,13 +10046,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-aplic-corect-uleiul-pentru-lemn",
-      "publishedAt": "2026-08-09T15:08:11.716950+00:00",
+      "publishedAt": "2026-08-10T16:25:02.734806+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:08:11.716950+00:00"
+      "updatedAt": "2026-08-10T16:25:02.734806+00:00"
     },
     "CONTENT#kb_entry#cum-calculeaz-aplica-ia-componentele-a-i-b|META": {
       "category": "Epoxy",
@@ -10106,7 +10227,7 @@
       "pk": "CONTENT#cum-demontez-corect-cofrajul",
       "sk": "META",
       "sortOrder": 7200,
-      "updatedAt": "2026-08-09T13:11:07.494971+00:00"
+      "updatedAt": "2026-08-12T07:20:51.472629+00:00"
     },
     "CONTENT#kb_entry#cum-demontez-corect-cofrajul|VARIANT#ro": {
       "contentId": "cum-demontez-corect-cofrajul",
@@ -10120,8 +10241,15 @@
         ],
         "prevention": [],
         "problemSummary": "Demontarea trebuie realizat\u0103 metodic pentru a evita deteriorarea proiectului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "clem-de-fixare"
+        ],
+        "relatedKbEntryIds": [
+          "cum-etan-ez-corect-cofrajul",
+          "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10141,13 +10269,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-demontez-corect-cofrajul",
-      "publishedAt": "2026-08-09T13:11:07.494971+00:00",
+      "publishedAt": "2026-08-12T07:20:51.472629+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:11:07.494971+00:00"
+      "updatedAt": "2026-08-12T07:20:51.472629+00:00"
     },
     "CONTENT#kb_entry#cum-elimin-bulele-de-aer-dup-prima-turnare|META": {
       "category": "Epoxy",
@@ -10270,7 +10398,7 @@
       "pk": "CONTENT#cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
       "sk": "META",
       "sortOrder": 8000,
-      "updatedAt": "2026-08-09T13:37:08.366077+00:00"
+      "updatedAt": "2026-08-10T19:07:52.364777+00:00"
     },
     "CONTENT#kb_entry#cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare|VARIANT#ro": {
       "contentId": "cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
@@ -10286,11 +10414,22 @@
           "Scopul acestei etape este ob\u021binerea unei suprafe\u021be plane, nu finisarea acesteia."
         ],
         "problemSummary": "\u0218lefuitorul cu band\u0103 este una dintre cele mai accesibile metode pentru aducerea lemnului \u0219i r\u0103\u0219inii la acela\u0219i nivel.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "calibrare",
+          "cnc"
+        ],
+        "relatedKbEntryIds": [
+          "cum-folosesc-siliconul-pentru-fixarea-lemnului",
+          "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
+          "la-ce-folose-te-bariera-temporar-din-band-adeziv"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredMaterials": [
+          "Abrazive / h\u00e2rtie abraziv\u0103"
+        ],
+        "requiredTools": [
+          "\u0218lefuitor"
+        ],
         "searchKeywords": [],
         "solution": [
           "Folose\u0219te un abraziv agresiv, de regul\u0103 P40, \u0219i execut\u0103 mi\u0219c\u0103ri uniforme. Redu presiunea pe m\u0103sur\u0103 ce surplusul de r\u0103\u0219in\u0103 dispare."
@@ -10305,13 +10444,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
-      "publishedAt": "2026-08-09T13:37:08.366077+00:00",
+      "publishedAt": "2026-08-10T19:07:52.364777+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:37:08.366077+00:00"
+      "updatedAt": "2026-08-10T19:07:52.364777+00:00"
     },
     "CONTENT#kb_entry#cum-folosesc-siliconul-pentru-fixarea-lemnului|META": {
       "category": "Epoxy",
@@ -10379,7 +10518,7 @@
       "pk": "CONTENT#cum-func-ioneaz-lefuirea-progresiv",
       "sk": "META",
       "sortOrder": 8500,
-      "updatedAt": "2026-08-09T13:47:19.210874+00:00"
+      "updatedAt": "2026-08-10T19:00:28.680876+00:00"
     },
     "CONTENT#kb_entry#cum-func-ioneaz-lefuirea-progresiv|VARIANT#ro": {
       "contentId": "cum-func-ioneaz-lefuirea-progresiv",
@@ -10395,10 +10534,19 @@
           "Progresia trebuie s\u0103 fie gradual\u0103, f\u0103r\u0103 salturi mari \u00eentre granula\u021bii."
         ],
         "problemSummary": "Fiecare granula\u021bie are rolul de a elimina zg\u00e2rieturile produse de granula\u021bia anterioar\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lefuire",
+          "granula-ie-abraziv"
+        ],
+        "relatedKbEntryIds": [
+          "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+          "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "de-ce-este-at-t-de-important-lefuirea-progresiv"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
+        "requiredMaterials": [
+          "Abrazive / h\u00e2rtie abraziv\u0103"
+        ],
         "requiredTools": [],
         "searchKeywords": [],
         "solution": [
@@ -10414,13 +10562,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-func-ioneaz-lefuirea-progresiv",
-      "publishedAt": "2026-08-09T13:47:19.210874+00:00",
+      "publishedAt": "2026-08-10T19:00:28.680876+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:47:19.210874+00:00"
+      "updatedAt": "2026-08-10T19:00:28.680876+00:00"
     },
     "CONTENT#kb_entry#cum-influen-eaz-temperatura-turnarea-r-inii|META": {
       "category": "Epoxy",
@@ -10648,7 +10796,7 @@
       "pk": "CONTENT#cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
       "sk": "META",
       "sortOrder": 9900,
-      "updatedAt": "2026-08-09T14:47:50.076133+00:00"
+      "updatedAt": "2026-08-10T16:38:08.601496+00:00"
     },
     "CONTENT#kb_entry#cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire|VARIANT#ro": {
       "contentId": "cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
@@ -10661,8 +10809,17 @@
         ],
         "prevention": [],
         "problemSummary": "\u0218lefuirea progresiv\u0103 elimin\u0103 imperfec\u021biunile \u0219i preg\u0103te\u0219te suprafa\u021ba pentru lustruire.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lustruire",
+          "lefuire",
+          "lefuire-umed",
+          "lefuire-uscat"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aplic-corect-stratul-final-de-r-in",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10680,13 +10837,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
-      "publishedAt": "2026-08-09T14:47:50.076133+00:00",
+      "publishedAt": "2026-08-10T16:38:08.601496+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T14:47:50.076133+00:00"
+      "updatedAt": "2026-08-10T16:38:08.601496+00:00"
     },
     "CONTENT#kb_entry#cum-m-preg-tesc-nainte-de-prepararea-r-inii|META": {
       "category": "Epoxy",
@@ -10749,13 +10906,13 @@
       "pk": "CONTENT#cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
       "sk": "META",
       "sortOrder": 7500,
-      "updatedAt": "2026-08-09T13:17:07.311870+00:00"
+      "updatedAt": "2026-08-10T19:14:49.817399+00:00"
     },
     "CONTENT#kb_entry#cum-manipulez-proiectul-dup-scoaterea-din-cofraj|VARIANT#ro": {
       "contentId": "cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
       "draftBody": {
         "bodyBlocks": [],
-        "estimatedRepairTime": null,
+        "estimatedRepairTime": "cofraj - manipulez - scoaterea - cofraj - greu - voluminos - urmeaz\u0103",
         "media": [],
         "possibleCauses": [
           "Piesa este ridicat\u0103 sau transportat\u0103 necorespunz\u0103tor.",
@@ -10765,8 +10922,15 @@
           "Protejeaz\u0103 muchiile \u0219i col\u021burile \u00een timpul manipul\u0103rii. Acestea sunt cele mai expuse deterior\u0103rii."
         ],
         "problemSummary": "Dup\u0103 demulare, proiectul trebuie manipulat cu grij\u0103 pentru a evita deteriorarea muchiilor \u0219i a col\u021burilor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "demulare"
+        ],
+        "relatedKbEntryIds": [
+          "c-nd-pot-scoate-proiectul-din-cofraj",
+          "proiectul-este-gata-dup-demulare",
+          "ce-trebuie-verificat-imediat-dup-demulare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10784,13 +10948,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
-      "publishedAt": "2026-08-09T13:17:07.311870+00:00",
+      "publishedAt": "2026-08-10T19:14:49.817399+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:17:07.311870+00:00"
+      "updatedAt": "2026-08-10T19:14:49.817399+00:00"
     },
     "CONTENT#kb_entry#cum-ntre-in-atelierul-pentru-a-ob-ine-rezultate-mai-bune|META": {
       "category": "Epoxy",
@@ -10801,7 +10965,7 @@
       "pk": "CONTENT#cum-ntre-in-atelierul-pentru-a-ob-ine-rezultate-mai-bune",
       "sk": "META",
       "sortOrder": 11100,
-      "updatedAt": "2026-08-09T15:23:30.632382+00:00"
+      "updatedAt": "2026-08-10T15:21:39.530304+00:00"
     },
     "CONTENT#kb_entry#cum-ntre-in-atelierul-pentru-a-ob-ine-rezultate-mai-bune|VARIANT#ro": {
       "contentId": "cum-ntre-in-atelierul-pentru-a-ob-ine-rezultate-mai-bune",
@@ -10818,8 +10982,14 @@
           "Un atelier bine organizat reduce riscul apari\u021biei defectelor \u0219i face \u00eentregul proces de lucru mai eficient."
         ],
         "problemSummary": "Organizarea atelierului influen\u021beaz\u0103 direct calitatea \u0219i eficien\u021ba lucrului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "banc-de-lucru"
+        ],
+        "relatedKbEntryIds": [
+          "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
+          "cum-aplic-corect-uleiul-pentru-lemn",
+          "cum-influen-eaz-temperatura-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10838,13 +11008,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-ntre-in-atelierul-pentru-a-ob-ine-rezultate-mai-bune",
-      "publishedAt": "2026-08-09T15:23:30.632382+00:00",
+      "publishedAt": "2026-08-10T15:21:39.530304+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:23:30.632382+00:00"
+      "updatedAt": "2026-08-10T15:21:39.530304+00:00"
     },
     "CONTENT#kb_entry#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear|META": {
       "category": "Epoxy",
@@ -10855,7 +11025,7 @@
       "pk": "CONTENT#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
       "sk": "META",
       "sortOrder": 10800,
-      "updatedAt": "2026-08-09T15:19:20.701553+00:00"
+      "updatedAt": "2026-08-10T15:33:11.621173+00:00"
     },
     "CONTENT#kb_entry#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear|VARIANT#ro": {
       "contentId": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
@@ -10870,8 +11040,15 @@
           "\u00centre\u021binerea periodic\u0103 prelunge\u0219te semnificativ durata de via\u021b\u0103 a finisajului \u0219i p\u0103streaz\u0103 aspectul natural al lemnului f\u0103r\u0103 a fi necesar\u0103 decaparea complet\u0103."
         ],
         "problemSummary": "Finisajele pe baz\u0103 de ulei \u0219i cear\u0103 pot fi \u00eentre\u021binute u\u0219or f\u0103r\u0103 refacerea complet\u0103 a suprafe\u021bei.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cear-de-protec-ie",
+          "ulei-pentru-lemn"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
+          "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10889,13 +11066,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
-      "publishedAt": "2026-08-09T15:19:20.701553+00:00",
+      "publishedAt": "2026-08-10T15:33:11.621173+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:19:20.701553+00:00"
+      "updatedAt": "2026-08-10T15:33:11.621173+00:00"
     },
     "CONTENT#kb_entry#cum-ob-in-un-luciu-perfect-dup-top-coating|META": {
       "category": "Epoxy",
@@ -10906,7 +11083,7 @@
       "pk": "CONTENT#cum-ob-in-un-luciu-perfect-dup-top-coating",
       "sk": "META",
       "sortOrder": 10000,
-      "updatedAt": "2026-08-09T14:48:49.722697+00:00"
+      "updatedAt": "2026-08-10T16:29:15.724803+00:00"
     },
     "CONTENT#kb_entry#cum-ob-in-un-luciu-perfect-dup-top-coating|VARIANT#ro": {
       "contentId": "cum-ob-in-un-luciu-perfect-dup-top-coating",
@@ -10919,8 +11096,15 @@
         ],
         "prevention": [],
         "problemSummary": "Lustruirea elimin\u0103 microzg\u00e2rieturile r\u0103mase dup\u0103 \u0219lefuire \u0219i red\u0103 transparen\u021ba stratului de r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lustruire",
+          "lefuire"
+        ],
+        "relatedKbEntryIds": [
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10940,13 +11124,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-ob-in-un-luciu-perfect-dup-top-coating",
-      "publishedAt": "2026-08-09T14:48:49.722697+00:00",
+      "publishedAt": "2026-08-10T16:29:15.724803+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T14:48:49.722697+00:00"
+      "updatedAt": "2026-08-10T16:29:15.724803+00:00"
     },
     "CONTENT#kb_entry#cum-planific-corect-turn-rile-succesive|META": {
       "category": "Epoxy",
@@ -11233,7 +11417,7 @@
       "pk": "CONTENT#cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
       "sk": "META",
       "sortOrder": 9300,
-      "updatedAt": "2026-08-09T13:58:50.486645+00:00"
+      "updatedAt": "2026-08-10T18:48:12.962304+00:00"
     },
     "CONTENT#kb_entry#cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating|VARIANT#ro": {
       "contentId": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
@@ -11247,8 +11431,15 @@
         ],
         "prevention": [],
         "problemSummary": "Preg\u0103tirea corect\u0103 a piesei influen\u021beaz\u0103 uniformitatea stratului final de r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "sigilarea-lemnului"
+        ],
+        "relatedKbEntryIds": [
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11268,13 +11459,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
-      "publishedAt": "2026-08-09T13:58:50.486645+00:00",
+      "publishedAt": "2026-08-10T18:48:12.962304+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:58:50.486645+00:00"
+      "updatedAt": "2026-08-10T18:48:12.962304+00:00"
     },
     "CONTENT#kb_entry#cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in|META": {
       "category": "Epoxy",
@@ -11285,7 +11476,7 @@
       "pk": "CONTENT#cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
       "sk": "META",
       "sortOrder": 9000,
-      "updatedAt": "2026-08-09T13:54:44.311574+00:00"
+      "updatedAt": "2026-08-10T18:52:33.683500+00:00"
     },
     "CONTENT#kb_entry#cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in|VARIANT#ro": {
       "contentId": "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
@@ -11300,8 +11491,15 @@
           "Respect\u0103 procedura recomandat\u0103 pentru sistemul epoxidic utilizat."
         ],
         "problemSummary": "Pentru aplicarea unui strat final de r\u0103\u0219in\u0103 nu este necesar\u0103 o \u0219lefuire foarte fin\u0103, ci o suprafa\u021b\u0103 uniform\u0103 \u0219i cu aderen\u021b\u0103 bun\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "aderen",
+          "lefuire"
+        ],
+        "relatedKbEntryIds": [
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "cum-aplic-corect-stratul-final-de-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11319,13 +11517,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
-      "publishedAt": "2026-08-09T13:54:44.311574+00:00",
+      "publishedAt": "2026-08-10T18:52:33.683500+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:54:44.311574+00:00"
+      "updatedAt": "2026-08-10T18:52:33.683500+00:00"
     },
     "CONTENT#kb_entry#cum-se-amestec-corect-r-ina-epoxidic|META": {
       "category": "Epoxy",
@@ -11388,7 +11586,7 @@
       "pk": "CONTENT#cum-se-aplic-corect-ceara-pentru-lemn",
       "sk": "META",
       "sortOrder": 10600,
-      "updatedAt": "2026-08-09T15:16:57.091740+00:00"
+      "updatedAt": "2026-08-10T15:35:43.469142+00:00"
     },
     "CONTENT#kb_entry#cum-se-aplic-corect-ceara-pentru-lemn|VARIANT#ro": {
       "contentId": "cum-se-aplic-corect-ceara-pentru-lemn",
@@ -11401,8 +11599,15 @@
         ],
         "prevention": [],
         "problemSummary": "Ceara completeaz\u0103 protec\u021bia oferit\u0103 de ulei \u0219i contribuie la aspectul final al suprafe\u021bei.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "ulei-pentru-lemn",
+          "cear-de-protec-ie"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aplic-corect-uleiul-pentru-lemn",
+          "cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
+          "cum-se-realizeaz-corect-sigilarea-lemnului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11422,13 +11627,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-se-aplic-corect-ceara-pentru-lemn",
-      "publishedAt": "2026-08-09T15:16:57.091740+00:00",
+      "publishedAt": "2026-08-10T15:35:43.469142+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:16:57.091740+00:00"
+      "updatedAt": "2026-08-10T15:35:43.469142+00:00"
     },
     "CONTENT#kb_entry#cum-se-realizeaz-corect-sigilarea-lemnului|META": {
       "category": "Epoxy",
@@ -11547,7 +11752,7 @@
       "pk": "CONTENT#cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
       "sk": "META",
       "sortOrder": 10700,
-      "updatedAt": "2026-08-09T15:18:18.100873+00:00"
+      "updatedAt": "2026-08-10T15:34:34.773348+00:00"
     },
     "CONTENT#kb_entry#cum-se-realizeaz-lustruirea-dup-aplicarea-cerii|VARIANT#ro": {
       "contentId": "cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
@@ -11560,8 +11765,15 @@
         ],
         "prevention": [],
         "problemSummary": "Lustruirea uniformizeaz\u0103 stratul de cear\u0103 \u0219i confer\u0103 suprafe\u021bei un aspect neted \u0219i un luciu natural.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lustruire",
+          "disc-de-p-sl"
+        ],
+        "relatedKbEntryIds": [
+          "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "cum-se-aplic-corect-ceara-pentru-lemn"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11581,13 +11793,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
-      "publishedAt": "2026-08-09T15:18:18.100873+00:00",
+      "publishedAt": "2026-08-10T15:34:34.773348+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:18:18.100873+00:00"
+      "updatedAt": "2026-08-10T15:34:34.773348+00:00"
     },
     "CONTENT#kb_entry#cum-stabilesc-dimensiunile-corecte-ale-cofrajului|META": {
       "category": "Epoxy",
@@ -11997,7 +12209,7 @@
       "pk": "CONTENT#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
       "sk": "META",
       "sortOrder": 10300,
-      "updatedAt": "2026-08-09T15:06:52.922511+00:00"
+      "updatedAt": "2026-08-10T16:26:02.998950+00:00"
     },
     "CONTENT#kb_entry#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear|VARIANT#ro": {
       "contentId": "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
@@ -12012,8 +12224,15 @@
           "Acest tip de finisaj pune \u00een valoare contrastul \u0219i profunzimea fibrei lemnului."
         ],
         "problemSummary": "Finisajele pe baz\u0103 de ulei \u0219i cear\u0103 p\u0103streaz\u0103 aspectul \u0219i textura natural\u0103 a lemnului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cear-de-protec-ie",
+          "ulei-pentru-lemn"
+        ],
+        "relatedKbEntryIds": [
+          "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
+          "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "c-te-straturi-de-ulei-trebuie-aplicate"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12031,13 +12250,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
-      "publishedAt": "2026-08-09T15:06:52.922511+00:00",
+      "publishedAt": "2026-08-10T16:26:02.998950+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:06:52.922511+00:00"
+      "updatedAt": "2026-08-10T16:26:02.998950+00:00"
     },
     "CONTENT#kb_entry#de-ce-apar-bulele-de-aer-n-timpul-turn-rii|META": {
       "category": "Epoxy",
@@ -12104,7 +12323,7 @@
       "pk": "CONTENT#de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
       "sk": "META",
       "sortOrder": 10900,
-      "updatedAt": "2026-08-09T15:20:44.742457+00:00"
+      "updatedAt": "2026-08-10T15:31:39.769532+00:00"
     },
     "CONTENT#kb_entry#de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic|VARIANT#ro": {
       "contentId": "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
@@ -12118,8 +12337,16 @@
         ],
         "prevention": [],
         "problemSummary": "Nu este necesar un atelier industrial pentru realizarea primelor proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103. Un set de echipamente de baz\u0103 este suficient pentru majoritatea lucr\u0103rilor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "r-in-epoxidic",
+          "frez",
+          "amestecare"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic",
+          "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12139,13 +12366,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
-      "publishedAt": "2026-08-09T15:20:44.742457+00:00",
+      "publishedAt": "2026-08-10T15:31:39.769532+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T15:20:44.742457+00:00"
+      "updatedAt": "2026-08-10T15:31:39.769532+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-at-t-de-important-lefuirea-progresiv|META": {
       "category": "Epoxy",
@@ -12156,7 +12383,7 @@
       "pk": "CONTENT#de-ce-este-at-t-de-important-lefuirea-progresiv",
       "sk": "META",
       "sortOrder": 8400,
-      "updatedAt": "2026-08-09T13:45:30.514105+00:00"
+      "updatedAt": "2026-08-10T19:01:45.238632+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-at-t-de-important-lefuirea-progresiv|VARIANT#ro": {
       "contentId": "de-ce-este-at-t-de-important-lefuirea-progresiv",
@@ -12172,8 +12399,14 @@
           "\u00cen majoritatea proiectelor, calitatea finisajului depinde mai mult de \u0219lefuire dec\u00e2t de produsul de finisare utilizat."
         ],
         "problemSummary": "Calitatea \u0219lefuirii influen\u021beaz\u0103 direct aspectul final al proiectului, indiferent c\u00e2t de bine au fost realizate etapele anterioare.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "past-de-finisare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+          "cum-func-ioneaz-lefuirea-progresiv"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12191,13 +12424,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-este-at-t-de-important-lefuirea-progresiv",
-      "publishedAt": "2026-08-09T13:45:30.514105+00:00",
+      "publishedAt": "2026-08-10T19:01:45.238632+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:45:30.514105+00:00"
+      "updatedAt": "2026-08-10T19:01:45.238632+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn|META": {
       "category": "Epoxy",
@@ -12426,7 +12659,7 @@
       "pk": "CONTENT#de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii",
       "sk": "META",
       "sortOrder": 9100,
-      "updatedAt": "2026-08-09T13:56:15.914505+00:00"
+      "updatedAt": "2026-08-10T18:51:15.995166+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii|VARIANT#ro": {
       "contentId": "de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii",
@@ -12442,8 +12675,15 @@
           "Timpul economisit prin omiterea unor granula\u021bii este, de regul\u0103, pierdut ulterior \u00eencerc\u00e2nd s\u0103 elimini defectele r\u0103mase"
         ],
         "problemSummary": "Salturile mari \u00eentre granula\u021bii reduc eficien\u021ba \u0219lefuirii \u0219i fac mult mai dificil\u0103 eliminarea zg\u00e2rieturilor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lefuire",
+          "discuri-abrazive"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+          "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12461,13 +12701,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii",
-      "publishedAt": "2026-08-09T13:56:15.914505+00:00",
+      "publishedAt": "2026-08-10T18:51:15.995166+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:56:15.914505+00:00"
+      "updatedAt": "2026-08-10T18:51:15.995166+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare-2|META": {
       "category": "Epoxy",
@@ -12826,7 +13066,7 @@
       "pk": "CONTENT#de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect",
       "sk": "META",
       "sortOrder": 7300,
-      "updatedAt": "2026-08-09T13:12:21.424130+00:00"
+      "updatedAt": "2026-08-11T07:44:27.735724+00:00"
     },
     "CONTENT#kb_entry#de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect|VARIANT#ro": {
       "contentId": "de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect",
@@ -12839,11 +13079,21 @@
         ],
         "prevention": [],
         "problemSummary": "Dup\u0103 demulare este normal ca pe partea inferioar\u0103 a piesei s\u0103 r\u0103m\u00e2n\u0103 urme ale materialelor folosite la construirea cofrajului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "calibrare",
+          "demulare",
+          "lefuire"
+        ],
+        "relatedKbEntryIds": [
+          "la-ce-folose-te-bariera-temporar-din-band-adeziv",
+          "de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
+          "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "Band\u0103 adeziv\u0103 - Plac\u0103 melaminat\u0103 - MDF - PAL - Adeziv"
+        ],
         "searchKeywords": [],
         "solution": [
           "Nu \u00eencerca s\u0103 elimini aceste urme \u00een timpul demul\u0103rii. Ele vor fi \u00eendep\u0103rtate ulterior prin debitare, calibrare \u0219i \u0219lefuire."
@@ -12860,13 +13110,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect",
-      "publishedAt": "2026-08-09T13:12:21.424130+00:00",
+      "publishedAt": "2026-08-11T07:44:27.735724+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:12:21.424130+00:00"
+      "updatedAt": "2026-08-11T07:44:27.735724+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare|META": {
       "category": "Epoxy",
@@ -12936,7 +13186,7 @@
       "pk": "CONTENT#de-ce-trebuie-cur-at-suprafa-a-ntre-schimb-rile-de-granula-ie",
       "sk": "META",
       "sortOrder": 8600,
-      "updatedAt": "2026-08-09T13:48:52.503548+00:00"
+      "updatedAt": "2026-08-10T18:58:45.390779+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-cur-at-suprafa-a-ntre-schimb-rile-de-granula-ie|VARIANT#ro": {
       "contentId": "de-ce-trebuie-cur-at-suprafa-a-ntre-schimb-rile-de-granula-ie",
@@ -12951,11 +13201,20 @@
           "Inspecteaz\u0103 suprafa\u021ba folosind lumin\u0103 lateral\u0103 pentru a observa mai u\u0219or zg\u00e2rieturile \u0219i diferen\u021bele de nivel."
         ],
         "problemSummary": "Praful r\u0103mas pe suprafa\u021b\u0103 poate produce zg\u00e2rieturi noi \u0219i poate ascunde defectele existente.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lefuire",
+          "granula-ie-abraziv"
+        ],
+        "relatedKbEntryIds": [
+          "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+          "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
+          "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "Abrazive / h\u00e2rtie abraziv\u0103"
+        ],
         "searchKeywords": [],
         "solution": [
           "Cur\u0103\u021b\u0103 complet suprafa\u021ba dup\u0103 fiecare schimbare de granula\u021bie \u00eenainte de a continua \u0219lefuirea."
@@ -12970,13 +13229,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-cur-at-suprafa-a-ntre-schimb-rile-de-granula-ie",
-      "publishedAt": "2026-08-09T13:48:52.503548+00:00",
+      "publishedAt": "2026-08-10T18:58:45.390779+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:48:52.503548+00:00"
+      "updatedAt": "2026-08-10T18:58:45.390779+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare|META": {
       "category": "Epoxy",
@@ -13098,7 +13357,7 @@
       "pk": "CONTENT#de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
       "sk": "META",
       "sortOrder": 7700,
-      "updatedAt": "2026-08-09T13:31:54.512626+00:00"
+      "updatedAt": "2026-08-10T19:12:07.783083+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare|VARIANT#ro": {
       "contentId": "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
@@ -13113,8 +13372,15 @@
           "Nu \u00eencerca s\u0103 ob\u021bii aspectul final \u00een aceast\u0103 etap\u0103. Obiectivul este planeitatea suprafe\u021bei."
         ],
         "problemSummary": "Surplusul de r\u0103\u0219in\u0103 este turnat inten\u021bionat pentru a compensa contrac\u021bia din timpul matur\u0103rii \u0219i trebuie eliminat \u00eenainte de finisare.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "demulare"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13132,13 +13398,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
-      "publishedAt": "2026-08-09T13:31:54.512626+00:00",
+      "publishedAt": "2026-08-10T19:12:07.783083+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:31:54.512626+00:00"
+      "updatedAt": "2026-08-10T19:12:07.783083+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare|META": {
       "category": "Epoxy",
@@ -13149,7 +13415,7 @@
       "pk": "CONTENT#de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
       "sk": "META",
       "sortOrder": 7800,
-      "updatedAt": "2026-08-09T13:33:00.927652+00:00"
+      "updatedAt": "2026-08-10T19:10:42.740713+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare|VARIANT#ro": {
       "contentId": "de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
@@ -13164,10 +13430,19 @@
           "Cur\u0103\u021barea complet\u0103 \u00eenainte de prelucrare reduce riscul apari\u021biei problemelor \u00een etapele de finisare."
         ],
         "problemSummary": "Resturile de silicon pot afecta at\u00e2t procesul de \u0219lefuire, c\u00e2t \u0219i aplicarea finisajului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "demulare",
+          "silicon-de-etan-are"
+        ],
+        "relatedKbEntryIds": [
+          "la-ce-folose-te-bariera-perimetral-de-silicon",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
+        "requiredMaterials": [
+          "Silicon - Band\u0103 adeziv\u0103 - Abrazive / h\u00e2rtie abraziv\u0103 - Adeziv"
+        ],
         "requiredTools": [],
         "searchKeywords": [],
         "solution": [
@@ -13183,13 +13458,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
-      "publishedAt": "2026-08-09T13:33:00.927652+00:00",
+      "publishedAt": "2026-08-10T19:10:42.740713+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:33:00.927652+00:00"
+      "updatedAt": "2026-08-10T19:10:42.740713+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii|META": {
       "category": "Epoxy",
@@ -13262,7 +13537,7 @@
       "pk": "CONTENT#de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
       "sk": "META",
       "sortOrder": 9400,
-      "updatedAt": "2026-08-09T14:00:57.999805+00:00"
+      "updatedAt": "2026-08-10T18:46:32.958269+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating|VARIANT#ro": {
       "contentId": "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
@@ -13277,10 +13552,19 @@
           "\u00cendep\u0103rtarea benzii dup\u0103 \u00eent\u0103rire elimin\u0103 \u0219i cea mai mare parte a pic\u0103turilor formate \u00een timpul scurgerii."
         ],
         "problemSummary": "Protejarea p\u0103r\u021bii inferioare reduce timpul necesar cur\u0103\u021b\u0103rii dup\u0103 \u00eent\u0103rirea r\u0103\u0219inii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "sedimentarea-pigmentului"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
+        "requiredMaterials": [
+          "Band\u0103 adeziv\u0103 - Adeziv"
+        ],
         "requiredTools": [],
         "searchKeywords": [],
         "solution": [
@@ -13295,13 +13579,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
-      "publishedAt": "2026-08-09T14:00:57.999805+00:00",
+      "publishedAt": "2026-08-10T18:46:32.958269+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T14:00:57.999805+00:00"
+      "updatedAt": "2026-08-10T18:46:32.958269+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului|META": {
       "category": "Epoxy",
@@ -13487,7 +13771,7 @@
       "pk": "CONTENT#de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final",
       "sk": "META",
       "sortOrder": 6800,
-      "updatedAt": "2026-08-09T13:05:05.347560+00:00"
+      "updatedAt": "2026-08-12T07:30:34.689411+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final|VARIANT#ro": {
       "contentId": "de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final",
@@ -13500,8 +13784,16 @@
         ],
         "prevention": [],
         "problemSummary": "Ultimul strat trebuie s\u0103 compenseze contrac\u021bia normal\u0103 a r\u0103\u0219inii din timpul matur\u0103rii \u0219i s\u0103 permit\u0103 prelucrarea mecanic\u0103 final\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "lefuire",
+          "calibrare"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+          "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13521,13 +13813,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final",
-      "publishedAt": "2026-08-09T13:05:05.347560+00:00",
+      "publishedAt": "2026-08-12T07:30:34.689411+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:05:05.347560+00:00"
+      "updatedAt": "2026-08-12T07:30:34.689411+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal|META": {
       "category": "Epoxy",
@@ -13597,7 +13889,7 @@
       "pk": "CONTENT#la-ce-folose-te-bariera-perimetral-de-silicon",
       "sk": "META",
       "sortOrder": 6900,
-      "updatedAt": "2026-08-09T13:06:06.448551+00:00"
+      "updatedAt": "2026-08-12T07:28:56.350150+00:00"
     },
     "CONTENT#kb_entry#la-ce-folose-te-bariera-perimetral-de-silicon|VARIANT#ro": {
       "contentId": "la-ce-folose-te-bariera-perimetral-de-silicon",
@@ -13610,10 +13902,19 @@
         ],
         "prevention": [],
         "problemSummary": "Bariera temporar\u0103 de silicon \u00eempiedic\u0103 r\u0103\u0219ina s\u0103 se r\u0103sp\u00e2ndeasc\u0103 pe suprafa\u021ba lemnului \u0219i re\u021bine surplusul necesar pentru compensarea contrac\u021biei.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "contrac-ie"
+        ],
+        "relatedKbEntryIds": [
+          "la-ce-folose-te-bariera-temporar-din-band-adeziv",
+          "de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
+          "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
+        "requiredMaterials": [
+          "Silicon"
+        ],
         "requiredTools": [],
         "searchKeywords": [],
         "solution": [
@@ -13631,13 +13932,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#la-ce-folose-te-bariera-perimetral-de-silicon",
-      "publishedAt": "2026-08-09T13:06:06.448551+00:00",
+      "publishedAt": "2026-08-12T07:28:56.350150+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T13:06:06.448551+00:00"
+      "updatedAt": "2026-08-12T07:28:56.350150+00:00"
     },
     "CONTENT#kb_entry#la-ce-folose-te-bariera-temporar-din-band-adeziv|META": {
       "category": "Epoxy",
@@ -13648,7 +13949,7 @@
       "pk": "CONTENT#la-ce-folose-te-bariera-temporar-din-band-adeziv",
       "sk": "META",
       "sortOrder": 9500,
-      "updatedAt": "2026-08-09T14:10:55.166060+00:00"
+      "updatedAt": "2026-08-10T17:04:39.492703+00:00"
     },
     "CONTENT#kb_entry#la-ce-folose-te-bariera-temporar-din-band-adeziv|VARIANT#ro": {
       "contentId": "la-ce-folose-te-bariera-temporar-din-band-adeziv",
@@ -13661,11 +13962,20 @@
         ],
         "prevention": [],
         "problemSummary": "Bariera temporar\u0103 permite distribuirea uniform\u0103 a r\u0103\u0219inii \u00eenainte ca aceasta s\u0103 curg\u0103 peste muchii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "nivelarea-cofrajului"
+        ],
+        "relatedKbEntryIds": [
+          "la-ce-folose-te-bariera-perimetral-de-silicon",
+          "de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect",
+          "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "Band\u0103 adeziv\u0103 - Adeziv"
+        ],
         "searchKeywords": [],
         "solution": [
           "Aplic\u0103 pe conturul superior o band\u0103 adeziv\u0103 ridicat\u0103 aproximativ 5\u201310 mm deasupra suprafe\u021bei \u0219i \u00eendep\u0103rteaz-o treptat dup\u0103 nivelarea r\u0103\u0219inii."
@@ -13682,13 +13992,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#la-ce-folose-te-bariera-temporar-din-band-adeziv",
-      "publishedAt": "2026-08-09T14:10:55.166060+00:00",
+      "publishedAt": "2026-08-10T17:04:39.492703+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-09T14:10:55.166060+00:00"
+      "updatedAt": "2026-08-10T17:04:39.492703+00:00"
     },
     "CONTENT#kb_entry#n-ce-situa-ii-este-recomandat-sigilarea-lemnului|META": {
       "category": "Epoxy",
@@ -13756,7 +14066,7 @@
       "pk": "CONTENT#p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
       "sk": "META",
       "sortOrder": 8900,
-      "updatedAt": "2026-08-09T13:53:34.006590+00:00"
+      "updatedAt": "2026-08-10T18:53:48.159988+00:00"
     },
     "CONTENT#kb_entry#p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului|VARIANT#ro": {
       "contentId": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
@@ -13771,8 +14081,15 @@
           "\u0218lefuirea peste aceast\u0103 zon\u0103 este justificat\u0103 doar \u00een situa\u021bii speciale."
         ],
         "problemSummary": "O \u0219lefuire excesiv de fin\u0103 poate reduce capacitatea lemnului de a absorbi produsele de finisare penetrante.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "lefuire",
+          "granula-ie-abraziv"
+        ],
+        "relatedKbEntryIds": [
+          "trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13790,13 +14107,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
-      "publishedAt": "2026-08-09T13:53:34.006590+00:00",
+      "publishedAt": "2026-08-10T18:53:48.159988+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:53:34.006590+00:00"
+      "updatedAt": "2026-08-10T18:53:48.159988+00:00"
     },
     "CONTENT#kb_entry#pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele|META": {
       "category": "Epoxy",
@@ -13916,7 +14233,7 @@
       "pk": "CONTENT#proiectul-este-gata-dup-demulare",
       "sk": "META",
       "sortOrder": 7600,
-      "updatedAt": "2026-08-09T13:30:46.450209+00:00"
+      "updatedAt": "2026-08-10T19:13:25.316850+00:00"
     },
     "CONTENT#kb_entry#proiectul-este-gata-dup-demulare|VARIANT#ro": {
       "contentId": "proiectul-este-gata-dup-demulare",
@@ -13931,8 +14248,16 @@
           "Nu evalua aspectul final al proiectului imediat dup\u0103 demulare. \u00cen aceast\u0103 etap\u0103 piesa se afl\u0103 \u00eenc\u0103 \u00eentr-un stadiu brut"
         ],
         "problemSummary": "Nu. Demularea marcheaz\u0103 sf\u00e2r\u0219itul etapei de turnare \u0219i \u00eenceputul prelucr\u0103rii mecanice.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "demulare",
+          "turnare",
+          "debitare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-imediat-dup-demulare",
+          "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+          "cum-manipulez-proiectul-dup-scoaterea-din-cofraj"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13950,13 +14275,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#proiectul-este-gata-dup-demulare",
-      "publishedAt": "2026-08-09T13:30:46.450209+00:00",
+      "publishedAt": "2026-08-10T19:13:25.316850+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:30:46.450209+00:00"
+      "updatedAt": "2026-08-10T19:13:25.316850+00:00"
     },
     "CONTENT#kb_entry#trebuie-eliminate-toate-defectele-naturale-ale-lemnului|META": {
       "category": "Epoxy",
@@ -14076,7 +14401,7 @@
       "pk": "CONTENT#trebuie-lefuite-i-muchiile-nu-doar-suprafa-a-principal",
       "sk": "META",
       "sortOrder": 8800,
-      "updatedAt": "2026-08-09T13:52:16.421190+00:00"
+      "updatedAt": "2026-08-10T18:55:24.123583+00:00"
     },
     "CONTENT#kb_entry#trebuie-lefuite-i-muchiile-nu-doar-suprafa-a-principal|VARIANT#ro": {
       "contentId": "trebuie-lefuite-i-muchiile-nu-doar-suprafa-a-principal",
@@ -14091,8 +14416,15 @@
           "Uniformitatea \u00eentregii piese este la fel de important\u0103 ca aspectul suprafe\u021bei principale."
         ],
         "problemSummary": "Da. Toate suprafe\u021bele vizibile trebuie prelucrate \u00een aceea\u0219i succesiune de granula\u021bii pentru a ob\u021bine un aspect uniform.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "finisaj-satinat",
+          "lustruire"
+        ],
+        "relatedKbEntryIds": [
+          "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -14110,13 +14442,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#trebuie-lefuite-i-muchiile-nu-doar-suprafa-a-principal",
-      "publishedAt": "2026-08-09T13:52:16.421190+00:00",
+      "publishedAt": "2026-08-10T18:55:24.123583+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-09T13:52:16.421190+00:00"
+      "updatedAt": "2026-08-10T18:55:24.123583+00:00"
     },
     "CONTENT#kb_entry#trebuie-p-strat-sau-ndep-rtat-scoar-a|META": {
       "category": "Epoxy",

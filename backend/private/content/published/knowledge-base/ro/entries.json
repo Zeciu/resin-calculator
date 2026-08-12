@@ -2588,8 +2588,34 @@
       ],
       "prevention": [],
       "problemSummary": "Ultimul strat trebuie s\u0103 compenseze contrac\u021bia normal\u0103 a r\u0103\u0219inii din timpul matur\u0103rii \u0219i s\u0103 permit\u0103 prelucrarea mecanic\u0103 final\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+          "label": "De ce trebuie \u00eendep\u0103rtat surplusul de r\u0103\u0219in\u0103 dup\u0103 turnare?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 ultima turnare \u00eenainte de prelucrarea mecanic\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2616,10 +2642,34 @@
       ],
       "prevention": [],
       "problemSummary": "Bariera temporar\u0103 de silicon \u00eempiedic\u0103 r\u0103\u0219ina s\u0103 se r\u0103sp\u00e2ndeasc\u0103 pe suprafa\u021ba lemnului \u0219i re\u021bine surplusul necesar pentru compensarea contrac\u021biei.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "contrac-ie",
+          "label": "Contrac\u021bie"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "la-ce-folose-te-bariera-temporar-din-band-adeziv",
+          "label": "La ce folose\u0219te bariera temporar\u0103 din band\u0103 adeziv\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
+          "label": "De ce trebuie \u00eendep\u0103rtate toate urmele de silicon \u00eenainte de prelucrare?"
+        },
+        {
+          "id": "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+          "label": "De ce trebuie \u00eendep\u0103rtat surplusul de r\u0103\u0219in\u0103 dup\u0103 turnare?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
+      "requiredMaterials": [
+        "Silicon"
+      ],
       "requiredTools": [],
       "searchKeywords": [],
       "solution": [
@@ -2646,8 +2696,30 @@
         "Respectarea timpului complet de maturare contribuie la stabilitatea dimensional\u0103 \u0219i la calitatea finisajului."
       ],
       "problemSummary": "Chiar dac\u0103 r\u0103\u0219ina pare \u00eent\u0103rit\u0103, maturarea complet\u0103 poate continua o perioad\u0103 mai lung\u0103, \u00een func\u021bie de produsul utilizat.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 sigilarea lemnului \u00eenainte de turnarea principal\u0103?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept \u00eenainte de turnarea urm\u0103torului strat?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2677,8 +2749,30 @@
         "\u0103bdarea \u00een aceast\u0103 etap\u0103 reduce riscul deterior\u0103rii muchiilor \u0219i al deform\u0103rii proiectului."
       ],
       "problemSummary": "Demularea trebuie f\u0103cut\u0103 numai dup\u0103 maturarea complet\u0103 a r\u0103\u0219inii, conform recomand\u0103rilor produc\u0103torului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
+          "label": "Cum manipulez proiectul dup\u0103 scoaterea din cofraj?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 ultima turnare \u00eenainte de prelucrarea mecanic\u0103?"
+        },
+        {
+          "id": "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+          "label": "C\u00e2nd este proiectul preg\u0103tit pentru \u0219lefuirea progresiv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2706,8 +2800,30 @@
       ],
       "prevention": [],
       "problemSummary": "Demontarea trebuie realizat\u0103 metodic pentru a evita deteriorarea proiectului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "clem-de-fixare",
+          "label": "Clem\u0103 de fixare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-etan-ez-corect-cofrajul",
+          "label": "Cum etan\u0219ez corect cofrajul?"
+        },
+        {
+          "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
+          "label": "De ce trebuie verificat dac\u0103 cofrajul este perfect orizontal?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2734,11 +2850,39 @@
       ],
       "prevention": [],
       "problemSummary": "Dup\u0103 demulare este normal ca pe partea inferioar\u0103 a piesei s\u0103 r\u0103m\u00e2n\u0103 urme ale materialelor folosite la construirea cofrajului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        },
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "la-ce-folose-te-bariera-temporar-din-band-adeziv",
+          "label": "La ce folose\u0219te bariera temporar\u0103 din band\u0103 adeziv\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-ndep-rtate-toate-urmele-de-silicon-nainte-de-prelucrare",
+          "label": "De ce trebuie \u00eendep\u0103rtate toate urmele de silicon \u00eenainte de prelucrare?"
+        },
+        {
+          "id": "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
+          "label": "De ce trebuie protejat\u0103 partea inferioar\u0103 \u00eenainte de Top Coating?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "Band\u0103 adeziv\u0103 - Plac\u0103 melaminat\u0103 - MDF - PAL - Adeziv"
+      ],
       "searchKeywords": [],
       "solution": [
         "Nu \u00eencerca s\u0103 elimini aceste urme \u00een timpul demul\u0103rii. Ele vor fi \u00eendep\u0103rtate ulterior prin debitare, calibrare \u0219i \u0219lefuire."
@@ -2762,8 +2906,34 @@
       ],
       "prevention": [],
       "problemSummary": "Dup\u0103 scoaterea piesei din cofraj este recomandat\u0103 o inspec\u021bie complet\u0103 \u00eenainte de \u00eenceperea prelucr\u0103rii mecanice.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        },
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
+          "label": "Ce trebuie verificat imediat dup\u0103 aplicarea Top Coating-ului?"
+        },
+        {
+          "id": "proiectul-este-gata-dup-demulare",
+          "label": "Proiectul este gata dup\u0103 demulare?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "label": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2782,7 +2952,7 @@
       "warnings": []
     },
     {
-      "estimatedRepairTime": null,
+      "estimatedRepairTime": "cofraj - manipulez - scoaterea - cofraj - greu - voluminos - urmeaz\u0103",
       "id": "cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
       "media": [],
       "possibleCauses": [
@@ -2793,8 +2963,30 @@
         "Protejeaz\u0103 muchiile \u0219i col\u021burile \u00een timpul manipul\u0103rii. Acestea sunt cele mai expuse deterior\u0103rii."
       ],
       "problemSummary": "Dup\u0103 demulare, proiectul trebuie manipulat cu grij\u0103 pentru a evita deteriorarea muchiilor \u0219i a col\u021burilor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-nd-pot-scoate-proiectul-din-cofraj",
+          "label": "C\u00e2nd pot scoate proiectul din cofraj?"
+        },
+        {
+          "id": "proiectul-este-gata-dup-demulare",
+          "label": "Proiectul este gata dup\u0103 demulare?"
+        },
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-demulare",
+          "label": "Ce trebuie verificat imediat dup\u0103 demulare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2821,8 +3013,34 @@
         "Nu evalua aspectul final al proiectului imediat dup\u0103 demulare. \u00cen aceast\u0103 etap\u0103 piesa se afl\u0103 \u00eenc\u0103 \u00eentr-un stadiu brut"
       ],
       "problemSummary": "Nu. Demularea marcheaz\u0103 sf\u00e2r\u0219itul etapei de turnare \u0219i \u00eenceputul prelucr\u0103rii mecanice.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "debitare",
+          "label": "Debitare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-demulare",
+          "label": "Ce trebuie verificat imediat dup\u0103 demulare?"
+        },
+        {
+          "id": "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+          "label": "De ce trebuie \u00eendep\u0103rtat surplusul de r\u0103\u0219in\u0103 dup\u0103 turnare?"
+        },
+        {
+          "id": "cum-manipulez-proiectul-dup-scoaterea-din-cofraj",
+          "label": "Cum manipulez proiectul dup\u0103 scoaterea din cofraj?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2849,8 +3067,30 @@
         "Nu \u00eencerca s\u0103 ob\u021bii aspectul final \u00een aceast\u0103 etap\u0103. Obiectivul este planeitatea suprafe\u021bei."
       ],
       "problemSummary": "Surplusul de r\u0103\u0219in\u0103 este turnat inten\u021bionat pentru a compensa contrac\u021bia din timpul matur\u0103rii \u0219i trebuie eliminat \u00eenainte de finisare.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final",
+          "label": "De ce trebuie turnat ultimul strat pu\u021bin peste nivelul final?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+          "label": "De ce trebuie calibrat \u0219i \u00eendreptat lemnul \u00eenainte de turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2877,10 +3117,34 @@
         "Cur\u0103\u021barea complet\u0103 \u00eenainte de prelucrare reduce riscul apari\u021biei problemelor \u00een etapele de finisare."
       ],
       "problemSummary": "Resturile de silicon pot afecta at\u00e2t procesul de \u0219lefuire, c\u00e2t \u0219i aplicarea finisajului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        },
+        {
+          "id": "silicon-de-etan-are",
+          "label": "Silicon de etan\u0219are"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "la-ce-folose-te-bariera-perimetral-de-silicon",
+          "label": "La ce folose\u0219te bariera perimetral\u0103 de silicon?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
+      "requiredMaterials": [
+        "Silicon - Band\u0103 adeziv\u0103 - Abrazive / h\u00e2rtie abraziv\u0103 - Adeziv"
+      ],
       "requiredTools": [],
       "searchKeywords": [],
       "solution": [
@@ -2905,11 +3169,35 @@
         "Alege metoda potrivit\u0103 atelierului \u0219i tipului de proiect, nu doar pe cea mai rapid\u0103."
       ],
       "problemSummary": "Exist\u0103 mai multe metode de calibrare, fiecare av\u00e2nd avantaje \u0219i limit\u0103ri.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        },
+        {
+          "id": "frez",
+          "label": "Frez\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
+          "label": "Cum folosesc corect \u0219lefuitorul cu band\u0103 pentru calibrare?"
+        },
+        {
+          "id": "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
+          "label": "De ce echipament minim am nevoie pentru a \u00eencepe s\u0103 lucrez cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+          "label": "Care este umiditatea recomandat\u0103 a lemnului \u00eenainte de turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "Frez\u0103 - \u0218lefuitor"
+      ],
       "searchKeywords": [],
       "solution": [
         "Pentru precizie maxim\u0103 poate fi utilizat\u0103 frezarea pe CNC. Alte variante sunt ma\u0219ina de calibrat sau \u0219lefuitorul cu band\u0103, \u00een func\u021bie de echipamentele disponibile."
@@ -2933,11 +3221,37 @@
         "Scopul acestei etape este ob\u021binerea unei suprafe\u021be plane, nu finisarea acesteia."
       ],
       "problemSummary": "\u0218lefuitorul cu band\u0103 este una dintre cele mai accesibile metode pentru aducerea lemnului \u0219i r\u0103\u0219inii la acela\u0219i nivel.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        },
+        {
+          "id": "cnc",
+          "label": "CNC"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-folosesc-siliconul-pentru-fixarea-lemnului",
+          "label": "Cum folosesc siliconul pentru fixarea lemnului?"
+        },
+        {
+          "id": "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
+          "label": "Care este cea mai precis\u0103 metod\u0103 de calibrare a unei piese cu r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "la-ce-folose-te-bariera-temporar-din-band-adeziv",
+          "label": "La ce folose\u0219te bariera temporar\u0103 din band\u0103 adeziv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredMaterials": [
+        "Abrazive / h\u00e2rtie abraziv\u0103"
+      ],
+      "requiredTools": [
+        "\u0218lefuitor"
+      ],
       "searchKeywords": [],
       "solution": [
         "Folose\u0219te un abraziv agresiv, de regul\u0103 P40, \u0219i execut\u0103 mi\u0219c\u0103ri uniforme. Redu presiunea pe m\u0103sur\u0103 ce surplusul de r\u0103\u0219in\u0103 dispare."
@@ -2961,11 +3275,35 @@
         "Urmele l\u0103sate de scule vor fi eliminate mai u\u0219or \u00een etapele ulterioare de \u0219lefuire."
       ],
       "problemSummary": "Dimensiunile finale \u0219i profil\u0103rile trebuie executate \u00eenainte de \u0219lefuirea fin\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "debitare",
+          "label": "Debitare"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "frez",
+          "label": "Frez\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-nd-trebuie-realizate-rotunjirile-i-profil-rile-muchiilor",
+          "label": "C\u00e2nd trebuie realizate rotunjirile \u0219i profil\u0103rile muchiilor?"
+        },
+        {
+          "id": "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
+          "label": "C\u00e2nd trebuie definite cavit\u0103\u021bile \u00een aplica\u021bie?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "Frez\u0103"
+      ],
       "searchKeywords": [],
       "solution": [
         "Execut\u0103 toate t\u0103ierile, \u00eendrept\u0103rile \u0219i frez\u0103rile \u00eenainte de \u00eenceperea \u0219lefuirii progresive."
@@ -2987,8 +3325,30 @@
       ],
       "prevention": [],
       "problemSummary": "\u00cenainte de \u0219lefuirea fin\u0103 trebuie confirmat c\u0103 suprafa\u021ba este preg\u0103tit\u0103 corespunz\u0103tor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "label": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+          "label": "C\u00e2nd este proiectul preg\u0103tit pentru \u0219lefuirea progresiv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3015,8 +3375,30 @@
       ],
       "prevention": [],
       "problemSummary": "Proiectul este preg\u0103tit pentru \u0219lefuirea progresiv\u0103 numai dup\u0103 finalizarea tuturor opera\u021biunilor de calibrare \u0219i prelucrare mecanic\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
+        },
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "label": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "de-ce-este-at-t-de-important-lefuirea-progresiv",
+          "label": "De ce este at\u00e2t de important\u0103 \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "cum-func-ioneaz-lefuirea-progresiv",
+          "label": "Cum func\u021bioneaz\u0103 \u0219lefuirea progresiv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3046,8 +3428,26 @@
         "\u00cen majoritatea proiectelor, calitatea finisajului depinde mai mult de \u0219lefuire dec\u00e2t de produsul de finisare utilizat."
       ],
       "problemSummary": "Calitatea \u0219lefuirii influen\u021beaz\u0103 direct aspectul final al proiectului, indiferent c\u00e2t de bine au fost realizate etapele anterioare.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "past-de-finisare",
+          "label": "Past\u0103 de finisare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "label": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+          "label": "C\u00e2nd este proiectul preg\u0103tit pentru \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "cum-func-ioneaz-lefuirea-progresiv",
+          "label": "Cum func\u021bioneaz\u0103 \u0219lefuirea progresiv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3075,10 +3475,34 @@
         "Progresia trebuie s\u0103 fie gradual\u0103, f\u0103r\u0103 salturi mari \u00eentre granula\u021bii."
       ],
       "problemSummary": "Fiecare granula\u021bie are rolul de a elimina zg\u00e2rieturile produse de granula\u021bia anterioar\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "granula-ie-abraziv",
+          "label": "Granula\u021bie abraziv\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-nd-este-proiectul-preg-tit-pentru-lefuirea-progresiv",
+          "label": "C\u00e2nd este proiectul preg\u0103tit pentru \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "label": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "de-ce-este-at-t-de-important-lefuirea-progresiv",
+          "label": "De ce este at\u00e2t de important\u0103 \u0219lefuirea progresiv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
+      "requiredMaterials": [
+        "Abrazive / h\u00e2rtie abraziv\u0103"
+      ],
       "requiredTools": [],
       "searchKeywords": [],
       "solution": [
@@ -3103,11 +3527,35 @@
         "Inspecteaz\u0103 suprafa\u021ba folosind lumin\u0103 lateral\u0103 pentru a observa mai u\u0219or zg\u00e2rieturile \u0219i diferen\u021bele de nivel."
       ],
       "problemSummary": "Praful r\u0103mas pe suprafa\u021b\u0103 poate produce zg\u00e2rieturi noi \u0219i poate ascunde defectele existente.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "granula-ie-abraziv",
+          "label": "Granula\u021bie abraziv\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+          "label": "P\u00e2n\u0103 la ce granula\u021bie trebuie \u0219lefuit lemnul \u00eenainte de aplicarea uleiului?"
+        },
+        {
+          "id": "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
+          "label": "De ce trebuie protejat\u0103 suprafa\u021ba interioar\u0103 a cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare",
+          "label": "De ce trebuie \u00eendep\u0103rtat surplusul de r\u0103\u0219in\u0103 dup\u0103 turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "Abrazive / h\u00e2rtie abraziv\u0103"
+      ],
       "searchKeywords": [],
       "solution": [
         "Cur\u0103\u021b\u0103 complet suprafa\u021ba dup\u0103 fiecare schimbare de granula\u021bie \u00eenainte de a continua \u0219lefuirea."
@@ -3131,8 +3579,26 @@
         "Astfel evi\u021bi reluarea unei p\u0103r\u021bi importante din procesul de \u0219lefuire."
       ],
       "problemSummary": "Toate opera\u021biunile care modific\u0103 forma piesei trebuie finalizate \u00eenainte de \u0219lefuirea fin\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "debitare",
+          "label": "Debitare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
+          "label": "C\u00e2nd trebuie realizate debitarea \u0219i profilarea muchiilor?"
+        },
+        {
+          "id": "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
+          "label": "C\u00e2nd trebuie definite cavit\u0103\u021bile \u00een aplica\u021bie?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3159,8 +3625,30 @@
         "Uniformitatea \u00eentregii piese este la fel de important\u0103 ca aspectul suprafe\u021bei principale."
       ],
       "problemSummary": "Da. Toate suprafe\u021bele vizibile trebuie prelucrate \u00een aceea\u0219i succesiune de granula\u021bii pentru a ob\u021bine un aspect uniform.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "finisaj-satinat",
+          "label": "Finisaj satinat"
+        },
+        {
+          "id": "lustruire",
+          "label": "Lustruire"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 sigilarea lemnului \u00eenainte de turnarea principal\u0103?"
+        },
+        {
+          "id": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "label": "Cum introduc corect ad\u00e2ncimea principal\u0103 de turnare?"
+        },
+        {
+          "id": "cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
+          "label": "Cum \u0219lefuiesc stratul final de r\u0103\u0219in\u0103 \u00eenainte de lustruire?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3187,8 +3675,30 @@
         "\u0218lefuirea peste aceast\u0103 zon\u0103 este justificat\u0103 doar \u00een situa\u021bii speciale."
       ],
       "problemSummary": "O \u0219lefuire excesiv de fin\u0103 poate reduce capacitatea lemnului de a absorbi produsele de finisare penetrante.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "granula-ie-abraziv",
+          "label": "Granula\u021bie abraziv\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare",
+          "label": "Trebuie \u0219lefuit stratul anterior \u00eenainte de urm\u0103toarea turnare?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3215,8 +3725,30 @@
         "Respect\u0103 procedura recomandat\u0103 pentru sistemul epoxidic utilizat."
       ],
       "problemSummary": "Pentru aplicarea unui strat final de r\u0103\u0219in\u0103 nu este necesar\u0103 o \u0219lefuire foarte fin\u0103, ci o suprafa\u021b\u0103 uniform\u0103 \u0219i cu aderen\u021b\u0103 bun\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "aderen",
+          "label": "Aderen\u021b\u0103"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        },
+        {
+          "id": "cum-aplic-corect-stratul-final-de-r-in",
+          "label": "Cum aplic corect stratul final de r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3244,8 +3776,30 @@
         "Timpul economisit prin omiterea unor granula\u021bii este, de regul\u0103, pierdut ulterior \u00eencerc\u00e2nd s\u0103 elimini defectele r\u0103mase"
       ],
       "problemSummary": "Salturile mari \u00eentre granula\u021bii reduc eficien\u021ba \u0219lefuirii \u0219i fac mult mai dificil\u0103 eliminarea zg\u00e2rieturilor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "discuri-abrazive",
+          "label": "Discuri abrazive"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+          "label": "De ce nu trebuie dep\u0103\u0219it\u0103 grosimea maxim\u0103 recomandat\u0103 pentru o turnare?"
+        },
+        {
+          "id": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "label": "Ce material este recomandat pentru construirea cofrajului?"
+        },
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3272,8 +3826,26 @@
         "Top Coating-ul este o etap\u0103 op\u021bional\u0103 \u0219i se utilizeaz\u0103 doar atunci c\u00e2nd aspectul proiectului o justific\u0103."
       ],
       "problemSummary": "Top Coating-ul este aplicarea unui strat final transparent de r\u0103\u0219in\u0103 peste \u00eentreaga suprafa\u021b\u0103 a proiectului pentru ob\u021binerea unui finisaj lucios \u0219i uniform.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "finisaj-lucios",
+          "label": "Finisaj lucios"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        },
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
+          "label": "Ce trebuie verificat imediat dup\u0103 aplicarea Top Coating-ului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3299,8 +3871,30 @@
       ],
       "prevention": [],
       "problemSummary": "Preg\u0103tirea corect\u0103 a piesei influen\u021beaz\u0103 uniformitatea stratului final de r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "sigilarea-lemnului",
+          "label": "Sigilarea lemnului"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        },
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        },
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
+          "label": "Ce trebuie verificat imediat dup\u0103 aplicarea Top Coating-ului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3329,10 +3923,34 @@
         "\u00cendep\u0103rtarea benzii dup\u0103 \u00eent\u0103rire elimin\u0103 \u0219i cea mai mare parte a pic\u0103turilor formate \u00een timpul scurgerii."
       ],
       "problemSummary": "Protejarea p\u0103r\u021bii inferioare reduce timpul necesar cur\u0103\u021b\u0103rii dup\u0103 \u00eent\u0103rirea r\u0103\u0219inii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "sedimentarea-pigmentului",
+          "label": "Sedimentarea pigmentului"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
+          "label": "De ce trebuie protejat\u0103 suprafa\u021ba interioar\u0103 a cofrajului?"
+        },
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
+      "requiredMaterials": [
+        "Band\u0103 adeziv\u0103 - Adeziv"
+      ],
       "requiredTools": [],
       "searchKeywords": [],
       "solution": [
@@ -3354,11 +3972,35 @@
       ],
       "prevention": [],
       "problemSummary": "Bariera temporar\u0103 permite distribuirea uniform\u0103 a r\u0103\u0219inii \u00eenainte ca aceasta s\u0103 curg\u0103 peste muchii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "nivelarea-cofrajului",
+          "label": "Nivelarea cofrajului"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "la-ce-folose-te-bariera-perimetral-de-silicon",
+          "label": "La ce folose\u0219te bariera perimetral\u0103 de silicon?"
+        },
+        {
+          "id": "de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect",
+          "label": "De ce r\u0103m\u00e2n urme de PAL, MDF sau band\u0103 adeziv\u0103 pe proiect?"
+        },
+        {
+          "id": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+          "label": "P\u00e2n\u0103 la ce granula\u021bie trebuie \u0219lefuit lemnul \u00eenainte de aplicarea uleiului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "Band\u0103 adeziv\u0103 - Adeziv"
+      ],
       "searchKeywords": [],
       "solution": [
         "Aplic\u0103 pe conturul superior o band\u0103 adeziv\u0103 ridicat\u0103 aproximativ 5\u201310 mm deasupra suprafe\u021bei \u0219i \u00eendep\u0103rteaz-o treptat dup\u0103 nivelarea r\u0103\u0219inii."
@@ -3382,8 +4024,30 @@
       ],
       "prevention": [],
       "problemSummary": "Top Coating-ul necesit\u0103 r\u0103\u0219ini formulate special pentru aplicarea \u00een straturi sub\u021biri.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "label": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        },
+        {
+          "id": "calculator-de-r-in",
+          "label": "Calculator de r\u0103\u0219in\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        },
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului",
+          "label": "Ce trebuie verificat imediat dup\u0103 aplicarea Top Coating-ului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3412,8 +4076,30 @@
         "Verific\u0103 permanent uniformitatea peliculei \u00een primele minute dup\u0103 aplicare."
       ],
       "problemSummary": "Aplicarea uniform\u0103 a r\u0103\u0219inii este esen\u021bial\u0103 pentru ob\u021binerea unui finisaj continuu \u0219i f\u0103r\u0103 defecte.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "scurgeri-de-r-in",
+          "label": "Scurgeri de r\u0103\u0219in\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aplic-corect-uleiul-pentru-lemn",
+          "label": "Cum aplic corect uleiul pentru lemn?"
+        },
+        {
+          "id": "cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire",
+          "label": "Cum \u0219lefuiesc stratul final de r\u0103\u0219in\u0103 \u00eenainte de lustruire?"
+        },
+        {
+          "id": "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
+          "label": "Cum preg\u0103tesc suprafa\u021ba dac\u0103 voi aplica un strat final transparent de r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3440,8 +4126,30 @@
       ],
       "prevention": [],
       "problemSummary": "Primele minute dup\u0103 turnare sunt importante pentru identificarea \u0219i corectarea eventualelor imperfec\u021biuni.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "polimerizare",
+          "label": "Polimerizare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-demulare",
+          "label": "Ce trebuie verificat imediat dup\u0103 demulare?"
+        },
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3470,8 +4178,38 @@
       ],
       "prevention": [],
       "problemSummary": "\u0218lefuirea progresiv\u0103 elimin\u0103 imperfec\u021biunile \u0219i preg\u0103te\u0219te suprafa\u021ba pentru lustruire.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lustruire",
+          "label": "Lustruire"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        },
+        {
+          "id": "lefuire-umed",
+          "label": "Slefuire umed\u0103"
+        },
+        {
+          "id": "lefuire-uscat",
+          "label": "Slefuire uscat\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aplic-corect-stratul-final-de-r-in",
+          "label": "Cum aplic corect stratul final de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
+          "label": "Cum preg\u0103tesc suprafa\u021ba dac\u0103 voi aplica un strat final transparent de r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3496,8 +4234,30 @@
       ],
       "prevention": [],
       "problemSummary": "Lustruirea elimin\u0103 microzg\u00e2rieturile r\u0103mase dup\u0103 \u0219lefuire \u0219i red\u0103 transparen\u021ba stratului de r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lustruire",
+          "label": "Lustruire"
+        },
+        {
+          "id": "lefuire",
+          "label": "Slefuire"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        },
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3527,8 +4287,30 @@
         "Decizia dintre un finisaj care formeaz\u0103 o pelicul\u0103 \u0219i unul pe baz\u0103 de ulei \u0219i cear\u0103 influen\u021beaz\u0103 at\u00e2t aspectul, c\u00e2t \u0219i \u00eentre\u021binerea proiectului."
       ],
       "problemSummary": "Nu exist\u0103 un finisaj potrivit pentru toate proiectele. Alegerea depinde de aspectul dorit, modul de utilizare \u0219i nivelul de protec\u021bie necesar.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "finisaj-satinat",
+          "label": "Finisaj satinat"
+        },
+        {
+          "id": "finisaj-lucios",
+          "label": "Finisaj lucios"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
+          "label": "Cum aleg r\u0103\u0219ina potrivit\u0103 pentru proiectul meu?"
+        },
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        },
+        {
+          "id": "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
+          "label": "C\u00e2nd este recomandat un finisaj care formeaz\u0103 o pelicul\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3555,8 +4337,30 @@
         "Pentru rezultate de calitate, aplicarea cu pistolul de pulverizare este de regul\u0103 cea mai bun\u0103 alegere."
       ],
       "problemSummary": "Lacurile \u0219i finisajele poliuretanice ofer\u0103 o protec\u021bie ridicat\u0103 \u00eempotriva apei, petelor \u0219i uzurii mecanice.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "finisaj-satinat",
+          "label": "Finisaj satinat"
+        },
+        {
+          "id": "finisaj-lucios",
+          "label": "Finisaj lucios"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        },
+        {
+          "id": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "label": "Ce tip de finisaj ar trebui s\u0103 aleg pentru proiectul meu?"
+        },
+        {
+          "id": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
+          "label": "Cum \u00eentre\u021bin \u00een timp un finisaj cu ulei \u0219i cear\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3583,8 +4387,30 @@
         "Acest tip de finisaj pune \u00een valoare contrastul \u0219i profunzimea fibrei lemnului."
       ],
       "problemSummary": "Finisajele pe baz\u0103 de ulei \u0219i cear\u0103 p\u0103streaz\u0103 aspectul \u0219i textura natural\u0103 a lemnului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cear-de-protec-ie",
+          "label": "Cear\u0103 de protec\u021bie"
+        },
+        {
+          "id": "ulei-pentru-lemn",
+          "label": "Ulei pentru lemn"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
+          "label": "Cum \u00eentre\u021bin \u00een timp un finisaj cu ulei \u0219i cear\u0103?"
+        },
+        {
+          "id": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "label": "Ce tip de finisaj ar trebui s\u0103 aleg pentru proiectul meu?"
+        },
+        {
+          "id": "c-te-straturi-de-ulei-trebuie-aplicate",
+          "label": "C\u00e2te straturi de ulei trebuie aplicate?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3609,8 +4435,30 @@
       ],
       "prevention": [],
       "problemSummary": "Uleiul trebuie aplicat \u00een straturi sub\u021biri pentru a impregna lemnul uniform.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "ulei-pentru-lemn",
+          "label": "Ulei pentru lemn"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "label": "Turnare \u00een straturi"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aplic-corect-stratul-final-de-r-in",
+          "label": "Cum aplic corect stratul final de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "cum-se-aplic-corect-ceara-pentru-lemn",
+          "label": "Cum se aplic\u0103 corect ceara pentru lemn?"
+        },
+        {
+          "id": "care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase",
+          "label": "Care este diferen\u021ba dintre r\u0103\u0219inile pentru straturi sub\u021biri \u0219i cele pentru turn\u0103ri groase?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3637,8 +4485,26 @@
       ],
       "prevention": [],
       "problemSummary": "Num\u0103rul optim de straturi difer\u0103 \u00een func\u021bie de esen\u021ba lemnului \u0219i de capacitatea sa de absorb\u021bie.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare-n-straturi",
+          "label": "Turnare \u00een straturi"
+        },
+        {
+          "id": "ulei-pentru-lemn",
+          "label": "Ulei pentru lemn"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aplic-corect-uleiul-pentru-lemn",
+          "label": "Cum aplic corect uleiul pentru lemn?"
+        },
+        {
+          "id": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+          "label": "P\u00e2n\u0103 la ce granula\u021bie trebuie \u0219lefuit lemnul \u00eenainte de aplicarea uleiului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3664,8 +4530,30 @@
       ],
       "prevention": [],
       "problemSummary": "Ceara completeaz\u0103 protec\u021bia oferit\u0103 de ulei \u0219i contribuie la aspectul final al suprafe\u021bei.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "ulei-pentru-lemn",
+          "label": "Ulei pentru lemn"
+        },
+        {
+          "id": "cear-de-protec-ie",
+          "label": "Cear\u0103 de protec\u021bie"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aplic-corect-uleiul-pentru-lemn",
+          "label": "Cum aplic corect uleiul pentru lemn?"
+        },
+        {
+          "id": "cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
+          "label": "Cum se realizeaz\u0103 lustruirea dup\u0103 aplicarea cerii?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3692,8 +4580,30 @@
       ],
       "prevention": [],
       "problemSummary": "Lustruirea uniformizeaz\u0103 stratul de cear\u0103 \u0219i confer\u0103 suprafe\u021bei un aspect neted \u0219i un luciu natural.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "lustruire",
+          "label": "Lustruire"
+        },
+        {
+          "id": "disc-de-p-sl",
+          "label": "Disc de p\u00e2sl\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "label": "Cum se realizeaz\u0103 corect turn\u0103rile intermediare?"
+        },
+        {
+          "id": "cum-se-aplic-corect-ceara-pentru-lemn",
+          "label": "Cum se aplic\u0103 corect ceara pentru lemn?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3722,8 +4632,30 @@
         "\u00centre\u021binerea periodic\u0103 prelunge\u0219te semnificativ durata de via\u021b\u0103 a finisajului \u0219i p\u0103streaz\u0103 aspectul natural al lemnului f\u0103r\u0103 a fi necesar\u0103 decaparea complet\u0103."
       ],
       "problemSummary": "Finisajele pe baz\u0103 de ulei \u0219i cear\u0103 pot fi \u00eentre\u021binute u\u0219or f\u0103r\u0103 refacerea complet\u0103 a suprafe\u021bei.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cear-de-protec-ie",
+          "label": "Cear\u0103 de protec\u021bie"
+        },
+        {
+          "id": "ulei-pentru-lemn",
+          "label": "Ulei pentru lemn"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
+          "label": "De ce aleg mul\u021bi constructori finisarea cu ulei \u0219i cear\u0103?"
+        },
+        {
+          "id": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "label": "Ce tip de finisaj ar trebui s\u0103 aleg pentru proiectul meu?"
+        },
+        {
+          "id": "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
+          "label": "C\u00e2nd este recomandat un finisaj care formeaz\u0103 o pelicul\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3749,8 +4681,34 @@
       ],
       "prevention": [],
       "problemSummary": "Nu este necesar un atelier industrial pentru realizarea primelor proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103. Un set de echipamente de baz\u0103 este suficient pentru majoritatea lucr\u0103rilor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "frez",
+          "label": "Frez\u0103"
+        },
+        {
+          "id": "amestecare",
+          "label": "Amestecare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic",
+          "label": "Care sunt cele mai frecvente gre\u0219eli ale \u00eencep\u0103torilor \u00een proiectele cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
+          "label": "Care este cea mai precis\u0103 metod\u0103 de calibrare a unei piese cu r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3780,8 +4738,30 @@
       ],
       "prevention": [],
       "problemSummary": "Majoritatea problemelor nu sunt provocate de materialele folosite, ci de graba \u0219i lipsa unei planific\u0103ri corecte.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "aderen",
+          "label": "Aderen\u021b\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
+          "label": "De ce echipament minim am nevoie pentru a \u00eencepe s\u0103 lucrez cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in",
+          "label": "Care este cea mai precis\u0103 metod\u0103 de calibrare a unei piese cu r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -3812,8 +4792,26 @@
         "Un atelier bine organizat reduce riscul apari\u021biei defectelor \u0219i face \u00eentregul proces de lucru mai eficient."
       ],
       "problemSummary": "Organizarea atelierului influen\u021beaz\u0103 direct calitatea \u0219i eficien\u021ba lucrului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "banc-de-lucru",
+          "label": "Banc de lucru"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
+          "label": "Cum \u00eentre\u021bin \u00een timp un finisaj cu ulei \u0219i cear\u0103?"
+        },
+        {
+          "id": "cum-aplic-corect-uleiul-pentru-lemn",
+          "label": "Cum aplic corect uleiul pentru lemn?"
+        },
+        {
+          "id": "cum-influen-eaz-temperatura-turnarea-r-inii",
+          "label": "Cum influen\u021beaz\u0103 temperatura turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
