@@ -17,6 +17,7 @@ describe("StringListEditor", () => {
     );
 
     expect(screen.getByLabelText("Symptoms row 1")).toHaveValue("First symptom");
+    expect(screen.getByLabelText("Symptoms row 1")).toHaveAttribute("rows", "2");
 
     await user.click(screen.getByRole("button", { name: "Add row" }));
     expect(onChange).toHaveBeenCalledWith(["First symptom", ""]);

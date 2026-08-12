@@ -4543,7 +4543,7 @@ button.workspace-sidebar__link {
 .kb-admin__field select,
 .kb-admin__field input,
 .kb-admin__field textarea,
-.kb-admin__list-editor-rows input {
+.kb-admin__list-editor-rows textarea {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid #d8cdb8;
@@ -4554,10 +4554,17 @@ button.workspace-sidebar__link {
 
 .kb-admin__field textarea {
   box-sizing: border-box;
-  min-height: 360px;
+  min-height: calc(3 * 1.6em + 16px);
   line-height: 1.6;
   resize: vertical;
   overflow-y: auto;
+}
+
+.kb-admin__list-editor-rows textarea {
+  box-sizing: border-box;
+  min-height: calc(2 * 1.6em + 16px);
+  line-height: 1.6;
+  resize: vertical;
 }
 
 .kb-admin__list-editor-header {
@@ -5010,6 +5017,11 @@ button.workspace-sidebar__link {
   padding: 10px 12px;
   border: none;
   background: #fff;
+}
+
+.kb-admin__reference-picker-group .editorial-reference-picker__options {
+  max-height: 360px;
+  overflow-y: auto;
 }
 
 .editorial-media-panel__toolbar {

@@ -47,8 +47,8 @@ export default function StringListEditor({
       <ul className="kb-admin__list-editor-rows">
         {items.map((item, index) => (
           <li key={`${label}-${index}`}>
-            <input
-              type="text"
+            <textarea
+              rows={2}
               aria-label={`${label} row ${index + 1}`}
               value={item}
               onChange={(event) => updateItem(index, event.target.value)}

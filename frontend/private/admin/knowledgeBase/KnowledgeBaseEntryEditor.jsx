@@ -54,7 +54,7 @@ export default function KnowledgeBaseEntryEditor({ editorState, onChange, disabl
       <label className="kb-admin__field kb-admin__field--wide">
         <span className="kb-admin__field-label">Problem Summary</span>
         <textarea
-          rows={15}
+          rows={3}
           value={editorState.problemSummary}
           onChange={(event) => patch({ problemSummary: event.target.value })}
           disabled={disabled}

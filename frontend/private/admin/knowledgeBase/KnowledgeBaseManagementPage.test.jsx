@@ -429,6 +429,8 @@ describe("Knowledge base management workspace (Task 61)", () => {
 
     await user.selectOptions(screen.getByLabelText("Category"), "Wood");
     await user.selectOptions(screen.getByLabelText("Difficulty"), "Intermediate");
+    expect(screen.getByLabelText("Problem summary")).toHaveAttribute("rows", "3");
+    expect(screen.getByLabelText("Solution row 1")).toHaveAttribute("rows", "2");
     await user.type(screen.getByLabelText("Problem summary"), "Resin stays tacky after cure.");
     await user.type(screen.getByLabelText("Solution row 1"), "Check mixing ratio.");
     await user.click(screen.getByRole("button", { name: "Save draft" }));

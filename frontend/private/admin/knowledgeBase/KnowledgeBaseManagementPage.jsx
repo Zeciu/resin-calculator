@@ -187,7 +187,7 @@ export default function KnowledgeBaseManagementPage() {
             onChange={(patch) => workspace.setEditorState((prev) => ({ ...prev, ...patch }))}
             disabled={workspace.isSaving}
           />
-          <div className="editorial-reference-picker-group">
+          <div className="editorial-reference-picker-group kb-admin__reference-picker-group">
             <CrossReferencePicker
               label="Related Knowledge Base Articles"
               selected={workspace.editorState.relatedKbSelected}
