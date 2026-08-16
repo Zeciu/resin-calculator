@@ -383,6 +383,10 @@ describe("Website management editors (Stage 5B)", () => {
     await screen.findByLabelText("Hero title");
     await user.type(screen.getByLabelText("Hero title"), "HFZWood");
     await user.type(screen.getByLabelText("Subtitle"), "Subtitle");
+    await user.type(
+      screen.getByLabelText("Main card content"),
+      "Calculate from the actual shape\nSupporting copy.",
+    );
 
     expect(screen.getByRole("button", { name: "Save draft" })).toBeEnabled();
     await user.click(screen.getByRole("button", { name: "Save draft" }));
@@ -391,6 +395,9 @@ describe("Website management editors (Stage 5B)", () => {
       expect(screen.queryByText(/Unsaved changes/i)).not.toBeInTheDocument();
     });
     expect(memoryApi.getVariant("home", "ro")?.body.publicTitle).toBe("HFZWood");
+    expect(memoryApi.getVariant("home", "ro")?.body.description).toBe(
+      "Calculate from the actual shape\nSupporting copy.",
+    );
   });
 
   it("publishes and unpublishes a saved home page", async () => {

@@ -100,6 +100,33 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     expect(first).not.toBe(second);
   });
 
+  it("renders titled Home card blocks without changing the video source", async () => {
+    publishHome({
+      description:
+        "Intro copy.\n\nCalculate from the actual shape\nSupporting benefit copy.\n\nOwnership note.",
+      video: { url: "https://www.youtube.com/watch?v=abc123xyz", visible: true },
+    });
+    renderWorkspace(ROUTES.HOME);
+
+    await waitFor(() => {
+      expect(screen.getByText("Intro copy.")).toBeInTheDocument();
+    });
+    expect(screen.getByRole("heading", { name: "Calculate from the actual shape", level: 2 })).toBeInTheDocument();
+    expect(screen.getByText("Supporting benefit copy.")).toBeInTheDocument();
+    expect(screen.getByText("Ownership note.")).toBeInTheDocument();
+    expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
+    expect(
+      screen
+        .getByRole("heading", { name: "Calculate from the actual shape", level: 2 })
+        .closest(".public-home__description--followup"),
+    ).not.toBeNull();
+    expect(screen.getByText("Ownership note.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByTitle("Home video")).toHaveAttribute(
+      "src",
+      "https://www.youtube.com/embed/abc123xyz",
+    );
+  });
+
   it("replaces authenticated marketing body with the same CMS description", async () => {
     seedAuthenticatedSession();
     publishHome({ description: "Shared CMS Description" });

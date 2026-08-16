@@ -43,13 +43,17 @@ export default function HomePageEditor({ body, onChange, disabled = false }) {
         />
       </label>
       <label className="manual-admin__field">
-        <span className="manual-admin__field-label">Short description</span>
+        <span className="manual-admin__field-label">Main card content</span>
         <textarea
+          aria-label="Main card content"
           value={body.description ?? ""}
           onChange={(event) => updateField("description", event.target.value)}
           disabled={disabled}
           rows={15}
         />
+        <span className="website-page-editor__hint">
+          Separate blocks with blank lines. Use a title on the first line and supporting text on the next line for a titled benefit.
+        </span>
       </label>
       <WebsiteImageField
         label="Hero image"

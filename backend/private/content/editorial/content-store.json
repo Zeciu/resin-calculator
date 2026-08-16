@@ -20198,7 +20198,7 @@
       "sk": "META",
       "slug": "/",
       "sortOrder": 100,
-      "updatedAt": "2026-07-23T07:43:24.886866+00:00"
+      "updatedAt": "2026-08-16T10:31:46.481024+00:00"
     },
     "CONTENT#website_page#home|VARIANT#en": {
       "contentId": "home",
@@ -20208,7 +20208,7 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood turns a simple photo into a precise and easy-to-use calculation tool. The app guides you step by step through defining the pouring area and excluding wood islands and cavities, providing you with a reliable estimate that helps you plan your materials correctly, reduce waste, and start each project with greater confidence.\n\nMore than just a calculator, HFZWood is a platform dedicated to enthusiasts and professionals who work with wood and epoxy resin. In addition to the calculation tools, you have access to a comprehensive User Manual, video tutorials explaining each step of the workflow, a Glossary of industry terms, and a constantly expanding Knowledge Base that brings together practical information, recommendations, and answers to frequently asked questions.\n\nWhether you\u2019re working on your first project or already have experience with epoxy resin casting, HFZWood provides you with the tools and information you need to work more efficiently, make decisions based on accurate estimates, and achieve consistent results from one project to the next.",
+        "description": "Calculate resin requirements based on the actual shape of your project\nHFZWood helps you estimate the amount of resin needed for projects where irregular shapes, natural wood edges, gaps, and cavities make a standard geometric calculation difficult. Start with a photo of the piece, define the pouring area and actual dimensions, and the app transforms the project\u2019s geometry into an easy-to-follow volume calculation.\n\n\n\nFrom estimation to pouring planning\nYou can exclude wood islands and areas that won\u2019t be filled with resin from the calculation, work with multiple depths, and divide the project into successive pours. HFZWood calculates the volumes and quantities required for the resin components, so you can plan your materials before starting the pour and reduce guesswork, excess, and waste.\n\nSave the project, not just the result of a calculation\nA project can be saved and reopened for verification, modifications, or subsequent stages of the work. Instead of a calculator that you use once and then close, HFZWood keeps the project\u2019s geometry, dimensions, and calculations all in one place, so you can refer back to them throughout the project.\n\nTools and information all in one place\nHFZWood doesn\u2019t stop at calculations. The manual and tutorials explain how to use the application; the Glossary clarifies terms specific to working with wood and epoxy resin, and the Knowledge Base brings together practical information on preparation, sealing, pouring, bubbles, exothermic reactions, curing, common problems, and finishing. When a question arises during your project, the information you need stays right there in your workspace.\n\nYour projects remain yours\nHFZWood is built around a simple idea: your work belongs to you. A project created while you have an active subscription remains yours and can be opened, edited, and continued at any time, even if your subscription later expires. The limitations of the Free plan apply to new projects, not to the work you\u2019ve already done. You don\u2019t have to keep a subscription just to continue working on your own projects.",
         "image": {
           "alt": "",
           "src": "",
@@ -20222,17 +20222,17 @@
           "visible": true
         }
       },
-      "generatedAt": "2026-07-22T21:10:49.895561+00:00",
-      "generatedFromSourceRevision": 12,
-      "generatedFromSourceTextRevision": 10,
+      "generatedAt": "2026-08-16T10:31:38.810230+00:00",
+      "generatedFromSourceRevision": 14,
+      "generatedFromSourceTextRevision": 12,
       "locale": "en",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-07-22T21:13:17.201990+00:00",
+      "publishedAt": "2026-08-16T10:31:46.481024+00:00",
       "sk": "VARIANT#en",
       "snapshotKey": "published/website/en/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-07-22T21:13:17.201990+00:00"
+      "updatedAt": "2026-08-16T10:31:46.481024+00:00"
     },
     "CONTENT#website_page#home|VARIANT#es": {
       "contentId": "home",
@@ -20344,7 +20344,7 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood transform\u0103 o simpl\u0103 fotografie \u00eentr-un instrument de calcul precis \u0219i u\u0219or de utilizat. Aplica\u021bia te ghideaz\u0103 pas cu pas \u00een definirea zonei de turnare, excluderea insulelor de lemn \u0219i a cavit\u0103\u021bilor, oferindu-\u021bi o estimare de \u00eencredere care te ajut\u0103 s\u0103 planifici corect materialele, s\u0103 reduci pierderile \u0219i s\u0103 \u00eencepi fiecare proiect cu mai mult\u0103 \u00eencredere.\n\nMai mult dec\u00e2t un simplu calculator, HFZWood este o platform\u0103 dedicat\u0103 pasiona\u021bilor \u0219i profesioni\u0219tilor care lucreaz\u0103 cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103. Pe l\u00e2ng\u0103 instrumentele de calcul, ai acces la un Manual complet de utilizare, tutoriale video care explic\u0103 fiecare etap\u0103 a fluxului de lucru, un Glosar cu termenii utiliza\u021bi \u00een domeniu \u0219i o Knowledge Base aflat\u0103 \u00een continu\u0103 dezvoltare, care reune\u0219te informa\u021bii practice, recomand\u0103ri \u0219i r\u0103spunsuri la \u00eentreb\u0103rile frecvente.\n\nIndiferent dac\u0103 realizezi primul t\u0103u proiect sau ai deja experien\u021b\u0103 \u00een turn\u0103rile cu r\u0103\u0219in\u0103 epoxidic\u0103, HFZWood \u00ee\u021bi ofer\u0103 instrumentele \u0219i informa\u021biile necesare pentru a lucra mai organizat, a lua decizii bazate pe estim\u0103ri corecte \u0219i a ob\u021bine rezultate predictibile de la un proiect la altul.",
+        "description": "Calculeaz\u0103 necesarul de r\u0103\u0219in\u0103 pornind de la forma real\u0103 a proiectului\nHFZWood te ajut\u0103 s\u0103 estimezi cantitatea de r\u0103\u0219in\u0103 necesar\u0103 pentru proiecte \u00een care formele neregulate, marginile naturale ale lemnului, golurile \u0219i cavit\u0103\u021bile fac dificil un calcul geometric obi\u0219nuit. Porne\u0219ti de la o fotografie a piesei, define\u0219ti zona de turnare \u0219i dimensiunile reale, iar aplica\u021bia transform\u0103 geometria proiectului \u00eentr-un calcul de volum u\u0219or de urm\u0103rit.\n\n\n\nDe la estimare la planificarea turn\u0103rii\nPo\u021bi exclude din calcul insulele de lemn \u0219i zonele care nu vor fi umplute cu r\u0103\u0219in\u0103, po\u021bi lucra cu mai multe ad\u00e2ncimi \u0219i po\u021bi \u00eemp\u0103r\u021bi proiectul \u00een turn\u0103ri succesive. HFZWood calculeaz\u0103 volumele \u0219i cantit\u0103\u021bile necesare pentru componentele r\u0103\u0219inii, astfel \u00eenc\u00e2t s\u0103 po\u021bi planifica materialul \u00eenainte de a \u00eencepe turnarea \u0219i s\u0103 reduci aproxima\u021biile, surplusul \u0219i risipa.\n\nP\u0103streaz\u0103 proiectul, nu doar rezultatul unui calcul\nUn proiect poate fi salvat \u0219i redeschis pentru verific\u0103ri, modific\u0103ri sau etapele urm\u0103toare ale lucr\u0103rii. \u00cen locul unui calculator pe care \u00eel folose\u0219ti o dat\u0103 \u0219i \u00eel \u00eenchizi, HFZWood p\u0103streaz\u0103 la un loc geometria, dimensiunile \u0219i calculele proiectului, astfel \u00eenc\u00e2t s\u0103 po\u021bi reveni la ele pe parcursul lucr\u0103rii.\n\nInstrumente \u0219i informa\u021bii \u00een acela\u0219i loc\nHFZWood nu se opre\u0219te la calcul. Manualul \u0219i tutorialele explic\u0103 modul de utilizare al aplica\u021biei, Glosarul clarific\u0103 termenii specifici lucrului cu lemn \u0219i r\u0103\u0219in\u0103 epoxidic\u0103, iar Baza de cuno\u0219tin\u021be reune\u0219te informa\u021bii practice despre preg\u0103tire, etan\u0219are, turnare, bule, reac\u021bii exotermice, \u00eent\u0103rire, probleme frecvente \u0219i finisare. C\u00e2nd apare o \u00eentrebare \u00een timpul proiectului, informa\u021bia de care ai nevoie r\u0103m\u00e2ne \u00een acela\u0219i spa\u021biu de lucru.\n\nProiectele tale r\u0103m\u00e2n ale tale\nHFZWood este construit \u00een jurul unei idei simple: munca ta \u00ee\u021bi apar\u021bine. Un proiect creat \u00een perioada \u00een care ai un abonament activ r\u0103m\u00e2ne al t\u0103u \u0219i poate fi deschis, modificat \u0219i continuat oric\u00e2nd, chiar dac\u0103 ulterior abonamentul expir\u0103. Limit\u0103rile planului Free se aplic\u0103 proiectelor noi, nu muncii pe care ai realizat-o deja. Nu trebuie s\u0103 p\u0103strezi un abonament doar pentru a continua s\u0103 lucrezi la propriile proiecte.",
         "image": {
           "alt": "",
           "src": "",
@@ -20360,13 +20360,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-07-22T15:56:20.507954+00:00",
+      "publishedAt": "2026-08-16T10:18:03.005290+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/website/ro/pages.json",
-      "sourceRevision": 12,
-      "sourceTextRevision": 10,
+      "sourceRevision": 14,
+      "sourceTextRevision": 12,
       "status": "published",
-      "updatedAt": "2026-07-22T15:56:20.507954+00:00"
+      "updatedAt": "2026-08-16T10:18:03.005290+00:00"
     },
     "CONTENT#website_page#pricing|META": {
       "adminLabel": "Pricing",
