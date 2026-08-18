@@ -77,8 +77,8 @@ function emptyBodyForPage(pageKey) {
       intro: "",
       offers: [
         { id: "free", title: "", displayedPriceText: "", benefits: [], ctaLabel: "", ctaDestination: "", visible: true },
-        { id: "subscriber", title: "", displayedPriceText: "", benefits: [], ctaLabel: "", ctaDestination: "", visible: true },
-        { id: "lifetime", title: "", displayedPriceText: "", benefits: [], ctaLabel: "", ctaDestination: "", visible: true },
+        { id: "monthly", title: "", displayedPriceText: "", benefits: [], ctaLabel: "", ctaDestination: "", visible: true },
+        { id: "annual", title: "", displayedPriceText: "", benefits: [], ctaLabel: "", ctaDestination: "", visible: true },
       ],
       footnote: "",
     };
@@ -460,8 +460,8 @@ describe("Website management editors (Stage 5B)", () => {
     await user.click(within(sidebar).getByRole("button", { name: "Pricing" }));
 
     expect(screen.getByRole("article", { name: "Free plan" })).toBeInTheDocument();
-    expect(screen.getByRole("article", { name: "Subscriber plan" })).toBeInTheDocument();
-    expect(screen.getByRole("article", { name: "Lifetime plan" })).toBeInTheDocument();
+    expect(screen.getByRole("article", { name: "Monthly plan" })).toBeInTheDocument();
+    expect(screen.getByRole("article", { name: "Annual plan" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Add plan/i })).not.toBeInTheDocument();
   });
 

@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockPublishedKnowledgeBaseFetch } from "../knowledgeBase/knowledgeBaseTestHelpers.js";
@@ -111,6 +111,30 @@ describe("KnowledgeBasePage", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("shows an accessible back-to-top button after page scrolling and returns to the top", async () => {
+    Object.defineProperty(window, "scrollY", { configurable: true, value: 0, writable: true });
+    const scrollTo = vi.fn();
+    Object.defineProperty(window, "scrollTo", { configurable: true, value: scrollTo, writable: true });
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    expect(screen.queryByRole("button", { name: "Back to top" })).not.toBeInTheDocument();
+
+    window.scrollY = 601;
+    fireEvent.scroll(window);
+    const backToTop = screen.getByRole("button", { name: "Back to top" });
+    expect(backToTop).toHaveAttribute("title", "Back to top");
+
+    await user.click(backToTop);
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
+
+    window.scrollY = 0;
+    fireEvent.scroll(window);
+    expect(screen.queryByRole("button", { name: "Back to top" })).not.toBeInTheDocument();
+  });
+
   it("filters entries immediately from the search field", async () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();
@@ -152,7 +176,7 @@ describe("KnowledgeBasePage", () => {
       "aria-expanded",
       "true",
     );
-    expect(screen.getByRole("heading", { name: "Solution", level: 4 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Solution", level: 3 })).toBeInTheDocument();
     expect(screen.getByText(/Verify the manufacturer mixing ratio/i)).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Cloudy epoxy" }));
@@ -252,12 +276,43 @@ describe("KnowledgeBasePage", () => {
 
     await user.click(screen.getByRole("button", { name: "Resin remains sticky" }));
     const expandedEntry = document.getElementById("knowledge-base-entry-sticky-resin-after-cure");
+    expect(within(expandedEntry).getByRole("heading", { name: "Related Articles", level: 3 })).toBeInTheDocument();
+    expect(within(expandedEntry).getByRole("heading", { name: "Glossary", level: 3 })).toBeInTheDocument();
+    expect(within(expandedEntry).getByRole("heading", { name: "Manual", level: 3 })).toBeInTheDocument();
     expect(within(expandedEntry).getByRole("button", { name: "Cloudy epoxy" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Pot life" })).toHaveAttribute(
       "href",
       "/glossary#glossary-entry-pot-life",
     );
     expect(screen.getByRole("link", { name: "Mixing basics" })).toBeInTheDocument();
+  });
+
+  it("uses populated semantic cards and omits cards without content", async () => {
+    mockPublishedKnowledgeBaseFetch([
+      {
+        id: "solution-only",
+        title: "Solution-only article",
+        problemSummary: "",
+        symptoms: [],
+        possibleCauses: [],
+        solution: ["Use the existing solution."],
+        prevention: [],
+        tips: [],
+        warnings: [],
+      },
+    ]);
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    await user.click(screen.getByRole("button", { name: "Solution-only article" }));
+
+    const article = document.getElementById("knowledge-base-entry-solution-only");
+    expect(within(article).getByRole("heading", { name: "Solution", level: 3 })).toBeInTheDocument();
+    expect(article.querySelectorAll(".knowledge-base-entry__card")).toHaveLength(1);
+    expect(within(article).queryByRole("heading", { name: "Possible Causes", level: 3 })).not.toBeInTheDocument();
+    expect(within(article).queryByRole("heading", { name: "Prevention", level: 3 })).not.toBeInTheDocument();
   });
 
   it("navigates from a related glossary term to the exact glossary entry", async () => {

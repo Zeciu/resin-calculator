@@ -34,7 +34,7 @@ import { getKnowledgeBaseEntryElementId } from "./knowledgeBaseFilter.js";
 export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavigateToEntry }) {
   const { t } = useI18n();
   const indicator = isExpanded ? "−" : "+";
-  const hasPrepMeta =
+  const hasSupportInformation =
     entry.estimatedRepairTime ||
     (entry.requiredTools?.length ?? 0) > 0 ||
     (entry.requiredMaterials?.length ?? 0) > 0;
@@ -45,7 +45,7 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
 
   return (
     <article className="knowledge-base-entry" id={getKnowledgeBaseEntryElementId(entry.id)}>
-      <h3 className="knowledge-base-entry__heading">
+      <h2 className="knowledge-base-entry__heading">
         <button
           type="button"
           className="knowledge-base-entry__toggle"
@@ -57,118 +57,131 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
           </span>
           <span className="knowledge-base-entry__title">{entry.title}</span>
         </button>
-      </h3>
+      </h2>
       {isExpanded ? (
         <div className="knowledge-base-entry__body">
-          <div className="knowledge-base-entry__columns">
+          {entry.problemSummary ? (
+            <p className="knowledge-base-entry__lead">{entry.problemSummary}</p>
+          ) : null}
+          <div className="knowledge-base-entry__cards">
             {entry.problemSummary || (entry.symptoms?.length ?? 0) > 0 ? (
-              <div className="knowledge-base-entry__column">
+              <KnowledgeBaseCard
+                type="problem"
+                title={t("knowledgeBase.problemSummary")}
+              >
                 {entry.problemSummary ? (
-                  <KnowledgeBaseSection title={t("knowledgeBase.problemSummary")}>
-                    <p className="knowledge-base-entry__paragraph">{entry.problemSummary}</p>
-                  </KnowledgeBaseSection>
+                  <p className="knowledge-base-entry__paragraph">{entry.problemSummary}</p>
                 ) : null}
                 <KnowledgeBaseListSection
                   title={t("knowledgeBase.symptoms")}
                   items={entry.symptoms ?? []}
                 />
-              </div>
+              </KnowledgeBaseCard>
             ) : null}
-            {(entry.possibleCauses?.length ?? 0) > 0 || (entry.solution?.length ?? 0) > 0 ? (
-              <div className="knowledge-base-entry__column">
-                <KnowledgeBaseListSection
-                  title={t("knowledgeBase.possibleCauses")}
-                  items={entry.possibleCauses ?? []}
-                />
-                <KnowledgeBaseListSection
-                  title={t("knowledgeBase.solution")}
-                  items={entry.solution ?? []}
-                />
-              </div>
+            {(entry.possibleCauses?.length ?? 0) > 0 ? (
+              <KnowledgeBaseCard type="causes" title={t("knowledgeBase.possibleCauses")}>
+                <KnowledgeBaseList items={entry.possibleCauses ?? []} />
+              </KnowledgeBaseCard>
+            ) : null}
+            {(entry.solution?.length ?? 0) > 0 ? (
+              <KnowledgeBaseCard type="solution" title={t("knowledgeBase.solution")}>
+                <KnowledgeBaseList items={entry.solution ?? []} />
+              </KnowledgeBaseCard>
             ) : null}
             {(entry.prevention?.length ?? 0) > 0 ||
             (entry.tips?.length ?? 0) > 0 ||
             (entry.warnings?.length ?? 0) > 0 ? (
-              <div className="knowledge-base-entry__column">
-                <KnowledgeBaseListSection title="Prevention" items={entry.prevention ?? []} />
+              <KnowledgeBaseCard type="prevention" title={t("knowledgeBase.prevention")}>
+                <KnowledgeBaseList items={entry.prevention ?? []} />
                 <KnowledgeBaseListSection title={t("knowledgeBase.tips")} items={entry.tips ?? []} />
                 <KnowledgeBaseListSection
                   title={t("knowledgeBase.warnings")}
                   items={entry.warnings ?? []}
                   isWarning
                 />
-              </div>
+              </KnowledgeBaseCard>
             ) : null}
           </div>
-          {hasPrepMeta ? (
-            <div className="knowledge-base-entry__meta">
-              {entry.estimatedRepairTime ? (
-                <p>
-                  <span className="knowledge-base-entry__meta-label">Estimated repair time:</span>{" "}
-                  {entry.estimatedRepairTime}
-                </p>
-              ) : null}
-              {(entry.requiredTools?.length ?? 0) > 0 ? (
-                <p>
-                  <span className="knowledge-base-entry__meta-label">Tools:</span>{" "}
-                  {entry.requiredTools.join(", ")}
-                </p>
-              ) : null}
-              {(entry.requiredMaterials?.length ?? 0) > 0 ? (
-                <p>
-                  <span className="knowledge-base-entry__meta-label">Materials:</span>{" "}
-                  {entry.requiredMaterials.join(", ")}
-                </p>
-              ) : null}
-            </div>
-          ) : null}
           {entry.media?.map((block, index) => (
             <KnowledgeBaseEntryMedia key={`${entry.id}-media-${index}`} block={block} />
           ))}
+          {hasSupportInformation ? (
+            <section className="knowledge-base-entry__support">
+              <h3 className="knowledge-base-entry__support-title">
+                {t("knowledgeBase.supportInformation")}
+              </h3>
+              {entry.estimatedRepairTime ? (
+                <p className="knowledge-base-entry__estimated-time">
+                  <span className="knowledge-base-entry__support-label">
+                    {t("knowledgeBase.estimatedRepairTime")}:
+                  </span>{" "}
+                  {entry.estimatedRepairTime}
+                </p>
+              ) : null}
+              <div className="knowledge-base-entry__support-grid">
+                <KnowledgeBaseSupportList
+                  title={t("knowledgeBase.tools")}
+                  items={entry.requiredTools ?? []}
+                />
+                <KnowledgeBaseSupportList
+                  title={t("knowledgeBase.materials")}
+                  items={entry.requiredMaterials ?? []}
+                />
+              </div>
+            </section>
+          ) : null}
           {hasRelationships ? (
             <div className="knowledge-base-entry__relationships">
               {(entry.relatedKbArticles?.length ?? 0) > 0 ? (
-                <p className="knowledge-base-entry__meta">
-                  <span className="knowledge-base-entry__meta-label">Related articles:</span>{" "}
-                  {entry.relatedKbArticles.map((item, index) => (
-                    <span key={item.id}>
-                      {index > 0 ? ", " : null}
+                <section className="knowledge-base-entry__relationship-group">
+                  <h3 className="knowledge-base-entry__relationship-title">
+                    {t("knowledgeBase.relatedArticles")}
+                  </h3>
+                  <div className="knowledge-base-entry__related-kb-links">
+                    {entry.relatedKbArticles.map((item) => (
                       <button
+                        key={item.id}
                         type="button"
-                        className="knowledge-base-entry__meta-link"
+                        className="knowledge-base-entry__related-kb-link"
                         onClick={() => onNavigateToEntry?.(item.id)}
                       >
                         {item.label}
                       </button>
-                    </span>
-                  ))}
-                </p>
+                    ))}
+                  </div>
+                </section>
               ) : null}
               {(entry.relatedGlossaryTerms?.length ?? 0) > 0 ? (
-                <p className="knowledge-base-entry__meta">
-                  <span className="knowledge-base-entry__meta-label">Glossary:</span>{" "}
-                  {entry.relatedGlossaryTerms.map((item, index) => (
-                    <span key={item.id}>
-                      {index > 0 ? ", " : null}
-                      <Link className="knowledge-base-entry__meta-link" to={`/glossary#glossary-entry-${item.id}`}>
+                <section className="knowledge-base-entry__relationship-group">
+                  <h3 className="knowledge-base-entry__relationship-title">
+                    {t("knowledgeBase.glossary")}
+                  </h3>
+                  <div className="knowledge-base-entry__relationship-links">
+                    {entry.relatedGlossaryTerms.map((item) => (
+                      <Link
+                        key={item.id}
+                        className="knowledge-base-entry__relationship-link"
+                        to={`/glossary#glossary-entry-${item.id}`}
+                      >
                         {item.label}
                       </Link>
-                    </span>
-                  ))}
-                </p>
+                    ))}
+                  </div>
+                </section>
               ) : null}
               {(entry.relatedManualChapters?.length ?? 0) > 0 ? (
-                <p className="knowledge-base-entry__meta">
-                  <span className="knowledge-base-entry__meta-label">Manual:</span>{" "}
-                  {entry.relatedManualChapters.map((item, index) => (
-                    <span key={item.id}>
-                      {index > 0 ? ", " : null}
-                      <Link className="knowledge-base-entry__meta-link" to={`/manual#${item.id}`}>
+                <section className="knowledge-base-entry__relationship-group">
+                  <h3 className="knowledge-base-entry__relationship-title">
+                    {t("knowledgeBase.manual")}
+                  </h3>
+                  <div className="knowledge-base-entry__relationship-links">
+                    {entry.relatedManualChapters.map((item) => (
+                      <Link key={item.id} className="knowledge-base-entry__relationship-link" to={`/manual#${item.id}`}>
                         {item.label}
                       </Link>
-                    </span>
-                  ))}
-                </p>
+                    ))}
+                  </div>
+                </section>
               ) : null}
             </div>
           ) : null}
@@ -179,12 +192,12 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
 }
 
 /**
- * @param {{ title: string; children: import("react").ReactNode }} props
+ * @param {{ title: string; type: string; children: import("react").ReactNode }} props
  */
-function KnowledgeBaseSection({ title, children }) {
+function KnowledgeBaseCard({ title, type, children }) {
   return (
-    <section className="knowledge-base-entry__section">
-      <h4 className="knowledge-base-entry__section-title">{title}</h4>
+    <section className={`knowledge-base-entry__card knowledge-base-entry__card--${type}`}>
+      <h3 className="knowledge-base-entry__card-title">{title}</h3>
       {children}
     </section>
   );
@@ -199,21 +212,41 @@ function KnowledgeBaseListSection({ title, items, isWarning = false }) {
   }
 
   return (
-    <KnowledgeBaseSection title={title}>
-      <ul
-        className={
-          isWarning
-            ? "knowledge-base-entry__list knowledge-base-entry__list--warning"
-            : "knowledge-base-entry__list"
-        }
-      >
-        {items.map((item, index) => (
-          <li key={`${title}-${index}`} className="knowledge-base-entry__list-item">
-            {item}
-          </li>
-        ))}
-      </ul>
-    </KnowledgeBaseSection>
+    <section className="knowledge-base-entry__subsection">
+      <h4 className="knowledge-base-entry__section-title">{title}</h4>
+      <KnowledgeBaseList items={items} isWarning={isWarning} />
+    </section>
+  );
+}
+
+function KnowledgeBaseList({ items, isWarning = false }) {
+  return (
+    <ul
+      className={
+        isWarning
+          ? "knowledge-base-entry__list knowledge-base-entry__list--warning"
+          : "knowledge-base-entry__list"
+      }
+    >
+      {items.map((item, index) => (
+        <li key={`${item}-${index}`} className="knowledge-base-entry__list-item">
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function KnowledgeBaseSupportList({ title, items }) {
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="knowledge-base-entry__support-list">
+      <h4 className="knowledge-base-entry__section-title">{title}</h4>
+      <KnowledgeBaseList items={items} />
+    </section>
   );
 }
 

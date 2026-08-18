@@ -164,9 +164,9 @@ class SavePricingWebsiteBody(SaveWebsiteVariantBody, PricingWebsiteBody):
         cls, offers: list[WebsitePricingOffer]
     ) -> list[WebsitePricingOffer]:
         offer_ids = {offer.id for offer in offers}
-        required = {"free", "subscriber", "lifetime"}
+        required = {"free", "monthly", "annual"}
         if not required.issubset(offer_ids):
-            raise ValueError("Pricing offers must include free, subscriber, and lifetime cards.")
+            raise ValueError("Pricing offers must include free, monthly, and annual cards.")
         return offers
 
 

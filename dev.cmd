@@ -41,15 +41,14 @@ if "%HFZWOOD_TASK_ROLE_ARN%"=="" (
   exit /b 1
 )
 
-for /f "tokens=1,2,3" %%a in ('aws sts assume-role --role-arn "%HFZWOOD_TASK_ROLE_ARN%" --role-session-name local-dev --duration-seconds 3600 %HFZWOOD_AWS_PROFILE_ARG% --query "[Credentials.AccessKeyId,Credentials.SecretAccessKey,Credentials.SessionToken]" --output text 2^>nul') do (
-  set AWS_ACCESS_KEY_ID=%%a
-  set AWS_SECRET_ACCESS_KEY=%%b
-  set AWS_SESSION_TOKEN=%%c
-)
-if "%AWS_ACCESS_KEY_ID%"=="" (
-  echo ERROR: Could not assume the ECS task role for DynamoDB entitlements.
-  exit /b 1
-)
+:: Let botocore's AWS login provider refresh the source profile and re-assume
+:: this role as needed. Clear inherited static credentials because the SDK
+:: provider chain prioritizes them over AWS_PROFILE.
+set "AWS_ACCESS_KEY_ID="
+set "AWS_SECRET_ACCESS_KEY="
+set "AWS_SESSION_TOKEN="
+set "AWS_PROFILE=%HFZWOOD_AWS_PROFILE%"
+set "AWS_SDK_LOAD_CONFIG=1"
 set AWS_DEFAULT_REGION=eu-central-1
 set ENTITLEMENTS_TABLE_NAME=hfzwood-entitlements
 

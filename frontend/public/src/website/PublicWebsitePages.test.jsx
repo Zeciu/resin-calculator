@@ -175,25 +175,26 @@ describe("Public Website fixed pages (Stage 6D)", () => {
   });
 
   describe("Pricing", () => {
-    it("renders offers in fixed free/subscriber/lifetime order and omits hidden offers", async () => {
+    it("renders offers in fixed free/monthly/annual order and omits hidden offers", async () => {
       expect(
         orderVisiblePricingOffers([
-          buildPricingOffer("lifetime"),
+          buildPricingOffer("annual"),
           buildPricingOffer("free"),
-          buildPricingOffer("subscriber", { visible: false }),
+          buildPricingOffer("monthly", { visible: false }),
         ]).map((offer) => offer.id),
-      ).toEqual(["free", "lifetime"]);
+      ).toEqual(["free", "annual"]);
 
       mockPublishedWebsiteFetch({
         pages: {
           pricing: buildPublishedPricingResponse({
             publicTitle: "Pricing Once",
             offers: [
-              buildPricingOffer("lifetime", {
-                title: "Lifetime",
-                benefits: ["Forever access"],
+              buildPricingOffer("annual", {
+                title: "Annual",
+                displayedPriceText: "$89.99",
+                benefits: ["Complete subscriber access"],
                 ctaLabel: "Ignored CMS label",
-                ctaDestination: "https://example.com/lifetime",
+                ctaDestination: "https://example.com/annual",
               }),
               buildPricingOffer("free", {
                 title: "Free",
@@ -201,9 +202,9 @@ describe("Public Website fixed pages (Stage 6D)", () => {
                 ctaLabel: "Ignored free label",
                 ctaDestination: "/manual",
               }),
-              buildPricingOffer("subscriber", {
+              buildPricingOffer("monthly", {
                 visible: false,
-                title: "Hidden Subscriber",
+                title: "Hidden Monthly",
                 benefits: ["Should not render"],
               }),
             ],
@@ -217,19 +218,21 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       });
 
       expect(screen.getAllByRole("heading", { name: "Pricing Once", level: 1 })).toHaveLength(1);
-      expect(screen.queryByText("Hidden Subscriber")).not.toBeInTheDocument();
+      expect(screen.queryByText("Hidden Monthly")).not.toBeInTheDocument();
 
       const cards = screen.getAllByRole("article").filter((node) => node.dataset.offerId);
-      expect(cards.map((card) => card.dataset.offerId)).toEqual(["free", "lifetime"]);
+      expect(cards.map((card) => card.dataset.offerId)).toEqual(["free", "annual"]);
 
       const freeCard = cards[0];
       expect(within(freeCard).getByRole("list")).toBeInTheDocument();
       expect(within(freeCard).getByText("Basic tools")).toBeInTheDocument();
       expect(within(freeCard).getByRole("link", { name: "Start Free" })).toHaveAttribute("href", "/register");
 
-      const lifetimeLink = within(cards[1]).getByRole("link", { name: "Buy Lifetime" });
-      expect(lifetimeLink).toHaveAttribute("href", "/account");
-      expect(lifetimeLink).not.toHaveAttribute("target");
+      const annualLink = within(cards[1]).getByRole("link", { name: "Choose annual plan" });
+      expect(annualLink).toHaveAttribute("href", "/account");
+      expect(annualLink).not.toHaveAttribute("target");
+      expect(within(cards[1]).getByText("Save $29.89 (25%)")).toBeInTheDocument();
+      expect(screen.queryByText(/lifetime|perpetual/i)).not.toBeInTheDocument();
       expect(screen.queryByText(/stripe/i)).not.toBeInTheDocument();
       expect(screen.queryByText(/entitlement/i)).not.toBeInTheDocument();
     });
@@ -245,13 +248,13 @@ describe("Public Website fixed pages (Stage 6D)", () => {
                 visible: false,
                 title: "Free hidden",
               }),
-              buildPricingOffer("subscriber", {
+              buildPricingOffer("monthly", {
                 visible: false,
-                title: "Sub hidden",
+                title: "Monthly hidden",
               }),
-              buildPricingOffer("lifetime", {
+              buildPricingOffer("annual", {
                 visible: false,
-                title: "Life hidden",
+                title: "Annual hidden",
               }),
             ],
           }),
@@ -275,8 +278,8 @@ describe("Public Website fixed pages (Stage 6D)", () => {
           pricing: buildPublishedPricingResponse({
             offers: [
               buildPricingOffer("free", { title: "Free plan" }),
-              buildPricingOffer("subscriber", { title: "Sub plan" }),
-              buildPricingOffer("lifetime", { title: "Life plan" }),
+              buildPricingOffer("monthly", { title: "Monthly plan", displayedPriceText: "$9.99" }),
+              buildPricingOffer("annual", { title: "Annual plan", displayedPriceText: "$89.99" }),
             ],
           }),
         },
@@ -287,11 +290,47 @@ describe("Public Website fixed pages (Stage 6D)", () => {
         expect(screen.getByRole("heading", { name: "Free plan", level: 2 })).toBeInTheDocument();
       });
       expect(screen.getByRole("link", { name: "Start Free" })).toHaveAttribute("href", "/register");
-      expect(screen.getByRole("link", { name: "Subscribe" })).toHaveAttribute("href", "/account");
-      expect(screen.getByRole("link", { name: "Buy Lifetime" })).toHaveAttribute("href", "/account");
+      expect(screen.getByRole("link", { name: "Choose monthly plan" })).toHaveAttribute("href", "/account");
+      expect(screen.getByRole("link", { name: "Choose annual plan" })).toHaveAttribute("href", "/account");
       expect(screen.getAllByRole("link").filter((link) => link.classList.contains("public-pricing__cta"))).toHaveLength(
         3,
       );
+    });
+
+    it("renders the verified Free Preview and subscriber capability claims", async () => {
+      const subscriberBenefits = [
+        "Complete access to HFZWood tools and resources.",
+        "Unlimited polygon points and complex-project tools.",
+        "PDF export and pour-layer planning.",
+        "Full access to the Glossary and Knowledge Base.",
+      ];
+      mockPublishedWebsiteFetch({
+        pages: {
+          pricing: buildPublishedPricingResponse({
+            offers: [
+              buildPricingOffer("free", {
+                benefits: [
+                  "Save and reopen your projects on your device.",
+                  "Full access to the Manual and all video tutorials.",
+                  "Access to the curated free Glossary and Knowledge Base selection.",
+                ],
+              }),
+              buildPricingOffer("monthly", { benefits: subscriberBenefits }),
+              buildPricingOffer("annual", { benefits: subscriberBenefits }),
+            ],
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.PRICING);
+
+      await waitFor(() => {
+        expect(screen.getByText("Full access to the Manual and all video tutorials.")).toBeInTheDocument();
+      });
+      expect(screen.getByText("Access to the curated free Glossary and Knowledge Base selection.")).toBeInTheDocument();
+      expect(screen.getAllByText("Full access to the Glossary and Knowledge Base.")).toHaveLength(2);
+      expect(screen.getAllByText("Complete access to HFZWood tools and resources.")).toHaveLength(2);
+      expect(screen.queryByText(/CSV/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/up to 3 projects/i)).not.toBeInTheDocument();
     });
   });
 

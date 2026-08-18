@@ -32,15 +32,15 @@ describe("websiteEditorAdapter", () => {
             ctaDestination: "/r",
             visible: false,
           },
-          { id: "subscriber", title: "Sub", displayedPriceText: "10", benefits: [], ctaLabel: "", ctaDestination: "" },
-          { id: "lifetime", title: "Life", displayedPriceText: "100", benefits: [], ctaLabel: "", ctaDestination: "" },
+          { id: "monthly", title: "Monthly", displayedPriceText: "10", benefits: [], ctaLabel: "", ctaDestination: "" },
+          { id: "annual", title: "Annual", displayedPriceText: "100", benefits: [], ctaLabel: "", ctaDestination: "" },
         ],
         footnote: "",
       },
     });
 
     expect(editor.body.publicTitle).toBe("Prețuri");
-    expect(editor.body.offers.map((offer) => offer.id)).toEqual(["free", "subscriber", "lifetime"]);
+    expect(editor.body.offers.map((offer) => offer.id)).toEqual(["free", "monthly", "annual"]);
     expect(editor.body.offers[0].visible).toBe(false);
     expect(editor.body.offers[1].visible).toBe(true);
   });
@@ -55,16 +55,16 @@ describe("websiteEditorAdapter", () => {
           publicTitle: "Pricing",
           intro: "",
           offers: [
-            { id: "lifetime", title: "Lifetime", displayedPriceText: "99", benefits: [], ctaLabel: "", ctaDestination: "/buy" },
+            { id: "annual", title: "Annual", displayedPriceText: "99", benefits: [], ctaLabel: "", ctaDestination: "/account" },
             { id: "free", title: "Free", displayedPriceText: "0", benefits: [], ctaLabel: "", ctaDestination: "/register", visible: false },
-            { id: "subscriber", title: "Sub", displayedPriceText: "10", benefits: [], ctaLabel: "", ctaDestination: "/sub" },
+            { id: "monthly", title: "Monthly", displayedPriceText: "10", benefits: [], ctaLabel: "", ctaDestination: "/account" },
           ],
           footnote: "",
         },
       }),
     );
 
-    expect(body.offers.map((offer) => offer.id)).toEqual(["free", "subscriber", "lifetime"]);
+    expect(body.offers.map((offer) => offer.id)).toEqual(["free", "monthly", "annual"]);
     expect(body.offers[0].visible).toBe(false);
   });
 

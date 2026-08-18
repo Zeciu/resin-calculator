@@ -37,7 +37,7 @@ def test_website_page_registry_has_six_fixed_pages():
 def test_empty_pricing_body_includes_approved_offer_ids():
     body = empty_website_draft_body("pricing")
     offer_ids = {offer["id"] for offer in body["offers"]}
-    assert offer_ids == {"free", "subscriber", "lifetime"}
+    assert offer_ids == {"free", "monthly", "annual"}
 
 
 def test_save_home_schema_requires_public_title():

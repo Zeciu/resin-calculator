@@ -18,8 +18,17 @@ export const KNOWLEDGE_BASE_UI_KEYS = [
   "knowledgeBase.symptoms",
   "knowledgeBase.possibleCauses",
   "knowledgeBase.solution",
+  "knowledgeBase.prevention",
   "knowledgeBase.tips",
   "knowledgeBase.warnings",
+  "knowledgeBase.supportInformation",
+  "knowledgeBase.estimatedRepairTime",
+  "knowledgeBase.tools",
+  "knowledgeBase.materials",
+  "knowledgeBase.relatedArticles",
+  "knowledgeBase.glossary",
+  "knowledgeBase.manual",
+  "knowledgeBase.backToTop",
 ];
 
 /** Workspace navigation labels (must exist in every supported locale bundle). */

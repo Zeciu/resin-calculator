@@ -1,27 +1,25 @@
 import { ROUTES } from "../workspace/routes.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import PublicWebsitePageShell from "./PublicWebsitePageShell.jsx";
 import WebsiteDestinationLink from "./WebsiteDestinationLink.jsx";
 import WebsitePlainText from "./WebsitePlainText.jsx";
 import { WEBSITE_PAGE_KEYS } from "./websitePublicConstants.js";
 
-const PRICING_OFFER_ORDER = ["free", "subscriber", "lifetime"];
+const PRICING_OFFER_ORDER = ["free", "monthly", "annual"];
 
 /**
  * Product-approved public CTAs for fixed Pricing offers.
  * Editorial fields (title, price, benefits, visibility) still come from CMS.
  * Destinations guide into app workflows only — no Stripe/billing/entitlements.
  */
-const PRICING_OFFER_CTAS = {
+const PRICING_OFFER_CTA_DESTINATIONS = {
   free: {
-    label: "Start Free",
     destination: ROUTES.REGISTER,
   },
-  subscriber: {
-    label: "Subscribe",
+  monthly: {
     destination: ROUTES.ACCOUNT,
   },
-  lifetime: {
-    label: "Buy Lifetime",
+  annual: {
     destination: ROUTES.ACCOUNT,
   },
 };
@@ -45,11 +43,13 @@ export function orderVisiblePricingOffers(offers) {
  * @param {unknown} offerId
  * @returns {{ label: string; destination: string } | null}
  */
-export function resolvePublicPricingCta(offerId) {
-  return PRICING_OFFER_CTAS[String(offerId)] ?? null;
+export function resolvePublicPricingCtaDestination(offerId) {
+  return PRICING_OFFER_CTA_DESTINATIONS[String(offerId)]?.destination ?? null;
 }
 
 export default function PublicPricingPage() {
+  const { t } = useI18n();
+
   return (
     <PublicWebsitePageShell pageKey={WEBSITE_PAGE_KEYS.PRICING} ariaLabelKey="website.nav.pricing">
       {(body) => {
@@ -69,17 +69,38 @@ export default function PublicPricingPage() {
                   const benefits = Array.isArray(offer.benefits)
                     ? offer.benefits.map((item) => String(item ?? "").trim()).filter(Boolean)
                     : [];
-                  const cta = resolvePublicPricingCta(offer.id);
+                  const offerId = String(offer.id);
+                  const isAnnual = offerId === "annual";
+                  const ctaDestination = resolvePublicPricingCtaDestination(offerId);
+                  const periodKey = offerId === "monthly" ? "website.pricing.perMonth" : "website.pricing.perYear";
 
                   return (
                     <article
-                      key={String(offer.id)}
-                      className="public-pricing__card"
-                      aria-label={title || String(offer.id)}
-                      data-offer-id={String(offer.id)}
+                      key={offerId}
+                      className={`public-pricing__card${isAnnual ? " public-pricing__card--annual" : ""}`}
+                      aria-label={title || offerId}
+                      data-offer-id={offerId}
                     >
-                      {title ? <h2 className="public-pricing__card-title">{title}</h2> : null}
-                      {price ? <p className="public-pricing__card-price">{price}</p> : null}
+                      <div className="public-pricing__card-header">
+                        {title ? <h2 className="public-pricing__card-title">{title}</h2> : null}
+                        {isAnnual ? (
+                          <p className="public-pricing__badge">{t("website.pricing.bestValue")}</p>
+                        ) : null}
+                      </div>
+                      <p className="public-pricing__positioning">
+                        {t(`website.pricing.${offerId}Description`)}
+                      </p>
+                      {price ? (
+                        <p className="public-pricing__card-price">
+                          <span>{price}</span>
+                          {offerId !== "free" ? (
+                            <span className="public-pricing__period">{t(periodKey)}</span>
+                          ) : null}
+                        </p>
+                      ) : null}
+                      {isAnnual ? (
+                        <p className="public-pricing__savings">{t("website.pricing.save25")}</p>
+                      ) : null}
                       {benefits.length > 0 ? (
                         <ul className="public-pricing__benefits">
                           {benefits.map((benefit) => (
@@ -87,11 +108,11 @@ export default function PublicPricingPage() {
                           ))}
                         </ul>
                       ) : null}
-                      {cta ? (
+                      {ctaDestination ? (
                         <WebsiteDestinationLink
                           className="public-pricing__cta"
-                          label={cta.label}
-                          destination={cta.destination}
+                          label={t(`website.pricing.${offerId}Cta`)}
+                          destination={ctaDestination}
                         />
                       ) : null}
                     </article>
@@ -106,7 +127,10 @@ export default function PublicPricingPage() {
               />
             )}
 
-            <WebsitePlainText text={footnote} className="public-pricing__footnote" />
+            <aside className="public-pricing__trust-strip">
+              <p className="public-pricing__trust-title">{t("website.pricing.trustTitle")}</p>
+              <WebsitePlainText text={footnote} className="public-pricing__footnote" />
+            </aside>
           </div>
         );
       }}

@@ -50,7 +50,7 @@ describe("websiteValidation", () => {
           offers: [{ id: "free", title: "Free", ctaDestination: "/register" }],
         },
       }),
-    ).toBe("Pricing plans must include Free, Subscriber, and Lifetime.");
+    ).toBe("Pricing plans must include Free, Monthly, and Annual.");
   });
 
   it("rejects invalid contact email", () => {

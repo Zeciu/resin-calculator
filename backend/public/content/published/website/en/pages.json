@@ -189,16 +189,15 @@
     "pricing": {
       "body": {
         "footnote": "You can start for free and upgrade to a higher plan at any time without losing your existing projects.",
-        "intro": "HFZWood offers three usage options, so you can get started for free and later choose the plan that best suits your needs. No matter which option you choose, all the projects you create remain yours and can be further developed when you decide to upgrade to a higher plan.",
+        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
         "offers": [
           {
             "benefits": [
-              "Full access to the resin estimator.",
-              "A maximum of 4 points for each polygon drawn.",
-              "Save and reopen completed projects.",
-              "Access the User Manual.",
-              "Access to video tutorials.",
-              "The ability to continue working on the same projects after upgrading to a higher plan."
+              "Resin estimator for simple projects.",
+              "Up to 4 points per polygon.",
+              "Save and reopen your projects on your device.",
+              "Full access to the Manual and all video tutorials.",
+              "Access to the curated free Glossary and Knowledge Base selection."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -209,34 +208,30 @@
           },
           {
             "benefits": [
-              "Includes everything in the Free Plan, plus:",
-              "Unlimited points for all polygons.",
-              "No limitations on complex projects.",
-              "Full access to the Glossary.",
-              "Full access to the Knowledge Base.",
-              "Continuous updates to educational content.",
-              "Get access to new features as soon as they're available."
+              "Complete access to HFZWood tools and resources.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "$4.99",
-            "id": "subscriber",
-            "title": "Professional Plan",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Monthly Plan",
             "visible": true
           },
           {
             "benefits": [
-              "A one-time payment for lifetime access to the app.",
-              "Permanent access, no monthly subscription required.",
-              "All future app updates included.",
-              "Permanent access to the Manual, Tutorials, Glossary, and Knowledge Base.",
-              "Priority access to new features for users with a perpetual license."
+              "Complete access to HFZWood tools and resources.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "$59.99",
-            "id": "lifetime",
-            "title": "Perpetual License",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Annual Plan",
             "visible": true
           }
         ],

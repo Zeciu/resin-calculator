@@ -78,10 +78,10 @@ export function validateWebsiteEditorState(editorState) {
   }
 
   if (pageKind === "pricing") {
-    const requiredIds = ["free", "subscriber", "lifetime"];
+    const requiredIds = ["free", "monthly", "annual"];
     const offerIds = (body.offers ?? []).map((offer) => offer.id);
     if (!requiredIds.every((id) => offerIds.includes(id))) {
-      return "Pricing plans must include Free, Subscriber, and Lifetime.";
+      return "Pricing plans must include Free, Monthly, and Annual.";
     }
     for (const offer of body.offers ?? []) {
       if (!isValidUrl(offer.ctaDestination)) {

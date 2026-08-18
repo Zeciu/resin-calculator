@@ -114,8 +114,8 @@ describe("Public Website Stage 6E closure", () => {
         publicTitle: "Pricing Closure",
         offers: [
           buildPricingOffer("free", { title: "Free" }),
-          buildPricingOffer("subscriber", { title: "Subscriber" }),
-          buildPricingOffer("lifetime", { title: "Lifetime" }),
+          buildPricingOffer("monthly", { title: "Monthly" }),
+          buildPricingOffer("annual", { title: "Annual" }),
         ],
       }),
       title: "Pricing Closure",
@@ -246,8 +246,8 @@ describe("Public Website Stage 6E closure", () => {
           footnote: "Footnote remains",
           offers: [
             buildPricingOffer("free", { visible: false }),
-            buildPricingOffer("subscriber", { visible: false }),
-            buildPricingOffer("lifetime", { visible: false }),
+            buildPricingOffer("monthly", { visible: false }),
+            buildPricingOffer("annual", { visible: false }),
           ],
         }),
       },

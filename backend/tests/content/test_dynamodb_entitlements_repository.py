@@ -8,7 +8,11 @@ import pytest
 from public.product.entitlements import (
     DynamoDbEntitlementsRepository,
     ENTITLEMENTS_TABLE_NAME_ENV,
+    EntitlementsServiceUnavailableError,
+    HFZWOOD_AWS_PROFILE_ENV,
+    HFZWOOD_TASK_ROLE_ARN_ENV,
     STRIPE_CUSTOMER_ID_INDEX_NAME,
+    _create_dynamodb_resource,
     empty_entitlement_record,
     get_entitlements_repository,
 )
@@ -108,6 +112,29 @@ class TestDynamoDbEntitlementsRepositoryRecords:
         with pytest.raises(ValueError, match="table_name"):
             DynamoDbEntitlementsRepository("   ", resource=dynamodb_table)
 
+    def test_credential_failure_is_logged_and_never_normalized_to_free(self, caplog):
+        from botocore.exceptions import ClientError
+
+        class FailingTable:
+            def get_item(self, **_kwargs):
+                raise ClientError(
+                    {"Error": {"Code": "ExpiredTokenException", "Message": "temporary token expired"}},
+                    "GetItem",
+                )
+
+        class Resource:
+            def Table(self, _table_name):
+                return FailingTable()
+
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=Resource())
+
+        with pytest.raises(EntitlementsServiceUnavailableError):
+            repository.get_access_tier("user-a")
+
+        assert "entitlements_dynamodb_unavailable" in caplog.text
+        assert "ExpiredTokenException" in caplog.text
+        assert "temporary token expired" not in caplog.text
+
 
 class TestDynamoDbEntitlementsRepositoryAccessTier:
     def test_get_access_tier_returns_none_when_missing(self, dynamodb_table):
@@ -187,3 +214,69 @@ class TestEntitlementsRepositoryFactory:
         monkeypatch.setenv(ENTITLEMENTS_TABLE_NAME_ENV, TABLE_NAME)
         repository = get_entitlements_repository()
         assert isinstance(repository, DynamoDbEntitlementsRepository)
+
+    def test_local_resource_uses_deferred_refreshable_task_role_credentials(
+        self, monkeypatch: pytest.MonkeyPatch
+    ):
+        import public.product.entitlements as entitlements
+
+        source_credentials = object()
+        resource = object()
+        calls = {}
+
+        class SourceBotocoreSession:
+            def create_client(self, *args, **kwargs):
+                return (args, kwargs)
+
+        class SourceSession:
+            region_name = "eu-central-1"
+            _session = SourceBotocoreSession()
+
+            def get_credentials(self):
+                return source_credentials
+
+        class TargetBotoSession:
+            def resource(self, service_name, region_name=None):
+                calls["resource"] = (service_name, region_name)
+                return resource
+
+        class Fetcher:
+            def __init__(self, **kwargs):
+                calls["fetcher"] = kwargs
+                calls["fetcher_instance"] = self
+
+            def fetch_credentials(self):
+                return {"access_key": "refreshed"}
+
+        class DeferredCredentials:
+            def __init__(self, **kwargs):
+                calls["deferred"] = kwargs
+
+        class BotocoreSession:
+            def set_config_variable(self, key, value):
+                calls["config"] = (key, value)
+
+        def session_factory(**kwargs):
+            if "profile_name" in kwargs:
+                calls["profile_name"] = kwargs["profile_name"]
+                return SourceSession()
+            calls["botocore_session"] = kwargs["botocore_session"]
+            return TargetBotoSession()
+
+        monkeypatch.setenv(HFZWOOD_AWS_PROFILE_ENV, "hfzwood")
+        monkeypatch.setenv(HFZWOOD_TASK_ROLE_ARN_ENV, "arn:aws:iam::123456789012:role/task")
+        monkeypatch.setenv("AWS_DEFAULT_REGION", "eu-central-1")
+        monkeypatch.setattr(boto3, "Session", session_factory)
+        monkeypatch.setattr(entitlements, "get_botocore_session", BotocoreSession)
+        monkeypatch.setattr(entitlements, "AssumeRoleCredentialFetcher", Fetcher)
+        monkeypatch.setattr(entitlements, "DeferredRefreshableCredentials", DeferredCredentials)
+
+        assert _create_dynamodb_resource() is resource
+        assert calls["profile_name"] == "hfzwood"
+        assert calls["fetcher"]["source_credentials"] is source_credentials
+        assert calls["fetcher"]["role_arn"].endswith(":role/task")
+        assert calls["deferred"]["refresh_using"].__self__ is calls["fetcher_instance"]
+        assert calls["deferred"]["method"] == "assume-role"
+        assert calls["botocore_session"].__class__ is BotocoreSession
+        assert calls["config"] == ("region", "eu-central-1")
+        assert calls["resource"] == ("dynamodb", "eu-central-1")

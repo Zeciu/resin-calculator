@@ -188,60 +188,55 @@
     },
     "pricing": {
       "body": {
-        "footnote": "Vous pouvez commencer gratuitement et passer \u00e0 une formule sup\u00e9rieure \u00e0 tout moment, sans perdre les projets d\u00e9j\u00e0 r\u00e9alis\u00e9s.",
-        "intro": "HFZWood propose trois formules d'utilisation, afin que vous puissiez commencer gratuitement et choisir ensuite la formule qui correspond le mieux \u00e0 vos besoins. Quelle que soit l'option choisie, tous les projets cr\u00e9\u00e9s vous appartiennent et peuvent \u00eatre d\u00e9velopp\u00e9s davantage lorsque vous d\u00e9cidez de passer \u00e0 une formule sup\u00e9rieure.",
+        "footnote": "Vous pouvez commencer gratuitement et passer à une formule supérieure à tout moment, sans perdre les projets déjà réalisés.",
+        "intro": "Commencez gratuitement, puis passez à l’accès abonné complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les mêmes fonctionnalités ; seuls la période de facturation et le prix diffèrent.",
         "offers": [
           {
             "benefits": [
-              "Acc\u00e8s complet au calculateur d'estimation de la quantit\u00e9 de r\u00e9sine.",
-              "4 points maximum pour chaque polygone dessin\u00e9.",
-              "Enregistrement et r\u00e9ouverture des projets r\u00e9alis\u00e9s.",
-              "Acc\u00e9dez au manuel d'utilisation.",
-              "Acc\u00e8s aux tutoriels vid\u00e9o.",
-              "Possibilit\u00e9 de poursuivre ult\u00e9rieurement les m\u00eames projets apr\u00e8s \u00eatre pass\u00e9 \u00e0 une formule sup\u00e9rieure."
+              "Calculateur de résine pour les projets simples.",
+              "Jusqu’à 4 points par polygone.",
+              "Enregistrez et rouvrez vos projets sur votre appareil.",
+              "Accès complet au manuel et à tous les tutoriels vidéo.",
+              "Accès à une sélection gratuite du glossaire et de la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "0 USD",
+            "displayedPriceText": "$0",
             "id": "free",
-            "title": "Formule gratuite",
+            "title": "Forfait gratuit",
             "visible": true
           },
           {
             "benefits": [
-              "Il comprend tout ce qu'offre la formule gratuite, plus :",
-              "Nombre illimit\u00e9 de points pour tous les polygones.",
-              "Aucune limite pour les projets complexes.",
-              "Acc\u00e8s complet au glossaire.",
-              "Acc\u00e8s complet \u00e0 la base de connaissances.",
-              "Mises \u00e0 jour r\u00e9guli\u00e8res du contenu p\u00e9dagogique.",
-              "Acc\u00e9dez aux nouvelles fonctionnalit\u00e9s d\u00e8s leur mise \u00e0 disposition."
+              "Accès complet aux outils et ressources HFZWood.",
+              "Points de polygone illimités et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coulée.",
+              "Accès complet au glossaire et à la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "4,99 USD",
-            "id": "subscriber",
-            "title": "Formule Professionnelle",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Forfait mensuel",
             "visible": true
           },
           {
             "benefits": [
-              "Un paiement unique pour une utilisation illimit\u00e9e de l'application.",
-              "Acc\u00e8s permanent, sans abonnement mensuel.",
-              "Toutes les futures mises \u00e0 jour de l'application sont incluses.",
-              "Acc\u00e8s permanent au manuel, aux tutoriels, au glossaire et \u00e0 la base de connaissances.",
-              "Priorit\u00e9 aux nouvelles fonctionnalit\u00e9s destin\u00e9es aux utilisateurs disposant d'une licence permanente."
+              "Accès complet aux outils et ressources HFZWood.",
+              "Points de polygone illimités et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coulée.",
+              "Accès complet au glossaire et à la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "59,99 USD",
-            "id": "lifetime",
-            "title": "Licence permanente",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Forfait annuel",
             "visible": true
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Choisissez la formule adapt\u00e9e \u00e0 votre fa\u00e7on de travailler"
+        "publicTitle": "Choisissez la formule adaptée à votre façon de travailler"
       },
       "pageKey": "pricing",
       "pageKind": "pricing",

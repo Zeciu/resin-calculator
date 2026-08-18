@@ -63,7 +63,7 @@ WEBSITE_PAGE_DEFINITIONS: tuple[WebsitePageDefinition, ...] = (
 
 WEBSITE_PAGE_KEYS: frozenset[str] = frozenset(page["pageKey"] for page in WEBSITE_PAGE_DEFINITIONS)
 
-DEFAULT_PRICING_OFFER_IDS = ("free", "subscriber", "lifetime")
+DEFAULT_PRICING_OFFER_IDS = ("free", "monthly", "annual")
 
 DEFAULT_MANUAL_LINK_LABEL = "Manual și tutoriale"
 DEFAULT_KNOWLEDGE_BASE_LINK_LABEL = "Baza de cunoștințe"

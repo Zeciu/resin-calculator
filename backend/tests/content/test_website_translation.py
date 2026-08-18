@@ -265,7 +265,7 @@ class TestWebsiteExtractionReconstruction:
         body = pricing_body()
         items = extract_translatable_items("website", body)
         rebuilt = reconstruct_draft_body(body, [(item, f"X:{item.text}") for item in items])
-        assert {offer["id"] for offer in rebuilt["offers"]} == {"free", "subscriber", "lifetime"}
+        assert {offer["id"] for offer in rebuilt["offers"]} == {"free", "monthly", "annual"}
         assert rebuilt["offers"][0]["ctaDestination"] == "/register"
         assert all("id" not in item.path for item in items)
         assert all("ctaDestination" not in item.path for item in items)
@@ -503,8 +503,8 @@ class TestWebsiteBulkTranslation:
         target = repository.get_website_variant("pricing", "en")
         assert {offer["id"] for offer in target["draftBody"]["offers"]} == {
             "free",
-            "subscriber",
-            "lifetime",
+            "monthly",
+            "annual",
         }
 
     def test_website_page_uses_one_provider_batch(self, repository):

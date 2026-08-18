@@ -188,60 +188,55 @@
     },
     "pricing": {
       "body": {
-        "footnote": "Po\u021bi \u00eencepe gratuit \u0219i po\u021bi trece la un plan superior \u00een orice moment, f\u0103r\u0103 s\u0103 pierzi proiectele deja realizate.",
-        "intro": "HFZWood ofer\u0103 trei variante de utilizare, astfel \u00eenc\u00e2t s\u0103 po\u021bi \u00eencepe gratuit \u0219i s\u0103 alegi ulterior planul care se potrive\u0219te cel mai bine nevoilor tale. Indiferent de op\u021biune, toate proiectele create r\u0103m\u00e2n ale tale \u0219i pot fi dezvoltate \u00een continuare atunci c\u00e2nd decizi s\u0103 treci la un plan superior.",
+        "footnote": "Poți începe gratuit și poți trece la un plan superior în orice moment, fără să pierzi proiectele deja realizate.",
+        "intro": "Poți începe gratuit și poți trece ulterior la acces complet de abonat. Planul Lunar și Planul Anual includ aceeași funcționalitate; diferă doar perioada de facturare și prețul.",
         "offers": [
           {
             "benefits": [
-              "Acces complet la calculatorul de estimare a r\u0103\u0219inii.",
-              "Maximum 4 puncte pentru fiecare poligon desenat.",
-              "Salvarea \u0219i redeschiderea proiectelor realizate.",
-              "Acces la Manualul de utilizare.",
-              "Acces la tutorialele video.",
-              "Posibilitatea de a continua ulterior acelea\u0219i proiecte dup\u0103 trecerea la un plan superior."
+              "Calculator de rășină pentru proiecte simple.",
+              "Până la 4 puncte pentru fiecare poligon.",
+              "Salvează și redeschide proiectele pe dispozitivul tău.",
+              "Acces integral la Manual și la toate tutorialele video.",
+              "Acces la selecția gratuită din Glosar și Baza de cunoștințe."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "0 USD",
+            "displayedPriceText": "$0",
             "id": "free",
             "title": "Plan Gratuit",
             "visible": true
           },
           {
             "benefits": [
-              "Include tot ce ofer\u0103 Planul Gratuit, plus:",
-              "Num\u0103r nelimitat de puncte pentru toate poligoanele.",
-              "F\u0103r\u0103 limit\u0103ri pentru proiectele complexe.",
-              "Acces complet la Glosar.",
-              "Acces complet la Knowledge Base.",
-              "Actualiz\u0103ri continue ale con\u021binutului educa\u021bional.",
-              "Acces la func\u021bionalit\u0103\u021bile noi imediat ce sunt disponibile."
+              "Acces complet la instrumentele și resursele HFZWood.",
+              "Puncte nelimitate pentru poligoane și instrumente pentru proiecte complexe.",
+              "Export PDF și planificarea straturilor de turnare.",
+              "Acces complet la Glosar și Baza de cunoștințe."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "4,99 USD",
-            "id": "subscriber",
-            "title": "Plan Professional",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Plan Lunar",
             "visible": true
           },
           {
             "benefits": [
-              "O singur\u0103 plat\u0103 pentru utilizarea permanent\u0103 a aplica\u021biei.",
-              "Acces permanent, f\u0103r\u0103 abonament lunar.",
-              "Toate actualiz\u0103rile viitoare ale aplica\u021biei incluse.",
-              "Acces permanent la Manual, Tutoriale, Glosar \u0219i Knowledge Base.",
-              "Prioritate pentru func\u021bionalit\u0103\u021bile noi dedicate utilizatorilor cu licen\u021b\u0103 permanent\u0103."
+              "Acces complet la instrumentele și resursele HFZWood.",
+              "Puncte nelimitate pentru poligoane și instrumente pentru proiecte complexe.",
+              "Export PDF și planificarea straturilor de turnare.",
+              "Acces complet la Glosar și Baza de cunoștințe."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "59.99 USD",
-            "id": "lifetime",
-            "title": "Licen\u021b\u0103 Permanent\u0103",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Plan Anual",
             "visible": true
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Alege planul potrivit pentru modul t\u0103u de lucru"
+        "publicTitle": "Alege planul potrivit pentru modul tău de lucru"
       },
       "pageKey": "pricing",
       "pageKind": "pricing",

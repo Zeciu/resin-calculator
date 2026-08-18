@@ -3,12 +3,12 @@ import { emptyOfficialLinks, normalizeOfficialLinks } from "../../../public/src/
 import { DEFAULT_KNOWLEDGE_BASE_LINK_LABEL, DEFAULT_MANUAL_LINK_LABEL } from "./websiteConstants.js";
 import { ensureHeroSection, mergeAboutSections, splitAboutSections } from "./websiteSectionUtils.js";
 
-const PRICING_OFFER_ORDER = ["free", "subscriber", "lifetime"];
+const PRICING_OFFER_ORDER = ["free", "monthly", "annual"];
 
 const PRICING_OFFER_LABELS = {
   free: "Free",
-  subscriber: "Subscriber",
-  lifetime: "Lifetime",
+  monthly: "Monthly",
+  annual: "Annual",
 };
 
 export function pricingOfferLabel(offerId) {

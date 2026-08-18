@@ -15,5 +15,14 @@
   "knowledgeBase.possibleCauses": "Causas posibles",
   "knowledgeBase.solution": "Solución",
   "knowledgeBase.tips": "Consejos prácticos",
-  "knowledgeBase.warnings": "Advertencias"
+  "knowledgeBase.warnings": "Advertencias",
+  "knowledgeBase.prevention": "Prevención",
+  "knowledgeBase.supportInformation": "Herramientas y materiales",
+  "knowledgeBase.estimatedRepairTime": "Tiempo estimado de reparación",
+  "knowledgeBase.tools": "Herramientas",
+  "knowledgeBase.materials": "Materiales",
+  "knowledgeBase.relatedArticles": "Artículos relacionados",
+  "knowledgeBase.glossary": "Glosario",
+  "knowledgeBase.manual": "Manual",
+  "knowledgeBase.backToTop": "Volver arriba"
 }

@@ -26,9 +26,26 @@
         {
           "id": "supra-nc-lzire",
           "label": "Supra\u00eenc\u0103lzire"
+        },
+        {
+          "id": "grosimea-stratului-de-turnare",
+          "label": "Grosimea stratului de turnare"
         }
       ],
-      "relatedKbArticles": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-planific-turn-rile-succesive",
+          "label": "Cum planific turn\u0103rile succesive?"
+        },
+        {
+          "id": "de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii",
+          "label": "De ce nu este recomandat s\u0103 sar peste anumite granula\u021bii?"
+        },
+        {
+          "id": "de-ce-este-recomandat-o-prim-turnare-sub-ire",
+          "label": "De ce este recomandat\u0103 o prim\u0103 turnare sub\u021bire?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -99,10 +116,32 @@
         {
           "id": "nod-in-lemn",
           "label": "Nod in lemn"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
         }
       ],
-      "relatedKbArticles": [],
-      "relatedManualChapters": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+          "label": "Cum verific dac\u0103 o bucat\u0103 de lemn este potrivit\u0103 pentru un proiect cu r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+          "label": "Cum influen\u021beaz\u0103 tipul proiectului alegerea lemnului?"
+        },
+        {
+          "id": "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic",
+          "label": "De ce echipament minim am nevoie pentru a \u00eencepe s\u0103 lucrez cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        }
+      ],
+      "relatedManualChapters": [
+        {
+          "id": "alegerea-lemnului",
+          "label": "Alegerea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [
         "Aparat de verificat umiditatea"
@@ -142,15 +181,40 @@
         {
           "id": "atac-biologic",
           "label": "Atac biologic"
+        },
+        {
+          "id": "umiditatea-lemnului",
+          "label": "Umiditatea lemnului"
+        },
+        {
+          "id": "defect-de-turnare",
+          "label": "Defect de turnare"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
           "label": "Ce probleme pot ap\u0103rea dac\u0103 lemnul este prea umed?"
+        },
+        {
+          "id": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "label": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 sigilarea lemnului \u00eenainte de turnarea principal\u0103?"
+        },
+        {
+          "id": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "label": "\u00cen ce situa\u021bii este recomandat\u0103 sigilarea lemnului?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "alegerea-lemnului",
+          "label": "Alegerea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [
         "Aparat de verificat umiditatea"
@@ -202,15 +266,44 @@
         {
           "id": "lemn-poros",
           "label": "Lemn poros"
+        },
+        {
+          "id": "bule-de-aer",
+          "label": "Bule de aer"
+        },
+        {
+          "id": "polimerizare",
+          "label": "Polimerizare"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
           "label": "Care este umiditatea recomandat\u0103 a lemnului \u00eenainte de turnare?"
+        },
+        {
+          "id": "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+          "label": "Ce fac dac\u0103 lemnul absoarbe complet stratul de sigilare?"
+        },
+        {
+          "id": "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
+          "label": "De ce apar bulele de aer \u00een timpul turn\u0103rii?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "alegerea-lemnului",
+          "label": "Alegerea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -258,15 +351,40 @@
         {
           "id": "lemn-s-n-tos",
           "label": "Lemn s\u0103n\u0103tos"
+        },
+        {
+          "id": "insul-de-lemn",
+          "label": "Insul\u0103 de lemn"
+        },
+        {
+          "id": "atac-biologic",
+          "label": "Atac biologic"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
           "label": "Trebuie eliminate toate defectele naturale ale lemnului?"
+        },
+        {
+          "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
+          "label": "Cum aleg r\u0103\u0219ina potrivit\u0103 pentru proiectul meu?"
+        },
+        {
+          "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+          "label": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "alegerea-lemnului",
+          "label": "Alegerea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -312,10 +430,32 @@
         {
           "id": "insul-de-lemn",
           "label": "Insul\u0103 de lemn"
+        },
+        {
+          "id": "river-table",
+          "label": "River Table"
+        },
+        {
+          "id": "cur-area-cavit-ilor",
+          "label": "Cur\u0103\u021barea cavit\u0103\u021bilor"
         }
       ],
-      "relatedKbArticles": [],
-      "relatedManualChapters": [],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+          "label": "De ce este important\u0103 \u00eendep\u0103rtarea zonelor instabile din lemn?"
+        },
+        {
+          "id": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+          "label": "Cum verific dac\u0103 o bucat\u0103 de lemn este potrivit\u0103 pentru un proiect cu r\u0103\u0219in\u0103?"
+        }
+      ],
+      "relatedManualChapters": [
+        {
+          "id": "alegerea-lemnului",
+          "label": "Alegerea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -359,15 +499,40 @@
         {
           "id": "lemn-instabil",
           "label": "Lemn instabil"
+        },
+        {
+          "id": "river-table",
+          "label": "River Table"
+        },
+        {
+          "id": "compozi-ia-proiectului",
+          "label": "Compozi\u021bia proiectului"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
           "label": "Trebuie eliminate toate defectele naturale ale lemnului?"
+        },
+        {
+          "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "cum-influen-eaz-temperatura-turnarea-r-inii",
+          "label": "Cum influen\u021beaz\u0103 temperatura turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "label": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "alegerea-lemnului",
+          "label": "Alegerea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -411,6 +576,10 @@
         {
           "id": "lemn-poros",
           "label": "Lemn poros"
+        },
+        {
+          "id": "calibrare",
+          "label": "Calibrare"
         }
       ],
       "relatedKbArticles": [
@@ -421,9 +590,26 @@
         {
           "id": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
           "label": "Trebuie eliminate toate defectele naturale ale lemnului?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+          "label": "De ce trebuie calibrat \u0219i \u00eendreptat lemnul \u00eenainte de turnare?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "preg-tirea-lemnului",
+          "label": "Preg\u0103tirea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -463,10 +649,36 @@
         {
           "id": "oberfrez-router",
           "label": "Oberfrez\u0103 (Router)"
+        },
+        {
+          "id": "grosime-uniform",
+          "label": "Grosime uniform\u0103"
+        },
+        {
+          "id": "tensiuni-interne",
+          "label": "Tensiuni interne"
         }
       ],
-      "relatedKbArticles": [],
-      "relatedManualChapters": [],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
+      "relatedManualChapters": [
+        {
+          "id": "preg-tirea-lemnului",
+          "label": "Preg\u0103tirea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -514,15 +726,36 @@
         {
           "id": "lemn-instabil",
           "label": "Lemn instabil"
+        },
+        {
+          "id": "defect-de-turnare",
+          "label": "Defect de turnare"
+        },
+        {
+          "id": "zon-de-turnare",
+          "label": "Zon\u0103 de turnare"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
           "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+          "label": "De ce trebuie calibrat \u0219i \u00eendreptat lemnul \u00eenainte de turnare?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "preg-tirea-lemnului",
+          "label": "Preg\u0103tirea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -554,14 +787,40 @@
         "P\u0103strarea marginii naturale este posibil\u0103 doar atunci c\u00e2nd aceasta este suficient de stabil\u0103."
       ],
       "problemSummary": "Scoar\u021ba poate fi p\u0103strat\u0103 doar dac\u0103 este perfect stabil\u0103. Dac\u0103 exist\u0103 riscul desprinderii, este recomandat\u0103 \u00eendep\u0103rtarea ei \u00eenainte de turnare.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "scoar-instabil",
+          "label": "Scoar\u021b\u0103 instabil\u0103"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
           "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+          "label": "Cum trebuie cur\u0103\u021bat lemnul \u00eenainte de turnare?"
+        },
+        {
+          "id": "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+          "label": "De ce este important\u0103 \u00eendep\u0103rtarea zonelor instabile din lemn?"
+        },
+        {
+          "id": "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
+          "label": "De ce trebuie verificat dac\u0103 cofrajul este perfect orizontal?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "preg-tirea-lemnului",
+          "label": "Preg\u0103tirea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -607,15 +866,36 @@
         {
           "id": "lemn-s-n-tos",
           "label": "Lemn s\u0103n\u0103tos"
+        },
+        {
+          "id": "atac-biologic",
+          "label": "Atac biologic"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "trebuie-p-strat-sau-ndep-rtat-scoar-a",
           "label": "Trebuie p\u0103strat\u0103 sau \u00eendep\u0103rtat\u0103 scoar\u021ba?"
+        },
+        {
+          "id": "de-ce-este-at-t-de-important-lefuirea-progresiv",
+          "label": "De ce este at\u00e2t de important\u0103 \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+          "label": "Cum trebuie cur\u0103\u021bat lemnul \u00eenainte de turnare?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "preg-tirea-lemnului",
+          "label": "Preg\u0103tirea lemnului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -657,10 +937,40 @@
         {
           "id": "mdf-melaminat",
           "label": "MDF melaminat"
+        },
+        {
+          "id": "geometria-proiectului",
+          "label": "Geometria proiectului"
+        },
+        {
+          "id": "deformarea-cofrajului",
+          "label": "Deformarea cofrajului"
+        },
+        {
+          "id": "nivelarea-cofrajului",
+          "label": "Nivelarea cofrajului"
         }
       ],
-      "relatedKbArticles": [],
-      "relatedManualChapters": [],
+      "relatedKbArticles": [
+        {
+          "id": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "label": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+          "label": "Cum stabilesc forma \u0219i dimensiunile finale ale proiectului?"
+        },
+        {
+          "id": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "label": "Ce material este recomandat pentru construirea cofrajului?"
+        }
+      ],
+      "relatedManualChapters": [
+        {
+          "id": "stabilirea-compozi-iei-i-geometriei-proiectului",
+          "label": "Stabilirea compozi\u021biei \u0219i geometriei proiectului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -700,10 +1010,44 @@
         {
           "id": "cofraj",
           "label": "Cofraj"
+        },
+        {
+          "id": "pozi-ionarea-lemnului",
+          "label": "Pozi\u021bionarea lemnului"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "insul-de-lemn",
+          "label": "Insul\u0103 de lemn"
+        },
+        {
+          "id": "zon-de-turnare",
+          "label": "Zon\u0103 de turnare"
         }
       ],
-      "relatedKbArticles": [],
-      "relatedManualChapters": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "label": "Cum trasez corect piesele de lemn \u00een aplica\u021bie?"
+        },
+        {
+          "id": "cum-pozi-ionez-corect-lemnul-n-cofraj",
+          "label": "Cum pozi\u021bionez corect lemnul \u00een cofraj?"
+        },
+        {
+          "id": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "label": "Cum introduc corect ad\u00e2ncimea principal\u0103 de turnare?"
+        }
+      ],
+      "relatedManualChapters": [
+        {
+          "id": "stabilirea-compozi-iei-i-geometriei-proiectului",
+          "label": "Stabilirea compozi\u021biei \u0219i geometriei proiectului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -741,9 +1085,22 @@
         {
           "id": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
           "label": "De ce trebuie calibrat \u0219i \u00eendreptat lemnul \u00eenainte de turnare?"
+        },
+        {
+          "id": "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+          "label": "Cum stabilesc dimensiunile corecte ale cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "label": "De ce trebuie stabilit\u0103 geometria proiectului \u00eenainte de construirea cofrajului?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "stabilirea-compozi-iei-i-geometriei-proiectului",
+          "label": "Stabilirea compozi\u021biei \u0219i geometriei proiectului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -820,15 +1177,36 @@
         {
           "id": "margine-natural",
           "label": "Margine natural\u0103"
+        },
+        {
+          "id": "deformarea-cofrajului",
+          "label": "Deformarea cofrajului"
         }
       ],
       "relatedKbArticles": [
         {
           "id": "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
           "label": "Alege forma \u00een func\u021bie de proiect \u0219i de aspectul pe care \u00eel urm\u0103re\u0219ti, nu \u00een func\u021bie de forma ini\u021bial\u0103 a lemnului."
+        },
+        {
+          "id": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "label": "De ce trebuie stabilit\u0103 geometria proiectului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "label": "Ce material este recomandat pentru construirea cofrajului?"
+        },
+        {
+          "id": "pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele",
+          "label": "Pot modifica geometria proiectului dup\u0103 ce am terminat calculele?"
         }
       ],
-      "relatedManualChapters": [],
+      "relatedManualChapters": [
+        {
+          "id": "stabilirea-compozi-iei-i-geometriei-proiectului",
+          "label": "Stabilirea compozi\u021biei \u0219i geometriei proiectului"
+        }
+      ],
       "requiredMaterials": [],
       "requiredTools": [],
       "searchKeywords": [],
@@ -865,6 +1243,10 @@
         {
           "id": "sigilarea-lemnului",
           "label": "Sigilarea lemnului"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
         }
       ],
       "relatedKbArticles": [
@@ -875,6 +1257,18 @@
         {
           "id": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
           "label": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-influen-eaz-temperatura-turnarea-r-inii",
+          "label": "Cum influen\u021beaz\u0103 temperatura turnarea r\u0103\u0219inii?"
         }
       ],
       "relatedManualChapters": [],
@@ -923,6 +1317,14 @@
         {
           "id": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
           "label": "Cum stabilesc forma \u0219i dimensiunile finale ale proiectului?"
+        },
+        {
+          "id": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "label": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
         }
       ],
       "relatedManualChapters": [],
@@ -958,6 +1360,10 @@
         {
           "id": "cofraj",
           "label": "Cofraj"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
         }
       ],
       "relatedKbArticles": [
@@ -972,6 +1378,14 @@
         {
           "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
           "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+          "label": "Cum stabilesc forma \u0219i dimensiunile finale ale proiectului?"
+        },
+        {
+          "id": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "label": "De ce trebuie stabilit\u0103 geometria proiectului \u00eenainte de construirea cofrajului?"
         }
       ],
       "relatedManualChapters": [],
@@ -1027,6 +1441,18 @@
         {
           "id": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
           "label": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "cum-demontez-corect-cofrajul",
+          "label": "Cum demontez corect cofrajul?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
+          "label": "De ce trebuie verificat dac\u0103 cofrajul este perfect orizontal?"
         }
       ],
       "relatedManualChapters": [],
@@ -1066,6 +1492,10 @@
         {
           "id": "agent-de-demulare",
           "label": "Agent de demulare"
+        },
+        {
+          "id": "demulare",
+          "label": "Demulare"
         }
       ],
       "relatedKbArticles": [
@@ -1080,6 +1510,26 @@
         {
           "id": "cum-etan-ez-corect-cofrajul",
           "label": "Cum etan\u0219ez corect cofrajul?"
+        },
+        {
+          "id": "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
+          "label": "De ce trebuie protejat\u0103 partea inferioar\u0103 \u00eenainte de Top Coating?"
+        },
+        {
+          "id": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "label": "De ce trebuie stabilit\u0103 geometria proiectului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
+          "label": "De ce trebuie verificat dac\u0103 cofrajul este perfect orizontal?"
         }
       ],
       "relatedManualChapters": [],
@@ -1119,6 +1569,14 @@
         {
           "id": "silicon-de-etan-are",
           "label": "Silicon de etan\u0219are"
+        },
+        {
+          "id": "etan-are",
+          "label": "Etan\u0219are"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
         }
       ],
       "relatedKbArticles": [
@@ -1129,6 +1587,14 @@
         {
           "id": "cum-etan-ez-corect-cofrajul",
           "label": "Cum etan\u0219ez corect cofrajul?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept \u00eenainte de turnarea urm\u0103torului strat?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 ultima turnare \u00eenainte de prelucrarea mecanic\u0103?"
         }
       ],
       "relatedManualChapters": [],
@@ -1178,6 +1644,18 @@
         {
           "id": "cum-etan-ez-corect-cofrajul",
           "label": "Cum etan\u0219ez corect cofrajul?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "label": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "label": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?"
         }
       ],
       "relatedManualChapters": [],
@@ -1210,6 +1688,10 @@
         {
           "id": "silicon-de-etan-are",
           "label": "Silicon de etan\u0219are"
+        },
+        {
+          "id": "clem-de-fixare",
+          "label": "Clem\u0103 de fixare"
         }
       ],
       "relatedKbArticles": [
@@ -1220,6 +1702,18 @@
         {
           "id": "cum-etan-ez-corect-cofrajul",
           "label": "Cum etan\u0219ez corect cofrajul?"
+        },
+        {
+          "id": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+          "label": "Cum pozi\u021bionez corect piesele de lemn \u00eenainte de turnare?"
+        },
+        {
+          "id": "cum-pot-ncastra-complet-lemnul-n-r-in",
+          "label": "Cum pot \u00eencastra complet lemnul \u00een r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
         }
       ],
       "relatedManualChapters": [],
@@ -1250,8 +1744,26 @@
       ],
       "prevention": [],
       "problemSummary": "Praful, rumegu\u0219ul \u0219i alte impurit\u0103\u021bi pot afecta pozi\u021bionarea lemnului \u0219i calitatea turn\u0103rii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "pozi-ionarea-lemnului",
+          "label": "Pozi\u021bionarea lemnului"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1287,9 +1799,30 @@
         {
           "id": "silicon-de-etan-are",
           "label": "Silicon de etan\u0219are"
+        },
+        {
+          "id": "for-a-de-flotabilitate",
+          "label": "For\u021ba de flotabilitate"
+        },
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
         }
       ],
-      "relatedKbArticles": [],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+          "label": "De ce trebuie calibrat \u0219i \u00eendreptat lemnul \u00eenainte de turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1322,6 +1855,10 @@
         {
           "id": "silicon-de-etan-are",
           "label": "Silicon de etan\u0219are"
+        },
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
         }
       ],
       "relatedKbArticles": [
@@ -1332,6 +1869,18 @@
         {
           "id": "de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
           "label": "De ce trebuie cur\u0103\u021bate lemnul \u0219i cofrajul \u00eenainte de pozi\u021bionare?"
+        },
+        {
+          "id": "cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
+          "label": "Cum folosesc corect \u0219lefuitorul cu band\u0103 pentru calibrare?"
+        },
+        {
+          "id": "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
+          "label": "De ce trebuie protejat\u0103 partea inferioar\u0103 \u00eenainte de Top Coating?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
         }
       ],
       "relatedManualChapters": [],
@@ -1366,6 +1915,18 @@
         {
           "id": "r-in-epoxidic",
           "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "configura-ia-proiectului",
+          "label": "Configura\u021bia proiectului"
+        },
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
         }
       ],
       "relatedKbArticles": [
@@ -1376,6 +1937,18 @@
         {
           "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
           "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        },
+        {
+          "id": "cum-pozi-ionez-corect-lemnul-n-cofraj",
+          "label": "Cum pozi\u021bionez corect lemnul \u00een cofraj?"
+        },
+        {
+          "id": "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+          "label": "Ce fac dac\u0103 lemnul absoarbe complet stratul de sigilare?"
+        },
+        {
+          "id": "c-nd-se-adaug-pigmen-ii-n-r-in",
+          "label": "C\u00e2nd se adaug\u0103 pigmen\u021bii \u00een r\u0103\u0219in\u0103?"
         }
       ],
       "relatedManualChapters": [],
@@ -1405,8 +1978,26 @@
         "Consider\u0103 aceast\u0103 verificare ca ultimul control de calitate \u00eenainte de o etap\u0103 care nu mai poate fi reversat\u0103 f\u0103r\u0103 costuri suplimentare."
       ],
       "problemSummary": "\u00cenainte de turnare trebuie f\u0103cut\u0103 o ultim\u0103 verificare a pozi\u021biei tuturor pieselor. Dup\u0103 \u00eenceperea turn\u0103rii, corectarea pozi\u021biei devine dificil\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "pozi-ionarea-lemnului",
+          "label": "Pozi\u021bionarea lemnului"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "label": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-demulare",
+          "label": "Ce trebuie verificat imediat dup\u0103 demulare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1436,9 +2027,30 @@
         {
           "id": "r-in-epoxidic",
           "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "sigilarea-lemnului",
+          "label": "Sigilarea lemnului"
+        },
+        {
+          "id": "bule-de-aer",
+          "label": "Bule de aer"
         }
       ],
-      "relatedKbArticles": [],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
+          "label": "De ce apar bulele de aer \u00een timpul turn\u0103rii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1472,9 +2084,30 @@
         {
           "id": "r-in-epoxidic",
           "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "sigilarea-lemnului",
+          "label": "Sigilarea lemnului"
+        },
+        {
+          "id": "umiditatea-lemnului",
+          "label": "Umiditatea lemnului"
         }
       ],
-      "relatedKbArticles": [],
+      "relatedKbArticles": [
+        {
+          "id": "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "label": "Cum se realizeaz\u0103 corect turn\u0103rile intermediare?"
+        },
+        {
+          "id": "cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
+          "label": "Cum se realizeaz\u0103 lustruirea dup\u0103 aplicarea cerii?"
+        },
+        {
+          "id": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "label": "\u00cen ce situa\u021bii este recomandat\u0103 sigilarea lemnului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1505,7 +2138,20 @@
       ],
       "prevention": [],
       "problemSummary": "Lemnul con\u021bine pori \u0219i cavit\u0103\u021bi \u00een care r\u0103m\u00e2ne aer. \u00cen timpul turn\u0103rii, acest aer este evacuat \u0219i formeaz\u0103 bule \u00een r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "bule-de-aer",
+          "label": "Bule de aer"
+        },
+        {
+          "id": "incapsularea-bulelor-de-aer",
+          "label": "Incapsularea bulelor de aer"
+        },
+        {
+          "id": "defect-de-turnare",
+          "label": "Defect de turnare"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
@@ -1514,6 +2160,14 @@
         {
           "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
           "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        },
+        {
+          "id": "cum-elimin-bulele-de-aer-dup-prima-turnare",
+          "label": "Cum elimin bulele de aer dup\u0103 prima turnare?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
         }
       ],
       "relatedManualChapters": [],
@@ -1545,7 +2199,20 @@
         "Sigilarea este una dintre cele mai eficiente metode de prevenire a defectelor provocate de aerul din lemn."
       ],
       "problemSummary": "Sigilarea este recomandat\u0103 \u00een majoritatea proiectelor, dar devine deosebit de important\u0103 atunci c\u00e2nd lemnul prezint\u0103 numeroase pori, fisuri sau forme naturale complexe.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "sigilarea-lemnului",
+          "label": "Sigilarea lemnului"
+        },
+        {
+          "id": "configura-ia-proiectului",
+          "label": "Configura\u021bia proiectului"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
@@ -1554,6 +2221,14 @@
         {
           "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
           "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 sigilarea lemnului \u00eenainte de turnarea principal\u0103?"
+        },
+        {
+          "id": "de-ce-este-recomandat-o-prim-turnare-sub-ire",
+          "label": "De ce este recomandat\u0103 o prim\u0103 turnare sub\u021bire?"
         }
       ],
       "relatedManualChapters": [],
@@ -1587,6 +2262,14 @@
         {
           "id": "r-in-epoxidic",
           "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        },
+        {
+          "id": "strat-de-sigilare-seal-coat",
+          "label": "Strat de sigilare (Seal Coat)"
+        },
+        {
+          "id": "lemn-poros",
+          "label": "Lemn poros"
         }
       ],
       "relatedKbArticles": [
@@ -1597,6 +2280,18 @@
         {
           "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
           "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        },
+        {
+          "id": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+          "label": "Ce probleme pot ap\u0103rea dac\u0103 lemnul este prea umed?"
+        },
+        {
+          "id": "cum-pot-ncastra-complet-lemnul-n-r-in",
+          "label": "Cum pot \u00eencastra complet lemnul \u00een r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
         }
       ],
       "relatedManualChapters": [],
@@ -1631,11 +2326,32 @@
       ],
       "prevention": [],
       "problemSummary": "Momentul turn\u0103rii principale depinde de sistemul de r\u0103\u0219in\u0103 utilizat \u0219i de recomand\u0103rile produc\u0103torului.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "sigilarea-lemnului",
+          "label": "Sigilarea lemnului"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
           "label": "Ce fac dac\u0103 lemnul absoarbe complet stratul de sigilare?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept \u00eenainte de turnarea urm\u0103torului strat?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 ultima turnare \u00eenainte de prelucrarea mecanic\u0103?"
         }
       ],
       "relatedManualChapters": [],
@@ -1667,8 +2383,38 @@
         "Fotografia trebuie facuta cat mai simetric si vertical deasupra proiectului."
       ],
       "problemSummary": "Calculatorul HFZWood determin\u0103 cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pe baza fotografiei proiectului, a dimensiunilor reale \u0219i a geometriei definite de utilizator.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cantitate-necesar-de-r-in",
+          "label": "Cantitate necesar\u0103 de r\u0103\u0219in\u0103"
+        },
+        {
+          "id": "cantitate-necesar-de-nt-ritor",
+          "label": "Cantitate necesar\u0103 de \u00eent\u0103ritor"
+        },
+        {
+          "id": "estimarea-cantit-ii-de-r-in",
+          "label": "Estimarea cantit\u0103\u021bii de r\u0103\u0219in\u0103"
+        },
+        {
+          "id": "calculator-de-r-in",
+          "label": "Calculator de r\u0103\u0219in\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+          "label": "Cum verific dac\u0103 o bucat\u0103 de lemn este potrivit\u0103 pentru un proiect cu r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in",
+          "label": "Cum preg\u0103tesc suprafa\u021ba dac\u0103 voi aplica un strat final transparent de r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1697,11 +2443,32 @@
       ],
       "prevention": [],
       "problemSummary": "Calitatea fotografiei influen\u021beaz\u0103 direct precizia calculelor efectuate de aplica\u021bie.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "demulare",
+          "label": "Demulare"
+        },
+        {
+          "id": "agent-de-demulare",
+          "label": "Agent de demulare"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
           "label": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?"
+        },
+        {
+          "id": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+          "label": "Cum trebuie cur\u0103\u021bat lemnul \u00eenainte de turnare?"
+        },
+        {
+          "id": "cum-demontez-corect-cofrajul",
+          "label": "Cum demontez corect cofrajul?"
+        },
+        {
+          "id": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+          "label": "Cum stabilesc forma \u0219i dimensiunile finale ale proiectului?"
         }
       ],
       "relatedManualChapters": [],
@@ -1732,11 +2499,24 @@
       ],
       "prevention": [],
       "problemSummary": "Reperele dimensionale permit aplica\u021biei s\u0103 transforme fotografia \u00een dimensiuni reale.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "tensiuni-interne",
+          "label": "Tensiuni interne"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
           "label": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?"
+        },
+        {
+          "id": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "label": "Cum introduc corect ad\u00e2ncimea principal\u0103 de turnare?"
+        },
+        {
+          "id": "de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie",
+          "label": "De ce pare gre\u0219it rezultatul calculat de aplica\u021bie?"
         }
       ],
       "relatedManualChapters": [],
@@ -1766,8 +2546,30 @@
       ],
       "prevention": [],
       "problemSummary": "Conturul cofrajului stabile\u0219te volumul maxim disponibil pentru r\u0103\u0219in\u0103 \u0219i reprezint\u0103 baza tuturor calculelor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "conturul-cavit-ii",
+          "label": "Conturul cavit\u0103\u021bii"
+        },
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "label": "Cum trasez corect piesele de lemn \u00een aplica\u021bie?"
+        },
+        {
+          "id": "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+          "label": "Cum stabilesc dimensiunile corecte ale cofrajului?"
+        },
+        {
+          "id": "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
+          "label": "De ce trebuie protejat\u0103 suprafa\u021ba interioar\u0103 a cofrajului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1795,7 +2597,16 @@
       ],
       "prevention": [],
       "problemSummary": "Piesele de lemn trebuie delimitate separat pentru ca aplica\u021bia s\u0103 le exclud\u0103 din volumul ocupat de r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "insul-de-lemn",
+          "label": "Insul\u0103 de lemn"
+        },
+        {
+          "id": "volumul-lemnului",
+          "label": "Volumul lemnului"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-introduc-corect-reperele-dimensionale",
@@ -1804,6 +2615,14 @@
         {
           "id": "cum-trasez-corect-conturul-interior-al-cofrajului",
           "label": "Cum trasez corect conturul interior al cofrajului?"
+        },
+        {
+          "id": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+          "label": "Cum pozi\u021bionez corect piesele de lemn \u00eenainte de turnare?"
+        },
+        {
+          "id": "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
+          "label": "C\u00e2nd trebuie definite cavit\u0103\u021bile \u00een aplica\u021bie?"
         }
       ],
       "relatedManualChapters": [],
@@ -1832,11 +2651,20 @@
       ],
       "prevention": [],
       "problemSummary": "Cavit\u0103\u021bile trebuie introduse separat atunci c\u00e2nd urmeaz\u0103 s\u0103 fie umplute cu r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cavitate",
+          "label": "Cavitate"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
           "label": "Cum trasez corect piesele de lemn \u00een aplica\u021bie?"
+        },
+        {
+          "id": "c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor",
+          "label": "C\u00e2nd trebuie realizate debitarea \u0219i profilarea muchiilor?"
         }
       ],
       "relatedManualChapters": [],
@@ -1867,8 +2695,34 @@
         "\u021aine cont de orice strat de r\u0103\u0219in\u0103 existent sub lemn si de cei trei mm care trebuie turnati in plus. Rasina care este deasupra nivelului lemnului se contracta pe masura ce se matureaza."
       ],
       "problemSummary": "Ad\u00e2ncimea de turnare reprezint\u0103 distan\u021ba dintre fundul cofrajului \u0219i nivelul final al r\u0103\u0219inii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "defect-de-turnare",
+          "label": "Defect de turnare"
+        },
+        {
+          "id": "zon-de-turnare",
+          "label": "Zon\u0103 de turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-introduc-corect-reperele-dimensionale",
+          "label": "Cum introduc corect reperele dimensionale?"
+        },
+        {
+          "id": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+          "label": "Cum pozi\u021bionez corect piesele de lemn \u00eenainte de turnare?"
+        },
+        {
+          "id": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+          "label": "Cum trebuie cur\u0103\u021bat lemnul \u00eenainte de turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -1894,11 +2748,31 @@
       ],
       "prevention": [],
       "problemSummary": "Rezerva de siguran\u021b\u0103 compenseaz\u0103 pierderile normale de r\u0103\u0219in\u0103 din timpul lucrului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "factor-de-siguran",
+          "label": "Factor de siguran\u021b\u0103"
+        },
+        {
+          "id": "copie-de-siguran",
+          "label": "Copie de siguran\u021b\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
+        },
+        {
+          "id": "de-ce-este-recomandat-o-prim-turnare-sub-ire",
+          "label": "De ce este recomandat\u0103 o prim\u0103 turnare sub\u021bire?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "Recipient de amestec"
+      ],
       "searchKeywords": [],
       "solution": [
         "Adaug\u0103 o rezerv\u0103 rezonabil\u0103 dup\u0103 calcularea volumului geometric."
@@ -1922,11 +2796,28 @@
       ],
       "prevention": [],
       "problemSummary": "Majoritatea r\u0103\u0219inilor trebuie turnate \u00een mai multe straturi pentru a respecta grosimea maxim\u0103 recomandat\u0103.",
-      "relatedGlossaryTerms": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare-n-straturi",
+          "label": "Turnare \u00een straturi"
+        }
+      ],
       "relatedKbArticles": [
         {
           "id": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
           "label": "Cum introduc corect ad\u00e2ncimea principal\u0103 de turnare?"
+        },
+        {
+          "id": "cum-planific-corect-turn-rile-succesive",
+          "label": "Cum planific corect turn\u0103rile succesive?"
+        },
+        {
+          "id": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+          "label": "De ce nu trebuie dep\u0103\u0219it\u0103 grosimea maxim\u0103 recomandat\u0103 pentru o turnare?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "label": "Cum se realizeaz\u0103 corect turn\u0103rile intermediare?"
         }
       ],
       "relatedManualChapters": [],
@@ -1957,11 +2848,35 @@
         "Verific\u0103 \u00eentotdeauna fi\u0219a tehnic\u0103 \u00eenainte de introducerea raportului."
       ],
       "problemSummary": "HFZWood \u00eemparte automat cantitatea total\u0103 \u00eentre componentele A \u0219i B folosind raportul introdus de utilizator.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "raport-de-amestec",
+          "label": "Raport de amestec"
+        },
+        {
+          "id": "volum-de-turnare",
+          "label": "Volum de turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
+          "label": "De ce este important s\u0103 respect raportul de amestec al r\u0103\u0219inii?"
+        },
+        {
+          "id": "ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
+          "label": "Ce rol are aplica\u021bia HFZWood \u00een planificarea turn\u0103rii?"
+        },
+        {
+          "id": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+          "label": "Cum calculez cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pentru un proiect?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "C\u00e2ntar de precizie"
+      ],
       "searchKeywords": [],
       "solution": [
         "Introdu raportul exact recomandat de produc\u0103tor \u0219i precizeaz\u0103 dac\u0103 acesta este exprimat \u00een greutate sau \u00een volum."
@@ -1986,8 +2901,30 @@
       ],
       "prevention": [],
       "problemSummary": "Rezultatele neobi\u0219nuite sunt cauzate, de cele mai multe ori, de informa\u021bii introduse incorect.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "cofraj",
+          "label": "Cofraj"
+        },
+        {
+          "id": "volumul-lemnului",
+          "label": "Volumul lemnului"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "label": "Cum trasez corect piesele de lemn \u00een aplica\u021bie?"
+        },
+        {
+          "id": "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
+          "label": "C\u00e2nd trebuie definite cavit\u0103\u021bile \u00een aplica\u021bie?"
+        },
+        {
+          "id": "de-ce-este-at-t-de-important-lefuirea-progresiv",
+          "label": "De ce este at\u00e2t de important\u0103 \u0219lefuirea progresiv\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2015,8 +2952,30 @@
       ],
       "prevention": [],
       "problemSummary": "Da. Aplica\u021bia permite corectarea m\u0103sur\u0103torilor \u0219i a geometriei f\u0103r\u0103 refacerea \u00eentregului proiect.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "geometria-proiectului",
+          "label": "Geometria proiectului"
+        },
+        {
+          "id": "calculator-de-r-in",
+          "label": "Calculator de r\u0103\u0219in\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "label": "De ce trebuie stabilit\u0103 geometria proiectului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "label": "Pot modifica pozi\u021bia lemnului \u00eenainte de construirea cofrajului?"
+        },
+        {
+          "id": "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "label": "Ce material este recomandat pentru construirea cofrajului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2044,8 +3003,30 @@
       ],
       "prevention": [],
       "problemSummary": "Nu exist\u0103 o r\u0103\u0219in\u0103 potrivit\u0103 pentru toate proiectele. Alegerea trebuie f\u0103cut\u0103 \u00een func\u021bie de caracteristicile proiectului \u0219i de recomand\u0103rile produc\u0103torului.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "label": "Timp de \u00eent\u0103rire"
+        },
+        {
+          "id": "v-scozitate",
+          "label": "V\u00e2scozitate"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "label": "Ce tip de finisaj ar trebui s\u0103 aleg pentru proiectul meu?"
+        },
+        {
+          "id": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "label": "Cum aleg lemnul potrivit pentru un proiect cu r\u0103\u0219in\u0103 epoxidic\u0103?"
+        },
+        {
+          "id": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+          "label": "Cum verific dac\u0103 o bucat\u0103 de lemn este potrivit\u0103 pentru un proiect cu r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2072,8 +3053,30 @@
       ],
       "prevention": [],
       "problemSummary": "R\u0103\u0219inile pentru straturi sub\u021biri \u0219i cele pentru turn\u0103ri groase sunt concepute pentru aplica\u021bii diferite \u0219i nu sunt interschimbabile.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare-n-straturi",
+          "label": "Turnare \u00een straturi"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "label": "Turnare ad\u00e2nc\u0103 (Deep Pour)"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
+        },
+        {
+          "id": "cum-aplic-corect-uleiul-pentru-lemn",
+          "label": "Cum aplic corect uleiul pentru lemn?"
+        },
+        {
+          "id": "c-te-straturi-de-ulei-trebuie-aplicate",
+          "label": "C\u00e2te straturi de ulei trebuie aplicate?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2103,8 +3106,22 @@
         "\u00cen multe situa\u021bii, dou\u0103 turn\u0103ri mai sub\u021biri sunt mai sigure dec\u00e2t una foarte groas\u0103."
       ],
       "problemSummary": "Dep\u0103\u0219irea grosimii maxime recomandate poate provoca reac\u021bii exoterme excesive \u0219i defecte care compromit proiectul.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "grosimea-stratului-de-turnare",
+          "label": "Grosimea stratului de turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-planific-turn-rile-succesive",
+          "label": "Cum planific turn\u0103rile succesive?"
+        },
+        {
+          "id": "de-ce-este-recomandat-o-prim-turnare-sub-ire",
+          "label": "De ce este recomandat\u0103 o prim\u0103 turnare sub\u021bire?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2132,8 +3149,26 @@
       ],
       "prevention": [],
       "problemSummary": "Planificarea turn\u0103rilor permite organizarea \u00eentregului proces \u00eenainte de prepararea r\u0103\u0219inii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare-n-straturi",
+          "label": "Turnare \u00een straturi"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-planific-turn-rile-succesive",
+          "label": "Cum planific turn\u0103rile succesive?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "label": "Cum se realizeaz\u0103 corect turn\u0103rile intermediare?"
+        },
+        {
+          "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "label": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2162,8 +3197,26 @@
         "Acest strat poate eviden\u021bia rapid eventualele scurgeri \u0219i contribuie la stabilizarea ansamblului."
       ],
       "problemSummary": "Prima turnare are rolul de a verifica proiectul \u0219i de a reduce riscul apari\u021biei problemelor \u00een timpul turn\u0103rilor principale.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "defect-de-turnare",
+          "label": "Defect de turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "label": "\u00cen ce situa\u021bii este recomandat\u0103 sigilarea lemnului?"
+        },
+        {
+          "id": "ce-trebuie-verificat-dup-prima-turnare",
+          "label": "Ce trebuie verificat dup\u0103 prima turnare?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2180,7 +3233,7 @@
       "warnings": []
     },
     {
-      "estimatedRepairTime": null,
+      "estimatedRepairTime": "planificarea turn\u0103rii - aplica\u021bia - hfzwood - planificarea - \u0219tii - organizezi - turn\u0103rile",
       "id": "ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
       "media": [],
       "possibleCauses": [
@@ -2188,8 +3241,30 @@
       ],
       "prevention": [],
       "problemSummary": "HFZWood organizeaz\u0103 informa\u021biile necesare turn\u0103rii \u0219i ajut\u0103 la planificarea \u00eentregului proces.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "manual-hfzwood",
+          "label": "Manual HFZWood"
+        },
+        {
+          "id": "spatiu-de-lucru",
+          "label": "Spatiul de lucru"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "label": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?"
+        },
+        {
+          "id": "cum-calculeaz-aplica-ia-componentele-a-i-b",
+          "label": "Cum calculeaz\u0103 aplica\u021bia componentele A \u0219i B?"
+        },
+        {
+          "id": "cum-planific-corect-turn-rile-succesive",
+          "label": "Cum planific corect turn\u0103rile succesive?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2219,8 +3294,30 @@
         "\u00cencepe prepararea r\u0103\u0219inii doar dup\u0103 ce \u00eentregul plan de lucru este clar \u0219i verificat."
       ],
       "problemSummary": "\u00cenainte de prepararea r\u0103\u0219inii trebuie s\u0103 existe un plan complet al procesului de turnare.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "grosimea-stratului-de-turnare",
+          "label": "Grosimea stratului de turnare"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-dup-prima-turnare",
+          "label": "Ce trebuie verificat dup\u0103 prima turnare?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "label": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2246,11 +3343,40 @@
       ],
       "prevention": [],
       "problemSummary": "\u00cenainte de amestecarea r\u0103\u0219inii, toate materialele \u0219i uneltele trebuie preg\u0103tite, deoarece reac\u021bia chimic\u0103 \u00eencepe imediat dup\u0103 combinarea componentelor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "amestecare",
+          "label": "Amestecare"
+        },
+        {
+          "id": "pigment",
+          "label": "Pigment"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "label": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?"
+        },
+        {
+          "id": "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "label": "Cum preg\u0103tesc piesa \u00eenainte de aplicarea unui Top Coating?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredMaterials": [
+        "Pigment compatibil",
+        "M\u0103nu\u0219i de protec\u021bie"
+      ],
+      "requiredTools": [
+        "C\u00e2ntar de precizie",
+        "Spatul\u0103",
+        "Recipient de amestec"
+      ],
       "searchKeywords": [],
       "solution": [
         "Preg\u0103te\u0219te dinainte recipientele de amestecare, c\u00e2ntarul, spatulele, pigmen\u021bii, m\u0103nu\u0219ile \u0219i toate accesoriile necesare \u00eenainte de combinarea componentelor."
@@ -2277,11 +3403,39 @@
         "Verific\u0103 \u00eentotdeauna dac\u0103 raportul este exprimat \u00een greutate sau \u00een volum."
       ],
       "problemSummary": "Fiecare sistem epoxidic are propriul raport de amestec, iar nerespectarea acestuia poate compromite \u00eent\u0103rirea r\u0103\u0219inii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "raport-de-amestec",
+          "label": "Raport de amestec"
+        },
+        {
+          "id": "amestecare",
+          "label": "Amestecare"
+        },
+        {
+          "id": "cantitate-necesar-de-nt-ritor",
+          "label": "Cantitate necesar\u0103 de \u00eent\u0103ritor"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-calculeaz-aplica-ia-componentele-a-i-b",
+          "label": "Cum calculeaz\u0103 aplica\u021bia componentele A \u0219i B?"
+        },
+        {
+          "id": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie fixat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie sigilat lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredTools": [
+        "C\u00e2ntar de precizie"
+      ],
       "searchKeywords": [],
       "solution": [
         "Folose\u0219te raportul indicat \u00een fi\u0219a tehnic\u0103 \u0219i c\u00e2nt\u0103re\u0219te cu aten\u021bie fiecare component\u0103 \u00eenainte de amestecare."
@@ -2306,11 +3460,37 @@
       ],
       "prevention": [],
       "problemSummary": "O amestecare corect\u0103 asigur\u0103 omogenizarea complet\u0103 a componentelor \u0219i reduce riscul apari\u021biei defectelor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "amestecare",
+          "label": "Amestecare"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "label": "R\u0103\u0219in\u0103 epoxidic\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "label": "Cum se realizeaz\u0103 corect sigilarea lemnului?"
+        },
+        {
+          "id": "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "label": "Cum se realizeaz\u0103 corect turn\u0103rile intermediare?"
+        },
+        {
+          "id": "cum-se-aplic-corect-ceara-pentru-lemn",
+          "label": "Cum se aplic\u0103 corect ceara pentru lemn?"
+        }
+      ],
       "relatedManualChapters": [],
-      "requiredMaterials": [],
-      "requiredTools": [],
+      "requiredMaterials": [
+        "R\u0103\u0219in\u0103 epoxidic\u0103"
+      ],
+      "requiredTools": [
+        "Recipient de amestec"
+      ],
       "searchKeywords": [],
       "solution": [
         "Amestec\u0103 lent \u0219i uniform, acord\u00e2nd aten\u021bie pere\u021bilor \u0219i fundului recipientului. Dac\u0103 produc\u0103torul recomand\u0103, transfer\u0103 apoi amestecul \u00eentr-un al doilea recipient curat \u0219i continu\u0103 omogenizarea."
@@ -2334,8 +3514,30 @@
       ],
       "prevention": [],
       "problemSummary": "Pigmen\u021bii trebuie ad\u0103uga\u021bi numai dup\u0103 omogenizarea complet\u0103 a componentelor A \u0219i B.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "pigment",
+          "label": "Pigment"
+        },
+        {
+          "id": "densitatea-r-inii",
+          "label": "Densitatea r\u0103\u0219inii"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-pot-ncastra-complet-lemnul-n-r-in",
+          "label": "Cum pot \u00eencastra complet lemnul \u00een r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "cum-se-amestec-corect-r-ina-epoxidic",
+          "label": "Cum se amestec\u0103 corect r\u0103\u0219ina epoxidic\u0103?"
+        },
+        {
+          "id": "c-nd-pot-scoate-proiectul-din-cofraj",
+          "label": "C\u00e2nd pot scoate proiectul din cofraj?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2362,8 +3564,26 @@
       ],
       "prevention": [],
       "problemSummary": "Prima turnare are rolul de a verifica proiectul \u0219i de a preg\u0103ti condi\u021biile pentru turn\u0103rile principale.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "volum-de-turnare",
+          "label": "Volum de turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-dup-prima-turnare",
+          "label": "Ce trebuie verificat dup\u0103 prima turnare?"
+        },
+        {
+          "id": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "label": "\u00cen ce situa\u021bii este recomandat\u0103 sigilarea lemnului?"
+        },
+        {
+          "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "label": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2390,8 +3610,26 @@
       ],
       "prevention": [],
       "problemSummary": "Dup\u0103 prima turnare trebuie inspectat \u00eentregul proiect pentru a identifica eventualele probleme \u00eenainte de continuarea lucr\u0103rii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "defect-de-turnare",
+          "label": "Defect de turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "cum-elimin-bulele-de-aer-dup-prima-turnare",
+          "label": "Cum elimin bulele de aer dup\u0103 prima turnare?"
+        },
+        {
+          "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "label": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?"
+        },
+        {
+          "id": "ce-trebuie-verificat-imediat-dup-demulare",
+          "label": "Ce trebuie verificat imediat dup\u0103 demulare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2418,8 +3656,30 @@
       ],
       "prevention": [],
       "problemSummary": "\u00cen timpul primei turn\u0103ri pot ap\u0103rea bule de aer la suprafa\u021ba r\u0103\u0219inii.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "bule-de-aer",
+          "label": "Bule de aer"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
+          "label": "De ce apar bulele de aer \u00een timpul turn\u0103rii?"
+        },
+        {
+          "id": "ce-trebuie-verificat-dup-prima-turnare",
+          "label": "Ce trebuie verificat dup\u0103 prima turnare?"
+        },
+        {
+          "id": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "label": "Ce trebuie s\u0103 stabilesc \u00eenainte de prima turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2445,8 +3705,26 @@
       ],
       "prevention": [],
       "problemSummary": "Timpul dintre turn\u0103ri influen\u021beaz\u0103 aderen\u021ba dintre straturile de r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "aderen",
+          "label": "Aderen\u021b\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 sigilarea lemnului \u00eenainte de turnarea principal\u0103?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 etan\u0219area cofrajului?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept dup\u0103 ultima turnare \u00eenainte de prelucrarea mecanic\u0103?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2474,8 +3752,30 @@
       ],
       "prevention": [],
       "problemSummary": "\u00cenaintea fiec\u0103rei turn\u0103ri trebuie verificat at\u00e2t mediul de lucru, c\u00e2t \u0219i starea proiectului, pentru a reduce riscul apari\u021biei defectelor.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "scurgeri-de-r-in",
+          "label": "Scurgeri de r\u0103\u0219in\u0103"
+        },
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "label": "Ce trebuie verificat \u00eenainte de \u00eenceperea turn\u0103rii?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "label": "Ce trebuie verificat \u00eenainte de \u0219lefuirea progresiv\u0103?"
+        },
+        {
+          "id": "ce-trebuie-verificat-dup-prima-turnare",
+          "label": "Ce trebuie verificat dup\u0103 prima turnare?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2503,8 +3803,30 @@
       ],
       "prevention": [],
       "problemSummary": "Temperatura influen\u021beaz\u0103 v\u00e2scozitatea r\u0103\u0219inii, timpul de lucru \u0219i procesul de \u00eent\u0103rire.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "v-scozitate",
+          "label": "V\u00e2scozitate"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "label": "De ce trebuie preg\u0103tit lemnul \u00eenainte de turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "label": "Cum construiesc corect un cofraj pentru turnarea r\u0103\u0219inii?"
+        },
+        {
+          "id": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+          "label": "Cum influen\u021beaz\u0103 tipul proiectului alegerea lemnului?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -2534,8 +3856,30 @@
         "Dup\u0103 \u0219lefuire, elimin\u0103 complet praful din col\u021buri \u0219i cavit\u0103\u021bi."
       ],
       "problemSummary": "\u00cen anumite situa\u021bii este necesar\u0103 preg\u0103tirea mecanic\u0103 a stratului anterior pentru a ob\u021bine o aderen\u021b\u0103 optim\u0103 \u00eentre straturile de r\u0103\u0219in\u0103.",
-      "relatedGlossaryTerms": [],
-      "relatedKbArticles": [],
+      "relatedGlossaryTerms": [
+        {
+          "id": "turnare",
+          "label": "Turnare"
+        },
+        {
+          "id": "aderen",
+          "label": "Aderen\u021b\u0103"
+        }
+      ],
+      "relatedKbArticles": [
+        {
+          "id": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+          "label": "P\u00e2n\u0103 la ce granula\u021bie trebuie \u0219lefuit lemnul \u00eenainte de aplicarea uleiului?"
+        },
+        {
+          "id": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "label": "Ce trebuie verificat \u00eenainte de fiecare turnare de r\u0103\u0219in\u0103?"
+        },
+        {
+          "id": "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+          "label": "C\u00e2t trebuie s\u0103 a\u0219tept \u00eenainte de turnarea urm\u0103torului strat?"
+        }
+      ],
       "relatedManualChapters": [],
       "requiredMaterials": [],
       "requiredTools": [],
@@ -4299,14 +5643,6 @@
       ],
       "relatedKbArticles": [
         {
-          "id": "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
-          "label": "Cum aleg r\u0103\u0219ina potrivit\u0103 pentru proiectul meu?"
-        },
-        {
-          "id": "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
-          "label": "Ce tip de r\u0103\u0219in\u0103 trebuie folosit pentru Top Coating?"
-        },
-        {
           "id": "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
           "label": "C\u00e2nd este recomandat un finisaj care formeaz\u0103 o pelicul\u0103?"
         }
@@ -4349,16 +5685,12 @@
       ],
       "relatedKbArticles": [
         {
-          "id": "ce-este-top-coating-ul-i-c-nd-este-recomandat",
-          "label": "Ce este Top Coating-ul \u0219i c\u00e2nd este recomandat?"
-        },
-        {
           "id": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
           "label": "Ce tip de finisaj ar trebui s\u0103 aleg pentru proiectul meu?"
         },
         {
-          "id": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
-          "label": "Cum \u00eentre\u021bin \u00een timp un finisaj cu ulei \u0219i cear\u0103?"
+          "id": "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
+          "label": "De ce aleg mul\u021bi constructori finisarea cu ulei \u0219i cear\u0103?"
         }
       ],
       "relatedManualChapters": [],
@@ -4497,12 +5829,8 @@
       ],
       "relatedKbArticles": [
         {
-          "id": "cum-aplic-corect-uleiul-pentru-lemn",
-          "label": "Cum aplic corect uleiul pentru lemn?"
-        },
-        {
-          "id": "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
-          "label": "P\u00e2n\u0103 la ce granula\u021bie trebuie \u0219lefuit lemnul \u00eenainte de aplicarea uleiului?"
+          "id": "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
+          "label": "De ce aleg mul\u021bi constructori finisarea cu ulei \u0219i cear\u0103?"
         }
       ],
       "relatedManualChapters": [],

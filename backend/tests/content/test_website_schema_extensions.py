@@ -155,8 +155,8 @@ class TestPricingOfferVisibility:
         loaded = repository.get_website_variant("pricing", "ro")
         by_id = {offer["id"]: offer for offer in loaded["draftBody"]["offers"]}
         assert by_id["free"]["visible"] is False
-        assert by_id["subscriber"]["visible"] is True
-        assert by_id["lifetime"]["visible"] is True
+        assert by_id["monthly"]["visible"] is True
+        assert by_id["annual"]["visible"] is True
 
     def test_missing_visible_defaults_true(self):
         legacy = empty_website_draft_body("pricing")
@@ -191,8 +191,8 @@ class TestPricingOfferVisibility:
         assert by_id["free"]["visible"] is False
         assert {offer["id"] for offer in saved["draftBody"]["offers"]} == {
             "free",
-            "subscriber",
-            "lifetime",
+            "monthly",
+            "annual",
         }
 
 
@@ -308,7 +308,7 @@ class TestContactBuiltInLinkLabels:
                     "ctaLabel": "",
                     "ctaDestination": "",
                 }
-                for offer_id in ("free", "subscriber", "lifetime")
+                for offer_id in ("free", "monthly", "annual")
             ],
             "footnote": "",
         }

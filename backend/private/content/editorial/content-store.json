@@ -8120,7 +8120,7 @@
       "pk": "CONTENT#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
       "sk": "META",
       "sortOrder": 10200,
-      "updatedAt": "2026-08-10T16:27:05.456802+00:00"
+      "updatedAt": "2026-08-18T17:52:45.801596+00:00"
     },
     "CONTENT#kb_entry#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul|VARIANT#ro": {
       "contentId": "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
@@ -8140,9 +8140,8 @@
           "finisaj-lucios"
         ],
         "relatedKbEntryIds": [
-          "ce-este-top-coating-ul-i-c-nd-este-recomandat",
           "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
-          "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear"
+          "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -8161,13 +8160,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul",
-      "publishedAt": "2026-08-10T16:27:05.456802+00:00",
+      "publishedAt": "2026-08-18T17:52:45.801596+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-10T16:27:05.456802+00:00"
+      "updatedAt": "2026-08-18T17:52:45.801596+00:00"
     },
     "CONTENT#kb_entry#c-nd-pot-scoate-proiectul-din-cofraj|META": {
       "category": "Epoxy",
@@ -8239,7 +8238,7 @@
       "pk": "CONTENT#c-nd-se-adaug-pigmen-ii-n-r-in",
       "sk": "META",
       "sortOrder": 5900,
-      "updatedAt": "2026-08-08T07:25:54.207823+00:00"
+      "updatedAt": "2026-08-16T11:51:19.616625+00:00"
     },
     "CONTENT#kb_entry#c-nd-se-adaug-pigmen-ii-n-r-in|VARIANT#ro": {
       "contentId": "c-nd-se-adaug-pigmen-ii-n-r-in",
@@ -8252,8 +8251,15 @@
         ],
         "prevention": [],
         "problemSummary": "Pigmen\u021bii trebuie ad\u0103uga\u021bi numai dup\u0103 omogenizarea complet\u0103 a componentelor A \u0219i B.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "pigment",
+          "densitatea-r-inii"
+        ],
+        "relatedKbEntryIds": [
+          "cum-pot-ncastra-complet-lemnul-n-r-in",
+          "cum-se-amestec-corect-r-ina-epoxidic",
+          "c-nd-pot-scoate-proiectul-din-cofraj"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8273,13 +8279,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-se-adaug-pigmen-ii-n-r-in",
-      "publishedAt": "2026-08-08T07:25:54.207823+00:00",
+      "publishedAt": "2026-08-16T11:51:19.616625+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:25:54.207823+00:00"
+      "updatedAt": "2026-08-16T11:51:19.616625+00:00"
     },
     "CONTENT#kb_entry#c-nd-trebuie-definite-cavit-ile-n-aplica-ie|META": {
       "category": "Epoxy",
@@ -8290,7 +8296,7 @@
       "pk": "CONTENT#c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
       "sk": "META",
       "sortOrder": 4200,
-      "updatedAt": "2026-08-07T19:39:06.328443+00:00"
+      "updatedAt": "2026-08-16T13:11:27.474918+00:00"
     },
     "CONTENT#kb_entry#c-nd-trebuie-definite-cavit-ile-n-aplica-ie|VARIANT#ro": {
       "contentId": "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
@@ -8303,9 +8309,12 @@
         ],
         "prevention": [],
         "problemSummary": "Cavit\u0103\u021bile trebuie introduse separat atunci c\u00e2nd urmeaz\u0103 s\u0103 fie umplute cu r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cavitate"
+        ],
         "relatedKbEntryIds": [
-          "cum-trasez-corect-piesele-de-lemn-n-aplica-ie"
+          "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -8326,13 +8335,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
-      "publishedAt": "2026-08-07T19:39:06.328443+00:00",
+      "publishedAt": "2026-08-16T13:11:27.474918+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T19:39:06.328443+00:00"
+      "updatedAt": "2026-08-16T13:11:27.474918+00:00"
     },
     "CONTENT#kb_entry#c-nd-trebuie-realizate-debitarea-i-profilarea-muchiilor|META": {
       "category": "Epoxy",
@@ -8460,7 +8469,7 @@
       "pk": "CONTENT#c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
       "sk": "META",
       "sortOrder": 2300,
-      "updatedAt": "2026-08-07T15:30:10.260832+00:00"
+      "updatedAt": "2026-08-18T16:04:09.753588+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-dup-etan-area-cofrajului|VARIANT#ro": {
       "contentId": "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
@@ -8478,11 +8487,15 @@
         "problemSummary": "Siliconul utilizat pentru etan\u0219are trebuie s\u0103 se \u00eent\u0103reasc\u0103 \u00eenainte de \u00eenceperea turn\u0103rii.",
         "relatedGlossaryEntryIds": [
           "cofraj",
-          "silicon-de-etan-are"
+          "silicon-de-etan-are",
+          "etan-are",
+          "turnare"
         ],
         "relatedKbEntryIds": [
           "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
-          "cum-etan-ez-corect-cofrajul"
+          "cum-etan-ez-corect-cofrajul",
+          "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+          "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -8503,13 +8516,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
-      "publishedAt": "2026-08-07T15:30:10.260832+00:00",
+      "publishedAt": "2026-08-18T16:04:09.753588+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:30:10.260832+00:00"
+      "updatedAt": "2026-08-18T16:04:09.753588+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal|META": {
       "category": "Epoxy",
@@ -8520,7 +8533,7 @@
       "pk": "CONTENT#c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
       "sk": "META",
       "sortOrder": 3600,
-      "updatedAt": "2026-08-07T16:42:30.820057+00:00"
+      "updatedAt": "2026-08-17T10:31:28.809958+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal|VARIANT#ro": {
       "contentId": "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
@@ -8534,9 +8547,15 @@
         ],
         "prevention": [],
         "problemSummary": "Momentul turn\u0103rii principale depinde de sistemul de r\u0103\u0219in\u0103 utilizat \u0219i de recomand\u0103rile produc\u0103torului.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "sigilarea-lemnului",
+          "turnare"
+        ],
         "relatedKbEntryIds": [
-          "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare"
+          "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+          "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
+          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -8557,13 +8576,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
-      "publishedAt": "2026-08-07T16:42:30.820057+00:00",
+      "publishedAt": "2026-08-17T10:31:28.809958+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:42:30.820057+00:00"
+      "updatedAt": "2026-08-17T10:31:28.809958+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic|META": {
       "category": "Epoxy",
@@ -8634,7 +8653,7 @@
       "pk": "CONTENT#c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
       "sk": "META",
       "sortOrder": 6300,
-      "updatedAt": "2026-08-08T07:31:58.536065+00:00"
+      "updatedAt": "2026-08-16T11:41:31.667111+00:00"
     },
     "CONTENT#kb_entry#c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat|VARIANT#ro": {
       "contentId": "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
@@ -8647,8 +8666,14 @@
         ],
         "prevention": [],
         "problemSummary": "Timpul dintre turn\u0103ri influen\u021beaz\u0103 aderen\u021ba dintre straturile de r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "aderen"
+        ],
+        "relatedKbEntryIds": [
+          "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "c-t-trebuie-s-a-tept-dup-ultima-turnare-nainte-de-prelucrarea-mecanic"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8668,13 +8693,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat",
-      "publishedAt": "2026-08-08T07:31:58.536065+00:00",
+      "publishedAt": "2026-08-16T11:41:31.667111+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:31:58.536065+00:00"
+      "updatedAt": "2026-08-16T11:41:31.667111+00:00"
     },
     "CONTENT#kb_entry#c-te-straturi-de-ulei-trebuie-aplicate|META": {
       "category": "Epoxy",
@@ -8685,7 +8710,7 @@
       "pk": "CONTENT#c-te-straturi-de-ulei-trebuie-aplicate",
       "sk": "META",
       "sortOrder": 10500,
-      "updatedAt": "2026-08-10T16:23:59.703697+00:00"
+      "updatedAt": "2026-08-18T17:54:32.297514+00:00"
     },
     "CONTENT#kb_entry#c-te-straturi-de-ulei-trebuie-aplicate|VARIANT#ro": {
       "contentId": "c-te-straturi-de-ulei-trebuie-aplicate",
@@ -8703,8 +8728,7 @@
           "ulei-pentru-lemn"
         ],
         "relatedKbEntryIds": [
-          "cum-aplic-corect-uleiul-pentru-lemn",
-          "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului"
+          "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -8724,13 +8748,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#c-te-straturi-de-ulei-trebuie-aplicate",
-      "publishedAt": "2026-08-10T16:23:59.703697+00:00",
+      "publishedAt": "2026-08-18T17:54:32.297514+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-10T16:23:59.703697+00:00"
+      "updatedAt": "2026-08-18T17:54:32.297514+00:00"
     },
     "CONTENT#kb_entry#care-este-cea-mai-precis-metod-de-calibrare-a-unei-piese-cu-r-in|META": {
       "category": "Epoxy",
@@ -8800,7 +8824,7 @@
       "pk": "CONTENT#care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase",
       "sk": "META",
       "sortOrder": 5000,
-      "updatedAt": "2026-08-08T07:07:16.328868+00:00"
+      "updatedAt": "2026-08-16T12:16:15.799496+00:00"
     },
     "CONTENT#kb_entry#care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase|VARIANT#ro": {
       "contentId": "care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase",
@@ -8813,8 +8837,15 @@
         ],
         "prevention": [],
         "problemSummary": "R\u0103\u0219inile pentru straturi sub\u021biri \u0219i cele pentru turn\u0103ri groase sunt concepute pentru aplica\u021bii diferite \u0219i nu sunt interschimbabile.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare-n-straturi",
+          "turnare-ad-nc-deep-pour"
+        ],
+        "relatedKbEntryIds": [
+          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
+          "cum-aplic-corect-uleiul-pentru-lemn",
+          "c-te-straturi-de-ulei-trebuie-aplicate"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -8834,13 +8865,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#care-este-diferen-a-dintre-r-inile-pentru-straturi-sub-iri-i-cele-pentru-turn-ri-groase",
-      "publishedAt": "2026-08-08T07:07:16.328868+00:00",
+      "publishedAt": "2026-08-16T12:16:15.799496+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:07:16.328868+00:00"
+      "updatedAt": "2026-08-16T12:16:15.799496+00:00"
     },
     "CONTENT#kb_entry#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare|META": {
       "category": "Epoxy",
@@ -8851,7 +8882,7 @@
       "pk": "CONTENT#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
       "sk": "META",
       "sortOrder": 300,
-      "updatedAt": "2026-07-26T19:20:43.938708+00:00"
+      "updatedAt": "2026-08-18T17:12:44.748656+00:00"
     },
     "CONTENT#kb_entry#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare|VARIANT#ro": {
       "contentId": "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
@@ -8870,12 +8901,19 @@
         ],
         "problemSummary": "Umiditatea lemnului influen\u021beaz\u0103 direct comportamentul r\u0103\u0219inii \u0219i stabilitatea proiectului. Pentru majoritatea aplica\u021biilor se recomand\u0103 o umiditate cuprins\u0103 \u00eentre 6% \u0219i 12%.",
         "relatedGlossaryEntryIds": [
-          "atac-biologic"
+          "atac-biologic",
+          "umiditatea-lemnului",
+          "defect-de-turnare"
         ],
         "relatedKbEntryIds": [
-          "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed"
+          "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "n-ce-situa-ii-este-recomandat-sigilarea-lemnului"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "alegerea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [
           "Aparat de verificat umiditatea"
@@ -8897,13 +8935,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
-      "publishedAt": "2026-07-26T19:20:43.938708+00:00",
+      "publishedAt": "2026-08-18T17:12:44.748656+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 5,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:20:43.938708+00:00"
+      "updatedAt": "2026-08-18T17:12:44.748656+00:00"
     },
     "CONTENT#kb_entry#care-sunt-cele-mai-frecvente-gre-eli-ale-ncep-torilor-n-proiectele-cu-r-in-epoxidic|META": {
       "category": "Epoxy",
@@ -8975,7 +9013,7 @@
       "pk": "CONTENT#ce-este-rezerva-de-siguran-i-c-nd-trebuie-folosit",
       "sk": "META",
       "sortOrder": 4400,
-      "updatedAt": "2026-08-07T19:42:40.964629+00:00"
+      "updatedAt": "2026-08-16T13:08:42.653004+00:00"
     },
     "CONTENT#kb_entry#ce-este-rezerva-de-siguran-i-c-nd-trebuie-folosit|VARIANT#ro": {
       "contentId": "ce-este-rezerva-de-siguran-i-c-nd-trebuie-folosit",
@@ -8989,11 +9027,19 @@
         ],
         "prevention": [],
         "problemSummary": "Rezerva de siguran\u021b\u0103 compenseaz\u0103 pierderile normale de r\u0103\u0219in\u0103 din timpul lucrului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "factor-de-siguran",
+          "copie-de-siguran"
+        ],
+        "relatedKbEntryIds": [
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat",
+          "de-ce-este-recomandat-o-prim-turnare-sub-ire"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "Recipient de amestec"
+        ],
         "searchKeywords": [],
         "solution": [
           "Adaug\u0103 o rezerv\u0103 rezonabil\u0103 dup\u0103 calcularea volumului geometric."
@@ -9010,13 +9056,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-este-rezerva-de-siguran-i-c-nd-trebuie-folosit",
-      "publishedAt": "2026-08-07T19:42:40.964629+00:00",
+      "publishedAt": "2026-08-16T13:08:42.653004+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-07T19:42:40.964629+00:00"
+      "updatedAt": "2026-08-16T13:08:42.653004+00:00"
     },
     "CONTENT#kb_entry#ce-este-top-coating-ul-i-c-nd-este-recomandat|META": {
       "category": "Epoxy",
@@ -9084,7 +9130,7 @@
       "pk": "CONTENT#ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
       "sk": "META",
       "sortOrder": 3500,
-      "updatedAt": "2026-08-07T16:40:31.495470+00:00"
+      "updatedAt": "2026-08-17T10:32:58.634973+00:00"
     },
     "CONTENT#kb_entry#ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare|VARIANT#ro": {
       "contentId": "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
@@ -9099,11 +9145,16 @@
         "prevention": [],
         "problemSummary": "Este normal ca primul strat de r\u0103\u0219in\u0103 s\u0103 fie absorbit aproape complet de lemn, \u00een special \u00een cazul esen\u021belor poroase.",
         "relatedGlossaryEntryIds": [
-          "r-in-epoxidic"
+          "r-in-epoxidic",
+          "strat-de-sigilare-seal-coat",
+          "lemn-poros"
         ],
         "relatedKbEntryIds": [
           "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
-          "cum-se-realizeaz-corect-sigilarea-lemnului"
+          "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
+          "cum-pot-ncastra-complet-lemnul-n-r-in",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [
@@ -9129,13 +9180,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
-      "publishedAt": "2026-08-07T16:40:31.495470+00:00",
+      "publishedAt": "2026-08-17T10:32:58.634973+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:40:31.495470+00:00"
+      "updatedAt": "2026-08-17T10:32:58.634973+00:00"
     },
     "CONTENT#kb_entry#ce-material-este-recomandat-pentru-construirea-cofrajului|META": {
       "category": "Epoxy",
@@ -9146,7 +9197,7 @@
       "pk": "CONTENT#ce-material-este-recomandat-pentru-construirea-cofrajului",
       "sk": "META",
       "sortOrder": 1900,
-      "updatedAt": "2026-07-28T12:07:11.026326+00:00"
+      "updatedAt": "2026-08-18T16:10:49.183280+00:00"
     },
     "CONTENT#kb_entry#ce-material-este-recomandat-pentru-construirea-cofrajului|VARIANT#ro": {
       "contentId": "ce-material-este-recomandat-pentru-construirea-cofrajului",
@@ -9166,7 +9217,9 @@
         "relatedKbEntryIds": [
           "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
           "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
-          "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului"
+          "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "ce-este-top-coating-ul-i-c-nd-este-recomandat"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -9187,13 +9240,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-material-este-recomandat-pentru-construirea-cofrajului",
-      "publishedAt": "2026-07-28T12:07:11.026326+00:00",
+      "publishedAt": "2026-08-18T16:10:49.183280+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-28T12:07:11.026326+00:00"
+      "updatedAt": "2026-08-18T16:10:49.183280+00:00"
     },
     "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|META": {
       "category": "Epoxy",
@@ -9204,7 +9257,7 @@
       "pk": "CONTENT#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
       "sk": "META",
       "sortOrder": 400,
-      "updatedAt": "2026-07-26T19:21:43.561207+00:00"
+      "updatedAt": "2026-08-18T17:12:56.023675+00:00"
     },
     "CONTENT#kb_entry#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed|VARIANT#ro": {
       "contentId": "ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
@@ -9225,12 +9278,20 @@
           "contaminare",
           "int-rire-incomplet",
           "lemn-instabil",
-          "lemn-poros"
+          "lemn-poros",
+          "bule-de-aer",
+          "polimerizare",
+          "turnare"
         ],
         "relatedKbEntryIds": [
-          "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare"
+          "care-este-umiditatea-recomandat-a-lemnului-nainte-de-turnare",
+          "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+          "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "alegerea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -9252,13 +9313,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-probleme-pot-ap-rea-dac-lemnul-este-prea-umed",
-      "publishedAt": "2026-07-26T19:21:43.561207+00:00",
+      "publishedAt": "2026-08-18T17:12:56.023675+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 5,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:21:43.561207+00:00"
+      "updatedAt": "2026-08-18T17:12:56.023675+00:00"
     },
     "CONTENT#kb_entry#ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii|META": {
       "category": "Epoxy",
@@ -9269,21 +9330,28 @@
       "pk": "CONTENT#ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
       "sk": "META",
       "sortOrder": 5400,
-      "updatedAt": "2026-08-08T07:12:54.806762+00:00"
+      "updatedAt": "2026-08-16T12:07:48.074613+00:00"
     },
     "CONTENT#kb_entry#ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii|VARIANT#ro": {
       "contentId": "ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
       "draftBody": {
         "bodyBlocks": [],
-        "estimatedRepairTime": null,
+        "estimatedRepairTime": "planificarea turn\u0103rii - aplica\u021bia - hfzwood - planificarea - \u0219tii - organizezi - turn\u0103rile",
         "media": [],
         "possibleCauses": [
           "Planificarea este f\u0103cut\u0103 doar pe baza estim\u0103rilor."
         ],
         "prevention": [],
         "problemSummary": "HFZWood organizeaz\u0103 informa\u021biile necesare turn\u0103rii \u0219i ajut\u0103 la planificarea \u00eentregului proces.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "manual-hfzwood",
+          "spatiu-de-lucru"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "cum-calculeaz-aplica-ia-componentele-a-i-b",
+          "cum-planific-corect-turn-rile-succesive"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9303,13 +9371,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
-      "publishedAt": "2026-08-08T07:12:54.806762+00:00",
+      "publishedAt": "2026-08-16T12:07:48.074613+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-08T07:12:54.806762+00:00"
+      "updatedAt": "2026-08-16T12:07:48.074613+00:00"
     },
     "CONTENT#kb_entry#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu|META": {
       "category": "Epoxy",
@@ -9320,7 +9388,7 @@
       "pk": "CONTENT#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
       "sk": "META",
       "sortOrder": 10100,
-      "updatedAt": "2026-08-10T16:28:10.000993+00:00"
+      "updatedAt": "2026-08-18T17:51:24.725086+00:00"
     },
     "CONTENT#kb_entry#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu|VARIANT#ro": {
       "contentId": "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
@@ -9341,8 +9409,6 @@
           "finisaj-lucios"
         ],
         "relatedKbEntryIds": [
-          "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
-          "ce-tip-de-r-in-trebuie-folosit-pentru-top-coating",
           "c-nd-este-recomandat-un-finisaj-care-formeaz-o-pelicul"
         ],
         "relatedManualChapterIds": [],
@@ -9362,13 +9428,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
-      "publishedAt": "2026-08-10T16:28:10.000993+00:00",
+      "publishedAt": "2026-08-18T17:51:24.725086+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-10T16:28:10.000993+00:00"
+      "updatedAt": "2026-08-18T17:51:24.725086+00:00"
     },
     "CONTENT#kb_entry#ce-tip-de-r-in-trebuie-folosit-pentru-top-coating|META": {
       "category": "Epoxy",
@@ -9437,7 +9503,7 @@
       "pk": "CONTENT#ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
       "sk": "META",
       "sortOrder": 5500,
-      "updatedAt": "2026-08-08T07:13:59.356562+00:00"
+      "updatedAt": "2026-08-16T12:06:13.572551+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-s-stabilesc-nainte-de-prima-turnare|VARIANT#ro": {
       "contentId": "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
@@ -9453,8 +9519,15 @@
           "\u00cencepe prepararea r\u0103\u0219inii doar dup\u0103 ce \u00eentregul plan de lucru este clar \u0219i verificat."
         ],
         "problemSummary": "\u00cenainte de prepararea r\u0103\u0219inii trebuie s\u0103 existe un plan complet al procesului de turnare.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "grosimea-stratului-de-turnare",
+          "turnare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-dup-prima-turnare",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "ce-trebuie-verificat-nainte-de-nceperea-turn-rii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9472,13 +9545,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
-      "publishedAt": "2026-08-08T07:13:59.356562+00:00",
+      "publishedAt": "2026-08-16T12:06:13.572551+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:13:59.356562+00:00"
+      "updatedAt": "2026-08-16T12:06:13.572551+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-dup-prima-turnare|META": {
       "category": "Epoxy",
@@ -9489,7 +9562,7 @@
       "pk": "CONTENT#ce-trebuie-verificat-dup-prima-turnare",
       "sk": "META",
       "sortOrder": 6100,
-      "updatedAt": "2026-08-08T07:28:16.763472+00:00"
+      "updatedAt": "2026-08-16T11:48:32.358662+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-dup-prima-turnare|VARIANT#ro": {
       "contentId": "ce-trebuie-verificat-dup-prima-turnare",
@@ -9502,8 +9575,14 @@
         ],
         "prevention": [],
         "problemSummary": "Dup\u0103 prima turnare trebuie inspectat \u00eentregul proiect pentru a identifica eventualele probleme \u00eenainte de continuarea lucr\u0103rii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "defect-de-turnare"
+        ],
+        "relatedKbEntryIds": [
+          "cum-elimin-bulele-de-aer-dup-prima-turnare",
+          "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "ce-trebuie-verificat-imediat-dup-demulare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9523,13 +9602,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-verificat-dup-prima-turnare",
-      "publishedAt": "2026-08-08T07:28:16.763472+00:00",
+      "publishedAt": "2026-08-16T11:48:32.358662+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:28:16.763472+00:00"
+      "updatedAt": "2026-08-16T11:48:32.358662+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-imediat-dup-aplicarea-top-coating-ului|META": {
       "category": "Epoxy",
@@ -9661,7 +9740,7 @@
       "pk": "CONTENT#ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
       "sk": "META",
       "sortOrder": 6400,
-      "updatedAt": "2026-08-08T07:32:58.666056+00:00"
+      "updatedAt": "2026-08-16T11:40:13.369677+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in|VARIANT#ro": {
       "contentId": "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
@@ -9675,8 +9754,15 @@
         ],
         "prevention": [],
         "problemSummary": "\u00cenaintea fiec\u0103rei turn\u0103ri trebuie verificat at\u00e2t mediul de lucru, c\u00e2t \u0219i starea proiectului, pentru a reduce riscul apari\u021biei defectelor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "scurgeri-de-r-in",
+          "turnare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
+          "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "ce-trebuie-verificat-dup-prima-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9696,13 +9782,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
-      "publishedAt": "2026-08-08T07:32:58.666056+00:00",
+      "publishedAt": "2026-08-16T11:40:13.369677+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:32:58.666056+00:00"
+      "updatedAt": "2026-08-16T11:40:13.369677+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-nainte-de-lefuirea-progresiv|META": {
       "category": "Epoxy",
@@ -9771,7 +9857,7 @@
       "pk": "CONTENT#ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
       "sk": "META",
       "sortOrder": 3000,
-      "updatedAt": "2026-08-07T16:09:29.864109+00:00"
+      "updatedAt": "2026-08-17T10:47:17.417261+00:00"
     },
     "CONTENT#kb_entry#ce-trebuie-verificat-nainte-de-nceperea-turn-rii|VARIANT#ro": {
       "contentId": "ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
@@ -9787,8 +9873,14 @@
           "Consider\u0103 aceast\u0103 verificare ca ultimul control de calitate \u00eenainte de o etap\u0103 care nu mai poate fi reversat\u0103 f\u0103r\u0103 costuri suplimentare."
         ],
         "problemSummary": "\u00cenainte de turnare trebuie f\u0103cut\u0103 o ultim\u0103 verificare a pozi\u021biei tuturor pieselor. Dup\u0103 \u00eenceperea turn\u0103rii, corectarea pozi\u021biei devine dificil\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "pozi-ionarea-lemnului"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "ce-trebuie-verificat-imediat-dup-demulare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9806,13 +9898,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#ce-trebuie-verificat-nainte-de-nceperea-turn-rii",
-      "publishedAt": "2026-08-07T16:09:29.864109+00:00",
+      "publishedAt": "2026-08-17T10:47:17.417261+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:09:29.864109+00:00"
+      "updatedAt": "2026-08-17T10:47:17.417261+00:00"
     },
     "CONTENT#kb_entry#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic|META": {
       "category": "Epoxy",
@@ -9823,7 +9915,7 @@
       "pk": "CONTENT#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
       "sk": "META",
       "sortOrder": 200,
-      "updatedAt": "2026-08-05T11:33:59.501993+00:00"
+      "updatedAt": "2026-08-18T17:12:30.929715+00:00"
     },
     "CONTENT#kb_entry#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic|VARIANT#ro": {
       "contentId": "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
@@ -9851,10 +9943,17 @@
           "lemn-instabil",
           "lemn-poros",
           "lemn-s-n-tos",
-          "nod-in-lemn"
+          "nod-in-lemn",
+          "r-in-epoxidic"
         ],
-        "relatedKbEntryIds": [],
-        "relatedManualChapterIds": [],
+        "relatedKbEntryIds": [
+          "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+          "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
+          "de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic"
+        ],
+        "relatedManualChapterIds": [
+          "alegerea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [
           "Aparat de verificat umiditatea"
@@ -9878,13 +9977,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
-      "publishedAt": "2026-08-05T11:33:59.501993+00:00",
+      "publishedAt": "2026-08-18T17:12:30.929715+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-05T11:33:59.501993+00:00"
+      "updatedAt": "2026-08-18T17:12:30.929715+00:00"
     },
     "CONTENT#kb_entry#cum-aleg-r-ina-potrivit-pentru-proiectul-meu|META": {
       "category": "Epoxy",
@@ -9895,7 +9994,7 @@
       "pk": "CONTENT#cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
       "sk": "META",
       "sortOrder": 4900,
-      "updatedAt": "2026-08-08T07:05:35.568335+00:00"
+      "updatedAt": "2026-08-16T12:17:29.182485+00:00"
     },
     "CONTENT#kb_entry#cum-aleg-r-ina-potrivit-pentru-proiectul-meu|VARIANT#ro": {
       "contentId": "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
@@ -9909,8 +10008,15 @@
         ],
         "prevention": [],
         "problemSummary": "Nu exist\u0103 o r\u0103\u0219in\u0103 potrivit\u0103 pentru toate proiectele. Alegerea trebuie f\u0103cut\u0103 \u00een func\u021bie de caracteristicile proiectului \u0219i de recomand\u0103rile produc\u0103torului.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "timp-de-nt-rire",
+          "v-scozitate"
+        ],
+        "relatedKbEntryIds": [
+          "ce-tip-de-finisaj-ar-trebui-s-aleg-pentru-proiectul-meu",
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -9930,13 +10036,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
-      "publishedAt": "2026-08-08T07:05:35.568335+00:00",
+      "publishedAt": "2026-08-16T12:17:29.182485+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:05:35.568335+00:00"
+      "updatedAt": "2026-08-16T12:17:29.182485+00:00"
     },
     "CONTENT#kb_entry#cum-aplic-corect-stratul-final-de-r-in|META": {
       "category": "Epoxy",
@@ -10063,7 +10169,7 @@
       "pk": "CONTENT#cum-calculeaz-aplica-ia-componentele-a-i-b",
       "sk": "META",
       "sortOrder": 4600,
-      "updatedAt": "2026-08-08T06:55:45.148100+00:00"
+      "updatedAt": "2026-08-16T12:21:28.095931+00:00"
     },
     "CONTENT#kb_entry#cum-calculeaz-aplica-ia-componentele-a-i-b|VARIANT#ro": {
       "contentId": "cum-calculeaz-aplica-ia-componentele-a-i-b",
@@ -10078,11 +10184,20 @@
           "Verific\u0103 \u00eentotdeauna fi\u0219a tehnic\u0103 \u00eenainte de introducerea raportului."
         ],
         "problemSummary": "HFZWood \u00eemparte automat cantitatea total\u0103 \u00eentre componentele A \u0219i B folosind raportul introdus de utilizator.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "raport-de-amestec",
+          "volum-de-turnare"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
+          "ce-rol-are-aplica-ia-hfzwood-n-planificarea-turn-rii",
+          "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "C\u00e2ntar de precizie"
+        ],
         "searchKeywords": [],
         "solution": [
           "Introdu raportul exact recomandat de produc\u0103tor \u0219i precizeaz\u0103 dac\u0103 acesta este exprimat \u00een greutate sau \u00een volum."
@@ -10096,13 +10211,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-calculeaz-aplica-ia-componentele-a-i-b",
-      "publishedAt": "2026-08-08T06:55:45.148100+00:00",
+      "publishedAt": "2026-08-16T12:21:28.095931+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-08T06:55:45.148100+00:00"
+      "updatedAt": "2026-08-16T12:21:28.095931+00:00"
     },
     "CONTENT#kb_entry#cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect|META": {
       "category": "Epoxy",
@@ -10113,7 +10228,7 @@
       "pk": "CONTENT#cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
       "sk": "META",
       "sortOrder": 3700,
-      "updatedAt": "2026-08-07T18:15:42.199585+00:00"
+      "updatedAt": "2026-08-17T10:17:44.237423+00:00"
     },
     "CONTENT#kb_entry#cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect|VARIANT#ro": {
       "contentId": "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
@@ -10129,8 +10244,17 @@
           "Fotografia trebuie facuta cat mai simetric si vertical deasupra proiectului."
         ],
         "problemSummary": "Calculatorul HFZWood determin\u0103 cantitatea necesar\u0103 de r\u0103\u0219in\u0103 pe baza fotografiei proiectului, a dimensiunilor reale \u0219i a geometriei definite de utilizator.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cantitate-necesar-de-r-in",
+          "cantitate-necesar-de-nt-ritor",
+          "estimarea-cantit-ii-de-r-in",
+          "calculator-de-r-in"
+        ],
+        "relatedKbEntryIds": [
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
+          "cum-preg-tesc-suprafa-a-dac-voi-aplica-un-strat-final-transparent-de-r-in"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10150,13 +10274,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
-      "publishedAt": "2026-08-07T18:15:42.199585+00:00",
+      "publishedAt": "2026-08-17T10:17:44.237423+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T18:15:42.199585+00:00"
+      "updatedAt": "2026-08-17T10:17:44.237423+00:00"
     },
     "CONTENT#kb_entry#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii|META": {
       "category": "Epoxy",
@@ -10167,7 +10291,7 @@
       "pk": "CONTENT#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
       "sk": "META",
       "sortOrder": 1800,
-      "updatedAt": "2026-07-28T11:51:24.095470+00:00"
+      "updatedAt": "2026-08-18T16:11:46.544369+00:00"
     },
     "CONTENT#kb_entry#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii|VARIANT#ro": {
       "contentId": "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
@@ -10184,11 +10308,15 @@
         "relatedGlossaryEntryIds": [
           "cofraj",
           "silicon-de-etan-are",
-          "sigilarea-lemnului"
+          "sigilarea-lemnului",
+          "turnare"
         ],
         "relatedKbEntryIds": [
           "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
-          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului"
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "cum-influen-eaz-temperatura-turnarea-r-inii"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -10210,13 +10338,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
-      "publishedAt": "2026-07-28T11:51:24.095470+00:00",
+      "publishedAt": "2026-08-18T16:11:46.544369+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-28T11:51:24.095470+00:00"
+      "updatedAt": "2026-08-18T16:11:46.544369+00:00"
     },
     "CONTENT#kb_entry#cum-demontez-corect-cofrajul|META": {
       "category": "Epoxy",
@@ -10286,7 +10414,7 @@
       "pk": "CONTENT#cum-elimin-bulele-de-aer-dup-prima-turnare",
       "sk": "META",
       "sortOrder": 6200,
-      "updatedAt": "2026-08-08T07:30:45.883473+00:00"
+      "updatedAt": "2026-08-16T11:45:22.426811+00:00"
     },
     "CONTENT#kb_entry#cum-elimin-bulele-de-aer-dup-prima-turnare|VARIANT#ro": {
       "contentId": "cum-elimin-bulele-de-aer-dup-prima-turnare",
@@ -10299,8 +10427,15 @@
         ],
         "prevention": [],
         "problemSummary": "\u00cen timpul primei turn\u0103ri pot ap\u0103rea bule de aer la suprafa\u021ba r\u0103\u0219inii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "bule-de-aer",
+          "turnare"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
+          "ce-trebuie-verificat-dup-prima-turnare",
+          "ce-trebuie-s-stabilesc-nainte-de-prima-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10319,13 +10454,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-elimin-bulele-de-aer-dup-prima-turnare",
-      "publishedAt": "2026-08-08T07:30:45.883473+00:00",
+      "publishedAt": "2026-08-16T11:45:22.426811+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:30:45.883473+00:00"
+      "updatedAt": "2026-08-16T11:45:22.426811+00:00"
     },
     "CONTENT#kb_entry#cum-etan-ez-corect-cofrajul|META": {
       "category": "Epoxy",
@@ -10336,7 +10471,7 @@
       "pk": "CONTENT#cum-etan-ez-corect-cofrajul",
       "sk": "META",
       "sortOrder": 2100,
-      "updatedAt": "2026-07-28T12:36:46.490455+00:00"
+      "updatedAt": "2026-08-18T16:08:13.829442+00:00"
     },
     "CONTENT#kb_entry#cum-etan-ez-corect-cofrajul|VARIANT#ro": {
       "contentId": "cum-etan-ez-corect-cofrajul",
@@ -10360,7 +10495,10 @@
         "relatedKbEntryIds": [
           "ce-material-este-recomandat-pentru-construirea-cofrajului",
           "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
-          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului"
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "cum-demontez-corect-cofrajul",
+          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -10381,13 +10519,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-etan-ez-corect-cofrajul",
-      "publishedAt": "2026-07-28T12:36:46.490455+00:00",
+      "publishedAt": "2026-08-18T16:08:13.829442+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-28T12:36:46.490455+00:00"
+      "updatedAt": "2026-08-18T16:08:13.829442+00:00"
     },
     "CONTENT#kb_entry#cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare|META": {
       "category": "Epoxy",
@@ -10461,7 +10599,7 @@
       "pk": "CONTENT#cum-folosesc-siliconul-pentru-fixarea-lemnului",
       "sk": "META",
       "sortOrder": 2800,
-      "updatedAt": "2026-08-07T15:50:27.673048+00:00"
+      "updatedAt": "2026-08-17T10:50:00.352755+00:00"
     },
     "CONTENT#kb_entry#cum-folosesc-siliconul-pentru-fixarea-lemnului|VARIANT#ro": {
       "contentId": "cum-folosesc-siliconul-pentru-fixarea-lemnului",
@@ -10476,11 +10614,15 @@
         "prevention": [],
         "problemSummary": "Un cordon de silicon aplicat pe partea inferioar\u0103 a lemnului asigur\u0103 fixarea piesei \u0219i limiteaz\u0103 p\u0103trunderea r\u0103\u0219inii sub aceasta. Cordonul trebue pus la 2 sau 3 cm de la margine, astfel incat sa nu iasain afara lemnului atunci cand este asezat in cofrag.",
         "relatedGlossaryEntryIds": [
-          "silicon-de-etan-are"
+          "silicon-de-etan-are",
+          "cofraj"
         ],
         "relatedKbEntryIds": [
           "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
-          "de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare"
+          "de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
+          "cum-folosesc-corect-lefuitorul-cu-band-pentru-calibrare",
+          "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
+          "cum-se-realizeaz-corect-sigilarea-lemnului"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -10501,13 +10643,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-folosesc-siliconul-pentru-fixarea-lemnului",
-      "publishedAt": "2026-08-07T15:50:27.673048+00:00",
+      "publishedAt": "2026-08-17T10:50:00.352755+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:50:27.673048+00:00"
+      "updatedAt": "2026-08-17T10:50:00.352755+00:00"
     },
     "CONTENT#kb_entry#cum-func-ioneaz-lefuirea-progresiv|META": {
       "category": "Epoxy",
@@ -10579,7 +10721,7 @@
       "pk": "CONTENT#cum-influen-eaz-temperatura-turnarea-r-inii",
       "sk": "META",
       "sortOrder": 6500,
-      "updatedAt": "2026-08-08T07:34:04.744143+00:00"
+      "updatedAt": "2026-08-16T11:34:19.681583+00:00"
     },
     "CONTENT#kb_entry#cum-influen-eaz-temperatura-turnarea-r-inii|VARIANT#ro": {
       "contentId": "cum-influen-eaz-temperatura-turnarea-r-inii",
@@ -10593,8 +10735,15 @@
         ],
         "prevention": [],
         "problemSummary": "Temperatura influen\u021beaz\u0103 v\u00e2scozitatea r\u0103\u0219inii, timpul de lucru \u0219i procesul de \u00eent\u0103rire.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "v-scozitate"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "cum-influen-eaz-tipul-proiectului-alegerea-lemnului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10614,13 +10763,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-influen-eaz-temperatura-turnarea-r-inii",
-      "publishedAt": "2026-08-08T07:34:04.744143+00:00",
+      "publishedAt": "2026-08-16T11:34:19.681583+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:34:04.744143+00:00"
+      "updatedAt": "2026-08-16T11:34:19.681583+00:00"
     },
     "CONTENT#kb_entry#cum-influen-eaz-tipul-proiectului-alegerea-lemnului|META": {
       "category": "Epoxy",
@@ -10631,7 +10780,7 @@
       "pk": "CONTENT#cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
       "sk": "META",
       "sortOrder": 700,
-      "updatedAt": "2026-07-26T19:22:07.683151+00:00"
+      "updatedAt": "2026-08-18T17:14:30.315099+00:00"
     },
     "CONTENT#kb_entry#cum-influen-eaz-tipul-proiectului-alegerea-lemnului|VARIANT#ro": {
       "contentId": "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
@@ -10651,12 +10800,19 @@
           "finisaj-lucios",
           "finisaj-satinat",
           "lemn-s-n-tos",
-          "lemn-instabil"
+          "lemn-instabil",
+          "river-table",
+          "compozi-ia-proiectului"
         ],
         "relatedKbEntryIds": [
-          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului"
+          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "cum-influen-eaz-temperatura-turnarea-r-inii",
+          "ce-trebuie-s-stabilesc-nainte-de-prima-turnare"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "alegerea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -10673,13 +10829,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
-      "publishedAt": "2026-07-26T19:22:07.683151+00:00",
+      "publishedAt": "2026-08-18T17:14:30.315099+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 5,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:22:07.683151+00:00"
+      "updatedAt": "2026-08-18T17:14:30.315099+00:00"
     },
     "CONTENT#kb_entry#cum-introduc-corect-ad-ncimea-principal-de-turnare|META": {
       "category": "Epoxy",
@@ -10690,7 +10846,7 @@
       "pk": "CONTENT#cum-introduc-corect-ad-ncimea-principal-de-turnare",
       "sk": "META",
       "sortOrder": 4300,
-      "updatedAt": "2026-08-07T19:41:19.828338+00:00"
+      "updatedAt": "2026-08-16T13:10:07.420072+00:00"
     },
     "CONTENT#kb_entry#cum-introduc-corect-ad-ncimea-principal-de-turnare|VARIANT#ro": {
       "contentId": "cum-introduc-corect-ad-ncimea-principal-de-turnare",
@@ -10705,8 +10861,16 @@
           "\u021aine cont de orice strat de r\u0103\u0219in\u0103 existent sub lemn si de cei trei mm care trebuie turnati in plus. Rasina care este deasupra nivelului lemnului se contracta pe masura ce se matureaza."
         ],
         "problemSummary": "Ad\u00e2ncimea de turnare reprezint\u0103 distan\u021ba dintre fundul cofrajului \u0219i nivelul final al r\u0103\u0219inii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "defect-de-turnare",
+          "zon-de-turnare"
+        ],
+        "relatedKbEntryIds": [
+          "cum-introduc-corect-reperele-dimensionale",
+          "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+          "cum-trebuie-cur-at-lemnul-nainte-de-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -10724,13 +10888,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-introduc-corect-ad-ncimea-principal-de-turnare",
-      "publishedAt": "2026-08-07T19:41:19.828338+00:00",
+      "publishedAt": "2026-08-16T13:10:07.420072+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T19:41:19.828338+00:00"
+      "updatedAt": "2026-08-16T13:10:07.420072+00:00"
     },
     "CONTENT#kb_entry#cum-introduc-corect-reperele-dimensionale|META": {
       "category": "Epoxy",
@@ -10741,7 +10905,7 @@
       "pk": "CONTENT#cum-introduc-corect-reperele-dimensionale",
       "sk": "META",
       "sortOrder": 3900,
-      "updatedAt": "2026-08-07T18:19:25.365470+00:00"
+      "updatedAt": "2026-08-17T10:08:13.400141+00:00"
     },
     "CONTENT#kb_entry#cum-introduc-corect-reperele-dimensionale|VARIANT#ro": {
       "contentId": "cum-introduc-corect-reperele-dimensionale",
@@ -10756,9 +10920,13 @@
         ],
         "prevention": [],
         "problemSummary": "Reperele dimensionale permit aplica\u021biei s\u0103 transforme fotografia \u00een dimensiuni reale.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "tensiuni-interne"
+        ],
         "relatedKbEntryIds": [
-          "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect"
+          "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+          "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -10779,13 +10947,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-introduc-corect-reperele-dimensionale",
-      "publishedAt": "2026-08-07T18:19:25.365470+00:00",
+      "publishedAt": "2026-08-17T10:08:13.400141+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T18:19:25.365470+00:00"
+      "updatedAt": "2026-08-17T10:08:13.400141+00:00"
     },
     "CONTENT#kb_entry#cum-lefuiesc-stratul-final-de-r-in-nainte-de-lustruire|META": {
       "category": "Epoxy",
@@ -10854,7 +11022,7 @@
       "pk": "CONTENT#cum-m-preg-tesc-nainte-de-prepararea-r-inii",
       "sk": "META",
       "sortOrder": 5600,
-      "updatedAt": "2026-08-08T07:15:48.375280+00:00"
+      "updatedAt": "2026-08-16T11:59:27.146338+00:00"
     },
     "CONTENT#kb_entry#cum-m-preg-tesc-nainte-de-prepararea-r-inii|VARIANT#ro": {
       "contentId": "cum-m-preg-tesc-nainte-de-prepararea-r-inii",
@@ -10868,11 +11036,25 @@
         ],
         "prevention": [],
         "problemSummary": "\u00cenainte de amestecarea r\u0103\u0219inii, toate materialele \u0219i uneltele trebuie preg\u0103tite, deoarece reac\u021bia chimic\u0103 \u00eencepe imediat dup\u0103 combinarea componentelor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "amestecare",
+          "pigment"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-s-stabilesc-nainte-de-prima-turnare",
+          "cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredMaterials": [
+          "Pigment compatibil",
+          "M\u0103nu\u0219i de protec\u021bie"
+        ],
+        "requiredTools": [
+          "C\u00e2ntar de precizie",
+          "Spatul\u0103",
+          "Recipient de amestec"
+        ],
         "searchKeywords": [],
         "solution": [
           "Preg\u0103te\u0219te dinainte recipientele de amestecare, c\u00e2ntarul, spatulele, pigmen\u021bii, m\u0103nu\u0219ile \u0219i toate accesoriile necesare \u00eenainte de combinarea componentelor."
@@ -10889,13 +11071,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-m-preg-tesc-nainte-de-prepararea-r-inii",
-      "publishedAt": "2026-08-08T07:15:48.375280+00:00",
+      "publishedAt": "2026-08-16T11:59:27.146338+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-08T07:15:48.375280+00:00"
+      "updatedAt": "2026-08-16T11:59:27.146338+00:00"
     },
     "CONTENT#kb_entry#cum-manipulez-proiectul-dup-scoaterea-din-cofraj|META": {
       "category": "Epoxy",
@@ -11025,7 +11207,7 @@
       "pk": "CONTENT#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
       "sk": "META",
       "sortOrder": 10800,
-      "updatedAt": "2026-08-10T15:33:11.621173+00:00"
+      "updatedAt": "2026-08-18T17:55:29.840482+00:00"
     },
     "CONTENT#kb_entry#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear|VARIANT#ro": {
       "contentId": "cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
@@ -11066,13 +11248,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-ntre-in-n-timp-un-finisaj-cu-ulei-i-cear",
-      "publishedAt": "2026-08-10T15:33:11.621173+00:00",
+      "publishedAt": "2026-08-18T17:55:29.840482+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
       "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-10T15:33:11.621173+00:00"
+      "updatedAt": "2026-08-18T17:55:29.840482+00:00"
     },
     "CONTENT#kb_entry#cum-ob-in-un-luciu-perfect-dup-top-coating|META": {
       "category": "Epoxy",
@@ -11141,7 +11323,7 @@
       "pk": "CONTENT#cum-planific-corect-turn-rile-succesive",
       "sk": "META",
       "sortOrder": 5200,
-      "updatedAt": "2026-08-08T07:10:37.863943+00:00"
+      "updatedAt": "2026-08-16T12:10:44.952675+00:00"
     },
     "CONTENT#kb_entry#cum-planific-corect-turn-rile-succesive|VARIANT#ro": {
       "contentId": "cum-planific-corect-turn-rile-succesive",
@@ -11155,8 +11337,14 @@
         ],
         "prevention": [],
         "problemSummary": "Planificarea turn\u0103rilor permite organizarea \u00eentregului proces \u00eenainte de prepararea r\u0103\u0219inii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare-n-straturi"
+        ],
+        "relatedKbEntryIds": [
+          "cum-planific-turn-rile-succesive",
+          "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "ce-trebuie-s-stabilesc-nainte-de-prima-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11176,13 +11364,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-planific-corect-turn-rile-succesive",
-      "publishedAt": "2026-08-08T07:10:37.863943+00:00",
+      "publishedAt": "2026-08-16T12:10:44.952675+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:10:37.863943+00:00"
+      "updatedAt": "2026-08-16T12:10:44.952675+00:00"
     },
     "CONTENT#kb_entry#cum-planific-turn-rile-succesive|META": {
       "category": "Epoxy",
@@ -11193,7 +11381,7 @@
       "pk": "CONTENT#cum-planific-turn-rile-succesive",
       "sk": "META",
       "sortOrder": 4500,
-      "updatedAt": "2026-08-08T06:54:38.172371+00:00"
+      "updatedAt": "2026-08-16T13:06:57.807533+00:00"
     },
     "CONTENT#kb_entry#cum-planific-turn-rile-succesive|VARIANT#ro": {
       "contentId": "cum-planific-turn-rile-succesive",
@@ -11206,9 +11394,14 @@
         ],
         "prevention": [],
         "problemSummary": "Majoritatea r\u0103\u0219inilor trebuie turnate \u00een mai multe straturi pentru a respecta grosimea maxim\u0103 recomandat\u0103.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare-n-straturi"
+        ],
         "relatedKbEntryIds": [
-          "cum-introduc-corect-ad-ncimea-principal-de-turnare"
+          "cum-introduc-corect-ad-ncimea-principal-de-turnare",
+          "cum-planific-corect-turn-rile-succesive",
+          "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
+          "cum-se-realizeaz-corect-turn-rile-intermediare"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -11229,13 +11422,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-planific-turn-rile-succesive",
-      "publishedAt": "2026-08-08T06:54:38.172371+00:00",
+      "publishedAt": "2026-08-16T13:06:57.807533+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T06:54:38.172371+00:00"
+      "updatedAt": "2026-08-16T13:06:57.807533+00:00"
     },
     "CONTENT#kb_entry#cum-pot-ncastra-complet-lemnul-n-r-in|META": {
       "category": "Epoxy",
@@ -11246,7 +11439,7 @@
       "pk": "CONTENT#cum-pot-ncastra-complet-lemnul-n-r-in",
       "sk": "META",
       "sortOrder": 2900,
-      "updatedAt": "2026-08-07T15:52:33.602161+00:00"
+      "updatedAt": "2026-08-17T10:48:56.367583+00:00"
     },
     "CONTENT#kb_entry#cum-pot-ncastra-complet-lemnul-n-r-in|VARIANT#ro": {
       "contentId": "cum-pot-ncastra-complet-lemnul-n-r-in",
@@ -11262,11 +11455,17 @@
         ],
         "problemSummary": "Dac\u0103 dore\u0219ti ca lemnul s\u0103 fie \u00eenconjurat complet de r\u0103\u0219in\u0103, inclusiv pe partea inferioar\u0103, este necesar\u0103 o metod\u0103 diferit\u0103 de pozi\u021bionare.",
         "relatedGlossaryEntryIds": [
-          "r-in-epoxidic"
+          "r-in-epoxidic",
+          "configura-ia-proiectului",
+          "cofraj",
+          "turnare"
         ],
         "relatedKbEntryIds": [
           "cum-etan-ez-corect-cofrajul",
-          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului"
+          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "cum-pozi-ionez-corect-lemnul-n-cofraj",
+          "ce-fac-dac-lemnul-absoarbe-complet-stratul-de-sigilare",
+          "c-nd-se-adaug-pigmen-ii-n-r-in"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -11285,13 +11484,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-pot-ncastra-complet-lemnul-n-r-in",
-      "publishedAt": "2026-08-07T15:52:33.602161+00:00",
+      "publishedAt": "2026-08-17T10:48:56.367583+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:52:33.602161+00:00"
+      "updatedAt": "2026-08-17T10:48:56.367583+00:00"
     },
     "CONTENT#kb_entry#cum-pozi-ionez-corect-lemnul-n-cofraj|META": {
       "category": "Epoxy",
@@ -11302,7 +11501,7 @@
       "pk": "CONTENT#cum-pozi-ionez-corect-lemnul-n-cofraj",
       "sk": "META",
       "sortOrder": 2500,
-      "updatedAt": "2026-08-07T15:38:00.977902+00:00"
+      "updatedAt": "2026-08-17T10:59:54.250416+00:00"
     },
     "CONTENT#kb_entry#cum-pozi-ionez-corect-lemnul-n-cofraj|VARIANT#ro": {
       "contentId": "cum-pozi-ionez-corect-lemnul-n-cofraj",
@@ -11317,11 +11516,15 @@
         "prevention": [],
         "problemSummary": "Pozi\u021bionarea corect\u0103 a lemnului determin\u0103 aspectul final al proiectului. \u00cenainte de fixare trebuie verificat\u0103 orientarea pieselor \u0219i echilibrul compozi\u021biei. Daca nu sunteti sigur ca lemnul nu este perfect plan pe spate, izolati perimetral la 2 sau 3 cm spre interior, cu un cordon de silicon. In acest fel minimizati pierderile de rasina care se pot duce inutil sub lemn.",
         "relatedGlossaryEntryIds": [
-          "silicon-de-etan-are"
+          "silicon-de-etan-are",
+          "clem-de-fixare"
         ],
         "relatedKbEntryIds": [
           "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
-          "cum-etan-ez-corect-cofrajul"
+          "cum-etan-ez-corect-cofrajul",
+          "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+          "cum-pot-ncastra-complet-lemnul-n-r-in",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -11343,13 +11546,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-pozi-ionez-corect-lemnul-n-cofraj",
-      "publishedAt": "2026-08-07T15:38:00.977902+00:00",
+      "publishedAt": "2026-08-17T10:59:54.250416+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:38:00.977902+00:00"
+      "updatedAt": "2026-08-17T10:59:54.250416+00:00"
     },
     "CONTENT#kb_entry#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare|META": {
       "category": "Epoxy",
@@ -11360,7 +11563,7 @@
       "pk": "CONTENT#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
       "sk": "META",
       "sortOrder": 1400,
-      "updatedAt": "2026-08-07T15:43:04.409334+00:00"
+      "updatedAt": "2026-08-18T17:30:33.151777+00:00"
     },
     "CONTENT#kb_entry#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare|VARIANT#ro": {
       "contentId": "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
@@ -11377,10 +11580,20 @@
         "relatedGlossaryEntryIds": [
           "configura-ia-proiectului",
           "compozi-ia-proiectului",
-          "cofraj"
+          "cofraj",
+          "pozi-ionarea-lemnului",
+          "turnare",
+          "insul-de-lemn",
+          "zon-de-turnare"
         ],
-        "relatedKbEntryIds": [],
-        "relatedManualChapterIds": [],
+        "relatedKbEntryIds": [
+          "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "cum-pozi-ionez-corect-lemnul-n-cofraj",
+          "cum-introduc-corect-ad-ncimea-principal-de-turnare"
+        ],
+        "relatedManualChapterIds": [
+          "stabilirea-compozi-iei-i-geometriei-proiectului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -11400,13 +11613,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
-      "publishedAt": "2026-08-07T15:43:04.409334+00:00",
+      "publishedAt": "2026-08-18T17:30:33.151777+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:43:04.409334+00:00"
+      "updatedAt": "2026-08-18T17:30:33.151777+00:00"
     },
     "CONTENT#kb_entry#cum-preg-tesc-piesa-nainte-de-aplicarea-unui-top-coating|META": {
       "category": "Epoxy",
@@ -11534,7 +11747,7 @@
       "pk": "CONTENT#cum-se-amestec-corect-r-ina-epoxidic",
       "sk": "META",
       "sortOrder": 5800,
-      "updatedAt": "2026-08-08T07:23:59.534670+00:00"
+      "updatedAt": "2026-08-16T11:53:03.518555+00:00"
     },
     "CONTENT#kb_entry#cum-se-amestec-corect-r-ina-epoxidic|VARIANT#ro": {
       "contentId": "cum-se-amestec-corect-r-ina-epoxidic",
@@ -11548,11 +11761,22 @@
         ],
         "prevention": [],
         "problemSummary": "O amestecare corect\u0103 asigur\u0103 omogenizarea complet\u0103 a componentelor \u0219i reduce riscul apari\u021biei defectelor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "amestecare",
+          "r-in-epoxidic"
+        ],
+        "relatedKbEntryIds": [
+          "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "cum-se-aplic-corect-ceara-pentru-lemn"
+        ],
         "relatedManualChapterIds": [],
-        "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredMaterials": [
+          "R\u0103\u0219in\u0103 epoxidic\u0103"
+        ],
+        "requiredTools": [
+          "Recipient de amestec"
+        ],
         "searchKeywords": [],
         "solution": [
           "Amestec\u0103 lent \u0219i uniform, acord\u00e2nd aten\u021bie pere\u021bilor \u0219i fundului recipientului. Dac\u0103 produc\u0103torul recomand\u0103, transfer\u0103 apoi amestecul \u00eentr-un al doilea recipient curat \u0219i continu\u0103 omogenizarea."
@@ -11569,13 +11793,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-se-amestec-corect-r-ina-epoxidic",
-      "publishedAt": "2026-08-08T07:23:59.534670+00:00",
+      "publishedAt": "2026-08-16T11:53:03.518555+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-08T07:23:59.534670+00:00"
+      "updatedAt": "2026-08-16T11:53:03.518555+00:00"
     },
     "CONTENT#kb_entry#cum-se-aplic-corect-ceara-pentru-lemn|META": {
       "category": "Epoxy",
@@ -11644,7 +11868,7 @@
       "pk": "CONTENT#cum-se-realizeaz-corect-sigilarea-lemnului",
       "sk": "META",
       "sortOrder": 3200,
-      "updatedAt": "2026-08-07T16:22:22.882026+00:00"
+      "updatedAt": "2026-08-17T10:44:57.083385+00:00"
     },
     "CONTENT#kb_entry#cum-se-realizeaz-corect-sigilarea-lemnului|VARIANT#ro": {
       "contentId": "cum-se-realizeaz-corect-sigilarea-lemnului",
@@ -11660,9 +11884,15 @@
         "prevention": [],
         "problemSummary": "Sigilarea const\u0103 \u00een aplicarea unui strat sub\u021bire \u0219i uniform de r\u0103\u0219in\u0103 care impregneaz\u0103 suprafa\u021ba lemnului.",
         "relatedGlossaryEntryIds": [
-          "r-in-epoxidic"
+          "r-in-epoxidic",
+          "sigilarea-lemnului",
+          "umiditatea-lemnului"
         ],
-        "relatedKbEntryIds": [],
+        "relatedKbEntryIds": [
+          "cum-se-realizeaz-corect-turn-rile-intermediare",
+          "cum-se-realizeaz-lustruirea-dup-aplicarea-cerii",
+          "n-ce-situa-ii-este-recomandat-sigilarea-lemnului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11684,13 +11914,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-se-realizeaz-corect-sigilarea-lemnului",
-      "publishedAt": "2026-08-07T16:22:22.882026+00:00",
+      "publishedAt": "2026-08-17T10:44:57.083385+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:22:22.882026+00:00"
+      "updatedAt": "2026-08-17T10:44:57.083385+00:00"
     },
     "CONTENT#kb_entry#cum-se-realizeaz-corect-turn-rile-intermediare|META": {
       "category": "Epoxy",
@@ -11810,7 +12040,7 @@
       "pk": "CONTENT#cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
       "sk": "META",
       "sortOrder": 2000,
-      "updatedAt": "2026-07-28T12:23:20.704470+00:00"
+      "updatedAt": "2026-08-18T16:09:15.340326+00:00"
     },
     "CONTENT#kb_entry#cum-stabilesc-dimensiunile-corecte-ale-cofrajului|VARIANT#ro": {
       "contentId": "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
@@ -11827,12 +12057,15 @@
         ],
         "problemSummary": "Dimensiunile cofrajului trebuie s\u0103 permit\u0103 at\u00e2t turnarea \u00een siguran\u021b\u0103, c\u00e2t \u0219i prelucr\u0103rile finale ale proiectului.",
         "relatedGlossaryEntryIds": [
-          "cofraj"
+          "cofraj",
+          "turnare"
         ],
         "relatedKbEntryIds": [
           "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
           "ce-material-este-recomandat-pentru-construirea-cofrajului",
-          "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii"
+          "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
+          "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -11851,13 +12084,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
-      "publishedAt": "2026-07-28T12:23:20.704470+00:00",
+      "publishedAt": "2026-08-18T16:09:15.340326+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-28T12:23:20.704470+00:00"
+      "updatedAt": "2026-08-18T16:09:15.340326+00:00"
     },
     "CONTENT#kb_entry#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului|META": {
       "category": "Epoxy",
@@ -11868,7 +12101,7 @@
       "pk": "CONTENT#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
       "sk": "META",
       "sortOrder": 1500,
-      "updatedAt": "2026-07-28T11:37:53.267675+00:00"
+      "updatedAt": "2026-08-18T17:30:45.593097+00:00"
     },
     "CONTENT#kb_entry#cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului|VARIANT#ro": {
       "contentId": "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
@@ -11883,12 +12116,17 @@
         "prevention": [],
         "problemSummary": "Dup\u0103 stabilirea compozi\u021biei, trebuie definit conturul exterior al proiectului. Acesta va reprezenta forma final\u0103 a piesei \u0219i baza pentru construirea cofrajului.",
         "relatedGlossaryEntryIds": [
-          "cofraj"
+          "cofraj",
+          "contur-exterior"
         ],
         "relatedKbEntryIds": [
-          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare"
+          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+          "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "stabilirea-compozi-iei-i-geometriei-proiectului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -11910,10 +12148,10 @@
       "publishedAt": "2026-07-28T11:37:53.267675+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-28T11:37:53.267675+00:00"
+      "updatedAt": "2026-08-18T17:30:45.593097+00:00"
     },
     "CONTENT#kb_entry#cum-trasez-corect-conturul-interior-al-cofrajului|META": {
       "category": "Epoxy",
@@ -11924,7 +12162,7 @@
       "pk": "CONTENT#cum-trasez-corect-conturul-interior-al-cofrajului",
       "sk": "META",
       "sortOrder": 4000,
-      "updatedAt": "2026-08-07T18:23:04.933917+00:00"
+      "updatedAt": "2026-08-16T13:14:19.564920+00:00"
     },
     "CONTENT#kb_entry#cum-trasez-corect-conturul-interior-al-cofrajului|VARIANT#ro": {
       "contentId": "cum-trasez-corect-conturul-interior-al-cofrajului",
@@ -11938,8 +12176,15 @@
         ],
         "prevention": [],
         "problemSummary": "Conturul cofrajului stabile\u0219te volumul maxim disponibil pentru r\u0103\u0219in\u0103 \u0219i reprezint\u0103 baza tuturor calculelor.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "conturul-cavit-ii",
+          "cofraj"
+        ],
+        "relatedKbEntryIds": [
+          "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "cum-stabilesc-dimensiunile-corecte-ale-cofrajului",
+          "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -11959,13 +12204,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-trasez-corect-conturul-interior-al-cofrajului",
-      "publishedAt": "2026-08-07T18:23:04.933917+00:00",
+      "publishedAt": "2026-08-16T13:14:19.564920+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T18:23:04.933917+00:00"
+      "updatedAt": "2026-08-16T13:14:19.564920+00:00"
     },
     "CONTENT#kb_entry#cum-trasez-corect-piesele-de-lemn-n-aplica-ie|META": {
       "category": "Epoxy",
@@ -11976,7 +12221,7 @@
       "pk": "CONTENT#cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
       "sk": "META",
       "sortOrder": 4100,
-      "updatedAt": "2026-08-07T18:34:06.327055+00:00"
+      "updatedAt": "2026-08-16T13:12:53.652948+00:00"
     },
     "CONTENT#kb_entry#cum-trasez-corect-piesele-de-lemn-n-aplica-ie|VARIANT#ro": {
       "contentId": "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
@@ -11990,10 +12235,15 @@
         ],
         "prevention": [],
         "problemSummary": "Piesele de lemn trebuie delimitate separat pentru ca aplica\u021bia s\u0103 le exclud\u0103 din volumul ocupat de r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "insul-de-lemn",
+          "volumul-lemnului"
+        ],
         "relatedKbEntryIds": [
           "cum-introduc-corect-reperele-dimensionale",
-          "cum-trasez-corect-conturul-interior-al-cofrajului"
+          "cum-trasez-corect-conturul-interior-al-cofrajului",
+          "cum-pozi-ionez-corect-piesele-de-lemn-nainte-de-turnare",
+          "c-nd-trebuie-definite-cavit-ile-n-aplica-ie"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -12014,13 +12264,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
-      "publishedAt": "2026-08-07T18:34:06.327055+00:00",
+      "publishedAt": "2026-08-16T13:12:53.652948+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T18:34:06.327055+00:00"
+      "updatedAt": "2026-08-16T13:12:53.652948+00:00"
     },
     "CONTENT#kb_entry#cum-trebuie-cur-at-lemnul-nainte-de-turnare|META": {
       "category": "Epoxy",
@@ -12031,7 +12281,7 @@
       "pk": "CONTENT#cum-trebuie-cur-at-lemnul-nainte-de-turnare",
       "sk": "META",
       "sortOrder": 1000,
-      "updatedAt": "2026-07-26T19:44:36.793702+00:00"
+      "updatedAt": "2026-08-18T17:28:35.574921+00:00"
     },
     "CONTENT#kb_entry#cum-trebuie-cur-at-lemnul-nainte-de-turnare|VARIANT#ro": {
       "contentId": "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
@@ -12050,12 +12300,18 @@
           "lemn-s-n-tos",
           "lemn-higroscopic",
           "lemn-poros",
-          "lemn-instabil"
+          "lemn-instabil",
+          "defect-de-turnare",
+          "zon-de-turnare"
         ],
         "relatedKbEntryIds": [
-          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii"
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "preg-tirea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -12077,13 +12333,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-trebuie-cur-at-lemnul-nainte-de-turnare",
-      "publishedAt": "2026-07-26T19:44:36.793702+00:00",
+      "publishedAt": "2026-08-18T17:28:35.574921+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:44:36.793702+00:00"
+      "updatedAt": "2026-08-18T17:28:35.574921+00:00"
     },
     "CONTENT#kb_entry#cum-trebuie-realizat-fotografia-proiectului|META": {
       "category": "Epoxy",
@@ -12094,7 +12350,7 @@
       "pk": "CONTENT#cum-trebuie-realizat-fotografia-proiectului",
       "sk": "META",
       "sortOrder": 3800,
-      "updatedAt": "2026-08-07T18:17:25.484597+00:00"
+      "updatedAt": "2026-08-17T10:16:04.579591+00:00"
     },
     "CONTENT#kb_entry#cum-trebuie-realizat-fotografia-proiectului|VARIANT#ro": {
       "contentId": "cum-trebuie-realizat-fotografia-proiectului",
@@ -12109,9 +12365,15 @@
         ],
         "prevention": [],
         "problemSummary": "Calitatea fotografiei influen\u021beaz\u0103 direct precizia calculelor efectuate de aplica\u021bie.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "demulare",
+          "agent-de-demulare"
+        ],
         "relatedKbEntryIds": [
-          "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect"
+          "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect",
+          "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+          "cum-demontez-corect-cofrajul",
+          "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -12132,13 +12394,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-trebuie-realizat-fotografia-proiectului",
-      "publishedAt": "2026-08-07T18:17:25.484597+00:00",
+      "publishedAt": "2026-08-17T10:16:04.579591+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T18:17:25.484597+00:00"
+      "updatedAt": "2026-08-17T10:16:04.579591+00:00"
     },
     "CONTENT#kb_entry#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in|META": {
       "category": "Epoxy",
@@ -12149,7 +12411,7 @@
       "pk": "CONTENT#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
       "sk": "META",
       "sortOrder": 500,
-      "updatedAt": "2026-07-26T19:21:55.195919+00:00"
+      "updatedAt": "2026-08-18T17:13:13.294404+00:00"
     },
     "CONTENT#kb_entry#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in|VARIANT#ro": {
       "contentId": "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
@@ -12169,12 +12431,19 @@
           "lemn-higroscopic",
           "lemn-instabil",
           "lemn-poros",
-          "lemn-s-n-tos"
+          "lemn-s-n-tos",
+          "insul-de-lemn",
+          "atac-biologic"
         ],
         "relatedKbEntryIds": [
-          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului"
+          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "cum-aleg-r-ina-potrivit-pentru-proiectul-meu",
+          "cum-calculez-cantitatea-necesar-de-r-in-pentru-un-proiect"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "alegerea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -12192,13 +12461,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in",
-      "publishedAt": "2026-07-26T19:21:55.195919+00:00",
+      "publishedAt": "2026-08-18T17:13:13.294404+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 5,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:21:55.195919+00:00"
+      "updatedAt": "2026-08-18T17:13:13.294404+00:00"
     },
     "CONTENT#kb_entry#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear|META": {
       "category": "Epoxy",
@@ -12209,7 +12478,7 @@
       "pk": "CONTENT#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
       "sk": "META",
       "sortOrder": 10300,
-      "updatedAt": "2026-08-10T16:26:02.998950+00:00"
+      "updatedAt": "2026-08-18T17:53:40.456474+00:00"
     },
     "CONTENT#kb_entry#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear|VARIANT#ro": {
       "contentId": "de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
@@ -12250,13 +12519,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-aleg-mul-i-constructori-finisarea-cu-ulei-i-cear",
-      "publishedAt": "2026-08-10T16:26:02.998950+00:00",
+      "publishedAt": "2026-08-18T17:53:40.456474+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
       "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-10T16:26:02.998950+00:00"
+      "updatedAt": "2026-08-18T17:53:40.456474+00:00"
     },
     "CONTENT#kb_entry#de-ce-apar-bulele-de-aer-n-timpul-turn-rii|META": {
       "category": "Epoxy",
@@ -12267,7 +12536,7 @@
       "pk": "CONTENT#de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
       "sk": "META",
       "sortOrder": 3300,
-      "updatedAt": "2026-08-07T16:35:30.948210+00:00"
+      "updatedAt": "2026-08-17T10:38:44.407357+00:00"
     },
     "CONTENT#kb_entry#de-ce-apar-bulele-de-aer-n-timpul-turn-rii|VARIANT#ro": {
       "contentId": "de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
@@ -12282,10 +12551,16 @@
         ],
         "prevention": [],
         "problemSummary": "Lemnul con\u021bine pori \u0219i cavit\u0103\u021bi \u00een care r\u0103m\u00e2ne aer. \u00cen timpul turn\u0103rii, acest aer este evacuat \u0219i formeaz\u0103 bule \u00een r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "bule-de-aer",
+          "incapsularea-bulelor-de-aer",
+          "defect-de-turnare"
+        ],
         "relatedKbEntryIds": [
           "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
-          "cum-se-realizeaz-corect-sigilarea-lemnului"
+          "cum-se-realizeaz-corect-sigilarea-lemnului",
+          "cum-elimin-bulele-de-aer-dup-prima-turnare",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -12306,13 +12581,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-apar-bulele-de-aer-n-timpul-turn-rii",
-      "publishedAt": "2026-08-07T16:35:30.948210+00:00",
+      "publishedAt": "2026-08-17T10:38:44.407357+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:35:30.948210+00:00"
+      "updatedAt": "2026-08-17T10:38:44.407357+00:00"
     },
     "CONTENT#kb_entry#de-ce-echipament-minim-am-nevoie-pentru-a-ncepe-s-lucrez-cu-r-in-epoxidic|META": {
       "category": "Epoxy",
@@ -12441,7 +12716,7 @@
       "pk": "CONTENT#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
       "sk": "META",
       "sortOrder": 1200,
-      "updatedAt": "2026-07-26T19:57:35.032610+00:00"
+      "updatedAt": "2026-08-18T17:29:25.638017+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn|VARIANT#ro": {
       "contentId": "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
@@ -12461,12 +12736,18 @@
           "lemn-higroscopic",
           "lemn-instabil",
           "lemn-poros",
-          "lemn-s-n-tos"
+          "lemn-s-n-tos",
+          "atac-biologic"
         ],
         "relatedKbEntryIds": [
-          "trebuie-p-strat-sau-ndep-rtat-scoar-a"
+          "trebuie-p-strat-sau-ndep-rtat-scoar-a",
+          "de-ce-este-at-t-de-important-lefuirea-progresiv",
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "cum-trebuie-cur-at-lemnul-nainte-de-turnare"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "preg-tirea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -12486,13 +12767,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
-      "publishedAt": "2026-07-26T19:57:35.032610+00:00",
+      "publishedAt": "2026-08-18T17:29:25.638017+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:57:35.032610+00:00"
+      "updatedAt": "2026-08-18T17:29:25.638017+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii|META": {
       "category": "Epoxy",
@@ -12503,7 +12784,7 @@
       "pk": "CONTENT#de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
       "sk": "META",
       "sortOrder": 5700,
-      "updatedAt": "2026-08-08T07:22:24.661994+00:00"
+      "updatedAt": "2026-08-16T11:54:45.177808+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii|VARIANT#ro": {
       "contentId": "de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
@@ -12519,11 +12800,21 @@
           "Verific\u0103 \u00eentotdeauna dac\u0103 raportul este exprimat \u00een greutate sau \u00een volum."
         ],
         "problemSummary": "Fiecare sistem epoxidic are propriul raport de amestec, iar nerespectarea acestuia poate compromite \u00eent\u0103rirea r\u0103\u0219inii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "raport-de-amestec",
+          "amestecare",
+          "cantitate-necesar-de-nt-ritor"
+        ],
+        "relatedKbEntryIds": [
+          "cum-calculeaz-aplica-ia-componentele-a-i-b",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
-        "requiredTools": [],
+        "requiredTools": [
+          "C\u00e2ntar de precizie"
+        ],
         "searchKeywords": [],
         "solution": [
           "Folose\u0219te raportul indicat \u00een fi\u0219a tehnic\u0103 \u0219i c\u00e2nt\u0103re\u0219te cu aten\u021bie fiecare component\u0103 \u00eenainte de amestecare."
@@ -12540,13 +12831,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
-      "publishedAt": "2026-08-08T07:22:24.661994+00:00",
+      "publishedAt": "2026-08-16T11:54:45.177808+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
-      "sourceTextRevision": 2,
+      "sourceRevision": 3,
+      "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-08-08T07:22:24.661994+00:00"
+      "updatedAt": "2026-08-16T11:54:45.177808+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-recomandat-o-prim-turnare-sub-ire-2|META": {
       "category": "Epoxy",
@@ -12557,7 +12848,7 @@
       "pk": "CONTENT#de-ce-este-recomandat-o-prim-turnare-sub-ire-2",
       "sk": "META",
       "sortOrder": 6000,
-      "updatedAt": "2026-08-08T07:27:00.120323+00:00"
+      "updatedAt": "2026-08-16T11:50:04.093521+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-recomandat-o-prim-turnare-sub-ire-2|VARIANT#ro": {
       "contentId": "de-ce-este-recomandat-o-prim-turnare-sub-ire-2",
@@ -12570,8 +12861,14 @@
         ],
         "prevention": [],
         "problemSummary": "Prima turnare are rolul de a verifica proiectul \u0219i de a preg\u0103ti condi\u021biile pentru turn\u0103rile principale.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "volum-de-turnare"
+        ],
+        "relatedKbEntryIds": [
+          "ce-trebuie-verificat-dup-prima-turnare",
+          "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "ce-trebuie-s-stabilesc-nainte-de-prima-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12591,13 +12888,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-este-recomandat-o-prim-turnare-sub-ire-2",
-      "publishedAt": "2026-08-08T07:27:00.120323+00:00",
+      "publishedAt": "2026-08-16T11:50:04.093521+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:27:00.120323+00:00"
+      "updatedAt": "2026-08-16T11:50:04.093521+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-recomandat-o-prim-turnare-sub-ire|META": {
       "category": "Epoxy",
@@ -12608,7 +12905,7 @@
       "pk": "CONTENT#de-ce-este-recomandat-o-prim-turnare-sub-ire",
       "sk": "META",
       "sortOrder": 5300,
-      "updatedAt": "2026-08-08T07:11:46.491553+00:00"
+      "updatedAt": "2026-08-16T12:09:12.790051+00:00"
     },
     "CONTENT#kb_entry#de-ce-este-recomandat-o-prim-turnare-sub-ire|VARIANT#ro": {
       "contentId": "de-ce-este-recomandat-o-prim-turnare-sub-ire",
@@ -12623,8 +12920,14 @@
           "Acest strat poate eviden\u021bia rapid eventualele scurgeri \u0219i contribuie la stabilizarea ansamblului."
         ],
         "problemSummary": "Prima turnare are rolul de a verifica proiectul \u0219i de a reduce riscul apari\u021biei problemelor \u00een timpul turn\u0103rilor principale.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "defect-de-turnare"
+        ],
+        "relatedKbEntryIds": [
+          "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
+          "ce-trebuie-verificat-dup-prima-turnare",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12642,13 +12945,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-este-recomandat-o-prim-turnare-sub-ire",
-      "publishedAt": "2026-08-08T07:11:46.491553+00:00",
+      "publishedAt": "2026-08-16T12:09:12.790051+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:11:46.491553+00:00"
+      "updatedAt": "2026-08-16T12:09:12.790051+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii|META": {
       "category": "Epoxy",
@@ -12718,7 +13021,7 @@
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare-2",
       "sk": "META",
       "sortOrder": 5100,
-      "updatedAt": "2026-08-08T07:09:25.386496+00:00"
+      "updatedAt": "2026-08-16T12:13:26.197109+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare-2|VARIANT#ro": {
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare-2",
@@ -12734,8 +13037,13 @@
           "\u00cen multe situa\u021bii, dou\u0103 turn\u0103ri mai sub\u021biri sunt mai sigure dec\u00e2t una foarte groas\u0103."
         ],
         "problemSummary": "Dep\u0103\u0219irea grosimii maxime recomandate poate provoca reac\u021bii exoterme excesive \u0219i defecte care compromit proiectul.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "grosimea-stratului-de-turnare"
+        ],
+        "relatedKbEntryIds": [
+          "cum-planific-turn-rile-succesive",
+          "de-ce-este-recomandat-o-prim-turnare-sub-ire"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12755,13 +13063,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare-2",
-      "publishedAt": "2026-08-08T07:09:25.386496+00:00",
+      "publishedAt": "2026-08-16T12:13:26.197109+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:09:25.386496+00:00"
+      "updatedAt": "2026-08-16T12:13:26.197109+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|META": {
       "category": "Epoxy",
@@ -12772,7 +13080,7 @@
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
       "sk": "META",
       "sortOrder": 100,
-      "updatedAt": "2026-08-05T11:33:56.561425+00:00"
+      "updatedAt": "2026-08-18T16:54:45.366340+00:00"
     },
     "CONTENT#kb_entry#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare|VARIANT#de": {
       "contentId": "de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
@@ -12970,9 +13278,14 @@
           "cristalizare",
           "incapsularea-bulelor-de-aer",
           "reac-ie-exoterm",
-          "supra-nc-lzire"
+          "supra-nc-lzire",
+          "grosimea-stratului-de-turnare"
         ],
-        "relatedKbEntryIds": [],
+        "relatedKbEntryIds": [
+          "cum-planific-turn-rile-succesive",
+          "de-ce-nu-este-recomandat-s-sar-peste-anumite-granula-ii",
+          "de-ce-este-recomandat-o-prim-turnare-sub-ire"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -12994,13 +13307,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-nu-trebuie-dep-it-grosimea-maxim-recomandat-pentru-o-turnare",
-      "publishedAt": "2026-08-05T11:33:56.561425+00:00",
+      "publishedAt": "2026-08-18T16:54:45.366340+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-05T11:33:56.561425+00:00"
+      "updatedAt": "2026-08-18T16:54:45.366340+00:00"
     },
     "CONTENT#kb_entry#de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie|META": {
       "category": "Epoxy",
@@ -13011,7 +13324,7 @@
       "pk": "CONTENT#de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie",
       "sk": "META",
       "sortOrder": 4700,
-      "updatedAt": "2026-08-08T06:58:14.035715+00:00"
+      "updatedAt": "2026-08-16T12:20:06.461539+00:00"
     },
     "CONTENT#kb_entry#de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie|VARIANT#ro": {
       "contentId": "de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie",
@@ -13028,8 +13341,15 @@
         ],
         "prevention": [],
         "problemSummary": "Rezultatele neobi\u0219nuite sunt cauzate, de cele mai multe ori, de informa\u021bii introduse incorect.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "cofraj",
+          "volumul-lemnului"
+        ],
+        "relatedKbEntryIds": [
+          "cum-trasez-corect-piesele-de-lemn-n-aplica-ie",
+          "c-nd-trebuie-definite-cavit-ile-n-aplica-ie",
+          "de-ce-este-at-t-de-important-lefuirea-progresiv"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13049,13 +13369,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-pare-gre-it-rezultatul-calculat-de-aplica-ie",
-      "publishedAt": "2026-08-08T06:58:14.035715+00:00",
+      "publishedAt": "2026-08-16T12:20:06.461539+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T06:58:14.035715+00:00"
+      "updatedAt": "2026-08-16T12:20:06.461539+00:00"
     },
     "CONTENT#kb_entry#de-ce-r-m-n-urme-de-pal-mdf-sau-band-adeziv-pe-proiect|META": {
       "category": "Epoxy",
@@ -13127,7 +13447,7 @@
       "pk": "CONTENT#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
       "sk": "META",
       "sortOrder": 900,
-      "updatedAt": "2026-07-26T19:19:43.558292+00:00"
+      "updatedAt": "2026-08-18T17:15:45.190587+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare|VARIANT#ro": {
       "contentId": "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
@@ -13146,10 +13466,18 @@
         "relatedGlossaryEntryIds": [
           "frez",
           "ma-in-de-rindeluit",
-          "oberfrez-router"
+          "oberfrez-router",
+          "grosime-uniform",
+          "tensiuni-interne"
         ],
-        "relatedKbEntryIds": [],
-        "relatedManualChapterIds": [],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
+        ],
+        "relatedManualChapterIds": [
+          "preg-tirea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -13169,13 +13497,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare",
-      "publishedAt": "2026-07-26T19:19:43.558292+00:00",
+      "publishedAt": "2026-08-18T17:15:45.190587+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:19:43.558292+00:00"
+      "updatedAt": "2026-08-18T17:15:45.190587+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-cur-at-suprafa-a-ntre-schimb-rile-de-granula-ie|META": {
       "category": "Epoxy",
@@ -13246,7 +13574,7 @@
       "pk": "CONTENT#de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
       "sk": "META",
       "sortOrder": 2600,
-      "updatedAt": "2026-08-07T15:41:26.050786+00:00"
+      "updatedAt": "2026-08-17T10:58:42.238998+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare|VARIANT#ro": {
       "contentId": "de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
@@ -13260,8 +13588,14 @@
         ],
         "prevention": [],
         "problemSummary": "Praful, rumegu\u0219ul \u0219i alte impurit\u0103\u021bi pot afecta pozi\u021bionarea lemnului \u0219i calitatea turn\u0103rii.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "pozi-ionarea-lemnului"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13282,13 +13616,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-cur-ate-lemnul-i-cofrajul-nainte-de-pozi-ionare",
-      "publishedAt": "2026-08-07T15:41:26.050786+00:00",
+      "publishedAt": "2026-08-17T10:58:42.238998+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:41:26.050786+00:00"
+      "updatedAt": "2026-08-17T10:58:42.238998+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii|META": {
       "category": "Epoxy",
@@ -13299,7 +13633,7 @@
       "pk": "CONTENT#de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
       "sk": "META",
       "sortOrder": 2700,
-      "updatedAt": "2026-08-07T15:47:52.078526+00:00"
+      "updatedAt": "2026-08-17T10:57:28.554733+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii|VARIANT#ro": {
       "contentId": "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
@@ -13317,9 +13651,15 @@
         ],
         "problemSummary": "\u00cen timpul turn\u0103rii, r\u0103\u0219ina exercit\u0103 o for\u021b\u0103 de flotabilitate asupra lemnului. F\u0103r\u0103 fixare, piesele se pot ridica sau deplasa. Daca lemnul este suficient de mare si greu, nu este necesarea fixarea, decat in situatia in care nu este perfect plan pe spate. Daca nu este perfect plan pe spate, atunci se recomanda fixarea cu un cordon de silicon perimetral, la 2 sau 3 cm in interior.",
         "relatedGlossaryEntryIds": [
-          "silicon-de-etan-are"
+          "silicon-de-etan-are",
+          "for-a-de-flotabilitate",
+          "cofraj"
         ],
-        "relatedKbEntryIds": [],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13340,13 +13680,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
-      "publishedAt": "2026-08-07T15:47:52.078526+00:00",
+      "publishedAt": "2026-08-17T10:57:28.554733+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:47:52.078526+00:00"
+      "updatedAt": "2026-08-17T10:57:28.554733+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-ndep-rtat-surplusul-de-r-in-dup-turnare|META": {
       "category": "Epoxy",
@@ -13475,7 +13815,7 @@
       "pk": "CONTENT#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
       "sk": "META",
       "sortOrder": 800,
-      "updatedAt": "2026-07-26T19:22:25.214095+00:00"
+      "updatedAt": "2026-08-18T17:15:27.906286+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii|VARIANT#ro": {
       "contentId": "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
@@ -13496,13 +13836,19 @@
           "lemn-s-n-tos",
           "lemn-instabil",
           "lemn-higroscopic",
-          "lemn-poros"
+          "lemn-poros",
+          "calibrare"
         ],
         "relatedKbEntryIds": [
           "cum-influen-eaz-tipul-proiectului-alegerea-lemnului",
-          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului"
+          "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-calibrat-i-ndreptat-lemnul-nainte-de-turnare"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "preg-tirea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -13520,13 +13866,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
-      "publishedAt": "2026-07-26T19:22:25.214095+00:00",
+      "publishedAt": "2026-08-18T17:15:27.906286+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 3,
+      "sourceRevision": 5,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:22:25.214095+00:00"
+      "updatedAt": "2026-08-18T17:15:27.906286+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating|META": {
       "category": "Epoxy",
@@ -13596,7 +13942,7 @@
       "pk": "CONTENT#de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
       "sk": "META",
       "sortOrder": 2200,
-      "updatedAt": "2026-08-07T15:28:08.707504+00:00"
+      "updatedAt": "2026-08-18T16:07:11.357635+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului|VARIANT#ro": {
       "contentId": "de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
@@ -13614,12 +13960,18 @@
         "problemSummary": "Protejarea suprafe\u021bei interioare \u00eempiedic\u0103 lipirea r\u0103\u0219inii de cofraj \u0219i faciliteaz\u0103 demularea proiectului.",
         "relatedGlossaryEntryIds": [
           "cofraj",
-          "agent-de-demulare"
+          "agent-de-demulare",
+          "demulare"
         ],
         "relatedKbEntryIds": [
           "ce-material-este-recomandat-pentru-construirea-cofrajului",
           "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
-          "cum-etan-ez-corect-cofrajul"
+          "cum-etan-ez-corect-cofrajul",
+          "de-ce-trebuie-protejat-partea-inferioar-nainte-de-top-coating",
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "c-t-trebuie-s-a-tept-dup-etan-area-cofrajului",
+          "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -13640,13 +13992,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-protejat-suprafa-a-interioar-a-cofrajului",
-      "publishedAt": "2026-08-07T15:28:08.707504+00:00",
+      "publishedAt": "2026-08-18T16:05:58.817863+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:28:08.707504+00:00"
+      "updatedAt": "2026-08-18T16:07:11.357635+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii|META": {
       "category": "Epoxy",
@@ -13657,7 +14009,7 @@
       "pk": "CONTENT#de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
       "sk": "META",
       "sortOrder": 3100,
-      "updatedAt": "2026-08-07T16:19:30.555253+00:00"
+      "updatedAt": "2026-08-17T10:46:13.875005+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii|VARIANT#ro": {
       "contentId": "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
@@ -13672,9 +14024,15 @@
         "prevention": [],
         "problemSummary": "Sigilarea lemnului reduce riscul apari\u021biei bulelor de aer \u0219i preg\u0103te\u0219te suprafa\u021ba pentru turnarea principal\u0103 a r\u0103\u0219inii.",
         "relatedGlossaryEntryIds": [
-          "r-in-epoxidic"
+          "r-in-epoxidic",
+          "sigilarea-lemnului",
+          "bule-de-aer"
         ],
-        "relatedKbEntryIds": [],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-preg-tit-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-trebuie-fixat-lemnul-nainte-de-turnarea-r-inii",
+          "de-ce-apar-bulele-de-aer-n-timpul-turn-rii"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -13695,13 +14053,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
-      "publishedAt": "2026-08-07T16:19:30.555253+00:00",
+      "publishedAt": "2026-08-17T10:46:13.875005+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:19:30.555253+00:00"
+      "updatedAt": "2026-08-17T10:46:13.875005+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului|META": {
       "category": "Epoxy",
@@ -13712,7 +14070,7 @@
       "pk": "CONTENT#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
       "sk": "META",
       "sortOrder": 1300,
-      "updatedAt": "2026-07-26T19:59:21.655180+00:00"
+      "updatedAt": "2026-08-18T17:30:15.860255+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului|VARIANT#ro": {
       "contentId": "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
@@ -13731,10 +14089,19 @@
         "relatedGlossaryEntryIds": [
           "cofraj",
           "pal-melaminat",
-          "mdf-melaminat"
+          "mdf-melaminat",
+          "geometria-proiectului",
+          "deformarea-cofrajului",
+          "nivelarea-cofrajului"
         ],
-        "relatedKbEntryIds": [],
-        "relatedManualChapterIds": [],
+        "relatedKbEntryIds": [
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "cum-stabilesc-forma-i-dimensiunile-finale-ale-proiectului",
+          "ce-material-este-recomandat-pentru-construirea-cofrajului"
+        ],
+        "relatedManualChapterIds": [
+          "stabilirea-compozi-iei-i-geometriei-proiectului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -13754,13 +14121,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
-      "publishedAt": "2026-07-26T19:59:21.655180+00:00",
+      "publishedAt": "2026-08-18T17:30:15.860255+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:59:21.655180+00:00"
+      "updatedAt": "2026-08-18T17:30:15.860255+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-turnat-ultimul-strat-pu-in-peste-nivelul-final|META": {
       "category": "Epoxy",
@@ -13830,7 +14197,7 @@
       "pk": "CONTENT#de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
       "sk": "META",
       "sortOrder": 2400,
-      "updatedAt": "2026-08-07T15:32:43.313223+00:00"
+      "updatedAt": "2026-08-18T16:02:08.033947+00:00"
     },
     "CONTENT#kb_entry#de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal|VARIANT#ro": {
       "contentId": "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
@@ -13852,7 +14219,10 @@
         ],
         "relatedKbEntryIds": [
           "cum-construiesc-corect-un-cofraj-pentru-turnarea-r-inii",
-          "cum-etan-ez-corect-cofrajul"
+          "cum-etan-ez-corect-cofrajul",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "ce-trebuie-verificat-nainte-de-lefuirea-progresiv",
+          "ce-trebuie-verificat-nainte-de-nceperea-turn-rii"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -13872,13 +14242,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal",
-      "publishedAt": "2026-08-07T15:32:43.313223+00:00",
+      "publishedAt": "2026-08-18T16:02:08.033947+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T15:32:43.313223+00:00"
+      "updatedAt": "2026-08-18T16:02:08.033947+00:00"
     },
     "CONTENT#kb_entry#la-ce-folose-te-bariera-perimetral-de-silicon|META": {
       "category": "Epoxy",
@@ -14009,7 +14379,7 @@
       "pk": "CONTENT#n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
       "sk": "META",
       "sortOrder": 3400,
-      "updatedAt": "2026-08-07T16:37:39.531590+00:00"
+      "updatedAt": "2026-08-17T10:36:04.011711+00:00"
     },
     "CONTENT#kb_entry#n-ce-situa-ii-este-recomandat-sigilarea-lemnului|VARIANT#ro": {
       "contentId": "n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
@@ -14025,10 +14395,16 @@
           "Sigilarea este una dintre cele mai eficiente metode de prevenire a defectelor provocate de aerul din lemn."
         ],
         "problemSummary": "Sigilarea este recomandat\u0103 \u00een majoritatea proiectelor, dar devine deosebit de important\u0103 atunci c\u00e2nd lemnul prezint\u0103 numeroase pori, fisuri sau forme naturale complexe.",
-        "relatedGlossaryEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "sigilarea-lemnului",
+          "configura-ia-proiectului",
+          "turnare"
+        ],
         "relatedKbEntryIds": [
           "cum-se-realizeaz-corect-sigilarea-lemnului",
-          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii"
+          "de-ce-trebuie-sigilat-lemnul-nainte-de-turnarea-r-inii",
+          "c-t-trebuie-s-a-tept-dup-sigilarea-lemnului-nainte-de-turnarea-principal",
+          "de-ce-este-recomandat-o-prim-turnare-sub-ire"
         ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
@@ -14049,13 +14425,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#n-ce-situa-ii-este-recomandat-sigilarea-lemnului",
-      "publishedAt": "2026-08-07T16:37:39.531590+00:00",
+      "publishedAt": "2026-08-17T10:36:04.011711+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-07T16:37:39.531590+00:00"
+      "updatedAt": "2026-08-17T10:36:04.011711+00:00"
     },
     "CONTENT#kb_entry#p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului|META": {
       "category": "Epoxy",
@@ -14124,7 +14500,7 @@
       "pk": "CONTENT#pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele",
       "sk": "META",
       "sortOrder": 4800,
-      "updatedAt": "2026-08-08T07:03:25.367979+00:00"
+      "updatedAt": "2026-08-16T12:18:46.394180+00:00"
     },
     "CONTENT#kb_entry#pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele|VARIANT#ro": {
       "contentId": "pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele",
@@ -14138,8 +14514,15 @@
         ],
         "prevention": [],
         "problemSummary": "Da. Aplica\u021bia permite corectarea m\u0103sur\u0103torilor \u0219i a geometriei f\u0103r\u0103 refacerea \u00eentregului proiect.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "geometria-proiectului",
+          "calculator-de-r-in"
+        ],
+        "relatedKbEntryIds": [
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
+          "ce-material-este-recomandat-pentru-construirea-cofrajului"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -14159,13 +14542,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele",
-      "publishedAt": "2026-08-08T07:03:25.367979+00:00",
+      "publishedAt": "2026-08-16T12:18:46.394180+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:03:25.367979+00:00"
+      "updatedAt": "2026-08-16T12:18:46.394180+00:00"
     },
     "CONTENT#kb_entry#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului|META": {
       "category": "Epoxy",
@@ -14176,7 +14559,7 @@
       "pk": "CONTENT#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
       "sk": "META",
       "sortOrder": 1700,
-      "updatedAt": "2026-07-28T11:48:44.286777+00:00"
+      "updatedAt": "2026-08-18T17:31:21.076163+00:00"
     },
     "CONTENT#kb_entry#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului|VARIANT#ro": {
       "contentId": "pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
@@ -14194,12 +14577,18 @@
         "problemSummary": "Da. \u00cen aceast\u0103 etap\u0103 este recomandat s\u0103 experimentezi diferite variante de pozi\u021bionare p\u00e2n\u0103 c\u00e2nd ob\u021bii compozi\u021bia dorit\u0103.",
         "relatedGlossaryEntryIds": [
           "cofraj",
-          "margine-natural"
+          "margine-natural",
+          "deformarea-cofrajului"
         ],
         "relatedKbEntryIds": [
-          "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului"
+          "alege-forma-n-func-ie-de-proiect-i-de-aspectul-pe-care-l-urm-re-ti-nu-n-func-ie-de-forma-ini-ial-a-lemnului",
+          "de-ce-trebuie-stabilit-geometria-proiectului-nainte-de-construirea-cofrajului",
+          "ce-material-este-recomandat-pentru-construirea-cofrajului",
+          "pot-modifica-geometria-proiectului-dup-ce-am-terminat-calculele"
         ],
-        "relatedManualChapterIds": [],
+        "relatedManualChapterIds": [
+          "stabilirea-compozi-iei-i-geometriei-proiectului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -14216,13 +14605,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#pot-modifica-pozi-ia-lemnului-nainte-de-construirea-cofrajului",
-      "publishedAt": "2026-07-28T11:48:44.286777+00:00",
+      "publishedAt": "2026-08-18T17:31:21.076163+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-28T11:48:44.286777+00:00"
+      "updatedAt": "2026-08-18T17:31:21.076163+00:00"
     },
     "CONTENT#kb_entry#proiectul-este-gata-dup-demulare|META": {
       "category": "Epoxy",
@@ -14292,7 +14681,7 @@
       "pk": "CONTENT#trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
       "sk": "META",
       "sortOrder": 600,
-      "updatedAt": "2026-07-26T19:13:07.356259+00:00"
+      "updatedAt": "2026-08-18T17:13:27.350156+00:00"
     },
     "CONTENT#kb_entry#trebuie-eliminate-toate-defectele-naturale-ale-lemnului|VARIANT#ro": {
       "contentId": "trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
@@ -14311,10 +14700,17 @@
           "lemn-instabil",
           "lemn-poros",
           "lemn-s-n-tos",
-          "insul-de-lemn"
+          "insul-de-lemn",
+          "river-table",
+          "cur-area-cavit-ilor"
         ],
-        "relatedKbEntryIds": [],
-        "relatedManualChapterIds": [],
+        "relatedKbEntryIds": [
+          "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+          "cum-verific-dac-o-bucat-de-lemn-este-potrivit-pentru-un-proiect-cu-r-in"
+        ],
+        "relatedManualChapterIds": [
+          "alegerea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -14332,13 +14728,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#trebuie-eliminate-toate-defectele-naturale-ale-lemnului",
-      "publishedAt": "2026-07-26T19:13:07.356259+00:00",
+      "publishedAt": "2026-08-18T17:13:27.350156+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:13:07.356259+00:00"
+      "updatedAt": "2026-08-18T17:13:27.350156+00:00"
     },
     "CONTENT#kb_entry#trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare|META": {
       "category": "Epoxy",
@@ -14349,7 +14745,7 @@
       "pk": "CONTENT#trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare",
       "sk": "META",
       "sortOrder": 6600,
-      "updatedAt": "2026-08-08T07:35:17.187821+00:00"
+      "updatedAt": "2026-08-16T11:32:52.400921+00:00"
     },
     "CONTENT#kb_entry#trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare|VARIANT#ro": {
       "contentId": "trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare",
@@ -14365,8 +14761,15 @@
           "Dup\u0103 \u0219lefuire, elimin\u0103 complet praful din col\u021buri \u0219i cavit\u0103\u021bi."
         ],
         "problemSummary": "\u00cen anumite situa\u021bii este necesar\u0103 preg\u0103tirea mecanic\u0103 a stratului anterior pentru a ob\u021bine o aderen\u021b\u0103 optim\u0103 \u00eentre straturile de r\u0103\u0219in\u0103.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [],
+        "relatedGlossaryEntryIds": [
+          "turnare",
+          "aderen"
+        ],
+        "relatedKbEntryIds": [
+          "p-n-la-ce-granula-ie-trebuie-lefuit-lemnul-nainte-de-aplicarea-uleiului",
+          "ce-trebuie-verificat-nainte-de-fiecare-turnare-de-r-in",
+          "c-t-trebuie-s-a-tept-nainte-de-turnarea-urm-torului-strat"
+        ],
         "relatedManualChapterIds": [],
         "requiredMaterials": [],
         "requiredTools": [],
@@ -14384,13 +14787,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#trebuie-lefuit-stratul-anterior-nainte-de-urm-toarea-turnare",
-      "publishedAt": "2026-08-08T07:35:17.187821+00:00",
+      "publishedAt": "2026-08-16T11:32:52.400921+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-08-08T07:35:17.187821+00:00"
+      "updatedAt": "2026-08-16T11:32:52.400921+00:00"
     },
     "CONTENT#kb_entry#trebuie-lefuite-i-muchiile-nu-doar-suprafa-a-principal|META": {
       "category": "Epoxy",
@@ -14459,7 +14862,7 @@
       "pk": "CONTENT#trebuie-p-strat-sau-ndep-rtat-scoar-a",
       "sk": "META",
       "sortOrder": 1100,
-      "updatedAt": "2026-07-26T19:55:31.673323+00:00"
+      "updatedAt": "2026-08-18T17:28:53.887525+00:00"
     },
     "CONTENT#kb_entry#trebuie-p-strat-sau-ndep-rtat-scoar-a|VARIANT#ro": {
       "contentId": "trebuie-p-strat-sau-ndep-rtat-scoar-a",
@@ -14475,11 +14878,19 @@
           "P\u0103strarea marginii naturale este posibil\u0103 doar atunci c\u00e2nd aceasta este suficient de stabil\u0103."
         ],
         "problemSummary": "Scoar\u021ba poate fi p\u0103strat\u0103 doar dac\u0103 este perfect stabil\u0103. Dac\u0103 exist\u0103 riscul desprinderii, este recomandat\u0103 \u00eendep\u0103rtarea ei \u00eenainte de turnare.",
-        "relatedGlossaryEntryIds": [],
-        "relatedKbEntryIds": [
-          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic"
+        "relatedGlossaryEntryIds": [
+          "scoar-instabil",
+          "turnare"
         ],
-        "relatedManualChapterIds": [],
+        "relatedKbEntryIds": [
+          "cum-aleg-lemnul-potrivit-pentru-un-proiect-cu-r-in-epoxidic",
+          "cum-trebuie-cur-at-lemnul-nainte-de-turnare",
+          "de-ce-este-important-ndep-rtarea-zonelor-instabile-din-lemn",
+          "de-ce-trebuie-verificat-dac-cofrajul-este-perfect-orizontal"
+        ],
+        "relatedManualChapterIds": [
+          "preg-tirea-lemnului"
+        ],
         "requiredMaterials": [],
         "requiredTools": [],
         "searchKeywords": [],
@@ -14499,13 +14910,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#trebuie-p-strat-sau-ndep-rtat-scoar-a",
-      "publishedAt": "2026-07-26T19:55:31.673323+00:00",
+      "publishedAt": "2026-08-18T17:28:53.887525+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/knowledge-base/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 4,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-26T19:55:31.673323+00:00"
+      "updatedAt": "2026-08-18T17:28:53.887525+00:00"
     },
     "CONTENT#manual_chapter#alegerea-lemnului|META": {
       "contentId": "alegerea-lemnului",
@@ -20198,7 +20609,7 @@
       "sk": "META",
       "slug": "/",
       "sortOrder": 100,
-      "updatedAt": "2026-08-16T10:31:46.481024+00:00"
+      "updatedAt": "2026-08-16T10:50:01.090671+00:00"
     },
     "CONTENT#website_page#home|VARIANT#en": {
       "contentId": "home",
@@ -20276,7 +20687,7 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood transforme une simple photo en un outil de calcul pr\u00e9cis et facile \u00e0 utiliser. L'application vous guide pas \u00e0 pas pour d\u00e9finir la zone de coul\u00e9e, exclure les \u00eelots de bois et les cavit\u00e9s, et vous fournit une estimation fiable qui vous aide \u00e0 planifier correctement vos mat\u00e9riaux, \u00e0 r\u00e9duire les pertes et \u00e0 d\u00e9marrer chaque projet en toute confiance.\n\nPlus qu\u2019un simple calculateur, HFZWood est une plateforme d\u00e9di\u00e9e aux passionn\u00e9s et aux professionnels travaillant le bois et la r\u00e9sine \u00e9poxy. Outre les outils de calcul, vous avez acc\u00e8s \u00e0 un manuel d\u2019utilisation complet, \u00e0 des tutoriels vid\u00e9o expliquant chaque \u00e9tape du processus, un glossaire des termes utilis\u00e9s dans le domaine et une base de connaissances en constante \u00e9volution, qui rassemble des informations pratiques, des recommandations et des r\u00e9ponses aux questions fr\u00e9quentes.\n\nQue vous r\u00e9alisiez votre premier projet ou que vous ayez d\u00e9j\u00e0 de l\u2019exp\u00e9rience dans le moulage \u00e0 la r\u00e9sine \u00e9poxy, HFZWood vous offre les outils et les informations n\u00e9cessaires pour travailler de mani\u00e8re plus organis\u00e9e, prendre des d\u00e9cisions fond\u00e9es sur des estimations pr\u00e9cises et obtenir des r\u00e9sultats pr\u00e9visibles d\u2019un projet \u00e0 l\u2019autre.",
+        "description": "Calculez la quantit\u00e9 de r\u00e9sine n\u00e9cessaire en partant de la forme r\u00e9elle de votre projet\nHFZWood vous aide \u00e0 estimer la quantit\u00e9 de r\u00e9sine n\u00e9cessaire pour les projets dans lesquels les formes irr\u00e9guli\u00e8res, les bords naturels du bois, les trous et les cavit\u00e9s rendent difficile un calcul g\u00e9om\u00e9trique classique. Vous partez d\u2019une photo de la pi\u00e8ce, vous d\u00e9finissez la zone de coul\u00e9e et les dimensions r\u00e9elles, et l\u2019application transforme la g\u00e9om\u00e9trie du projet en un calcul de volume facile \u00e0 suivre.\n\n\n\nDe l\u2019estimation \u00e0 la planification de la coul\u00e9e\nVous pouvez exclure du calcul les \u00eelots de bois et les zones qui ne seront pas remplies de r\u00e9sine, travailler avec plusieurs profondeurs et diviser le projet en coul\u00e9es successives. HFZWood calcule les volumes et les quantit\u00e9s n\u00e9cessaires pour les composants de la r\u00e9sine, ce qui vous permet de planifier les mat\u00e9riaux avant de commencer le coulage et de r\u00e9duire les approximations, les exc\u00e9dents et le gaspillage.\n\nConservez le projet, pas seulement le r\u00e9sultat d\u2019un calcul\nUn projet peut \u00eatre enregistr\u00e9 et rouvert pour des v\u00e9rifications, des modifications ou les \u00e9tapes suivantes du travail. Au lieu d\u2019un calculateur que vous utilisez une seule fois puis fermez, HFZWood conserve en un seul endroit la g\u00e9om\u00e9trie, les dimensions et les calculs du projet, afin que vous puissiez y revenir tout au long du chantier.\n\nOutils et informations au m\u00eame endroit\nHFZWood ne se limite pas au calcul. Le manuel et les tutoriels expliquent comment utiliser l\u2019application, le glossaire clarifie les termes sp\u00e9cifiques au travail du bois et de la r\u00e9sine \u00e9poxy, tandis que la base de connaissances rassemble des informations pratiques sur la pr\u00e9paration, l\u2019\u00e9tanch\u00e9it\u00e9, le coulage, les bulles, les r\u00e9actions exothermiques, le durcissement, les probl\u00e8mes courants et la finition. Lorsqu\u2019une question se pose au cours de votre projet, les informations dont vous avez besoin restent dans le m\u00eame espace de travail.\n\nVos projets vous appartiennent\nHFZWood repose sur un principe simple : votre travail vous appartient. Un projet cr\u00e9\u00e9 pendant la dur\u00e9e de validit\u00e9 de votre abonnement reste le v\u00f4tre et peut \u00eatre ouvert, modifi\u00e9 et poursuivi \u00e0 tout moment, m\u00eame apr\u00e8s l\u2019expiration de votre abonnement. Les restrictions du forfait Free s\u2019appliquent aux nouveaux projets, et non au travail que vous avez d\u00e9j\u00e0 r\u00e9alis\u00e9. Vous n\u2019avez pas besoin de conserver un abonnement uniquement pour continuer \u00e0 travailler sur vos propres projets.",
         "image": {
           "alt": "",
           "src": "",
@@ -20290,17 +20701,17 @@
           "visible": true
         }
       },
-      "generatedAt": "2026-07-22T21:15:36.901797+00:00",
-      "generatedFromSourceRevision": 12,
-      "generatedFromSourceTextRevision": 10,
+      "generatedAt": "2026-08-16T10:49:58.285556+00:00",
+      "generatedFromSourceRevision": 14,
+      "generatedFromSourceTextRevision": 12,
       "locale": "fr",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-07-22T21:17:21.735444+00:00",
+      "publishedAt": "2026-08-16T10:50:01.090671+00:00",
       "sk": "VARIANT#fr",
       "snapshotKey": "published/website/fr/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-07-22T21:17:21.735444+00:00"
+      "updatedAt": "2026-08-16T10:50:01.090671+00:00"
     },
     "CONTENT#website_page#home|VARIANT#it": {
       "contentId": "home",
@@ -20385,16 +20796,15 @@
       "contentId": "pricing",
       "draftBody": {
         "footnote": "You can start for free and upgrade to a higher plan at any time without losing your existing projects.",
-        "intro": "HFZWood offers three usage options, so you can get started for free and later choose the plan that best suits your needs. No matter which option you choose, all the projects you create remain yours and can be further developed when you decide to upgrade to a higher plan.",
+        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
         "offers": [
           {
             "benefits": [
-              "Full access to the resin estimator.",
-              "A maximum of 4 points for each polygon drawn.",
-              "Save and reopen completed projects.",
-              "Access the User Manual.",
-              "Access to video tutorials.",
-              "The ability to continue working on the same projects after upgrading to a higher plan."
+              "Resin estimator for simple projects.",
+              "Up to 4 points per polygon.",
+              "Save and reopen your projects on your device.",
+              "Full access to the Manual and all video tutorials.",
+              "Access to the curated free Glossary and Knowledge Base selection."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -20405,34 +20815,30 @@
           },
           {
             "benefits": [
-              "Includes everything in the Free Plan, plus:",
-              "Unlimited points for all polygons.",
-              "No limitations on complex projects.",
-              "Full access to the Glossary.",
-              "Full access to the Knowledge Base.",
-              "Continuous updates to educational content.",
-              "Get access to new features as soon as they're available."
+              "Complete access to HFZWood tools and resources.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "$4.99",
-            "id": "subscriber",
-            "title": "Professional Plan",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Monthly Plan",
             "visible": true
           },
           {
             "benefits": [
-              "A one-time payment for lifetime access to the app.",
-              "Permanent access, no monthly subscription required.",
-              "All future app updates included.",
-              "Permanent access to the Manual, Tutorials, Glossary, and Knowledge Base.",
-              "Priority access to new features for users with a perpetual license."
+              "Complete access to HFZWood tools and resources.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "$59.99",
-            "id": "lifetime",
-            "title": "Perpetual License",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Annual Plan",
             "visible": true
           }
         ],
@@ -20455,54 +20861,49 @@
       "contentId": "pricing",
       "draftBody": {
         "footnote": "Puedes empezar gratis y pasar a un plan superior en cualquier momento, sin perder los proyectos que ya hayas realizado.",
-        "intro": "HFZWood ofrece tres opciones de uso, para que puedas empezar gratis y elegir m\u00e1s adelante el plan que mejor se adapte a tus necesidades. Sea cual sea la opci\u00f3n que elijas, todos los proyectos que crees seguir\u00e1n siendo tuyos y podr\u00e1s seguir desarroll\u00e1ndolos cuando decidas pasarte a un plan superior.",
+        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
         "offers": [
           {
             "benefits": [
-              "Acceso completo a la calculadora de estimaci\u00f3n de resina.",
-              "M\u00e1ximo 4 puntos por cada pol\u00edgono dibujado.",
-              "Guardar y volver a abrir los proyectos realizados.",
-              "Accede al manual de usuario.",
-              "Acceso a los tutoriales en v\u00eddeo.",
-              "La posibilidad de continuar con los mismos proyectos tras pasar a un plan superior."
+              "Resin estimator for simple projects.",
+              "Up to 4 points per polygon.",
+              "Save and reopen your projects on your device.",
+              "Full access to the Manual and all video tutorials.",
+              "Access to the curated free Glossary and Knowledge Base selection."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "0 USD",
+            "displayedPriceText": "$0",
             "id": "free",
-            "title": "Plan gratuito",
+            "title": "Free Plan",
             "visible": true
           },
           {
             "benefits": [
-              "Incluye todo lo que ofrece el Plan gratuito, adem\u00e1s de:",
-              "N\u00famero ilimitado de puntos para todos los pol\u00edgonos.",
-              "Sin limitaciones para proyectos complejos.",
-              "Acceso completo al glosario.",
-              "Acceso completo a la base de conocimientos.",
-              "Actualizaciones continuas del contenido educativo.",
-              "Accede a las nuevas funciones en cuanto est\u00e9n disponibles."
+              "Acceso completo a las herramientas y recursos de HFZWood.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "4,99 USD",
-            "id": "subscriber",
-            "title": "Plan Professional",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Monthly Plan",
             "visible": true
           },
           {
             "benefits": [
-              "Un \u00fanico pago para el uso ilimitado de la aplicaci\u00f3n.",
-              "Acceso permanente, sin cuota mensual.",
-              "Todas las futuras actualizaciones de la aplicaci\u00f3n est\u00e1n incluidas.",
-              "Acceso permanente al manual, los tutoriales, el glosario y la base de conocimientos.",
-              "Prioridad para las nuevas funcionalidades destinadas a los usuarios con licencia permanente."
+              "Acceso completo a las herramientas y recursos de HFZWood.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "59,99 USD",
-            "id": "lifetime",
-            "title": "Licencia permanente",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Annual Plan",
             "visible": true
           }
         ],
@@ -20524,60 +20925,55 @@
     "CONTENT#website_page#pricing|VARIANT#fr": {
       "contentId": "pricing",
       "draftBody": {
-        "footnote": "Vous pouvez commencer gratuitement et passer \u00e0 une formule sup\u00e9rieure \u00e0 tout moment, sans perdre les projets d\u00e9j\u00e0 r\u00e9alis\u00e9s.",
-        "intro": "HFZWood propose trois formules d'utilisation, afin que vous puissiez commencer gratuitement et choisir ensuite la formule qui correspond le mieux \u00e0 vos besoins. Quelle que soit l'option choisie, tous les projets cr\u00e9\u00e9s vous appartiennent et peuvent \u00eatre d\u00e9velopp\u00e9s davantage lorsque vous d\u00e9cidez de passer \u00e0 une formule sup\u00e9rieure.",
+        "footnote": "Vous pouvez commencer gratuitement et passer à une formule supérieure à tout moment, sans perdre les projets déjà réalisés.",
+        "intro": "Commencez gratuitement, puis passez à l’accès abonné complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les mêmes fonctionnalités ; seuls la période de facturation et le prix diffèrent.",
         "offers": [
           {
             "benefits": [
-              "Acc\u00e8s complet au calculateur d'estimation de la quantit\u00e9 de r\u00e9sine.",
-              "4 points maximum pour chaque polygone dessin\u00e9.",
-              "Enregistrement et r\u00e9ouverture des projets r\u00e9alis\u00e9s.",
-              "Acc\u00e9dez au manuel d'utilisation.",
-              "Acc\u00e8s aux tutoriels vid\u00e9o.",
-              "Possibilit\u00e9 de poursuivre ult\u00e9rieurement les m\u00eames projets apr\u00e8s \u00eatre pass\u00e9 \u00e0 une formule sup\u00e9rieure."
+              "Calculateur de résine pour les projets simples.",
+              "Jusqu’à 4 points par polygone.",
+              "Enregistrez et rouvrez vos projets sur votre appareil.",
+              "Accès complet au manuel et à tous les tutoriels vidéo.",
+              "Accès à une sélection gratuite du glossaire et de la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "0 USD",
+            "displayedPriceText": "$0",
             "id": "free",
-            "title": "Formule gratuite",
+            "title": "Forfait gratuit",
             "visible": true
           },
           {
             "benefits": [
-              "Il comprend tout ce qu'offre la formule gratuite, plus :",
-              "Nombre illimit\u00e9 de points pour tous les polygones.",
-              "Aucune limite pour les projets complexes.",
-              "Acc\u00e8s complet au glossaire.",
-              "Acc\u00e8s complet \u00e0 la base de connaissances.",
-              "Mises \u00e0 jour r\u00e9guli\u00e8res du contenu p\u00e9dagogique.",
-              "Acc\u00e9dez aux nouvelles fonctionnalit\u00e9s d\u00e8s leur mise \u00e0 disposition."
+              "Accès complet aux outils et ressources HFZWood.",
+              "Points de polygone illimités et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coulée.",
+              "Accès complet au glossaire et à la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "4,99 USD",
-            "id": "subscriber",
-            "title": "Formule Professionnelle",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Forfait mensuel",
             "visible": true
           },
           {
             "benefits": [
-              "Un paiement unique pour une utilisation illimit\u00e9e de l'application.",
-              "Acc\u00e8s permanent, sans abonnement mensuel.",
-              "Toutes les futures mises \u00e0 jour de l'application sont incluses.",
-              "Acc\u00e8s permanent au manuel, aux tutoriels, au glossaire et \u00e0 la base de connaissances.",
-              "Priorit\u00e9 aux nouvelles fonctionnalit\u00e9s destin\u00e9es aux utilisateurs disposant d'une licence permanente."
+              "Accès complet aux outils et ressources HFZWood.",
+              "Points de polygone illimités et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coulée.",
+              "Accès complet au glossaire et à la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "59,99 USD",
-            "id": "lifetime",
-            "title": "Licence permanente",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Forfait annuel",
             "visible": true
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Choisissez la formule adapt\u00e9e \u00e0 votre fa\u00e7on de travailler"
+        "publicTitle": "Choisissez la formule adaptée à votre façon de travailler"
       },
       "generatedAt": "2026-07-22T21:15:49.210701+00:00",
       "generatedFromSourceRevision": 3,
@@ -20594,60 +20990,55 @@
     "CONTENT#website_page#pricing|VARIANT#it": {
       "contentId": "pricing",
       "draftBody": {
-        "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti gi\u00e0 realizzati.",
-        "intro": "HFZWood offre tre varianti di utilizzo, cos\u00ec potrai iniziare gratuitamente e scegliere in seguito il piano pi\u00f9 adatto alle tue esigenze. Indipendentemente dall'opzione scelta, tutti i progetti creati rimarranno di tua propriet\u00e0 e potranno essere ulteriormente sviluppati quando deciderai di passare a un piano superiore.",
+        "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti già realizzati.",
+        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
         "offers": [
           {
             "benefits": [
-              "Accesso completo al calcolatore per la stima della resina.",
-              "Massimo 4 punti per ogni poligono disegnato.",
-              "Salvataggio e riapertura dei progetti completati.",
-              "Accedi al Manuale d'uso.",
-              "Accesso ai tutorial video.",
-              "La possibilit\u00e0 di continuare in seguito gli stessi progetti dopo il passaggio a un piano superiore."
+              "Resin estimator for simple projects.",
+              "Up to 4 points per polygon.",
+              "Save and reopen your projects on your device.",
+              "Full access to the Manual and all video tutorials.",
+              "Access to the curated free Glossary and Knowledge Base selection."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "0 USD",
+            "displayedPriceText": "$0",
             "id": "free",
-            "title": "Piano gratuito",
+            "title": "Free Plan",
             "visible": true
           },
           {
             "benefits": [
-              "Include tutto ci\u00f2 che offre il Piano Gratuito, oltre a:",
-              "Numero illimitato di punti per tutti i poligoni.",
-              "Nessun limite per i progetti complessi.",
-              "Accesso completo al Glossario.",
-              "Accesso completo alla Knowledge Base.",
-              "Aggiornamenti continui dei contenuti didattici.",
-              "Accedi alle nuove funzionalit\u00e0 non appena sono disponibili."
+              "Accesso completo agli strumenti e alle risorse HFZWood.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "4,99 USD",
-            "id": "subscriber",
-            "title": "Piano Professional",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Monthly Plan",
             "visible": true
           },
           {
             "benefits": [
-              "Un unico pagamento per l'utilizzo illimitato dell'app.",
-              "Accesso permanente, senza abbonamento mensile.",
-              "Tutti i futuri aggiornamenti dell'app sono inclusi.",
-              "Accesso permanente al Manuale, ai Tutorial, al Glossario e alla Knowledge Base.",
-              "Priorit\u00e0 alle nuove funzionalit\u00e0 dedicate agli utenti con licenza permanente."
+              "Accesso completo agli strumenti e alle risorse HFZWood.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "59,99 USD",
-            "id": "lifetime",
-            "title": "Licenza permanente",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Annual Plan",
             "visible": true
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Scegli il piano pi\u00f9 adatto al tuo modo di lavorare"
+        "publicTitle": "Scegli il piano più adatto al tuo modo di lavorare"
       },
       "generatedAt": "2026-07-23T07:43:39.243278+00:00",
       "generatedFromSourceRevision": 3,
@@ -20664,60 +21055,55 @@
     "CONTENT#website_page#pricing|VARIANT#ro": {
       "contentId": "pricing",
       "draftBody": {
-        "footnote": "Po\u021bi \u00eencepe gratuit \u0219i po\u021bi trece la un plan superior \u00een orice moment, f\u0103r\u0103 s\u0103 pierzi proiectele deja realizate.",
-        "intro": "HFZWood ofer\u0103 trei variante de utilizare, astfel \u00eenc\u00e2t s\u0103 po\u021bi \u00eencepe gratuit \u0219i s\u0103 alegi ulterior planul care se potrive\u0219te cel mai bine nevoilor tale. Indiferent de op\u021biune, toate proiectele create r\u0103m\u00e2n ale tale \u0219i pot fi dezvoltate \u00een continuare atunci c\u00e2nd decizi s\u0103 treci la un plan superior.",
+        "footnote": "Poți începe gratuit și poți trece la un plan superior în orice moment, fără să pierzi proiectele deja realizate.",
+        "intro": "Poți începe gratuit și poți trece ulterior la acces complet de abonat. Planul Lunar și Planul Anual includ aceeași funcționalitate; diferă doar perioada de facturare și prețul.",
         "offers": [
           {
             "benefits": [
-              "Acces complet la calculatorul de estimare a r\u0103\u0219inii.",
-              "Maximum 4 puncte pentru fiecare poligon desenat.",
-              "Salvarea \u0219i redeschiderea proiectelor realizate.",
-              "Acces la Manualul de utilizare.",
-              "Acces la tutorialele video.",
-              "Posibilitatea de a continua ulterior acelea\u0219i proiecte dup\u0103 trecerea la un plan superior."
+              "Calculator de rășină pentru proiecte simple.",
+              "Până la 4 puncte pentru fiecare poligon.",
+              "Salvează și redeschide proiectele pe dispozitivul tău.",
+              "Acces integral la Manual și la toate tutorialele video.",
+              "Acces la selecția gratuită din Glosar și Baza de cunoștințe."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "0 USD",
+            "displayedPriceText": "$0",
             "id": "free",
             "title": "Plan Gratuit",
             "visible": true
           },
           {
             "benefits": [
-              "Include tot ce ofer\u0103 Planul Gratuit, plus:",
-              "Num\u0103r nelimitat de puncte pentru toate poligoanele.",
-              "F\u0103r\u0103 limit\u0103ri pentru proiectele complexe.",
-              "Acces complet la Glosar.",
-              "Acces complet la Knowledge Base.",
-              "Actualiz\u0103ri continue ale con\u021binutului educa\u021bional.",
-              "Acces la func\u021bionalit\u0103\u021bile noi imediat ce sunt disponibile."
+              "Acces complet la instrumentele și resursele HFZWood.",
+              "Puncte nelimitate pentru poligoane și instrumente pentru proiecte complexe.",
+              "Export PDF și planificarea straturilor de turnare.",
+              "Acces complet la Glosar și Baza de cunoștințe."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "4,99 USD",
-            "id": "subscriber",
-            "title": "Plan Professional",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Plan Lunar",
             "visible": true
           },
           {
             "benefits": [
-              "O singur\u0103 plat\u0103 pentru utilizarea permanent\u0103 a aplica\u021biei.",
-              "Acces permanent, f\u0103r\u0103 abonament lunar.",
-              "Toate actualiz\u0103rile viitoare ale aplica\u021biei incluse.",
-              "Acces permanent la Manual, Tutoriale, Glosar \u0219i Knowledge Base.",
-              "Prioritate pentru func\u021bionalit\u0103\u021bile noi dedicate utilizatorilor cu licen\u021b\u0103 permanent\u0103."
+              "Acces complet la instrumentele și resursele HFZWood.",
+              "Puncte nelimitate pentru poligoane și instrumente pentru proiecte complexe.",
+              "Export PDF și planificarea straturilor de turnare.",
+              "Acces complet la Glosar și Baza de cunoștințe."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
-            "displayedPriceText": "59.99 USD",
-            "id": "lifetime",
-            "title": "Licen\u021b\u0103 Permanent\u0103",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Plan Anual",
             "visible": true
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Alege planul potrivit pentru modul t\u0103u de lucru"
+        "publicTitle": "Alege planul potrivit pentru modul tău de lucru"
       },
       "locale": "ro",
       "pk": "CONTENT#pricing",

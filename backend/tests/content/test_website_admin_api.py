@@ -48,8 +48,8 @@ def pricing_body(**overrides) -> dict:
     body = empty_website_draft_body("pricing")
     body["publicTitle"] = "Pricing"
     body["offers"][0]["title"] = "Free"
-    body["offers"][1]["title"] = "Subscriber"
-    body["offers"][2]["title"] = "Lifetime"
+    body["offers"][1]["title"] = "Monthly"
+    body["offers"][2]["title"] = "Annual"
     body.update(overrides)
     return body
 

@@ -12,6 +12,7 @@ from jose import jwt, JWTError
 from jose.exceptions import ExpiredSignatureError
 
 from public.content_routers import get_capability_resolver
+from public.product.entitlements import EntitlementsServiceUnavailableError
 from public.routers.billing import router as billing_router
 from public.routers.me import router as me_router
 from public.safety.input_limits import (
@@ -26,6 +27,19 @@ auth_logger = logging.getLogger(__name__)
 
 
 app = FastAPI()
+
+
+@app.exception_handler(EntitlementsServiceUnavailableError)
+async def entitlements_service_unavailable_handler(
+    _request: Request, _exc: EntitlementsServiceUnavailableError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=503,
+        content={
+            "detail": "Subscription access is temporarily unavailable. Please retry shortly."
+        },
+    )
+
 
 def _include_local_editorial_routes() -> bool:
     """Mount authoring routes when the local-only private source is available.

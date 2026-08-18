@@ -1,4 +1,5 @@
-import { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { ChevronUp } from "lucide-react";
 import { fetchPublishedKnowledgeBase } from "../knowledgeBase/knowledgeBaseApi.js";
 import KnowledgeBaseEntryList from "../knowledgeBase/KnowledgeBaseEntryList.jsx";
 import KnowledgeBaseToolbar from "../knowledgeBase/KnowledgeBaseToolbar.jsx";
@@ -12,6 +13,8 @@ import { usePublishedContent } from "../content/usePublishedContent.js";
 import { useCapabilities } from "../capabilities/CapabilitiesContext.jsx";
 import { useI18n } from "../i18n/I18nContext.jsx";
 
+const BACK_TO_TOP_THRESHOLD_PX = 600;
+
 export default function KnowledgeBasePage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -19,6 +22,7 @@ export default function KnowledgeBasePage() {
   const { capabilities } = useCapabilities();
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedKnowledgeBase);
   const entries = payload?.entries ?? [];
 
@@ -30,6 +34,20 @@ export default function KnowledgeBasePage() {
   const handleSearchChange = useCallback((value) => {
     setSearchQuery(value);
     setExpandedEntryId(null);
+  }, []);
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      setShowBackToTop(window.scrollY > BACK_TO_TOP_THRESHOLD_PX);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
+
+  const handleBackToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const scrollToEntry = useCallback((entryId) => {
@@ -150,6 +168,17 @@ export default function KnowledgeBasePage() {
           </>
         ) : null}
       </div>
+      {showBackToTop ? (
+        <button
+          type="button"
+          className="knowledge-base-module__back-to-top"
+          aria-label={t("knowledgeBase.backToTop")}
+          title={t("knowledgeBase.backToTop")}
+          onClick={handleBackToTop}
+        >
+          <ChevronUp aria-hidden="true" size={20} strokeWidth={2.25} />
+        </button>
+      ) : null}
     </section>
   );
 }

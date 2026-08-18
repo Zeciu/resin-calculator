@@ -252,7 +252,7 @@ class TestWebsitePublicStage5BFields:
         offers = response.json()["page"]["body"]["offers"]
         by_id = {offer["id"]: offer for offer in offers}
         assert by_id["free"]["visible"] is False
-        assert by_id["subscriber"]["visible"] is True
+        assert by_id["monthly"]["visible"] is True
 
     def test_published_contact_labels_in_public_api(self, client):
         publish_page(

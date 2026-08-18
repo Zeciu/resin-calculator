@@ -164,8 +164,8 @@ export function buildPublishedPricingResponse(bodyOverrides = {}, responseOverri
         footnote: "Pricing footnote",
         offers: [
           buildPricingOffer("free"),
-          buildPricingOffer("subscriber"),
-          buildPricingOffer("lifetime"),
+          buildPricingOffer("monthly"),
+          buildPricingOffer("annual"),
         ],
         ...bodyOverrides,
       },

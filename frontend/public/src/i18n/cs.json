@@ -15,5 +15,14 @@
   "knowledgeBase.possibleCauses": "Možné příčiny",
   "knowledgeBase.solution": "Řešení",
   "knowledgeBase.tips": "Praktické tipy",
-  "knowledgeBase.warnings": "Varování"
+  "knowledgeBase.warnings": "Varování",
+  "knowledgeBase.prevention": "Prevence",
+  "knowledgeBase.supportInformation": "Nástroje a materiály",
+  "knowledgeBase.estimatedRepairTime": "Odhadovaná doba opravy",
+  "knowledgeBase.tools": "Nástroje",
+  "knowledgeBase.materials": "Materiály",
+  "knowledgeBase.relatedArticles": "Související články",
+  "knowledgeBase.glossary": "Slovníček",
+  "knowledgeBase.manual": "Manuál",
+  "knowledgeBase.backToTop": "Zpět nahoru"
 }
