@@ -3382,6 +3382,17 @@ button.workspace-sidebar__link {
   padding: 0 32px 56px;
 }
 
+.content-preview-notice {
+  margin: 20px 0 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-warm);
+  border-radius: 8px;
+  background: #fbfaf6;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 .glossary-toolbar {
   position: sticky;
   top: 0;

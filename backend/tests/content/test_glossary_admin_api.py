@@ -1,20 +1,56 @@
+import json
+
 import pytest
 
 from private.routers import admin_glossary, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
+from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+    config_dir = tmp_path / "config"
+    config_dir.mkdir()
+    (config_dir / "free-preview.json").write_text(
+        json.dumps(
+            {
+                "knowledgeBaseEntryIds": [
+                    "preview-kb-one",
+                    "preview-kb-two",
+                    "preview-kb-three",
+                    "preview-kb-four",
+                    "preview-kb-five",
+                ],
+                "glossaryEntryIds": [
+                    "preview-glossary-one",
+                    "preview-glossary-two",
+                    "preview-glossary-three",
+                    "preview-glossary-four",
+                    "preview-glossary-five",
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
     admin_glossary.reset_repository_cache()
     public_content.reset_repository_cache()
     from private.routers import admin_editorial
 
     admin_editorial.reset_repository_cache()
     from app import app
+    from public.content_routers import get_capability_resolver
+    from public.product.capabilities.resolver import CapabilityResolver
 
-    return AuthenticatedTestClient(app)
+    entitlements = InMemoryEntitlementsRepository()
+    entitlements.save_access_tier("test-user", "subscriber")
+    app.dependency_overrides[get_capability_resolver] = lambda: CapabilityResolver(entitlements)
+    test_client = AuthenticatedTestClient(app)
+    try:
+        yield test_client
+    finally:
+        test_client.close()
+        app.dependency_overrides.pop(get_capability_resolver, None)
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:

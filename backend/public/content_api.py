@@ -10,7 +10,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 
 from public.auth.dependencies import get_current_user
-from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
+from public.product.capabilities.free_preview import (
+    filter_free_preview_entries,
+    load_free_preview_config,
+)
 from public.product.capabilities.resolver import CapabilityResolver
 from public.content_routers import get_capability_resolver
 
@@ -75,6 +78,10 @@ def _require_user_capabilities(user: dict, resolver: CapabilityResolver):
     return resolver.resolve(user["id"])
 
 
+def _free_preview_config() -> dict[str, tuple[str, ...]]:
+    return load_free_preview_config(CORPUS_ROOT / "config" / "free-preview.json")
+
+
 @router.get("/public-languages")
 def public_languages() -> dict:
     return _languages()
@@ -88,16 +95,24 @@ def manual(locale: str = "en", user: dict = Depends(get_current_user), resolver:
 
 @router.get("/glossary")
 def glossary(locale: str = "en", user: dict = Depends(get_current_user), resolver: CapabilityResolver = Depends(get_capability_resolver)) -> dict:
-    _require_user_capabilities(user, resolver)
-    return _list_response("glossary", _require_locale(locale), "entries.json", GLOSSARY_TITLE, GLOSSARY_LEDE, "entries")
+    capabilities = _require_user_capabilities(user, resolver)
+    response = _list_response("glossary", _require_locale(locale), "entries.json", GLOSSARY_TITLE, GLOSSARY_LEDE, "entries")
+    response["entries"] = filter_free_preview_entries(
+        response["entries"],
+        _free_preview_config()["glossaryEntryIds"],
+        capabilities.accessTier,
+    )
+    return response
 
 
 @router.get("/knowledge-base")
 def knowledge_base(locale: str = "en", user: dict = Depends(get_current_user), resolver: CapabilityResolver = Depends(get_capability_resolver)) -> dict:
     capabilities = _require_user_capabilities(user, resolver)
     response = _list_response("knowledge-base", _require_locale(locale), "entries.json", KB_TITLE, KB_LEDE, "entries")
-    response["entries"] = limit_knowledge_base_entries(
-        response["entries"], capabilities.capabilities["knowledgeBase.maxArticles"]
+    response["entries"] = filter_free_preview_entries(
+        response["entries"],
+        _free_preview_config()["knowledgeBaseEntryIds"],
+        capabilities.accessTier,
     )
     return response
 

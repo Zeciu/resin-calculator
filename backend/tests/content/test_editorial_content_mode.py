@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import io
+import json
 
 import pytest
 
@@ -41,6 +42,23 @@ def admin_headers(role: str = "administrator") -> dict[str, str]:
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
     monkeypatch.delenv(EDITORIAL_CONTENT_MODE_ENV, raising=False)
+    config_dir = tmp_path / "config"
+    config_dir.mkdir()
+    (config_dir / "free-preview.json").write_text(
+        json.dumps(
+            {
+                "knowledgeBaseEntryIds": ["kb-one", "kb-two", "kb-three", "kb-four", "kb-five"],
+                "glossaryEntryIds": [
+                    "term-one",
+                    "term-two",
+                    "term-three",
+                    "term-four",
+                    "term-five",
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
     for module in (
         admin_manual,
         admin_glossary,

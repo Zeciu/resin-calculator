@@ -14,6 +14,7 @@ import {
 } from "../glossary/glossaryFilter.js";
 import ContentUnavailableMessage from "../content/ContentUnavailableMessage.jsx";
 import { usePublishedContent } from "../content/usePublishedContent.js";
+import { useCapabilities } from "../capabilities/CapabilitiesContext.jsx";
 import { useI18n } from "../i18n/I18nContext.jsx";
 
 const DEEP_LINK_HIGHLIGHT_MS = 1600;
@@ -23,6 +24,7 @@ export default function GlossaryPage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
   const { t } = useI18n();
+  const { capabilities } = useCapabilities();
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
   const [deepLinkHighlightId, setDeepLinkHighlightId] = useState(null);
@@ -194,6 +196,11 @@ export default function GlossaryPage() {
         ) : null}
         {loadState === "ready" ? (
           <>
+            {capabilities.accessTier === "free" ? (
+              <p className="content-preview-notice" role="status">
+                {t("content.freePreviewGlossary")}
+              </p>
+            ) : null}
             <GlossaryToolbar
               ref={searchInputRef}
               searchQuery={searchQuery}

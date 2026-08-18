@@ -70,6 +70,27 @@ describe("KnowledgeBasePage", () => {
     expect(screen.getByRole("button", { name: "Pour overheating" })).toBeInTheDocument();
   });
 
+  it("shows the free preview message with the server-provided subset", async () => {
+    mockPublishedKnowledgeBaseFetch([
+      {
+        id: "free-entry",
+        title: "Free article",
+        problemSummary: "Preview content.",
+        symptoms: [],
+        possibleCauses: [],
+        solution: ["Preview solution."],
+      },
+    ]);
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    expect(screen.getByRole("button", { name: "Free article" })).toBeInTheDocument();
+    expect(
+      screen.getByText(/You are viewing a selection of Knowledge Base articles/i),
+    ).toBeInTheDocument();
+  });
+
   it("shows unlimited articles for subscriber accounts", async () => {
     seedAuthenticatedSession();
     mockPublishedKnowledgeBaseFetch(undefined, {
@@ -85,6 +106,9 @@ describe("KnowledgeBasePage", () => {
     await waitForKnowledgeBaseReady();
 
     expect(screen.getByRole("button", { name: "Pour overheating" })).toBeInTheDocument();
+    expect(
+      screen.queryByText(/You are viewing a selection of Knowledge Base articles/i),
+    ).not.toBeInTheDocument();
   });
 
   it("filters entries immediately from the search field", async () => {

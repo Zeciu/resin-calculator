@@ -1,12 +1,14 @@
 """Task 7.1.2 — Editorial translation metadata foundation tests."""
 
 from datetime import datetime, timedelta, timezone
+import json
 
 import pytest
 
 from private.repositories.filesystem import FilesystemContentRepository
 from private.routers import admin_glossary, admin_knowledge_base, admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
+from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
 from private.translation_metadata import (
     TranslationFreshness,
     derive_translation_freshness,
@@ -18,13 +20,40 @@ from private.translation_metadata import (
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+    config_dir = tmp_path / "config"
+    config_dir.mkdir()
+    (config_dir / "free-preview.json").write_text(
+        json.dumps(
+            {
+                "knowledgeBaseEntryIds": ["kb-one", "kb-two", "kb-three", "kb-four", "kb-five"],
+                "glossaryEntryIds": [
+                    "term-one",
+                    "term-two",
+                    "term-three",
+                    "term-four",
+                    "term-five",
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
     admin_manual.reset_repository_cache()
     admin_glossary.reset_repository_cache()
     admin_knowledge_base.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
+    from public.content_routers import get_capability_resolver
+    from public.product.capabilities.resolver import CapabilityResolver
 
-    return AuthenticatedTestClient(app)
+    entitlements = InMemoryEntitlementsRepository()
+    entitlements.save_access_tier("test-user", "subscriber")
+    app.dependency_overrides[get_capability_resolver] = lambda: CapabilityResolver(entitlements)
+    test_client = AuthenticatedTestClient(app)
+    try:
+        yield test_client
+    finally:
+        test_client.close()
+        app.dependency_overrides.pop(get_capability_resolver, None)
 
 
 @pytest.fixture

@@ -5,7 +5,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 from public.auth.dependencies import get_current_user
 from public.content_routers import get_capability_resolver
-from public.product.capabilities.knowledge_base import limit_knowledge_base_entries
+from public.product.capabilities.free_preview import (
+    filter_free_preview_entries,
+    load_free_preview_config,
+)
 from public.product.capabilities.resolver import CapabilityResolver
 from private.repositories.filesystem import FilesystemContentRepository
 from private.schemas.glossary import PublicGlossaryResponse
@@ -79,6 +82,10 @@ def _require_active_public_locale(locale: str) -> None:
     get_public_languages_service().require_active_public_locale(locale)
 
 
+def _free_preview_config() -> dict[str, tuple[str, ...]]:
+    return load_free_preview_config(get_repository()._root / "config" / "free-preview.json")
+
+
 @router.get("/public-languages")
 def get_public_languages() -> dict:
     return get_public_languages_service().get_config().model_dump()
@@ -100,10 +107,21 @@ def get_published_manual(
 def get_published_glossary(
     locale: str = "en",
     service: GlossaryPublicService = Depends(get_glossary_public_service),
+    user: dict = Depends(get_current_user),
+    resolver: CapabilityResolver = Depends(get_capability_resolver),
 ) -> PublicGlossaryResponse:
     try:
         _require_active_public_locale(locale)
-        return service.get_published_glossary(locale)
+        response = service.get_published_glossary(locale)
+        return response.model_copy(
+            update={
+                "entries": filter_free_preview_entries(
+                    response.entries,
+                    _free_preview_config()["glossaryEntryIds"],
+                    resolver.resolve(user["id"]).accessTier,
+                )
+            }
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
@@ -120,9 +138,10 @@ def get_published_knowledge_base(
         response = service.get_published_knowledge_base(locale)
         return response.model_copy(
             update={
-                "entries": limit_knowledge_base_entries(
+                "entries": filter_free_preview_entries(
                     response.entries,
-                    resolver.resolve(user["id"]).capabilities["knowledgeBase.maxArticles"],
+                    _free_preview_config()["knowledgeBaseEntryIds"],
+                    resolver.resolve(user["id"]).accessTier,
                 )
             }
         )

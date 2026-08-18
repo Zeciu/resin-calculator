@@ -15,5 +15,7 @@
   "knowledgeBase.possibleCauses": "Causes possibles",
   "knowledgeBase.solution": "Solution",
   "knowledgeBase.tips": "Conseils pratiques",
-  "knowledgeBase.warnings": "Avertissements"
+  "knowledgeBase.warnings": "Avertissements",
+  "content.freePreviewGlossary": "Vous consultez une sélection de termes du glossaire. Le glossaire complet est disponible avec un abonnement.",
+  "content.freePreviewKnowledgeBase": "Vous consultez une sélection d’articles de la base de connaissances. La base de connaissances complète est disponible avec un abonnement."
 }

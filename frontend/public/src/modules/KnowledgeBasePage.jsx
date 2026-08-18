@@ -9,12 +9,14 @@ import {
 } from "../knowledgeBase/knowledgeBaseFilter.js";
 import ContentUnavailableMessage from "../content/ContentUnavailableMessage.jsx";
 import { usePublishedContent } from "../content/usePublishedContent.js";
+import { useCapabilities } from "../capabilities/CapabilitiesContext.jsx";
 import { useI18n } from "../i18n/I18nContext.jsx";
 
 export default function KnowledgeBasePage() {
   const scrollContainerRef = useRef(null);
   const searchInputRef = useRef(null);
   const { t } = useI18n();
+  const { capabilities } = useCapabilities();
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedEntryId, setExpandedEntryId] = useState(null);
   const { payload, loadState, viewEnglishVersion } = usePublishedContent(fetchPublishedKnowledgeBase);
@@ -128,6 +130,11 @@ export default function KnowledgeBasePage() {
         ) : null}
         {loadState === "ready" ? (
           <>
+            {capabilities.accessTier === "free" ? (
+              <p className="content-preview-notice" role="status">
+                {t("content.freePreviewKnowledgeBase")}
+              </p>
+            ) : null}
             <KnowledgeBaseToolbar
               ref={searchInputRef}
               searchQuery={searchQuery}

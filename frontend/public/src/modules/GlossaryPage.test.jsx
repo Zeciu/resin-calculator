@@ -5,6 +5,7 @@ import {
   buildPublishedGlossaryResponse,
   mockPublishedGlossaryFetch,
 } from "../glossary/glossaryTestHelpers.js";
+import { FREE_CAPABILITIES } from "../capabilities/capabilityDefaults.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -50,6 +51,101 @@ describe("GlossaryPage", () => {
     expect(screen.getByRole("navigation", { name: "Alphabetical index" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Epoxy resin" })).toBeInTheDocument();
     expect(screen.queryByText(/Coming in a future phase/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/You are viewing a selection of Glossary terms/i),
+    ).toBeInTheDocument();
+  });
+
+  it("shows the free preview message with the server-provided subset", async () => {
+    const entries = [
+      {
+        id: "finisaj-satinat",
+        term: "Satin finish",
+        definition: ["A curated preview term."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
+    ];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url) => {
+        const requestUrl = String(url);
+        if (requestUrl.includes("/api/me/capabilities")) {
+          return {
+            ok: true,
+            json: async () => ({
+              role: "user",
+              accessTier: "free",
+              catalogVersion: 1,
+              capabilities: FREE_CAPABILITIES,
+            }),
+          };
+        }
+        if (requestUrl.includes("/api/content/public-languages")) {
+          return {
+            ok: true,
+            json: async () => ({ defaultPublicLocale: "en", activePublicLocales: ["en"] }),
+          };
+        }
+        if (requestUrl.includes("/api/content/glossary")) {
+          return { ok: true, json: async () => buildPublishedGlossaryResponse(entries) };
+        }
+        return { ok: false, status: 404, json: async () => ({}) };
+      }),
+    );
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.GLOSSARY);
+
+    await waitFor(() => expect(screen.getByRole("button", { name: "Satin finish" })).toBeInTheDocument());
+    expect(screen.getByText(/You are viewing a selection of Glossary terms/i)).toBeInTheDocument();
+  });
+
+  it("does not show the preview message for subscriber accounts", async () => {
+    const entries = [
+      {
+        id: "premium-term",
+        term: "Premium term",
+        definition: ["Subscriber content."],
+        media: [],
+        relatedTerms: [],
+        synonyms: [],
+        seeAlso: [],
+      },
+    ];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url) => {
+        const requestUrl = String(url);
+        if (requestUrl.includes("/api/me/capabilities")) {
+          return {
+            ok: true,
+            json: async () => ({
+              role: "user",
+              accessTier: "subscriber",
+              catalogVersion: 1,
+              capabilities: { ...FREE_CAPABILITIES, "knowledgeBase.maxArticles": null },
+            }),
+          };
+        }
+        if (requestUrl.includes("/api/content/public-languages")) {
+          return {
+            ok: true,
+            json: async () => ({ defaultPublicLocale: "en", activePublicLocales: ["en"] }),
+          };
+        }
+        if (requestUrl.includes("/api/content/glossary")) {
+          return { ok: true, json: async () => buildPublishedGlossaryResponse(entries) };
+        }
+        return { ok: false, status: 404, json: async () => ({}) };
+      }),
+    );
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.GLOSSARY);
+
+    await waitFor(() => expect(screen.getByRole("button", { name: "Premium term" })).toBeInTheDocument());
+    expect(screen.queryByText(/You are viewing a selection of Glossary terms/i)).not.toBeInTheDocument();
   });
 
   it("filters glossary entries immediately from the search field", async () => {

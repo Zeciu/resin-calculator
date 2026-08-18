@@ -87,6 +87,8 @@
   "content.unavailableManual": "Manual content is not yet available in the selected language.",
   "content.unavailableGlossary": "Glossary content is not yet available in the selected language.",
   "content.unavailableKnowledgeBase": "Knowledge base content is not yet available in the selected language.",
+  "content.freePreviewGlossary": "You are viewing a selection of Glossary terms. The complete Glossary is available with a subscription.",
+  "content.freePreviewKnowledgeBase": "You are viewing a selection of Knowledge Base articles. The complete Knowledge Base is available with a subscription.",
   "content.unavailableWebsite": "This page is not yet available in the selected language.",
   "content.viewEnglishVersion": "View English version",
   "content.manualTitle": "Manual & Tutorials",

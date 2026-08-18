@@ -1,21 +1,46 @@
 import pytest
+import json
 
 from private.routers import admin_knowledge_base, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
+from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
 
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
+    config_dir = tmp_path / "config"
+    config_dir.mkdir()
+    (config_dir / "free-preview.json").write_text(
+        json.dumps(
+            {
+                "knowledgeBaseEntryIds": [f"free-article-{index}" for index in range(5)],
+                "glossaryEntryIds": [
+                    "preview-glossary-one",
+                    "preview-glossary-two",
+                    "preview-glossary-three",
+                    "preview-glossary-four",
+                    "preview-glossary-five",
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
     admin_knowledge_base.reset_repository_cache()
     public_content.reset_repository_cache()
     from app import app
+    from public.content_routers import get_capability_resolver
+    from public.product.capabilities.resolver import CapabilityResolver
 
+    entitlements = InMemoryEntitlementsRepository()
+    entitlements.save_access_tier("test-user", "subscriber")
+    app.dependency_overrides[get_capability_resolver] = lambda: CapabilityResolver(entitlements)
     test_client = AuthenticatedTestClient(app)
     try:
         yield test_client
     finally:
         test_client.close()
+        app.dependency_overrides.pop(get_capability_resolver, None)
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -467,9 +492,9 @@ class TestKnowledgeBaseUnpublishAndDelete:
 
 
 class TestKnowledgeBaseEntitlements:
-    def test_free_users_receive_at_most_five_published_entries(self, client):
+    def test_subscribers_receive_all_published_entries(self, client):
         for index in range(6):
-            title = f"Free article {index}"
+            title = f"Published article {index}"
             entry_id = client.post(
                 "/api/admin/knowledge-base/entries",
                 json={"title": title, "category": "Epoxy", "difficulty": "Beginner"},
@@ -496,4 +521,4 @@ class TestKnowledgeBaseEntitlements:
         response = client.get("/api/content/knowledge-base?locale=en")
 
         assert response.status_code == 200
-        assert len(response.json()["entries"]) == 5
+        assert len(response.json()["entries"]) == 6
