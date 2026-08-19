@@ -1,5 +1,8 @@
 import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import { ROUTES } from "../workspace/routes.js";
@@ -175,6 +178,16 @@ describe("Public Website fixed pages (Stage 6D)", () => {
   });
 
   describe("Pricing", () => {
+    it("uses the validated pricing grid breakpoints and tablet 2+1 placement", () => {
+      const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../styles.css"), "utf8");
+      expect(css).toContain("@media (min-width: 768px) and (max-width: 1023px)");
+      expect(css).toContain("min(1040px, calc(100vw - 32px))");
+      expect(css).toContain("grid-column: 1 / 3");
+      expect(css).toContain("grid-column: 3 / 5");
+      expect(css).toContain("grid-column: 2 / 4");
+      expect(css).not.toContain("@media (min-width: 768px) and (max-width: 1050px)");
+    });
+
     it("renders offers in fixed free/monthly/annual order and omits hidden offers", async () => {
       expect(
         orderVisiblePricingOffers([
@@ -277,7 +290,10 @@ describe("Public Website fixed pages (Stage 6D)", () => {
         pages: {
           pricing: buildPublishedPricingResponse({
             offers: [
-              buildPricingOffer("free", { title: "Free plan" }),
+              buildPricingOffer("free", {
+                title: "Free plan",
+                benefits: ["Up to 4 points per polygon — ideal for simple project shapes."],
+              }),
               buildPricingOffer("monthly", { title: "Monthly plan", displayedPriceText: "$9.99" }),
               buildPricingOffer("annual", { title: "Annual plan", displayedPriceText: "$89.99" }),
             ],
@@ -292,6 +308,14 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       expect(screen.getByRole("link", { name: "Start Free" })).toHaveAttribute("href", "/register");
       expect(screen.getByRole("link", { name: "Choose monthly plan" })).toHaveAttribute("href", "/account");
       expect(screen.getByRole("link", { name: "Choose annual plan" })).toHaveAttribute("href", "/account");
+      expect(screen.getByText("Up to 4 points per polygon — ideal for simple project shapes.")).toBeInTheDocument();
+      expect(screen.getByText("Equivalent to $7.50 / month")).toBeInTheDocument();
+      expect(document.querySelector('[data-offer-id="free"]')).toHaveClass("public-pricing__card--free");
+      expect(document.querySelector('[data-offer-id="monthly"]')).toHaveClass("public-pricing__card--monthly");
+      expect(document.querySelector('[data-offer-id="annual"]')).toHaveClass("public-pricing__card--annual");
+      expect(screen.getByRole("link", { name: "Start Free" })).toHaveClass(
+        "public-pricing__cta--secondary",
+      );
       expect(screen.getAllByRole("link").filter((link) => link.classList.contains("public-pricing__cta"))).toHaveLength(
         3,
       );
@@ -310,6 +334,7 @@ describe("Public Website fixed pages (Stage 6D)", () => {
             offers: [
               buildPricingOffer("free", {
                 benefits: [
+                  "Up to 4 points per polygon — ideal for simple project shapes.",
                   "Save and reopen your projects on your device.",
                   "Full access to the Manual and all video tutorials.",
                   "Access to the curated free Glossary and Knowledge Base selection.",
@@ -326,6 +351,7 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       await waitFor(() => {
         expect(screen.getByText("Full access to the Manual and all video tutorials.")).toBeInTheDocument();
       });
+      expect(screen.getByText("Up to 4 points per polygon — ideal for simple project shapes.")).toBeInTheDocument();
       expect(screen.getByText("Access to the curated free Glossary and Knowledge Base selection.")).toBeInTheDocument();
       expect(screen.getAllByText("Full access to the Glossary and Knowledge Base.")).toHaveLength(2);
       expect(screen.getAllByText("Complete access to HFZWood tools and resources.")).toHaveLength(2);

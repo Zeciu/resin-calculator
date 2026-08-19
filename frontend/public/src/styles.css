@@ -5693,6 +5693,7 @@ button.workspace-sidebar__link {
   gap: 28px;
   width: 100%;
   max-width: 100%;
+  overflow: visible;
 }
 
 .public-pricing__intro,
@@ -5711,7 +5712,7 @@ button.workspace-sidebar__link {
 
 .public-pricing__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   align-items: stretch;
 }
@@ -5728,9 +5729,21 @@ button.workspace-sidebar__link {
   box-shadow: 0 4px 14px rgba(54, 45, 34, 0.04);
 }
 
+.public-pricing__card--free {
+  border-color: #e5ddd0;
+  background: #fffdf9;
+  box-shadow: 0 3px 12px rgba(54, 45, 34, 0.03);
+}
+
+.public-pricing__card--monthly {
+  border-color: #d9cbbb;
+  background: #fdfaf4;
+  box-shadow: 0 5px 16px rgba(54, 45, 34, 0.055);
+}
+
 .public-pricing__card--annual {
   border-color: #7f9e76;
-  background: #fbfdf9;
+  background: #f7fbf4;
   box-shadow: 0 8px 20px rgba(61, 95, 53, 0.1);
 }
 
@@ -5805,6 +5818,13 @@ button.workspace-sidebar__link {
   font-weight: 700;
 }
 
+.public-pricing__equivalent {
+  margin: -6px 0 -2px;
+  color: #6b5d4d;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .public-pricing__benefits {
   margin: 0;
   padding-left: 1.2rem;
@@ -5837,6 +5857,18 @@ button.workspace-sidebar__link {
   background: #334c30;
 }
 
+.public-pricing__cta--secondary {
+  color: #3f5d3a;
+  background: #fffdf9;
+  border: 1px solid #3f5d3a;
+}
+
+.public-pricing__cta--secondary:hover,
+.public-pricing__cta--secondary:focus-visible {
+  color: #334c30;
+  background: #f1f6ee;
+}
+
 .public-pricing__card--annual .public-pricing__cta {
   background: #3f6a38;
 }
@@ -5860,9 +5892,37 @@ button.workspace-sidebar__link {
   font-weight: 700;
 }
 
-@media (min-width: 768px) and (max-width: 1050px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .public-pricing__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .public-pricing__card--free {
+    grid-column: 1 / 3;
+  }
+
+  .public-pricing__card--monthly {
+    grid-column: 3 / 5;
+  }
+
+  .public-pricing__card--annual {
+    grid-column: 2 / 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .public-pricing__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(1040px, calc(100vw - 32px));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .public-pricing__card--free,
+  .public-pricing__card--monthly,
+  .public-pricing__card--annual {
+    grid-column: auto;
   }
 }
 
@@ -6008,10 +6068,6 @@ button.workspace-sidebar__link {
 
   .public-website-page__title {
     font-size: 1.4rem;
-  }
-
-  .public-pricing__grid {
-    grid-template-columns: 1fr;
   }
 }
 

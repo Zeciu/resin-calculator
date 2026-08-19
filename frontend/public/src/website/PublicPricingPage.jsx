@@ -77,7 +77,7 @@ export default function PublicPricingPage() {
                   return (
                     <article
                       key={offerId}
-                      className={`public-pricing__card${isAnnual ? " public-pricing__card--annual" : ""}`}
+                      className={`public-pricing__card public-pricing__card--${offerId}`}
                       aria-label={title || offerId}
                       data-offer-id={offerId}
                     >
@@ -99,7 +99,12 @@ export default function PublicPricingPage() {
                         </p>
                       ) : null}
                       {isAnnual ? (
-                        <p className="public-pricing__savings">{t("website.pricing.save25")}</p>
+                        <>
+                          <p className="public-pricing__equivalent">
+                            {t("website.pricing.annualEquivalent")}
+                          </p>
+                          <p className="public-pricing__savings">{t("website.pricing.save25")}</p>
+                        </>
                       ) : null}
                       {benefits.length > 0 ? (
                         <ul className="public-pricing__benefits">
@@ -110,7 +115,7 @@ export default function PublicPricingPage() {
                       ) : null}
                       {ctaDestination ? (
                         <WebsiteDestinationLink
-                          className="public-pricing__cta"
+                          className={`public-pricing__cta${offerId === "free" ? " public-pricing__cta--secondary" : ""}`}
                           label={t(`website.pricing.${offerId}Cta`)}
                           destination={ctaDestination}
                         />
