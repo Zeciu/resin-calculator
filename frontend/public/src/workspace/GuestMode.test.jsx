@@ -18,7 +18,10 @@ describe("Guest Mode", () => {
 
     for (const item of WORKSPACE_NAV_ITEMS) {
       const label = translate("en", item.labelKey);
-      if (item.requiresAuth) {
+      if (item.id === "my-account") {
+        expect(screen.queryByRole("button", { name: label })).not.toBeInTheDocument();
+        expect(screen.queryByRole("link", { name: label })).not.toBeInTheDocument();
+      } else if (item.requiresAuth) {
         expect(
           screen.getByRole("button", { name: new RegExp(label, "i") }),
         ).toBeInTheDocument();

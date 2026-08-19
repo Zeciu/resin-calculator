@@ -1335,35 +1335,12 @@ button .help-icon-wrapper {
   padding: 16px 18px;
   overflow: hidden;
   background: #fbfaf6;
+  background-image: url("/hero-page-resin-geometry.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border: 1px solid #d7cec0;
   border-radius: 16px;
-}
-
-.workspace-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  /* Layered: light veil, ivory→image fade, wood/resin photo */
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.1)
-    ),
-    linear-gradient(
-      90deg,
-      rgba(251, 250, 246, 0.94) 0%,
-      rgba(251, 250, 246, 0.9) 28%,
-      rgba(251, 250, 246, 0.72) 40%,
-      rgba(251, 250, 246, 0.28) 54%,
-      rgba(251, 250, 246, 0.06) 72%,
-      rgba(251, 250, 246, 0) 100%
-    ),
-    url("/header-wood-epoxy.png");
-  background-position: center, center, center right;
-  background-size: cover, cover, cover;
-  background-repeat: no-repeat;
 }
 
 .workspace-hero__brand,
@@ -1399,16 +1376,25 @@ button .help-icon-wrapper {
 
 .workspace-hero__headline {
   margin: 0;
+  color: #1f2f20;
   font-size: 30px;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(250, 247, 239, 0.95);
 }
 
 .workspace-hero__subtitle {
   margin: 6px 0 0;
-  color: #475447;
+  color: #1f2f20;
   font-size: 16px;
   font-weight: 600;
+  text-shadow: 0 1px 2px rgba(250, 247, 239, 0.95);
+}
+
+@media (min-width: 768px) {
+  .workspace-hero__subtitle {
+    max-width: 370px;
+  }
 }
 
 .workspace-hero__image {
@@ -1419,6 +1405,114 @@ button .help-icon-wrapper {
   margin-top: 16px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.workspace-hero__estimate {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  bottom: 10px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 164px;
+  padding: 6px 8px;
+  color: #1f2f20;
+  background: #fbfaf6;
+  border: 1px solid #d7cec0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(31, 47, 32, 0.12);
+}
+
+.workspace-hero__estimate-header,
+.workspace-hero__estimate-result,
+.workspace-hero__estimate-depth,
+.workspace-hero__estimate-material {
+  display: flex;
+  align-items: center;
+}
+
+.workspace-hero__estimate-header {
+  gap: 7px;
+  min-height: 18px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.workspace-hero__estimate-pointer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: #fbfaf6;
+  background: #1f2f20;
+  border-radius: 5px;
+}
+
+.workspace-hero__estimate-pointer svg {
+  width: 11px;
+  height: 11px;
+  stroke-width: 2.5;
+}
+
+.workspace-hero__estimate-result,
+.workspace-hero__estimate-depth {
+  gap: 8px;
+  border-top: 1px solid #e1d9cd;
+}
+
+.workspace-hero__estimate-result {
+  min-height: 27px;
+  margin-top: 4px;
+  padding-top: 4px;
+}
+
+.workspace-hero__estimate-result > svg,
+.workspace-hero__estimate-depth > svg,
+.workspace-hero__estimate-material > svg {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  stroke-width: 2;
+}
+
+.workspace-hero__estimate-result p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.workspace-hero__estimate-result strong {
+  font-size: 21px;
+  letter-spacing: -0.04em;
+}
+
+.workspace-hero__estimate-result span {
+  margin-left: 2px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.workspace-hero__estimate-depth {
+  min-height: 21px;
+  margin-top: 3px;
+  padding-top: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.workspace-hero__estimate-material {
+  margin-top: 3px;
+  padding-top: 3px;
+  border-top: 1px solid #e1d9cd;
+}
+
+@media (max-width: 900px) {
+  .workspace-hero__estimate {
+    display: none;
+  }
 }
 
 /* ── Application workspace layout ───────────────────────────── */

@@ -1,3 +1,4 @@
+import { Box, Hexagon, MousePointer2, Ruler } from "lucide-react";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { canRenderHomeImage } from "../website/homePublicUtils.js";
 
@@ -42,6 +43,25 @@ export default function WorkspaceHero({ marketing = null }) {
           />
         ) : null}
       </div>
+      <aside className="workspace-hero__estimate" aria-label="Resin Estimate">
+        <div className="workspace-hero__estimate-header">
+          <span className="workspace-hero__estimate-pointer">
+            <MousePointer2 aria-hidden="true" />
+          </span>
+          <strong>Resin Estimate</strong>
+        </div>
+        <div className="workspace-hero__estimate-result">
+          <Hexagon aria-hidden="true" />
+          <p><strong>5.42</strong> <span>L</span></p>
+        </div>
+        <div className="workspace-hero__estimate-depth">
+          <Ruler aria-hidden="true" />
+          <span>Estimate for 10 mm depth</span>
+        </div>
+        <div className="workspace-hero__estimate-material">
+          <Box aria-hidden="true" />
+        </div>
+      </aside>
     </div>
   );
 }

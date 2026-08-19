@@ -2450,28 +2450,7 @@
       ],
       "id": "turnare-n-straturi",
       "media": [],
-      "relatedTerms": [
-        {
-          "id": "v-scozitate",
-          "term": "V\u00e2scozitate"
-        },
-        {
-          "id": "timp-de-nt-rire",
-          "term": "Timp de \u00eent\u0103rire"
-        },
-        {
-          "id": "timp-de-lucru-pot-life",
-          "term": "Timp de lucru (Pot Life)"
-        },
-        {
-          "id": "r-in-epoxidic",
-          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
-        },
-        {
-          "id": "polimerizare",
-          "term": "Polimerizare"
-        }
-      ],
+      "relatedTerms": [],
       "seeAlso": [],
       "synonyms": [],
       "term": "Turnare \u00een straturi"

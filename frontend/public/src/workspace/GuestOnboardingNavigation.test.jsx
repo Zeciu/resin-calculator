@@ -192,14 +192,14 @@ describe("Guest onboarding and Home navigation", () => {
     });
   });
 
-  it("keeps Pricing CTA destinations and auth access unchanged", async () => {
+  it("keeps Free, Monthly, and Annual CTA destinations aligned with pricing", async () => {
     mockPublishedWebsiteFetch({
       pages: {
         pricing: buildPublishedPricingResponse({
           offers: [
             buildPricingOffer("free"),
-            buildPricingOffer("subscriber"),
-            buildPricingOffer("lifetime"),
+            buildPricingOffer("monthly"),
+            buildPricingOffer("annual"),
           ],
         }),
       },
@@ -209,8 +209,15 @@ describe("Guest onboarding and Home navigation", () => {
     await waitFor(() => {
       expect(screen.getByRole("link", { name: "Start Free" })).toHaveAttribute("href", "/register");
     });
-    expect(screen.getByRole("link", { name: "Subscribe" })).toHaveAttribute("href", "/account");
-    expect(screen.getByRole("link", { name: "Buy Lifetime" })).toHaveAttribute("href", "/account");
+    expect(screen.getByRole("link", { name: "Choose monthly plan" })).toHaveAttribute(
+      "href",
+      "/account",
+    );
+    expect(screen.getByRole("link", { name: "Choose annual plan" })).toHaveAttribute(
+      "href",
+      "/account",
+    );
+    expect(screen.queryByRole("link", { name: /Lifetime/i })).not.toBeInTheDocument();
   });
 
   it("keeps Admin navigation unaffected", async () => {

@@ -168,7 +168,7 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood transforme une simple photo en un outil de calcul pr\u00e9cis et facile \u00e0 utiliser. L'application vous guide pas \u00e0 pas pour d\u00e9finir la zone de coul\u00e9e, exclure les \u00eelots de bois et les cavit\u00e9s, et vous fournit une estimation fiable qui vous aide \u00e0 planifier correctement vos mat\u00e9riaux, \u00e0 r\u00e9duire les pertes et \u00e0 d\u00e9marrer chaque projet en toute confiance.\n\nPlus qu\u2019un simple calculateur, HFZWood est une plateforme d\u00e9di\u00e9e aux passionn\u00e9s et aux professionnels travaillant le bois et la r\u00e9sine \u00e9poxy. Outre les outils de calcul, vous avez acc\u00e8s \u00e0 un manuel d\u2019utilisation complet, \u00e0 des tutoriels vid\u00e9o expliquant chaque \u00e9tape du processus, un glossaire des termes utilis\u00e9s dans le domaine et une base de connaissances en constante \u00e9volution, qui rassemble des informations pratiques, des recommandations et des r\u00e9ponses aux questions fr\u00e9quentes.\n\nQue vous r\u00e9alisiez votre premier projet ou que vous ayez d\u00e9j\u00e0 de l\u2019exp\u00e9rience dans le moulage \u00e0 la r\u00e9sine \u00e9poxy, HFZWood vous offre les outils et les informations n\u00e9cessaires pour travailler de mani\u00e8re plus organis\u00e9e, prendre des d\u00e9cisions fond\u00e9es sur des estimations pr\u00e9cises et obtenir des r\u00e9sultats pr\u00e9visibles d\u2019un projet \u00e0 l\u2019autre.",
+        "description": "Calculez la quantit\u00e9 de r\u00e9sine n\u00e9cessaire en partant de la forme r\u00e9elle de votre projet\nHFZWood vous aide \u00e0 estimer la quantit\u00e9 de r\u00e9sine n\u00e9cessaire pour les projets dans lesquels les formes irr\u00e9guli\u00e8res, les bords naturels du bois, les trous et les cavit\u00e9s rendent difficile un calcul g\u00e9om\u00e9trique classique. Vous partez d\u2019une photo de la pi\u00e8ce, vous d\u00e9finissez la zone de coul\u00e9e et les dimensions r\u00e9elles, et l\u2019application transforme la g\u00e9om\u00e9trie du projet en un calcul de volume facile \u00e0 suivre.\n\n\n\nDe l\u2019estimation \u00e0 la planification de la coul\u00e9e\nVous pouvez exclure du calcul les \u00eelots de bois et les zones qui ne seront pas remplies de r\u00e9sine, travailler avec plusieurs profondeurs et diviser le projet en coul\u00e9es successives. HFZWood calcule les volumes et les quantit\u00e9s n\u00e9cessaires pour les composants de la r\u00e9sine, ce qui vous permet de planifier les mat\u00e9riaux avant de commencer le coulage et de r\u00e9duire les approximations, les exc\u00e9dents et le gaspillage.\n\nConservez le projet, pas seulement le r\u00e9sultat d\u2019un calcul\nUn projet peut \u00eatre enregistr\u00e9 et rouvert pour des v\u00e9rifications, des modifications ou les \u00e9tapes suivantes du travail. Au lieu d\u2019un calculateur que vous utilisez une seule fois puis fermez, HFZWood conserve en un seul endroit la g\u00e9om\u00e9trie, les dimensions et les calculs du projet, afin que vous puissiez y revenir tout au long du chantier.\n\nOutils et informations au m\u00eame endroit\nHFZWood ne se limite pas au calcul. Le manuel et les tutoriels expliquent comment utiliser l\u2019application, le glossaire clarifie les termes sp\u00e9cifiques au travail du bois et de la r\u00e9sine \u00e9poxy, tandis que la base de connaissances rassemble des informations pratiques sur la pr\u00e9paration, l\u2019\u00e9tanch\u00e9it\u00e9, le coulage, les bulles, les r\u00e9actions exothermiques, le durcissement, les probl\u00e8mes courants et la finition. Lorsqu\u2019une question se pose au cours de votre projet, les informations dont vous avez besoin restent dans le m\u00eame espace de travail.\n\nVos projets vous appartiennent\nHFZWood repose sur un principe simple : votre travail vous appartient. Un projet cr\u00e9\u00e9 pendant la dur\u00e9e de validit\u00e9 de votre abonnement reste le v\u00f4tre et peut \u00eatre ouvert, modifi\u00e9 et poursuivi \u00e0 tout moment, m\u00eame apr\u00e8s l\u2019expiration de votre abonnement. Les restrictions du forfait Free s\u2019appliquent aux nouveaux projets, et non au travail que vous avez d\u00e9j\u00e0 r\u00e9alis\u00e9. Vous n\u2019avez pas besoin de conserver un abonnement uniquement pour continuer \u00e0 travailler sur vos propres projets.",
         "image": {
           "alt": "",
           "src": "",
@@ -188,16 +188,16 @@
     },
     "pricing": {
       "body": {
-        "footnote": "Vous pouvez commencer gratuitement et passer ?? une formule sup??rieure ?? tout moment, sans perdre les projets d??j?? r??alis??s.",
-        "intro": "Commencez gratuitement, puis passez ?? l???acc??s abonn?? complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les m??mes fonctionnalit??s ; seuls la p??riode de facturation et le prix diff??rent.",
+        "footnote": "Vous pouvez commencer gratuitement et passer à une formule supérieure à tout moment, sans perdre les projets déjà réalisés.",
+        "intro": "Commencez gratuitement, puis passez à l’accès abonné complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les mêmes fonctionnalités ; seuls la période de facturation et le prix diffèrent.",
         "offers": [
           {
             "benefits": [
-              "Calculateur de r??sine pour les projets simples.",
-              "Jusqu????? 4 points par polygone.",
+              "Calculateur de résine pour les projets simples.",
+              "Jusqu’à 4 points par polygone.",
               "Enregistrez et rouvrez vos projets sur votre appareil.",
-              "Acc??s complet au manuel et ?? tous les tutoriels vid??o.",
-              "Acc??s ?? une s??lection gratuite du glossaire et de la base de connaissances."
+              "Accès complet au manuel et à tous les tutoriels vidéo.",
+              "Accès à une sélection gratuite du glossaire et de la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -208,10 +208,10 @@
           },
           {
             "benefits": [
-              "Acc??s complet aux outils et ressources HFZWood.",
-              "Points de polygone illimit??s et outils pour les projets complexes.",
-              "Export PDF et planification des couches de coul??e.",
-              "Acc??s complet au glossaire et ?? la base de connaissances."
+              "Accès complet aux outils et ressources HFZWood.",
+              "Points de polygone illimités et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coulée.",
+              "Accès complet au glossaire et à la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -222,10 +222,10 @@
           },
           {
             "benefits": [
-              "Acc??s complet aux outils et ressources HFZWood.",
-              "Points de polygone illimit??s et outils pour les projets complexes.",
-              "Export PDF et planification des couches de coul??e.",
-              "Acc??s complet au glossaire et ?? la base de connaissances."
+              "Accès complet aux outils et ressources HFZWood.",
+              "Points de polygone illimités et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coulée.",
+              "Accès complet au glossaire et à la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -236,7 +236,7 @@
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Choisissez la formule adapt??e ?? votre fa??on de travailler"
+        "publicTitle": "Choisissez la formule adaptée à votre façon de travailler"
       },
       "pageKey": "pricing",
       "pageKind": "pricing",

@@ -7499,7 +7499,7 @@
       "pk": "CONTENT#turnare-n-straturi",
       "sk": "META",
       "sortOrder": 4800,
-      "updatedAt": "2026-07-23T10:10:40.514745+00:00"
+      "updatedAt": "2026-08-19T09:16:52.368015+00:00"
     },
     "CONTENT#glossary_entry#turnare-n-straturi|VARIANT#ro": {
       "contentId": "turnare-n-straturi",
@@ -7512,26 +7512,20 @@
           }
         ],
         "media": [],
-        "relatedTermIds": [
-          "v-scozitate",
-          "timp-de-nt-rire",
-          "timp-de-lucru-pot-life",
-          "r-in-epoxidic",
-          "polimerizare"
-        ],
+        "relatedTermIds": [],
         "seeAlso": [],
         "synonymTermIds": [],
         "term": "Turnare \u00een straturi"
       },
       "locale": "ro",
       "pk": "CONTENT#turnare-n-straturi",
-      "publishedAt": "2026-07-23T10:10:40.514745+00:00",
+      "publishedAt": "2026-08-19T09:16:52.368015+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/glossary/ro/entries.json",
-      "sourceRevision": 2,
+      "sourceRevision": 3,
       "sourceTextRevision": 2,
       "status": "published",
-      "updatedAt": "2026-07-23T10:10:40.514745+00:00"
+      "updatedAt": "2026-08-19T09:16:52.368015+00:00"
     },
     "CONTENT#glossary_entry#turnare|META": {
       "contentId": "turnare",
@@ -20762,8 +20756,8 @@
           "visible": false
         },
         "pageKind": "home",
-        "publicTitle": " HFZWood - Aplicatia ta pentru proiectele cu lemn si rasina",
-        "subtitle": "Calcule precise pentru proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103",
+        "publicTitle": "Precizie \u0219i \u00eencredere \u00een lucrul cu r\u0103\u0219ina.",
+        "subtitle": "Calculeaz\u0103 \u0219i planific\u0103 proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103 pe baza formei reale a proiectului t\u0103u.",
         "video": {
           "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
           "visible": true
@@ -20925,16 +20919,16 @@
     "CONTENT#website_page#pricing|VARIANT#fr": {
       "contentId": "pricing",
       "draftBody": {
-        "footnote": "Vous pouvez commencer gratuitement et passer à une formule supérieure à tout moment, sans perdre les projets déjà réalisés.",
-        "intro": "Commencez gratuitement, puis passez à l’accès abonné complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les mêmes fonctionnalités ; seuls la période de facturation et le prix diffèrent.",
+        "footnote": "Vous pouvez commencer gratuitement et passer \u00e0 une formule sup\u00e9rieure \u00e0 tout moment, sans perdre les projets d\u00e9j\u00e0 r\u00e9alis\u00e9s.",
+        "intro": "Commencez gratuitement, puis passez \u00e0 l\u2019acc\u00e8s abonn\u00e9 complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les m\u00eames fonctionnalit\u00e9s ; seuls la p\u00e9riode de facturation et le prix diff\u00e8rent.",
         "offers": [
           {
             "benefits": [
-              "Calculateur de résine pour les projets simples.",
-              "Jusqu’à 4 points par polygone.",
+              "Calculateur de r\u00e9sine pour les projets simples.",
+              "Jusqu\u2019\u00e0 4 points par polygone.",
               "Enregistrez et rouvrez vos projets sur votre appareil.",
-              "Accès complet au manuel et à tous les tutoriels vidéo.",
-              "Accès à une sélection gratuite du glossaire et de la base de connaissances."
+              "Acc\u00e8s complet au manuel et \u00e0 tous les tutoriels vid\u00e9o.",
+              "Acc\u00e8s \u00e0 une s\u00e9lection gratuite du glossaire et de la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -20945,10 +20939,10 @@
           },
           {
             "benefits": [
-              "Accès complet aux outils et ressources HFZWood.",
-              "Points de polygone illimités et outils pour les projets complexes.",
-              "Export PDF et planification des couches de coulée.",
-              "Accès complet au glossaire et à la base de connaissances."
+              "Acc\u00e8s complet aux outils et ressources HFZWood.",
+              "Points de polygone illimit\u00e9s et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coul\u00e9e.",
+              "Acc\u00e8s complet au glossaire et \u00e0 la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -20959,10 +20953,10 @@
           },
           {
             "benefits": [
-              "Accès complet aux outils et ressources HFZWood.",
-              "Points de polygone illimités et outils pour les projets complexes.",
-              "Export PDF et planification des couches de coulée.",
-              "Accès complet au glossaire et à la base de connaissances."
+              "Acc\u00e8s complet aux outils et ressources HFZWood.",
+              "Points de polygone illimit\u00e9s et outils pour les projets complexes.",
+              "Export PDF et planification des couches de coul\u00e9e.",
+              "Acc\u00e8s complet au glossaire et \u00e0 la base de connaissances."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -20973,7 +20967,7 @@
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Choisissez la formule adaptée à votre façon de travailler"
+        "publicTitle": "Choisissez la formule adapt\u00e9e \u00e0 votre fa\u00e7on de travailler"
       },
       "generatedAt": "2026-07-22T21:15:49.210701+00:00",
       "generatedFromSourceRevision": 3,
@@ -20990,7 +20984,7 @@
     "CONTENT#website_page#pricing|VARIANT#it": {
       "contentId": "pricing",
       "draftBody": {
-        "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti già realizzati.",
+        "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti gi\u00e0 realizzati.",
         "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
         "offers": [
           {
@@ -21038,7 +21032,7 @@
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Scegli il piano più adatto al tuo modo di lavorare"
+        "publicTitle": "Scegli il piano pi\u00f9 adatto al tuo modo di lavorare"
       },
       "generatedAt": "2026-07-23T07:43:39.243278+00:00",
       "generatedFromSourceRevision": 3,
@@ -21055,16 +21049,16 @@
     "CONTENT#website_page#pricing|VARIANT#ro": {
       "contentId": "pricing",
       "draftBody": {
-        "footnote": "Poți începe gratuit și poți trece la un plan superior în orice moment, fără să pierzi proiectele deja realizate.",
-        "intro": "Poți începe gratuit și poți trece ulterior la acces complet de abonat. Planul Lunar și Planul Anual includ aceeași funcționalitate; diferă doar perioada de facturare și prețul.",
+        "footnote": "Po\u021bi \u00eencepe gratuit \u0219i po\u021bi trece la un plan superior \u00een orice moment, f\u0103r\u0103 s\u0103 pierzi proiectele deja realizate.",
+        "intro": "Po\u021bi \u00eencepe gratuit \u0219i po\u021bi trece ulterior la acces complet de abonat. Planul Lunar \u0219i Planul Anual includ aceea\u0219i func\u021bionalitate; difer\u0103 doar perioada de facturare \u0219i pre\u021bul.",
         "offers": [
           {
             "benefits": [
-              "Calculator de rășină pentru proiecte simple.",
-              "Până la 4 puncte pentru fiecare poligon.",
-              "Salvează și redeschide proiectele pe dispozitivul tău.",
-              "Acces integral la Manual și la toate tutorialele video.",
-              "Acces la selecția gratuită din Glosar și Baza de cunoștințe."
+              "Calculator de r\u0103\u0219in\u0103 pentru proiecte simple.",
+              "P\u00e2n\u0103 la 4 puncte pentru fiecare poligon.",
+              "Salveaz\u0103 \u0219i redeschide proiectele pe dispozitivul t\u0103u.",
+              "Acces integral la Manual \u0219i la toate tutorialele video.",
+              "Acces la selec\u021bia gratuit\u0103 din Glosar \u0219i Baza de cuno\u0219tin\u021be."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -21075,10 +21069,10 @@
           },
           {
             "benefits": [
-              "Acces complet la instrumentele și resursele HFZWood.",
-              "Puncte nelimitate pentru poligoane și instrumente pentru proiecte complexe.",
-              "Export PDF și planificarea straturilor de turnare.",
-              "Acces complet la Glosar și Baza de cunoștințe."
+              "Acces complet la instrumentele \u0219i resursele HFZWood.",
+              "Puncte nelimitate pentru poligoane \u0219i instrumente pentru proiecte complexe.",
+              "Export PDF \u0219i planificarea straturilor de turnare.",
+              "Acces complet la Glosar \u0219i Baza de cuno\u0219tin\u021be."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -21089,10 +21083,10 @@
           },
           {
             "benefits": [
-              "Acces complet la instrumentele și resursele HFZWood.",
-              "Puncte nelimitate pentru poligoane și instrumente pentru proiecte complexe.",
-              "Export PDF și planificarea straturilor de turnare.",
-              "Acces complet la Glosar și Baza de cunoștințe."
+              "Acces complet la instrumentele \u0219i resursele HFZWood.",
+              "Puncte nelimitate pentru poligoane \u0219i instrumente pentru proiecte complexe.",
+              "Export PDF \u0219i planificarea straturilor de turnare.",
+              "Acces complet la Glosar \u0219i Baza de cuno\u0219tin\u021be."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
@@ -21103,7 +21097,7 @@
           }
         ],
         "pageKind": "pricing",
-        "publicTitle": "Alege planul potrivit pentru modul tău de lucru"
+        "publicTitle": "Alege planul potrivit pentru modul t\u0103u de lucru"
       },
       "locale": "ro",
       "pk": "CONTENT#pricing",

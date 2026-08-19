@@ -25,8 +25,8 @@ function renderHero(marketing = null) {
   );
 }
 
-function extractHeroBeforeBlock() {
-  const match = stylesSource.match(/\.workspace-hero::before\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/);
+function extractHeroBlock() {
+  const match = stylesSource.match(/\.workspace-hero\s*\{([^}]*)\}/);
   return match?.[1] ?? "";
 }
 
@@ -77,7 +77,7 @@ describe("WorkspaceHero", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("keeps ivory-to-image hero fade layers without outline/glow/text-box treatments", () => {
+  it("uses a card-free hero asset with a native estimate card", () => {
     const { container } = renderHero();
     const hero = container.querySelector(".workspace-hero");
     const logo = screen.getByRole("img", { name: "HEFZECH logo" });
@@ -87,13 +87,17 @@ describe("WorkspaceHero", () => {
     expect(logo).toBeVisible();
     expect(headline).toBeVisible();
 
-    const beforeBlock = extractHeroBeforeBlock();
-    expect(beforeBlock).toContain("header-wood-epoxy.png");
-    expect(beforeBlock).toMatch(/90deg/);
-    expect(beforeBlock).toMatch(/rgba\(\s*251\s*,\s*250\s*,\s*246/);
-    expect(beforeBlock).toMatch(/rgba\(\s*255\s*,\s*255\s*,\s*255/);
-    expect(beforeBlock).not.toMatch(/text-shadow/i);
-    expect(beforeBlock).not.toMatch(/box-shadow/i);
+    const heroBlock = extractHeroBlock();
+    expect(heroBlock).toContain('url("/hero-page-resin-geometry.png")');
+    expect(heroBlock).toContain("background-size: cover");
+    expect(heroBlock).not.toMatch(/linear-gradient|rgba|opacity|filter/i);
+    expect(stylesSource).not.toMatch(/\.workspace-hero::before/);
+
+    const estimate = screen.getByRole("complementary", { name: "Resin Estimate" });
+    expect(estimate).toHaveTextContent("5.42 L");
+    expect(estimate).toHaveTextContent("Estimate for 10 mm depth");
+    expect(estimate.querySelectorAll("svg")).toHaveLength(4);
+    expect(stylesSource).toContain("text-shadow: 0 1px 2px rgba(250, 247, 239, 0.95)");
 
     const heroComputed = window.getComputedStyle(hero);
     expect(heroComputed.textShadow).toMatch(/^(none)?$/i);

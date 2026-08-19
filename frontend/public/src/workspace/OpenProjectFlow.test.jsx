@@ -83,10 +83,10 @@ describe("Open Project flow", () => {
     vi.restoreAllMocks();
   });
 
-  it("uses dedicated module layout on the Projects Hub", () => {
+  it("keeps workspace sidebar navigation on the Projects Hub", () => {
     renderWorkspace(ROUTES.PROJECTS);
 
-    expect(screen.queryByRole("navigation", { name: "Workspace navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Open Project" })).toBeInTheDocument();
   });
