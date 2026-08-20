@@ -22,7 +22,7 @@ function seedAuthenticatedSession() {
 
 function expectDedicatedManualShell() {
   const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
-  expect(within(sidebar).getByText("Manual & Tutorials")).toBeInTheDocument();
+  expect(within(sidebar).getAllByText("Manual & Tutorials")[0]).toBeInTheDocument();
   const header = screen.getByRole("banner", { name: "Module header" });
   expect(within(header).getByText("Manual & Tutorials")).toBeInTheDocument();
   expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();

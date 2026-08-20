@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import GuestIntro from "./GuestIntro.jsx";
@@ -25,6 +25,15 @@ describe("Guest Mode", () => {
         expect(
           screen.getByRole("button", { name: new RegExp(label, "i") }),
         ).toBeInTheDocument();
+      } else if (item.id === "login-register") {
+        const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+        expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+          "href",
+          "/register",
+        );
+        expect(
+          within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
+        ).toHaveAttribute("href", "/login");
       } else {
         expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
       }

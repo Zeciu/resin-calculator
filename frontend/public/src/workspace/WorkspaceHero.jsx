@@ -43,12 +43,12 @@ export default function WorkspaceHero({ marketing = null }) {
           />
         ) : null}
       </div>
-      <aside className="workspace-hero__estimate" aria-label="Resin Estimate">
+      <aside className="workspace-hero__estimate" aria-label={t("hero.estimate.title")}>
         <div className="workspace-hero__estimate-header">
           <span className="workspace-hero__estimate-pointer">
             <MousePointer2 aria-hidden="true" />
           </span>
-          <strong>Resin Estimate</strong>
+          <strong>{t("hero.estimate.title")}</strong>
         </div>
         <div className="workspace-hero__estimate-result">
           <Hexagon aria-hidden="true" />
@@ -56,7 +56,7 @@ export default function WorkspaceHero({ marketing = null }) {
         </div>
         <div className="workspace-hero__estimate-depth">
           <Ruler aria-hidden="true" />
-          <span>Estimate for 10 mm depth</span>
+          <span>{t("hero.estimate.depth")}</span>
         </div>
         <div className="workspace-hero__estimate-material">
           <Box aria-hidden="true" />

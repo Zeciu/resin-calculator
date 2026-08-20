@@ -78,9 +78,12 @@ describe("Workspace navigation active state — auth and preferences flow", () =
     renderWorkspace(ROUTES.LOGIN);
     const sidebar = getSidebar();
 
-    const loginLink = within(sidebar).getByRole("link", { name: "Login / Register" });
-    expect(loginLink).toHaveClass("workspace-sidebar__link--active");
+    const loginLink = within(sidebar).getByRole("link", { name: "Already have an account? Log in" });
+    expect(loginLink).toHaveAttribute("href", "/login");
     expect(loginLink).toHaveAttribute("aria-current", "page");
+    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).not.toHaveAttribute(
+      "aria-current",
+    );
 
     const newProjectButton = within(sidebar).getByRole("button", { name: /New Project/i });
     expect(newProjectButton).not.toHaveClass("workspace-sidebar__link--active");
@@ -89,16 +92,21 @@ describe("Workspace navigation active state — auth and preferences flow", () =
 
   it("keeps Login highlighted on the Register route", () => {
     renderWorkspace(ROUTES.REGISTER);
+    const sidebar = getSidebar();
+    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
     expect(
-      within(getSidebar()).getByRole("link", { name: "Login / Register" }),
-    ).toHaveClass("workspace-sidebar__link--active");
+      within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
+    ).not.toHaveAttribute("aria-current");
   });
 
   it("keeps Login highlighted on the Password Recovery route", () => {
     renderWorkspace(ROUTES.PASSWORD_RECOVERY);
     expect(
-      within(getSidebar()).getByRole("link", { name: "Login / Register" }),
-    ).toHaveClass("workspace-sidebar__link--active");
+      within(getSidebar()).getByRole("link", { name: "Already have an account? Log in" }),
+    ).toHaveAttribute("aria-current", "page");
   });
 
   it("highlights Knowledge Base on its dedicated module route", () => {

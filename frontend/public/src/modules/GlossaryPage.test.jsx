@@ -26,7 +26,7 @@ function seedAuthenticatedSession() {
 
 function expectDedicatedGlossaryShell() {
   const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
-  expect(within(sidebar).getByText("Glossary")).toBeInTheDocument();
+  expect(within(sidebar).getAllByText("Glossary")[0]).toBeInTheDocument();
   const header = screen.getByRole("banner", { name: "Module header" });
   expect(within(header).getByText("Glossary")).toBeInTheDocument();
   expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();

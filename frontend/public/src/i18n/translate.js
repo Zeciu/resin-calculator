@@ -42,6 +42,7 @@ export const WORKSPACE_NAV_UI_KEYS = [
   "nav.myAccount",
   "nav.home",
   "nav.logout",
+  "nav.workspaceDisclosure",
 ];
 
 export function translate(language, key, params = {}) {

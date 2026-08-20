@@ -19,7 +19,7 @@ export default function DedicatedModuleLayout() {
         >
           <WorkspaceSidebar />
         </aside>
-        <main className="dedicated-module-layout__content">
+        <main id="main-content" className="dedicated-module-layout__content" tabIndex={-1}>
           <Outlet />
         </main>
       </div>

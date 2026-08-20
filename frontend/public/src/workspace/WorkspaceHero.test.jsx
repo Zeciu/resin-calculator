@@ -6,6 +6,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { I18nProvider } from "../i18n/I18nContext.jsx";
 import { PreferencesProvider } from "../preferences/PreferencesContext.jsx";
 import { PublicLanguagesProvider } from "../publicLanguages/PublicLanguagesContext.jsx";
+import {
+  clearDevicePreferences,
+  seedDevicePreferences,
+} from "../preferences/testHelpers.js";
 import WorkspaceHero from "./WorkspaceHero.jsx";
 
 const stylesSource = readFileSync(
@@ -32,6 +36,8 @@ function extractHeroBlock() {
 
 describe("WorkspaceHero", () => {
   beforeEach(() => {
+    clearDevicePreferences();
+    seedDevicePreferences({ interfaceLanguage: "en" });
     vi.stubGlobal("fetch", vi.fn(async (url) => {
       if (String(url).includes("/api/content/public-languages")) {
         return {
@@ -49,6 +55,7 @@ describe("WorkspaceHero", () => {
   afterEach(() => {
     cleanup();
     vi.restoreAllMocks();
+    clearDevicePreferences();
   });
 
   it("uses i18n marketing copy by default", () => {
@@ -98,6 +105,25 @@ describe("WorkspaceHero", () => {
     expect(estimate).toHaveTextContent("Estimate for 10 mm depth");
     expect(estimate.querySelectorAll("svg")).toHaveLength(4);
     expect(stylesSource).toContain("text-shadow: 0 1px 2px rgba(250, 247, 239, 0.95)");
+    expect(stylesSource).toMatch(/\.workspace-hero__estimate-header \{[\s\S]*?font-size: 13px/);
+    expect(stylesSource).toMatch(/\.workspace-hero__estimate-depth \{[\s\S]*?font-size: 12px/);
+    expect(stylesSource).toMatch(
+      /@media \(max-width: 639px\)[\s\S]*?\.workspace-hero__estimate \{\s*display: none/,
+    );
+    expect(stylesSource).not.toMatch(
+      /@media \(max-width: 900px\) \{\s*\.workspace-hero__estimate \{\s*display: none/,
+    );
+    expect(stylesSource).toMatch(
+      /\.workspace-hero__content \{[^}]*padding-right: calc\(var\(--workspace-hero-estimate-width\) \+ var\(--workspace-hero-estimate-gap\)\)/,
+    );
+    expect(stylesSource).toMatch(/\.workspace-hero__headline \{[^}]*overflow-wrap: break-word/);
+    expect(stylesSource).toMatch(
+      /@media \(min-width: 640px\) \{\s*\.workspace-hero__headline \{\s*max-width: min\(100%, 18em\)/,
+    );
+    expect(stylesSource).not.toMatch(/\.workspace-hero__headline \{[^}]*line-clamp/);
+    expect(stylesSource).not.toMatch(/\.workspace-hero__headline \{[^}]*text-overflow:\s*ellipsis/);
+    expect(stylesSource).not.toMatch(/\.workspace-hero__estimate \{[^}]*bottom:\s*10px/);
+    expect(stylesSource).toMatch(/\.workspace-hero__estimate \{[^}]*overflow:\s*hidden/);
 
     const heroComputed = window.getComputedStyle(hero);
     expect(heroComputed.textShadow).toMatch(/^(none)?$/i);
@@ -118,5 +144,16 @@ describe("WorkspaceHero", () => {
     expect(brand.compareDocumentPosition(content) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(content.contains(cmsImage)).toBe(true);
     expect(screen.getByRole("img", { name: "HEFZECH logo" })).toBeVisible();
+  });
+
+  it("localizes the estimate card through i18n", () => {
+    cleanup();
+    seedDevicePreferences({ interfaceLanguage: "ro" });
+    renderHero();
+
+    const estimate = screen.getByRole("complementary", { name: "Estimare rășină" });
+    expect(estimate).toHaveTextContent("Estimare rășină");
+    expect(estimate).toHaveTextContent("5.42 L");
+    expect(estimate).toHaveTextContent("Estimare pentru 10 mm adâncime");
   });
 });

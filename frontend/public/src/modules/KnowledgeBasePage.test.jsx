@@ -23,7 +23,7 @@ function seedAuthenticatedSession() {
 
 function expectDedicatedKnowledgeBaseShell() {
   const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
-  expect(within(sidebar).getByText("Knowledge Base")).toBeInTheDocument();
+  expect(within(sidebar).getAllByText("Knowledge Base")[0]).toBeInTheDocument();
   const header = screen.getByRole("banner", { name: "Module header" });
   expect(within(header).getByText("Knowledge Base")).toBeInTheDocument();
   expect(within(sidebar).getByRole("link", { name: "Home" })).toBeInTheDocument();

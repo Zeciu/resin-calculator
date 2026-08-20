@@ -44,13 +44,24 @@ describe("Workspace navigation matrix — guest", () => {
         expect(
           screen.getByRole("button", { name: new RegExp(label, "i") }),
         ).toBeInTheDocument();
+      } else if (item.id === "login-register") {
+        const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+        expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+          "href",
+          "/register",
+        );
+        expect(
+          within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
+        ).toHaveAttribute("href", "/login");
       } else {
         expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
       }
     }
 
-    // Guest still has direct access to Login / Register.
-    expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
+    // Guest still has direct access to register and login.
+    expect(
+      screen.getAllByRole("link", { name: "Create Free Account" })[0],
+    ).toHaveAttribute("href", "/register");
 
     await user.click(screen.getByRole("button", { name: /New Project/i }));
     expect(

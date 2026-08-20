@@ -21,7 +21,7 @@ export default function PublicWebsiteLayout() {
           {t("website.backHome")}
         </Link>
       </header>
-      <main className="public-website-layout__content">
+      <main id="main-content" className="public-website-layout__content" tabIndex={-1}>
         <Outlet />
       </main>
       <PublicWebsiteFooter />

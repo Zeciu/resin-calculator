@@ -59,10 +59,13 @@ describe("Authenticated Mode navigation", () => {
       ).toBeInTheDocument();
     }
 
-    expect(screen.getAllByLabelText("Locked feature")).toHaveLength(
+    expect(screen.queryAllByLabelText("Locked feature")).toHaveLength(
       GUEST_LOCKED_NAV_ITEMS.length,
     );
-    expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+      "href",
+      "/register",
+    );
 
     await user.click(screen.getByRole("button", { name: /New Project/i }));
     expect(
@@ -83,12 +86,13 @@ describe("Authenticated Mode navigation", () => {
     }
 
     expect(screen.queryAllByLabelText("Locked feature")).toHaveLength(0);
-    expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Create Free Account" })).not.toBeInTheDocument();
   });
 
-  it("shows Login / Register but no My Account control for guests", () => {
+  it("shows guest register and login actions but no My Account control for guests", () => {
     renderWorkspace(ROUTES.LOGIN);
-    expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Create Free Account" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Already have an account? Log in" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /My Account/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
   });

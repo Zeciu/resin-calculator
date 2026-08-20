@@ -69,6 +69,6 @@ describe("My Account page", () => {
     expect(sessionStorage.getItem(SESSION_STORAGE_KEY)).toBeNull();
     expect(screen.getByRole("button", { name: /New Project/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Log out/i })).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Create Free Account" })).toBeInTheDocument();
   });
 });

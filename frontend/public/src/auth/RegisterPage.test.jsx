@@ -100,9 +100,10 @@ describe("RegisterPage", () => {
   it("keeps /register route publicly reachable for guests", () => {
     renderWorkspace(ROUTES.REGISTER);
     expect(screen.getByRole("heading", { name: /Create your HFZWood account/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Already have an account\? Log in/i })).toHaveAttribute(
-      "href",
-      "/login",
-    );
+    const loginLinks = screen.getAllByRole("link", { name: /Already have an account\? Log in/i });
+    expect(loginLinks.length).toBeGreaterThanOrEqual(1);
+    loginLinks.forEach((link) => {
+      expect(link).toHaveAttribute("href", "/login");
+    });
   });
 });

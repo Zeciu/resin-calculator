@@ -82,7 +82,7 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     expect(
       screen.queryByText(/The first platform that gives woodworkers and resin enthusiasts/i),
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Login / Register" })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Create Free Account" }).length).toBeGreaterThan(0);
   });
 
   it("renders blank-line separated CMS description as separate paragraphs", async () => {

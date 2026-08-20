@@ -33,11 +33,24 @@ function getSidebar() {
   return screen.getByRole("navigation", { name: "Workspace navigation" });
 }
 
+function stubNavBreakpoint(isNarrow) {
+  window.matchMedia = vi.fn((query) => ({
+    matches: String(query).includes("max-width: 767px") ? isNarrow : false,
+    media: query,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }));
+}
+
 describe("Guest onboarding and Home navigation", () => {
   beforeEach(() => {
     sessionStorage.clear();
     localStorage.clear();
     vi.restoreAllMocks();
+    stubNavBreakpoint(false);
     mockPublishedWebsiteFetch();
     mockPublishedKnowledgeBaseFetch();
   });
@@ -58,11 +71,25 @@ describe("Guest onboarding and Home navigation", () => {
       screen.getByText(/The first platform that gives woodworkers and resin enthusiasts/i),
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Ready to try HFZWood?", level: 2 })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Create Free Account" })).toHaveAttribute("href", "/register");
-    expect(screen.getByRole("link", { name: "Already have an account? Log in" })).toHaveAttribute(
+    const registerLinks = screen.getAllByRole("link", { name: "Create Free Account" });
+    const loginLinks = screen.getAllByRole("link", { name: "Already have an account? Log in" });
+    expect(registerLinks).toHaveLength(2);
+    expect(loginLinks).toHaveLength(2);
+    expect(registerLinks[0]).toHaveAttribute("href", "/register");
+    expect(loginLinks[0]).toHaveAttribute("href", "/login");
+    expect(registerLinks[1]).toHaveAttribute("href", "/register");
+    expect(loginLinks[1]).toHaveAttribute("href", "/login");
+
+    const layout = document.querySelector(".home-hub-layout");
+    expect(layout.querySelector(".guest-home-onboarding--compact")).toBeNull();
+    const sidebar = getSidebar();
+    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
       "href",
-      "/login",
+      "/register",
     );
+    expect(
+      within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
+    ).toHaveAttribute("href", "/login");
   });
 
   it("keeps onboarding on CMS Home for guests and hides it when authenticated", async () => {
@@ -80,6 +107,10 @@ describe("Guest onboarding and Home navigation", () => {
       expect(screen.getByRole("heading", { name: "CMS Onboarding Home", level: 1 })).toBeInTheDocument();
     });
     expect(screen.getByRole("heading", { name: "Ready to try HFZWood?", level: 2 })).toBeInTheDocument();
+    expect(within(getSidebar()).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+      "href",
+      "/register",
+    );
 
     cleanup();
     seedAuthenticatedSession();
@@ -112,13 +143,19 @@ describe("Guest onboarding and Home navigation", () => {
       "Manual & Tutorials",
       "Glossary",
       "Knowledge Base",
-      "Login / Register",
     ];
     const labels = within(sidebar)
       .getAllByRole("listitem")
       .map((item) => item.textContent.replace(/\s+/g, " ").trim())
       .filter(Boolean);
     expect(labels.slice(0, expectedOrder.length)).toEqual(expectedOrder);
+    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+      "href",
+      "/register",
+    );
+    expect(
+      within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
+    ).toHaveAttribute("href", "/login");
 
     expect(within(sidebar).getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
     expect(within(sidebar).getAllByLabelText("Locked feature")).toHaveLength(
@@ -218,6 +255,71 @@ describe("Guest onboarding and Home navigation", () => {
       "/account",
     );
     expect(screen.queryByRole("link", { name: /Lifetime/i })).not.toBeInTheDocument();
+  });
+
+  it("collapses guest workspace into a disclosure at narrow widths without hiding the CTA", async () => {
+    const user = userEvent.setup();
+    stubNavBreakpoint(true);
+    renderWorkspace(ROUTES.HOME);
+    const sidebar = getSidebar();
+    const disclosure = sidebar.querySelector(".workspace-sidebar__disclosure");
+    const summary = sidebar.querySelector(".workspace-sidebar__disclosure-summary");
+
+    await waitFor(() => {
+      expect(disclosure?.open).toBe(false);
+      expect(within(sidebar).queryByRole("link", { name: "Home" })).not.toBeInTheDocument();
+    });
+
+    expect(summary).toHaveTextContent("HFZWood workspace");
+    for (const name of [
+      "New Project",
+      "Projects",
+      "Manual & Tutorials",
+      "Glossary",
+      "Knowledge Base",
+    ]) {
+      expect(summary).toHaveTextContent(name);
+    }
+
+    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+      "href",
+      "/register",
+    );
+    expect(
+      within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
+    ).toHaveAttribute("href", "/login");
+    expect(disclosure.contains(within(sidebar).getByRole("link", { name: "Create Free Account" }))).toBe(
+      false,
+    );
+    expect(within(sidebar).queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
+
+    await user.click(summary);
+    expect(disclosure?.open).toBe(true);
+    expect(within(sidebar).getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
+    expect(within(sidebar).getByRole("button", { name: /New Project/i })).toBeInTheDocument();
+    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toBeInTheDocument();
+  });
+
+  it("toggles the guest workspace disclosure with the keyboard", async () => {
+    const user = userEvent.setup();
+    stubNavBreakpoint(true);
+    renderWorkspace(ROUTES.HOME);
+    const sidebar = getSidebar();
+    const disclosure = sidebar.querySelector(".workspace-sidebar__disclosure");
+    const summary = sidebar.querySelector(".workspace-sidebar__disclosure-summary");
+
+    await waitFor(() => {
+      expect(disclosure?.open).toBe(false);
+    });
+
+    summary.focus();
+    expect(summary).toHaveFocus();
+    await user.click(summary);
+    expect(disclosure?.open).toBe(true);
+    expect(within(sidebar).getByRole("button", { name: /New Project/i })).toBeInTheDocument();
+    await user.click(summary);
+    expect(disclosure?.open).toBe(false);
+    expect(within(sidebar).queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
   });
 
   it("keeps Admin navigation unaffected", async () => {

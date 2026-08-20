@@ -13,7 +13,7 @@ function WorkspaceMainContent({ cmsHome }) {
   const { showLockedMessage } = useWorkspaceNavigation();
 
   return (
-    <main className="workspace-content">
+    <main id="main-content" className="workspace-content" tabIndex={-1}>
       {showLockedMessage ? (
         <LockedModuleMessage />
       ) : (
