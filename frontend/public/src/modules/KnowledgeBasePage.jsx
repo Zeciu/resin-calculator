@@ -33,8 +33,18 @@ export default function KnowledgeBasePage() {
 
   const handleSearchChange = useCallback((value) => {
     setSearchQuery(value);
-    setExpandedEntryId(null);
   }, []);
+
+  useEffect(() => {
+    if (!expandedEntryId) {
+      return;
+    }
+
+    const expandedEntryStillVisible = filteredEntries.some((entry) => entry.id === expandedEntryId);
+    if (!expandedEntryStillVisible) {
+      setExpandedEntryId(null);
+    }
+  }, [expandedEntryId, filteredEntries]);
 
   useEffect(() => {
     const updateVisibility = () => {

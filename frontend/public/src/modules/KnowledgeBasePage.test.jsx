@@ -147,6 +147,51 @@ describe("KnowledgeBasePage", () => {
     expect(screen.queryByRole("button", { name: "Bubbles after curing" })).not.toBeInTheDocument();
   });
 
+  it("keeps a still-matching expanded article open while typing in search", async () => {
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    await user.click(screen.getByRole("button", { name: "Resin remains sticky" }));
+    expect(screen.getByRole("button", { name: "Resin remains sticky" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(screen.getByRole("heading", { name: "Solution", level: 3 })).toBeInTheDocument();
+
+    await user.type(screen.getByRole("searchbox", { name: "Search knowledge base" }), "sticky");
+
+    expect(screen.getByRole("button", { name: "Resin remains sticky" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(screen.getByRole("heading", { name: "Solution", level: 3 })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Bubbles after curing" })).not.toBeInTheDocument();
+  });
+
+  it("collapses the expanded article when it is no longer in the filtered results", async () => {
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    await waitForKnowledgeBaseReady();
+
+    await user.click(screen.getByRole("button", { name: "Resin remains sticky" }));
+    expect(screen.getByRole("button", { name: "Resin remains sticky" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+
+    await user.type(screen.getByRole("searchbox", { name: "Search knowledge base" }), "cloudy");
+
+    expect(screen.queryByRole("button", { name: "Resin remains sticky" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cloudy epoxy" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(screen.queryByRole("heading", { name: "Solution", level: 3 })).not.toBeInTheDocument();
+  });
+
   it("shows a friendly empty state when no entries match", async () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();

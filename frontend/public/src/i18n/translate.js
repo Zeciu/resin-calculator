@@ -31,6 +31,14 @@ export const KNOWLEDGE_BASE_UI_KEYS = [
   "knowledgeBase.backToTop",
 ];
 
+/** Public Glossary structural UI keys (must exist in every supported locale bundle). */
+export const GLOSSARY_UI_KEYS = [
+  "glossary.searchLabel",
+  "glossary.searchPlaceholder",
+  "glossary.emptyTitle",
+  "glossary.emptyHint",
+];
+
 /** Workspace navigation labels (must exist in every supported locale bundle). */
 export const WORKSPACE_NAV_UI_KEYS = [
   "nav.newProject",

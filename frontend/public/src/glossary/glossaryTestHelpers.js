@@ -23,7 +23,8 @@ export function buildPublishedGlossaryResponse(entries = GLOSSARY_ENTRIES) {
   };
 }
 
-export function mockPublishedGlossaryFetch(entries = GLOSSARY_ENTRIES) {
+export function mockPublishedGlossaryFetch(entries = GLOSSARY_ENTRIES, options = {}) {
+  const activePublicLocales = options.activePublicLocales ?? ["en", "ro"];
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
     if (requestUrl.includes("/api/content/public-languages")) {
@@ -31,7 +32,7 @@ export function mockPublishedGlossaryFetch(entries = GLOSSARY_ENTRIES) {
         ok: true,
         json: async () => ({
           defaultPublicLocale: "en",
-          activePublicLocales: ["en", "ro"],
+          activePublicLocales,
         }),
       };
     }

@@ -1,5 +1,6 @@
 import GlossaryEntry from "./GlossaryEntry.jsx";
 import { getGlossaryLetterSectionId } from "./glossaryFilter.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 
 /**
  * @param {{
@@ -19,11 +20,13 @@ export default function GlossaryEntryList({
   onNavigateToEntry,
   publishedEntryIds,
 }) {
+  const { t } = useI18n();
+
   if (groups.length === 0) {
     return (
       <div className="module-empty-state">
-        <p className="module-empty-state__title">No glossary terms match your search.</p>
-        <p className="module-empty-state__hint">Try different keywords.</p>
+        <p className="module-empty-state__title">{t("glossary.emptyTitle")}</p>
+        <p className="module-empty-state__hint">{t("glossary.emptyHint")}</p>
       </div>
     );
   }

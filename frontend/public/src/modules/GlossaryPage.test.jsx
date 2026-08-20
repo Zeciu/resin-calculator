@@ -163,6 +163,21 @@ describe("GlossaryPage", () => {
     expect(screen.queryByRole("button", { name: "Epoxy resin" })).not.toBeInTheDocument();
   });
 
+  it("shows a localized empty state when no glossary terms match", async () => {
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.GLOSSARY);
+
+    await waitFor(() => {
+      expect(screen.getByRole("searchbox", { name: "Search glossary" })).toBeInTheDocument();
+    });
+
+    await user.type(screen.getByRole("searchbox", { name: "Search glossary" }), "zzzz-no-match");
+
+    expect(screen.getByText("No glossary terms match your search.")).toBeInTheDocument();
+    expect(screen.getByText("Try different keywords.")).toBeInTheDocument();
+  });
+
   it("expands a single dictionary entry with a plus/minus indicator", async () => {
     seedAuthenticatedSession();
     const user = userEvent.setup();

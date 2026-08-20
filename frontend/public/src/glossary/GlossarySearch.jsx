@@ -3,6 +3,7 @@
  */
 
 import { forwardRef } from "react";
+import { useI18n } from "../i18n/I18nContext.jsx";
 
 /**
  * @param {{
@@ -12,9 +13,12 @@ import { forwardRef } from "react";
  * }} props
  */
 const GlossarySearch = forwardRef(function GlossarySearch({ value, onChange, onSubmit }, ref) {
+  const { t } = useI18n();
+  const searchLabel = t("glossary.searchLabel");
+
   return (
     <label className="glossary-toolbar__search-label">
-      <span className="glossary-toolbar__search-caption">Search glossary</span>
+      <span className="glossary-toolbar__search-caption">{searchLabel}</span>
       <input
         ref={ref}
         type="search"
@@ -27,8 +31,8 @@ const GlossarySearch = forwardRef(function GlossarySearch({ value, onChange, onS
             onSubmit?.(event.currentTarget.value);
           }
         }}
-        placeholder="Search terms and definitions"
-        aria-label="Search glossary"
+        placeholder={t("glossary.searchPlaceholder")}
+        aria-label={searchLabel}
       />
     </label>
   );

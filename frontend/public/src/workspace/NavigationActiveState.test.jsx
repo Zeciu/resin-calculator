@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { act, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
@@ -32,6 +35,11 @@ function getSidebar() {
 function newProjectNavItem() {
   return WORKSPACE_NAV_ITEMS.find((item) => item.id === "new-project");
 }
+
+const stylesSource = readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "../styles.css"),
+  "utf8",
+);
 
 function knowledgeBaseNavItem() {
   return WORKSPACE_NAV_ITEMS.find((item) => item.id === "knowledge-base");
@@ -112,42 +120,83 @@ describe("Workspace navigation active state — auth and preferences flow", () =
   it("highlights Knowledge Base on its dedicated module route", () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.KNOWLEDGE_BASE);
+    const sidebar = getSidebar();
 
-    const knowledgeBaseLink = within(getSidebar()).getByRole("link", { name: "Knowledge Base" });
+    const knowledgeBaseLink = within(sidebar).getByRole("link", { name: "Knowledge Base" });
     expect(knowledgeBaseLink).toHaveClass("workspace-sidebar__link--active");
     expect(knowledgeBaseLink).toHaveAttribute("aria-current", "page");
+
+    const newProjectLink = within(sidebar).getByRole("link", { name: "New Project" });
+    expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
+    expect(newProjectLink).not.toHaveClass("workspace-sidebar__link--active");
+    expect(newProjectLink).not.toHaveAttribute("aria-current");
   });
 
-  it("does not highlight New Project during the preferences step", () => {
+  it("keeps New Project as the primary action while My Account is the current route", () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.PREFERENCES);
     const sidebar = getSidebar();
 
     const newProjectLink = within(sidebar).getByRole("link", { name: "New Project" });
+    expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
     expect(newProjectLink).not.toHaveClass("workspace-sidebar__link--active");
-    expect(newProjectLink).not.toHaveClass("workspace-sidebar__link--primary-action");
+    expect(newProjectLink).not.toHaveAttribute("aria-current");
 
     const accountLink = within(sidebar).getByRole("link", { name: "My Account" });
     expect(accountLink).toHaveClass("workspace-sidebar__link--active");
+    expect(accountLink).toHaveAttribute("aria-current", "page");
   });
 
-  it("restores New Project primary emphasis on Home after the preferences step", async () => {
+  it("keeps Home as the current route while New Project stays the primary action", () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.HOME);
+    const sidebar = getSidebar();
+
+    const homeLink = within(sidebar).getByRole("link", { name: "Home" });
+    expect(homeLink).toHaveClass("workspace-sidebar__link--active");
+    expect(homeLink).toHaveAttribute("aria-current", "page");
+
+    const newProjectLink = within(sidebar).getByRole("link", { name: "New Project" });
+    expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
+    expect(newProjectLink).not.toHaveClass("workspace-sidebar__link--active");
+    expect(newProjectLink).not.toHaveAttribute("aria-current");
+  });
+
+  it("keeps New Project primary on Home after leaving My Account", async () => {
     seedAuthenticatedSession();
     const { router } = renderWorkspace(ROUTES.PREFERENCES);
-    expect(
-      within(getSidebar()).getByRole("link", { name: "New Project" }),
-    ).not.toHaveClass("workspace-sidebar__link--primary-action");
+    expect(within(getSidebar()).getByRole("link", { name: "New Project" })).toHaveClass(
+      "workspace-sidebar__link--primary-action",
+    );
 
     await act(async () => {
       await router.navigate(ROUTES.HOME);
     });
 
-    const newProjectLink = within(getSidebar()).getByRole("link", { name: "New Project" });
+    const sidebar = getSidebar();
+    const newProjectLink = within(sidebar).getByRole("link", { name: "New Project" });
     expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
     expect(newProjectLink).not.toHaveClass("workspace-sidebar__link--active");
+    expect(within(sidebar).getByRole("link", { name: "Home" })).toHaveClass(
+      "workspace-sidebar__link--active",
+    );
   });
 
-  it("leaves Projects inactive on Home while New Project is the primary home emphasis", () => {
+  it("marks New Project as both primary action and current route on its own page", () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.NEW_PROJECT);
+    const sidebar = getSidebar();
+
+    const newProjectLink = within(sidebar).getByRole("link", { name: "New Project" });
+    expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
+    expect(newProjectLink).toHaveClass("workspace-sidebar__link--active");
+    expect(newProjectLink).toHaveAttribute("aria-current", "page");
+    expect(within(sidebar).getByRole("link", { name: "Home" })).not.toHaveClass(
+      "workspace-sidebar__link--active",
+    );
+  });
+
+  it("leaves Projects inactive on Home while New Project is the primary action", () => {
     seedAuthenticatedSession();
     renderWorkspace(ROUTES.HOME);
     const sidebar = getSidebar();
@@ -160,6 +209,29 @@ describe("Workspace navigation active state — auth and preferences flow", () =
     );
     expect(within(sidebar).getByRole("link", { name: "My Account" })).not.toHaveClass(
       "workspace-sidebar__link--active",
+    );
+  });
+});
+
+describe("New Project primary-action visual contract", () => {
+  it("uses a muted sage fill distinct from cream active navigation", () => {
+    const primaryBlock = stylesSource.match(
+      /\.workspace-sidebar__link\.workspace-sidebar__link--primary-action\s*\{([^}]+)\}/,
+    )?.[1];
+    const activeBlock = stylesSource.match(
+      /\.workspace-sidebar__link\.workspace-sidebar__link--active,\s*\n\.workspace-sidebar__link\.workspace-sidebar__link--active:hover\s*\{([^}]+)\}/,
+    )?.[1];
+
+    expect(primaryBlock).toMatch(/--sidebar-primary-fill:\s*#e6eee4;/);
+    expect(primaryBlock).toMatch(/background:\s*var\(--sidebar-primary-fill\);/);
+    expect(primaryBlock).not.toMatch(/#f0e7d8/);
+    expect(activeBlock).toMatch(/background:\s*#f0e7d8;/);
+
+    expect(stylesSource).toMatch(
+      /\.workspace-sidebar__link\.workspace-sidebar__link--primary-action:focus-visible\s*\{[^}]*outline:/,
+    );
+    expect(stylesSource).toMatch(
+      /\.workspace-sidebar__link\.workspace-sidebar__link--primary-action\.workspace-sidebar__link--active/,
     );
   });
 });

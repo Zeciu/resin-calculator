@@ -93,7 +93,7 @@ export default function WorkspaceSidebar() {
   function renderWorkspaceItem(item) {
     const label = t(item.labelKey);
     const isLocked = isNavItemLocked(item);
-    const isPrimaryAction = isLoggedInHome && item.id === "new-project" && !isLocked;
+    const isPrimaryAction = item.id === "new-project" && !isLocked;
     const isItemActive = isWorkspaceNavItemActive(item, location.pathname);
 
     return (
