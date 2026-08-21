@@ -13,6 +13,7 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   PASSWORD_RECOVERY: "/password-recovery",
+  CALLBACK: "/callback",
   ACCOUNT: "/account",
   PREFERENCES: "/account/preferences",
   PROJECTS: "/projects",

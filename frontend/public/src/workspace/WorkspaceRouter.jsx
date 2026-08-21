@@ -9,6 +9,7 @@ import PreferencesPage from "../preferences/PreferencesPage.jsx";
 import LoginPage from "../auth/LoginPage.jsx";
 import PasswordRecoveryPage from "../auth/PasswordRecoveryPage.jsx";
 import RegisterPage from "../auth/RegisterPage.jsx";
+import NotFoundPage from "../website/NotFoundPage.jsx";
 import PublicAboutPage from "../website/PublicAboutPage.jsx";
 import PublicContactPage from "../website/PublicContactPage.jsx";
 import PublicPricingPage from "../website/PublicPricingPage.jsx";
@@ -85,6 +86,7 @@ export default function WorkspaceRouter() {
           <Route path={workspaceRoutePath(ROUTES.PRIVACY)} element={<PublicPrivacyPage />} />
           <Route path={workspaceRoutePath(ROUTES.TERMS)} element={<PublicTermsPage />} />
           <Route path={workspaceRoutePath(ROUTES.CONTACT)} element={<PublicContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
 
         <Route element={<DedicatedModuleLayout />}>

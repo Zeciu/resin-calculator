@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { cleanup, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  DOCUMENT_METADATA_UI_KEYS,
   getSupportedI18nLanguages,
   localeBundleHasOwnKey,
 } from "./translate.js";
@@ -37,9 +38,11 @@ describe("Document chrome", () => {
     clearDevicePreferences();
   });
 
-  it("exposes skip, title, and estimate chrome keys in every locale bundle", () => {
+  it("exposes skip, title, metadata, and estimate chrome keys in every locale bundle", () => {
     for (const language of getSupportedI18nLanguages()) {
-      expect(localeBundleHasOwnKey(language, "app.documentTitle")).toBe(true);
+      for (const key of DOCUMENT_METADATA_UI_KEYS) {
+        expect(localeBundleHasOwnKey(language, key)).toBe(true);
+      }
       expect(localeBundleHasOwnKey(language, "a11y.skipToContent")).toBe(true);
       expect(localeBundleHasOwnKey(language, "hero.estimate.title")).toBe(true);
       expect(localeBundleHasOwnKey(language, "hero.estimate.depth")).toBe(true);

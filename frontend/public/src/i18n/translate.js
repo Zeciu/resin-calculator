@@ -39,6 +39,18 @@ export const GLOSSARY_UI_KEYS = [
   "glossary.emptyHint",
 ];
 
+/** Document titles and not-found copy (must exist in every supported locale bundle). */
+export const DOCUMENT_METADATA_UI_KEYS = [
+  "app.documentTitle",
+  "website.documentTitle.about",
+  "website.documentTitle.pricing",
+  "website.documentTitle.privacy",
+  "website.documentTitle.terms",
+  "website.documentTitle.contact",
+  "notFound.title",
+  "notFound.body",
+];
+
 /** Workspace navigation labels (must exist in every supported locale bundle). */
 export const WORKSPACE_NAV_UI_KEYS = [
   "nav.newProject",

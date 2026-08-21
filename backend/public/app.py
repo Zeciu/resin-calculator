@@ -13,6 +13,10 @@ from jose.exceptions import ExpiredSignatureError
 
 from public.content_routers import get_capability_resolver
 from public.product.entitlements import EntitlementsServiceUnavailableError
+from public.spa_document_indexing import (
+    apply_spa_document_robots_header,
+    is_extensionless_spa_path,
+)
 from public.routers.billing import router as billing_router
 from public.routers.me import router as me_router
 from public.safety.input_limits import (
@@ -650,16 +654,20 @@ class SpaStaticFiles(StaticFiles):
     """Serve index.html for extensionless client-side SPA routes.
 
     Missing API paths and missing files retain their 404 responses so frontend
-    routing does not conceal backend or asset errors.
+    routing does not conceal backend or asset errors. Non-public HTML document
+    responses receive X-Robots-Tag: noindex, nofollow so crawlers do not have
+    to execute JavaScript to see the indexing policy.
     """
 
     async def get_response(self, path: str, scope):
-        raw_path = scope.get("raw_path", path)
+        raw_path = scope.get("path") or scope.get("raw_path", path)
         if isinstance(raw_path, bytes):
             raw_path = raw_path.decode("ascii", errors="ignore")
-        request_path = str(raw_path).lstrip("/")
+        request_path = str(raw_path)
+        if not request_path.startswith("/"):
+            request_path = "/" + request_path.lstrip("/")
         relative_path = path.lstrip("/")
-        is_api_path = request_path.startswith("api/") or relative_path.startswith("api/")
+        is_api_path = request_path.startswith("/api/") or relative_path.startswith("api/")
         try:
             response = await super().get_response(path, scope)
         except Exception as exc:
@@ -670,7 +678,8 @@ class SpaStaticFiles(StaticFiles):
                 or Path(relative_path).suffix
             ):
                 raise
-            return await super().get_response("index.html", scope)
+            response = await super().get_response("index.html", scope)
+            return self._with_document_robots(response, request_path, is_api_path)
 
         if (
             response.status_code != 404
@@ -678,8 +687,19 @@ class SpaStaticFiles(StaticFiles):
             or is_api_path
             or Path(relative_path).suffix
         ):
+            return self._with_document_robots(response, request_path, is_api_path)
+        response = await super().get_response("index.html", scope)
+        return self._with_document_robots(response, request_path, is_api_path)
+
+    @staticmethod
+    def _with_document_robots(response, request_path: str, is_api_path: bool):
+        if (
+            getattr(response, "status_code", None) != 200
+            or is_api_path
+            or not is_extensionless_spa_path(request_path)
+        ):
             return response
-        return await super().get_response("index.html", scope)
+        return apply_spa_document_robots_header(response, request_path)
 
 
 # Serve built frontend in production (static/ folder is present in the Docker image)
@@ -689,7 +709,7 @@ if os.path.isdir(_static_dir):
 
     @app.get("/callback", include_in_schema=False)
     async def spa_callback():
-        return FileResponse(_index_html)
+        return apply_spa_document_robots_header(FileResponse(_index_html), "/callback")
 
     app.mount("/", SpaStaticFiles(directory=_static_dir, html=True), name="static")
 
