@@ -36,6 +36,22 @@ export function mmToCm(mm) {
   return mm / 10;
 }
 
+export function parseCanonicalMm(value) {
+  if (value === "" || value == null) {
+    return NaN;
+  }
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : NaN;
+}
+
+export function storeCanonicalMmFromDisplay(rawValue, unit) {
+  if (rawValue === "") {
+    return "";
+  }
+  const mm = lengthToMm(rawValue, unit);
+  return Number.isFinite(mm) ? String(mm) : rawValue;
+}
+
 export function lengthToMm(value, unit) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) {

@@ -170,7 +170,7 @@ export function buildCalculatorUi(t) {
 
       area: (value) => t("calculator.result.area", { value }),
 
-      mainDepth: (value) => t("calculator.result.mainDepth", { value }),
+      mainDepth: (value, unit) => t("calculator.result.mainDepth", { value, unit }),
 
       mainVolume: (value) => t("calculator.result.mainVolume", { value }),
 
@@ -178,7 +178,7 @@ export function buildCalculatorUi(t) {
 
       cavityItem: (index) => t("calculator.result.cavityItem", { index }),
 
-      depth: (value) => t("calculator.result.depth", { value }),
+      depth: (value, unit) => t("calculator.result.depth", { value, unit }),
 
       volume: (value) => t("calculator.result.volume", { value }),
 
@@ -196,9 +196,10 @@ export function buildCalculatorUi(t) {
 
       firstFillTitle: t("calculator.planning.firstFillTitle"),
 
-      firstFillThicknessLabel: t("calculator.planning.firstFillThicknessLabel"),
+      firstFillThicknessLabel: (unit) => t("calculator.planning.firstFillThicknessLabel", { unit }),
 
-      firstFillThicknessPlaceholder: t("calculator.planning.firstFillThicknessPlaceholder"),
+      firstFillThicknessPlaceholder: (value, unit) =>
+        t("calculator.planning.firstFillThicknessPlaceholder", { value, unit }),
 
       calculateFirstFillVolume: t("calculator.planning.calculateFirstFillVolume"),
 
@@ -214,7 +215,7 @@ export function buildCalculatorUi(t) {
 
       pourLayerTitle: t("calculator.planning.pourLayerTitle"),
 
-      maxPourThicknessLabel: t("calculator.planning.maxPourThicknessLabel"),
+      maxPourThicknessLabel: (unit) => t("calculator.planning.maxPourThicknessLabel", { unit }),
 
       resinMixRatioLabel: t("calculator.planning.resinMixRatioLabel"),
 
@@ -286,7 +287,7 @@ export function buildCalculatorUi(t) {
 
         text: t("calculator.help.mainResinDepth.text"),
 
-        examples: t("calculator.help.mainResinDepth.examples"),
+        examples: (value, unit) => t("calculator.help.mainResinDepth.examples", { value, unit }),
 
       },
 

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import AppHeader from "../AppHeader";
 import { buildAuthHeaders } from "../auth/authHeaders.js";
+import { LengthUnitInput } from "./LengthUnitInput.jsx";
 import { useCalculatorDisplayUnits } from "./useCalculatorDisplayUnits.js";
 import { canAddPolygonPoint } from "./calculatorCapabilityPolicy.js";
 import { useCalculatorCapabilityEnforcement } from "./useCalculatorCapabilityEnforcement.js";
@@ -1232,7 +1233,7 @@ export default forwardRef(function ResinCalculator(
 
   const confirmCavityDepth = (index) => {
     if (isReadOnly) return;
-    const depthMm = displayUnits.parseDepthToMm(cavityDepthsMm[index]);
+    const depthMm = displayUnits.readCanonicalMm(cavityDepthsMm[index]);
     if (!Number.isFinite(depthMm) || depthMm <= 0) {
       setError(displayUnits.cavityDepthError());
       setEditingCavityDepthIndex(index);
@@ -1826,7 +1827,7 @@ export default forwardRef(function ResinCalculator(
             : "unknown";
         addLine(
           `Reference ${idx + 1}`,
-          `${formatNumber(ref.knownLengthCm, 2)} cm (${direction})`
+          `${displayUnits.formatReferenceLengthWithUnit(ref.knownLengthCm)} (${direction})`
         );
       });
     }
@@ -1834,7 +1835,7 @@ export default forwardRef(function ResinCalculator(
     addSectionTitle("Results");
     if (result.calculationType === "standard") {
       addLine("Resin area", `${formatNumber(result.areaCm2, 2)} cm²`);
-      addLine("Depth", `${formatNumber(depthMm, 2)} mm`);
+      addLine("Depth", displayUnits.formatDepthWithUnit(depthMm));
       addLine("Volume", `${formatNumber(result.volumeLiters, 3)} L`);
       addLine(
         "Recommended amount (+10%)",
@@ -1860,7 +1861,7 @@ export default forwardRef(function ResinCalculator(
         addSectionTitle("First Fill Seal Coat");
         addLine(
           "First fill thickness",
-          `${formatNumber(firstFillThicknessMm, 2)} mm`
+          displayUnits.formatDepthWithUnit(firstFillThicknessMm)
         );
         addLine(
           "First fill seal coat volume",
@@ -1878,7 +1879,7 @@ export default forwardRef(function ResinCalculator(
 
       if (advancedReports && pourPlanRows.length > 0) {
         addSectionTitle("Pour Layer Planning");
-        addLine("Maximum pour thickness", `${formatNumber(maxPourThicknessMm, 2)} mm`);
+        addLine("Maximum pour thickness", displayUnits.formatDepthWithUnit(maxPourThicknessMm));
         addLine("Resin mix ratio (A:B)", getMixRatioOption(resinMixRatio).label);
         pourPlanRows.forEach((row) => {
           const recommendedVolumeLiters = getPourPlanRecommendedVolume(
@@ -1891,7 +1892,7 @@ export default forwardRef(function ResinCalculator(
           );
           addLine(
             row.label,
-            `${formatNumber(row.thicknessMm, 2)} mm | ${formatNumber(row.volumeLiters, 3)} L | ${formatNumber(recommendedVolumeLiters, 3)} L recommended | A ${componentAMl} ml | B ${componentBMl} ml`
+            `${displayUnits.formatDepthWithUnit(row.thicknessMm)} | ${formatNumber(row.volumeLiters, 3)} L | ${formatNumber(recommendedVolumeLiters, 3)} L recommended | A ${componentAMl} ml | B ${componentBMl} ml`
           );
         });
       }
@@ -1904,7 +1905,7 @@ export default forwardRef(function ResinCalculator(
           y += 6;
           doc.setFont("helvetica", "normal");
           addLine("Area", `${formatNumber(cavity.areaCm2, 2)} cm²`);
-          addLine("Depth", `${formatNumber(cavity.depthMm, 2)} mm`);
+          addLine("Depth", displayUnits.formatDepthWithUnit(cavity.depthMm));
           addLine("Volume", `${formatNumber(cavity.volumeLiters, 3)} L`);
         });
       } else {
@@ -2013,8 +2014,7 @@ export default forwardRef(function ResinCalculator(
       return;
     }
 
-    const mainPourDepthValue = mainDepthInputRef.current?.value ?? depthMm;
-    const mainPourDepthMm = displayUnits.parseDepthToMm(mainPourDepthValue);
+    const mainPourDepthMm = displayUnits.readCanonicalMm(depthMm);
     if (!Number.isFinite(mainPourDepthMm) || mainPourDepthMm <= 0) {
       setError(displayUnits.mainPourDepthError());
       return;
@@ -2080,11 +2080,10 @@ export default forwardRef(function ResinCalculator(
       setLayerPlanningError(ui.errors.layerPlanningUnavailable);
       return;
     }
-    const mainDepth = parseFloat(mainDepthInputRef.current?.value ?? depthMm);
-    const maxPourThickness = parseFloat(maxPourThicknessInputRef.current?.value ?? maxPourThicknessMm);
-    const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
-    const hasFirstFillThickness = String(firstFillThicknessValue).trim() !== "";
-    const firstFillThickness = parseFloat(firstFillThicknessValue);
+    const mainDepth = displayUnits.readCanonicalMm(depthMm);
+    const maxPourThickness = displayUnits.readCanonicalMm(maxPourThicknessMm);
+    const hasFirstFillThickness = String(firstFillThicknessMm).trim() !== "";
+    const firstFillThickness = displayUnits.readCanonicalMm(firstFillThicknessMm);
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
 
     if (!Number.isFinite(mainDepth) || mainDepth <= 0) {
@@ -2179,8 +2178,7 @@ export default forwardRef(function ResinCalculator(
       return;
     }
     const resinSurfaceAreaCm2 = getCalculatedResinSurfaceAreaCm2();
-    const firstFillThicknessValue = firstFillThicknessInputRef.current?.value ?? firstFillThicknessMm;
-    const firstFillThickness = parseFloat(firstFillThicknessValue);
+    const firstFillThickness = displayUnits.readCanonicalMm(firstFillThicknessMm);
 
     if (!resinSurfaceAreaCm2) {
       setFirstFillVolumeLiters(null);
@@ -2416,19 +2414,22 @@ export default forwardRef(function ResinCalculator(
             {ui.referenceDraft(displayUnits.lengthLabel)}
           </div>
           <div className="reference-draft-row">
-            <input
-              ref={draftKnownLengthInputRef}
-              type="number"
-              step="0.1"
-              value={draftKnownLengthCm}
-              onChange={(e) => setDraftKnownLengthCm(e.target.value)}
-              onKeyDown={(event) => {
-                if (event.key !== "Enter") return;
-                event.preventDefault();
-                saveReferenceMeasurement();
-              }}
-              placeholder="e.g. 10.0"
-            />
+            <label className="reference-length-field">
+              {displayUnits.referenceLengthLabel()}
+              <LengthUnitInput
+                ref={draftKnownLengthInputRef}
+                unit={displayUnits.lengthLabel}
+                step="0.1"
+                value={draftKnownLengthCm}
+                onChange={(e) => setDraftKnownLengthCm(e.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key !== "Enter") return;
+                  event.preventDefault();
+                  saveReferenceMeasurement();
+                }}
+                placeholder="e.g. 10.0"
+              />
+            </label>
             <button onClick={saveReferenceMeasurement}>
               {ui.saveReferenceMeasurement}
             </button>
@@ -2471,8 +2472,7 @@ export default forwardRef(function ResinCalculator(
             {referenceMeasurements.map((ref, idx) => (
               <div key={idx} className="reference-item">
                 <div className="reference-label">
-                  {ui.referenceItem(idx + 1)}: {displayUnits.formatReferenceLength(ref.knownLengthCm)}{" "}
-                  {displayUnits.lengthLabel}
+                  {ui.referenceItem(idx + 1)}: {displayUnits.formatReferenceLengthWithUnit(ref.knownLengthCm)}
                   {(() => {
                     const pts = ref.calibrationPoints || [];
                     if (pts.length !== 2) return "";
@@ -2587,19 +2587,12 @@ export default forwardRef(function ResinCalculator(
               </button>
               <label>
                 {displayUnits.resinDepthLabel()}:
-                <input
-                  type="number"
+                <LengthUnitInput
+                  unit={displayUnits.lengthLabel}
                   step="0.1"
                   value={depthMm === "" ? "" : displayUnits.formatDepth(depthMm)}
                   onChange={(e) => {
-                    const mm = displayUnits.parseDepthToMm(e.target.value);
-                    setDepthMm(
-                      e.target.value === ""
-                        ? ""
-                        : Number.isFinite(mm)
-                          ? String(mm)
-                          : e.target.value,
-                    );
+                    setDepthMm(displayUnits.storeDepthInput(e.target.value));
                     markResultOutdated();
                   }}
                 />
@@ -3107,7 +3100,7 @@ export default forwardRef(function ResinCalculator(
                 <div className="cavity-name">{cavity.name}</div>
                 {editingCavityDepthIndex !== idx && (
                   <div className="cavity-depth-summary">
-                    Depth: {cavity.depthValue ? `${cavity.depthValue} mm` : "not set"}
+                    {displayUnits.cavityDepthSummary(cavity.depthValue)}
                   </div>
                 )}
                 <details className="cavity-details-toggle">
@@ -3130,11 +3123,11 @@ export default forwardRef(function ResinCalculator(
                 <div className="cavity-depth-editor">
                   <label className="cavity-depth-field">
                     {displayUnits.depthLabel()}:
-                    <input
+                    <LengthUnitInput
                       ref={(element) => {
                         cavityDepthInputRefs.current[idx] = element;
                       }}
-                      type="number"
+                      unit={displayUnits.lengthLabel}
                       step="0.1"
                       value={
                         cavityDepthsMm[idx] === "" || cavityDepthsMm[idx] == null
@@ -3142,13 +3135,7 @@ export default forwardRef(function ResinCalculator(
                           : displayUnits.formatDepth(cavityDepthsMm[idx])
                       }
                       onChange={(e) => {
-                        const mm = displayUnits.parseDepthToMm(e.target.value);
-                        const val =
-                          e.target.value === ""
-                            ? ""
-                            : Number.isFinite(mm)
-                              ? String(mm)
-                              : e.target.value;
+                        const val = displayUnits.storeDepthInput(e.target.value);
                         setCavityDepthsMm((prev) => {
                           const next = [...prev];
                           next[idx] = val;
@@ -3216,22 +3203,18 @@ export default forwardRef(function ResinCalculator(
             <label className="final-depth-field">
               <span className="final-depth-label">
                 {displayUnits.mainResinDepthLabel()}
-                {renderHelpPopup("main-resin-depth", ui.help.mainResinDepth)}
+                {renderHelpPopup("main-resin-depth", {
+                  ...ui.help.mainResinDepth,
+                  examples: displayUnits.mainResinDepthExamples(),
+                })}
               </span>
-              <input
+              <LengthUnitInput
                 ref={mainDepthInputRef}
-                type="number"
+                unit={displayUnits.lengthLabel}
                 step="0.1"
                 value={depthMm === "" ? "" : displayUnits.formatDepth(depthMm)}
                 onChange={(e) => {
-                  const mm = displayUnits.parseDepthToMm(e.target.value);
-                  setDepthMm(
-                    e.target.value === ""
-                      ? ""
-                      : Number.isFinite(mm)
-                        ? String(mm)
-                        : e.target.value,
-                  );
+                  setDepthMm(displayUnits.storeDepthInput(e.target.value));
                   setRecommendedLayerCount(null);
                   setPourPlanRows([]);
                   markResultOutdated();
@@ -3340,15 +3323,21 @@ export default forwardRef(function ResinCalculator(
               <div className="pour-layer-planning-controls">
                 <h3 className="planning-tool-title">{ui.planning.firstFillTitle}</h3>
                 <label className="pour-layer-field">
-                  {ui.planning.firstFillThicknessLabel}
-                  <input
+                  {displayUnits.firstFillThicknessLabel()}
+                  <LengthUnitInput
                     ref={firstFillThicknessInputRef}
-                    type="number"
+                    unit={displayUnits.lengthLabel}
                     step="0.1"
-                    placeholder={ui.planning.firstFillThicknessPlaceholder}
-                    value={firstFillThicknessMm}
+                    placeholder={displayUnits.firstFillThicknessPlaceholder()}
+                    value={
+                      firstFillThicknessMm === ""
+                        ? ""
+                        : displayUnits.formatDepth(firstFillThicknessMm)
+                    }
                     onChange={(event) => {
-                      setFirstFillThicknessMm(event.target.value);
+                      setFirstFillThicknessMm(
+                        displayUnits.storeDepthInput(event.target.value),
+                      );
                       setFirstFillVolumeLiters(null);
                       setRecommendedFirstFillVolumeLiters(null);
                       setRecommendedLayerCount(null);
@@ -3432,14 +3421,20 @@ export default forwardRef(function ResinCalculator(
               <div className="pour-layer-planning-controls">
                 <h3 className="planning-tool-title">{ui.planning.pourLayerTitle}</h3>
                 <label className="pour-layer-field">
-                  {ui.planning.maxPourThicknessLabel}
-                  <input
+                  {displayUnits.maxPourThicknessLabel()}
+                  <LengthUnitInput
                     ref={maxPourThicknessInputRef}
-                    type="number"
+                    unit={displayUnits.lengthLabel}
                     step="0.1"
-                    value={maxPourThicknessMm}
+                    value={
+                      maxPourThicknessMm === ""
+                        ? ""
+                        : displayUnits.formatDepth(maxPourThicknessMm)
+                    }
                     onChange={(event) => {
-                      setMaxPourThicknessMm(event.target.value);
+                      setMaxPourThicknessMm(
+                        displayUnits.storeDepthInput(event.target.value),
+                      );
                       setRecommendedLayerCount(null);
                       setPourPlanRows([]);
                       setLayerPlanningError("");
@@ -3492,7 +3487,7 @@ export default forwardRef(function ResinCalculator(
                           return (
                             <tr key={`${row.label}-${idx}`}>
                               <td>{row.label}</td>
-                              <td>{formatNumber(row.thicknessMm, 2)} mm</td>
+                              <td>{displayUnits.formatDepthWithUnit(row.thicknessMm)}</td>
                               <td>{formatNumber(row.volumeLiters, 3)} L</td>
                               <td>{formatNumber(recommendedVolumeLiters, 3)} L</td>
                               <td>{componentAMl} ml</td>
@@ -3561,7 +3556,7 @@ export default forwardRef(function ResinCalculator(
             <div className="result-section">
               <div className="result-section-title">{ui.result.mainResinSection}</div>
               <div>{ui.result.area(formatNumber(result.mainResinAreaCm2, 2))}</div>
-              <div>{ui.result.mainDepth(formatNumber(result.mainPourDepthMm, 2))}</div>
+              <div>{displayUnits.resultMainDepth(result.mainPourDepthMm)}</div>
               <div>{ui.result.mainVolume(formatNumber(result.mainVolumeLiters, 3))}</div>
             </div>
 
@@ -3572,7 +3567,7 @@ export default forwardRef(function ResinCalculator(
                   <div key={cavity.name || idx} className="cavity-result-block">
                     <div>{cavity.name || ui.result.cavityItem(idx + 1)}</div>
                     <div>{ui.result.area(formatNumber(cavity.areaCm2, 2))}</div>
-                    <div>{ui.result.depth(formatNumber(cavity.depthMm, 2))}</div>
+                    <div>{displayUnits.resultDepth(cavity.depthMm)}</div>
                     <div>{ui.result.volume(formatNumber(cavity.volumeLiters, 3))}</div>
                   </div>
                 ))}

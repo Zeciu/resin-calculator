@@ -15,6 +15,8 @@ function Probe() {
       <span data-testid="depth">{u.formatDepth(100)}</span>
       <span data-testid="volume">{u.formatVolume(1)}</span>
       <span data-testid="resinDepthLabel">{u.resinDepthLabel()}</span>
+      <span data-testid="stored">{u.storeDepthInput("2")}</span>
+      <span data-testid="canonical">{String(u.readCanonicalMm("20"))}</span>
     </div>
   );
 }
@@ -59,6 +61,8 @@ describe("useCalculatorDisplayUnits", () => {
     expect(screen.getByTestId("depth")).toHaveTextContent("10");
     expect(screen.getByTestId("volume")).toHaveTextContent("1000");
     expect(screen.getByTestId("resinDepthLabel")).toHaveTextContent("Resin depth (cm)");
+    expect(screen.getByTestId("stored")).toHaveTextContent("20");
+    expect(screen.getByTestId("canonical")).toHaveTextContent("20");
   });
 
   it("shows imperial display units (in/fl oz) without changing canonical inputs", () => {

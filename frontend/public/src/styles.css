@@ -407,8 +407,12 @@ button.secondary-action {
   font-size: 13px;
 }
 
-.cavity-depth-field input[type="number"] {
+.cavity-depth-field .length-unit-input {
   width: 120px;
+}
+
+.cavity-depth-field input[type="number"] {
+  width: auto;
 }
 
 .cavity-depth-editor {
@@ -542,6 +546,56 @@ label {
 input[type="number"] {
   width: 170px;
   padding: 6px;
+}
+
+.length-unit-input {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 170px;
+  background: #fffdf8;
+  border: 1px solid var(--border-warm);
+  border-radius: 9px;
+}
+
+.length-unit-input:focus-within {
+  border-color: #cfc6ba;
+}
+
+.length-unit-input__value,
+.length-unit-input input[type="number"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.length-unit-input input[type="number"]::-webkit-inner-spin-button,
+.length-unit-input input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.length-unit-input__value:focus,
+.length-unit-input input[type="number"]:focus {
+  outline: none;
+}
+
+.length-unit-input__suffix {
+  flex: 0 0 auto;
+  padding: 0 10px 0 2px;
+  color: #555;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hidden-file-input {
@@ -728,8 +782,12 @@ input[type="number"] {
   align-items: center;
 }
 
-.inline-depth-field input[type="number"] {
+.inline-depth-field .length-unit-input {
   width: 110px;
+}
+
+.inline-depth-field input[type="number"] {
+  width: auto;
 }
 
 .step-status {
@@ -902,8 +960,12 @@ button .help-icon-wrapper {
   gap: 6px;
 }
 
-.final-depth-field input[type="number"] {
+.final-depth-field .length-unit-input {
   width: 130px;
+}
+
+.final-depth-field input[type="number"] {
+  width: auto;
 }
 
 .calculate-primary-button {
@@ -1274,8 +1336,12 @@ button .help-icon-wrapper {
   margin-top: 8px;
 }
 
-.reference-draft-row input[type="number"] {
+.reference-draft-row .length-unit-input {
   width: 170px;
+}
+
+.reference-draft-row input[type="number"] {
+  width: auto;
 }
 
 .error {
