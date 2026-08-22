@@ -3,6 +3,7 @@ import { isForeignReadOnlyOwnershipMode } from "../project/projectOwnership.js";
 export const CURRENT_PROJECT_KIND = {
   NEW: "new",
   OPENED: "opened",
+  DEMO: "demo",
 };
 
 /** @typedef {import("../project/projectOwnership.js").PROJECT_OWNERSHIP_MODE} ProjectOwnershipMode */

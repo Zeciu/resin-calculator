@@ -46,6 +46,10 @@ describe("Workspace navigation matrix — guest", () => {
         ).toBeInTheDocument();
       } else if (item.id === "login-register") {
         const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+        expect(within(sidebar).getByRole("link", { name: "Try a demo project" })).toHaveAttribute(
+          "href",
+          "/demo",
+        );
         expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
           "href",
           "/register",

@@ -129,6 +129,7 @@ describe("Guest onboarding and Home navigation", () => {
     });
     expect(screen.queryByRole("heading", { name: "Ready to try HFZWood?", level: 2 })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Create Free Account" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
   });
 
   it("shows locked protected modules and intentional auth CTA for guests", async () => {
@@ -149,13 +150,18 @@ describe("Guest onboarding and Home navigation", () => {
       .map((item) => item.textContent.replace(/\s+/g, " ").trim())
       .filter(Boolean);
     expect(labels.slice(0, expectedOrder.length)).toEqual(expectedOrder);
-    expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
-      "href",
-      "/register",
-    );
-    expect(
-      within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
-    ).toHaveAttribute("href", "/login");
+    const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    const registerCta = within(sidebar).getByRole("link", { name: "Create Free Account" });
+    const loginCta = within(sidebar).getByRole("link", { name: "Already have an account? Log in" });
+    expect(demoCta).toHaveAttribute("href", "/demo");
+    expect(demoCta).toHaveClass("guest-home-onboarding__demo");
+    expect(within(demoCta).queryByLabelText("Locked feature")).not.toBeInTheDocument();
+    expect(registerCta).toHaveAttribute("href", "/register");
+    expect(registerCta).toHaveClass("guest-home-onboarding__primary");
+    expect(loginCta).toHaveAttribute("href", "/login");
+    expect(demoCta.compareDocumentPosition(registerCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(registerCta.compareDocumentPosition(loginCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(screen.getByRole("main")).queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
 
     expect(within(sidebar).getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");
     expect(within(sidebar).getAllByLabelText("Locked feature")).toHaveLength(
@@ -288,9 +294,12 @@ describe("Guest onboarding and Home navigation", () => {
     expect(
       within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
     ).toHaveAttribute("href", "/login");
+    const collapsedDemoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    expect(collapsedDemoCta).toHaveAttribute("href", "/demo");
     expect(disclosure.contains(within(sidebar).getByRole("link", { name: "Create Free Account" }))).toBe(
       false,
     );
+    expect(disclosure.contains(collapsedDemoCta)).toBe(false);
     expect(within(sidebar).queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
 
     await user.click(summary);

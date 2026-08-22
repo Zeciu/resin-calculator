@@ -83,6 +83,7 @@ export function getDedicatedModuleTitle(language, routePath) {
     "/manual": "nav.manualTutorials",
     "/glossary": "nav.glossary",
     "/knowledge-base": "nav.knowledgeBase",
+    "/demo": "demo.title",
   };
   const key = keyByPath[routePath];
   return key ? translate(language, key) : "HFZWood";

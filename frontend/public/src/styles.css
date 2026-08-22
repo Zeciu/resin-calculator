@@ -1861,6 +1861,37 @@ button.workspace-sidebar__link {
   overflow-wrap: break-word;
 }
 
+.workspace-sidebar__guest-auth .guest-home-onboarding__demo {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #9aab98;
+  background: #f4f7f3;
+  color: #3d4f3c;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+}
+
+.workspace-sidebar__guest-auth .guest-home-onboarding__demo:hover {
+  background: #e6eee4;
+  border-color: #7e947b;
+}
+
+.workspace-sidebar__guest-auth .guest-home-onboarding__demo:focus-visible {
+  outline: 2px solid #9d6c3b;
+  outline-offset: 2px;
+}
+
+.workspace-sidebar__guest-auth .guest-home-onboarding__demo[aria-current="page"] {
+  background: #e6eee4;
+}
+
 .workspace-sidebar__disclosure {
   margin: 0;
   padding: 0;
@@ -2390,6 +2421,61 @@ button.workspace-sidebar__link {
   margin-top: 8px;
   padding: 8px 10px;
   box-shadow: none;
+}
+
+.demo-workspace__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin: 0 0 10px;
+}
+
+.demo-workspace__reset {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-warm);
+  background: #fff;
+  color: #3a3228;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.demo-workspace__reset:hover:not(:disabled) {
+  background: var(--surface-ivory-soft);
+}
+
+.demo-workspace__reset:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.demo-workspace__account-cta {
+  color: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.demo-workspace__error {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.demo-workspace__retry {
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #c98f8f;
+  background: #f6e8e8;
+  color: #6f2f2f;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* ── Unsaved changes dialog (Task 46) ────────────────────────── */

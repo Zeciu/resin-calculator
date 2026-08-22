@@ -22,6 +22,7 @@ import DedicatedModuleLayout from "./DedicatedModuleLayout.jsx";
 import HomeHubLayout from "./HomeHubLayout.jsx";
 import HomeRoute from "./HomeRoute.jsx";
 import NewProjectWorkspace from "./NewProjectWorkspace.jsx";
+import DemoWorkspace from "./DemoWorkspace.jsx";
 import { ROUTES } from "./routes.js";
 
 export const WORKSPACE_ROUTE_PATHS = [
@@ -40,6 +41,7 @@ export const WORKSPACE_ROUTE_PATHS = [
   ROUTES.GLOSSARY,
   ROUTES.KNOWLEDGE_BASE,
   ROUTES.NEW_PROJECT,
+  ROUTES.DEMO,
 ];
 
 export function isWorkspacePath(pathname) {
@@ -98,6 +100,7 @@ export default function WorkspaceRouter() {
               </AuthRouteGuard>
             }
           />
+          <Route path={workspaceRoutePath(ROUTES.DEMO)} element={<DemoWorkspace />} />
           <Route
             path={workspaceRoutePath(ROUTES.PROJECTS)}
             element={

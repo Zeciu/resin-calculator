@@ -87,12 +87,14 @@ describe("Authenticated Mode navigation", () => {
 
     expect(screen.queryAllByLabelText("Locked feature")).toHaveLength(0);
     expect(screen.queryByRole("link", { name: "Create Free Account" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
   });
 
   it("shows guest register and login actions but no My Account control for guests", () => {
     renderWorkspace(ROUTES.LOGIN);
     expect(screen.getByRole("link", { name: "Create Free Account" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Already have an account? Log in" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Try a demo project" })).toHaveAttribute("href", "/demo");
     expect(screen.queryByRole("button", { name: /My Account/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "My Account" })).not.toBeInTheDocument();
   });

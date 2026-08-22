@@ -21,4 +21,5 @@ export const ROUTES = {
   GLOSSARY: "/glossary",
   KNOWLEDGE_BASE: "/knowledge-base",
   NEW_PROJECT: "/new-project",
+  DEMO: "/demo",
 };

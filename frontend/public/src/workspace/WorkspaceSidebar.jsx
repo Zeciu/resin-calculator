@@ -29,6 +29,14 @@ function GuestAuthActions({ t, pathname, onNavigate }) {
   return (
     <div className="workspace-sidebar__guest-auth">
       <Link
+        className="guest-home-onboarding__demo"
+        to={ROUTES.DEMO}
+        aria-current={pathname === ROUTES.DEMO ? "page" : undefined}
+        onClick={onNavigate}
+      >
+        {t("demo.cta")}
+      </Link>
+      <Link
         className="guest-home-onboarding__primary"
         to={ROUTES.REGISTER}
         aria-current={pathname === ROUTES.REGISTER ? "page" : undefined}

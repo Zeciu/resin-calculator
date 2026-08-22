@@ -31,6 +31,11 @@ import {
   resolveRestoredCavitiesComplete,
 } from "./workflowCompletion.js";
 import { ROUTES } from "../workspace/routes.js";
+import {
+  CALCULATOR_API_KIND,
+  getCalculatorApiPath,
+  getCalculatorRequestHeaders,
+} from "./calculatorApi.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -564,10 +569,13 @@ export default forwardRef(function ResinCalculator(
     onDirtyChange,
     onProjectRestored,
     onSaveProjectRequest,
+    demoMode = false,
+    initialInteractionMode = "build",
   },
   ref,
 ) {
   const isReadOnly = Boolean(readOnly);
+  const isDemoMode = Boolean(demoMode);
   const canvasRef = useRef(null);
   const workAreaRef = useRef(null);
   const workspaceImagePanelRef = useRef(null);
@@ -588,8 +596,13 @@ export default forwardRef(function ResinCalculator(
   const maxPourThicknessInputRef = useRef(null);
   const firstFillThicknessInputRef = useRef(null);
   const displayUnits = useCalculatorDisplayUnits();
-  const { maxPolygonPoints, layerCalculation, pdfExport, advancedReports } =
-    useCalculatorCapabilityEnforcement(enforceAccountCapabilities);
+  const accountCapabilities = useCalculatorCapabilityEnforcement(
+    isDemoMode ? false : enforceAccountCapabilities,
+  );
+  const maxPolygonPoints = isDemoMode ? null : accountCapabilities.maxPolygonPoints;
+  const layerCalculation = isDemoMode ? true : accountCapabilities.layerCalculation;
+  const pdfExport = isDemoMode ? false : accountCapabilities.pdfExport;
+  const advancedReports = isDemoMode ? true : accountCapabilities.advancedReports;
   const { t } = useI18n();
   const ui = useMemo(() => buildCalculatorUi(t), [t]);
 
@@ -608,7 +621,9 @@ export default forwardRef(function ResinCalculator(
   const [moldBoundaryComplete, setMoldBoundaryComplete] = useState(false);
   const [woodBoundaryComplete, setWoodBoundaryComplete] = useState(false);
   const [cavitiesComplete, setCavitiesComplete] = useState(false);
-  const [interactionMode, setInteractionMode] = useState("build");
+  const [interactionMode, setInteractionMode] = useState(
+    initialInteractionMode === "modify" ? "modify" : "build",
+  );
   const [draftReferencePoints, setDraftReferencePoints] = useState([]);
   const [draftKnownLengthCm, setDraftKnownLengthCm] = useState("");
   const [selectedReferenceLengthDraft, setSelectedReferenceLengthDraft] = useState("");
@@ -1082,7 +1097,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const onImageUpload = (event) => {
-    if (isReadOnly) return;
+    if (isReadOnly || isDemoMode) return;
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -1691,6 +1706,9 @@ export default forwardRef(function ResinCalculator(
   });
 
   const saveProject = () => {
+    if (isDemoMode) {
+      return;
+    }
     if (!imageDataUrl) {
       setError(ui.errors.uploadImageBeforeSave);
       return;
@@ -1713,7 +1731,7 @@ export default forwardRef(function ResinCalculator(
   };
 
   const handleSaveProjectClick = () => {
-    if (isReadOnly) return;
+    if (isReadOnly || isDemoMode) return;
     if (workspaceVariant === "dedicated" && onSaveProjectRequest) {
       onSaveProjectRequest();
       return;
@@ -1766,8 +1784,13 @@ export default forwardRef(function ResinCalculator(
       dragRef.current = null;
       suppressNextClickRef.current = false;
       setImageDataUrl(project.image.dataUrl);
+      const restoreModifyMode = initialInteractionMode === "modify";
       setCalculationMode(ui.calculationMode || "standard");
-      setMode(ui.selectedMode || (ui.calculationMode === "wood" ? "wood" : "polygon"));
+      setMode(
+        restoreModifyMode
+          ? "edit"
+          : ui.selectedMode || (ui.calculationMode === "wood" ? "wood" : "polygon"),
+      );
       setPolygonPoints(standard.polygonPoints || []);
       setUseImageBorderAsMold(wood.useImageBorderAsMold ?? true);
       setMoldBoundaryPoints(wood.moldBoundaryPoints || []);
@@ -1793,7 +1816,7 @@ export default forwardRef(function ResinCalculator(
           hasCalculatedResult: Boolean(project.result),
         })
       );
-      setInteractionMode("build");
+      setInteractionMode(restoreModifyMode ? "modify" : "build");
       setDraftReferencePoints([]);
       setDraftKnownLengthCm("");
       setRotationDeg(ui.rotationDeg ?? 0);
@@ -1846,6 +1869,9 @@ export default forwardRef(function ResinCalculator(
   }));
 
   const exportPdf = () => {
+    if (isDemoMode) {
+      return;
+    }
     if (!result) {
       setError(ui.errors.calculateBeforePdf);
       return;
@@ -2166,22 +2192,25 @@ export default forwardRef(function ResinCalculator(
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/calculate-wood`, {
-        method: "POST",
-        headers: await buildAuthHeaders(),
-        body: JSON.stringify({
-          imageWidth: image.width,
-          imageHeight: image.height,
-          useImageBorderAsMold,
-          moldBoundaryPoints,
-          woodBoundaryPoints: woodBoundaryPolygons[0] || [],
-          woodBoundaryPolygons,
-          cavityPolygons,
-          referenceMeasurements,
-          mainPourDepthMm: mainPourDepthMm,
-          cavityDepthsMm: resolvedCavityDepths,
-        }),
-      });
+      const response = await fetch(
+        `${API_BASE_URL}${getCalculatorApiPath(CALCULATOR_API_KIND.WOOD, isDemoMode)}`,
+        {
+          method: "POST",
+          headers: await getCalculatorRequestHeaders(isDemoMode),
+          body: JSON.stringify({
+            imageWidth: image.width,
+            imageHeight: image.height,
+            useImageBorderAsMold,
+            moldBoundaryPoints,
+            woodBoundaryPoints: woodBoundaryPolygons[0] || [],
+            woodBoundaryPolygons,
+            cavityPolygons,
+            referenceMeasurements,
+            mainPourDepthMm: mainPourDepthMm,
+            cavityDepthsMm: resolvedCavityDepths,
+          }),
+        },
+      );
 
       const data = await response.json();
       if (!response.ok) {
@@ -2250,16 +2279,19 @@ export default forwardRef(function ResinCalculator(
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/calculate-pour-layers`, {
-        method: "POST",
-        headers: await buildAuthHeaders(),
-        body: JSON.stringify({
-          mainDepthMm: mainDepth,
-          maxPourThicknessMm: maxPourThickness,
-          resinSurfaceAreaCm2,
-          firstFillThicknessMm: hasFirstFillThickness ? firstFillThickness : null,
-        }),
-      });
+      const response = await fetch(
+        `${API_BASE_URL}${getCalculatorApiPath(CALCULATOR_API_KIND.POUR_LAYERS, isDemoMode)}`,
+        {
+          method: "POST",
+          headers: await getCalculatorRequestHeaders(isDemoMode),
+          body: JSON.stringify({
+            mainDepthMm: mainDepth,
+            maxPourThicknessMm: maxPourThickness,
+            resinSurfaceAreaCm2,
+            firstFillThicknessMm: hasFirstFillThickness ? firstFillThickness : null,
+          }),
+        },
+      );
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || "Pour layer calculation failed.");
       setRecommendedLayerCount(data.layerCount);
@@ -2330,11 +2362,14 @@ export default forwardRef(function ResinCalculator(
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/calculate-first-fill`, {
-        method: "POST",
-        headers: await buildAuthHeaders(),
-        body: JSON.stringify({ resinSurfaceAreaCm2, firstFillThicknessMm: firstFillThickness }),
-      });
+      const response = await fetch(
+        `${API_BASE_URL}${getCalculatorApiPath(CALCULATOR_API_KIND.FIRST_FILL, isDemoMode)}`,
+        {
+          method: "POST",
+          headers: await getCalculatorRequestHeaders(isDemoMode),
+          body: JSON.stringify({ resinSurfaceAreaCm2, firstFillThicknessMm: firstFillThickness }),
+        },
+      );
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || "First fill calculation failed.");
       setFirstFillVolumeLiters(data.volumeLiters);
@@ -2548,7 +2583,9 @@ export default forwardRef(function ResinCalculator(
         ];
 
   const isModifyMode = interactionMode === "modify";
-  const showModifyProjectControl = canEnterModifyProject({
+  const showModifyProjectControl =
+    !isDemoMode &&
+    canEnterModifyProject({
     isReadOnly,
     interactionMode,
     calculationMode,
@@ -2573,6 +2610,7 @@ export default forwardRef(function ResinCalculator(
       ) : null}
 
       <div className={`controls${isReadOnly ? " controls--read-only" : ""}`}>
+        {!isDemoMode ? (
         <div className="workflow-row">
           <span className="workflow-section-label">{ui.uploadPhoto}</span>
           <label
@@ -2597,6 +2635,7 @@ export default forwardRef(function ResinCalculator(
             </div>
           </aside>
         </div>
+        ) : null}
 
       </div>
 
@@ -3980,7 +4019,7 @@ export default forwardRef(function ResinCalculator(
       <div className="bottom-project-actions">
         <h3>{ui.projectActions}</h3>
         <div className="bottom-project-actions-row">
-          {!isReadOnly ? (
+          {!isReadOnly && !isDemoMode ? (
             <button className="project-action-button" onClick={handleSaveProjectClick}>
               <Save size={15} aria-hidden="true" />
               {ui.saveProject}

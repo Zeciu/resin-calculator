@@ -107,6 +107,7 @@ export const DEDICATED_MODULE_PATHS = [
   ROUTES.MANUAL,
   ROUTES.GLOSSARY,
   ROUTES.KNOWLEDGE_BASE,
+  ROUTES.DEMO,
 ];
 
 export function isDedicatedModulePath(pathname) {

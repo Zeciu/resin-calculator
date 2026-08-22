@@ -22,6 +22,10 @@ from public.routers.me import router as me_router
 from public.safety.input_limits import (
     CALCULATOR_MAX_BODY_BYTES,
     CALCULATOR_PATHS,
+    DEMO_CALCULATE_FIRST_FILL_PATH,
+    DEMO_CALCULATE_POUR_LAYERS_PATH,
+    DEMO_CALCULATE_WOOD_PATH,
+    DEMO_CALCULATOR_PATHS,
     InputLimitError,
     validate_calculate_request,
     validate_calculate_wood_request,
@@ -121,6 +125,7 @@ _COGNITO_CONFIGURED = bool(
 )
 _AUTH_ENABLED = _COGNITO_CONFIGURED
 _UNPROTECTED_PATHS = {"/health", "/callback", "/api/billing/webhook"}
+_PUBLIC_UNAUTHENTICATED_POST_PATHS = set(DEMO_CALCULATOR_PATHS)
 _PUBLIC_GUEST_CONTENT_PATHS = {"/api/content/public-languages"}
 _PUBLIC_GUEST_CONTENT_PREFIXES = ("/api/content/website/",)
 
@@ -132,7 +137,7 @@ def _is_public_spa_request(request: Request) -> bool:
     initial HTML document, hashed assets, and public images without a bearer
     token. The published language configuration and public marketing website
     are also needed before sign-in. All other APIs and calculation routes
-    remain Cognito-protected.
+    remain Cognito-protected, except the narrow public demo calculation paths.
     """
     path = request.url.path
     is_static_or_spa_route = not path.startswith("/api") and path not in CALCULATOR_PATHS
@@ -199,7 +204,9 @@ def _auth_failure_reason(exc: Exception) -> str:
 
 @app.middleware("http")
 async def calculator_request_size_limit_middleware(request: Request, call_next):
-    if request.method == "POST" and request.url.path in CALCULATOR_PATHS:
+    if request.method == "POST" and (
+        request.url.path in CALCULATOR_PATHS or request.url.path in DEMO_CALCULATOR_PATHS
+    ):
         content_length = request.headers.get("content-length")
         if content_length is not None:
             try:
@@ -218,6 +225,7 @@ async def cognito_auth_middleware(request: Request, call_next):
     if (
         not _AUTH_ENABLED
         or request.url.path in _UNPROTECTED_PATHS
+        or request.url.path in _PUBLIC_UNAUTHENTICATED_POST_PATHS
         or _is_public_spa_request(request)
     ):
         return await call_next(request)
@@ -451,6 +459,10 @@ def calculate(req: CalculateRequest):
 
 @app.post("/calculate-wood")
 def calculate_wood(req: CalculateWoodRequest):
+    return run_calculate_wood(req)
+
+
+def run_calculate_wood(req: CalculateWoodRequest):
     image_width = req.imageWidth
     image_height = req.imageHeight
     use_image_border_as_mold = req.useImageBorderAsMold
@@ -573,6 +585,11 @@ def calculate_wood(req: CalculateWoodRequest):
     }
 
 
+@app.post(DEMO_CALCULATE_WOOD_PATH)
+def demo_calculate_wood(req: CalculateWoodRequest):
+    return run_calculate_wood(req)
+
+
 class CalculatePourLayersRequest(BaseModel):
     mainDepthMm: float
     maxPourThicknessMm: float
@@ -587,6 +604,10 @@ class CalculateFirstFillRequest(BaseModel):
 
 @app.post("/calculate-pour-layers")
 def calculate_pour_layers(req: CalculatePourLayersRequest):
+    return run_calculate_pour_layers(req)
+
+
+def run_calculate_pour_layers(req: CalculatePourLayersRequest):
     main_depth = req.mainDepthMm
     max_pour = req.maxPourThicknessMm
     area_cm2 = req.resinSurfaceAreaCm2
@@ -633,6 +654,10 @@ def calculate_pour_layers(req: CalculatePourLayersRequest):
 
 @app.post("/calculate-first-fill")
 def calculate_first_fill(req: CalculateFirstFillRequest):
+    return run_calculate_first_fill(req)
+
+
+def run_calculate_first_fill(req: CalculateFirstFillRequest):
     area_cm2 = req.resinSurfaceAreaCm2
     thickness_mm = req.firstFillThicknessMm
 
@@ -643,6 +668,16 @@ def calculate_first_fill(req: CalculateFirstFillRequest):
 
     volume_liters = area_cm2 * (thickness_mm / 10.0) / 1000.0
     return {"volumeLiters": volume_liters}
+
+
+@app.post(DEMO_CALCULATE_POUR_LAYERS_PATH)
+def demo_calculate_pour_layers(req: CalculatePourLayersRequest):
+    return run_calculate_pour_layers(req)
+
+
+@app.post(DEMO_CALCULATE_FIRST_FILL_PATH)
+def demo_calculate_first_fill(req: CalculateFirstFillRequest):
+    return run_calculate_first_fill(req)
 
 
 @app.get("/health")

@@ -21,6 +21,15 @@ CALCULATOR_PATHS = frozenset({
     "/calculate-first-fill",
 })
 
+DEMO_CALCULATE_WOOD_PATH = "/api/demo/calculate-wood"
+DEMO_CALCULATE_FIRST_FILL_PATH = "/api/demo/calculate-first-fill"
+DEMO_CALCULATE_POUR_LAYERS_PATH = "/api/demo/calculate-pour-layers"
+DEMO_CALCULATOR_PATHS = frozenset({
+    DEMO_CALCULATE_WOOD_PATH,
+    DEMO_CALCULATE_FIRST_FILL_PATH,
+    DEMO_CALCULATE_POUR_LAYERS_PATH,
+})
+
 
 class InputLimitError(ValueError):
     """Raised when a request exceeds an infrastructure safety ceiling."""
