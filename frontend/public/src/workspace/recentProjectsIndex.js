@@ -111,6 +111,20 @@ export function saveRecentProjects(projects) {
   return sanitized;
 }
 
+export function removeRecentProject(entryId) {
+  const existing = loadRecentProjects();
+  if (!entryId) {
+    return existing;
+  }
+
+  const remaining = existing.filter((item) => item.id !== entryId);
+  if (remaining.length === existing.length) {
+    return existing;
+  }
+
+  return saveRecentProjects(remaining);
+}
+
 export function buildRecentProjectEntry(project, { fileName = "", sourceFormat, entryId = null } = {}) {
   const now = new Date().toISOString();
   const projectId = extractCanonicalProjectId(project);

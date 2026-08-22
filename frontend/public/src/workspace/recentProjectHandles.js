@@ -116,3 +116,30 @@ export async function getRecentProjectHandle(entryId) {
     return null;
   }
 }
+
+export async function deleteRecentProjectHandle(entryId) {
+  if (!entryId) {
+    return;
+  }
+
+  try {
+    const database = await openHandleDatabase();
+
+    try {
+      await new Promise((resolve, reject) => {
+        const transaction = database.transaction(STORE_NAME, "readwrite");
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.delete(entryId);
+
+        request.onsuccess = () => resolve();
+        request.onerror = () =>
+          reject(request.error ?? new Error("Could not delete file handle."));
+      });
+    } finally {
+      database.close();
+    }
+  } catch {
+    // Missing IndexedDB, missing records, and transaction failures must not
+    // block removing the project from the Recent Projects list.
+  }
+}

@@ -9,9 +9,11 @@ import {
   markRecentProjectUnavailable,
   RECENT_PROJECTS_STORAGE_KEY,
   refreshRecentProjectOnOpen,
+  removeRecentProject,
   updateRecentProjectOnSave,
   upsertRecentProject,
 } from "./recentProjectsIndex.js";
+import * as projectFileParse from "./projectFileParse.js";
 
 const TINY_PNG =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUV0WQl3MBPQ8EAAAABJRU5ErkJggg==";
@@ -198,5 +200,67 @@ describe("recentProjectsIndex", () => {
     expect(cleared).toHaveLength(1);
     expect(cleared[0].localFileUnavailable).toBeUndefined();
     expect(cleared[0].id).toBe(entry.id);
+  });
+
+  it("removes one recent project by id and preserves the others", () => {
+    const [first] = upsertRecentProject(
+      buildRecentProjectEntry(
+        buildPersistedV2OpenEnvelope({
+          identity: { projectId: "project-a" },
+          projectName: "River Table",
+        }),
+        { fileName: "river-table.hfzproject" },
+      ),
+    );
+    const [second] = upsertRecentProject(
+      buildRecentProjectEntry(
+        buildPersistedV2OpenEnvelope({
+          identity: { projectId: "project-b" },
+          projectName: "Coffee Table",
+        }),
+        { fileName: "coffee-table.hfzproject" },
+      ),
+    );
+
+    const remaining = removeRecentProject(first.id);
+
+    expect(remaining.map((item) => item.id)).toEqual([second.id]);
+    expect(loadRecentProjects()).toEqual(remaining);
+    expect(remaining[0].projectName).toBe("Coffee Table");
+  });
+
+  it("is a safe no-op for an unknown recent project id", () => {
+    upsertRecentProject(
+      buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+        fileName: "river-table.hfzproject",
+      }),
+    );
+    const before = localStorage.getItem(RECENT_PROJECTS_STORAGE_KEY);
+
+    const remaining = removeRecentProject("missing-entry-id");
+
+    expect(remaining).toHaveLength(1);
+    expect(remaining[0].projectName).toBe("River Table");
+    expect(localStorage.getItem(RECENT_PROJECTS_STORAGE_KEY)).toBe(before);
+  });
+
+  it("does not parse or read the project file when deleting a recent entry", () => {
+    const parseFile = vi.spyOn(projectFileParse, "parseProjectFile");
+    const parseText = vi.spyOn(projectFileParse, "parseProjectFileText");
+    const [entry] = upsertRecentProject(
+      buildRecentProjectEntry(buildPersistedV2OpenEnvelope(), {
+        fileName: "river-table.hfzproject",
+      }),
+    );
+    parseFile.mockClear();
+    parseText.mockClear();
+
+    removeRecentProject(entry.id);
+
+    expect(loadRecentProjects()).toEqual([]);
+    expect(parseFile).not.toHaveBeenCalled();
+    expect(parseText).not.toHaveBeenCalled();
+    parseFile.mockRestore();
+    parseText.mockRestore();
   });
 });

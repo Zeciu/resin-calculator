@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FolderOpen } from "lucide-react";
 import { useAuth } from "../auth/useAuth.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { ROUTES } from "../workspace/routes.js";
 import { getProjectDisplayName } from "../workspace/projectFileParse.js";
 import { ProjectFileParseError } from "../workspace/projectFileParse.js";
@@ -15,7 +16,9 @@ import {
   RecentProjectUnavailableError,
   supportsNativeProjectOpenPicker,
 } from "../workspace/projectFileOpen.js";
-import { loadRecentProjects } from "../workspace/recentProjectsIndex.js";
+import { loadRecentProjects, removeRecentProject } from "../workspace/recentProjectsIndex.js";
+import { deleteRecentProjectHandle } from "../workspace/recentProjectHandles.js";
+import DeleteProjectDialog from "../workspace/DeleteProjectDialog.jsx";
 
 function formatRecentTimestamp(value) {
   if (!value) {
@@ -30,51 +33,68 @@ function formatRecentTimestamp(value) {
   return date.toLocaleString();
 }
 
-function RecentProjectCard({ entry, disabled, onOpen }) {
+function RecentProjectCard({ entry, disabled, onOpen, onDelete, deleteLabel }) {
   const isUnavailable = entry.localFileUnavailable === true;
 
   return (
-    <button
-      type="button"
+    <div
       className={`projects-hub__recent-card${isUnavailable ? " projects-hub__recent-card--unavailable" : ""}`}
-      disabled={disabled}
-      onClick={() => onOpen(entry)}
     >
-      <span className="projects-hub__recent-thumb" aria-hidden="true">
-        P
-      </span>
-      <span className="projects-hub__recent-copy">
-        <span className="projects-hub__recent-name">{entry.projectName}</span>
-        {isUnavailable ? (
-          <span className="projects-hub__recent-meta projects-hub__recent-meta--unavailable">
-            Local file unavailable or moved
-          </span>
-        ) : null}
-        <span className="projects-hub__recent-meta">
-          Opened {formatRecentTimestamp(entry.lastOpenedAt)}
+      <button
+        type="button"
+        className="projects-hub__recent-open"
+        disabled={disabled}
+        onClick={() => onOpen(entry)}
+      >
+        <span className="projects-hub__recent-thumb" aria-hidden="true">
+          P
         </span>
-        {entry.lastSavedAt ? (
+        <span className="projects-hub__recent-copy">
+          <span className="projects-hub__recent-name">{entry.projectName}</span>
+          {isUnavailable ? (
+            <span className="projects-hub__recent-meta projects-hub__recent-meta--unavailable">
+              Local file unavailable or moved
+            </span>
+          ) : null}
           <span className="projects-hub__recent-meta">
-            Saved {formatRecentTimestamp(entry.lastSavedAt)}
+            Opened {formatRecentTimestamp(entry.lastOpenedAt)}
           </span>
-        ) : null}
-        {entry.lastKnownFileName ? (
-          <span className="projects-hub__recent-file">{entry.lastKnownFileName}</span>
-        ) : null}
-      </span>
-    </button>
+          {entry.lastSavedAt ? (
+            <span className="projects-hub__recent-meta">
+              Saved {formatRecentTimestamp(entry.lastSavedAt)}
+            </span>
+          ) : null}
+          {entry.lastKnownFileName ? (
+            <span className="projects-hub__recent-file">{entry.lastKnownFileName}</span>
+          ) : null}
+        </span>
+      </button>
+      <button
+        type="button"
+        className="projects-hub__recent-delete"
+        disabled={disabled}
+        onClick={(event) => {
+          event.stopPropagation();
+          onDelete(entry);
+        }}
+      >
+        {deleteLabel}
+      </button>
+    </div>
   );
 }
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t } = useI18n();
   const fileInputRef = useRef(null);
   const locateEntryRef = useRef(null);
   const [recentProjects, setRecentProjects] = useState(() => loadRecentProjects());
   const [isOpening, setIsOpening] = useState(false);
   const [error, setError] = useState("");
   const [unavailableEntry, setUnavailableEntry] = useState(null);
+  const [pendingDelete, setPendingDelete] = useState(null);
 
   const refreshRecentProjects = useCallback(() => {
     setRecentProjects(loadRecentProjects());
@@ -192,6 +212,32 @@ export default function ProjectsPage() {
     [handleProjectLoaded],
   );
 
+  const handleDeleteRequest = useCallback((entry) => {
+    setPendingDelete(entry);
+  }, []);
+
+  const handleDeleteCancel = useCallback(() => {
+    setPendingDelete(null);
+  }, []);
+
+  const handleDeleteConfirm = useCallback(async () => {
+    const entry = pendingDelete;
+    if (!entry?.id) {
+      setPendingDelete(null);
+      return;
+    }
+
+    setPendingDelete(null);
+    removeRecentProject(entry.id);
+    refreshRecentProjects();
+
+    try {
+      await deleteRecentProjectHandle(entry.id);
+    } catch {
+      // IndexedDB handle cleanup must not resurrect the recent row or crash the UI.
+    }
+  }, [pendingDelete, refreshRecentProjects]);
+
   const handleLocateProject = useCallback(async () => {
     const entryToRebind = unavailableEntry;
     setUnavailableEntry(null);
@@ -290,11 +336,21 @@ export default function ProjectsPage() {
                 entry={entry}
                 disabled={isOpening}
                 onOpen={handleRecentOpen}
+                onDelete={handleDeleteRequest}
+                deleteLabel={t("projects.delete")}
               />
             ))}
           </div>
         )}
       </section>
+
+      {pendingDelete ? (
+        <DeleteProjectDialog
+          projectName={pendingDelete.projectName}
+          onConfirm={handleDeleteConfirm}
+          onCancel={handleDeleteCancel}
+        />
+      ) : null}
     </section>
   );
 }

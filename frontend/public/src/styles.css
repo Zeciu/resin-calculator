@@ -2694,22 +2694,56 @@ button.workspace-sidebar__link {
 
 .projects-hub__recent-card {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: stretch;
+  gap: 8px;
   width: 100%;
-  padding: 12px 14px;
+  padding: 6px 8px 6px 6px;
   border: 1px solid var(--border-warm);
   border-radius: 12px;
   background: #fff;
+}
+
+.projects-hub__recent-open {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   text-align: left;
   cursor: pointer;
 }
 
-.projects-hub__recent-card:hover:not(:disabled) {
+.projects-hub__recent-open:hover:not(:disabled) {
   background: var(--surface-ivory-soft);
 }
 
-.projects-hub__recent-card:disabled {
+.projects-hub__recent-open:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.projects-hub__recent-delete {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 8px 12px;
+  border: 1px solid #c98f8f;
+  border-radius: 8px;
+  background: #f6e8e8;
+  color: #6f2f2f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.projects-hub__recent-delete:hover:not(:disabled) {
+  background: #f0d8d8;
+}
+
+.projects-hub__recent-delete:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
