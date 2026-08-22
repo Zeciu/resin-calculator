@@ -144,6 +144,7 @@ describe("Guest onboarding and Home navigation", () => {
       "Manual & Tutorials",
       "Glossary",
       "Knowledge Base",
+      "Public Knowledge Preview",
     ];
     const labels = within(sidebar)
       .getAllByRole("listitem")
@@ -155,6 +156,12 @@ describe("Guest onboarding and Home navigation", () => {
     const loginCta = within(sidebar).getByRole("link", { name: "Already have an account? Log in" });
     expect(demoCta).toHaveAttribute("href", "/demo");
     expect(demoCta).toHaveClass("guest-home-onboarding__demo");
+    const previewCta = within(sidebar).getByRole("link", { name: "Public Knowledge Preview" });
+    expect(previewCta).toHaveClass("workspace-sidebar__link--guest-explore");
+    expect(previewCta).not.toHaveClass("guest-home-onboarding__primary");
+    expect(within(sidebar).getByRole("link", { name: "Home" })).not.toHaveClass(
+      "workspace-sidebar__link--guest-explore",
+    );
     expect(within(demoCta).queryByLabelText("Locked feature")).not.toBeInTheDocument();
     expect(registerCta).toHaveAttribute("href", "/register");
     expect(registerCta).toHaveClass("guest-home-onboarding__primary");

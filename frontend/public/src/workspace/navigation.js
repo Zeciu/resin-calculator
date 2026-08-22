@@ -44,6 +44,13 @@ export const WORKSPACE_NAV_ITEMS = [
     requiresAuth: true,
   },
   {
+    id: "knowledge-preview",
+    labelKey: "nav.publicKnowledgePreview",
+    path: ROUTES.KNOWLEDGE_PREVIEW,
+    requiresAuth: false,
+    guestOnly: true,
+  },
+  {
     id: "login-register",
     labelKey: "nav.loginRegister",
     path: ROUTES.LOGIN,
@@ -78,11 +85,20 @@ export function isWorkspaceNavItemActive(item, pathname) {
   if (item.id === "home") {
     return pathname === ROUTES.HOME;
   }
+  if (item.id === "knowledge-preview") {
+    return (
+      pathname === ROUTES.KNOWLEDGE_PREVIEW ||
+      pathname.startsWith(`${ROUTES.KNOWLEDGE_PREVIEW}/`)
+    );
+  }
   return pathname === item.path;
 }
 
 export function getVisibleWorkspaceNavItems(isAuthenticated) {
   return WORKSPACE_NAV_ITEMS.filter((item) => {
+    if (item.guestOnly) {
+      return !isAuthenticated;
+    }
     if (item.id === "login-register") {
       return !isAuthenticated;
     }
@@ -108,10 +124,18 @@ export const DEDICATED_MODULE_PATHS = [
   ROUTES.GLOSSARY,
   ROUTES.KNOWLEDGE_BASE,
   ROUTES.DEMO,
+  ROUTES.KNOWLEDGE_PREVIEW,
+  ROUTES.KNOWLEDGE_PREVIEW_MANUAL,
+  ROUTES.KNOWLEDGE_PREVIEW_KNOWLEDGE_BASE,
+  ROUTES.KNOWLEDGE_PREVIEW_GLOSSARY,
 ];
 
 export function isDedicatedModulePath(pathname) {
-  return DEDICATED_MODULE_PATHS.includes(pathname);
+  return (
+    DEDICATED_MODULE_PATHS.includes(pathname) ||
+    pathname === ROUTES.KNOWLEDGE_PREVIEW ||
+    pathname.startsWith(`${ROUTES.KNOWLEDGE_PREVIEW}/`)
+  );
 }
 
 export function getDedicatedModuleTitle(pathname, language = "en") {

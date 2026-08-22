@@ -29,9 +29,20 @@ import { getKnowledgeBaseEntryElementId } from "./knowledgeBaseFilter.js";
  *   isExpanded: boolean;
  *   onToggle: (entryId: string) => void;
  *   onNavigateToEntry?: (entryId: string) => void;
+ *   relatedGlossaryTo?: (id: string) => string;
+ *   relatedManualTo?: (id: string) => string;
+ *   endAdornment?: import("react").ReactNode;
  * }} props
  */
-export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavigateToEntry }) {
+export default function KnowledgeBaseEntry({
+  entry,
+  isExpanded,
+  onToggle,
+  onNavigateToEntry,
+  relatedGlossaryTo = (id) => `/glossary#glossary-entry-${id}`,
+  relatedManualTo = (id) => `/manual#${id}`,
+  endAdornment = null,
+}) {
   const { t } = useI18n();
   const indicator = isExpanded ? "−" : "+";
   const hasSupportInformation =
@@ -56,6 +67,7 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
             {indicator}
           </span>
           <span className="knowledge-base-entry__title">{entry.title}</span>
+          {endAdornment}
         </button>
       </h2>
       {isExpanded ? (
@@ -161,7 +173,7 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
                       <Link
                         key={item.id}
                         className="knowledge-base-entry__relationship-link"
-                        to={`/glossary#glossary-entry-${item.id}`}
+                        to={relatedGlossaryTo(item.id)}
                       >
                         {item.label}
                       </Link>
@@ -176,7 +188,11 @@ export default function KnowledgeBaseEntry({ entry, isExpanded, onToggle, onNavi
                   </h3>
                   <div className="knowledge-base-entry__relationship-links">
                     {entry.relatedManualChapters.map((item) => (
-                      <Link key={item.id} className="knowledge-base-entry__relationship-link" to={`/manual#${item.id}`}>
+                      <Link
+                        key={item.id}
+                        className="knowledge-base-entry__relationship-link"
+                        to={relatedManualTo(item.id)}
+                      >
                         {item.label}
                       </Link>
                     ))}

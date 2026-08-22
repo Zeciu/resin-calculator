@@ -21,6 +21,8 @@ import { getGlossaryEntryElementId } from "./glossaryFilter.js";
  *   onToggle: (entryId: string) => void;
  *   onNavigateToEntry?: (entryId: string) => void;
  *   publishedEntryIds?: Set<string>;
+ *   rewriteExternalHref?: (href: string) => string;
+ *   endAdornment?: import("react").ReactNode;
  * }} props
  */
 export default function GlossaryEntry({
@@ -30,6 +32,8 @@ export default function GlossaryEntry({
   onToggle,
   onNavigateToEntry,
   publishedEntryIds,
+  rewriteExternalHref = (href) => href,
+  endAdornment = null,
 }) {
   const indicator = isExpanded ? "−" : "+";
 
@@ -74,6 +78,7 @@ export default function GlossaryEntry({
             {indicator}
           </span>
           <span className="glossary-entry__term">{entry.term}</span>
+          {endAdornment}
         </button>
       </h3>
       {isExpanded ? (
@@ -117,7 +122,7 @@ export default function GlossaryEntry({
                   {item.targetType === "glossary_entry" ? (
                     renderGlossaryTargetButton(item.targetId, item.label)
                   ) : (
-                    <Link className="glossary-entry__meta-link" to={item.href}>
+                    <Link className="glossary-entry__meta-link" to={rewriteExternalHref(item.href)}>
                       {item.label}
                     </Link>
                   )}

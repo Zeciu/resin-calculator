@@ -102,6 +102,7 @@ export default function WorkspaceSidebar() {
     const label = t(item.labelKey);
     const isLocked = isNavItemLocked(item);
     const isPrimaryAction = item.id === "new-project" && !isLocked;
+    const isGuestExplore = item.id === "knowledge-preview";
     const isItemActive = isWorkspaceNavItemActive(item, location.pathname);
 
     return (
@@ -115,11 +116,12 @@ export default function WorkspaceSidebar() {
         ) : (
           <NavLink
             to={item.path}
-            end={item.id !== "my-account"}
+            end={item.id !== "my-account" && item.id !== "knowledge-preview"}
             className={() =>
               [
                 "workspace-sidebar__link",
                 isPrimaryAction ? "workspace-sidebar__link--primary-action" : "",
+                isGuestExplore ? "workspace-sidebar__link--guest-explore" : "",
                 isItemActive ? "workspace-sidebar__link--active" : "",
               ]
                 .filter(Boolean)

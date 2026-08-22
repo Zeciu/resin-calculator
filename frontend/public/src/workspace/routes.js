@@ -22,4 +22,8 @@ export const ROUTES = {
   KNOWLEDGE_BASE: "/knowledge-base",
   NEW_PROJECT: "/new-project",
   DEMO: "/demo",
+  KNOWLEDGE_PREVIEW: "/knowledge-preview",
+  KNOWLEDGE_PREVIEW_MANUAL: "/knowledge-preview/manual",
+  KNOWLEDGE_PREVIEW_KNOWLEDGE_BASE: "/knowledge-preview/knowledge-base",
+  KNOWLEDGE_PREVIEW_GLOSSARY: "/knowledge-preview/glossary",
 };

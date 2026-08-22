@@ -58,6 +58,7 @@ export const WORKSPACE_NAV_UI_KEYS = [
   "nav.manualTutorials",
   "nav.glossary",
   "nav.knowledgeBase",
+  "nav.publicKnowledgePreview",
   "nav.loginRegister",
   "nav.myAccount",
   "nav.home",
@@ -77,6 +78,9 @@ export function getNavigationLabel(language, itemId) {
 }
 
 export function getDedicatedModuleTitle(language, routePath) {
+  if (routePath === "/knowledge-preview" || routePath.startsWith("/knowledge-preview/")) {
+    return translate(language, "nav.publicKnowledgePreview");
+  }
   const keyByPath = {
     "/new-project": "nav.newProject",
     "/projects": "nav.projects",

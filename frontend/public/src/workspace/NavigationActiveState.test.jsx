@@ -41,8 +41,8 @@ const stylesSource = readFileSync(
   "utf8",
 );
 
-function knowledgeBaseNavItem() {
-  return WORKSPACE_NAV_ITEMS.find((item) => item.id === "knowledge-base");
+function knowledgePreviewNavItem() {
+  return WORKSPACE_NAV_ITEMS.find((item) => item.id === "knowledge-preview");
 }
 
 function loginNavItem() {
@@ -65,10 +65,12 @@ describe("isWorkspaceNavItemActive", () => {
     expect(isWorkspaceNavItemActive(newProjectNavItem(), ROUTES.PREFERENCES)).toBe(false);
   });
 
-  it("marks Knowledge Base active only on its own route", () => {
-    expect(isWorkspaceNavItemActive(knowledgeBaseNavItem(), ROUTES.KNOWLEDGE_BASE)).toBe(true);
-    expect(isWorkspaceNavItemActive(knowledgeBaseNavItem(), ROUTES.HOME)).toBe(false);
-    expect(isWorkspaceNavItemActive(knowledgeBaseNavItem(), ROUTES.MANUAL)).toBe(false);
+  it("marks Public Knowledge Preview active on the landing and nested preview routes", () => {
+    expect(isWorkspaceNavItemActive(knowledgePreviewNavItem(), ROUTES.KNOWLEDGE_PREVIEW)).toBe(true);
+    expect(isWorkspaceNavItemActive(knowledgePreviewNavItem(), ROUTES.KNOWLEDGE_PREVIEW_MANUAL)).toBe(true);
+    expect(isWorkspaceNavItemActive(knowledgePreviewNavItem(), ROUTES.KNOWLEDGE_PREVIEW_GLOSSARY)).toBe(true);
+    expect(isWorkspaceNavItemActive(knowledgePreviewNavItem(), ROUTES.HOME)).toBe(false);
+    expect(isWorkspaceNavItemActive(knowledgePreviewNavItem(), ROUTES.MANUAL)).toBe(false);
   });
 });
 

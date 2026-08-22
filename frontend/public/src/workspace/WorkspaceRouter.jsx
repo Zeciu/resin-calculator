@@ -23,6 +23,10 @@ import HomeHubLayout from "./HomeHubLayout.jsx";
 import HomeRoute from "./HomeRoute.jsx";
 import NewProjectWorkspace from "./NewProjectWorkspace.jsx";
 import DemoWorkspace from "./DemoWorkspace.jsx";
+import PublicKnowledgePreviewLanding from "../publicPreview/PublicKnowledgePreviewLanding.jsx";
+import ManualPreviewPage from "../publicPreview/ManualPreviewPage.jsx";
+import KnowledgeBasePreviewPage from "../publicPreview/KnowledgeBasePreviewPage.jsx";
+import GlossaryPreviewPage from "../publicPreview/GlossaryPreviewPage.jsx";
 import { ROUTES } from "./routes.js";
 
 export const WORKSPACE_ROUTE_PATHS = [
@@ -42,10 +46,18 @@ export const WORKSPACE_ROUTE_PATHS = [
   ROUTES.KNOWLEDGE_BASE,
   ROUTES.NEW_PROJECT,
   ROUTES.DEMO,
+  ROUTES.KNOWLEDGE_PREVIEW,
+  ROUTES.KNOWLEDGE_PREVIEW_MANUAL,
+  ROUTES.KNOWLEDGE_PREVIEW_KNOWLEDGE_BASE,
+  ROUTES.KNOWLEDGE_PREVIEW_GLOSSARY,
 ];
 
 export function isWorkspacePath(pathname) {
-  return WORKSPACE_ROUTE_PATHS.includes(pathname);
+  return (
+    WORKSPACE_ROUTE_PATHS.includes(pathname) ||
+    pathname === ROUTES.KNOWLEDGE_PREVIEW ||
+    pathname.startsWith(`${ROUTES.KNOWLEDGE_PREVIEW}/`)
+  );
 }
 
 function workspaceRoutePath(route) {
@@ -101,6 +113,22 @@ export default function WorkspaceRouter() {
             }
           />
           <Route path={workspaceRoutePath(ROUTES.DEMO)} element={<DemoWorkspace />} />
+          <Route
+            path={workspaceRoutePath(ROUTES.KNOWLEDGE_PREVIEW)}
+            element={<PublicKnowledgePreviewLanding />}
+          />
+          <Route
+            path={workspaceRoutePath(ROUTES.KNOWLEDGE_PREVIEW_MANUAL)}
+            element={<ManualPreviewPage />}
+          />
+          <Route
+            path={workspaceRoutePath(ROUTES.KNOWLEDGE_PREVIEW_KNOWLEDGE_BASE)}
+            element={<KnowledgeBasePreviewPage />}
+          />
+          <Route
+            path={workspaceRoutePath(ROUTES.KNOWLEDGE_PREVIEW_GLOSSARY)}
+            element={<GlossaryPreviewPage />}
+          />
           <Route
             path={workspaceRoutePath(ROUTES.PROJECTS)}
             element={
