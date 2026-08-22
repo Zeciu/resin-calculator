@@ -6,7 +6,7 @@
 - Backend: FastAPI public runtime under `backend/public/`; local-only editorial routes, DeepL integration, and editorial content under `backend/private/`.
 - Authentication: Cognito in every environment; no mock-auth or administrator-role bypass.
 - Projects: local canonical `.hfzproject` v2 files. Foreign-owned or ownerless files are read-only in the application.
-- Content: authored locally into `backend/private/content/`. Admin Publish writes `backend/private/content/published/`. `python -m private.tools.package_published_content` copies selected Manual/Knowledge Base snapshots into `backend/public/content/` (dry-run by default). Git commit then Docker-packages the public corpus at `/app/public/content`.
+- Content: authored locally into `backend/private/content/`. Admin Publish writes `backend/private/content/published/`. Romanian is the canonical editorial source. `python -m private.tools.package_published_content` copies selected Manual/Knowledge Base/Glossary snapshots into `backend/public/content/` (dry-run by default, locale-scoped). Git commit then Docker-packages the public corpus at `/app/public/content`.
 - Commercial access: Stripe webhooks update DynamoDB entitlements; the backend resolves `free` or `subscriber` capabilities.
 - Deployment: CDK defines Cognito, ECR, ECS/Fargate, ALB, DNS/TLS, CloudWatch alarms, and DynamoDB entitlements.
 
@@ -15,7 +15,7 @@
 - Start locally: `./dev.cmd`
 - Full validation: `./test.cmd`
 - Production frontend build: `npm run build --prefix frontend`
-- Package published Manual/KB into the public corpus (dry-run default): `uv run --project backend python backend/private/tools/package_published_content.py --module MODULE --locale LOCALE`. See `backend/private/README.md`.
+- Package published Manual/KB/Glossary into the public corpus (dry-run default): `uv run --project backend python backend/private/tools/package_published_content.py --module MODULE --locale LOCALE`. See `backend/private/README.md`.
 
 ## Local setup prerequisites
 

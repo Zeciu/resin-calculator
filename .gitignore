@@ -49,6 +49,7 @@ backend/private/content/website/*
 backend/private/content/config/*
 !backend/private/content/config/public-languages.json
 !backend/private/content/config/free-preview.json
+!backend/private/content/config/public-preview.json
 
 # Keep commercial/user/runtime artifacts ignored (even if paths appear under private/content/)
 backend/private/content/entitlements/

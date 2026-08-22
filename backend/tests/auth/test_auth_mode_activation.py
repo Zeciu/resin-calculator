@@ -173,7 +173,11 @@ class TestCognitoModeIdentityGuards:
 
     @pytest.mark.parametrize(
         "path",
-        ["/api/content/public-languages", "/api/content/website/home?locale=en"],
+        [
+            "/api/content/public-languages",
+            "/api/content/website/home?locale=en",
+            "/api/public-preview/manual?locale=ro",
+        ],
     )
     def test_guest_content_requests_bypass_cognito_middleware(self, path):
         from app import app
@@ -184,6 +188,26 @@ class TestCognitoModeIdentityGuards:
             response = client.get(path)
 
         assert response.status_code != 401
+
+    @pytest.mark.parametrize(
+        "path,method",
+        [
+            ("/api/content/glossary?locale=ro", "get"),
+            ("/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp", "get"),
+            ("/api/content/knowledge-base?locale=en", "get"),
+            ("/api/content/manual/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp", "get"),
+            ("/api/admin/glossary/entries/images", "post"),
+        ],
+    )
+    def test_protected_api_routes_still_require_bearer(self, path, method):
+        from app import app
+        from fastapi.testclient import TestClient
+
+        client = TestClient(app)
+        with patch("public.app._AUTH_ENABLED", True):
+            response = getattr(client, method)(path)
+
+        assert response.status_code == 401
 
     def test_valid_bearer_token_passes_middleware_when_enabled(self):
         from app import app

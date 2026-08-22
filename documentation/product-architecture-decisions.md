@@ -29,7 +29,7 @@ This document records implemented architecture and explicit implementation TODOs
 - Manual, glossary, knowledge-base, and website content are published snapshots.
 - Editorial authoring, publishing, uploads, and DeepL translation currently run locally only. Any authenticated local user can use those routes; there is no separate editorial role or entitlement gate. Editorial routes are never deployed to AWS — `backend/private` is excluded from the Docker build context — so the deployment boundary is already the access control.
 - Production packages a read-only public corpus and excludes editorial routes, UI, data, and DeepL integration. Content changes require a new image deployment.
-- Private published snapshots are not copied into the production image automatically. After Admin Publish, package selected Manual/Knowledge Base locales with `python -m private.tools.package_published_content` (dry-run by default; `--apply` writes). That helper does not publish drafts, generate translations, or deploy; Git commit and image deployment remain required. See `backend/private/README.md`.
+- Private published snapshots are not copied into the production image automatically. After Admin Publish, package selected Manual/Knowledge Base/Glossary locales with `python -m private.tools.package_published_content` (dry-run by default; `--apply` writes). Romanian is the canonical editorial source; translations are created intentionally from Romanian, then published, then packaged. That helper does not publish drafts, generate translations, deploy, or silently package every locale; Git commit and image deployment remain required. See `backend/private/README.md`.
 
 ### AD-005 — Device preferences
 

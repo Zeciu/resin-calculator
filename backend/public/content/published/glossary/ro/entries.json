@@ -420,6 +420,17 @@
     },
     {
       "definition": [
+        "Compozi\u021bia proiectului reprezint\u0103 modul \u00een care sunt dispuse \u0219i integrate toate elementele care alc\u0103tuiesc piesa final\u0103, precum lemnul, r\u0103\u0219ina epoxidic\u0103 \u0219i eventualele componente decorative. O compozi\u021bie bine g\u00e2ndit\u0103 asigur\u0103 at\u00e2t echilibrul estetic, c\u00e2t \u0219i func\u021bionalitatea proiectului."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Compozi\u021bia proiectului"
+    },
+    {
+      "definition": [
         "Configura\u021bia proiectului descrie organizarea \u0219i pozi\u021bionarea tuturor elementelor care compun proiectul, inclusiv conturul exterior, piesele de lemn, cavit\u0103\u021bile \u0219i celelalte zone relevante pentru calcul. Aceasta define\u0219te structura geometric\u0103 pe baza c\u0103reia aplica\u021bia efectueaz\u0103 estim\u0103rile de material."
       ],
       "id": "configura-ia-proiectului",
@@ -2439,28 +2450,7 @@
       ],
       "id": "turnare-n-straturi",
       "media": [],
-      "relatedTerms": [
-        {
-          "id": "v-scozitate",
-          "term": "V\u00e2scozitate"
-        },
-        {
-          "id": "timp-de-nt-rire",
-          "term": "Timp de \u00eent\u0103rire"
-        },
-        {
-          "id": "timp-de-lucru-pot-life",
-          "term": "Timp de lucru (Pot Life)"
-        },
-        {
-          "id": "r-in-epoxidic",
-          "term": "R\u0103\u0219in\u0103 epoxidic\u0103"
-        },
-        {
-          "id": "polimerizare",
-          "term": "Polimerizare"
-        }
-      ],
+      "relatedTerms": [],
       "seeAlso": [],
       "synonyms": [],
       "term": "Turnare \u00een straturi"

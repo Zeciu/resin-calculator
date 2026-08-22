@@ -25,8 +25,9 @@ uv run --project backend python backend/private/tools/package_published_content.
 From `backend/`, the equivalent is `python -m private.tools.package_published_content`. Dry-run is the default and writes nothing.
 
 - Source of truth: `backend/private/content/published/**` (already-published snapshots). Not the editorial store.
-- Supported modules (v1): `manual`, `knowledge-base`. Repeat `--module` to package both. Glossary, website, config, and editorial data are not supported.
-- Locale is required. There is no silent “all locales” default. Packaging `ro` does not touch `en`.
+- Romanian (`ro`) is the canonical editorial corpus. Translations are created intentionally from Romanian in Admin, then published, then packaged. Non-RO locales are not auto-filled from Romanian.
+- Supported modules: `manual`, `knowledge-base`, `glossary`. Repeat `--module` to package more than one. Website, config, and editorial data are not supported.
+- Locale is required. There is no silent “all locales” default. Packaging `ro` does not touch `en`. There is no automatic all-locale destructive synchronization.
 - `--apply` writes the requested JSON and any missing/different images those snapshots reference. Unrelated public images are never deleted.
 - If destination IDs would be removed, `--apply` refuses unless `--allow-id-removal` is also passed.
 - The tool does not publish drafts, generate translations, talk to AWS, commit, or deploy. After `--apply`, production still requires a normal Git commit and image deployment.
@@ -36,6 +37,7 @@ Examples (dry-run unless `--apply` is added):
 ```
 uv run --project backend python backend/private/tools/package_published_content.py --module manual --locale ro
 uv run --project backend python backend/private/tools/package_published_content.py --module knowledge-base --locale ro
-uv run --project backend python backend/private/tools/package_published_content.py --module manual --module knowledge-base --locale ro
+uv run --project backend python backend/private/tools/package_published_content.py --module glossary --locale ro
+uv run --project backend python backend/private/tools/package_published_content.py --module manual --module knowledge-base --module glossary --locale ro
 uv run --project backend python backend/private/tools/package_published_content.py --module knowledge-base --locale en --apply --allow-id-removal
 ```

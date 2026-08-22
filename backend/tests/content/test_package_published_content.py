@@ -56,6 +56,29 @@ def _manual_document(locale: str, chapter_ids: list[str], *, image: str | None =
     return {"locale": locale, "chapters": chapters}
 
 
+def _glossary_document(locale: str, entry_ids: list[str], *, image: str | None = None) -> dict:
+    entries = []
+    for entry_id in entry_ids:
+        media = []
+        if image:
+            media.append(
+                {
+                    "type": "image",
+                    "src": f"/api/content/glossary/images/{image}",
+                    "alt": "figure",
+                }
+            )
+        entries.append(
+            {
+                "id": entry_id,
+                "term": entry_id,
+                "definition": [f"Definition for {entry_id}."],
+                "media": media,
+            }
+        )
+    return {"locale": locale, "entries": entries}
+
+
 def _kb_document(locale: str, entry_ids: list[str], *, image: str | None = None) -> dict:
     entries = []
     for entry_id in entry_ids:
@@ -97,6 +120,14 @@ def _seed_kb(root: Path, locale: str, ids: list[str], *, image: str | None = Non
     _write_json(snapshot, _kb_document(locale, ids, image=image))
     if image:
         _write_bytes(root / "knowledge-base" / "images" / image, image_bytes)
+    return snapshot
+
+
+def _seed_glossary(root: Path, locale: str, ids: list[str], *, image: str | None = None, image_bytes: bytes = b"glossary-img") -> Path:
+    snapshot = root / "published" / "glossary" / locale / "entries.json"
+    _write_json(snapshot, _glossary_document(locale, ids, image=image))
+    if image:
+        _write_bytes(root / "glossary" / "images" / image, image_bytes)
     return snapshot
 
 
@@ -150,6 +181,34 @@ class TestKnowledgeBaseRoDryRun:
         assert dest.read_bytes() == before
 
 
+class TestGlossaryRoDryRun:
+    def test_reports_added_id_without_writing(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        private_ids = [f"term-{index}" for index in range(172)]
+        public_ids = private_ids[:171]
+        _seed_glossary(private_root, "ro", private_ids)
+        dest = _seed_glossary(public_root, "ro", public_ids)
+        before = dest.read_bytes()
+
+        report = run_packaging(
+            modules=["glossary"],
+            locale="ro",
+            private_root=private_root,
+            public_root=public_root,
+        )
+
+        assert report.ok
+        assert report.dry_run
+        assert not report.applied
+        operation = report.operations[0]
+        assert operation.source_count == 172
+        assert operation.destination_count == 171
+        assert operation.added_ids == ("term-171",)
+        assert operation.removed_ids == ()
+        assert not operation.destructive
+        assert dest.read_bytes() == before
+
+
 class TestApplyFixture:
     def test_destination_becomes_identical_to_source(self, tmp_path: Path):
         private_root, public_root = _layout(tmp_path)
@@ -180,6 +239,25 @@ class TestModuleIsolation:
 
         run_packaging(
             modules=["manual"],
+            locale="ro",
+            apply=True,
+            allow_id_removal=True,
+            private_root=private_root,
+            public_root=public_root,
+        )
+
+        assert kb_dest.read_bytes() == kb_before
+
+    def test_syncing_glossary_does_not_touch_knowledge_base(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        _seed_glossary(private_root, "ro", ["new-term"])
+        _seed_kb(private_root, "ro", ["new-article"])
+        _seed_glossary(public_root, "ro", ["old-term"])
+        kb_dest = _seed_kb(public_root, "ro", ["old-article"])
+        kb_before = kb_dest.read_bytes()
+
+        run_packaging(
+            modules=["glossary"],
             locale="ro",
             apply=True,
             allow_id_removal=True,
@@ -234,7 +312,7 @@ class TestRejection:
     def test_unsupported_module(self, tmp_path: Path):
         private_root, public_root = _layout(tmp_path)
         report = run_packaging(
-            modules=["glossary"],
+            modules=["website"],
             locale="ro",
             private_root=private_root,
             public_root=public_root,
@@ -338,6 +416,22 @@ class TestImages:
         dest_image = public_root / "manual" / "images" / IMAGE_A
         assert dest_image.read_bytes() == b"payload"
 
+    def test_apply_copies_required_glossary_image(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        _seed_glossary(private_root, "ro", ["term-one"], image=IMAGE_A, image_bytes=b"glossary-payload")
+        _seed_glossary(public_root, "ro", ["term-one"])
+
+        run_packaging(
+            modules=["glossary"],
+            locale="ro",
+            apply=True,
+            private_root=private_root,
+            public_root=public_root,
+        )
+
+        dest_image = public_root / "glossary" / "images" / IMAGE_A
+        assert dest_image.read_bytes() == b"glossary-payload"
+
     def test_unrelated_destination_images_are_not_deleted(self, tmp_path: Path):
         private_root, public_root = _layout(tmp_path)
         _seed_manual(private_root, "ro", ["chapter-one"], image=IMAGE_A, image_bytes=b"needed")
@@ -401,6 +495,62 @@ class TestDestructiveIdRemoval:
 
         report = run_packaging(
             modules=["knowledge-base"],
+            locale="en",
+            apply=True,
+            allow_id_removal=True,
+            private_root=private_root,
+            public_root=public_root,
+        )
+
+        assert report.applied
+        assert dest.read_bytes() == source.read_bytes()
+
+
+class TestGlossaryDestructiveIdRemoval:
+    def test_dry_run_reports_removed_ids(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        _seed_glossary(private_root, "en", [])
+        _seed_glossary(public_root, "en", [f"sample-{index}" for index in range(20)])
+
+        report = run_packaging(
+            modules=["glossary"],
+            locale="en",
+            private_root=private_root,
+            public_root=public_root,
+        )
+
+        assert report.ok
+        assert report.operations[0].destructive
+        assert report.operations[0].destination_count == 20
+        assert report.operations[0].source_count == 0
+        assert len(report.operations[0].removed_ids) == 20
+
+    def test_normal_apply_refuses_id_removal(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        _seed_glossary(private_root, "en", [])
+        dest = _seed_glossary(public_root, "en", [f"sample-{index}" for index in range(20)])
+        before = dest.read_bytes()
+
+        report = run_packaging(
+            modules=["glossary"],
+            locale="en",
+            apply=True,
+            private_root=private_root,
+            public_root=public_root,
+        )
+
+        assert not report.ok
+        assert not report.applied
+        assert any("Apply refused" in error for error in report.errors)
+        assert dest.read_bytes() == before
+
+    def test_allow_id_removal_applies_in_fixture(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        source = _seed_glossary(private_root, "en", [])
+        dest = _seed_glossary(public_root, "en", [f"sample-{index}" for index in range(20)])
+
+        report = run_packaging(
+            modules=["glossary"],
             locale="en",
             apply=True,
             allow_id_removal=True,

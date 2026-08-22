@@ -91,6 +91,9 @@ if not _include_local_editorial_routes():
     from public.content_api import router as public_content_router
 
     app.include_router(public_content_router, prefix="/api")
+from public.public_preview_api import router as public_preview_router
+
+app.include_router(public_preview_router, prefix="/api")
 app.include_router(me_router, prefix="/api")
 app.include_router(billing_router, prefix="/api")
 
@@ -127,7 +130,10 @@ _AUTH_ENABLED = _COGNITO_CONFIGURED
 _UNPROTECTED_PATHS = {"/health", "/callback", "/api/billing/webhook"}
 _PUBLIC_UNAUTHENTICATED_POST_PATHS = set(DEMO_CALCULATOR_PATHS)
 _PUBLIC_GUEST_CONTENT_PATHS = {"/api/content/public-languages"}
-_PUBLIC_GUEST_CONTENT_PREFIXES = ("/api/content/website/",)
+_PUBLIC_GUEST_CONTENT_PREFIXES = (
+    "/api/content/website/",
+    "/api/public-preview/",
+)
 
 
 def _is_public_spa_request(request: Request) -> bool:
@@ -136,8 +142,10 @@ def _is_public_spa_request(request: Request) -> bool:
     StaticFiles is mounted at `/`, so a browser must be able to request the
     initial HTML document, hashed assets, and public images without a bearer
     token. The published language configuration and public marketing website
-    are also needed before sign-in. All other APIs and calculation routes
-    remain Cognito-protected, except the narrow public demo calculation paths.
+    are also needed before sign-in. Anonymous Public Knowledge Preview lives
+    under `/api/public-preview/` and is metadata-stripped. All other APIs and
+    calculation routes remain Cognito-protected, except the narrow public
+    demo calculation paths.
     """
     path = request.url.path
     is_static_or_spa_route = not path.startswith("/api") and path not in CALCULATOR_PATHS

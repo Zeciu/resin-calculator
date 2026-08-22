@@ -15,6 +15,8 @@ The guiding principle for deciding where logic belongs:
 - **Slow feedback acceptable** (button clicks, text input updates):
   if it is important IP logic, it should be in the backend, if possible.
 
+Anonymous Public Knowledge Preview is a separate backend API over the public packaged corpus. Locked educational bodies must never be sent to the client.
+
 # Coding rules
 If you write new code that implements significant functionality or changes existing functionality significantly,
 you must write tests for it. We want the tests to cover backend and frontend, but we should keep the test execution

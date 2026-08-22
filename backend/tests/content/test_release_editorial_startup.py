@@ -13,22 +13,33 @@ from private.repositories.filesystem import (
     required_release_artifacts,
     validate_release_editorial_root,
 )
+from public.product.capabilities.free_preview import load_free_preview_config
 from public.product.capabilities.catalog import CAPABILITY_CATALOG
 
 
-def test_packaged_english_knowledge_base_can_satisfy_free_article_limit() -> None:
+def test_free_preview_knowledge_base_ids_exist_in_packaged_romanian_corpus() -> None:
+    """Free Preview article count is a Romanian packaged-corpus invariant.
+
+    A non-RO locale is not required to contain enough translated articles to
+    satisfy knowledgeBase.maxArticles.
+    """
+    backend_root = Path(__file__).resolve().parents[2]
     corpus_path = (
-        Path(__file__).resolve().parents[2]
+        backend_root
         / "public"
         / "content"
         / "published"
         / "knowledge-base"
-        / "en"
+        / "ro"
         / "entries.json"
     )
     snapshot = json.loads(corpus_path.read_text(encoding="utf-8"))
+    preview = load_free_preview_config(backend_root / "public" / "content" / "config" / "free-preview.json")
+    published_ids = {entry["id"] for entry in snapshot["entries"]}
+    required_ids = list(preview["knowledgeBaseEntryIds"])
 
-    assert len(snapshot["entries"]) >= CAPABILITY_CATALOG["free"]["knowledgeBase.maxArticles"]
+    assert len(required_ids) == CAPABILITY_CATALOG["free"]["knowledgeBase.maxArticles"]
+    assert all(entry_id in published_ids for entry_id in required_ids)
 
 
 def _write_json(path: Path, payload: dict) -> None:

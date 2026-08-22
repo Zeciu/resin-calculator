@@ -28,7 +28,7 @@ if str(_BACKEND_ROOT) not in sys.path:
 from private.schemas.common import ADMIN_EDITORIAL_LOCALES, parse_admin_locale
 from private.services.editorial_images import IMAGE_FILENAME_PATTERN
 
-SUPPORTED_MODULES = ("manual", "knowledge-base")
+SUPPORTED_MODULES = ("manual", "knowledge-base", "glossary")
 
 _MODULE_SPECS = {
     "manual": {
@@ -47,10 +47,18 @@ _MODULE_SPECS = {
         "image_module": "knowledge-base",
         "images_parts": ("knowledge-base", "images"),
     },
+    "glossary": {
+        "snapshot_parts": ("published", "glossary"),
+        "snapshot_name": "entries.json",
+        "items_key": "entries",
+        "id_field": "id",
+        "image_module": "glossary",
+        "images_parts": ("glossary", "images"),
+    },
 }
 
 _IMAGE_SRC_RE = re.compile(
-    r"^/api/content/(manual|knowledge-base)/images/"
+    r"^/api/content/(manual|knowledge-base|glossary)/images/"
     r"([a-f0-9-]{36}\.(?:jpg|png|gif|webp))$"
 )
 
@@ -488,8 +496,8 @@ def run_packaging(
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Copy selected private published Manual/Knowledge Base snapshots "
-            "into the public production corpus. Dry-run is the default."
+            "Copy selected private published Manual/Knowledge Base/Glossary "
+            "snapshots into the public production corpus. Dry-run is the default."
         )
     )
     parser.add_argument(
@@ -498,7 +506,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         required=True,
         metavar="MODULE",
-        help="Module to package. Repeatable. Allowed: manual, knowledge-base.",
+        help="Module to package. Repeatable. Allowed: manual, knowledge-base, glossary.",
     )
     parser.add_argument(
         "--locale",
