@@ -27,6 +27,25 @@ describe("mapCanonicalV2ToCalculatorSnapshot", () => {
     expect(snapshot.ui).not.toHaveProperty("zoomFactor");
   });
 
+  it("round-trips cavitiesComplete so zero-cavity projects stay complete", () => {
+    const envelope = mapCalculatorSnapshotToCanonicalV2(
+      {
+        ...SAMPLE_CALCULATOR_SNAPSHOT,
+        ui: {
+          ...SAMPLE_CALCULATOR_SNAPSHOT.ui,
+          measurementsComplete: true,
+          cavitiesComplete: true,
+        },
+      },
+      { projectName: "River Table" },
+    );
+
+    const snapshot = mapCanonicalV2ToCalculatorSnapshot(envelope);
+    expect(snapshot.ui.measurementsComplete).toBe(true);
+    expect(snapshot.ui.cavitiesComplete).toBe(true);
+    expect(snapshot.ui).not.toHaveProperty("interactionMode");
+  });
+
   it("does not restore session-only zoom from persisted workflow data", () => {
     const envelope = mapCalculatorSnapshotToCanonicalV2(
       {

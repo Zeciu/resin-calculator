@@ -195,7 +195,10 @@ describe("ResinCalculator — read-only persistent mutations", () => {
       expect(screen.getByText(/Reference 1/i)).toBeInTheDocument();
     });
 
-    await user.click(screen.getByRole("button", { name: "Delete" }));
+    await user.click(screen.getByText(/Reference 1/i));
+    await user.click(
+      screen.getByRole("button", { name: /Delete Selected Reference Measurement/i }),
+    );
 
     await waitFor(() => {
       expect(screen.queryByText(/Reference 1/i)).not.toBeInTheDocument();
@@ -225,7 +228,9 @@ describe("ResinCalculator — read-only persistent mutations", () => {
       expect(screen.getByText(/Reference 1/i)).toBeInTheDocument();
     });
 
-    const deleteButton = screen.getByRole("button", { name: "Delete" });
+    const deleteButton = screen.getByRole("button", {
+      name: /Delete Selected Reference Measurement/i,
+    });
     expect(deleteButton).toBeDisabled();
     fireEvent.click(deleteButton);
 

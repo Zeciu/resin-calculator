@@ -21,6 +21,15 @@ import { canAddPolygonPoint } from "./calculatorCapabilityPolicy.js";
 import { useCalculatorCapabilityEnforcement } from "./useCalculatorCapabilityEnforcement.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { buildCalculatorUi } from "./calculatorUi.js";
+import {
+  hitTestProjectGeometry,
+  isGeometryDrawMode,
+  selectionFromHit,
+} from "./geometryHitTest.js";
+import {
+  canEnterModifyProject,
+  resolveRestoredCavitiesComplete,
+} from "./workflowCompletion.js";
 import { ROUTES } from "../workspace/routes.js";
 
 const API_BASE_URL = "";
@@ -90,6 +99,19 @@ const WORKSPACE_EDIT_COLORS = {
     pointRadius: 5,
   },
 };
+
+function GeometryFamilyGroup({ family, label, status, children, groupRef }) {
+  return (
+    <div
+      ref={groupRef}
+      className={`geometry-family-group geometry-family-group--${family} active-step-group`}
+    >
+      <span className="geometry-family-label workflow-section-label">{label}</span>
+      {status ? <span className="geometry-family-status">{status}</span> : null}
+      {children}
+    </div>
+  );
+}
 
 function HelpIcon({ helpKey, help, activeHelpKey, onToggle, aboutLabel }) {
   const isActive = activeHelpKey === helpKey;
@@ -179,22 +201,6 @@ function polygonAreaPx2(points) {
   });
 
   return Math.abs(area) / 2;
-}
-
-function pointInPolygon(point, polygon) {
-  if (!point || !polygon || polygon.length < 3) return false;
-
-  let inside = false;
-  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i, i += 1) {
-    const pi = polygon[i];
-    const pj = polygon[j];
-    const intersects =
-      pi.y > point.y !== pj.y > point.y &&
-      point.x < ((pj.x - pi.x) * (point.y - pi.y)) / (pj.y - pi.y) + pi.x;
-    if (intersects) inside = !inside;
-  }
-
-  return inside;
 }
 
 function formatNumber(value, digits = 2, fallback = "N/A") {
@@ -467,6 +473,30 @@ function drawCanvas({
         pointRadius: 8,
       });
     }
+
+    if (selectedShape?.type === "reference") {
+      const selectedRef = referenceMeasurements[selectedShape.index];
+      const selectedRefPts = (selectedRef?.calibrationPoints || []).map(toScreen);
+      if (selectedRefPts.length > 0) {
+        selectedRefPts.forEach((p) => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, activeColors.pointRadius + 3, 0, Math.PI * 2);
+          ctx.fillStyle = activeColors.pointFill;
+          ctx.fill();
+          ctx.strokeStyle = activeColors.stroke;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        });
+        if (selectedRefPts.length === 2) {
+          ctx.beginPath();
+          ctx.moveTo(selectedRefPts[0].x, selectedRefPts[0].y);
+          ctx.lineTo(selectedRefPts[1].x, selectedRefPts[1].y);
+          ctx.strokeStyle = activeColors.stroke;
+          ctx.lineWidth = 4;
+          ctx.stroke();
+        }
+      }
+    }
   }
 
   if (referenceMeasurements.length > 0) {
@@ -548,6 +578,7 @@ export default forwardRef(function ResinCalculator(
   const cavityDepthInputRefs = useRef([]);
   const referenceDraftRef = useRef(null);
   const draftKnownLengthInputRef = useRef(null);
+  const selectedReferenceLengthInputRef = useRef(null);
   // Attached to `.active-workflow-controls` for every workflow step so
   // automatic scrolling can target the newly active step controls.
   const activeWorkflowControlsRef = useRef(null);
@@ -577,8 +608,10 @@ export default forwardRef(function ResinCalculator(
   const [moldBoundaryComplete, setMoldBoundaryComplete] = useState(false);
   const [woodBoundaryComplete, setWoodBoundaryComplete] = useState(false);
   const [cavitiesComplete, setCavitiesComplete] = useState(false);
+  const [interactionMode, setInteractionMode] = useState("build");
   const [draftReferencePoints, setDraftReferencePoints] = useState([]);
   const [draftKnownLengthCm, setDraftKnownLengthCm] = useState("");
+  const [selectedReferenceLengthDraft, setSelectedReferenceLengthDraft] = useState("");
   const [rotationDeg, setRotationDeg] = useState(0);
   const [zoomFactor, setZoomFactor] = useState(1);
   const [imageDataUrl, setImageDataUrl] = useState("");
@@ -977,12 +1010,18 @@ export default forwardRef(function ResinCalculator(
     if (isReadOnly) return;
     setReferenceMeasurements((prev) => {
       const next = prev.filter((_, i) => i !== idx);
-      if (next.length === 0) {
+      if (next.length === 0 && interactionMode !== "modify") {
         setMeasurementsComplete(false);
         setReferencesExpanded(true);
         setMode("reference");
       }
       return next;
+    });
+    setSelectedShape((prev) => {
+      if (prev?.type !== "reference") return prev;
+      if (prev.index === idx) return null;
+      if (prev.index > idx) return { type: "reference", index: prev.index - 1 };
+      return prev;
     });
     setResult(null);
     setError("");
@@ -1000,6 +1039,7 @@ export default forwardRef(function ResinCalculator(
       return;
     }
 
+    const newIndex = referenceMeasurements.length;
     setReferenceMeasurements((prev) => [
       ...prev,
       {
@@ -1009,13 +1049,36 @@ export default forwardRef(function ResinCalculator(
     ]);
     setDraftReferencePoints([]);
     setDraftKnownLengthCm("");
-    setMeasurementsComplete(false);
     setReferencesExpanded(true);
-    setMode("reference");
     setResult(null);
     setError("");
+    if (interactionMode === "modify") {
+      setSelectedShape({ type: "reference", index: newIndex });
+      setMode("edit");
+    } else {
+      setMeasurementsComplete(false);
+      setMode("reference");
+      setSelectedShape(null);
+    }
 
     scrollActiveWorkflowControlsIntoView("smooth");
+  };
+
+  const updateSelectedReferenceLength = (rawValue) => {
+    if (isReadOnly) return;
+    if (selectedShape?.type !== "reference") return;
+    setSelectedReferenceLengthDraft(rawValue);
+    const valCm = displayUnits.parseReferenceLengthToCm(rawValue);
+    if (!Number.isFinite(valCm) || valCm <= 0) return;
+    setReferenceMeasurements((prev) =>
+      prev.map((measurement, index) =>
+        index === selectedShape.index
+          ? { ...measurement, knownLengthCm: valCm }
+          : measurement
+      )
+    );
+    setResult(null);
+    setError("");
   };
 
   const onImageUpload = (event) => {
@@ -1054,6 +1117,7 @@ export default forwardRef(function ResinCalculator(
         setMoldBoundaryComplete(false);
         setWoodBoundaryComplete(false);
         setCavitiesComplete(false);
+        setInteractionMode("build");
         setDraftReferencePoints([]);
         setDraftKnownLengthCm("");
         setProjectNotes("");
@@ -1167,6 +1231,9 @@ export default forwardRef(function ResinCalculator(
     if (selectedShape.type === "cavity") {
       return cavityPolygons[selectedShape.index] || [];
     }
+    if (selectedShape.type === "reference") {
+      return referenceMeasurements[selectedShape.index]?.calibrationPoints || [];
+    }
     return [];
   };
 
@@ -1186,34 +1253,89 @@ export default forwardRef(function ResinCalculator(
     return null;
   };
 
-  const updateSelectedVertex = (vertexIndex, point) => {
+  const updateShapeVertex = (shape, vertexIndex, point) => {
     if (isReadOnly) return;
-    if (!selectedShape || vertexIndex == null || !point) return;
+    if (!shape || vertexIndex == null || !point) return;
 
-    if (selectedShape.type === "mold") {
+    if (shape.type === "mold") {
       setMoldBoundaryPoints((prev) =>
         prev.map((p, idx) => (idx === vertexIndex ? point : p))
       );
-    } else if (selectedShape.type === "wood") {
+      markResultOutdated();
+    } else if (shape.type === "wood") {
       setWoodBoundaryPolygons((prev) =>
         prev.map((polygon, polygonIdx) =>
-          polygonIdx === selectedShape.index
+          polygonIdx === shape.index
             ? polygon.map((p, idx) => (idx === vertexIndex ? point : p))
             : polygon
         )
       );
-    } else if (selectedShape.type === "cavity") {
+      markResultOutdated();
+    } else if (shape.type === "cavity") {
       setCavityPolygons((prev) =>
         prev.map((cavity, cavityIdx) =>
-          cavityIdx === selectedShape.index
+          cavityIdx === shape.index
             ? cavity.map((p, idx) => (idx === vertexIndex ? point : p))
             : cavity
         )
       );
+      markResultOutdated();
+    } else if (shape.type === "reference") {
+      setReferenceMeasurements((prev) =>
+        prev.map((measurement, measurementIdx) =>
+          measurementIdx === shape.index
+            ? {
+                ...measurement,
+                calibrationPoints: (measurement.calibrationPoints || []).map(
+                  (p, idx) => (idx === vertexIndex ? point : p)
+                ),
+              }
+            : measurement
+        )
+      );
+      setResult(null);
     }
 
-    markResultOutdated();
     setError("");
+  };
+
+  const updateSelectedVertex = (vertexIndex, point) => {
+    updateShapeVertex(selectedShape, vertexIndex, point);
+  };
+
+  const applyGeometryHit = (hit) => {
+    const nextShape = selectionFromHit(hit);
+    if (!nextShape) return false;
+    setSelectedShape(nextShape);
+    setDraftReferencePoints([]);
+    setMode("edit");
+    setError("");
+    if (nextShape.type === "cavity") {
+      focusCavityDepthInput(nextShape.index);
+    }
+    if (nextShape.type === "reference") {
+      const measurement = referenceMeasurements[nextShape.index];
+      setSelectedReferenceLengthDraft(
+        measurement
+          ? displayUnits.formatReferenceLength(measurement.knownLengthCm)
+          : ""
+      );
+    }
+    return true;
+  };
+
+  const getGeometryHitAt = (point) => {
+    return hitTestProjectGeometry(
+      point,
+      {
+        cavityPolygons,
+        woodBoundaryPolygons,
+        moldBoundaryPoints,
+        useImageBorderAsMold,
+        referenceMeasurements,
+      },
+      { scale: getCanvasImageScale() }
+    );
   };
 
   const focusCavityDepthInput = (index) => {
@@ -1272,50 +1394,35 @@ export default forwardRef(function ResinCalculator(
 
   const selectExistingShapeAt = (point) => {
     if (calculationMode !== "wood" || !point) return false;
-
-    for (let idx = cavityPolygons.length - 1; idx >= 0; idx -= 1) {
-      if (pointInPolygon(point, cavityPolygons[idx])) {
-        setMode("edit");
-        setSelectedShape({ type: "cavity", index: idx });
-        setDraftReferencePoints([]);
-        markResultOutdated();
-        focusCavityDepthInput(idx);
-        setError("");
-        return true;
-      }
-    }
-
-    for (let idx = woodBoundaryPolygons.length - 1; idx >= 0; idx -= 1) {
-      if (pointInPolygon(point, woodBoundaryPolygons[idx])) {
-        setMode("edit");
-        setSelectedShape({ type: "wood", index: idx });
-        setDraftReferencePoints([]);
-        markResultOutdated();
-        setError("");
-        return true;
-      }
-    }
-
-    if (!useImageBorderAsMold && pointInPolygon(point, moldBoundaryPoints)) {
-      setMode("edit");
-      setSelectedShape({ type: "mold" });
-      setDraftReferencePoints([]);
-      markResultOutdated();
-      setError("");
-      return true;
-    }
-
-    return false;
+    const hit = getGeometryHitAt(point);
+    return applyGeometryHit(hit);
   };
 
   const onCanvasMouseDown = (event) => {
     if (isReadOnly) return;
-    if (calculationMode !== "wood" || !selectedShape) return;
+    if (calculationMode !== "wood") return;
+    if (isGeometryDrawMode(mode)) return;
     const point = getCanvasCoordinates(event);
+    if (!point) return;
+
+    const hit = getGeometryHitAt(point);
+    if (hit?.hitType === "vertex") {
+      const nextShape = selectionFromHit(hit);
+      applyGeometryHit(hit);
+      dragRef.current = {
+        shape: nextShape,
+        vertexIndex: hit.vertexIndex,
+      };
+      suppressNextClickRef.current = true;
+      if (canvasRef.current) canvasRef.current.style.cursor = "grabbing";
+      return;
+    }
+
+    if (!selectedShape) return;
     const vertexIndex = findSelectedVertexAt(point);
     if (vertexIndex == null) return;
 
-    dragRef.current = { vertexIndex };
+    dragRef.current = { shape: selectedShape, vertexIndex };
     suppressNextClickRef.current = true;
     if (canvasRef.current) canvasRef.current.style.cursor = "grabbing";
   };
@@ -1325,13 +1432,21 @@ export default forwardRef(function ResinCalculator(
 
     if (dragRef.current) {
       if (isReadOnly) return;
-      updateSelectedVertex(dragRef.current.vertexIndex, point);
+      updateShapeVertex(
+        dragRef.current.shape,
+        dragRef.current.vertexIndex,
+        point
+      );
       return;
     }
 
     if (canvasRef.current) {
-      const vertexIndex = findSelectedVertexAt(point);
-      canvasRef.current.style.cursor = vertexIndex == null ? "default" : "grab";
+      if (isGeometryDrawMode(mode) || !point) {
+        canvasRef.current.style.cursor = "default";
+        return;
+      }
+      const hit = getGeometryHitAt(point);
+      canvasRef.current.style.cursor = hit?.hitType === "vertex" ? "grab" : "default";
     }
   };
 
@@ -1352,6 +1467,14 @@ export default forwardRef(function ResinCalculator(
     if (!point) return;
 
     if (mode === "edit" && selectExistingShapeAt(point)) return;
+
+    if (
+      interactionMode === "modify" &&
+      !isGeometryDrawMode(mode) &&
+      selectExistingShapeAt(point)
+    ) {
+      return;
+    }
 
     if (mode === "reference") {
       if (draftReferencePoints.length >= 2) return;
@@ -1461,8 +1584,10 @@ export default forwardRef(function ResinCalculator(
       if (prev.index > idx) return { type: "wood", index: prev.index - 1 };
       return prev;
     });
-    setWoodBoundaryComplete(false);
-    setCavitiesComplete(false);
+    if (interactionMode !== "modify") {
+      setWoodBoundaryComplete(false);
+      setCavitiesComplete(false);
+    }
     markResultOutdated();
     setError("");
   };
@@ -1527,6 +1652,8 @@ export default forwardRef(function ResinCalculator(
       rotationDeg,
       zoomFactor,
       selectedShape,
+      measurementsComplete,
+      cavitiesComplete,
     },
     calibration: {
       referenceMeasurements,
@@ -1659,7 +1786,14 @@ export default forwardRef(function ResinCalculator(
       setReferencesExpanded(importedReferenceMeasurements.length === 0);
       setMoldBoundaryComplete((wood.moldBoundaryPoints || []).length >= 3);
       setWoodBoundaryComplete(importedWoodBoundaryPolygons.length > 0);
-      setCavitiesComplete(importedCavityPolygons.length > 0);
+      setCavitiesComplete(
+        resolveRestoredCavitiesComplete({
+          storedCavitiesComplete: ui.cavitiesComplete,
+          cavityCount: importedCavityPolygons.length,
+          hasCalculatedResult: Boolean(project.result),
+        })
+      );
+      setInteractionMode("build");
       setDraftReferencePoints([]);
       setDraftKnownLengthCm("");
       setRotationDeg(ui.rotationDeg ?? 0);
@@ -2222,6 +2356,55 @@ export default forwardRef(function ResinCalculator(
     calculateFirstFillVolume();
   };
 
+  const startAddReferenceMeasurement = () => {
+    if (isReadOnly) return;
+    setMode("reference");
+    setSelectedShape(null);
+    setReferencesExpanded(true);
+    setDraftReferencePoints([]);
+    setDraftKnownLengthCm("");
+  };
+
+  const startAddWoodIsland = () => {
+    if (isReadOnly) return;
+    setMode("wood");
+    setSelectedShape(null);
+    setDraftReferencePoints([]);
+    if (interactionMode !== "modify") {
+      setWoodBoundaryComplete(false);
+      setCavitiesComplete(false);
+    }
+  };
+
+  const startAddCavity = () => {
+    if (isReadOnly) return;
+    setMode("cavity");
+    setSelectedShape(null);
+    setDraftReferencePoints([]);
+    if (interactionMode !== "modify") {
+      setCavitiesComplete(false);
+    }
+  };
+
+  const enterModifyProject = () => {
+    if (isReadOnly) return;
+    setInteractionMode("modify");
+    setMode("edit");
+    setDraftReferencePoints([]);
+    setError("");
+  };
+
+  const deleteSelectedReferenceMeasurement = () => {
+    if (selectedShape?.type !== "reference") return;
+    deleteReferenceMeasurement(selectedShape.index);
+  };
+
+  const deleteSelectedCavity = () => {
+    if (isReadOnly) return;
+    if (selectedShape?.type !== "cavity") return;
+    deleteCavityAtIndex(selectedShape.index);
+  };
+
   const finishWoodIsland = () => {
     if (isReadOnly) return;
     if (woodBoundaryPoints.length < 3) {
@@ -2233,8 +2416,12 @@ export default forwardRef(function ResinCalculator(
     setWoodBoundaryPolygons((prev) => [...prev, woodBoundaryPoints]);
     setWoodBoundaryPoints([]);
     setSelectedShape({ type: "wood", index: newWoodIndex });
-    setWoodBoundaryComplete(false);
-    setCavitiesComplete(false);
+    if (interactionMode === "modify") {
+      setMode("edit");
+    } else {
+      setWoodBoundaryComplete(false);
+      setCavitiesComplete(false);
+    }
     markResultOutdated();
     setError("");
   };
@@ -2245,8 +2432,10 @@ export default forwardRef(function ResinCalculator(
     const index = selectedShape.index;
     setWoodBoundaryPolygons((prev) => prev.filter((_, idx) => idx !== index));
     setSelectedShape(null);
-    setWoodBoundaryComplete(false);
-    setCavitiesComplete(false);
+    if (interactionMode !== "modify") {
+      setWoodBoundaryComplete(false);
+      setCavitiesComplete(false);
+    }
     markResultOutdated();
     setError("");
   };
@@ -2265,7 +2454,11 @@ export default forwardRef(function ResinCalculator(
     setPendingNewCavityIndex(newCavityIndex);
     setHighlightedCavityIndex(newCavityIndex);
     setEditingCavityDepthIndex(newCavityIndex);
-    setCavitiesComplete(false);
+    if (interactionMode === "modify") {
+      setMode("edit");
+    } else {
+      setCavitiesComplete(false);
+    }
     markResultOutdated();
     setError("");
   };
@@ -2353,6 +2546,21 @@ export default forwardRef(function ResinCalculator(
             current: activeWorkflowStage === "calculate",
           },
         ];
+
+  const isModifyMode = interactionMode === "modify";
+  const showModifyProjectControl = canEnterModifyProject({
+    isReadOnly,
+    interactionMode,
+    calculationMode,
+    measurementsComplete,
+    moldBoundaryComplete,
+    woodBoundaryComplete,
+    cavitiesComplete,
+    hasCalculatedResult: Boolean(result),
+  });
+  const showReferenceFamily =
+    Boolean(imageDataUrl) &&
+    (!measurementsComplete || isModifyMode || calculationMode === "wood");
 
   return (
     <div className={`container${isReadOnly ? " container--read-only" : ""}`}>
@@ -2461,39 +2669,6 @@ export default forwardRef(function ResinCalculator(
         </details>
       )}
 
-      {referenceMeasurements.length > 0 && (
-        <details
-          className="reference-list"
-          open={referencesExpanded}
-          onToggle={(event) => setReferencesExpanded(event.currentTarget.open)}
-        >
-          <summary>{ui.referenceMeasurements}</summary>
-          <div className="reference-list-items">
-            {referenceMeasurements.map((ref, idx) => (
-              <div key={idx} className="reference-item">
-                <div className="reference-label">
-                  {ui.referenceItem(idx + 1)}: {displayUnits.formatReferenceLengthWithUnit(ref.knownLengthCm)}
-                  {(() => {
-                    const pts = ref.calibrationPoints || [];
-                    if (pts.length !== 2) return "";
-                    const dx = pts[1].x - pts[0].x;
-                    const dy = pts[1].y - pts[0].y;
-                    return ` (${classifyReferenceDirection(dx, dy)})`;
-                  })()}
-                </div>
-                <button
-                  className="delete-ref"
-                  disabled={isReadOnly}
-                  onClick={() => deleteReferenceMeasurement(idx)}
-                >
-                  {ui.delete}
-                </button>
-              </div>
-            ))}
-          </div>
-        </details>
-      )}
-
       {imageDataUrl && (
         <>
         <div className="workspace-controls">
@@ -2501,57 +2676,145 @@ export default forwardRef(function ResinCalculator(
           className="active-workflow-controls"
           ref={activeWorkflowControlsRef}
         >
-          {!measurementsComplete && (
-            <>
+          {showModifyProjectControl && (
+            <button
+              type="button"
+              className="primary-action modify-project-button"
+              onClick={enterModifyProject}
+            >
+              {ui.modifyProject}
+            </button>
+          )}
+          {isModifyMode && (
+            <span className="modify-mode-badge" role="status">
+              {ui.modifyProjectActive}
+            </span>
+          )}
+
+          {showReferenceFamily && (
+            <GeometryFamilyGroup
+              family="reference"
+              label={ui.referenceMeasurements}
+              status={measurementsComplete ? ui.referencesComplete : null}
+            >
+              {(!measurementsComplete || isModifyMode) && (
+                <button
+                  className={
+                    mode === "reference"
+                      ? "mode-active secondary-action"
+                      : activeWorkflowStage === "references" &&
+                          referenceMeasurements.length === 0
+                        ? "primary-action"
+                        : "secondary-action"
+                  }
+                  onClick={startAddReferenceMeasurement}
+                  title="Click then select two points on the image"
+                >
+                  {ui.addReferenceMeasurement}
+                  {renderHelpPopup("reference", ui.help.reference)}
+                </button>
+              )}
               <button
-                className={
-                  activeWorkflowStage === "references" &&
-                  referenceMeasurements.length === 0
-                    ? "primary-action"
-                    : "secondary-action"
-                }
+                className="secondary-action"
                 onClick={() => {
-                  setMode("reference");
-                  setReferencesExpanded(true);
+                  if (selectedShape?.type !== "reference") return;
+                  setMode("edit");
                   setDraftReferencePoints([]);
-                  setDraftKnownLengthCm("");
+                  window.setTimeout(() => {
+                    selectedReferenceLengthInputRef.current?.focus();
+                    selectedReferenceLengthInputRef.current?.select();
+                  }, 0);
                 }}
-                title="Click then select two points on the image"
+                disabled={selectedShape?.type !== "reference" || isReadOnly}
               >
-                {ui.addReferenceMeasurement}
-                {renderHelpPopup("reference", ui.help.reference)}
+                {ui.editSelectedReference}
               </button>
               <button
-                className={
-                  activeWorkflowStage === "references" &&
-                  referenceMeasurements.length > 0
-                    ? "primary-action"
-                    : "secondary-action"
-                }
-                onClick={() => {
-                  if (referenceMeasurements.length === 0) {
-                    setError(ui.errors.addReferenceBeforeContinue);
-                    setMode("reference");
-                    return;
-                  }
-                  setMeasurementsComplete(true);
-                  setReferencesExpanded(false);
-                  setDraftReferencePoints([]);
-                  setDraftKnownLengthCm("");
-                  if (calculationMode === "wood") {
-                    setUseImageBorderAsMold(false);
-                    setMode("mold");
-                  } else {
-                    setMode("polygon");
-                  }
-                  setResult(null);
-                  setError("");
-                  scrollActiveWorkflowControlsIntoView("auto");
-                }}
+                className="secondary-action"
+                onClick={deleteSelectedReferenceMeasurement}
+                disabled={selectedShape?.type !== "reference" || isReadOnly}
               >
-                {ui.doneWithMeasurements}
+                {ui.deleteSelectedReference}
               </button>
-              {activeWorkflowStage === "references" && (
+              {!isModifyMode && !measurementsComplete && (
+                <button
+                  className={
+                    activeWorkflowStage === "references" &&
+                    referenceMeasurements.length > 0
+                      ? "primary-action"
+                      : "secondary-action"
+                  }
+                  onClick={() => {
+                    if (referenceMeasurements.length === 0) {
+                      setError(ui.errors.addReferenceBeforeContinue);
+                      setMode("reference");
+                      return;
+                    }
+                    setMeasurementsComplete(true);
+                    setReferencesExpanded(false);
+                    setDraftReferencePoints([]);
+                    setDraftKnownLengthCm("");
+                    if (calculationMode === "wood") {
+                      setUseImageBorderAsMold(false);
+                      setMode("mold");
+                    } else {
+                      setMode("polygon");
+                    }
+                    setResult(null);
+                    setError("");
+                    scrollActiveWorkflowControlsIntoView("auto");
+                  }}
+                >
+                  {ui.doneWithMeasurements}
+                </button>
+              )}
+              {selectedShape?.type === "reference" && (
+                <label className="reference-length-field">
+                  {displayUnits.referenceLengthLabel()}
+                  <LengthUnitInput
+                    ref={selectedReferenceLengthInputRef}
+                    unit={displayUnits.lengthLabel}
+                    step="0.1"
+                    value={selectedReferenceLengthDraft}
+                    onChange={(e) => updateSelectedReferenceLength(e.target.value)}
+                    disabled={isReadOnly}
+                  />
+                </label>
+              )}
+              {referenceMeasurements.length > 0 && (
+                <div className="reference-list-items geometry-family-items">
+                  {referenceMeasurements.map((ref, idx) => (
+                    <button
+                      type="button"
+                      key={idx}
+                      className={`reference-item ${
+                        selectedShape?.type === "reference" &&
+                        selectedShape.index === idx
+                          ? "reference-item--selected"
+                          : ""
+                      }`}
+                      onClick={() => {
+                        setSelectedShape({ type: "reference", index: idx });
+                        setMode("edit");
+                        setDraftReferencePoints([]);
+                      }}
+                    >
+                      <span className="reference-label">
+                        {ui.referenceItem(idx + 1)}:{" "}
+                        {displayUnits.formatReferenceLengthWithUnit(ref.knownLengthCm)}
+                        {(() => {
+                          const pts = ref.calibrationPoints || [];
+                          if (pts.length !== 2) return "";
+                          const dx = pts[1].x - pts[0].x;
+                          const dy = pts[1].y - pts[0].y;
+                          return ` (${classifyReferenceDirection(dx, dy)})`;
+                        })()}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+              {!isModifyMode && activeWorkflowStage === "references" && (
                 <aside
                   className="upload-onboarding-panel"
                   aria-label="Reference measurement guidance"
@@ -2563,7 +2826,7 @@ export default forwardRef(function ResinCalculator(
                   </div>
                 </aside>
               )}
-            </>
+            </GeometryFamilyGroup>
           )}
 
           {measurementsComplete && calculationMode === "standard" && (
@@ -2610,11 +2873,150 @@ export default forwardRef(function ResinCalculator(
             </>
           )}
 
-          {measurementsComplete && calculationMode === "wood" && (
+          {isModifyMode && calculationMode === "wood" && (
+            <>
+              <GeometryFamilyGroup
+                family="mold"
+                label={ui.moldBoundary}
+                status={moldBoundaryComplete ? ui.moldComplete : null}
+              >
+                <button
+                  className="secondary-action"
+                  onClick={() => {
+                    setMode("edit");
+                    setSelectedShape({ type: "mold" });
+                    setDraftReferencePoints([]);
+                  }}
+                  disabled={moldBoundaryPoints.length < 3 || isReadOnly}
+                >
+                  {ui.editMoldBoundary}
+                </button>
+                {moldBoundaryPoints.length < 3 && (
+                  <button
+                    className={`${mode === "mold" ? "mode-active" : ""} secondary-action`}
+                    onClick={() => {
+                      setUseImageBorderAsMold(false);
+                      setMode("mold");
+                      setSelectedShape(null);
+                      setDraftReferencePoints([]);
+                    }}
+                  >
+                    {ui.drawMoldBoundary}
+                  </button>
+                )}
+                <button
+                  className="secondary-action"
+                  onClick={clearMoldBoundary}
+                  disabled={isReadOnly}
+                >
+                  {ui.clearMoldBoundary}
+                </button>
+              </GeometryFamilyGroup>
+
+              <GeometryFamilyGroup
+                family="wood"
+                label={ui.woodIslands}
+                status={woodBoundaryComplete ? ui.woodComplete : null}
+              >
+                <button
+                  className="secondary-action"
+                  onClick={() => {
+                    setMode("edit");
+                    setDraftReferencePoints([]);
+                  }}
+                  disabled={selectedShape?.type !== "wood"}
+                >
+                  {ui.editSelectedWoodIsland}
+                </button>
+                <button
+                  className={`${mode === "wood" ? "mode-active" : ""} secondary-action`}
+                  onClick={startAddWoodIsland}
+                >
+                  {ui.addWoodIsland}
+                  {renderHelpPopup("wood-boundary", ui.help.wood)}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={finishWoodIsland}
+                  disabled={woodBoundaryPoints.length < 3}
+                >
+                  {ui.completeCurrentIsland}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={deleteSelectedWoodIsland}
+                  disabled={selectedShape?.type !== "wood" || isReadOnly}
+                >
+                  {ui.deleteSelectedWoodIsland}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={clearWoodIslands}
+                  disabled={isReadOnly}
+                >
+                  {ui.clearWoodIslands}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={undoLastPoint}
+                  disabled={getActiveWoodDrawingPointCount() === 0 || isReadOnly}
+                >
+                  {ui.undoLastPoint}
+                </button>
+              </GeometryFamilyGroup>
+
+              <GeometryFamilyGroup
+                family="cavity"
+                label={ui.resinCavities}
+                status={cavitiesComplete ? ui.cavitiesComplete : null}
+                groupRef={cavityControlsRef}
+              >
+                <button
+                  className="secondary-action"
+                  onClick={() => {
+                    setMode("edit");
+                    setDraftReferencePoints([]);
+                  }}
+                  disabled={selectedShape?.type !== "cavity"}
+                >
+                  {ui.editSelectedCavity}
+                </button>
+                <button
+                  className={`${mode === "cavity" ? "mode-active" : ""} secondary-action`}
+                  onClick={startAddCavity}
+                >
+                  {ui.addResinCavity}
+                  {renderHelpPopup("resin-cavity", ui.help.cavity)}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={finishCavity}
+                  disabled={currentCavityPoints.length < 3}
+                >
+                  {ui.finishCavity}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={deleteSelectedCavity}
+                  disabled={selectedShape?.type !== "cavity" || isReadOnly}
+                >
+                  {ui.deleteSelectedCavity}
+                </button>
+                <button
+                  className="secondary-action"
+                  onClick={clearAllCavities}
+                  disabled={isReadOnly}
+                >
+                  {ui.clearAllCavities}
+                </button>
+              </GeometryFamilyGroup>
+            </>
+          )}
+
+          {measurementsComplete && calculationMode === "wood" && !isModifyMode && (
             <>
               {!moldBoundaryComplete && (
-                <div className="active-step-group next-step-group">
-                  <span className="workflow-section-label">{ui.moldBoundary}</span>
+                <GeometryFamilyGroup family="mold" label={ui.moldBoundary}>
                   <button
                     className={`${
                       mode === "mold" ? "mode-active" : ""
@@ -2676,12 +3078,15 @@ export default forwardRef(function ResinCalculator(
                       </div>
                     </aside>
                   )}
-                </div>
+                </GeometryFamilyGroup>
               )}
 
               {moldBoundaryComplete && (
-                <div className="active-step-group completed-step-group">
-                  <span className="workflow-section-label">{ui.moldComplete}</span>
+                <GeometryFamilyGroup
+                  family="mold"
+                  label={ui.moldBoundary}
+                  status={ui.moldComplete}
+                >
                   <button
                     className="secondary-action"
                     onClick={() => {
@@ -2700,13 +3105,12 @@ export default forwardRef(function ResinCalculator(
                   >
                     {ui.clearMoldBoundary}
                   </button>
-                </div>
+                </GeometryFamilyGroup>
               )}
 
               {moldBoundaryComplete && !woodBoundaryComplete && (
-                <div className="active-step-group next-step-group">
+                <GeometryFamilyGroup family="wood" label={ui.woodIslands}>
                   <div className="toolbar-row toolbar-row-primary">
-                    <span className="workflow-section-label">{ui.woodIslands}</span>
                     <button
                       className={`${
                         mode === "wood" ? "mode-active" : ""
@@ -2718,13 +3122,7 @@ export default forwardRef(function ResinCalculator(
                           ? "primary-action"
                           : "secondary-action"
                       }`}
-                      onClick={() => {
-                        setMode("wood");
-                        setSelectedShape(null);
-                        setDraftReferencePoints([]);
-                        setWoodBoundaryComplete(false);
-                        setCavitiesComplete(false);
-                      }}
+                      onClick={startAddWoodIsland}
                     >
                       {ui.addWoodIsland}
                       {renderHelpPopup("wood-boundary", ui.help.wood)}
@@ -2804,12 +3202,15 @@ export default forwardRef(function ResinCalculator(
                     </button>
                     </div>
                   </div>
-                </div>
+                </GeometryFamilyGroup>
               )}
 
               {woodBoundaryComplete && (
-                <div className="active-step-group completed-step-group">
-                  <span className="workflow-section-label">{ui.woodComplete}</span>
+                <GeometryFamilyGroup
+                  family="wood"
+                  label={ui.woodIslands}
+                  status={ui.woodComplete}
+                >
                   <button
                     className="secondary-action"
                     onClick={() => {
@@ -2822,13 +3223,7 @@ export default forwardRef(function ResinCalculator(
                   </button>
                   <button
                     className="secondary-action"
-                    onClick={() => {
-                      setMode("wood");
-                      setSelectedShape(null);
-                      setDraftReferencePoints([]);
-                      setWoodBoundaryComplete(false);
-                      setCavitiesComplete(false);
-                    }}
+                    onClick={startAddWoodIsland}
                   >
                     {ui.addWoodIsland}
                   </button>
@@ -2846,13 +3241,16 @@ export default forwardRef(function ResinCalculator(
                   >
                     {ui.clearWoodIslands}
                   </button>
-                </div>
+                </GeometryFamilyGroup>
               )}
 
               {woodBoundaryComplete && !cavitiesComplete && (
-                <div className="active-step-group next-step-group" ref={cavityControlsRef}>
+                <GeometryFamilyGroup
+                  family="cavity"
+                  label={ui.resinCavities}
+                  groupRef={cavityControlsRef}
+                >
                   <div className="toolbar-row toolbar-row-primary">
-                    <span className="workflow-section-label">{ui.resinCavities}</span>
                     <button
                       className={`${
                         mode === "cavity" ? "mode-active" : ""
@@ -2864,12 +3262,7 @@ export default forwardRef(function ResinCalculator(
                           ? "primary-action"
                           : "secondary-action"
                       }`}
-                      onClick={() => {
-                        setMode("cavity");
-                        setSelectedShape(null);
-                        setDraftReferencePoints([]);
-                        setCavitiesComplete(false);
-                      }}
+                      onClick={startAddCavity}
                     >
                       {ui.addResinCavity}
                       {renderHelpPopup("resin-cavity", ui.help.cavity)}
@@ -2891,7 +3284,6 @@ export default forwardRef(function ResinCalculator(
                       onClick={() => {
                         setMode("edit");
                         setDraftReferencePoints([]);
-                        setCavitiesComplete(false);
                       }}
                       disabled={selectedShape?.type !== "cavity"}
                     >
@@ -2937,20 +3329,19 @@ export default forwardRef(function ResinCalculator(
                       </aside>
                     )}
                   </div>
-                </div>
+                </GeometryFamilyGroup>
               )}
 
               {cavitiesComplete && (
-                <div className="active-step-group completed-step-group" ref={cavityControlsRef}>
-                  <span className="workflow-section-label">{ui.cavitiesComplete}</span>
+                <GeometryFamilyGroup
+                  family="cavity"
+                  label={ui.resinCavities}
+                  status={ui.cavitiesComplete}
+                  groupRef={cavityControlsRef}
+                >
                   <button
                     className="secondary-action"
-                    onClick={() => {
-                      setMode("cavity");
-                      setSelectedShape(null);
-                      setDraftReferencePoints([]);
-                      setCavitiesComplete(false);
-                    }}
+                    onClick={startAddCavity}
                   >
                     {ui.addResinCavity}
                   </button>
@@ -2971,7 +3362,7 @@ export default forwardRef(function ResinCalculator(
                   >
                     {ui.clearAllCavities}
                   </button>
-                </div>
+                </GeometryFamilyGroup>
               )}
 
             </>
@@ -2996,6 +3387,7 @@ export default forwardRef(function ResinCalculator(
               {calculationMode === "wood"
                 ? `Wood | ${mode} | Refs: ${referenceMeasurements.length}`
                 : `Std | ${mode} | Refs: ${referenceMeasurements.length}`}
+              {isModifyMode ? " | Modify" : ""}
               {" | "}
               Zoom: {(zoomFactor * 100).toFixed(0)}%
               {" | "}

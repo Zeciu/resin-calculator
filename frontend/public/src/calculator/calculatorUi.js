@@ -52,6 +52,16 @@ export function buildCalculatorUi(t) {
 
     doneWithMeasurements: t("calculator.doneWithMeasurements"),
 
+    modifyProject: t("calculator.modifyProject"),
+
+    modifyProjectActive: t("calculator.modifyProjectActive"),
+
+    referencesComplete: t("calculator.referencesComplete"),
+
+    editSelectedReference: t("calculator.editSelectedReference"),
+
+    deleteSelectedReference: t("calculator.deleteSelectedReference"),
+
     step2Title: t("calculator.step2Title"),
 
     step2Body: t("calculator.step2Body"),
@@ -105,6 +115,8 @@ export function buildCalculatorUi(t) {
     finishCavity: t("calculator.finishCavity"),
 
     editSelectedCavity: t("calculator.editSelectedCavity"),
+
+    deleteSelectedCavity: t("calculator.deleteSelectedCavity"),
 
     clearAllCavities: t("calculator.clearAllCavities"),
 

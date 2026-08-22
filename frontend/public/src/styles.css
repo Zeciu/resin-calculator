@@ -10,6 +10,10 @@ body {
   --surface-ivory-soft: #f4efe7;
   --border-warm: #d9d1c4;
   --border-warm-soft: #e1d9cd;
+  --geometry-reference: #ff8c42;
+  --geometry-mold: #bdbdbd;
+  --geometry-wood: #f0b878;
+  --geometry-cavity: #c77dff;
 }
 
 .container {
@@ -777,6 +781,77 @@ input[type="number"] {
   font-size: 13px;
 }
 
+.geometry-family-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-warm);
+  background: var(--surface-ivory-soft);
+  box-shadow: inset 4px 0 0 var(--geometry-family-accent, var(--border-warm));
+}
+
+.geometry-family-group--reference {
+  --geometry-family-accent: var(--geometry-reference);
+  background: rgba(255, 140, 66, 0.1);
+  border-color: rgba(184, 96, 38, 0.35);
+}
+
+.geometry-family-group--mold {
+  --geometry-family-accent: var(--geometry-mold);
+  background: rgba(189, 189, 189, 0.16);
+  border-color: rgba(120, 120, 120, 0.35);
+}
+
+.geometry-family-group--wood {
+  --geometry-family-accent: var(--geometry-wood);
+  background: rgba(240, 184, 120, 0.14);
+  border-color: rgba(176, 122, 58, 0.35);
+}
+
+.geometry-family-group--cavity {
+  --geometry-family-accent: var(--geometry-cavity);
+  background: rgba(199, 125, 255, 0.12);
+  border-color: rgba(140, 74, 186, 0.32);
+}
+
+.geometry-family-label {
+  color: #2c2620;
+}
+
+.geometry-family-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5b5145;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(54, 45, 34, 0.08);
+}
+
+.modify-project-button {
+  flex: 0 0 auto;
+}
+
+.modify-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(47, 107, 67, 0.12);
+  border: 1px solid #2f6b43;
+  color: #27583a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.geometry-family-items {
+  flex: 1 0 100%;
+}
+
 .inline-depth-field {
   flex-direction: row;
   align-items: center;
@@ -1298,15 +1373,26 @@ button .help-icon-wrapper {
 
 .reference-item {
   display: flex;
+  width: 100%;
+  text-align: left;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 6px 0;
+  padding: 6px 8px;
+  border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 .reference-item:first-child {
   border-top: 0;
+}
+
+.reference-item--selected {
+  background: rgba(255, 140, 66, 0.18);
+  outline: 2px solid rgba(255, 140, 66, 0.7);
 }
 
 .reference-label {

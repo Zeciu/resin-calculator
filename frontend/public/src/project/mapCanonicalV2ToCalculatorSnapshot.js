@@ -53,6 +53,14 @@ export function mapCanonicalV2ToCalculatorSnapshot(envelope) {
     if (workflow.selectedShape != null) {
       ui.selectedShape = workflow.selectedShape;
     }
+
+    if (typeof workflow.measurementsComplete === "boolean") {
+      ui.measurementsComplete = workflow.measurementsComplete;
+    }
+
+    if (typeof workflow.cavitiesComplete === "boolean") {
+      ui.cavitiesComplete = workflow.cavitiesComplete;
+    }
   }
 
   const rotation = descriptiveMetadata.workspaceView?.rotation;

@@ -60,6 +60,14 @@ export function mapCalculatorSnapshotToCanonicalV2(snapshot, options = {}) {
       workflow.selectedShape = ui.selectedShape;
     }
 
+    if (typeof ui.measurementsComplete === "boolean") {
+      workflow.measurementsComplete = ui.measurementsComplete;
+    }
+
+    if (typeof ui.cavitiesComplete === "boolean") {
+      workflow.cavitiesComplete = ui.cavitiesComplete;
+    }
+
     if (Object.keys(workflow).length > 0) {
       technicalContent.ui = { workflow };
     }
