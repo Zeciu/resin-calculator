@@ -61,6 +61,10 @@ export function mapCanonicalV2ToCalculatorSnapshot(envelope) {
     if (typeof workflow.cavitiesComplete === "boolean") {
       ui.cavitiesComplete = workflow.cavitiesComplete;
     }
+
+    if (typeof workflow.woodBoundaryComplete === "boolean") {
+      ui.woodBoundaryComplete = workflow.woodBoundaryComplete;
+    }
   }
 
   const rotation = descriptiveMetadata.workspaceView?.rotation;

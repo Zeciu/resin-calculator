@@ -514,9 +514,6 @@ def run_calculate_wood(req: CalculateWoodRequest):
     if not isinstance(wood_boundary_polygons, list):
         raise HTTPException(status_code=400, detail="woodBoundaryPolygons must be an array.")
 
-    if len(wood_boundary_polygons) == 0:
-        raise HTTPException(status_code=400, detail="At least one wood island is required.")
-
     for idx, wood_polygon in enumerate(wood_boundary_polygons):
         if not isinstance(wood_polygon, list) or len(wood_polygon) < 3:
             raise HTTPException(status_code=400, detail=f"Wood island {idx + 1}: at least 3 points are required.")

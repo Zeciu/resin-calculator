@@ -267,7 +267,7 @@ describe("ResinCalculator demoMode", () => {
     await waitFor(() => {
       expect(document.querySelector(".modify-mode-badge")).toBeInTheDocument();
     });
-    expect(screen.queryByRole("button", { name: /^Modify Project$/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Modify this project$/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/Choose file|Photo uploaded/i)).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Save Project/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Save As/i })).not.toBeInTheDocument();
@@ -352,7 +352,7 @@ describe("ResinCalculator demoMode", () => {
     );
 
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByRole("button", { name: /Calculate Resin Volume/i }));
 
     const firstFillInput = screen.getByRole("spinbutton", { name: /First Fill Seal Coat Thickness/i });

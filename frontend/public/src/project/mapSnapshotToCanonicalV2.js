@@ -68,6 +68,10 @@ export function mapCalculatorSnapshotToCanonicalV2(snapshot, options = {}) {
       workflow.cavitiesComplete = ui.cavitiesComplete;
     }
 
+    if (typeof ui.woodBoundaryComplete === "boolean") {
+      workflow.woodBoundaryComplete = ui.woodBoundaryComplete;
+    }
+
     if (Object.keys(workflow).length > 0) {
       technicalContent.ui = { workflow };
     }

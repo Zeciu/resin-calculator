@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+import pytest
 from fastapi.testclient import TestClient
 
 from public.safety.input_limits import (
@@ -134,11 +135,27 @@ def test_anonymous_first_fill_still_requires_auth():
     assert response.status_code == 401
 
 
+def test_anonymous_demo_calculate_wood_accepts_zero_wood_islands():
+    from app import app
+
+    client = TestClient(app)
+    payload = {**VALID_WOOD_PAYLOAD, "woodBoundaryPolygons": []}
+    with patch("public.app._AUTH_ENABLED", True):
+        response = client.post(DEMO_CALCULATE_WOOD_PATH, json=payload)
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["woodIslandCount"] == 0
+    assert body["woodAreaCm2"] == 0
+    assert body["mainResinAreaCm2"] == pytest.approx(body["moldAreaCm2"])
+    assert body["volumeLiters"] > body["mainVolumeLiters"]
+
+
 def test_invalid_demo_payload_is_rejected():
     from app import app
 
     client = TestClient(app)
-    invalid = {**VALID_WOOD_PAYLOAD, "woodBoundaryPolygons": []}
+    invalid = {**VALID_WOOD_PAYLOAD, "referenceMeasurements": []}
     with patch("public.app._AUTH_ENABLED", True):
         response = client.post(DEMO_CALCULATE_WOOD_PATH, json=invalid)
 

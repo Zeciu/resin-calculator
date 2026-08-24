@@ -48,5 +48,7 @@ describe("computeProjectDirtyState", () => {
     );
     expect(computeProjectDirtyState({ depthMm: "12" })).toBe(true);
     expect(computeProjectDirtyState({ measurementsComplete: true })).toBe(true);
+    expect(computeProjectDirtyState({ resinDensityInput: "1.15" })).toBe(true);
+    expect(computeProjectDirtyState({ resinDensityInput: "1.10" })).toBe(false);
   });
 });

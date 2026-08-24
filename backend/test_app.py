@@ -103,6 +103,7 @@ class TestVolumeCalculations:
 # ---------------------------------------------------------------------------
 
 H_REF = {"calibrationPoints": [{"x": 0, "y": 0}, {"x": 100, "y": 0}], "knownLengthCm": 10}
+V_REF = {"calibrationPoints": [{"x": 0, "y": 0}, {"x": 0, "y": 100}], "knownLengthCm": 10}
 SQUARE_POLY = [{"x": 0, "y": 0}, {"x": 100, "y": 0}, {"x": 100, "y": 100}, {"x": 0, "y": 100}]
 
 
@@ -170,6 +171,61 @@ class TestCalculateWoodEndpoint:
         assert data["moldAreaCm2"] == pytest.approx(5000.0)
         assert data["woodAreaCm2"] == pytest.approx(100.0)
         assert data["mainResinAreaCm2"] == pytest.approx(4900.0)
+
+    def test_zero_wood_islands_uses_full_mold_as_main_resin_area(self):
+        r = client.post("/calculate-wood", json={
+            "imageWidth": 1000,
+            "imageHeight": 500,
+            "useImageBorderAsMold": True,
+            "woodBoundaryPolygons": [],
+            "referenceMeasurements": [H_REF],
+            "mainPourDepthMm": 10,
+            "cavityPolygons": [],
+            "cavityDepthsMm": [],
+        })
+        assert r.status_code == 200
+        data = r.json()
+        assert data["woodIslandCount"] == 0
+        assert data["woodAreaCm2"] == pytest.approx(0.0)
+        assert data["moldAreaCm2"] == pytest.approx(5000.0)
+        assert data["mainResinAreaCm2"] == pytest.approx(5000.0)
+        assert data["mainVolumeLiters"] == pytest.approx(5.0)
+
+    def test_empty_references_still_return_400(self):
+        r = client.post("/calculate-wood", json={
+            "imageWidth": 1000,
+            "imageHeight": 500,
+            "useImageBorderAsMold": True,
+            "woodBoundaryPolygons": [SQUARE_POLY],
+            "referenceMeasurements": [],
+            "mainPourDepthMm": 10,
+            "cavityPolygons": [],
+            "cavityDepthsMm": [],
+        })
+        assert r.status_code == 400
+        assert "reference" in str(r.json()["detail"]).lower()
+
+    def test_vertical_only_references_keep_axis_fallback(self):
+        r = client.post("/calculate-wood", json={
+            "imageWidth": 1000,
+            "imageHeight": 500,
+            "useImageBorderAsMold": True,
+            "woodBoundaryPolygons": [SQUARE_POLY],
+            "referenceMeasurements": [V_REF],
+            "mainPourDepthMm": 10,
+            "cavityPolygons": [],
+            "cavityDepthsMm": [],
+        })
+        assert r.status_code == 200
+        data = r.json()
+        assert data["moldAreaCm2"] == pytest.approx(5000.0)
+        assert data["mainResinAreaCm2"] == pytest.approx(4900.0)
+        assert data["scaleQuality"]["horizontalCount"] == 0
+        assert data["scaleQuality"]["verticalCount"] == 1
+        assert data["scaleQuality"]["oneDirectionOnlyWarning"] is True
+        assert data["scaleQuality"]["scaleXAvgCmPerPx"] == pytest.approx(
+            data["scaleQuality"]["scaleYAvgCmPerPx"]
+        )
 
     def test_wood_area_exceeds_mold_returns_400(self):
         big_wood = [{"x": 0, "y": 0}, {"x": 2000, "y": 0}, {"x": 2000, "y": 2000}, {"x": 0, "y": 2000}]

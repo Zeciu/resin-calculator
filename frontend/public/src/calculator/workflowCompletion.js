@@ -1,7 +1,8 @@
 /**
  * Restore and modify-mode helpers for calculator workflow flags.
- * interactionMode stays session-only; cavitiesComplete is persisted because
- * Finish Cavities with zero cavities cannot be inferred from geometry.
+ * interactionMode stays session-only; cavitiesComplete and woodBoundaryComplete
+ * are persisted because finishing those stages with zero items cannot be
+ * inferred from geometry alone.
  */
 
 export function resolveRestoredCavitiesComplete({
@@ -13,6 +14,18 @@ export function resolveRestoredCavitiesComplete({
     return storedCavitiesComplete;
   }
   if (cavityCount > 0) return true;
+  return Boolean(hasCalculatedResult);
+}
+
+export function resolveRestoredWoodComplete({
+  storedWoodBoundaryComplete,
+  woodIslandCount = 0,
+  hasCalculatedResult = false,
+} = {}) {
+  if (typeof storedWoodBoundaryComplete === "boolean") {
+    return storedWoodBoundaryComplete;
+  }
+  if (woodIslandCount > 0) return true;
   return Boolean(hasCalculatedResult);
 }
 

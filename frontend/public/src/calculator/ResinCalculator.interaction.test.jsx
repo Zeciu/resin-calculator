@@ -275,7 +275,7 @@ describe("ResinCalculator interaction modes", () => {
     await waitFor(() => {
       expect(screen.getByRole("button", { name: /Finish Cavities/i })).toBeInTheDocument();
     });
-    expect(screen.queryByText(/Modificare proiect|Modify Project active/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Modifică acest proiect|Modify this project/i)).not.toBeInTheDocument();
   });
 
   it("does not mutate geometry when entering Modify Project", async () => {
@@ -288,7 +288,7 @@ describe("ResinCalculator interaction modes", () => {
     await restoreSnapshot(ref, snapshot);
     const before = ref.current.getProjectSnapshot();
 
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
 
     const after = ref.current.getProjectSnapshot();
     expect(after.woodBoundaryMode.woodBoundaryPolygons).toEqual(
@@ -300,7 +300,7 @@ describe("ResinCalculator interaction modes", () => {
     expect(after.woodBoundaryMode.moldBoundaryPoints).toEqual(
       before.woodBoundaryMode.moldBoundaryPoints,
     );
-    expect(screen.getByText(/Modify Project/i)).toBeInTheDocument();
+    expect(screen.getByText(/Modify this project/i)).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Done with Wood/i })).not.toBeInTheDocument();
   });
 
@@ -311,7 +311,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByRole("button", { name: /Add Wood Island/i }));
 
     clickCanvasAt(12, 70);
@@ -332,7 +332,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByRole("button", { name: /Add Resin Cavity/i }));
     clickCanvasAt(70, 20);
     clickCanvasAt(90, 20);
@@ -351,7 +351,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByRole("button", { name: /Edit Mold Boundary/i }));
 
     expect(screen.queryByRole("button", { name: /Finish Mold/i })).not.toBeInTheDocument();
@@ -365,7 +365,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
 
     await user.click(screen.getByText(/Reference 1/i));
     await user.click(
@@ -385,7 +385,8 @@ describe("ResinCalculator interaction modes", () => {
     await user.click(screen.getByRole("button", { name: /Save Reference Measurement/i }));
 
     expect(ref.current.getProjectSnapshot().calibration.referenceMeasurements).toHaveLength(2);
-    expect(ref.current.getProjectSnapshot().result).toBeNull();
+    expect(ref.current.getProjectSnapshot().result).toEqual(WOOD_RESULT);
+    expect(screen.getByText(/Results need recalculation/i)).toBeInTheDocument();
   });
 
   it("edits a selected reference length and invalidates results", async () => {
@@ -395,7 +396,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByText(/Reference 2/i));
 
     const lengthInput = screen.getByLabelText(/Reference length/i);
@@ -405,7 +406,8 @@ describe("ResinCalculator interaction modes", () => {
     expect(ref.current.getProjectSnapshot().calibration.referenceMeasurements[1].knownLengthCm).toBe(
       15,
     );
-    expect(ref.current.getProjectSnapshot().result).toBeNull();
+    expect(ref.current.getProjectSnapshot().result).toEqual(WOOD_RESULT);
+    expect(screen.getByText(/Results need recalculation/i)).toBeInTheDocument();
   });
 
   it("selects cavity, wood, mold, and reference geometry from the canvas", async () => {
@@ -415,7 +417,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
 
     clickCanvasAt(75, 75);
     expect(ref.current.getProjectSnapshot().ui.selectedShape).toEqual({
@@ -458,7 +460,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByRole("button", { name: /Add Wood Island/i }));
 
     clickCanvasAt(25, 25);
@@ -475,7 +477,7 @@ describe("ResinCalculator interaction modes", () => {
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
 
     mouseCanvas("drag", 10, 10);
     const snapshot = ref.current.getProjectSnapshot();
@@ -500,7 +502,7 @@ describe("ResinCalculator interaction modes", () => {
     );
 
     expect(screen.queryByRole("button", { name: /Finish Cavities/i })).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /^Modify Project$/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^Modify this project$/i })).toBeInTheDocument();
     expect(ref.current.getProjectSnapshot().ui.cavitiesComplete).toBe(true);
   });
 
@@ -540,7 +542,7 @@ describe("ResinCalculator interaction modes", () => {
       />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
-    await user.click(screen.getByRole("button", { name: /^Modify Project$/i }));
+    await user.click(screen.getByRole("button", { name: /^Modify this project$/i }));
     await user.click(screen.getByRole("button", { name: /Add Wood Island/i }));
     clickCanvasAt(12, 70);
     clickCanvasAt(22, 70);

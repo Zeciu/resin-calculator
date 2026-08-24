@@ -2,6 +2,13 @@ import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState }
 import { jsPDF } from "jspdf";
 import { computeProjectDirtyState } from "./projectDirtyState.js";
 import {
+  formatPdfAxisReferencesUsed,
+  formatPdfPourRowValue,
+  formatPdfTimestamp,
+  localizePdfDirection,
+  localizePdfPourRowLabel,
+} from "./pdfExportCopy.js";
+import {
   CircleHelp,
   FileText,
   Maximize2,
@@ -29,6 +36,7 @@ import {
 import {
   canEnterModifyProject,
   resolveRestoredCavitiesComplete,
+  resolveRestoredWoodComplete,
 } from "./workflowCompletion.js";
 import { ROUTES } from "../workspace/routes.js";
 import {
@@ -36,6 +44,19 @@ import {
   getCalculatorApiPath,
   getCalculatorRequestHeaders,
 } from "./calculatorApi.js";
+import {
+  canExportFirstFillVolume,
+  canExportPourPlanRows,
+  isFirstFillPourRow,
+  sanitizeRestoredPlanningOutputs,
+  woodPlanningSurfaceAreaCm2,
+} from "./planningResultState.js";
+import {
+  DEFAULT_RESIN_DENSITY_KG_PER_LITER,
+  formatEstimatedResinMass,
+  formatResinDensityInput,
+  parseResinDensityKgPerLiter,
+} from "./resinMassConversion.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -213,6 +234,16 @@ function formatNumber(value, digits = 2, fallback = "N/A") {
   return Number.isFinite(num) ? num.toFixed(digits) : fallback;
 }
 
+function EstimatedResinMass({ volumeLiters, densityKgPerLiter, ui }) {
+  const mass = formatEstimatedResinMass(volumeLiters, densityKgPerLiter);
+  if (!mass) return null;
+  return (
+    <div className="estimated-resin-mass">
+      {ui.result.estimatedWeightValue(mass)}
+    </div>
+  );
+}
+
 function getMixRatioOption(value) {
   return (
     MIX_RATIO_OPTIONS.find((option) => option.value === value) ||
@@ -248,8 +279,10 @@ function getFirstFillRecommendedVolume(volumeLiters, mode) {
   return volume * getFirstFillRecommendationOption(mode).multiplier;
 }
 
-function isFirstFillPourRow(row) {
-  return row?.type === "firstFill" || row?.label?.includes("First Fill Seal Coat");
+function getFirstFillRecommendationLabel(mode, ui) {
+  return getFirstFillRecommendationOption(mode).value === "30"
+    ? ui.planning.firstFillUnsealedUnderneath
+    : ui.planning.firstFillSealedUnderneath;
 }
 
 function getPourPlanRecommendedVolume(row, firstFillRecommendationMode) {
@@ -570,6 +603,7 @@ export default forwardRef(function ResinCalculator(
     onProjectRestored,
     onSaveProjectRequest,
     demoMode = false,
+    demoProjectNote = "",
     initialInteractionMode = "build",
   },
   ref,
@@ -603,7 +637,7 @@ export default forwardRef(function ResinCalculator(
   const layerCalculation = isDemoMode ? true : accountCapabilities.layerCalculation;
   const pdfExport = isDemoMode ? false : accountCapabilities.pdfExport;
   const advancedReports = isDemoMode ? true : accountCapabilities.advancedReports;
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const ui = useMemo(() => buildCalculatorUi(t), [t]);
 
   const [calculationMode, setCalculationMode] = useState("wood");
@@ -636,6 +670,9 @@ export default forwardRef(function ResinCalculator(
   const [pourPlanRows, setPourPlanRows] = useState([]);
   const [layerPlanningError, setLayerPlanningError] = useState("");
   const [resinMixRatio, setResinMixRatio] = useState(MIX_RATIO_OPTIONS[0].value);
+  const [resinDensityInput, setResinDensityInput] = useState(
+    formatResinDensityInput(DEFAULT_RESIN_DENSITY_KG_PER_LITER),
+  );
   const [firstFillThicknessMm, setFirstFillThicknessMm] = useState("");
   const [firstFillVolumeLiters, setFirstFillVolumeLiters] = useState(null);
   const [recommendedFirstFillVolumeLiters, setRecommendedFirstFillVolumeLiters] =
@@ -657,6 +694,13 @@ export default forwardRef(function ResinCalculator(
   const [error, setError] = useState("");
   const buildProjectSnapshotRef = useRef(() => ({}));
   const restoreImportedProjectRef = useRef(() => {});
+  const parsedResinDensityKgPerLiter = parseResinDensityKgPerLiter(resinDensityInput);
+
+  useEffect(() => {
+    if (demoProjectNote) {
+      setProjectNotes(demoProjectNote);
+    }
+  }, [demoProjectNote]);
 
   useEffect(() => {
     if (!onDirtyChange) {
@@ -683,6 +727,7 @@ export default forwardRef(function ResinCalculator(
         maxPourThicknessMm,
         firstFillThicknessMm,
         cavityDepthsMm,
+        resinDensityInput,
         result,
         measurementsComplete,
         moldBoundaryComplete,
@@ -705,6 +750,7 @@ export default forwardRef(function ResinCalculator(
     maxPourThicknessMm,
     firstFillThicknessMm,
     cavityDepthsMm,
+    resinDensityInput,
     result,
     measurementsComplete,
     moldBoundaryComplete,
@@ -713,8 +759,36 @@ export default forwardRef(function ResinCalculator(
     isReadOnly,
   ]);
 
-  const markResultOutdated = () => {
+  const clearPourPlanOutputs = () => {
+    setPourPlanRows([]);
+    setRecommendedLayerCount(null);
+    setLayerPlanningError("");
+  };
+
+  const clearFirstFillOutputs = () => {
+    setFirstFillVolumeLiters(null);
+    setRecommendedFirstFillVolumeLiters(null);
+    setFirstFillError("");
+  };
+
+  const invalidatePlanningOutputs = () => {
+    clearFirstFillOutputs();
+    clearPourPlanOutputs();
+  };
+
+  const markMainResultOutdated = () => {
     setResultOutdated((prev) => prev || Boolean(result));
+  };
+
+  const markResultOutdated = () => {
+    markMainResultOutdated();
+    invalidatePlanningOutputs();
+  };
+
+  const discardCurrentResult = () => {
+    setResult(null);
+    setResultOutdated(false);
+    invalidatePlanningOutputs();
   };
 
   const resolveCavityDepthsForApi = () => {
@@ -845,8 +919,9 @@ export default forwardRef(function ResinCalculator(
     const completedWoodPolygons = woodBoundaryPolygons.filter(
       (polygon) => polygon.length >= 3
     );
-    if (!image || !effectiveScales || completedWoodPolygons.length === 0) return null;
+    if (!image || !effectiveScales) return null;
     if (!useImageBorderAsMold && moldBoundaryPoints.length < 3) return null;
+    if (completedWoodPolygons.length === 0 && !woodBoundaryComplete) return null;
 
     const moldAreaPx = useImageBorderAsMold
       ? image.width * image.height
@@ -1023,23 +1098,21 @@ export default forwardRef(function ResinCalculator(
 
   const deleteReferenceMeasurement = (idx) => {
     if (isReadOnly) return;
-    setReferenceMeasurements((prev) => {
-      const next = prev.filter((_, i) => i !== idx);
-      if (next.length === 0 && interactionMode !== "modify") {
-        setMeasurementsComplete(false);
-        setReferencesExpanded(true);
-        setMode("reference");
-      }
-      return next;
-    });
+    const isLast = referenceMeasurements.length === 1;
+    setReferenceMeasurements((prev) => prev.filter((_, i) => i !== idx));
+    if (isLast && interactionMode !== "modify") {
+      setMeasurementsComplete(false);
+      setReferencesExpanded(true);
+      setMode("reference");
+    }
     setSelectedShape((prev) => {
       if (prev?.type !== "reference") return prev;
       if (prev.index === idx) return null;
       if (prev.index > idx) return { type: "reference", index: prev.index - 1 };
       return prev;
     });
-    setResult(null);
-    setError("");
+    markResultOutdated();
+    setError(isLast && interactionMode === "modify" ? ui.errors.addReferenceBeforeContinue : "");
   };
 
   const saveReferenceMeasurement = () => {
@@ -1065,7 +1138,7 @@ export default forwardRef(function ResinCalculator(
     setDraftReferencePoints([]);
     setDraftKnownLengthCm("");
     setReferencesExpanded(true);
-    setResult(null);
+    markResultOutdated();
     setError("");
     if (interactionMode === "modify") {
       setSelectedShape({ type: "reference", index: newIndex });
@@ -1092,7 +1165,7 @@ export default forwardRef(function ResinCalculator(
           : measurement
       )
     );
-    setResult(null);
+    markResultOutdated();
     setError("");
   };
 
@@ -1141,6 +1214,9 @@ export default forwardRef(function ResinCalculator(
         setPourPlanRows([]);
         setLayerPlanningError("");
         setResinMixRatio(MIX_RATIO_OPTIONS[0].value);
+        setResinDensityInput(
+          formatResinDensityInput(DEFAULT_RESIN_DENSITY_KG_PER_LITER),
+        );
         setFirstFillThicknessMm("");
         setFirstFillVolumeLiters(null);
         setRecommendedFirstFillVolumeLiters(null);
@@ -1308,7 +1384,7 @@ export default forwardRef(function ResinCalculator(
             : measurement
         )
       );
-      setResult(null);
+      markResultOutdated();
     }
 
     setError("");
@@ -1569,8 +1645,13 @@ export default forwardRef(function ResinCalculator(
     setCavityPolygons([]);
     setCavityDepthsMm([]);
     setCurrentCavityPoints([]);
-    setWoodBoundaryComplete(false);
-    setCavitiesComplete(false);
+    if (interactionMode === "modify") {
+      setWoodBoundaryComplete(true);
+      setCavitiesComplete(true);
+    } else {
+      setWoodBoundaryComplete(false);
+      setCavitiesComplete(false);
+    }
     setSelectedShape((prev) =>
       prev?.type === "wood" || prev?.type === "cavity" ? null : prev,
     );
@@ -1668,6 +1749,7 @@ export default forwardRef(function ResinCalculator(
       zoomFactor,
       selectedShape,
       measurementsComplete,
+      woodBoundaryComplete,
       cavitiesComplete,
     },
     calibration: {
@@ -1696,6 +1778,8 @@ export default forwardRef(function ResinCalculator(
       recommendedLayerCount,
       pourPlanRows,
       resinMixRatio,
+      resinDensityKgPerLiter:
+        parsedResinDensityKgPerLiter ?? DEFAULT_RESIN_DENSITY_KG_PER_LITER,
       firstFillThicknessMm,
       firstFillVolumeLiters,
       recommendedFirstFillVolumeLiters,
@@ -1808,7 +1892,13 @@ export default forwardRef(function ResinCalculator(
       );
       setReferencesExpanded(importedReferenceMeasurements.length === 0);
       setMoldBoundaryComplete((wood.moldBoundaryPoints || []).length >= 3);
-      setWoodBoundaryComplete(importedWoodBoundaryPolygons.length > 0);
+      setWoodBoundaryComplete(
+        resolveRestoredWoodComplete({
+          storedWoodBoundaryComplete: ui.woodBoundaryComplete,
+          woodIslandCount: importedWoodBoundaryPolygons.length,
+          hasCalculatedResult: Boolean(project.result),
+        }),
+      );
       setCavitiesComplete(
         resolveRestoredCavitiesComplete({
           storedCavitiesComplete: ui.cavitiesComplete,
@@ -1823,30 +1913,45 @@ export default forwardRef(function ResinCalculator(
       setZoomFactor(ui.zoomFactor ?? 1);
       setDepthMm(wood.mainResinDepthMm ?? standard.resinDepthMm ?? "");
       setMaxPourThicknessMm(wood.maxPourThicknessMm ?? "");
-      setRecommendedLayerCount(wood.recommendedLayerCount ?? null);
-      setPourPlanRows(Array.isArray(wood.pourPlanRows) ? wood.pourPlanRows : []);
       setResinMixRatio(
         MIX_RATIO_OPTIONS.some((option) => option.value === wood.resinMixRatio)
           ? wood.resinMixRatio
           : MIX_RATIO_OPTIONS[0].value
       );
+      setResinDensityInput(
+        formatResinDensityInput(
+          parseResinDensityKgPerLiter(wood.resinDensityKgPerLiter) ??
+            DEFAULT_RESIN_DENSITY_KG_PER_LITER,
+        ),
+      );
       setLayerPlanningError("");
       setFirstFillThicknessMm(wood.firstFillThicknessMm ?? "");
-      setFirstFillVolumeLiters(wood.firstFillVolumeLiters ?? null);
       setFirstFillRecommendationMode(importedFirstFillRecommendationMode);
-      setRecommendedFirstFillVolumeLiters(
-        wood.recommendedFirstFillVolumeLiters ??
-          (Number.isFinite(Number(wood.firstFillVolumeLiters))
-            ? getFirstFillRecommendedVolume(
-                wood.firstFillVolumeLiters,
-                importedFirstFillRecommendationMode
-              )
-            : null)
-      );
+      const restoredResult = project.result || null;
+      const sanitizedPlanning = sanitizeRestoredPlanningOutputs({
+        result: restoredResult,
+        firstFillThicknessMm: wood.firstFillThicknessMm ?? "",
+        firstFillVolumeLiters: wood.firstFillVolumeLiters,
+        recommendedFirstFillVolumeLiters: wood.recommendedFirstFillVolumeLiters,
+        pourPlanRows: wood.pourPlanRows,
+        recommendedLayerCount: wood.recommendedLayerCount,
+      });
+      const restoredRecommendedFirstFill =
+        sanitizedPlanning.recommendedFirstFillVolumeLiters ??
+        (sanitizedPlanning.firstFillVolumeLiters != null
+          ? getFirstFillRecommendedVolume(
+              sanitizedPlanning.firstFillVolumeLiters,
+              importedFirstFillRecommendationMode,
+            )
+          : null);
+      setRecommendedLayerCount(sanitizedPlanning.recommendedLayerCount);
+      setPourPlanRows(sanitizedPlanning.pourPlanRows);
+      setFirstFillVolumeLiters(sanitizedPlanning.firstFillVolumeLiters);
+      setRecommendedFirstFillVolumeLiters(restoredRecommendedFirstFill);
       setFirstFillError("");
-      setProjectNotes(project.projectNotes || "");
+      setProjectNotes(demoProjectNote || project.projectNotes || "");
       setSelectedShape(importedSelectedShape);
-      setResult(project.result || null);
+      setResult(restoredResult);
       setResultOutdated(false);
       setError("");
       resizeCanvasToWorkArea();
@@ -1868,7 +1973,7 @@ export default forwardRef(function ResinCalculator(
     restoreProjectSnapshot: (project) => restoreImportedProjectRef.current(project),
   }));
 
-  const exportPdf = () => {
+  const exportPdf = async () => {
     if (isDemoMode) {
       return;
     }
@@ -1883,16 +1988,23 @@ export default forwardRef(function ResinCalculator(
 
     const canvas = canvasRef.current;
     if (!canvas) {
-      setError("Project image is not available for PDF export.");
+      setError(ui.errors.pdfImageUnavailable);
       return;
     }
 
+    const { applyPdfUnicodeFont, registerPdfUnicodeFont } = await import("./pdfUnicodeFont.js");
     const doc = new jsPDF({ unit: "mm", format: "a4" });
+    registerPdfUnicodeFont(doc);
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 14;
     const contentWidth = pageWidth - margin * 2;
     let y = margin;
+    const densityKgPerLiter =
+      parsedResinDensityKgPerLiter ?? DEFAULT_RESIN_DENSITY_KG_PER_LITER;
+    const notAvailable = ui.pdf.notAvailable;
+    const formatMass = (volumeLiters) =>
+      formatEstimatedResinMass(volumeLiters, densityKgPerLiter) || notAvailable;
 
     const ensureSpace = (heightNeeded) => {
       if (y + heightNeeded > pageHeight - margin) {
@@ -1901,13 +2013,20 @@ export default forwardRef(function ResinCalculator(
       }
     };
 
+    const addWrappedFontText = (text, { style = "normal", fontSize = 10, lineHeight = 5 } = {}) => {
+      applyPdfUnicodeFont(doc, style);
+      doc.setFontSize(fontSize);
+      const lines = doc.splitTextToSize(String(text), contentWidth);
+      ensureSpace(lines.length * lineHeight);
+      doc.text(lines, margin, y);
+      y += lines.length * lineHeight;
+      return lines;
+    };
+
     const addSectionTitle = (title) => {
-      ensureSpace(10);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(13);
-      doc.text(title, margin, y);
-      y += 7;
-      doc.setFont("helvetica", "normal");
+      addWrappedFontText(title, { style: "bold", fontSize: 13, lineHeight: 6 });
+      y += 1;
+      applyPdfUnicodeFont(doc, "normal");
       doc.setFontSize(10);
     };
 
@@ -1918,20 +2037,20 @@ export default forwardRef(function ResinCalculator(
       const valueRightX = margin + contentWidth;
       const lineHeight = 5;
 
-      doc.setFont("helvetica", "bold");
+      applyPdfUnicodeFont(doc, "bold");
       const labelLines = doc.splitTextToSize(`${label}:`, labelColumnWidth);
-      doc.setFont("helvetica", "normal");
+      applyPdfUnicodeFont(doc, "normal");
       const valueLines = doc.splitTextToSize(String(value), valueColumnWidth);
       const rowLineCount = Math.max(labelLines.length, valueLines.length);
 
       ensureSpace(rowLineCount * lineHeight + 2);
 
-      doc.setFont("helvetica", "bold");
+      applyPdfUnicodeFont(doc, "bold");
       labelLines.forEach((line, idx) => {
         doc.text(line, margin, y + idx * lineHeight);
       });
 
-      doc.setFont("helvetica", "normal");
+      applyPdfUnicodeFont(doc, "normal");
       valueLines.forEach((line, idx) => {
         doc.text(line, valueRightX, y + idx * lineHeight, { align: "right" });
       });
@@ -1940,22 +2059,17 @@ export default forwardRef(function ResinCalculator(
     };
 
     const addWrappedText = (text) => {
-      const lines = doc.splitTextToSize(text, contentWidth);
-      ensureSpace(lines.length * 5);
-      doc.text(lines, margin, y);
-      y += lines.length * 5;
+      addWrappedFontText(text, { style: "normal", fontSize: 10, lineHeight: 5 });
     };
 
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.text("Epoxy Resin Volume Estimator", margin, y);
-    y += 8;
-    doc.setFont("helvetica", "normal");
+    addWrappedFontText(ui.title, { style: "bold", fontSize: 18, lineHeight: 8 });
+    y += 2;
+    applyPdfUnicodeFont(doc, "normal");
     doc.setFontSize(10);
-    doc.text(`Report generated: ${new Date().toLocaleString()}`, margin, y);
-    y += 10;
+    addWrappedText(ui.pdf.reportGenerated(formatPdfTimestamp(new Date(), language)));
+    y += 5;
 
-    addSectionTitle("Project Image");
+    addSectionTitle(ui.pdf.projectImage);
     const imageData = canvas.toDataURL("image/png");
     const imageRatio = canvas.width / canvas.height;
     const pdfImageWidth = contentWidth;
@@ -1964,17 +2078,17 @@ export default forwardRef(function ResinCalculator(
     doc.addImage(imageData, "PNG", margin, y, pdfImageWidth, pdfImageHeight);
     y += pdfImageHeight + 10;
 
-    addSectionTitle("Calculation Mode");
+    addSectionTitle(ui.pdf.calculationMode);
     addLine(
-      "Mode",
+      ui.pdf.mode,
       result.calculationType === "wood"
-        ? "Wood Boundary Mode"
-        : "Standard Resin Area"
+        ? ui.pdf.woodBoundaryMode
+        : ui.pdf.standardResinArea
     );
 
-    addSectionTitle("Reference Measurements");
+    addSectionTitle(ui.referenceMeasurements);
     if (referenceMeasurements.length === 0) {
-      addWrappedText("No reference measurements saved.");
+      addWrappedText(ui.pdf.noReferences);
     } else {
       referenceMeasurements.forEach((ref, idx) => {
         const points = ref.calibrationPoints || [];
@@ -1986,62 +2100,86 @@ export default forwardRef(function ResinCalculator(
               )
             : "unknown";
         addLine(
-          `Reference ${idx + 1}`,
-          `${displayUnits.formatReferenceLengthWithUnit(ref.knownLengthCm)} (${direction})`
+          ui.referenceItem(idx + 1),
+          `${displayUnits.formatReferenceLengthWithUnit(ref.knownLengthCm)} (${localizePdfDirection(direction, ui)})`
         );
       });
     }
 
-    addSectionTitle("Results");
+    addSectionTitle(ui.pdf.results);
+    addLine(
+      ui.pdf.resinDensityUsed,
+      `${formatResinDensityInput(densityKgPerLiter)} ${ui.resinDensityUnit}`
+    );
     if (result.calculationType === "standard") {
-      addLine("Resin area", `${formatNumber(result.areaCm2, 2)} cm²`);
-      addLine("Depth", displayUnits.formatDepthWithUnit(depthMm));
-      addLine("Volume", `${formatNumber(result.volumeLiters, 3)} L`);
+      addLine(ui.pdf.resinArea, `${formatNumber(result.areaCm2, 2, notAvailable)} cm²`);
+      addLine(ui.pdf.depth, displayUnits.formatDepthWithUnit(depthMm));
+      addLine(ui.pdf.volume, `${formatNumber(result.volumeLiters, 3, notAvailable)} L`);
+      addLine(ui.pdf.estimatedMixedResinWeight, formatMass(result.volumeLiters));
       addLine(
-        "Recommended amount (+10%)",
-        `${formatNumber(result.recommendedVolumeLiters, 3)} L`
+        ui.pdf.recommendedAmountTenPercent,
+        `${formatNumber(result.recommendedVolumeLiters, 3, notAvailable)} L`
       );
+      addLine(ui.pdf.estimatedRecommendedWeight, formatMass(result.recommendedVolumeLiters));
     } else {
-      addLine("Mold area", `${formatNumber(result.moldAreaCm2, 2)} cm²`);
-      addLine("Total wood island area", `${formatNumber(result.woodAreaCm2, 2)} cm²`);
-      addLine("Wood islands", `${result.woodIslandCount ?? woodBoundaryPolygons.length}`);
+      addLine(ui.pdf.moldArea, `${formatNumber(result.moldAreaCm2, 2, notAvailable)} cm²`);
       addLine(
-        "Main resin area",
-        `${formatNumber(result.mainResinAreaCm2, 2)} cm²`
+        ui.pdf.totalWoodIslandArea,
+        `${formatNumber(result.woodAreaCm2, 2, notAvailable)} cm²`
+      );
+      addLine(ui.pdf.woodIslands, `${result.woodIslandCount ?? woodBoundaryPolygons.length}`);
+      addLine(
+        ui.pdf.mainResinArea,
+        `${formatNumber(result.mainResinAreaCm2, 2, notAvailable)} cm²`
       );
       addLine(
-        "Main resin volume",
-        `${formatNumber(result.mainVolumeLiters, 3)} L`
+        ui.pdf.mainResinVolume,
+        `${formatNumber(result.mainVolumeLiters, 3, notAvailable)} L`
       );
+      addLine(ui.pdf.estimatedWeight, formatMass(result.mainVolumeLiters));
 
-      if (advancedReports && firstFillVolumeLiters != null) {
-        const selectedFirstFillOption = getFirstFillRecommendationOption(
-          firstFillRecommendationMode
-        );
-        addSectionTitle("First Fill Seal Coat");
+      if (
+        advancedReports &&
+        canExportFirstFillVolume({ resultOutdated, firstFillVolumeLiters })
+      ) {
+        addSectionTitle(ui.pdf.firstFillSection);
         addLine(
-          "First fill thickness",
+          ui.pdf.firstFillThickness,
           displayUnits.formatDepthWithUnit(firstFillThicknessMm)
         );
         addLine(
-          "First fill seal coat volume",
-          `${formatNumber(firstFillVolumeLiters, 3)} L`
+          ui.pdf.firstFillVolume,
+          `${formatNumber(firstFillVolumeLiters, 3, notAvailable)} L`
+        );
+        addLine(ui.pdf.estimatedWeight, formatMass(firstFillVolumeLiters));
+        addLine(
+          ui.pdf.selectedFirstFillRecommendation,
+          getFirstFillRecommendationLabel(firstFillRecommendationMode, ui)
         );
         addLine(
-          "Selected first fill recommendation",
-          selectedFirstFillOption.label
+          ui.pdf.selectedFirstFillAmount,
+          `${formatNumber(getFirstFillRecommendedVolume(firstFillVolumeLiters, firstFillRecommendationMode), 3, notAvailable)} L`
         );
         addLine(
-          "Selected first fill amount",
-          `${formatNumber(getFirstFillRecommendedVolume(firstFillVolumeLiters, firstFillRecommendationMode), 3)} L`
+          ui.pdf.estimatedRecommendedWeight,
+          formatMass(
+            getFirstFillRecommendedVolume(firstFillVolumeLiters, firstFillRecommendationMode),
+          )
         );
       }
 
-      if (advancedReports && pourPlanRows.length > 0) {
-        addSectionTitle("Pour Layer Planning");
-        addLine("Maximum pour thickness", displayUnits.formatDepthWithUnit(maxPourThicknessMm));
-        addLine("Resin mix ratio (A:B)", getMixRatioOption(resinMixRatio).label);
-        pourPlanRows.forEach((row) => {
+      if (
+        advancedReports &&
+        canExportPourPlanRows({
+          resultOutdated,
+          firstFillVolumeLiters,
+          pourPlanRows,
+        })
+      ) {
+        addSectionTitle(ui.pdf.pourPlanningSection);
+        addLine(ui.pdf.maxPourThickness, displayUnits.formatDepthWithUnit(maxPourThicknessMm));
+        addLine(ui.pdf.resinMixRatio, getMixRatioOption(resinMixRatio).label);
+        pourPlanRows.forEach((row, idx) => {
           const recommendedVolumeLiters = getPourPlanRecommendedVolume(
             row,
             firstFillRecommendationMode
@@ -2051,55 +2189,72 @@ export default forwardRef(function ResinCalculator(
             resinMixRatio
           );
           addLine(
-            row.label,
-            `${displayUnits.formatDepthWithUnit(row.thicknessMm)} | ${formatNumber(row.volumeLiters, 3)} L | ${formatNumber(recommendedVolumeLiters, 3)} L recommended | A ${componentAMl} ml | B ${componentBMl} ml`
+            localizePdfPourRowLabel(row, idx, ui),
+            formatPdfPourRowValue({
+              thicknessText: displayUnits.formatDepthWithUnit(row.thicknessMm),
+              volumeLiters: row.volumeLiters,
+              volumeMass: formatEstimatedResinMass(row.volumeLiters, densityKgPerLiter),
+              recommendedVolumeLiters,
+              recommendedMass: formatEstimatedResinMass(
+                recommendedVolumeLiters,
+                densityKgPerLiter,
+              ),
+              componentAMl,
+              componentBMl,
+              formatNumber: (value, digits) => formatNumber(value, digits, notAvailable),
+              ui,
+            })
           );
         });
       }
 
       if (Array.isArray(result.cavities) && result.cavities.length > 0) {
         result.cavities.forEach((cavity, idx) => {
-          ensureSpace(22);
-          doc.setFont("helvetica", "bold");
-          doc.text(cavity.name || `Cavity ${idx + 1}`, margin, y);
-          y += 6;
-          doc.setFont("helvetica", "normal");
-          addLine("Area", `${formatNumber(cavity.areaCm2, 2)} cm²`);
-          addLine("Depth", displayUnits.formatDepthWithUnit(cavity.depthMm));
-          addLine("Volume", `${formatNumber(cavity.volumeLiters, 3)} L`);
+          addWrappedFontText(ui.result.cavityItem(idx + 1), {
+            style: "bold",
+            fontSize: 10,
+            lineHeight: 6,
+          });
+          applyPdfUnicodeFont(doc, "normal");
+          addLine(ui.pdf.area, `${formatNumber(cavity.areaCm2, 2, notAvailable)} cm²`);
+          addLine(ui.pdf.depth, displayUnits.formatDepthWithUnit(cavity.depthMm));
+          addLine(ui.pdf.volume, `${formatNumber(cavity.volumeLiters, 3, notAvailable)} L`);
+          addLine(ui.pdf.estimatedWeight, formatMass(cavity.volumeLiters));
         });
       } else {
-        addWrappedText("No isolated cavities included.");
+        addWrappedText(ui.pdf.noCavities);
       }
 
-      addSectionTitle("Totals");
-      addLine("Total resin volume", `${formatNumber(result.volumeLiters, 3)} L`);
+      addSectionTitle(ui.pdf.totals);
       addLine(
-        "Recommended amount (+10%)",
-        `${formatNumber(result.recommendedVolumeLiters, 3)} L`
+        ui.pdf.totalResinVolume,
+        `${formatNumber(result.volumeLiters, 3, notAvailable)} L`
       );
+      addLine(ui.pdf.estimatedMixedResinWeight, formatMass(result.volumeLiters));
+      addLine(
+        ui.pdf.recommendedAmountTenPercent,
+        `${formatNumber(result.recommendedVolumeLiters, 3, notAvailable)} L`
+      );
+      addLine(ui.pdf.estimatedRecommendedWeight, formatMass(result.recommendedVolumeLiters));
     }
 
-    addSectionTitle("Scale Information");
+    addSectionTitle(ui.pdf.scaleInformation);
     const scaleQuality = result.scaleQuality || referenceQuality;
     addLine(
-      "Horizontal scale average",
-      `${formatNumber(scaleQuality?.scaleXAvgCmPerPx, 6)} cm/pixel`
+      ui.pdf.horizontalScaleAverage,
+      `${formatNumber(scaleQuality?.scaleXAvgCmPerPx, 6, notAvailable)} cm/pixel`
     );
     addLine(
-      "Vertical scale average",
-      `${formatNumber(scaleQuality?.scaleYAvgCmPerPx, 6)} cm/pixel`
+      ui.pdf.verticalScaleAverage,
+      `${formatNumber(scaleQuality?.scaleYAvgCmPerPx, 6, notAvailable)} cm/pixel`
     );
-    addLine(
-      "References used",
-      `${(scaleQuality?.horizontalCount || 0) + (scaleQuality?.verticalCount || 0)} axis references (${scaleQuality?.diagonalCount || 0} diagonal tracked)`
-    );
+    addLine(ui.pdf.referencesUsed, formatPdfAxisReferencesUsed(scaleQuality, ui));
 
-    addSectionTitle("Project Notes");
+    addSectionTitle(ui.projectNotes);
     if (projectNotes.trim()) {
       addWrappedText(projectNotes.trim());
     } else {
-      addWrappedText("No project notes entered.");
+      addWrappedText(ui.pdf.noProjectNotes);
     }
 
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
@@ -2140,6 +2295,7 @@ export default forwardRef(function ResinCalculator(
     setError("");
     setResult(null);
     setResultOutdated(false);
+    invalidatePlanningOutputs();
 
     try {
       const response = await fetch(`${API_BASE_URL}/calculate`, {
@@ -2165,9 +2321,14 @@ export default forwardRef(function ResinCalculator(
 
   const calculateWood = async () => {
     if (isReadOnly) return;
+    if (referenceMeasurements.length === 0) {
+      setError(ui.errors.addReferenceBeforeContinue);
+      return;
+    }
     setError("");
     setResult(null);
     setResultOutdated(false);
+    invalidatePlanningOutputs();
     const image = imageRef.current;
     if (!image) {
       setError(ui.errors.uploadImageFirst);
@@ -2218,6 +2379,7 @@ export default forwardRef(function ResinCalculator(
       }
       setResult({ ...data, calculationType: "wood" });
       setResultOutdated(false);
+      invalidatePlanningOutputs();
     } catch (err) {
       setError(err.message);
     }
@@ -2319,27 +2481,13 @@ export default forwardRef(function ResinCalculator(
 
   const getCalculatedResinSurfaceAreaCm2 = () => {
     if (!result || resultOutdated) return null;
-    const cavityAreaFromItems = Array.isArray(result.cavities)
-      ? result.cavities.reduce((sum, cavity) => {
-          const area = Number(cavity.areaCm2);
-          return sum + (Number.isFinite(area) ? area : 0);
-        }, 0)
-      : 0;
-    const cavityArea =
-      cavityAreaFromItems > 0 ? cavityAreaFromItems : Number(result.cavityAreaCm2) || 0;
-    const area =
-      result.calculationType === "wood"
-        ? Number(result.mainResinAreaCm2) + cavityArea
-        : result.areaCm2;
-    const numericArea = Number(area);
-    return Number.isFinite(numericArea) && numericArea > 0 ? numericArea : null;
+    return woodPlanningSurfaceAreaCm2(result);
   };
 
   const calculateFirstFillVolume = async () => {
     if (isReadOnly) return;
     if (!layerCalculation) {
-      setFirstFillVolumeLiters(null);
-      setRecommendedFirstFillVolumeLiters(null);
+      invalidatePlanningOutputs();
       setFirstFillError(ui.errors.firstFillPlanningUnavailable);
       return;
     }
@@ -2347,20 +2495,19 @@ export default forwardRef(function ResinCalculator(
     const firstFillThickness = displayUnits.readCanonicalMm(firstFillThicknessMm);
 
     if (!resinSurfaceAreaCm2) {
-      setFirstFillVolumeLiters(null);
-      setRecommendedFirstFillVolumeLiters(null);
+      invalidatePlanningOutputs();
       setFirstFillError(ui.errors.calculateVolumeBeforePlanning);
       focusFirstFillPlanning();
       return;
     }
     if (!Number.isFinite(firstFillThickness) || firstFillThickness <= 0) {
-      setFirstFillVolumeLiters(null);
-      setRecommendedFirstFillVolumeLiters(null);
+      invalidatePlanningOutputs();
       setFirstFillError(ui.errors.firstFillThicknessPositive);
       focusFirstFillPlanning();
       return;
     }
 
+    clearPourPlanOutputs();
     try {
       const response = await fetch(
         `${API_BASE_URL}${getCalculatorApiPath(CALCULATOR_API_KIND.FIRST_FILL, isDemoMode)}`,
@@ -2378,8 +2525,7 @@ export default forwardRef(function ResinCalculator(
       );
       setFirstFillError("");
     } catch (err) {
-      setFirstFillVolumeLiters(null);
-      setRecommendedFirstFillVolumeLiters(null);
+      clearFirstFillOutputs();
       setFirstFillError(err.message);
     }
     focusFirstFillPlanning();
@@ -2599,6 +2745,40 @@ export default forwardRef(function ResinCalculator(
     Boolean(imageDataUrl) &&
     (!measurementsComplete || isModifyMode || calculationMode === "wood");
 
+  const renderResinDensityField = () => (
+    <div className="resin-density-field">
+      <label className="pour-layer-field" htmlFor="resin-density-input">
+        <span className="final-depth-label">
+          {ui.resinDensity}
+          {renderHelpPopup("resin-density", ui.help.resinDensity)}
+        </span>
+        <LengthUnitInput
+          id="resin-density-input"
+          unit={ui.resinDensityUnit}
+          step="0.01"
+          value={resinDensityInput}
+          onChange={(event) => setResinDensityInput(event.target.value)}
+          aria-label={`${ui.resinDensity} (${ui.resinDensityUnit})`}
+          aria-describedby={
+            parsedResinDensityKgPerLiter == null
+              ? "resin-density-help resin-density-error"
+              : "resin-density-help"
+          }
+          aria-invalid={parsedResinDensityKgPerLiter == null}
+          disabled={isReadOnly}
+        />
+      </label>
+      <p id="resin-density-help" className="resin-density-help">
+        {ui.resinDensityHelp}
+      </p>
+      {parsedResinDensityKgPerLiter == null ? (
+        <div id="resin-density-error" className="pour-layer-validation" role="alert">
+          {ui.errors.resinDensityRange}
+        </div>
+      ) : null}
+    </div>
+  );
+
   return (
     <div className={`container${isReadOnly ? " container--read-only" : ""}`}>
       {showHeader ? <AppHeader /> : null}
@@ -2799,7 +2979,7 @@ export default forwardRef(function ResinCalculator(
                     } else {
                       setMode("polygon");
                     }
-                    setResult(null);
+                    discardCurrentResult();
                     setError("");
                     scrollActiveWorkflowControlsIntoView("auto");
                   }}
@@ -3196,10 +3376,6 @@ export default forwardRef(function ResinCalculator(
                       onClick={() => {
                         if (woodBoundaryPoints.length > 0) {
                           setError(ui.errors.completeWoodIslandFirst);
-                          return;
-                        }
-                        if (woodBoundaryPolygons.length === 0) {
-                          setError(ui.errors.addWoodIslandBeforeContinue);
                           return;
                         }
                         setWoodBoundaryComplete(true);
@@ -3626,8 +3802,9 @@ export default forwardRef(function ResinCalculator(
 
       {calculationMode === "wood" &&
         measurementsComplete &&
+        referenceMeasurements.length > 0 &&
         (useImageBorderAsMold || moldBoundaryPoints.length >= 3) &&
-        woodBoundaryPolygons.length > 0 &&
+        woodBoundaryComplete &&
         woodBoundaryPoints.length === 0 &&
         cavitiesComplete && (
           <div className="final-action-bar" ref={finalActionBarRef}>
@@ -3646,9 +3823,8 @@ export default forwardRef(function ResinCalculator(
                 value={depthMm === "" ? "" : displayUnits.formatDepth(depthMm)}
                 onChange={(e) => {
                   setDepthMm(displayUnits.storeDepthInput(e.target.value));
-                  setRecommendedLayerCount(null);
-                  setPourPlanRows([]);
-                  markResultOutdated();
+                  clearPourPlanOutputs();
+                  markMainResultOutdated();
                 }}
                 onKeyDown={handleMainResinDepthKeyDown}
               />
@@ -3689,13 +3865,24 @@ export default forwardRef(function ResinCalculator(
                   displayUnits.formatVolume(result.volumeLiters),
                   displayUnits.volumeLabel,
                 )}
+                <EstimatedResinMass
+                  volumeLiters={result.volumeLiters}
+                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                  ui={ui}
+                />
               </div>
               {result.recommendedVolumeLiters != null && (
                 <div>
                   {ui.result.recommendedAmountWithMargin(result.safetyMarginPercent ?? 10)}{" "}
                   {result.recommendedVolumeLiters.toFixed(3)} L
+                  <EstimatedResinMass
+                    volumeLiters={result.recommendedVolumeLiters}
+                    densityKgPerLiter={parsedResinDensityKgPerLiter}
+                    ui={ui}
+                  />
                 </div>
               )}
+              {renderResinDensityField()}
             </div>
             <div className="project-notes-column">
               <label className="project-notes-label">
@@ -3721,11 +3908,22 @@ export default forwardRef(function ResinCalculator(
               <div className="main-result-label">{ui.result.totalResinRequired}</div>
               <div className="main-result-value">
                 {formatNumber(result.volumeLiters, 2)} L
+                <EstimatedResinMass
+                  volumeLiters={result.volumeLiters}
+                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                  ui={ui}
+                />
               </div>
               <div className="main-result-label">{ui.result.recommendedAmountTenPercent}</div>
               <div className="main-result-value">
                 {formatNumber(result.recommendedVolumeLiters, 2)} L
+                <EstimatedResinMass
+                  volumeLiters={result.recommendedVolumeLiters}
+                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                  ui={ui}
+                />
               </div>
+              {renderResinDensityField()}
             </div>
             <div className="project-notes-column">
               <label className="project-notes-label">
@@ -3769,11 +3967,7 @@ export default forwardRef(function ResinCalculator(
                       setFirstFillThicknessMm(
                         displayUnits.storeDepthInput(event.target.value),
                       );
-                      setFirstFillVolumeLiters(null);
-                      setRecommendedFirstFillVolumeLiters(null);
-                      setRecommendedLayerCount(null);
-                      setPourPlanRows([]);
-                      setFirstFillError("");
+                      invalidatePlanningOutputs();
                     }}
                     onKeyDown={handleFirstFillThicknessKeyDown}
                   />
@@ -3786,6 +3980,11 @@ export default forwardRef(function ResinCalculator(
                     <div>
                       {ui.planning.firstFillVolume}{" "}
                       {formatNumber(firstFillVolumeLiters, 3)} L
+                      <EstimatedResinMass
+                        volumeLiters={firstFillVolumeLiters}
+                        densityKgPerLiter={parsedResinDensityKgPerLiter}
+                        ui={ui}
+                      />
                     </div>
                     <div className="first-fill-recommendation-options">
                       <div className="first-fill-recommendation-title">
@@ -3823,6 +4022,11 @@ export default forwardRef(function ResinCalculator(
                               <strong className="first-fill-recommendation-volume">
                                 {formatNumber(recommendedVolumeLiters, 3)} L
                               </strong>
+                              <EstimatedResinMass
+                                volumeLiters={recommendedVolumeLiters}
+                                densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                ui={ui}
+                              />
                             </span>
                           </label>
                         );
@@ -3866,9 +4070,7 @@ export default forwardRef(function ResinCalculator(
                       setMaxPourThicknessMm(
                         displayUnits.storeDepthInput(event.target.value),
                       );
-                      setRecommendedLayerCount(null);
-                      setPourPlanRows([]);
-                      setLayerPlanningError("");
+                      clearPourPlanOutputs();
                     }}
                     onKeyDown={handleMaxPourThicknessKeyDown}
                   />
@@ -3919,8 +4121,22 @@ export default forwardRef(function ResinCalculator(
                             <tr key={`${row.label}-${idx}`}>
                               <td>{row.label}</td>
                               <td>{displayUnits.formatDepthWithUnit(row.thicknessMm)}</td>
-                              <td>{formatNumber(row.volumeLiters, 3)} L</td>
-                              <td>{formatNumber(recommendedVolumeLiters, 3)} L</td>
+                              <td>
+                                {formatNumber(row.volumeLiters, 3)} L
+                                <EstimatedResinMass
+                                  volumeLiters={row.volumeLiters}
+                                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                  ui={ui}
+                                />
+                              </td>
+                              <td>
+                                {formatNumber(recommendedVolumeLiters, 3)} L
+                                <EstimatedResinMass
+                                  volumeLiters={recommendedVolumeLiters}
+                                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                  ui={ui}
+                                />
+                              </td>
                               <td>{componentAMl} ml</td>
                               <td>{componentBMl} ml</td>
                             </tr>
@@ -3930,6 +4146,9 @@ export default forwardRef(function ResinCalculator(
                     </table>
                     <div className="pour-plan-note">
                       {ui.planning.layerBalanceNote}
+                    </div>
+                    <div className="pour-plan-note">
+                      {ui.planning.mixRatioVolumeNote}
                     </div>
                   </div>
                 )}
@@ -3988,7 +4207,14 @@ export default forwardRef(function ResinCalculator(
               <div className="result-section-title">{ui.result.mainResinSection}</div>
               <div>{ui.result.area(formatNumber(result.mainResinAreaCm2, 2))}</div>
               <div>{displayUnits.resultMainDepth(result.mainPourDepthMm)}</div>
-              <div>{ui.result.mainVolume(formatNumber(result.mainVolumeLiters, 3))}</div>
+              <div>
+                {ui.result.mainVolume(formatNumber(result.mainVolumeLiters, 3))}
+                <EstimatedResinMass
+                  volumeLiters={result.mainVolumeLiters}
+                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                  ui={ui}
+                />
+              </div>
             </div>
 
             {Array.isArray(result.cavities) && result.cavities.length > 0 && (
@@ -3999,7 +4225,14 @@ export default forwardRef(function ResinCalculator(
                     <div>{cavity.name || ui.result.cavityItem(idx + 1)}</div>
                     <div>{ui.result.area(formatNumber(cavity.areaCm2, 2))}</div>
                     <div>{displayUnits.resultDepth(cavity.depthMm)}</div>
-                    <div>{ui.result.volume(formatNumber(cavity.volumeLiters, 3))}</div>
+                    <div>
+                      {ui.result.volume(formatNumber(cavity.volumeLiters, 3))}
+                      <EstimatedResinMass
+                        volumeLiters={cavity.volumeLiters}
+                        densityKgPerLiter={parsedResinDensityKgPerLiter}
+                        ui={ui}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -4007,10 +4240,22 @@ export default forwardRef(function ResinCalculator(
 
             <div className="result-section">
               <div className="result-section-title">{ui.result.totalsSection}</div>
-              <div>{ui.result.totalResinVolume(formatNumber(result.volumeLiters, 3))}</div>
+              <div>
+                {ui.result.totalResinVolume(formatNumber(result.volumeLiters, 3))}
+                <EstimatedResinMass
+                  volumeLiters={result.volumeLiters}
+                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                  ui={ui}
+                />
+              </div>
               <div>
                 {ui.result.recommendedAmountWithMargin(result.safetyMarginPercent ?? 10)}{" "}
                 {formatNumber(result.recommendedVolumeLiters, 3)} L
+                <EstimatedResinMass
+                  volumeLiters={result.recommendedVolumeLiters}
+                  densityKgPerLiter={parsedResinDensityKgPerLiter}
+                  ui={ui}
+                />
               </div>
             </div>
           </details>

@@ -1324,6 +1324,60 @@ button .help-icon-wrapper {
   margin-bottom: 0;
 }
 
+.estimated-resin-mass {
+  margin-top: 2px;
+  color: #6d6255;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.main-result-value .estimated-resin-mass {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5c5348;
+}
+
+.resin-density-field {
+  margin-top: 12px;
+}
+
+.resin-density-field .pour-layer-field {
+  margin-bottom: 6px;
+}
+
+.resin-density-help {
+  margin: 0;
+  color: #6d6255;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.resin-density-field .pour-layer-validation {
+  margin-top: 6px;
+}
+
+.first-fill-recommendation-option .estimated-resin-mass {
+  display: inline;
+  margin-left: 0.4em;
+}
+
+.pour-plan-table .estimated-resin-mass {
+  display: block;
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  .main-result-value {
+    font-size: 24px;
+  }
+
+  .pour-plan-table {
+    font-size: 11px;
+  }
+}
+
 .detailed-breakdown {
   margin-top: 10px;
 }

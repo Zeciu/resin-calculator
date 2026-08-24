@@ -142,6 +142,12 @@ export function buildCalculatorUi(t) {
 
     resultsOutdated: t("calculator.resultsOutdated"),
 
+    resinDensity: t("calculator.resinDensity"),
+
+    resinDensityUnit: t("calculator.resinDensityUnit"),
+
+    resinDensityHelp: t("calculator.resinDensityHelp"),
+
     result: {
 
       totalResinRequired: t("calculator.result.totalResinRequired"),
@@ -198,6 +204,14 @@ export function buildCalculatorUi(t) {
 
       totalResinVolume: (value) => t("calculator.result.totalResinVolume", { value }),
 
+      estimatedWeight: t("calculator.result.estimatedWeight"),
+
+      estimatedWeightValue: (value) => t("calculator.result.estimatedWeightValue", { value }),
+
+      estimatedMixedResinWeight: t("calculator.result.estimatedMixedResinWeight"),
+
+      estimatedRecommendedWeight: t("calculator.result.estimatedRecommendedWeight"),
+
     },
 
     planning: {
@@ -246,6 +260,112 @@ export function buildCalculatorUi(t) {
       tableComponentB: t("calculator.planning.tableComponentB"),
 
       layerBalanceNote: t("calculator.planning.layerBalanceNote"),
+
+      mixRatioVolumeNote: t("calculator.planning.mixRatioVolumeNote"),
+
+    },
+
+    pdf: {
+
+      reportGenerated: (datetime) => t("calculator.pdf.reportGenerated", { datetime }),
+
+      projectImage: t("calculator.pdf.projectImage"),
+
+      calculationMode: t("calculator.pdf.calculationMode"),
+
+      mode: t("calculator.pdf.mode"),
+
+      woodBoundaryMode: t("calculator.pdf.woodBoundaryMode"),
+
+      standardResinArea: t("calculator.pdf.standardResinArea"),
+
+      results: t("calculator.pdf.results"),
+
+      resinArea: t("calculator.pdf.resinArea"),
+
+      depth: t("calculator.pdf.depth"),
+
+      volume: t("calculator.pdf.volume"),
+
+      moldArea: t("calculator.pdf.moldArea"),
+
+      totalWoodIslandArea: t("calculator.pdf.totalWoodIslandArea"),
+
+      woodIslands: t("calculator.pdf.woodIslands"),
+
+      mainResinArea: t("calculator.pdf.mainResinArea"),
+
+      mainResinVolume: t("calculator.pdf.mainResinVolume"),
+
+      recommendedAmountTenPercent: t("calculator.pdf.recommendedAmountTenPercent"),
+
+      totalResinVolume: t("calculator.pdf.totalResinVolume"),
+
+      firstFillSection: t("calculator.pdf.firstFillSection"),
+
+      firstFillThickness: t("calculator.pdf.firstFillThickness"),
+
+      firstFillVolume: t("calculator.pdf.firstFillVolume"),
+
+      selectedFirstFillRecommendation: t("calculator.pdf.selectedFirstFillRecommendation"),
+
+      selectedFirstFillAmount: t("calculator.pdf.selectedFirstFillAmount"),
+
+      pourPlanningSection: t("calculator.pdf.pourPlanningSection"),
+
+      maxPourThickness: t("calculator.pdf.maxPourThickness"),
+
+      resinMixRatio: t("calculator.pdf.resinMixRatio"),
+
+      pourN: (index) => t("calculator.pdf.pourN", { index }),
+
+      pourFirstFill: (index) => t("calculator.pdf.pourFirstFill", { index }),
+
+      recommended: t("calculator.pdf.recommended"),
+
+      componentA: t("calculator.pdf.componentA"),
+
+      componentB: t("calculator.pdf.componentB"),
+
+      notAvailable: t("calculator.pdf.notAvailable"),
+
+      area: t("calculator.pdf.area"),
+
+      totals: t("calculator.pdf.totals"),
+
+      noReferences: t("calculator.pdf.noReferences"),
+
+      noCavities: t("calculator.pdf.noCavities"),
+
+      noProjectNotes: t("calculator.pdf.noProjectNotes"),
+
+      scaleInformation: t("calculator.pdf.scaleInformation"),
+
+      horizontalScaleAverage: t("calculator.pdf.horizontalScaleAverage"),
+
+      verticalScaleAverage: t("calculator.pdf.verticalScaleAverage"),
+
+      referencesUsed: t("calculator.pdf.referencesUsed"),
+
+      axisReferencesTracked: (axisCount, diagonalCount) =>
+
+        t("calculator.pdf.axisReferencesTracked", { axisCount, diagonalCount }),
+
+      directionHorizontal: t("calculator.pdf.direction.horizontal"),
+
+      directionVertical: t("calculator.pdf.direction.vertical"),
+
+      directionDiagonal: t("calculator.pdf.direction.diagonal"),
+
+      directionUnknown: t("calculator.pdf.direction.unknown"),
+
+      resinDensityUsed: t("calculator.pdf.resinDensityUsed"),
+
+      estimatedMixedResinWeight: t("calculator.pdf.estimatedMixedResinWeight"),
+
+      estimatedRecommendedWeight: t("calculator.pdf.estimatedRecommendedWeight"),
+
+      estimatedWeight: t("calculator.pdf.estimatedWeight"),
 
     },
 
@@ -321,6 +441,14 @@ export function buildCalculatorUi(t) {
 
       },
 
+      resinDensity: {
+
+        title: t("calculator.help.resinDensity.title"),
+
+        text: t("calculator.help.resinDensity.text"),
+
+      },
+
     },
 
     errors: {
@@ -347,6 +475,8 @@ export function buildCalculatorUi(t) {
 
       pdfExportUnavailable: t("calculator.error.pdfExportUnavailable"),
 
+      pdfImageUnavailable: t("calculator.error.pdfImageUnavailable"),
+
       layerPlanningUnavailable: t("calculator.error.layerPlanningUnavailable"),
 
       firstFillPlanningUnavailable: t("calculator.error.firstFillPlanningUnavailable"),
@@ -362,6 +492,8 @@ export function buildCalculatorUi(t) {
       firstFillThicknessRange: t("calculator.error.firstFillThicknessRange"),
 
       firstFillThicknessPositive: t("calculator.error.firstFillThicknessPositive"),
+
+      resinDensityRange: t("calculator.error.resinDensityRange"),
 
       polygonPointLimit: (maxPoints, polygonKind) =>
 

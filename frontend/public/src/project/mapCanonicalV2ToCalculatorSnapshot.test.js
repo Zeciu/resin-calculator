@@ -46,6 +46,45 @@ describe("mapCanonicalV2ToCalculatorSnapshot", () => {
     expect(snapshot.ui).not.toHaveProperty("interactionMode");
   });
 
+  it("round-trips woodBoundaryComplete so zero-wood projects stay complete", () => {
+    const envelope = mapCalculatorSnapshotToCanonicalV2(
+      {
+        ...SAMPLE_CALCULATOR_SNAPSHOT,
+        woodBoundaryMode: {
+          ...SAMPLE_CALCULATOR_SNAPSHOT.woodBoundaryMode,
+          woodBoundaryPolygons: [],
+        },
+        ui: {
+          ...SAMPLE_CALCULATOR_SNAPSHOT.ui,
+          measurementsComplete: true,
+          woodBoundaryComplete: true,
+          cavitiesComplete: true,
+        },
+      },
+      { projectName: "River Table" },
+    );
+
+    const snapshot = mapCanonicalV2ToCalculatorSnapshot(envelope);
+    expect(snapshot.ui.woodBoundaryComplete).toBe(true);
+    expect(snapshot.woodBoundaryMode.woodBoundaryPolygons).toEqual([]);
+  });
+
+  it("round-trips resinDensityKgPerLiter with the wood snapshot", () => {
+    const envelope = mapCalculatorSnapshotToCanonicalV2(
+      {
+        ...SAMPLE_CALCULATOR_SNAPSHOT,
+        woodBoundaryMode: {
+          ...SAMPLE_CALCULATOR_SNAPSHOT.woodBoundaryMode,
+          resinDensityKgPerLiter: 1.15,
+        },
+      },
+      { projectName: "River Table" },
+    );
+
+    const snapshot = mapCanonicalV2ToCalculatorSnapshot(envelope);
+    expect(snapshot.woodBoundaryMode.resinDensityKgPerLiter).toBe(1.15);
+  });
+
   it("does not restore session-only zoom from persisted workflow data", () => {
     const envelope = mapCalculatorSnapshotToCanonicalV2(
       {

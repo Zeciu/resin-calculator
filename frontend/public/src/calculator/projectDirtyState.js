@@ -4,6 +4,8 @@
  * Photo upload alone is not considered dirty.
  */
 
+import { DEFAULT_RESIN_DENSITY_KG_PER_LITER } from "./resinMassConversion.js";
+
 function hasNonEmptyString(value) {
   return String(value ?? "").trim().length > 0;
 }
@@ -26,6 +28,7 @@ export function computeProjectDirtyState({
   maxPourThicknessMm = "",
   firstFillThicknessMm = "",
   cavityDepthsMm = [],
+  resinDensityInput = "",
   result = null,
   measurementsComplete = false,
   moldBoundaryComplete = false,
@@ -70,6 +73,16 @@ export function computeProjectDirtyState({
 
   if (hasNonEmptyString(firstFillThicknessMm)) {
     return true;
+  }
+
+  if (hasNonEmptyString(resinDensityInput)) {
+    const parsedDensity = Number(resinDensityInput);
+    if (
+      !Number.isFinite(parsedDensity) ||
+      Math.abs(parsedDensity - DEFAULT_RESIN_DENSITY_KG_PER_LITER) > 1e-9
+    ) {
+      return true;
+    }
   }
 
   if (cavityDepthsMm.some((depth) => hasNonEmptyString(depth))) {

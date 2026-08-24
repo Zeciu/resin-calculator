@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   canEnterModifyProject,
   resolveRestoredCavitiesComplete,
+  resolveRestoredWoodComplete,
 } from "./workflowCompletion.js";
 
 describe("resolveRestoredCavitiesComplete", () => {
@@ -44,6 +45,52 @@ describe("resolveRestoredCavitiesComplete", () => {
     expect(
       resolveRestoredCavitiesComplete({
         cavityCount: 0,
+        hasCalculatedResult: false,
+      }),
+    ).toBe(false);
+  });
+});
+
+describe("resolveRestoredWoodComplete", () => {
+  it("prefers the persisted flag including zero-wood completion", () => {
+    expect(
+      resolveRestoredWoodComplete({
+        storedWoodBoundaryComplete: true,
+        woodIslandCount: 0,
+        hasCalculatedResult: false,
+      }),
+    ).toBe(true);
+    expect(
+      resolveRestoredWoodComplete({
+        storedWoodBoundaryComplete: false,
+        woodIslandCount: 2,
+        hasCalculatedResult: true,
+      }),
+    ).toBe(false);
+  });
+
+  it("infers completion from wood islands when the flag is absent", () => {
+    expect(
+      resolveRestoredWoodComplete({
+        woodIslandCount: 1,
+        hasCalculatedResult: false,
+      }),
+    ).toBe(true);
+  });
+
+  it("treats a calculated project with zero wood islands as complete", () => {
+    expect(
+      resolveRestoredWoodComplete({
+        woodIslandCount: 0,
+        hasCalculatedResult: true,
+      }),
+    ).toBe(true);
+  });
+
+  it("keeps an unfinished zero-wood build incomplete", () => {
+    expect(
+      resolveRestoredWoodComplete({
+        woodIslandCount: 0,
         hasCalculatedResult: false,
       }),
     ).toBe(false);
