@@ -3396,13 +3396,18 @@
       "id": "de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
       "media": [],
       "possibleCauses": [
-        "Componentele au fost c\u00e2nt\u0103rite incorect.",
-        "Nu a fost respectat raportul recomandat de produc\u0103tor."
+        "Componentele au fost m\u0103surate incorect.",
+        "Nu a fost respectat raportul recomandat de produc\u0103tor.",
+        "Un raport exprimat \u00een volum a fost interpretat ca raport \u00een greutate sau invers.",
+        "S-a presupus c\u0103 densit\u0103\u021bile componentelor A \u0219i B sunt identice."
       ],
       "prevention": [
-        "Verific\u0103 \u00eentotdeauna dac\u0103 raportul este exprimat \u00een greutate sau \u00een volum."
+        "Verific\u0103 raportul de amestec de fiecare dat\u0103 c\u00e2nd schimbi produsul.",
+        "Verific\u0103 explicit dac\u0103 raportul este \u201eby weight\u201d sau \u201eby volume\u201d.",
+        "Folose\u0219te un c\u00e2ntar suficient de precis atunci c\u00e2nd dozarea este indicat\u0103 \u00een greutate.",
+        "Nu presupune c\u0103 un raport 2:1 \u00een volum este identic cu 2:1 \u00een greutate."
       ],
-      "problemSummary": "Fiecare sistem epoxidic are propriul raport de amestec, iar nerespectarea acestuia poate compromite \u00eent\u0103rirea r\u0103\u0219inii.",
+      "problemSummary": "Fiecare sistem epoxidic are propriul raport de amestec \u00eentre componentele A \u0219i B. Nerespectarea acestui raport sau confundarea unui raport exprimat \u00een greutate cu unul exprimat \u00een volum poate compromite \u00eent\u0103rirea r\u0103\u0219inii.",
       "relatedGlossaryTerms": [
         {
           "id": "raport-de-amestec",
@@ -3438,16 +3443,20 @@
       ],
       "searchKeywords": [],
       "solution": [
-        "Folose\u0219te raportul indicat \u00een fi\u0219a tehnic\u0103 \u0219i c\u00e2nt\u0103re\u0219te cu aten\u021bie fiecare component\u0103 \u00eenainte de amestecare."
+        "Verific\u0103 fi\u0219a tehnic\u0103 a sistemului epoxidic \u0219i identific\u0103 at\u00e2t raportul dintre componentele A \u0219i B, c\u00e2t \u0219i modul \u00een care acesta este definit: \u00een greutate sau \u00een volum.",
+        "Dac\u0103 produc\u0103torul indic\u0103 un raport \u00een greutate, componentele trebuie dozate conform maselor specificate. Dac\u0103 raportul este exprimat \u00een volum, acesta trebuie respectat ca raport volumetric, cu excep\u021bia cazului \u00een care produc\u0103torul furnizeaz\u0103 explicit \u0219i valorile echivalente pentru dozarea \u00een greutate.",
+        "Nu transforma automat un raport volumetric \u00eentr-un raport gravimetric folosind acelea\u0219i numere. Densit\u0103\u021bile componentelor pot fi diferite."
       ],
       "symptoms": [
         "Nu \u0219tii ce raport trebuie utilizat.",
-        "R\u0103\u0219ina r\u0103m\u00e2ne lipicioas\u0103 sau nu se \u00eent\u0103re\u0219te corect."
+        "Nu \u0219tii dac\u0103 raportul trebuie m\u0103surat pe c\u00e2ntar sau volumetric.",
+        "R\u0103\u0219ina r\u0103m\u00e2ne lipicioas\u0103 sau nu se \u00eent\u0103re\u0219te corect.",
+        "Cantit\u0103\u021bile calculate pentru componentele A \u0219i B par diferite de cele a\u0219teptate."
       ],
       "tips": [],
       "title": "De ce este important s\u0103 respect raportul de amestec al r\u0103\u0219inii?",
       "warnings": [
-        "Un raport de amestec incorect poate \u00eempiedica \u00eent\u0103rirea complet\u0103 a r\u0103\u0219inii."
+        "Un raport de amestec incorect poate \u00eempiedica \u00eent\u0103rirea complet\u0103 a r\u0103\u0219inii \u0219i poate compromite \u00eentreaga turnare."
       ]
     },
     {
@@ -6155,6 +6164,51 @@
       "tips": [],
       "title": "Cum \u00eentre\u021bin atelierul pentru a ob\u021bine rezultate mai bune?",
       "warnings": []
+    },
+    {
+      "estimatedRepairTime": null,
+      "id": "de-ce-cantitatea-de-r-in-n-litri-nu-este-egal-cu-greutatea-n-kilograme",
+      "media": [],
+      "possibleCauses": [
+        "Volumul a fost confundat cu masa.",
+        "A fost presupus\u0103 o densitate de 1 kg/L.",
+        "Densitatea produsului nu a fost verificat\u0103 \u00een documenta\u021bia tehnic\u0103.",
+        "Conversia volumului \u00een mas\u0103 a fost confundat\u0103 cu \u00eemp\u0103r\u021birea amestecului \u00eentre componentele A \u0219i B."
+      ],
+      "prevention": [],
+      "problemSummary": "Calculatorul poate determina volumul de r\u0103\u0219in\u0103 necesar proiectului, \u00eens\u0103 volumul exprimat \u00een litri \u0219i masa exprimat\u0103 \u00een kilograme reprezint\u0103m\u0103rimi diferite. Conversia dintre ele depinde de densitatea r\u0103\u0219inii utilizate.",
+      "relatedGlossaryTerms": [],
+      "relatedKbArticles": [
+        {
+          "id": "de-ce-este-important-s-respect-raportul-de-amestec-al-r-inii",
+          "label": "De ce este important s\u0103 respect raportul de amestec al r\u0103\u0219inii?"
+        }
+      ],
+      "relatedManualChapters": [],
+      "requiredMaterials": [],
+      "requiredTools": [],
+      "searchKeywords": [],
+      "solution": [
+        "Folose\u0219te densitatea produsului pentru conversia volumului \u00een mas\u0103 :Mas\u0103 = Volum \u00d7 Densitate\n De exemplu, pentru un volum necesar de 1,65 L \u0219i o densitate de 1,10 kg/L:\n1,65 \u00d7 1,10 = 1,815 kg\nCantitatea necesar\u0103 este astfel de aproximativ 1,82 kg.",
+        "Valoarea densit\u0103\u021bii trebuie preluat\u0103 din documenta\u021bia tehnic\u0103 a produsului utilizat.",
+        "Dup\u0103 determinarea cantit\u0103\u021bii totale, componentele A \u0219i B trebuie dozate separat conform raportului \u0219i metodei de m\u0103surare specificate de produc\u0103tor."
+      ],
+      "symptoms": [
+        "Calculatorul indic\u0103 o cantitate \u00een litri, dar vrei s\u0103 preg\u0103te\u0219ti r\u0103\u0219ina folosind c\u00e2ntarul.",
+        "Presupui c\u0103 1 litru de r\u0103\u0219in\u0103 este egal cu 1 kilogram.",
+        "Greutatea calculat\u0103 difer\u0103 de valoarea numeric\u0103 a volumului.",
+        "Nu \u0219tii ce valoare a densit\u0103\u021bii trebuie folosit\u0103."
+      ],
+      "tips": [
+        "Verific\u0103 densitatea r\u0103\u0219inii \u00eenainte de conversia din litri \u00een kilograme.",
+        "Nu folosi automat rela\u021bia 1 L = 1 kg.",
+        "P\u0103streaz\u0103 separat cele dou\u0103 opera\u021biuni: conversia volum\u2013mas\u0103 \u0219i calcularea raportului A:B.",
+        "Dac\u0103 produc\u0103torul furnizeaz\u0103 valori diferite ale densit\u0103\u021bii pentru componentele A \u0219i B, utilizeaz\u0103 informa\u021biile specifice sistemului\nrespectiv \u0219i metoda de dozare indicat\u0103 \u00een fi\u0219a tehnic\u0103."
+      ],
+      "title": "De ce cantitatea de r\u0103\u0219in\u0103 \u00een litri nu este egal\u0103 cu greutatea \u00een kilograme?",
+      "warnings": [
+        "O conversie gre\u0219it\u0103 \u00eentre volum \u0219i mas\u0103 poate produce o cantitate total\u0103 incorect\u0103. Separat, utilizarea gre\u0219it\u0103 a raportului A:B poate afecta reac\u021bia de \u00eent\u0103rire. Respect\u0103 \u00eentotdeauna datele tehnice furnizate de produc\u0103tor."
+      ]
     }
   ],
   "locale": "ro"

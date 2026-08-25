@@ -2558,6 +2558,98 @@ button.workspace-sidebar__link {
   cursor: pointer;
 }
 
+.demo-follow-up {
+  margin: 20px 0 0;
+  padding: 16px 0 4px;
+  border-top: 1px solid var(--border-warm);
+  max-width: 52rem;
+}
+
+.demo-follow-up__value {
+  margin: 0 0 14px;
+}
+
+.demo-follow-up__headline {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 650;
+  color: #2f281f;
+}
+
+.demo-follow-up__body {
+  margin: 0;
+  max-width: 40em;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #4a4034;
+}
+
+.demo-follow-up__paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.demo-follow-up__card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-warm);
+  border-radius: 12px;
+  background: #fffdf9;
+  box-shadow: 0 4px 14px rgba(54, 45, 34, 0.05);
+}
+
+.demo-follow-up__card-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 650;
+  color: #2f281f;
+}
+
+.demo-follow-up__card-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4a4034;
+}
+
+.demo-follow-up__cta {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #e6eee4;
+  border: 1px solid #c2cdc0;
+  color: #3d4f3c;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.demo-follow-up__cta:hover {
+  background: #dbe6d8;
+  border-color: #9aab98;
+}
+
+.demo-follow-up__cta:focus-visible {
+  outline: 2px solid #9d6c3b;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  .demo-follow-up__paths {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Unsaved changes dialog (Task 46) ────────────────────────── */
 .unsaved-changes-dialog__backdrop {
   position: fixed;
@@ -3367,6 +3459,45 @@ button.workspace-sidebar__link {
   color: #3a3228;
 }
 
+.register-page__hint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: #6a5f52;
+}
+
+.register-page__pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.register-page__secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #333;
+  background: var(--surface-ivory);
+  border: 1px solid var(--border-warm);
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.register-page__secondary:hover {
+  background: #fff;
+  border-color: #c9b08a;
+}
+
+.register-page__secondary:focus-visible {
+  outline: 2px solid #b8956a;
+  outline-offset: 1px;
+}
+
 .register-page__form {
   display: flex;
   flex-direction: column;
@@ -3649,6 +3780,39 @@ button.workspace-sidebar__link {
 
 .my-account-page__billing-error {
   color: #8a1f1f;
+}
+
+.my-account-page__pricing-cta {
+  --sidebar-primary-fill: #e6eee4;
+  --sidebar-primary-fill-strong: #dbe6d8;
+  --sidebar-primary-border: #c2cdc0;
+  --sidebar-primary-border-strong: #9aab98;
+  --sidebar-primary-text: #3d4f3c;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--sidebar-primary-fill);
+  border: 1px solid var(--sidebar-primary-border);
+  color: var(--sidebar-primary-text);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  box-shadow: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.my-account-page__pricing-cta:hover {
+  background: var(--sidebar-primary-fill-strong);
+  border-color: var(--sidebar-primary-border-strong);
+  color: var(--sidebar-primary-text);
+}
+
+.my-account-page__pricing-cta:focus-visible {
+  outline: 2px solid #9d6c3b;
+  outline-offset: 2px;
 }
 
 .my-account-page__billing-actions {

@@ -11,6 +11,7 @@ import { RECENT_PROJECTS_STORAGE_KEY } from "./recentProjectsIndex.js";
 import * as recentProjectsIndex from "./recentProjectsIndex.js";
 import * as recentProjectHandles from "./recentProjectHandles.js";
 import * as projectFileOpen from "./projectFileOpen.js";
+import { seedDevicePreferences } from "../preferences/testHelpers.js";
 
 HTMLCanvasElement.prototype.getContext = vi.fn(() => ({
   clearRect: vi.fn(),
@@ -87,6 +88,8 @@ const COMPLETED_SNAPSHOT = {
     recommendedLayerCount: null,
   },
   result: { calculationType: "wood", volumeLiters: 2.5, recommendedVolumeLiters: 2.75 },
+  projectNotes:
+    "Public HFZWood demo project. Geometry can be edited in this session: Reset Demo restores the original.",
 };
 
 const SEEDED_RECENTS = JSON.stringify({
@@ -133,6 +136,15 @@ function mockDemoFetch(handler) {
       if (requestUrl.includes("/api/me/capabilities")) {
         return { ok: true, json: async () => ({ role: "user", accessTier: "free", capabilities: {} }) };
       }
+      if (requestUrl.includes("/api/content/public-languages")) {
+        return {
+          ok: true,
+          json: async () => ({
+            defaultPublicLocale: "en",
+            activePublicLocales: ["en", "ro", "fr"],
+          }),
+        };
+      }
       return handler(requestUrl);
     }),
   );
@@ -178,11 +190,29 @@ describe("DemoWorkspace", () => {
     await waitFor(() => {
       expect(document.querySelector(".modify-mode-badge")).toBeInTheDocument();
     });
-    expect(screen.queryByRole("button", { name: /^Modify Project$/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Modify this project$/i })).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Reset demo" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Create a free account to start your own project/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Calculate your own project" })).toHaveAttribute(
       "href",
-      "/register",
+      "/pricing",
+    );
+    expect(screen.getByDisplayValue(/This is an HFZWood demo project/i)).toBeInTheDocument();
+    expect(
+      screen.queryByDisplayValue(/Public HFZWood demo project\. Geometry can be edited/i),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Know what you need before you pour." }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Ready to calculate your own project?" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "HFZWood is more than a calculator." }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "See plans" })).toHaveAttribute("href", "/pricing");
+    expect(screen.getByRole("link", { name: "Explore resources" })).toHaveAttribute(
+      "href",
+      "/knowledge-preview",
     );
     expect(projectFileOpen.loadRecentProject).not.toHaveBeenCalled();
     expect(recentProjectsIndex.upsertRecentProject).not.toHaveBeenCalled();
@@ -285,5 +315,39 @@ describe("DemoWorkspace", () => {
     await waitFor(() => {
       expect(screen.getByRole("alert")).toHaveTextContent(/Invalid project file/i);
     });
+  });
+
+  it("localizes the demo project note and follow-up in Romanian", async () => {
+    seedDevicePreferences({ interfaceLanguage: "ro" });
+    mockDemoFetch(async (requestUrl) => {
+      if (requestUrl.includes(CANONICAL_DEMO_PROJECT_URL)) {
+        return { ok: true, text: async () => JSON.stringify(demoEnvelope()) };
+      }
+      return { ok: false, status: 404, json: async () => ({ detail: "Not found" }) };
+    });
+
+    renderDemoWorkspace();
+
+    await waitFor(() => {
+      expect(document.querySelector(".modify-mode-badge")).toBeInTheDocument();
+    });
+    expect(screen.getByText("Modifică acest proiect")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Calculează propriul proiect" })).toHaveAttribute(
+      "href",
+      "/pricing",
+    );
+    expect(screen.getByDisplayValue(/Acesta este un proiect demo HFZWood/i)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(/Resetează demo-ul/i)).toBeInTheDocument();
+    expect(
+      screen.queryByDisplayValue(/Public HFZWood demo project\. Geometry can be edited/i),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Află de ce ai nevoie înainte să torni." }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Vezi planurile" })).toHaveAttribute("href", "/pricing");
+    expect(screen.getByRole("link", { name: "Explorează resursele" })).toHaveAttribute(
+      "href",
+      "/knowledge-preview",
+    );
   });
 });

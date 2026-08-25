@@ -201,7 +201,7 @@ class TestAnonymousKnowledgeBasePreview:
         published = _load_json(KB_RO)["entries"]
         assert [entry["id"] for entry in payload["entries"]] == [entry["id"] for entry in published]
         assert [entry["title"] for entry in payload["entries"]] == [entry["title"] for entry in published]
-        assert len(payload["entries"]) == 111
+        assert len(payload["entries"]) == 112
 
     def test_only_configured_kb_entries_include_bodies(self):
         unlocked_ids = set(_config()["knowledgeBaseEntryIds"])
@@ -210,7 +210,7 @@ class TestAnonymousKnowledgeBasePreview:
         locked = [entry for entry in payload["entries"] if entry["locked"] is True]
         assert {entry["id"] for entry in unlocked} == unlocked_ids
         assert len(unlocked) == 3
-        assert len(locked) == 108
+        assert len(locked) == 109
         for entry in unlocked:
             assert entry.get("solution")
             assert "problemSummary" in entry
@@ -329,7 +329,7 @@ class TestAuthenticatedRegression:
         kb = client.get("/api/content/knowledge-base?locale=ro").json()
         glossary = client.get("/api/content/glossary?locale=ro").json()
         assert len(manual["sections"]) == 18
-        assert len(kb["entries"]) == 111
+        assert len(kb["entries"]) == 112
         assert len(glossary["entries"]) == len(_load_json(GLOSSARY_RO)["entries"])
         assert all("blocks" in section for section in manual["sections"])
         assert all("solution" in entry for entry in kb["entries"])

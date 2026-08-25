@@ -76,6 +76,8 @@ function buildCompletedSnapshot() {
       mainResinDepthMm: "20",
     },
     result: WOOD_RESULT,
+    projectNotes:
+      "Public HFZWood demo project. Geometry can be edited in this session: Reset Demo restores the original.",
   };
 }
 
@@ -279,6 +281,32 @@ describe("ResinCalculator demoMode", () => {
     expect(screen.getByText("Detailed Breakdown")).toBeInTheDocument();
     expect(screen.getByText("Advanced Details")).toBeInTheDocument();
     expect(document.querySelector("input[type='file']")).toBeNull();
+  });
+
+  it("overlays a localized demo project note instead of snapshot developer copy", async () => {
+    const ref = createRef();
+    renderCalculator(
+      <ResinCalculator
+        ref={ref}
+        showHeader={false}
+        workspaceVariant="dedicated"
+        demoMode
+        demoProjectNote="This is an HFZWood demo project. You can modify the geometry."
+        initialInteractionMode="modify"
+        enforceAccountCapabilities={false}
+      />,
+    );
+
+    await restoreSnapshot(ref, buildCompletedSnapshot());
+
+    await waitFor(() => {
+      expect(
+        screen.getByDisplayValue("This is an HFZWood demo project. You can modify the geometry."),
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByDisplayValue(/Public HFZWood demo project\. Geometry can be edited/i),
+    ).not.toBeInTheDocument();
   });
 
   it("selects reference, formwork, wood, and cavity geometry in demo Modify Mode", async () => {

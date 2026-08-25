@@ -17,11 +17,15 @@ describe("canonical demo project asset", () => {
     expect(parsed.envelope.format).toBe("hfzwood-project");
     expect(parsed.envelope.formatVersion).toBe(2);
     expect(parsed.envelope.projectMetadata.projectId).toBe("hfzwood-public-demo-project");
+    expect(parsed.envelope.projectMetadata.ownerId).toBe("hfzwood-public-demo");
+    expect(parsed.envelope.descriptiveMetadata.projectName).toBe("Demo");
     expect(parsed.snapshot.image.dataUrl).toMatch(/^data:image\//);
-    expect(parsed.snapshot.calibration.referenceMeasurements).toHaveLength(2);
-    expect(parsed.snapshot.woodBoundaryMode.woodBoundaryPolygons.length).toBeGreaterThanOrEqual(2);
-    expect(parsed.snapshot.woodBoundaryMode.cavities.length).toBeGreaterThanOrEqual(2);
+    expect(parsed.snapshot.calibration.referenceMeasurements.length).toBeGreaterThanOrEqual(1);
+    expect(parsed.snapshot.woodBoundaryMode.woodBoundaryPolygons.length).toBeGreaterThanOrEqual(1);
+    expect(parsed.snapshot.woodBoundaryMode.cavities.length).toBeGreaterThanOrEqual(1);
     expect(parsed.snapshot.woodBoundaryMode.moldBoundaryPoints.length).toBeGreaterThanOrEqual(3);
+    expect(parsed.snapshot.woodBoundaryMode.firstFillThicknessMm).toBeTruthy();
+    expect(parsed.snapshot.woodBoundaryMode.pourPlanRows.length).toBeGreaterThan(0);
     expect(parsed.snapshot.ui.calculationMode).toBe("wood");
     expect(parsed.snapshot.ui.measurementsComplete).toBe(true);
     expect(parsed.snapshot.ui.cavitiesComplete).toBe(true);

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { ROUTES } from "../workspace/routes.js";
 
 const INITIAL_ERRORS = {
@@ -10,7 +11,7 @@ const INITIAL_ERRORS = {
   confirmPassword: "",
 };
 
-function validateRegistration(formData) {
+function validateRegistration(formData, t) {
   const errors = { ...INITIAL_ERRORS };
   const email = String(formData.get("email") ?? "").trim();
   const username = String(formData.get("username") ?? "").trim();
@@ -18,27 +19,27 @@ function validateRegistration(formData) {
   const confirmPassword = String(formData.get("confirmPassword") ?? "");
 
   if (!email) {
-    errors.email = "Email is required.";
+    errors.email = t("register.emailRequired");
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = "Enter a valid email address.";
+    errors.email = t("register.emailInvalid");
   }
 
   if (!username) {
-    errors.username = "Username is required.";
+    errors.username = t("register.usernameRequired");
   } else if (username.length < 2) {
-    errors.username = "Username must be at least 2 characters.";
+    errors.username = t("register.usernameTooShort");
   }
 
   if (!password) {
-    errors.password = "Password is required.";
+    errors.password = t("register.passwordRequired");
   } else if (password.length < 8) {
-    errors.password = "Password must be at least 8 characters.";
+    errors.password = t("register.passwordTooShort");
   }
 
   if (!confirmPassword) {
-    errors.confirmPassword = "Please confirm your password.";
+    errors.confirmPassword = t("register.confirmPasswordRequired");
   } else if (password !== confirmPassword) {
-    errors.confirmPassword = "Passwords do not match.";
+    errors.confirmPassword = t("register.passwordMismatch");
   }
 
   return errors;
@@ -49,6 +50,7 @@ function hasValidationErrors(errors) {
 }
 
 export default function RegisterPage() {
+  const { t } = useI18n();
   const { login, register, confirmRegistration } = useAuth();
   const navigate = useNavigate();
   const [errors, setErrors] = useState(INITIAL_ERRORS);
@@ -61,7 +63,7 @@ export default function RegisterPage() {
     event.preventDefault();
     const formElement = event.currentTarget;
     const formData = new FormData(formElement);
-    const nextErrors = validateRegistration(formData);
+    const nextErrors = validateRegistration(formData, t);
     setErrors(nextErrors);
     setFormError("");
 
@@ -89,9 +91,7 @@ export default function RegisterPage() {
       navigate(ROUTES.HOME, { replace: true });
     } catch (registerError) {
       setFormError(
-        registerError instanceof Error
-          ? registerError.message
-          : "Registration failed. Please try again.",
+        registerError instanceof Error ? registerError.message : t("register.failed"),
       );
     } finally {
       setIsSubmitting(false);
@@ -105,7 +105,7 @@ export default function RegisterPage() {
     }
 
     if (!confirmationCode.trim()) {
-      setFormError("Confirmation code is required.");
+      setFormError(t("register.confirmCodeRequired"));
       return;
     }
 
@@ -124,9 +124,7 @@ export default function RegisterPage() {
       });
     } catch (confirmError) {
       setFormError(
-        confirmError instanceof Error
-          ? confirmError.message
-          : "Account confirmation failed. Please try again.",
+        confirmError instanceof Error ? confirmError.message : t("register.confirmFailed"),
       );
     } finally {
       setIsSubmitting(false);
@@ -136,14 +134,14 @@ export default function RegisterPage() {
   if (pendingConfirmation) {
     return (
       <section className="register-page">
-        <h2 className="register-page__title">Confirm your HFZWood account</h2>
+        <h2 className="register-page__title">{t("register.confirmTitle")}</h2>
         <p className="register-page__intro">
-          Enter the confirmation code sent to <strong>{pendingConfirmation.email}</strong>.
+          {t("register.confirmIntro", { email: pendingConfirmation.email })}
         </p>
 
         <form className="register-page__form" onSubmit={handleConfirmSubmit} noValidate>
           <label className="register-page__field">
-            <span className="register-page__label">Confirmation code</span>
+            <span className="register-page__label">{t("register.confirmCode")}</span>
             <input
               className="register-page__input"
               type="text"
@@ -163,13 +161,13 @@ export default function RegisterPage() {
           ) : null}
 
           <button className="register-page__submit" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Confirming…" : "Confirm account"}
+            {isSubmitting ? t("register.confirming") : t("register.confirmSubmit")}
           </button>
         </form>
 
         <div className="register-page__links">
           <Link className="register-page__link" to={ROUTES.LOGIN}>
-            Already confirmed? Log in
+            {t("register.alreadyConfirmed")}
           </Link>
         </div>
       </section>
@@ -178,11 +176,17 @@ export default function RegisterPage() {
 
   return (
     <section className="register-page">
-      <h2 className="register-page__title">Create your HFZWood account</h2>
+      <h2 className="register-page__title">{t("register.title")}</h2>
+      <div className="register-page__pricing">
+        <p className="register-page__hint">{t("register.comparePlansLead")}</p>
+        <Link className="register-page__secondary" to={ROUTES.PRICING}>
+          {t("preview.viewPlans")}
+        </Link>
+      </div>
 
       <form className="register-page__form" onSubmit={handleSubmit} noValidate>
         <label className="register-page__field">
-          <span className="register-page__label">Email</span>
+          <span className="register-page__label">{t("register.email")}</span>
           <input
             className="register-page__input"
             type="email"
@@ -199,7 +203,7 @@ export default function RegisterPage() {
         </label>
 
         <label className="register-page__field">
-          <span className="register-page__label">Username</span>
+          <span className="register-page__label">{t("register.username")}</span>
           <input
             className="register-page__input"
             type="text"
@@ -220,7 +224,7 @@ export default function RegisterPage() {
         </label>
 
         <label className="register-page__field">
-          <span className="register-page__label">Password</span>
+          <span className="register-page__label">{t("register.password")}</span>
           <input
             className="register-page__input"
             type="password"
@@ -241,7 +245,7 @@ export default function RegisterPage() {
         </label>
 
         <label className="register-page__field">
-          <span className="register-page__label">Confirm password</span>
+          <span className="register-page__label">{t("register.confirmPassword")}</span>
           <input
             className="register-page__input"
             type="password"
@@ -270,13 +274,13 @@ export default function RegisterPage() {
         ) : null}
 
         <button className="register-page__submit" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Creating account…" : "Create account"}
+          {isSubmitting ? t("register.submitting") : t("register.submit")}
         </button>
       </form>
 
       <div className="register-page__links">
         <Link className="register-page__link" to={ROUTES.LOGIN}>
-          Already have an account? Log in
+          {t("register.alreadyHaveAccount")} {t("register.logIn")}
         </Link>
       </div>
     </section>

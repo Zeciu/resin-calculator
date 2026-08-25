@@ -5,11 +5,7 @@ import { useAuth } from "../auth/useAuth.js";
 import { useCapabilities } from "../capabilities/CapabilitiesContext.jsx";
 import { ROUTES } from "../workspace/routes.js";
 import { useWorkspaceNavigation } from "../workspace/useWorkspaceNavigation.js";
-import {
-  createCheckoutSession,
-  createPortalSession,
-  fetchBillingStatus,
-} from "./billingApi.js";
+import { createPortalSession, fetchBillingStatus } from "./billingApi.js";
 
 function displayValue(value) {
   return value && String(value).trim() ? String(value).trim() : "—";
@@ -102,19 +98,8 @@ export default function MyAccountPage() {
     navigate(ROUTES.LOGIN, { replace: true });
   }
 
-  async function handleSubscribe() {
-    setIsBusy(true);
-    setBillingError("");
-    try {
-      const session = await createCheckoutSession();
-      if (!session?.url) {
-        throw new Error(t("account.billingUnavailable"));
-      }
-      window.location.assign(session.url);
-    } catch (error) {
-      setBillingError(error.message || t("account.billingUnavailable"));
-      setIsBusy(false);
-    }
+  function handleSubscribe() {
+    navigate(ROUTES.PRICING);
   }
 
   async function handleManage() {
@@ -182,10 +167,6 @@ export default function MyAccountPage() {
         </h3>
         <dl className="my-account-page__details">
           <div className="my-account-page__detail">
-            <dt className="my-account-page__detail-label">{t("account.username")}</dt>
-            <dd className="my-account-page__detail-value">{displayValue(user?.username)}</dd>
-          </div>
-          <div className="my-account-page__detail">
             <dt className="my-account-page__detail-label">{t("account.email")}</dt>
             <dd className="my-account-page__detail-value">{displayValue(user?.email)}</dd>
           </div>
@@ -243,6 +224,9 @@ export default function MyAccountPage() {
             {billingError}
           </p>
         ) : null}
+        <Link to={ROUTES.PRICING} className="my-account-page__pricing-cta">
+          {t("account.viewPricing")}
+        </Link>
         <div className="my-account-page__billing-actions">
           {showSubscribe ? (
             <button

@@ -8,6 +8,7 @@ import { parseProjectFileText, ProjectFileParseError } from "./projectFileParse.
 import { CURRENT_PROJECT_KIND } from "./currentProject.js";
 import { CANONICAL_DEMO_PROJECT_URL } from "../demo/demoConstants.js";
 import { ROUTES } from "./routes.js";
+import DemoFollowUp from "./DemoFollowUp.jsx";
 
 function cloneSnapshot(snapshot) {
   return structuredClone(snapshot);
@@ -87,7 +88,7 @@ export default function DemoWorkspace() {
           {t("demo.reset")}
         </button>
         {!isAuthenticated ? (
-          <Link className="demo-workspace__account-cta" to={ROUTES.REGISTER}>
+          <Link className="demo-workspace__account-cta" to={ROUTES.PRICING}>
             {t("demo.accountCta")}
           </Link>
         ) : null}
@@ -106,15 +107,19 @@ export default function DemoWorkspace() {
         </p>
       ) : null}
       {loadState === "ready" ? (
-        <ResinCalculator
-          ref={calculatorRef}
-          key={calculatorSessionKey}
-          showHeader={false}
-          workspaceVariant="dedicated"
-          demoMode
-          initialInteractionMode="modify"
-          enforceAccountCapabilities={false}
-        />
+        <>
+          <ResinCalculator
+            ref={calculatorRef}
+            key={calculatorSessionKey}
+            showHeader={false}
+            workspaceVariant="dedicated"
+            demoMode
+            demoProjectNote={t("demo.projectNote", { reset: t("demo.reset") })}
+            initialInteractionMode="modify"
+            enforceAccountCapabilities={false}
+          />
+          <DemoFollowUp />
+        </>
       ) : null}
     </div>
   );
