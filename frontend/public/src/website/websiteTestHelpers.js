@@ -25,6 +25,8 @@ export function buildPublishedWebsiteResponse(pageKey, overrides = {}) {
  *   pages?: Record<string, object>;
  *   unavailableKeys?: string[];
  *   publishHome?: boolean;
+ *   activePublicLocales?: string[];
+ *   defaultPublicLocale?: string;
  * }} [options]
  */
 export function mockPublishedWebsiteFetch(options = {}) {
@@ -33,12 +35,22 @@ export function mockPublishedWebsiteFetch(options = {}) {
   const publishHome = options.publishHome === true;
 
   const fetchMock = vi.fn(async (url, init) => {
+    const requestUrl = String(url);
+    if (requestUrl.includes("/api/content/public-languages")) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          defaultPublicLocale: options.defaultPublicLocale ?? "en",
+          activePublicLocales: options.activePublicLocales ?? ["en", "ro", "fr"],
+        }),
+      };
+    }
+
     const global = handleGlobalReferenceSearch(url);
     if (global) {
       return global;
     }
-
-    const requestUrl = String(url);
     const match = requestUrl.match(/\/api\/content\/website\/([^/?]+)/);
     if (match) {
       const pageKey = decodeURIComponent(match[1]);

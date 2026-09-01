@@ -4,13 +4,14 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import QuickPreferences from "../preferences/QuickPreferences.jsx";
+import PublicLanguageSelector from "../preferences/PublicLanguageSelector.jsx";
 import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems, isWorkspaceNavItemActive } from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
 
 const NARROW_NAV_QUERY = "(max-width: 767px)";
 
-function LockedNavItem({ item, label, onShowLockedMessage }) {
+function LockedNavItem({ label, lockLabel, onShowLockedMessage }) {
   return (
     <button
       type="button"
@@ -18,7 +19,7 @@ function LockedNavItem({ item, label, onShowLockedMessage }) {
       onClick={onShowLockedMessage}
     >
       <span className="workspace-sidebar__label">{label}</span>
-      <span className="workspace-sidebar__lock" aria-label="Locked feature">
+      <span className="workspace-sidebar__lock" aria-label={lockLabel}>
         <Lock size={14} strokeWidth={1.8} aria-hidden="true" />
       </span>
     </button>
@@ -36,6 +37,7 @@ function GuestAuthActions({ t, pathname, onNavigate }) {
       >
         {t("demo.cta")}
       </Link>
+      <PublicLanguageSelector />
       <Link
         className="guest-home-onboarding__primary"
         to={ROUTES.REGISTER}
@@ -109,8 +111,8 @@ export default function WorkspaceSidebar() {
       <li key={item.id} className="workspace-sidebar__item">
         {isLocked ? (
           <LockedNavItem
-            item={item}
             label={label}
+            lockLabel={t("locked.featureAria")}
             onShowLockedMessage={showLockedModuleMessage}
           />
         ) : (

@@ -7,16 +7,22 @@ const RESOURCES = [
     path: ROUTES.KNOWLEDGE_PREVIEW_MANUAL,
     titleKey: "content.manualTitle",
     hintKey: "preview.resourceManualHint",
+    accessLeadKey: "preview.accessFreeLead",
+    accessBodyKey: "preview.resourceManualAccess",
   },
   {
     path: ROUTES.KNOWLEDGE_PREVIEW_KNOWLEDGE_BASE,
     titleKey: "content.knowledgeBaseTitle",
     hintKey: "preview.resourceKbHint",
+    accessLeadKey: "preview.accessSubscriptionLead",
+    accessBodyKey: "preview.resourceKbAccess",
   },
   {
     path: ROUTES.KNOWLEDGE_PREVIEW_GLOSSARY,
     titleKey: "content.glossaryTitle",
     hintKey: "preview.resourceGlossaryHint",
+    accessLeadKey: "preview.accessSubscriptionLead",
+    accessBodyKey: "preview.resourceGlossaryAccess",
   },
 ];
 
@@ -38,6 +44,12 @@ export default function PublicKnowledgePreviewLanding() {
               <Link className="knowledge-preview-landing__link" to={resource.path}>
                 <h2 className="knowledge-preview-landing__resource-title">{t(resource.titleKey)}</h2>
                 <p className="knowledge-preview-landing__resource-hint">{t(resource.hintKey)}</p>
+                <p className="knowledge-preview-landing__resource-access">
+                  <strong className="knowledge-preview-landing__resource-access-lead">
+                    {t(resource.accessLeadKey)}
+                  </strong>{" "}
+                  {t(resource.accessBodyKey)}
+                </p>
               </Link>
             </li>
           ))}

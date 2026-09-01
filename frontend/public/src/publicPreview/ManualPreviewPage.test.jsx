@@ -38,7 +38,7 @@ describe("Manual public preview", () => {
       expect(unlockedChapter).toHaveAttribute("aria-current", "true");
     });
     expect(unlockedChapter).toHaveClass("knowledge-preview-toc__link--available");
-    expect(screen.getByText("Disponibil în preview")).toBeInTheDocument();
+    expect(screen.getByText("Disponibil în previzualizare")).toBeInTheDocument();
     expect(screen.queryByText("searchKeywords")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringMatching(/^\/api\/public-preview\/manual\?locale=/),

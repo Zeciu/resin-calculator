@@ -111,6 +111,28 @@ describe("Public Knowledge Preview navigation and landing", () => {
     expectNoAuthenticatedContentFetch(fetchMock);
   });
 
+  it("shows free-account and subscription access lines on each landing resource card", () => {
+    mockPublicPreviewFetch();
+    seedDevicePreferences({ interfaceLanguage: "en" });
+    renderWorkspace(ROUTES.KNOWLEDGE_PREVIEW);
+
+    const main = screen.getByRole("main");
+    const manualCard = within(main).getByRole("link", { name: /Manual & Tutorials/i });
+    const kbCard = within(main).getByRole("link", { name: /Knowledge Base/i });
+    const glossaryCard = within(main).getByRole("link", { name: /Glossary/i });
+
+    expect(manualCard).toHaveTextContent(
+      "Published chapter titles, with one chapter available to read in full.",
+    );
+    expect(manualCard).toHaveTextContent("Free account: the complete Manual and all video tutorials.");
+    expect(kbCard).toHaveTextContent(
+      "Published article titles, with three articles available to read in full.",
+    );
+    expect(kbCard).toHaveTextContent("Subscription: full access to all articles.");
+    expect(glossaryCard).toHaveTextContent("Published terms, with three terms available to read in full.");
+    expect(glossaryCard).toHaveTextContent("Subscription: full access to all terms.");
+  });
+
   it("lets a guest open the landing from the sidebar", async () => {
     mockPublicPreviewFetch();
     seedDevicePreferences({ interfaceLanguage: "en" });

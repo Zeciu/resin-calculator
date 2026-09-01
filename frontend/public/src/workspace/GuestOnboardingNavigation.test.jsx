@@ -152,6 +152,7 @@ describe("Guest onboarding and Home navigation", () => {
       .filter(Boolean);
     expect(labels.slice(0, expectedOrder.length)).toEqual(expectedOrder);
     const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    const languageSelect = await within(sidebar).findByRole("combobox", { name: "Language" });
     const registerCta = within(sidebar).getByRole("link", { name: "Create Free Account" });
     const loginCta = within(sidebar).getByRole("link", { name: "Already have an account? Log in" });
     expect(demoCta).toHaveAttribute("href", "/demo");
@@ -166,7 +167,8 @@ describe("Guest onboarding and Home navigation", () => {
     expect(registerCta).toHaveAttribute("href", "/register");
     expect(registerCta).toHaveClass("guest-home-onboarding__primary");
     expect(loginCta).toHaveAttribute("href", "/login");
-    expect(demoCta.compareDocumentPosition(registerCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(demoCta.compareDocumentPosition(languageSelect) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(languageSelect.compareDocumentPosition(registerCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(registerCta.compareDocumentPosition(loginCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(within(screen.getByRole("main")).queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
 
@@ -302,11 +304,13 @@ describe("Guest onboarding and Home navigation", () => {
       within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
     ).toHaveAttribute("href", "/login");
     const collapsedDemoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    const languageSelect = await within(sidebar).findByRole("combobox", { name: "Language" });
     expect(collapsedDemoCta).toHaveAttribute("href", "/demo");
     expect(disclosure.contains(within(sidebar).getByRole("link", { name: "Create Free Account" }))).toBe(
       false,
     );
     expect(disclosure.contains(collapsedDemoCta)).toBe(false);
+    expect(disclosure.contains(languageSelect)).toBe(false);
     expect(within(sidebar).queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
 
     await user.click(summary);

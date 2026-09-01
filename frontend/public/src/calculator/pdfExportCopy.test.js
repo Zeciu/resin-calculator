@@ -53,6 +53,20 @@ describe("pdfExportCopy", () => {
     );
   });
 
+  it("localizes first-fill pour labels in French from row type, not stored English copy", () => {
+    const ui = uiFor("fr");
+    expect(
+      localizePdfPourRowLabel(
+        { type: "firstFill", label: "Pour 1 — First Fill Seal Coat" },
+        0,
+        ui,
+      ),
+    ).toBe("Coulée 1 — Couche d’étanchéité du premier coulage");
+    expect(localizePdfPourRowLabel({ type: "mainPour", label: "Pour 2" }, 1, ui)).toBe(
+      "Coulée 2",
+    );
+  });
+
   it("localizes pour value surrounding words but keeps unit tokens", () => {
     const ui = uiFor("ro");
     const value = formatPdfPourRowValue({

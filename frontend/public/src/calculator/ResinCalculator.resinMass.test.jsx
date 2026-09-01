@@ -321,8 +321,9 @@ describe("ResinCalculator resin mass conversion", () => {
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
 
-    expect(screen.getByText(/1\.50 L/)).toBeInTheDocument();
-    expect(screen.getByText(/1\.65 L/)).toBeInTheDocument();
+    const mainCard = document.querySelector(".main-result-card");
+    expect(within(mainCard).getByText(/1\.50 L/)).toBeInTheDocument();
+    expect(within(mainCard).getByText(/1\.65 L/)).toBeInTheDocument();
     expect(screen.getAllByText("≈ 1.65 kg").length).toBeGreaterThan(0);
     expect(screen.getAllByText("≈ 1.82 kg").length).toBeGreaterThan(0);
     expect(densityInput()).toHaveValue(1.1);

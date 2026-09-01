@@ -57,6 +57,12 @@ import {
   formatResinDensityInput,
   parseResinDensityKgPerLiter,
 } from "./resinMassConversion.js";
+import ProjectCostEstimate from "./ProjectCostEstimate.jsx";
+import {
+  deserializeProjectCostEstimate,
+  EMPTY_PROJECT_COST_ESTIMATE_INPUTS,
+  serializeProjectCostEstimate,
+} from "./projectCostEstimate.js";
 
 const API_BASE_URL = "";
 const PROJECT_FILE_VERSION = "1.0";
@@ -283,6 +289,25 @@ function getFirstFillRecommendationLabel(mode, ui) {
   return getFirstFillRecommendationOption(mode).value === "30"
     ? ui.planning.firstFillUnsealedUnderneath
     : ui.planning.firstFillSealedUnderneath;
+}
+
+function canvasStatusModeLabel(mode, ui) {
+  switch (mode) {
+    case "reference":
+      return ui.workflow.references;
+    case "mold":
+      return ui.workflow.mold;
+    case "wood":
+      return ui.workflow.wood;
+    case "cavity":
+      return ui.workflow.cavities;
+    case "polygon":
+      return ui.workflow.area;
+    case "edit":
+      return ui.status.edit;
+    default:
+      return mode;
+  }
 }
 
 function getPourPlanRecommendedVolume(row, firstFillRecommendationMode) {
@@ -692,6 +717,8 @@ export default forwardRef(function ResinCalculator(
   const [result, setResult] = useState(null);
   const [resultOutdated, setResultOutdated] = useState(false);
   const [error, setError] = useState("");
+  const [costEstimate, setCostEstimate] = useState(EMPTY_PROJECT_COST_ESTIMATE_INPUTS);
+  const [costEstimateOpen, setCostEstimateOpen] = useState(true);
   const buildProjectSnapshotRef = useRef(() => ({}));
   const restoreImportedProjectRef = useRef(() => {});
   const parsedResinDensityKgPerLiter = parseResinDensityKgPerLiter(resinDensityInput);
@@ -733,6 +760,7 @@ export default forwardRef(function ResinCalculator(
         moldBoundaryComplete,
         woodBoundaryComplete,
         cavitiesComplete,
+        costEstimate,
       }),
     );
   }, [
@@ -756,6 +784,7 @@ export default forwardRef(function ResinCalculator(
     moldBoundaryComplete,
     woodBoundaryComplete,
     cavitiesComplete,
+    costEstimate,
     isReadOnly,
   ]);
 
@@ -904,7 +933,7 @@ export default forwardRef(function ResinCalculator(
           : null;
 
       return {
-        name: `Cavity ${idx + 1}`,
+        name: ui.result.cavityItem(idx + 1),
         depthValue,
         areaCm2,
         volumeLiters,
@@ -1209,6 +1238,8 @@ export default forwardRef(function ResinCalculator(
         setDraftReferencePoints([]);
         setDraftKnownLengthCm("");
         setProjectNotes("");
+        setCostEstimate({ ...EMPTY_PROJECT_COST_ESTIMATE_INPUTS });
+        setCostEstimateOpen(true);
         setMaxPourThicknessMm("");
         setRecommendedLayerCount(null);
         setPourPlanRows([]);
@@ -1734,7 +1765,8 @@ export default forwardRef(function ResinCalculator(
     setError("");
   };
 
-  const buildProjectSnapshot = () => ({
+  const buildProjectSnapshot = () => {
+    const snapshot = {
     appVersion: PROJECT_FILE_VERSION,
     savedAt: new Date().toISOString(),
     image: {
@@ -1787,7 +1819,13 @@ export default forwardRef(function ResinCalculator(
     },
     projectNotes,
     result,
-  });
+    };
+    const projectCostEstimate = serializeProjectCostEstimate(costEstimate);
+    if (projectCostEstimate) {
+      snapshot.projectCostEstimate = projectCostEstimate;
+    }
+    return snapshot;
+  };
 
   const saveProject = () => {
     if (isDemoMode) {
@@ -1951,6 +1989,8 @@ export default forwardRef(function ResinCalculator(
       setFirstFillError("");
       setProjectNotes(demoProjectNote || project.projectNotes || "");
       setSelectedShape(importedSelectedShape);
+      setCostEstimate(deserializeProjectCostEstimate(project.projectCostEstimate));
+      setCostEstimateOpen(true);
       setResult(restoredResult);
       setResultOutdated(false);
       setError("");
@@ -2807,7 +2847,7 @@ export default forwardRef(function ResinCalculator(
               <span className="upload-helper">{ui.uploadHelper}</span>
             )}
           </label>
-          <aside className="upload-onboarding-panel" aria-label="Upload photo guidance">
+          <aside className="upload-onboarding-panel" aria-label={ui.uploadPhotoGuidance}>
             <span className="onboarding-badge">1</span>
             <div>
               <h2>{ui.step1Title}</h2>
@@ -2854,7 +2894,7 @@ export default forwardRef(function ResinCalculator(
                   event.preventDefault();
                   saveReferenceMeasurement();
                 }}
-                placeholder="e.g. 10.0"
+                placeholder={ui.exampleLengthPlaceholder}
               />
             </label>
             <button onClick={saveReferenceMeasurement}>
@@ -2866,23 +2906,23 @@ export default forwardRef(function ResinCalculator(
 
       {woodLiveSummary && (
         <details className="live-estimate">
-          <summary>Advanced Details</summary>
-          <div>Mold area: {formatNumber(woodLiveSummary.moldAreaCm2, 2)} cm²</div>
+          <summary>{ui.advancedDetails}</summary>
+          <div>{ui.result.moldArea(formatNumber(woodLiveSummary.moldAreaCm2, 2))}</div>
           <div>
-            Total wood island area: {formatNumber(woodLiveSummary.woodAreaCm2, 2)} cm²
+            {ui.result.totalWoodIslandArea(formatNumber(woodLiveSummary.woodAreaCm2, 2))}
           </div>
-          <div>Wood islands: {woodLiveSummary.woodIslandCount}</div>
+          <div>{ui.result.woodIslandsCount(woodLiveSummary.woodIslandCount)}</div>
           <div>
-            Main resin area: {formatNumber(woodLiveSummary.mainResinAreaCm2, 2)} cm²
-          </div>
-          <div>
-            Main volume: {formatNumber(woodLiveSummary.mainVolumeLiters, 3)} L
+            {ui.result.mainResinArea(formatNumber(woodLiveSummary.mainResinAreaCm2, 2))}
           </div>
           <div>
-            Total resin volume: {formatNumber(woodLiveSummary.totalVolumeLiters, 3)} L
+            {ui.result.mainVolume(formatNumber(woodLiveSummary.mainVolumeLiters, 3))}
           </div>
           <div>
-            Recommended amount (+10%):{" "}
+            {ui.result.totalResinVolume(formatNumber(woodLiveSummary.totalVolumeLiters, 3))}
+          </div>
+          <div>
+            {ui.result.recommendedAmountTenPercent}{" "}
             {formatNumber(woodLiveSummary.recommendedVolumeLiters, 3)} L
           </div>
         </details>
@@ -2927,7 +2967,7 @@ export default forwardRef(function ResinCalculator(
                         : "secondary-action"
                   }
                   onClick={startAddReferenceMeasurement}
-                  title="Click then select two points on the image"
+                  title={ui.clickSelectTwoPoints}
                 >
                   {ui.addReferenceMeasurement}
                   {renderHelpPopup("reference", ui.help.reference)}
@@ -3036,7 +3076,7 @@ export default forwardRef(function ResinCalculator(
               {!isModifyMode && activeWorkflowStage === "references" && (
                 <aside
                   className="upload-onboarding-panel"
-                  aria-label="Reference measurement guidance"
+                  aria-label={ui.referenceGuidance}
                 >
                   <span className="onboarding-badge">2</span>
                   <div>
@@ -3288,7 +3328,7 @@ export default forwardRef(function ResinCalculator(
                   {activeWorkflowStage === "mold" && (
                     <aside
                       className="upload-onboarding-panel"
-                      aria-label="Mold boundary guidance"
+                      aria-label={ui.moldGuidance}
                     >
                       <span className="onboarding-badge">3</span>
                       <div>
@@ -3391,7 +3431,7 @@ export default forwardRef(function ResinCalculator(
                     {activeWorkflowStage === "wood" && (
                       <aside
                         className="upload-onboarding-panel"
-                        aria-label="Wood island guidance"
+                        aria-label={ui.woodGuidance}
                       >
                         <span className="onboarding-badge">4</span>
                         <div>
@@ -3534,7 +3574,7 @@ export default forwardRef(function ResinCalculator(
                     {activeWorkflowStage === "cavities" && (
                       <aside
                         className="upload-onboarding-panel"
-                        aria-label="Resin cavity guidance"
+                        aria-label={ui.cavityGuidance}
                       >
                         <span className="onboarding-badge">5</span>
                         <div>
@@ -3599,40 +3639,37 @@ export default forwardRef(function ResinCalculator(
           </div>
           <div className="workspace-image-footer">
             <div className="canvas-status-bar" aria-live="polite">
-              {calculationMode === "wood"
-                ? `Wood | ${mode} | Refs: ${referenceMeasurements.length}`
-                : `Std | ${mode} | Refs: ${referenceMeasurements.length}`}
-              {isModifyMode ? " | Modify" : ""}
-              {" | "}
-              Zoom: {(zoomFactor * 100).toFixed(0)}%
-              {" | "}
-              Rot: {rotationDeg}°
+              {(calculationMode === "wood" ? ui.status.wood : ui.status.standard)
+                + ` | ${canvasStatusModeLabel(mode, ui)} | ${ui.status.refs(referenceMeasurements.length)}`
+                + (isModifyMode ? ` | ${ui.status.modify}` : "")
+                + ` | ${ui.status.zoom((zoomFactor * 100).toFixed(0))}`
+                + ` | ${ui.status.rotation(rotationDeg)}`}
             </div>
             <div className="mode-buttons view-controls">
-              <span className="workflow-section-label">View & Navigation</span>
+              <span className="workflow-section-label">{ui.viewNavigation}</span>
               <button className="nav-tool-button" onClick={fitToScreen}>
                 <Maximize2 size={14} aria-hidden="true" />
-                Fit to Screen
+                {ui.fitToScreen}
               </button>
               <button className="nav-tool-button" onClick={zoomIn}>
                 <ZoomIn size={14} aria-hidden="true" />
-                Zoom In
+                {ui.zoomIn}
               </button>
               <button className="nav-tool-button" onClick={zoomOut}>
                 <ZoomOut size={14} aria-hidden="true" />
-                Zoom Out
+                {ui.zoomOut}
               </button>
               <button className="nav-tool-button" onClick={resetZoom}>
                 <RefreshCcw size={14} aria-hidden="true" />
-                Reset Zoom
+                {ui.resetZoom}
               </button>
               <button className="nav-tool-button" onClick={rotateLeft} disabled={isReadOnly}>
                 <RotateCcw size={14} aria-hidden="true" />
-                Rotate Left 90°
+                {ui.rotateLeft}
               </button>
               <button className="nav-tool-button" onClick={rotateRight} disabled={isReadOnly}>
                 <RotateCw size={14} aria-hidden="true" />
-                Rotate Right 90°
+                {ui.rotateRight}
               </button>
             </div>
           </div>
@@ -3642,7 +3679,7 @@ export default forwardRef(function ResinCalculator(
 
       {calculationMode === "wood" && woodBoundaryPolygons.length > 0 && (
         <div className="wood-island-list">
-          <h3>Wood Islands</h3>
+          <h3>{ui.woodIslands}</h3>
           {woodBoundaryPolygons.map((woodPolygon, idx) => (
             <div
               key={idx}
@@ -3657,12 +3694,12 @@ export default forwardRef(function ResinCalculator(
                 setDraftReferencePoints([]);
               }}
             >
-              <span>Wood Island {idx + 1}</span>
+              <span>{ui.woodIslandItem(idx + 1)}</span>
               <button
                 type="button"
                 className="icon-delete-button"
-                aria-label={`Delete Wood Island ${idx + 1}`}
-                title={`Delete Wood Island ${idx + 1}`}
+                aria-label={ui.deleteWoodIslandItem(idx + 1)}
+                title={ui.deleteWoodIslandItem(idx + 1)}
                 disabled={isReadOnly}
                 onClick={(event) => {
                   event.stopPropagation();
@@ -3678,10 +3715,10 @@ export default forwardRef(function ResinCalculator(
 
       {calculationMode === "wood" && cavityPolygons.length > 0 && (
         <div className="cavity-list workspace-cavity-list">
-          <h3>Cavity Depths & Volumes</h3>
+          <h3>{ui.cavityDepthsAndVolumes}</h3>
           {!referenceQuality && (
             <div className="cavity-note">
-              Add reference measurements to preview cavity areas and volumes.
+              {ui.cavityNeedsReferences}
             </div>
           )}
           {cavitySummaries.map((cavity, idx) => (
@@ -3711,18 +3748,18 @@ export default forwardRef(function ResinCalculator(
                   </div>
                 )}
                 <details className="cavity-details-toggle">
-                  <summary>Details</summary>
+                  <summary>{ui.details}</summary>
                   <div>
-                    Area:{" "}
                     {cavity.areaCm2 != null
-                      ? `${cavity.areaCm2.toFixed(2)} cm²`
-                      : "needs calibration"}
+                      ? ui.result.area(cavity.areaCm2.toFixed(2))
+                      : ui.areaStatus(ui.needsCalibration)}
                   </div>
                   <div>
-                    Volume:{" "}
                     {cavity.volumeLiters != null
-                      ? `${displayUnits.formatVolume(cavity.volumeLiters)} ${displayUnits.volumeLabel}`
-                      : "enter depth"}
+                      ? ui.volumeStatus(
+                          `${displayUnits.formatVolume(cavity.volumeLiters)} ${displayUnits.volumeLabel}`,
+                        )
+                      : ui.volumeStatus(ui.enterDepth)}
                   </div>
                 </details>
               </div>
@@ -3766,7 +3803,7 @@ export default forwardRef(function ResinCalculator(
                       confirmCavityDepth(idx);
                     }}
                   >
-                    Confirm Depth
+                    {ui.confirmDepth}
                   </button>
                 </div>
               ) : (
@@ -3779,14 +3816,14 @@ export default forwardRef(function ResinCalculator(
                     focusCavityDepthInput(idx);
                   }}
                 >
-                  Edit Depth
+                  {ui.editDepth}
                 </button>
               )}
               <button
                 type="button"
                 className="icon-delete-button"
-                aria-label={`Delete ${cavity.name}`}
-                title={`Delete ${cavity.name}`}
+                aria-label={ui.deleteNamed(cavity.name)}
+                title={ui.deleteNamed(cavity.name)}
                 disabled={isReadOnly}
                 onClick={(event) => {
                   event.stopPropagation();
@@ -3893,7 +3930,7 @@ export default forwardRef(function ResinCalculator(
                   rows={5}
                   readOnly={isReadOnly}
                   onChange={(event) => setProjectNotes(event.target.value)}
-                  placeholder="Client requests black pigment. Pour in two stages..."
+                  placeholder={ui.projectNotesPlaceholder}
                 />
               </label>
               <div className="project-notes-counter">{projectNotes.length}/1000</div>
@@ -3934,7 +3971,7 @@ export default forwardRef(function ResinCalculator(
                   rows={5}
                   readOnly={isReadOnly}
                   onChange={(event) => setProjectNotes(event.target.value)}
-                  placeholder="Client requests black pigment. Pour in two stages..."
+                  placeholder={ui.projectNotesPlaceholder}
                 />
               </label>
               <div className="project-notes-counter">{projectNotes.length}/1000</div>
@@ -4119,7 +4156,7 @@ export default forwardRef(function ResinCalculator(
 
                           return (
                             <tr key={`${row.label}-${idx}`}>
-                              <td>{row.label}</td>
+                              <td>{localizePdfPourRowLabel(row, idx, ui)}</td>
                               <td>{displayUnits.formatDepthWithUnit(row.thicknessMm)}</td>
                               <td>
                                 {formatNumber(row.volumeLiters, 3)} L
@@ -4222,7 +4259,7 @@ export default forwardRef(function ResinCalculator(
                 <div className="result-section-title">{ui.result.cavitiesSection}</div>
                 {result.cavities.map((cavity, idx) => (
                   <div key={cavity.name || idx} className="cavity-result-block">
-                    <div>{cavity.name || ui.result.cavityItem(idx + 1)}</div>
+                    <div>{ui.result.cavityItem(idx + 1)}</div>
                     <div>{ui.result.area(formatNumber(cavity.areaCm2, 2))}</div>
                     <div>{displayUnits.resultDepth(cavity.depthMm)}</div>
                     <div>
@@ -4261,6 +4298,17 @@ export default forwardRef(function ResinCalculator(
           </details>
         </div>
       )}
+      {result ? (
+        <ProjectCostEstimate
+          ui={ui}
+          calculatedVolumeLiters={result.volumeLiters ?? result.totalVolumeLiters}
+          inputs={costEstimate}
+          onInputsChange={setCostEstimate}
+          open={costEstimateOpen}
+          onOpenChange={setCostEstimateOpen}
+          readOnly={isReadOnly}
+        />
+      ) : null}
       <div className="bottom-project-actions">
         <h3>{ui.projectActions}</h3>
         <div className="bottom-project-actions-row">

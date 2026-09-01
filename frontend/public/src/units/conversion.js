@@ -176,6 +176,14 @@ export function formatLengthFromMm(mm, unit, digits = 2) {
   return formatDisplayNumber(mmToLength(mm, unit), digits);
 }
 
+export function storeCanonicalLitersFromDisplay(rawValue, unit) {
+  if (rawValue === "") {
+    return "";
+  }
+  const liters = volumeToLiters(rawValue, unit);
+  return Number.isFinite(liters) ? String(liters) : rawValue;
+}
+
 export function formatVolumeFromLiters(liters, unit, digits = 3) {
   return formatDisplayNumber(litersToVolume(liters, unit), digits);
 }

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "./useAuth.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { ROUTES } from "../workspace/routes.js";
 
 export default function PasswordRecoveryPage() {
+  const { t } = useI18n();
   const { initiatePasswordRecovery, confirmPasswordReset } = useAuth();
   const [emailError, setEmailError] = useState("");
   const [formError, setFormError] = useState("");
@@ -22,13 +24,13 @@ export default function PasswordRecoveryPage() {
     const email = String(new FormData(formElement).get("email") ?? "").trim();
 
     if (!email) {
-      setEmailError("Email is required.");
+      setEmailError(t("register.emailRequired"));
       setIsSubmitted(false);
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setEmailError("Enter a valid email address.");
+      setEmailError(t("register.emailInvalid"));
       setIsSubmitted(false);
       return;
     }
@@ -47,7 +49,7 @@ export default function PasswordRecoveryPage() {
       setFormError(
         recoveryError instanceof Error
           ? recoveryError.message
-          : "Password recovery could not be started. Please try again.",
+          : t("recovery.failed"),
       );
     } finally {
       setIsSubmitting(false);
@@ -58,19 +60,19 @@ export default function PasswordRecoveryPage() {
     event.preventDefault();
 
     if (!confirmationCode.trim()) {
-      setFormError("Confirmation code is required.");
+      setFormError(t("register.confirmCodeRequired"));
       return;
     }
     if (!newPassword) {
-      setFormError("New password is required.");
+      setFormError(t("recovery.newPasswordRequired"));
       return;
     }
     if (newPassword.length < 8) {
-      setFormError("Password must be at least 8 characters.");
+      setFormError(t("register.passwordTooShort"));
       return;
     }
     if (newPassword !== confirmPassword) {
-      setFormError("Passwords do not match.");
+      setFormError(t("register.passwordMismatch"));
       return;
     }
 
@@ -88,7 +90,7 @@ export default function PasswordRecoveryPage() {
       setFormError(
         resetError instanceof Error
           ? resetError.message
-          : "Password reset failed. Check the code and try again.",
+          : t("recovery.resetFailed"),
       );
     } finally {
       setIsSubmitting(false);
@@ -98,13 +100,13 @@ export default function PasswordRecoveryPage() {
   if (resetComplete) {
     return (
       <section className="password-recovery-page">
-        <h2 className="password-recovery-page__title">Password updated</h2>
+        <h2 className="password-recovery-page__title">{t("recovery.updatedTitle")}</h2>
         <p className="password-recovery-page__confirmation" role="status">
-          Your password has been reset. You can now log in with your new password.
+          {t("recovery.updatedBody")}
         </p>
         <div className="password-recovery-page__links">
           <Link className="password-recovery-page__link" to={ROUTES.LOGIN}>
-            Back to Log in
+            {t("login.backToLogin")}
           </Link>
         </div>
       </section>
@@ -114,15 +116,14 @@ export default function PasswordRecoveryPage() {
   if (awaitingResetConfirmation) {
     return (
       <section className="password-recovery-page">
-        <h2 className="password-recovery-page__title">Reset your password</h2>
+        <h2 className="password-recovery-page__title">{t("recovery.title")}</h2>
         <p className="password-recovery-page__intro">
-          Enter the confirmation code sent to <strong>{submittedEmail}</strong> and choose a new
-          password.
+          {t("recovery.codeIntro", { email: submittedEmail })}
         </p>
 
         <form className="password-recovery-page__form" onSubmit={handleResetSubmit} noValidate>
           <label className="password-recovery-page__field">
-            <span className="password-recovery-page__label">Confirmation code</span>
+            <span className="password-recovery-page__label">{t("register.confirmCode")}</span>
             <input
               className="password-recovery-page__input"
               type="text"
@@ -134,7 +135,7 @@ export default function PasswordRecoveryPage() {
           </label>
 
           <label className="password-recovery-page__field">
-            <span className="password-recovery-page__label">New password</span>
+            <span className="password-recovery-page__label">{t("recovery.newPassword")}</span>
             <input
               className="password-recovery-page__input"
               type="password"
@@ -146,7 +147,7 @@ export default function PasswordRecoveryPage() {
           </label>
 
           <label className="password-recovery-page__field">
-            <span className="password-recovery-page__label">Confirm new password</span>
+            <span className="password-recovery-page__label">{t("recovery.confirmNewPassword")}</span>
             <input
               className="password-recovery-page__input"
               type="password"
@@ -164,13 +165,13 @@ export default function PasswordRecoveryPage() {
           ) : null}
 
           <button className="password-recovery-page__submit" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Updating password…" : "Update password"}
+            {isSubmitting ? t("recovery.updating") : t("recovery.updatePassword")}
           </button>
         </form>
 
         <div className="password-recovery-page__links">
           <Link className="password-recovery-page__link" to={ROUTES.LOGIN}>
-            Back to Log in
+            {t("login.backToLogin")}
           </Link>
         </div>
       </section>
@@ -179,23 +180,19 @@ export default function PasswordRecoveryPage() {
 
   return (
     <section className="password-recovery-page">
-      <h2 className="password-recovery-page__title">Reset your password</h2>
+      <h2 className="password-recovery-page__title">{t("recovery.title")}</h2>
 
       {isSubmitted ? (
         <p className="password-recovery-page__confirmation" role="status">
-          If an account exists for <strong>{submittedEmail}</strong>, you will receive
-          password recovery instructions shortly.
+          {t("recovery.sent", { email: submittedEmail })}
         </p>
       ) : (
-        <p className="password-recovery-page__intro">
-          Enter the email address associated with your account and we will send you
-          instructions to reset your password.
-        </p>
+        <p className="password-recovery-page__intro">{t("recovery.intro")}</p>
       )}
 
       <form className="password-recovery-page__form" onSubmit={handleSubmit} noValidate>
         <label className="password-recovery-page__field">
-          <span className="password-recovery-page__label">Email</span>
+          <span className="password-recovery-page__label">{t("register.email")}</span>
           <input
             className="password-recovery-page__input"
             type="email"
@@ -222,13 +219,13 @@ export default function PasswordRecoveryPage() {
         ) : null}
 
         <button className="password-recovery-page__submit" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Sending…" : "Send recovery instructions"}
+          {isSubmitting ? t("recovery.submitting") : t("recovery.submit")}
         </button>
       </form>
 
       <div className="password-recovery-page__links">
         <Link className="password-recovery-page__link" to={ROUTES.LOGIN}>
-          Back to Log in
+          {t("login.backToLogin")}
         </Link>
       </div>
     </section>

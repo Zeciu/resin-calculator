@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./useAuth.js";
 import { isCognitoAuthMode } from "./authMode.js";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import { ROUTES } from "../workspace/routes.js";
 
 function credentialsFromLoginInput(value) {
@@ -13,6 +14,7 @@ function credentialsFromLoginInput(value) {
 }
 
 export default function LoginPage() {
+  const { t } = useI18n();
   const { login, confirmRegistration } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -27,12 +29,12 @@ export default function LoginPage() {
     const password = String(formData.get("password") ?? "");
 
     if (!username) {
-      setError("Email or username is required.");
+      setError(t("login.usernameRequired"));
       return;
     }
 
     if (!password) {
-      setError("Password is required.");
+      setError(t("register.passwordRequired"));
       return;
     }
 
@@ -44,7 +46,7 @@ export default function LoginPage() {
       navigate(ROUTES.HOME, { replace: true });
     } catch (loginError) {
       const message =
-        loginError instanceof Error ? loginError.message : "Sign-in failed. Please try again.";
+        loginError instanceof Error ? loginError.message : t("login.failed");
       if (
         isCognitoAuthMode() &&
         loginError?.code === "UserNotConfirmedException" &&
@@ -65,7 +67,7 @@ export default function LoginPage() {
     }
 
     if (!confirmationCode.trim()) {
-      setError("Confirmation code is required.");
+      setError(t("register.confirmCodeRequired"));
       return;
     }
 
@@ -87,7 +89,7 @@ export default function LoginPage() {
       setError(
         confirmError instanceof Error
           ? confirmError.message
-          : "Account confirmation failed. Please try again.",
+          : t("register.confirmFailed"),
       );
     } finally {
       setIsSubmitting(false);
@@ -97,14 +99,14 @@ export default function LoginPage() {
   if (pendingConfirmationEmail) {
     return (
       <section className="login-page">
-        <h2 className="login-page__title">Confirm your HFZWood account</h2>
+        <h2 className="login-page__title">{t("register.confirmTitle")}</h2>
         <p className="login-page__intro">
-          Enter the confirmation code sent to <strong>{pendingConfirmationEmail}</strong>.
+          {t("register.confirmIntro", { email: pendingConfirmationEmail })}
         </p>
 
         <form className="login-page__form" onSubmit={handleConfirmSubmit} noValidate>
           <label className="login-page__field">
-            <span className="login-page__label">Confirmation code</span>
+            <span className="login-page__label">{t("register.confirmCode")}</span>
             <input
               className="login-page__input"
               type="text"
@@ -124,13 +126,13 @@ export default function LoginPage() {
           ) : null}
 
           <button className="login-page__submit" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Confirming…" : "Confirm account"}
+            {isSubmitting ? t("register.confirming") : t("register.confirmSubmit")}
           </button>
         </form>
 
         <div className="login-page__links">
           <Link className="login-page__link" to={ROUTES.LOGIN}>
-            Back to Log in
+            {t("login.backToLogin")}
           </Link>
         </div>
       </section>
@@ -139,11 +141,11 @@ export default function LoginPage() {
 
   return (
     <section className="login-page">
-      <h2 className="login-page__title">Log in to HFZWood</h2>
+      <h2 className="login-page__title">{t("login.title")}</h2>
 
       <form className="login-page__form" onSubmit={handleSubmit} noValidate>
         <label className="login-page__field">
-          <span className="login-page__label">Email or username</span>
+          <span className="login-page__label">{t("login.username")}</span>
           <input
             className="login-page__input"
             type="text"
@@ -155,7 +157,7 @@ export default function LoginPage() {
         </label>
 
         <label className="login-page__field">
-          <span className="login-page__label">Password</span>
+          <span className="login-page__label">{t("register.password")}</span>
           <input
             className="login-page__input"
             type="password"
@@ -173,16 +175,16 @@ export default function LoginPage() {
         ) : null}
 
         <button className="login-page__submit" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Signing in…" : "Log in"}
+          {isSubmitting ? t("login.submitting") : t("register.logIn")}
         </button>
       </form>
 
       <div className="login-page__links">
         <Link className="login-page__link" to={ROUTES.REGISTER}>
-          Create an account
+          {t("login.createAccount")}
         </Link>
         <Link className="login-page__link" to={ROUTES.PASSWORD_RECOVERY}>
-          Forgot your password?
+          {t("login.forgotPassword")}
         </Link>
       </div>
     </section>

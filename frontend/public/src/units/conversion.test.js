@@ -7,6 +7,7 @@ import {
   lengthToCm,
   lengthToMm,
   parseCanonicalMm,
+  storeCanonicalLitersFromDisplay,
   storeCanonicalMmFromDisplay,
   volumeToLiters,
 } from "./conversion.js";
@@ -45,5 +46,13 @@ describe("unit conversion", () => {
     expect(formatVolumeFromLiters(1, "L")).toBe("1");
     expect(volumeToLiters("1000", "ml")).toBe(1);
     expect(volumeToLiters("1", "L")).toBe(1);
+    expect(Number(formatVolumeFromLiters(1.43, "fl_oz"))).toBeCloseTo(48.354, 3);
+    expect(volumeToLiters(formatVolumeFromLiters(1.43, "fl_oz"), "fl_oz")).toBeCloseTo(1.43, 3);
+  });
+
+  it("stores display volume input as canonical liters", () => {
+    expect(storeCanonicalLitersFromDisplay("1.43", "L")).toBe("1.43");
+    expect(Number(storeCanonicalLitersFromDisplay("60", "fl_oz"))).toBeCloseTo(volumeToLiters(60, "fl_oz"));
+    expect(storeCanonicalLitersFromDisplay("", "fl_oz")).toBe("");
   });
 });

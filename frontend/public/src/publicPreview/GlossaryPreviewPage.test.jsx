@@ -43,7 +43,7 @@ describe("Glossary public preview", () => {
     expect(screen.getByRole("button", { name: /Reacție exotermă/ })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Bule de aer/ })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Termen blocat Blocat/ })).toBeInTheDocument();
-    expect(screen.getAllByText("Disponibil în preview").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Disponibil în previzualizare").length).toBeGreaterThan(0);
     expect(unlockedTerm.closest(".knowledge-preview-available")).not.toBeNull();
     const previewImage = screen.getByRole("img", { name: "Epoxy resin preview" });
     expect(previewImage).toHaveAttribute("src", "/api/public-preview/glossary/images/preview-resin.png");

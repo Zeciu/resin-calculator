@@ -427,7 +427,7 @@ describe("ResinCalculator zero-wood and reference state machine", () => {
 
     await user.click(screen.getByRole("button", { name: /Calculate Resin Volume/i }));
     await waitFor(() => {
-      expect(screen.getByText(/1\.50 L/)).toBeInTheDocument();
+      expect(document.querySelector(".main-result-card")).toHaveTextContent(/1\.50 L/);
     });
     expect(lastWoodPayload().woodBoundaryPolygons).toEqual([]);
     await user.click(screen.getByText(/Detailed Breakdown/i));
@@ -611,7 +611,7 @@ describe("ResinCalculator zero-wood and reference state machine", () => {
       expect(lastWoodPayload().woodBoundaryPolygons).toHaveLength(1);
     });
     expect(lastWoodPayload().woodBoundaryPolygons[0]).toEqual(WOOD);
-    expect(screen.getByText(/1\.12 L/)).toBeInTheDocument();
+    expect(document.querySelector(".main-result-card")).toHaveTextContent(/1\.12 L/);
   });
 
   it("marks the result outdated after adding a reference and does not auto-calculate", async () => {
@@ -885,7 +885,7 @@ describe("ResinCalculator zero-wood and reference state machine", () => {
     await user.click(screen.getByRole("button", { name: /Clear Wood Islands/i }));
     await user.click(screen.getByRole("button", { name: /Calculate Resin Volume/i }));
     await waitFor(() => {
-      expect(screen.getByText(/1\.50 L/)).toBeInTheDocument();
+      expect(document.querySelector(".main-result-card")).toHaveTextContent(/1\.50 L/);
     });
     expectLitersAbsent(GENERATION_A_FIRST_FILL);
     expect(screen.queryByRole("table")).not.toBeInTheDocument();

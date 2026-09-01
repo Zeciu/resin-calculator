@@ -45,7 +45,7 @@ describe("Knowledge Base public preview", () => {
     expect(screen.getByRole("button", { name: /Articol blocat/ })).toBeInTheDocument();
     expect(screen.getAllByText("Need the right resin volume.").length).toBeGreaterThan(0);
     expect(screen.getByText("Measure the cavity, then calculate.")).toBeInTheDocument();
-    expect(screen.getAllByText("Disponibil în preview").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Disponibil în previzualizare").length).toBeGreaterThan(0);
     expect(titleButton.closest(".knowledge-preview-available")).not.toBeNull();
     expect(titleButton.closest(".knowledge-preview-available--selected")).not.toBeNull();
     expect(document.activeElement).not.toBe(titleButton);
@@ -99,7 +99,7 @@ describe("Knowledge Base public preview", () => {
       screen.getByRole("heading", { name: "Disponibil cu un abonament HFZWood" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Acest articol face parte din Knowledge Base HFZWood complet."),
+      screen.getByText("Acest articol face parte din Baza de cunoștințe HFZWood completă."),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Vezi planurile" })).toHaveAttribute("href", "/pricing");
   });

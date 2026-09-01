@@ -44,6 +44,10 @@ export function mapCalculatorSnapshotToCanonicalV2(snapshot, options = {}) {
     technicalContent.woodBoundaryMode = source.woodBoundaryMode;
   }
 
+  if (source.projectCostEstimate && typeof source.projectCostEstimate === "object") {
+    technicalContent.projectCostEstimate = source.projectCostEstimate;
+  }
+
   const ui = source.ui && typeof source.ui === "object" ? source.ui : null;
   if (ui) {
     const workflow = {};

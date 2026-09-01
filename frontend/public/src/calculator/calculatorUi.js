@@ -140,6 +140,72 @@ export function buildCalculatorUi(t) {
 
     projectNotes: t("calculator.projectNotes"),
 
+    projectNotesPlaceholder: t("calculator.projectNotesPlaceholder"),
+
+    advancedDetails: t("calculator.advancedDetails"),
+
+    viewNavigation: t("calculator.viewNavigation"),
+
+    fitToScreen: t("calculator.fitToScreen"),
+
+    zoomIn: t("calculator.zoomIn"),
+
+    zoomOut: t("calculator.zoomOut"),
+
+    resetZoom: t("calculator.resetZoom"),
+
+    rotateLeft: t("calculator.rotateLeft"),
+
+    rotateRight: t("calculator.rotateRight"),
+
+    status: {
+      wood: t("calculator.status.wood"),
+      standard: t("calculator.status.standard"),
+      refs: (count) => t("calculator.status.refs", { count }),
+      modify: t("calculator.status.modify"),
+      zoom: (percent) => t("calculator.status.zoom", { percent }),
+      rotation: (degrees) => t("calculator.status.rotation", { degrees }),
+      edit: t("calculator.status.edit"),
+    },
+
+    woodIslandItem: (index) => t("calculator.woodIslandItem", { index }),
+
+    deleteWoodIslandItem: (index) => t("calculator.deleteWoodIslandItem", { index }),
+
+    cavityDepthsAndVolumes: t("calculator.cavityDepthsAndVolumes"),
+
+    cavityNeedsReferences: t("calculator.cavityNeedsReferences"),
+
+    details: t("calculator.details"),
+
+    needsCalibration: t("calculator.needsCalibration"),
+
+    enterDepth: t("calculator.enterDepth"),
+
+    confirmDepth: t("calculator.confirmDepth"),
+
+    editDepth: t("calculator.editDepth"),
+
+    deleteNamed: (name) => t("calculator.deleteNamed", { name }),
+
+    uploadPhotoGuidance: t("calculator.uploadPhotoGuidance"),
+
+    referenceGuidance: t("calculator.referenceGuidance"),
+
+    moldGuidance: t("calculator.moldGuidance"),
+
+    woodGuidance: t("calculator.woodGuidance"),
+
+    cavityGuidance: t("calculator.cavityGuidance"),
+
+    clickSelectTwoPoints: t("calculator.clickSelectTwoPoints"),
+
+    exampleLengthPlaceholder: t("calculator.exampleLengthPlaceholder"),
+
+    areaStatus: (status) => t("calculator.areaStatus", { status }),
+
+    volumeStatus: (status) => t("calculator.volumeStatus", { status }),
+
     resultsOutdated: t("calculator.resultsOutdated"),
 
     resinDensity: t("calculator.resinDensity"),
@@ -147,6 +213,24 @@ export function buildCalculatorUi(t) {
     resinDensityUnit: t("calculator.resinDensityUnit"),
 
     resinDensityHelp: t("calculator.resinDensityHelp"),
+
+    cost: {
+      sectionTitle: t("calculator.cost.sectionTitle"),
+      calculatedResinVolume: t("calculator.cost.calculatedResinVolume"),
+      resinQuantityForCosting: t("calculator.cost.resinQuantityForCosting"),
+      resinCostPerLiter: (unit) => t("calculator.cost.resinCostPerLiter", { unit }),
+      resinTotal: t("calculator.cost.resinTotal"),
+      woodCost: t("calculator.cost.woodCost"),
+      otherProjectCosts: t("calculator.cost.otherProjectCosts"),
+      laborHours: t("calculator.cost.laborHours"),
+      laborHourlyRate: t("calculator.cost.laborHourlyRate"),
+      laborTotal: t("calculator.cost.laborTotal"),
+      estimatedProjectCost: t("calculator.cost.estimatedProjectCost"),
+      desiredMarkup: t("calculator.cost.desiredMarkup"),
+      suggestedSellingPrice: t("calculator.cost.suggestedSellingPrice"),
+      volumeUnit: t("calculator.cost.volumeUnit"),
+      percentUnit: t("calculator.cost.percentUnit"),
+    },
 
     result: {
 

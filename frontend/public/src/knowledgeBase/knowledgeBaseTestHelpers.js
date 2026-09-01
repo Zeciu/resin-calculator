@@ -40,7 +40,7 @@ export function mockPublishedKnowledgeBaseFetch(
   capabilities = null,
   options = {},
 ) {
-  const activePublicLocales = options.activePublicLocales ?? ["en", "ro"];
+  const activePublicLocales = options.activePublicLocales ?? ["en", "ro", "fr"];
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
     if (requestUrl.includes("/api/me/capabilities")) {

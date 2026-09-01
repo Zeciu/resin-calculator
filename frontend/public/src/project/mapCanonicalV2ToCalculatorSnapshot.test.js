@@ -85,6 +85,28 @@ describe("mapCanonicalV2ToCalculatorSnapshot", () => {
     expect(snapshot.woodBoundaryMode.resinDensityKgPerLiter).toBe(1.15);
   });
 
+  it("round-trips projectCostEstimate independently of wood geometry", () => {
+    const projectCostEstimate = {
+      resinCostQuantityLiters: 15,
+      resinCostPerLiter: 20,
+      woodCost: 150,
+      otherProjectCosts: 75,
+      laborHours: 12,
+      laborHourlyRate: 25,
+      desiredMarkupPercent: 25,
+    };
+    const envelope = mapCalculatorSnapshotToCanonicalV2(
+      {
+        ...SAMPLE_CALCULATOR_SNAPSHOT,
+        projectCostEstimate,
+      },
+      { projectName: "River Table" },
+    );
+
+    const snapshot = mapCanonicalV2ToCalculatorSnapshot(envelope);
+    expect(snapshot.projectCostEstimate).toEqual(projectCostEstimate);
+  });
+
   it("does not restore session-only zoom from persisted workflow data", () => {
     const envelope = mapCalculatorSnapshotToCanonicalV2(
       {

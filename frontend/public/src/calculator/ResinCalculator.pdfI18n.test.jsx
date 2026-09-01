@@ -407,24 +407,27 @@ describe("ResinCalculator PDF i18n", () => {
     ).toBe(woodCallsBefore);
   });
 
-  it("falls back missing French PDF keys to English without crashing", async () => {
+  it("exports French PDF copy from owned keys without English fallback", async () => {
     const user = userEvent.setup();
     seedDevicePreferences({ lengthUnit: "cm", interfaceLanguage: "fr" });
-    expect(localeBundleHasOwnKey("fr", "calculator.pdf.results")).toBe(false);
-    expect(translate("fr", "calculator.pdf.results")).toBe("Results");
+    expect(localeBundleHasOwnKey("fr", "calculator.pdf.results")).toBe(true);
+    expect(translate("fr", "calculator.pdf.results")).toBe("Résultats");
     const ref = createRef();
     renderCalculator(
       <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
     );
     await restoreSnapshot(ref, buildCompletedSnapshot());
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: /Export PDF/i })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /Exporter en PDF/i })).toBeInTheDocument();
     });
-    await clickExportPdf(user, /Export PDF/i);
+    await clickExportPdf(user, /Exporter en PDF/i);
     const joined = pdfTexts.join("\n");
-    expect(joined).toContain("Results");
-    expect(joined).toContain("Reference Measurements");
-    expect(joined).toContain("Pour Layer Planning");
+    expect(joined).toContain("Résultats");
+    expect(joined).toContain("Mesures de référence");
+    expect(joined).toContain("Planification des couches de coulée");
+    expect(joined).not.toContain("Results");
+    expect(joined).not.toContain("Reference Measurements");
+    expect(joined).not.toContain("Pour Layer Planning");
   });
 
   it("localizes pour and cavity headings independently from persisted English names", async () => {

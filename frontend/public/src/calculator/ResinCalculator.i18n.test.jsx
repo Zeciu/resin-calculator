@@ -194,7 +194,7 @@ describe("ResinCalculator i18n", () => {
   beforeEach(() => {
     localStorage.clear();
     vi.restoreAllMocks();
-    mockCapabilitiesFetch();
+    mockCapabilitiesFetch({ activePublicLocales: ["en", "ro", "fr"] });
   });
 
   it("renders the primary calculator workflow in Romanian when interface language is ro", () => {
@@ -227,6 +227,24 @@ describe("ResinCalculator i18n", () => {
     expect(screen.getByRole("heading", { name: "Project Actions" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Save Project/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Export PDF/i })).toBeInTheDocument();
+  });
+
+  it("renders the primary calculator workflow in French when interface language is fr", () => {
+    seedDevicePreferences({ interfaceLanguage: "fr" });
+    renderCalculator(<ResinCalculator showHeader={false} />);
+
+    expect(screen.getByText("Importer une photo :")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Étape 1 — Importer une photo" })).toBeInTheDocument();
+    expect(screen.getByText("Références")).toBeInTheDocument();
+    expect(screen.getByText("Moule")).toBeInTheDocument();
+    expect(screen.getByText("Bois")).toBeInTheDocument();
+    expect(screen.getByText("Cavités")).toBeInTheDocument();
+    expect(screen.getByText("Calculer")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Actions du projet", level: 3 })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Enregistrer le projet/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Exporter en PDF/i })).toBeInTheDocument();
+    expect(screen.queryByText("Upload Photo:")).not.toBeInTheDocument();
+    expect(screen.queryByText("References")).not.toBeInTheDocument();
   });
 
   it("updates calculator labels when interface language changes without remounting", async () => {

@@ -168,7 +168,7 @@ export function mockPublicPreviewFetch({
   manual,
   knowledgeBase,
   glossary,
-  activePublicLocales = ["en", "ro"],
+  activePublicLocales = ["en", "ro", "fr"],
 } = {}) {
   const roManual = buildManualPreviewResponse({ locale: "ro", chapters: SAMPLE_MANUAL_CHAPTERS });
   const roKb = buildKnowledgeBasePreviewResponse({ locale: "ro", entries: SAMPLE_KB_ENTRIES });

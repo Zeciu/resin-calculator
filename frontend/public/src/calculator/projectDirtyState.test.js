@@ -50,5 +50,13 @@ describe("computeProjectDirtyState", () => {
     expect(computeProjectDirtyState({ measurementsComplete: true })).toBe(true);
     expect(computeProjectDirtyState({ resinDensityInput: "1.15" })).toBe(true);
     expect(computeProjectDirtyState({ resinDensityInput: "1.10" })).toBe(false);
+    expect(
+      computeProjectDirtyState({
+        costEstimate: {
+          resinCostQuantityFollowsCalculated: true,
+          resinCostPerLiterInput: "20",
+        },
+      }),
+    ).toBe(true);
   });
 });

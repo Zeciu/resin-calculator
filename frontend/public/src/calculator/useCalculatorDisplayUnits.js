@@ -10,6 +10,7 @@ import {
   lengthToCm,
   lengthToMm,
   parseCanonicalMm,
+  storeCanonicalLitersFromDisplay,
   storeCanonicalMmFromDisplay,
   volumeToLiters,
 } from "../units/conversion.js";
@@ -42,6 +43,7 @@ export function useCalculatorDisplayUnits() {
       storeDepthInput: (rawValue) => storeCanonicalMmFromDisplay(rawValue, lengthUnit),
       readCanonicalMm: parseCanonicalMm,
       parseVolumeToLiters: (value) => volumeToLiters(value, volumeUnit),
+      storeVolumeInput: (rawValue) => storeCanonicalLitersFromDisplay(rawValue, volumeUnit),
       referenceLengthError: () =>
         t("calculator.referenceLengthPositive", {
           unit: lengthLabel,

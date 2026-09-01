@@ -39,6 +39,10 @@ export function mapCanonicalV2ToCalculatorSnapshot(envelope) {
     snapshot.woodBoundaryMode = technicalContent.woodBoundaryMode;
   }
 
+  if (technicalContent.projectCostEstimate && typeof technicalContent.projectCostEstimate === "object") {
+    snapshot.projectCostEstimate = technicalContent.projectCostEstimate;
+  }
+
   const ui = {};
 
   if (workflow && typeof workflow === "object") {

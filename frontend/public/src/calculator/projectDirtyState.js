@@ -5,6 +5,7 @@
  */
 
 import { DEFAULT_RESIN_DENSITY_KG_PER_LITER } from "./resinMassConversion.js";
+import { hasMeaningfulCostEstimateInput } from "./projectCostEstimate.js";
 
 function hasNonEmptyString(value) {
   return String(value ?? "").trim().length > 0;
@@ -34,6 +35,7 @@ export function computeProjectDirtyState({
   moldBoundaryComplete = false,
   woodBoundaryComplete = false,
   cavitiesComplete = false,
+  costEstimate = null,
 }) {
   if (referenceMeasurements.length > 0) {
     return true;
@@ -99,6 +101,10 @@ export function computeProjectDirtyState({
     woodBoundaryComplete ||
     cavitiesComplete
   ) {
+    return true;
+  }
+
+  if (hasMeaningfulCostEstimateInput(costEstimate)) {
     return true;
   }
 

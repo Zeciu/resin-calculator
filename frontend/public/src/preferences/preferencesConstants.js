@@ -23,6 +23,9 @@ export const INTERFACE_LANGUAGE_LABELS = {
   it: "Italiano",
 };
 
+/** Languages offered in the logged-out/public sidebar selector. */
+export const PUBLIC_SIDEBAR_LANGUAGES = ["en", "ro", "fr"];
+
 export const LENGTH_UNITS = ["mm", "cm", "m", "in", "ft"];
 
 export const VOLUME_UNITS = ["ml", "L", "fl_oz", "pt", "qt", "gal"];
