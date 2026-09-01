@@ -17,6 +17,8 @@ The guiding principle for deciding where logic belongs:
 
 Anonymous Public Knowledge Preview is a separate backend API over the public packaged corpus. Locked educational bodies must never be sent to the client.
 
+Local authenticated Manual, Glossary, and Knowledge Base preview published private editorial snapshots (`backend/private/content`). Production reads only the packaged corpus (`backend/public/content`). Packaging is the release boundary. Drafts never appear in the workspace.
+
 # Coding rules
 If you write new code that implements significant functionality or changes existing functionality significantly,
 you must write tests for it. We want the tests to cover backend and frontend, but we should keep the test execution

@@ -6,6 +6,7 @@ import { getLoggedInHomeNavItems, WORKSPACE_NAV_ITEMS } from "./navigation.js";
 import { translate } from "../i18n/translate.js";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
+import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 const GUEST_LOCKED_NAV_ITEMS = WORKSPACE_NAV_ITEMS.filter(
@@ -87,7 +88,18 @@ describe("Authenticated Mode navigation", () => {
 
     expect(screen.queryAllByLabelText("Locked feature")).toHaveLength(0);
     expect(screen.queryByRole("link", { name: "Create Free Account" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
+    const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+    const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    expect(demoCta).toHaveAttribute("href", "/demo");
+    expect(demoCta).toHaveAttribute("data-nav", "demo-project");
+    expect(demoCta).toHaveClass("workspace-sidebar__link");
+    expect(demoCta).not.toHaveClass("workspace-sidebar__link--primary-action");
+    expect(demoCta).not.toHaveClass("guest-home-onboarding__demo");
+    expect(demoCta).not.toHaveClass("guest-home-onboarding__primary");
+    expect(screen.getByRole("link", { name: "New Project" })).toHaveClass(
+      "workspace-sidebar__link--primary-action",
+    );
+    expect(within(sidebar).getByRole("button", { name: /Log out/i })).toBeInTheDocument();
   });
 
   it("shows guest register and login actions but no My Account control for guests", () => {
@@ -145,5 +157,75 @@ describe("Authenticated Mode navigation", () => {
       await user.click(screen.getByRole("link", { name: "Home" }));
       expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     }
+  });
+
+  it("places Try a demo project after Quick preferences and before Log out", async () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.HOME);
+
+    const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+    const preferences = await within(sidebar).findByRole("region", { name: "Quick preferences" });
+    const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    const logout = within(sidebar).getByRole("button", { name: /Log out/i });
+
+    expect(preferences.compareDocumentPosition(demoCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(demoCta.compareDocumentPosition(logout) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it("keeps Try a demo project before Log out on dedicated module pages", () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.NEW_PROJECT);
+
+    const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+    const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    const logout = within(sidebar).getByRole("button", { name: /Log out/i });
+    expect(demoCta.compareDocumentPosition(logout) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(within(sidebar).queryByRole("region", { name: "Quick preferences" })).not.toBeInTheDocument();
+  });
+
+  it("shows Try a demo project for authenticated Free users", () => {
+    mockCapabilitiesFetch();
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.HOME);
+
+    const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+    expect(within(sidebar).getByRole("link", { name: "Try a demo project" })).toHaveAttribute(
+      "href",
+      "/demo",
+    );
+  });
+
+  it("localizes the authenticated demo entry in Romanian", () => {
+    seedAuthenticatedSession();
+    seedDevicePreferences({ interfaceLanguage: "ro" });
+    renderWorkspace(ROUTES.HOME);
+
+    const sidebar = screen.getByRole("navigation", { name: "Workspace navigation" });
+    expect(within(sidebar).getByRole("link", { name: "Încearcă un proiect demo" })).toHaveAttribute(
+      "href",
+      "/demo",
+    );
+    expect(within(sidebar).queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
+  });
+
+  it("keeps sidebar Log out working after the demo entry is added", async () => {
+    const user = userEvent.setup();
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.HOME);
+
+    await user.click(
+      within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole(
+        "button",
+        { name: /Log out/i },
+      ),
+    );
+
+    expect(screen.queryByRole("button", { name: /Log out/i })).not.toBeInTheDocument();
+    expect(sessionStorage.getItem(SESSION_STORAGE_KEY)).toBeNull();
+    expect(
+      within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole("link", {
+        name: "Try a demo project",
+      }),
+    ).toHaveClass("guest-home-onboarding__demo");
   });
 });

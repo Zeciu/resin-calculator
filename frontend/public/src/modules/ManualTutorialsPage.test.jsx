@@ -116,4 +116,61 @@ describe("ManualTutorialsPage", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("navigation", { name: "Table of contents" })).not.toBeInTheDocument();
   });
+
+  it("shows unavailable copy when the EN published payload has no chapters", async () => {
+    mockPublishedManualFetch([], { available: false, englishAvailable: false });
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.MANUAL);
+
+    expect(
+      await screen.findByText("Manual content is not yet available in the selected language."),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("navigation", { name: "Table of contents" })).not.toBeInTheDocument();
+  });
+
+  it("renders published EN chapters instead of the unavailable message", async () => {
+    const enSections = Array.from({ length: 18 }, (_, index) => ({
+      id: `chapter-${index + 1}`,
+      title: `Chapter ${index + 1}`,
+      blocks: [{ type: "paragraph", text: `Body ${index + 1}.` }],
+    }));
+    mockPublishedManualFetch(enSections, { available: true, englishAvailable: true });
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.MANUAL);
+
+    expect(await screen.findByRole("heading", { name: "Chapter 1", level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Chapter 18", level: 2 })).toBeInTheDocument();
+    expect(
+      screen.queryByText("Manual content is not yet available in the selected language."),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Table of contents" })).toBeInTheDocument();
+  });
+
+  it("shows a load error instead of unavailable copy when the API request fails", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url) => {
+        const requestUrl = String(url);
+        if (requestUrl.includes("/api/content/public-languages")) {
+          return {
+            ok: true,
+            json: async () => ({
+              defaultPublicLocale: "en",
+              activePublicLocales: ["en", "ro", "fr"],
+            }),
+          };
+        }
+        return { ok: false, status: 401 };
+      }),
+    );
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.MANUAL);
+
+    expect(
+      await screen.findByText("Manual content could not be loaded. Please try again."),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("Manual content is not yet available in the selected language."),
+    ).not.toBeInTheDocument();
+  });
 });

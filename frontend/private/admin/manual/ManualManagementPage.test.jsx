@@ -631,7 +631,7 @@ describe("Manual management workspace (Task 59B)", () => {
     await user.click(screen.getByRole("button", { name: "Publish" }));
 
     await waitFor(() => {
-      expect(screen.getByText("Live (RO)")).toBeInTheDocument();
+      expect(screen.getByText("Published (RO)")).toBeInTheDocument();
     });
 
     const publishCalls = global.fetch.mock.calls.filter(

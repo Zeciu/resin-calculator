@@ -637,3 +637,45 @@ class TestCli:
         assert "DRY-RUN" in captured.out
         assert "source count:      2" in captured.out
         assert "No files were modified" in captured.out
+
+
+class TestPackagedCorpusIsWhatProductionReads:
+    def test_applied_en_snapshots_are_served_by_production_reader(self, tmp_path: Path, monkeypatch):
+        private_root, public_root = _layout(tmp_path)
+        _seed_manual(private_root, "en", ["wood-choice", "mixing"])
+        _seed_glossary(private_root, "en", ["resin", "hardener"])
+        _seed_kb(private_root, "en", ["bubbles", "leakage"])
+        _seed_manual(public_root, "en", [])
+        _seed_glossary(public_root, "en", [])
+        _seed_kb(public_root, "en", [])
+        _write_json(
+            public_root / "config" / "public-languages.json",
+            {"defaultPublicLocale": "en", "activePublicLocales": ["en"]},
+        )
+
+        report = run_packaging(
+            modules=["manual", "glossary", "knowledge-base"],
+            locale="en",
+            apply=True,
+            private_root=private_root,
+            public_root=public_root,
+        )
+        assert report.applied
+
+        from public import content_api
+
+        monkeypatch.setattr(content_api, "CORPUS_ROOT", public_root)
+        manual = content_api._manual_response("en")
+        glossary = content_api._list_response(
+            "glossary", "en", "entries.json", "Glossary", "", "entries"
+        )
+        knowledge_base = content_api._list_response(
+            "knowledge-base", "en", "entries.json", "KB", "", "entries"
+        )
+
+        assert manual["available"] is True
+        assert [section["id"] for section in manual["sections"]] == ["wood-choice", "mixing"]
+        assert glossary["available"] is True
+        assert [entry["id"] for entry in glossary["entries"]] == ["resin", "hardener"]
+        assert knowledge_base["available"] is True
+        assert [entry["id"] for entry in knowledge_base["entries"]] == ["bubbles", "leakage"]

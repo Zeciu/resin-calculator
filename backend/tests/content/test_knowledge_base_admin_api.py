@@ -1,7 +1,7 @@
 import pytest
 import json
 
-from private.routers import admin_knowledge_base, public_content
+from private.routers import admin_knowledge_base, admin_public_languages, public_content, public_languages
 from tests.support.authenticated_client import AuthenticatedTestClient
 from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
 
@@ -28,6 +28,8 @@ def client(tmp_path, monkeypatch):
     )
     admin_knowledge_base.reset_repository_cache()
     public_content.reset_repository_cache()
+    admin_public_languages.reset_repository_cache()
+    public_languages.reset_repository_cache()
     from app import app
     from public.content_routers import get_capability_resolver
     from public.product.capabilities.resolver import CapabilityResolver
@@ -41,6 +43,10 @@ def client(tmp_path, monkeypatch):
     finally:
         test_client.close()
         app.dependency_overrides.pop(get_capability_resolver, None)
+        admin_knowledge_base.reset_repository_cache()
+        public_content.reset_repository_cache()
+        admin_public_languages.reset_repository_cache()
+        public_languages.reset_repository_cache()
 
 
 def admin_headers(role: str = "administrator") -> dict[str, str]:
@@ -359,6 +365,253 @@ class TestKnowledgeBaseBulkPublishDrafts:
         payload = response.json()
         assert draft_id in {item["contentId"] for item in payload["published"]}
         assert live_id in {item["contentId"] for item in payload["skipped"]}
+
+    def _create_entry(self, client, title: str) -> str:
+        return client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": title, "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+
+    def _save_en_draft(self, client, entry_id: str, title: str, related: list[str] | None = None) -> None:
+        body = sample_body(title)
+        if related:
+            body["relatedKbEntryIds"] = related
+        assert (
+            client.put(
+                f"/api/admin/knowledge-base/entries/{entry_id}/variants/en",
+                json=save_payload(body),
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+
+    def _publish_all_en(self, client):
+        response = client.post(
+            "/api/admin/knowledge-base/entries/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        return response.json()
+
+    def test_bulk_publish_allows_mutual_draft_references(self, client):
+        first_id = self._create_entry(client, "Article A")
+        second_id = self._create_entry(client, "Article B")
+        self._save_en_draft(client, first_id, "Article A", [second_id])
+        self._save_en_draft(client, second_id, "Article B", [first_id])
+
+        payload = self._publish_all_en(client)
+        assert payload["failedCount"] == 0
+        assert payload["publishedCount"] == 2
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert published_ids == {first_id, second_id}
+
+        public_ids = {
+            entry["id"]
+            for entry in client.get("/api/content/knowledge-base?locale=en").json()["entries"]
+        }
+        assert public_ids == {first_id, second_id}
+
+    def test_bulk_publish_chain_ignores_list_order(self, client):
+        first_id = self._create_entry(client, "Article A")
+        second_id = self._create_entry(client, "Article B")
+        third_id = self._create_entry(client, "Article C")
+        self._save_en_draft(client, first_id, "Article A", [second_id])
+        self._save_en_draft(client, second_id, "Article B", [third_id])
+        self._save_en_draft(client, third_id, "Article C")
+
+        payload = self._publish_all_en(client)
+        assert payload["failedCount"] == 0
+        assert {item["contentId"] for item in payload["published"]} == {first_id, second_id, third_id}
+
+    def test_bulk_publish_circular_references(self, client):
+        first_id = self._create_entry(client, "Article A")
+        second_id = self._create_entry(client, "Article B")
+        third_id = self._create_entry(client, "Article C")
+        self._save_en_draft(client, first_id, "Article A", [second_id])
+        self._save_en_draft(client, second_id, "Article B", [third_id])
+        self._save_en_draft(client, third_id, "Article C", [first_id])
+
+        payload = self._publish_all_en(client)
+        assert payload["failedCount"] == 0
+        assert payload["publishedCount"] == 3
+
+    def test_bulk_publish_accepts_already_published_related_article(self, client):
+        live_id = self._create_draft(client, "Already live")
+        assert (
+            client.post(
+                f"/api/admin/knowledge-base/entries/{live_id}/variants/en/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        draft_id = self._create_entry(client, "Depends on live")
+        self._save_en_draft(client, draft_id, "Depends on live", [live_id])
+
+        payload = self._publish_all_en(client)
+        assert draft_id in {item["contentId"] for item in payload["published"]}
+        assert live_id in {item["contentId"] for item in payload["skipped"]}
+        assert payload["failedCount"] == 0
+
+    def test_bulk_publish_rejects_missing_related_article_without_blocking_unrelated(self, client):
+        good_id = self._create_draft(client, "Independent")
+        blocked_id = self._create_entry(client, "Blocked")
+        self._save_en_draft(client, blocked_id, "Blocked", ["does-not-exist"])
+
+        payload = self._publish_all_en(client)
+        failed_ids = {item["contentId"] for item in payload["failed"]}
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert blocked_id in failed_ids
+        assert good_id in published_ids
+        assert any("does not exist" in (item["reason"] or "").lower() for item in payload["failed"])
+
+    def test_bulk_publish_does_not_mutate_when_every_draft_fails(self, client):
+        blocked_id = self._create_entry(client, "Blocked")
+        self._save_en_draft(client, blocked_id, "Blocked", ["does-not-exist"])
+
+        before = client.get("/api/content/knowledge-base?locale=en").json()
+        payload = self._publish_all_en(client)
+        after = client.get("/api/content/knowledge-base?locale=en").json()
+
+        assert payload["publishedCount"] == 0
+        assert payload["failedCount"] == 1
+        assert payload["snapshotKey"] == ""
+        assert after["entries"] == before["entries"]
+        variant = client.get(
+            f"/api/admin/knowledge-base/entries/{blocked_id}/variants/en",
+            headers=admin_headers(),
+        ).json()
+        assert variant["status"] != "published"
+
+    def test_bulk_publish_leaves_drafts_unpublished_until_success(self, client):
+        entry_id = self._create_draft(client, "Later")
+        public_before = client.get("/api/content/knowledge-base?locale=en").json()
+        assert public_before["available"] is False
+        payload = self._publish_all_en(client)
+        assert payload["publishedCount"] == 1
+        public_after = client.get("/api/content/knowledge-base?locale=en").json()
+        assert public_after["available"] is True
+        assert public_after["entries"][0]["id"] == entry_id
+
+    def test_bulk_publish_keeps_glossary_and_manual_rules(self, client):
+        glossary_id = client.post(
+            "/api/admin/glossary/entries",
+            json={"term": "Unpublished term"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        client.put(
+            f"/api/admin/glossary/entries/{glossary_id}/variants/en",
+            json={
+                "body": {
+                    "term": "Unpublished term",
+                    "definitionBlocks": [{"type": "paragraph", "text": "Definition."}],
+                    "media": [],
+                    "relatedTermIds": [],
+                    "synonymTermIds": [],
+                    "seeAlso": [],
+                }
+            },
+            headers=admin_headers(),
+        )
+        blocked_id = self._create_entry(client, "Needs glossary")
+        body = sample_body("Needs glossary")
+        body["relatedGlossaryEntryIds"] = [glossary_id]
+        assert (
+            client.put(
+                f"/api/admin/knowledge-base/entries/{blocked_id}/variants/en",
+                json=save_payload(body),
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        good_id = self._create_draft(client, "No glossary link")
+
+        chapter_id = client.post(
+            "/api/admin/manual/chapters",
+            json={"title": "Unpublished chapter"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        assert (
+            client.put(
+                f"/api/admin/manual/chapters/{chapter_id}/variants/en",
+                json={
+                    "body": {
+                        "title": "Unpublished chapter",
+                        "sections": [
+                            {
+                                "id": "main",
+                                "title": "",
+                                "blocks": [{"type": "paragraph", "text": "Draft only."}],
+                            }
+                        ],
+                    }
+                },
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        blocked_manual_id = self._create_entry(client, "Needs manual")
+        manual_body = sample_body("Needs manual")
+        manual_body["relatedManualChapterIds"] = [chapter_id]
+        assert (
+            client.put(
+                f"/api/admin/knowledge-base/entries/{blocked_manual_id}/variants/en",
+                json=save_payload(manual_body),
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+
+        payload = self._publish_all_en(client)
+        failed_ids = {item["contentId"] for item in payload["failed"]}
+        published_ids = {item["contentId"] for item in payload["published"]}
+        assert blocked_id in failed_ids
+        assert blocked_manual_id in failed_ids
+        assert good_id in published_ids
+        assert any("glossary" in (item["reason"] or "").lower() for item in payload["failed"])
+        assert any("manual" in (item["reason"] or "").lower() for item in payload["failed"])
+
+    def test_bulk_publish_does_not_change_romanian_snapshot(self, client):
+        assert (
+            client.post(
+                "/api/admin/public-languages/ro/activate",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        ro_id = client.post(
+            "/api/admin/knowledge-base/entries",
+            json={"title": "Articol RO", "locale": "ro", "category": "Epoxy", "difficulty": "Beginner"},
+            headers=admin_headers(),
+        ).json()["contentId"]
+        assert (
+            client.put(
+                f"/api/admin/knowledge-base/entries/{ro_id}/variants/ro",
+                json=save_payload(sample_body("Articol RO")),
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        assert (
+            client.post(
+                f"/api/admin/knowledge-base/entries/{ro_id}/variants/ro/publish",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+        romanian_before_response = client.get("/api/content/knowledge-base?locale=ro")
+        assert romanian_before_response.status_code == 200, romanian_before_response.json()
+        romanian_before = romanian_before_response.json()
+        en_id = self._create_draft(client, "English only")
+
+        payload = self._publish_all_en(client)
+        assert en_id in {item["contentId"] for item in payload["published"]}
+        romanian_after_response = client.get("/api/content/knowledge-base?locale=ro")
+        assert romanian_after_response.status_code == 200, romanian_after_response.json()
+        romanian_after = romanian_after_response.json()
+        assert romanian_after["entries"] == romanian_before["entries"]
+        english = client.get("/api/content/knowledge-base?locale=en").json()
+        assert {entry["id"] for entry in english["entries"]} == {en_id}
 
 
 class TestKnowledgeBaseRelationshipValidation:

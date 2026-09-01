@@ -50,6 +50,10 @@ function expectSidebarLabels(language) {
   for (const key of PRIMARY_NAV_KEYS) {
     expect(within(sidebar).getByRole("link", { name: translate(language, key) })).toBeInTheDocument();
   }
+  expect(within(sidebar).getByRole("link", { name: translate(language, "demo.cta") })).toBeInTheDocument();
+  expect(
+    within(sidebar).getByRole("button", { name: translate(language, "nav.logout") }),
+  ).toBeInTheDocument();
 }
 
 describe("Workspace navigation localization", () => {

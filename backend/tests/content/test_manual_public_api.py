@@ -130,3 +130,74 @@ class TestPublicManualApi:
         payload = client.get("/api/content/manual?locale=en").json()
         assert payload["available"] is False
         assert payload["sections"] == []
+
+    def test_published_en_drafts_are_served_without_changing_romanian(self, client):
+        """RO live + EN generated drafts + Publish all EN must serve EN, not unavailable."""
+        assert (
+            client.post(
+                "/api/admin/public-languages/ro/activate",
+                headers=admin_headers(),
+            ).status_code
+            == 200
+        )
+
+        chapter_count = 18
+        for index in range(1, chapter_count + 1):
+            ro_title = f"Capitol {index}"
+            en_title = f"Chapter {index}"
+            chapter_id = client.post(
+                "/api/admin/manual/chapters",
+                json={"title": ro_title, "locale": "ro"},
+                headers=admin_headers(),
+            ).json()["contentId"]
+            assert (
+                client.put(
+                    f"/api/admin/manual/chapters/{chapter_id}/variants/ro",
+                    json={"body": sample_body(ro_title, f"Corp {index}.")},
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
+            assert (
+                client.post(
+                    f"/api/admin/manual/chapters/{chapter_id}/variants/ro/publish",
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
+            # Generated translations are saved as drafts, then published as a batch.
+            assert (
+                client.put(
+                    f"/api/admin/manual/chapters/{chapter_id}/variants/en",
+                    json={"body": sample_body(en_title, f"Body {index}.")},
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
+
+        bulk = client.post(
+            "/api/admin/manual/chapters/variants/en/publish-drafts",
+            headers=admin_headers(),
+        )
+        assert bulk.status_code == 200
+        assert bulk.json()["publishedCount"] == chapter_count
+        assert bulk.json()["failedCount"] == 0
+
+        english = client.get("/api/content/manual?locale=en").json()
+        romanian = client.get("/api/content/manual?locale=ro").json()
+
+        assert english["available"] is True
+        assert english["requestedLocale"] == "en"
+        assert [section["title"] for section in english["sections"]] == [
+            f"Chapter {index}" for index in range(1, chapter_count + 1)
+        ]
+        assert [section["blocks"][0]["text"] for section in english["sections"]] == [
+            f"Body {index}." for index in range(1, chapter_count + 1)
+        ]
+        assert romanian["available"] is True
+        assert [section["title"] for section in romanian["sections"]] == [
+            f"Capitol {index}" for index in range(1, chapter_count + 1)
+        ]
+        assert [section["blocks"][0]["text"] for section in romanian["sections"]] == [
+            f"Corp {index}." for index in range(1, chapter_count + 1)
+        ]

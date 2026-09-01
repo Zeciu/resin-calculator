@@ -198,7 +198,9 @@ describe("GlossaryPage", () => {
     expect(
       screen.getByText(/A two-component polymer system that cures when resin and hardener are mixed/i),
     ).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Wood and epoxy resin in a workshop setting" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Wood and epoxy resin in a workshop setting" }),
+    ).toHaveAttribute("src", "/header-wood-epoxy.png");
 
     await user.click(screen.getByRole("button", { name: "Hardener" }));
     expect(screen.getByRole("button", { name: "Epoxy resin" })).toHaveAttribute(
@@ -206,6 +208,32 @@ describe("GlossaryPage", () => {
       "false",
     );
     expect(screen.getByRole("button", { name: "Hardener" })).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("renders stored Glossary media src on the native img element", async () => {
+    const publishedSrc =
+      "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp";
+    mockPublishedGlossaryFetch([
+      {
+        id: "ulei-pentru-lemn",
+        term: "Ulei pentru lemn",
+        definition: ["Oil finish for wood."],
+        media: [
+          {
+            type: "image",
+            src: publishedSrc,
+            alt: "ulei",
+          },
+        ],
+      },
+    ]);
+    seedAuthenticatedSession();
+    const user = userEvent.setup();
+    renderWorkspace(ROUTES.GLOSSARY);
+
+    await user.click(await screen.findByRole("button", { name: "Ulei pentru lemn" }));
+
+    expect(screen.getByRole("img", { name: "ulei" })).toHaveAttribute("src", publishedSrc);
   });
 
   it("opens and scrolls to a glossary entry from a canonical hash deep link", async () => {

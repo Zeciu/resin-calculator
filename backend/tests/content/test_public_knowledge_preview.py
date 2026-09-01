@@ -339,24 +339,50 @@ class TestAuthenticatedRegression:
 class TestLocaleAbsenceDoesNotSubstitute:
     def test_en_does_not_unlock_a_substitute_full_item(self):
         config = _config()
+        packaged_en_manual = _load_json(PUBLIC_CORPUS / "published" / "manual" / "en" / "document.json")
+        packaged_en_glossary = _load_json(PUBLIC_CORPUS / "published" / "glossary" / "en" / "entries.json")
+        packaged_en_kb = _load_json(
+            PUBLIC_CORPUS / "published" / "knowledge-base" / "en" / "entries.json"
+        )
+        packaged_en_count = len(packaged_en_manual.get("chapters") or [])
+        packaged_en_glossary_ids = {
+            entry["id"] for entry in packaged_en_glossary.get("entries") or []
+        }
+        packaged_en_kb_ids = {entry["id"] for entry in packaged_en_kb.get("entries") or []}
         manual = _preview_client().get("/api/public-preview/manual?locale=en").json()
         kb = _preview_client().get("/api/public-preview/knowledge-base?locale=en").json()
         glossary = _preview_client().get("/api/public-preview/glossary?locale=en").json()
+        romanian = _preview_client().get("/api/public-preview/manual?locale=ro").json()
 
-        assert [chapter["id"] for chapter in manual["chapters"] if chapter["locked"] is False] == []
-        assert [entry["id"] for entry in kb["entries"] if entry["locked"] is False] == []
-        assert [entry["id"] for entry in glossary["entries"] if entry["locked"] is False] == []
-        assert config["manualChapterIds"][0] not in [chapter["id"] for chapter in manual["chapters"]]
-        assert manual["chapters"] == []
-        assert kb["entries"] == []
-        assert glossary["entries"] == []
-        assert all(entry["locked"] is True for entry in kb["entries"])
+        assert len(manual["chapters"]) == packaged_en_count
+        assert len(kb["entries"]) == len(packaged_en_kb.get("entries") or [])
+        assert len(glossary["entries"]) == len(packaged_en_glossary.get("entries") or [])
+        unlocked_kb = [entry["id"] for entry in kb["entries"] if entry["locked"] is False]
+        unlocked_glossary = [entry["id"] for entry in glossary["entries"] if entry["locked"] is False]
+        assert set(unlocked_kb) == set(config["knowledgeBaseEntryIds"]) & packaged_en_kb_ids
+        assert set(unlocked_glossary) == set(config["glossaryEntryIds"]) & packaged_en_glossary_ids
+        if packaged_en_count:
+            en_titles = [chapter["title"] for chapter in manual["chapters"]]
+            ro_titles = [chapter["title"] for chapter in romanian["chapters"]]
+            assert en_titles != ro_titles
+            unlocked = [chapter["id"] for chapter in manual["chapters"] if chapter["locked"] is False]
+            assert unlocked == [chapter_id for chapter_id in config["manualChapterIds"] if chapter_id in unlocked]
+        else:
+            assert [chapter["id"] for chapter in manual["chapters"] if chapter["locked"] is False] == []
+            assert config["manualChapterIds"][0] not in [chapter["id"] for chapter in manual["chapters"]]
+            assert manual["chapters"] == []
 
     def test_inactive_locale_follows_existing_content_api_convention(self):
         preview = _preview_client().get("/api/public-preview/manual?locale=de")
         content = _authenticated_content_client("subscriber").get("/api/content/manual?locale=de")
+        french_preview = _preview_client().get("/api/public-preview/manual?locale=fr")
+        french_content = _authenticated_content_client("subscriber").get(
+            "/api/content/manual?locale=fr"
+        )
         assert preview.status_code == 400
         assert content.status_code == 400
+        assert french_preview.status_code == 400
+        assert french_content.status_code == 400
         assert preview.json()["detail"] == content.json()["detail"]
 
 

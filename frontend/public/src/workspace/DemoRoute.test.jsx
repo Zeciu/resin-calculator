@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import { ROUTES } from "./routes.js";
 import { renderWorkspace } from "./renderWorkspaceRouter.jsx";
+import { RECENT_PROJECTS_STORAGE_KEY } from "./recentProjectsIndex.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -53,17 +54,28 @@ describe("Demo route", () => {
     ).toBeInTheDocument();
   });
 
-  it("lets authenticated users visit /demo directly without the sidebar Demo CTA", () => {
+  it("lets authenticated users visit /demo from the shared sidebar Demo CTA", async () => {
+    const user = userEvent.setup();
     seedAuthenticatedSession();
-    renderWorkspace(ROUTES.DEMO);
+    renderWorkspace(ROUTES.HOME);
+
+    const demoCta = within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole(
+      "link",
+      { name: "Try a demo project" },
+    );
+    expect(demoCta).toHaveAttribute("href", "/demo");
+    expect(demoCta).toHaveAttribute("data-nav", "demo-project");
+    expect(demoCta).not.toHaveClass("workspace-sidebar__link--primary-action");
+
+    await user.click(demoCta);
 
     expect(screen.getByRole("banner", { name: "Module header" })).toHaveTextContent("Demo project");
     expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
     expect(
-      within(screen.getByRole("navigation", { name: "Workspace navigation" })).queryByRole("link", {
+      within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole("link", {
         name: "Try a demo project",
       }),
-    ).not.toBeInTheDocument();
+    ).toHaveAttribute("aria-current", "page");
   });
 
   it("navigates guests from the sidebar Demo CTA to /demo", async () => {
@@ -77,6 +89,39 @@ describe("Demo route", () => {
     );
 
     expect(screen.getByRole("banner", { name: "Module header" })).toHaveTextContent("Demo project");
+    expect(
+      within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole("link", {
+        name: "Try a demo project",
+      }),
+    ).toHaveAttribute("data-nav", "demo-project");
+  });
+
+  it("does not write demo work into Recent Projects for authenticated users", async () => {
+    const user = userEvent.setup();
+    const seededRecents = JSON.stringify({
+      version: 1,
+      items: [
+        {
+          id: "existing-recent",
+          projectId: "existing-project",
+          projectName: "Existing Table",
+          lastOpenedAt: "2026-01-01T00:00:00.000Z",
+        },
+      ],
+    });
+    localStorage.setItem(RECENT_PROJECTS_STORAGE_KEY, seededRecents);
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.HOME);
+
+    await user.click(
+      within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole("link", {
+        name: "Try a demo project",
+      }),
+    );
+
+    expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
+    expect(localStorage.getItem(RECENT_PROJECTS_STORAGE_KEY)).toBe(seededRecents);
+    expect(screen.queryByRole("button", { name: /Save Project/i })).not.toBeInTheDocument();
   });
 
   it("discards demo state silently when leaving /demo", async () => {

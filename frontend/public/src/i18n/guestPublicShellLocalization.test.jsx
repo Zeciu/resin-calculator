@@ -24,6 +24,7 @@ import {
 
 const GUEST_PUBLIC_SHELL_SOURCE_FILES = [
   "workspace/WorkspaceSidebar.jsx",
+  "demo/DemoProjectNavLink.jsx",
   "workspace/GuestHomeOnboarding.jsx",
   "workspace/GuestIntro.jsx",
   "workspace/WorkspaceHero.jsx",

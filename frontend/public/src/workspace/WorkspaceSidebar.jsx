@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Lock } from "lucide-react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/useAuth.js";
+import DemoProjectNavLink from "../demo/DemoProjectNavLink.jsx";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import QuickPreferences from "../preferences/QuickPreferences.jsx";
 import PublicLanguageSelector from "../preferences/PublicLanguageSelector.jsx";
@@ -29,14 +30,10 @@ function LockedNavItem({ label, lockLabel, onShowLockedMessage }) {
 function GuestAuthActions({ t, pathname, onNavigate }) {
   return (
     <div className="workspace-sidebar__guest-auth">
-      <Link
-        className="guest-home-onboarding__demo"
-        to={ROUTES.DEMO}
-        aria-current={pathname === ROUTES.DEMO ? "page" : undefined}
+      <DemoProjectNavLink
+        className={() => "guest-home-onboarding__demo"}
         onClick={onNavigate}
-      >
-        {t("demo.cta")}
-      </Link>
+      />
       <PublicLanguageSelector />
       <Link
         className="guest-home-onboarding__primary"
@@ -145,6 +142,22 @@ export default function WorkspaceSidebar() {
       {isLoggedInHome ? (
         <li className="workspace-sidebar__item workspace-sidebar__item--quick-preferences">
           <QuickPreferences variant="sidebar" />
+        </li>
+      ) : null}
+      {isAuthenticated ? (
+        <li className="workspace-sidebar__item">
+          <DemoProjectNavLink
+            labeled
+            className={({ isActive }) =>
+              [
+                "workspace-sidebar__link",
+                isActive ? "workspace-sidebar__link--active" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")
+            }
+            onClick={clearLockedModuleMessage}
+          />
         </li>
       ) : null}
       {isAuthenticated ? (

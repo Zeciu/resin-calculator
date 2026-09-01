@@ -68,3 +68,4 @@ changed-files.txt
 # backend/private/content. Dockerfiles must also use explicit public allowlists.
 frontend/private/
 backend/private/
+backend/public/content/editorial/

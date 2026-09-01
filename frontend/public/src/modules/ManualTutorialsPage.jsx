@@ -43,12 +43,15 @@ export default function ManualTutorialsPage() {
               {t("content.loadingManual")}
             </p>
           ) : null}
-          {loadState === "unavailable" || loadState === "error" ? (
+          {loadState === "unavailable" ? (
             <ContentUnavailableMessage
               unavailableKey="content.unavailableManual"
               englishAvailable={Boolean(payload?.englishAvailable)}
               onViewEnglish={viewEnglishVersion}
             />
+          ) : null}
+          {loadState === "error" ? (
+            <ContentUnavailableMessage unavailableKey="content.loadErrorManual" />
           ) : null}
           {loadState === "ready" ? <ManualContent sections={sections} /> : null}
         </article>

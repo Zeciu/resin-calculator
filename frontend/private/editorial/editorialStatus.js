@@ -29,8 +29,9 @@ export function resolveEditorialDisplay({ isDirty = false, editorialVisibility, 
     case EDITORIAL_VISIBILITY.LIVE:
       return {
         kind: "live",
-        label: `Live (${localeLabel})`,
-        message: "This version is currently visible on the public site.",
+        label: `Published (${localeLabel})`,
+        message:
+          "This version is published in the editorial store and available for local preview. Production still requires packaging and deployment.",
         tone: "success",
       };
     case EDITORIAL_VISIBILITY.STALE:
@@ -38,14 +39,15 @@ export function resolveEditorialDisplay({ isDirty = false, editorialVisibility, 
         kind: "stale",
         label: `Draft changes (${localeLabel})`,
         message:
-          "Draft saved. The public site still shows the previous version until you update public content.",
+          "Draft saved. Local preview still shows the previous published version until you publish again. Production still requires packaging and deployment.",
         tone: "warning",
       };
     case EDITORIAL_VISIBILITY.DRAFT:
       return {
         kind: "draft",
         label: `Draft (${localeLabel})`,
-        message: "Saved as draft only. This version is not visible on the public site yet.",
+        message:
+          "Saved as draft only. Publish it before it appears in the local workspace. Production still requires packaging and deployment.",
         tone: "neutral",
       };
     default:
@@ -60,7 +62,8 @@ export function resolveEditorialDisplay({ isDirty = false, editorialVisibility, 
       return {
         kind: "draft",
         label: `Draft (${localeLabel})`,
-        message: "Saved as draft only. This version is not visible on the public site yet.",
+        message:
+          "Saved as draft only. Publish it before it appears in the local workspace. Production still requires packaging and deployment.",
         tone: "neutral",
       };
   }
@@ -74,7 +77,7 @@ export function publishButtonLabel(editorialVisibility) {
     editorialVisibility === EDITORIAL_VISIBILITY.LIVE ||
     editorialVisibility === EDITORIAL_VISIBILITY.STALE
   ) {
-    return "Update public";
+    return "Update published";
   }
   return "Publish";
 }

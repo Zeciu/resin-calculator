@@ -440,7 +440,7 @@ describe("Knowledge base management workspace (Task 61)", () => {
 
     await user.click(screen.getByRole("button", { name: "Publish" }));
     await waitFor(() => {
-      expect(screen.getByText(/Live \(RO\)|Draft changes \(RO\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/Published \(RO\)|Draft changes \(RO\)/i)).toBeInTheDocument();
     });
     },
     15000,
@@ -490,7 +490,7 @@ describe("Knowledge base management workspace (Task 61)", () => {
     });
 
     await user.click(screen.getByRole("button", { name: "EN" }));
-    expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
+    expect(screen.getByText(/Published \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related Knowledge Base Articles")).toBeInTheDocument();
   });
 

@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "Abrasive discs are circular consumables used in conjunction with sanding machines for processing wood and epoxy resin. They are available in various grit sizes and allow for controlled material removal depending on the processing stage."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "abrasive disc",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abrasive discs"
+    },
+    {
+      "definition": [
+        "Abrasive grit refers to the size of the abrasive particles on an abrasive material, expressed as a specific number. Fine grits are used for rapid material removal, while coarse grits are used for finishing and smoothing surfaces."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abrasive grit"
+    },
+    {
+      "definition": [
+        "Abrasive mesh is an abrasive material with a perforated structure, designed to allow for efficient dust removal during sanding. Using it reduces dust buildup on the abrasive surface, extends its service life, and helps achieve a more uniform finish."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "abrasive mesh",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Abrasive discs"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abrasive mesh"
+    },
+    {
+      "definition": [
+        "Abrasive paste is a polishing compound that contains fine abrasive particles and is used to correct imperfections remaining after sanding. The choice of paste depends on the condition of the surface and the desired level of finish."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "abrasive paste",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abrasive paste"
+    },
+    {
+      "definition": [
+        "Adhesion is the ability of two materials in contact with each other to bond firmly together. In projects involving epoxy resin, proper adhesion between the resin and the wood is essential for the strength and durability of the final piece."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Adhesion"
+    },
+    {
+      "definition": [
+        "Air bubbles are pockets of air trapped in the epoxy resin during mixing, pouring, or as it seeps out of the wood\u2019s pores. If not removed, they can affect the appearance and, in some cases, the strength of the finished piece."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "air bubbles in resin",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mixing"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Deep Pour"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Layered casting"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Air bubbles"
+    },
+    {
+      "definition": [
+        "Sapwood is the outer part of the wood, located between the heartwood and the bark. This part of the trunk transports water and nutrients while the tree is alive and is generally lighter in color and more susceptible to moisture and biological attack. Depending on the project, the sapwood may be left intact for aesthetic purposes or removed to ensure greater stability."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Heartwood"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Heartwood",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "Ambient temperature refers to the temperature of the air in the area where epoxy resins are stored, mixed, and used. It affects viscosity, pot life, cure rate, and the final quality of the casting, which is why it must be maintained within the range recommended by the manufacturer."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ambient temperature"
+    },
+    {
+      "definition": [
+        "The required amount of hardener is the volume or mass of hardener calculated based on the amount of resin and the mixing ratio specific to the product being used. Adhering to this value is essential for the polymerization process to proceed correctly."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Amount of hardener needed"
+    },
+    {
+      "definition": [
+        "The required amount of resin is the estimated volume or mass of epoxy resin needed to complete a project, including any safety factor specified by the user. In HFZWood, this value is calculated automatically based on the project\u2019s geometry and the parameters entered."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Amount of resin needed"
+    },
+    {
+      "definition": [
+        "A backup, also known as a backup copy, is an additional copy of projects or data, kept to enable their recovery in the event of loss, damage, or accidental deletion of the information."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Backup"
+    },
+    {
+      "definition": [
+        "A band saw is a cutting machine that uses a continuous blade mounted on two or more pulleys. It allows for precise cuts, both straight and curved, and is frequently used for cutting solid wood and processing irregularly shaped pieces."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "banzic",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Band saw"
+    },
+    {
+      "definition": [
+        "A reference line is the segment defined between two reference points and corresponds to a known actual distance. In HFZWood, this line is used during the calibration process to establish the correct image scale and perform accurate measurements."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Baseline"
+    },
+    {
+      "definition": [
+        "Biological attack refers to the degradation of wood caused by fungi, molds, bacteria, or wood-boring insects. The severity of this damage can affect both the mechanical strength and the appearance of the piece. Affected wood must be carefully evaluated before use in a project involving epoxy resin."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "biological attack",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Unstable wood"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Biological attack"
+    },
+    {
+      "definition": [
+        "A spirit level, also known as a leveling device, is a tool used to check whether a surface is level or plumb. In epoxy resin projects, it is used to level the formwork and to verify the correct positioning of components before pouring."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Leveling the formwork"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (level)"
+    },
+    {
+      "definition": [
+        "Buoyancy is the force exerted by the liquid resin on the wood, causing it to rise when the wood\u2019s density is lower than that of the resin. If the wood pieces are not properly secured, they may shift or float during the pouring process, affecting the geometry and final appearance of the project."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Buoyancy"
+    },
+    {
+      "definition": [
+        "The calculated area represents the surface area automatically determined by the application based on the user-defined measurement polygon. This value is used in geometric calculations and helps estimate the volume and the required amount of resin."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calculated area"
+    },
+    {
+      "definition": [
+        "Calibration is the process by which an image is brought to a true scale using a known dimension. In HFZWood, calibration allows measurements taken on the image to be converted to actual dimensions, ensuring the accuracy of area and volume calculations."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Straightening Wood"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibration"
+    },
+    {
+      "definition": [
+        "A capability (*Capability*) is a feature or group of features that the HFZWood application makes available to a user. The available capabilities are determined by the subscription type and the role associated with the account."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Capability"
+    },
+    {
+      "definition": [
+        "Casting is the process by which liquid epoxy resin is poured into a mold, cavities, or other areas of the project to fill the available spaces and form the final part after curing. The quality of the casting is influenced by material preparation, working conditions, and adherence to the manufacturer\u2019s recommended parameters."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Formwork"
+        },
+        {
+          "id": "etan-are",
+          "term": "Sealing Sealing"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerization"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Deep Pour"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Layered casting"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Casting"
+    },
+    {
+      "definition": [
+        "A casting defect is any imperfection that occurs during the casting or curing process of epoxy resin and that affects the appearance, functionality, or quality of the final part. Among the most common defects are air bubbles, voids, leaks, cracks, and areas that have not cured properly."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Casting defect"
+    },
+    {
+      "definition": [
+        "The pour volume represents the total amount of epoxy resin required to fill an area or to complete a pour. It is determined based on the geometric dimensions of the project and is one of the main results calculated by the HFZWood application."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mixing"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Air bubbles"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Degassing - De-icing"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerization"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exothermic reaction"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Ambient temperature"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Deep Pour"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Layered casting"
+        },
+        {
+          "id": "turnare",
+          "term": "Casting"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Casting volume"
+    },
+    {
+      "definition": [
+        "A cavity is a natural hollow or one resulting from wood decay, which can be filled with epoxy resin for structural or decorative purposes. The shape and size of the cavities directly influence the volume of resin required to complete the project."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Wooden knot"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Crack",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Cavity"
+    },
+    {
+      "definition": [
+        "A control point is a point that defines the shape and position of a measurement polygon. Moving a control point automatically changes the geometry of the bounded area and affects the results calculated by the application."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Reference point"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Checkpoint"
+    },
+    {
+      "definition": [
+        "Chemical resistance is the ability of a material or finish to withstand contact with various chemicals without significant degradation of its appearance or properties. The level of this resistance varies depending on the type of product and the nature of the substances with which it comes into contact."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Chemical resistance"
+    },
+    {
+      "definition": [
+        "A circular saw is a machine or tool equipped with a rotating circular blade, used for cutting wood to length, width, or at various angles. The precision and stability of the cut depend on the machine&#x27;s settings, the type of blade, and how the material is guided."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "circular saw",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Circular saw"
+    },
+    {
+      "definition": [
+        "A clamping clamp is a device used to temporarily hold parts or components in the desired position during soldering, machining, or assembly. There are many types of clamps, designed for various sizes and applications."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "wooden clamp",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Clamp"
+    },
+    {
+      "definition": [
+        "Cleaning cavities involves removing dust, wood debris, loose bark, and other impurities from the wood\u2019s natural voids before pouring the epoxy resin. Proper cleaning improves resin adhesion and reduces the risk of defects."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cleaning cavities"
+    },
+    {
+      "definition": [
+        "CNC (Computer Numerical Control) is an automated machining system in which the machine&#x27;s movements are controlled by a computer program. In woodworking, CNC machines are used for cutting, milling, engraving, and creating complex shapes with a high degree of precision and repeatability."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC"
+    },
+    {
+      "definition": [
+        "Contamination refers to the presence of unwanted substances or impurities, such as dust, oils, greases, water, or silicone, which can affect the adhesion, appearance, or curing of the epoxy resin. Maintaining a clean environment and clean surfaces is essential for achieving high-quality results."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosity"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contamination"
+    },
+    {
+      "definition": [
+        "Shrinkage is the reduction in the dimensions of a material resulting from moisture loss, the curing process, or temperature variations. In projects involving wood and epoxy resin, shrinkage can affect dimensional accuracy and may lead to cracks or internal stresses."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contraction"
+    },
+    {
+      "definition": [
+        "A copy router is a router equipped with one or more guide bearings that allow it to follow a template or an existing edge. It is used for the precise reproduction of contours and for producing identical parts."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Copy cutter"
+    },
+    {
+      "definition": [
+        "A crack is a fissure that forms in the structure of wood as a result of internal stresses, drying, or mechanical stress. Depending on their size and location, cracks may require stabilization, filling with epoxy resin, or removal of the affected section."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Cavity",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Crack"
+    },
+    {
+      "definition": [
+        "A crater is a surface defect that appears as a small depression or circular hollow in the epoxy resin after curing. It can be caused by contamination, air bubbles, or other conditions that prevent the resin from spreading evenly."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Crater"
+    },
+    {
+      "definition": [
+        "Crystallization is the phenomenon by which some epoxy resins form solid crystals during storage, particularly at low temperatures. In most cases, crystallization is reversible and can be eliminated by gently heating the resin before use, in accordance with the manufacturer\u2019s recommendations."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Viscosity"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Crystallization"
+    },
+    {
+      "definition": [
+        "Curing time is the period required for the epoxy resin to develop its mechanical properties and become safe to handle or process. The duration of this process depends on the type of resin, the ambient temperature, and the working conditions."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Curing time"
+    },
+    {
+      "definition": [
+        "Cutting is the process of cutting wood to the dimensions and shape required for the project. It can be performed using various machines and aims to produce pieces that can be further processed and incorporated into the next stage of the project."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Debit"
+    },
+    {
+      "definition": [
+        "Deep Pour is a technique that uses epoxy resins specially formulated for single-step, thick-wall castings. These resins generate less heat during polymerization and allow for the production of large volumes without defects caused by overheating."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosity"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Working Time (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exothermic reaction"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Mixing Ratio"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerization"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deep Pour"
+    },
+    {
+      "definition": [
+        "Degassing is the process of removing air and gases from the epoxy resin before or immediately after pouring. The purpose of this operation is to reduce the number of air bubbles and achieve a pour that is as uniform and transparent as possible."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosity"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Working Time (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Degassing - De-icing"
+    },
+    {
+      "definition": [
+        "Delamination is the separation of layers within a material or of surfaces bonded together. In projects involving epoxy resin, delamination indicates a loss of adhesion and can compromise both the mechanical strength and the final appearance of the part."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Delamination"
+    },
+    {
+      "definition": [
+        "A release agent is a substance applied to the surface of the formwork to prevent the epoxy resin from adhering during curing. Its use facilitates the removal of the formwork and reduces the risk of damage to the part or to the contact surfaces."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "stripping agent",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Demolding agent"
+    },
+    {
+      "definition": [
+        "Demolding is the process of removing the mold after the epoxy resin has cured sufficiently to retain its shape. This step must be performed carefully to avoid damaging the project or the cast edges."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Demulare"
+    },
+    {
+      "definition": [
+        "Expansion refers to the increase in the dimensions of a material due to moisture absorption or temperature changes. Because wood and epoxy resin behave differently when it comes to expansion, this phenomenon must be taken into account in the design and use of parts."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dilation"
+    },
+    {
+      "definition": [
+        "Dimensional stability refers to a material\u2019s ability to maintain its shape and dimensions over time, despite variations in temperature and humidity. High dimensional stability contributes to the durability and proper functioning of projects made from wood and epoxy resin."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dimensional stability"
+    },
+    {
+      "definition": [
+        "A drill is a power tool used to make holes in wood and other materials. Depending on the attachments used, it can also be used for driving screws, reaming holes, or other machining operations."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "drill",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Drill"
+    },
+    {
+      "definition": [
+        "Dry sanding is the process of sanding performed without the use of cooling or lubricating fluids. It is the most commonly used method in woodworking and epoxy resin processing and allows for the efficient removal of material at all stages of processing."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dry sanding"
+    },
+    {
+      "definition": [
+        "Dust extraction is the process of collecting and removing dust generated during the processing of wood and epoxy resin. Using an efficient dust extraction system helps maintain a clean work environment, protects the operator\u2019s health, and improves the quality of the finish."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dust extraction"
+    },
+    {
+      "definition": [
+        "Dust inclusions are dust particles or other impurities that remain trapped in the epoxy resin during curing. These defects affect the surface appearance and may require additional sanding and polishing to remove them."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dust inclusions"
+    },
+    {
+      "definition": [
+        "Edit permission refers to a user\u2019s right to modify the content of a project. Depending on the user\u2019s role and the application\u2019s rules, a project may be editable or view-only."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Edit permission"
+    },
+    {
+      "definition": [
+        "Air bubble entrapment refers to the trapping of air bubbles within the epoxy resin matrix during the curing process. Trapped air bubbles can affect the transparency, aesthetic appearance, and, in certain situations, the strength of the final part."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "air bubbles in resin",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Air bubbles"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Working Time (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Encapsulation of air bubbles"
+    },
+    {
+      "definition": [
+        "Epoxy resin is a two-component material that, after being mixed with a hardener in the recommended ratio, undergoes a chemical reaction to form a solid, strong, and durable material. In woodworking, it is used to fill cavities, create decorative or structural castings, and produce transparent or pigmented surfaces."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Epoxy resin"
+    },
+    {
+      "definition": [
+        "Resin quantity estimation is the process by which the HFZWood application calculates the volume and required quantity of epoxy resin needed to complete a project, based on the user-defined geometry and the available calculation parameters."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Estimating the amount of resin"
+    },
+    {
+      "definition": [
+        "Excessive moisture refers to the presence of water in the wood or work environment in quantities exceeding the level recommended for the use of epoxy resin. This can affect adhesion, dimensional stability, the curing process, and the final quality of the project."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Excessive humidity"
+    },
+    {
+      "definition": [
+        "An exothermic reaction is the process by which epoxy resin releases heat during polymerization. The amount of heat produced depends on the type of resin, the volume of the mixture, and the ambient temperature. An excessively exothermic reaction can affect the quality of the casting and damage the material."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerization"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Exothermic reaction"
+    },
+    {
+      "definition": [
+        "The felt disc is an accessory used for polishing surfaces in combination with abrasive or finishing compounds. Thanks to its compact structure, it is used primarily to achieve a high gloss and a uniform surface."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Felt disc"
+    },
+    {
+      "definition": [
+        "The final inspection is a comprehensive check of the project after all machining and finishing stages have been completed. Its purpose is to identify any remaining defects, verify dimensions and surface quality, and confirm that the part meets the established quality requirements."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Final Inspection"
+    },
+    {
+      "definition": [
+        "Finishing paste is a compound with very low abrasiveness, used in the final stage of polishing to enhance the surface\u2019s shine and clarity. It removes the very fine marks left behind by polish and helps achieve a high-quality finish."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finishing paste"
+    },
+    {
+      "definition": [
+        "Fish eyes, also known as Fish Eyes, are surface defects that appear as circular areas where the resin shrinks and does not adhere uniformly. They are generally caused by surface contamination with oils, silicone, or other substances that reduce adhesion."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fish eyes"
+    },
+    {
+      "definition": [
+        "The foam pad is an accessory for polishing machines, used to apply abrasive and finishing compounds. Depending on the foam\u2019s hardness, it can be used both to correct fine imperfections and to achieve the final shine."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "plush pad",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Foam disc"
+    },
+    {
+      "definition": [
+        "Formwork is the temporary structure used to support and contain the epoxy resin during pouring and curing. It must be leak-proof, stable, and made of materials that allow the part to be easily removed once the process is complete."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Formwork"
+    },
+    {
+      "definition": [
+        "Formwork deformation refers to a change in the shape or position of the formwork during the pouring or curing of the epoxy resin. This can be caused by resin pressure, insufficient clamping, or low rigidity of the formwork and can lead to deviations from the design dimensions."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Formwork deformation"
+    },
+    {
+      "definition": [
+        "A gas torch is a tool that produces a controlled flame and is used to remove air bubbles from the surface of epoxy resin immediately after pouring. It must be used with caution, as excessive heat exposure can damage the resin or surrounding materials."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "torch",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Air bubbles"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gas torch"
+    },
+    {
+      "definition": [
+        "Gel time is the period required for the epoxy resin to transition from a liquid state to a gel-like state, in which it can no longer flow freely. This point marks the end of the period during which the casting can be shaped or corrected and precedes the stage of full cure."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gelling time"
+    },
+    {
+      "definition": [
+        "The glossary is a collection of terms and definitions used in the HFZWood application and in the field of woodworking and epoxy resins. Its purpose is to ensure consistent use of terminology and a clear understanding of the concepts presented in the application."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Glossary"
+    },
+    {
+      "definition": [
+        "A glossy finish is a type of finish characterized by a high degree of light reflection and a very smooth surface. Achieving this look requires proper sanding and polishing, using the appropriate materials and techniques."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Glossy finish"
+    },
+    {
+      "definition": [
+        "A leveling cutter is a large-diameter cutter used to bring surfaces to the same level through controlled material removal. It is frequently used in conjunction with a router sled to level large wooden and epoxy resin countertops."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Grading cutter"
+    },
+    {
+      "definition": [
+        "The hardener is the component that triggers the chemical reaction necessary for curing the epoxy resin. It must be used exclusively with the resin for which it was designed and in the mixing ratio recommended by the manufacturer, as any deviation may affect the quality and strength of the final material."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hardener"
+    },
+    {
+      "definition": [
+        "Sound wood is wood that shows no signs of biological decay or significant structural defects and retains its mechanical and aesthetic properties. Choosing sound wood is one of the essential conditions for achieving sustainable, high-quality projects."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Healthy wood"
+    },
+    {
+      "definition": [
+        "Heartwood is the central, mature, and denser part of a tree trunk. In general, it is more resistant to moisture, fungi, and insects than sapwood and is preferred for making furniture and decorative projects using epoxy resin due to its stability and appearance."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "sapwood",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Heartwood"
+    },
+    {
+      "definition": [
+        "The HFZWood Manual is the application\u2019s primary documentation, explaining its features, how to use it, and the available workflows. It provides users with the information they need to use the application correctly and efficiently."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "HFZWood Manual"
+    },
+    {
+      "definition": [
+        "A heat gun is a device that generates a stream of hot air and can be used to remove air bubbles from the surface of epoxy resin. The temperature and working distance must be carefully controlled to avoid overheating or warping the surface."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "hot air gun",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Air bubbles"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hot air gun"
+    },
+    {
+      "definition": [
+        "Hygroscopic wood is wood that has the natural ability to absorb and release moisture from the surrounding environment until it reaches equilibrium with the atmosphere. For this reason, its dimensions and properties may change depending on temperature and humidity conditions. This behavior must be taken into account when designing and manufacturing parts cast with epoxy resin."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hygroscopic wood"
+    },
+    {
+      "definition": [
+        "Image calibration is the process by which the application establishes a correspondence between the dimensions in the photo and the actual dimensions, using a known reference distance. Proper calibration is essential for obtaining accurate results."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Image Calibration"
+    },
+    {
+      "definition": [
+        "Image scale is the ratio between the dimensions in the photograph and the actual dimensions of the object being measured. Correctly determining the scale allows for precise calculations within the project."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Image scale"
+    },
+    {
+      "definition": [
+        "Importing an image is the process of uploading a photo into the HFZWood app for use in a new project. The imported image serves as the basis for all subsequent measurements and calculations."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Importing an image"
+    },
+    {
+      "definition": [
+        "Incomplete curing refers to a situation in which the epoxy resin does not fully develop its mechanical properties after the normal curing time. Causes may include an incorrect mixing ratio, insufficient mixing, or improper working conditions."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Incomplete hardening"
+    },
+    {
+      "definition": [
+        "The inhibition layer, also known as Amine Blush, is a thin film that can form on the surface of epoxy resin during curing, particularly under conditions of low temperature or high humidity. Before applying a new coat or finishing, this film must be removed to ensure proper adhesion."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inhibition Layer (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Internal stresses are stresses present within the wood structure as a result of the natural growth process or uneven drying. These can cause warping, cracks, or dimensional changes during processing and use. Identifying and reducing the effects of internal stresses helps ensure stable and durable projects."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Internal tensions"
+    },
+    {
+      "definition": [
+        "The Knowledge Base is a collection of technical articles and additional information that supplements the application manual. It provides detailed explanations, recommendations, and useful information about the materials, processes, and techniques used in wood and epoxy resin projects."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Knowledge Base"
+    },
+    {
+      "definition": [
+        "Layered casting is a technique in which epoxy resin is applied in several successive stages, after the previous layer has partially or completely cured. This method allows for the creation of thick castings, reduces the risk of overheating, and provides better control over the final result."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Layered casting"
+    },
+    {
+      "definition": [
+        "Formwork leveling is the process of positioning the formwork perfectly horizontally before pouring. Proper leveling ensures uniform distribution of the epoxy resin and helps achieve a final surface free of unevenness."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (level)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Leveling the formwork"
+    },
+    {
+      "definition": [
+        "A local project is a project saved on the user\u2019s device that can be opened and edited without requiring an internet connection. In the HFZWood architecture, local projects remain available to the user even after the subscription expires."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Local project"
+    },
+    {
+      "definition": [
+        "Material compatibility refers to the ability of different materials used in a project to work together without causing undesirable reactions or defects. Selecting compatible materials helps ensure good adhesion, high durability, and stable performance during use."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Material Compatibility"
+    },
+    {
+      "definition": [
+        "Measurement accuracy refers to the degree of closeness between the values calculated by the application and the actual dimensions of the project. It depends on image quality, the accuracy of the calibration, and the precision with which measurement points and contours are defined."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Measurement accuracy"
+    },
+    {
+      "definition": [
+        "A measurement polygon is a sequence of interconnected points that define the outline of a surface to be measured. In HFZWood, polygons are used to define the outer contour, wooden parts, cavities, and other areas required for geometric calculations."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Measurement polygon"
+    },
+    {
+      "definition": [
+        "Melamine-faced MDF is a panel made from compressed fine wood fibers and covered with a melamine layer. Its surface is very uniform and allows for the creation of high-quality formwork, making it particularly suitable for projects that require precision and clean edges."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Melamine-faced MDF"
+    },
+    {
+      "definition": [
+        "Melamine-faced particleboard is a panel made from compressed wood chips and coated with a melamine layer that provides a smooth, durable surface. Due to its low cost and relatively non-stick surface, it is frequently used in the construction of formwork for epoxy resin casting."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Melamine-faced particleboard"
+    },
+    {
+      "definition": [
+        "A microcrack is a very small crack, often difficult to see with the naked eye. Although it may seem insignificant, it can develop over time and affect the strength, watertightness, or appearance of the surface."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Microcrack"
+    },
+    {
+      "definition": [
+        "A milling cutter is a cutting tool mounted on a milling machine or other machining equipment, used for the controlled removal of material. There are numerous types of milling cutters, each designed for a specific operation or machining profile."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "milling cutter",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Milling cutter"
+    },
+    {
+      "definition": [
+        "Mixing is the process by which the epoxy resin and hardener are combined until a completely homogeneous mixture is obtained. Proper mixing ensures that the polymerization reaction proceeds uniformly and reduces the risk of areas that remain sticky or do not cure completely."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mixing"
+    },
+    {
+      "definition": [
+        "The mixing ratio is the proportion in which the epoxy resin and hardener must be combined to achieve proper curing. This ratio is specified by the manufacturer and must be followed precisely, as it affects the pot life, curing, and final properties of the material."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mixing Ratio"
+    },
+    {
+      "definition": [
+        "Moisture resistance is the ability of a material or finish to retain its properties when exposed to water or a humid environment. A high level of moisture resistance helps maintain the stability and appearance of the piece over time."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Moisture resistance"
+    },
+    {
+      "definition": [
+        "A natural edge is the original contour of the wood, preserved after the bark has been removed. This type of edge is commonly used in River Table projects and other decorative pieces to highlight the wood\u2019s natural shape."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Natural edge"
+    },
+    {
+      "definition": [
+        "Optical clarity refers to the ability of epoxy resin to transmit light without distortion, cloudiness, or visible changes to the image. High optical clarity allows for the highlights of the wood grain to be brought out and ensures high-quality, transparent castings."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Optical clarity"
+    },
+    {
+      "definition": [
+        "Orange peel, also known as Orange Peel, is a surface defect characterized by an irregular texture that resembles the peel of an orange. This defect can occur due to application conditions, improper viscosity, or other factors that affect the resin\u2019s leveling properties."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Orange peel"
+    },
+    {
+      "definition": [
+        "The outer contour is the boundary that defines the outer shape of the design. It determines the total surface area of the part and serves as the starting point for all geometric calculations performed in the application."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Outer Contour"
+    },
+    {
+      "definition": [
+        "Overheating refers to an excessive increase in the temperature of the epoxy resin during polymerization. This phenomenon usually occurs in castings that are too thick or in large volumes and can cause cracks, warping, yellowing, or other defects in the part."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Overheating"
+    },
+    {
+      "definition": [
+        "A pendulum saw is a power tool equipped with a narrow blade that performs a vertical reciprocating motion; it is used for making straight or curved cuts in wood and other materials. Thanks to its maneuverability, it is well-suited for intricate cuts and complex contours."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "pendulum",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pendulum saw"
+    },
+    {
+      "definition": [
+        "Personal protective equipment refers to all equipment worn by the operator to reduce the risks associated with woodworking and the use of epoxy resins. This category includes, among other items, respirators, safety goggles, gloves, and hearing protection."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Personal protective equipment"
+    },
+    {
+      "definition": [
+        "Pigment is a substance used to color epoxy resin without altering the curing process when properly dosed. Pigments are available in a wide range of colors and effects and allow for the creation of transparent, semi-transparent, or opaque castings, depending on the type and amount used."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment"
+    },
+    {
+      "definition": [
+        "Pigment dosage refers to the amount of pigment added to the epoxy resin to achieve the desired color and opacity. Adhering to the manufacturer\u2019s recommended dosage is important for maintaining the resin\u2019s mechanical properties and ensuring normal polymerization."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment dosage"
+    },
+    {
+      "definition": [
+        "Pigment paste is a concentrated pigment in paste form, specially formulated for coloring epoxy resins. Thanks to its consistency, it disperses easily in the mixture and allows for uniform, intense colors to be achieved with a small amount of material."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment paste"
+    },
+    {
+      "definition": [
+        "Pigment settling is the phenomenon by which pigment particles settle toward the bottom of the casting before the resin has fully cured. This can alter the final appearance of the part and is influenced by the type of pigment, the viscosity of the resin, and the duration of the curing process."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment sedimentation"
+    },
+    {
+      "definition": [
+        "Pigment separation refers to the uneven distribution of pigment within the epoxy resin matrix, which results in visible differences in color or appearance. This phenomenon can be caused by insufficient mixing, product incompatibility, or curing conditions."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment separation"
+    },
+    {
+      "definition": [
+        "A planer is a machine used to create a flat surface and a perfectly straight edge on wooden workpieces. This is one of the basic operations in preparing the material before roughing and machining. A planer can be manual or table-mounted."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "heavy-duty planer",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Planer"
+    },
+    {
+      "definition": [
+        "Polishing is the final finishing step in which the surface of the wood or epoxy resin is treated to achieve a high degree of smoothness and the desired appearance. This process removes fine sanding marks and enhances the clarity, light reflection, and aesthetic appeal of the piece."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polishing"
+    },
+    {
+      "definition": [
+        "A polishing pad is an accessory mounted on a polishing machine, used to apply and evenly distribute polishing compounds onto a surface. Pads are made from different materials, each designed for a specific level of correction or finishing."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "polish pad",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polishing pad"
+    },
+    {
+      "definition": [
+        "Polymerization is the chemical reaction through which the epoxy resin and hardener form a solid, stable structure. This process begins immediately after mixing and continues until the material develops its final properties of strength, hardness, and stability."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Mixing Ratio"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polymerization"
+    },
+    {
+      "definition": [
+        "Porous wood is wood that contains a high number of pores or microscopic cavities through which it can absorb liquids, including epoxy resin. The degree of porosity affects resin consumption, the need for a sealing coat, and the final appearance of the surface."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Porous wood"
+    },
+    {
+      "definition": [
+        "Wood placement is the process of positioning and aligning the wood pieces in the project\u2019s final configuration before pouring the epoxy resin. The way they are positioned affects the aesthetic appearance, the amount of resin required, and the stability of the assembly."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Positioning the wood"
+    },
+    {
+      "definition": [
+        "The pouring area is the surface of the project intended to be filled with epoxy resin. It may include cavities, spaces between wooden pieces, or other areas designated by the user for pouring."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pouring area"
+    },
+    {
+      "definition": [
+        "The project configuration describes the organization and positioning of all elements that make up the project, including the outer contour, wood pieces, cavities, and other areas relevant to the calculation. It defines the geometric structure based on which the application performs material estimates."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Project Configuration"
+    },
+    {
+      "definition": [
+        "Project geometry describes the shape, dimensions, and spatial relationships among all the elements that make up the project. In HFZWood, geometry forms the basis for calculating surface areas, volumes, and the estimated amount of resin required."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Project Geometry"
+    },
+    {
+      "definition": [
+        "Opening a project is the process by which a previously saved project is loaded into the HFZWood application for viewing, editing, or continuing work."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Project Launch"
+    },
+    {
+      "definition": [
+        "The project owner is the user who created the project and holds editing rights to it. The owner\u2019s identity is permanently associated with the project and forms the basis for managing access permissions."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Project Owner"
+    },
+    {
+      "definition": [
+        "The composition of the project refers to the way in which all the elements that make up the final piece\u2014such as wood, epoxy resin, and any decorative components\u2014are arranged and integrated. A well-thought-out composition ensures both the aesthetic balance and the functionality of the project."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Project Structure"
+    },
+    {
+      "definition": [
+        "Updating a project is the process of saving changes made to an existing project without creating a new one. This process preserves the project\u2019s identity and replaces the previously saved version with the updated one."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Project Update"
+    },
+    {
+      "definition": [
+        "Protective wax is a finishing product applied to the surface of wood or over a coat of oil to enhance protection and improve the final appearance. It provides a finish that is pleasant to the touch, reduces dirt absorption, and makes surface maintenance easier."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "wax",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protective wax"
+    },
+    {
+      "definition": [
+        "Quality control is the process of verifying materials, work stages, and the final result to confirm that the project meets the established quality requirements. It allows for the identification and correction of any issues before the part is considered complete."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quality Control"
+    },
+    {
+      "definition": [
+        "The reference image is the photograph used in HFZWood as the basis for measuring and calculating the volume of resin required for a project. It serves as the canvas on which the geometric elements used by the application are defined and remains permanently associated with the project."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reference image"
+    },
+    {
+      "definition": [
+        "A reference point is a point selected on an image to define a known dimension or to perform geometric measurements. In HFZWood, reference points are used for calibration and for drawing the contours needed to calculate areas and volumes."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reference point"
+    },
+    {
+      "definition": [
+        "Defect repair refers to the set of operations performed to correct imperfections that arise during the casting, curing, or finishing of a project. Depending on the nature of the defect, repair may include cleaning, sanding, filling with epoxy resin, polishing, or other procedures necessary to restore the part to the desired quality level."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Repairing defects"
+    },
+    {
+      "definition": [
+        "The resin calculator is a tool that estimates the amount of epoxy resin and hardener needed to complete a project. In HFZWood, calculations are based on the project\u2019s geometry, the volume of wood, the volume of cavities, and the parameters entered by the user, providing a quick and accurate estimate of material consumption."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resin Calculator"
+    },
+    {
+      "definition": [
+        "Resin density is the mass of a given volume of epoxy resin and is typically expressed in grams per cubic centimeter or kilograms per liter. This parameter is used to convert between volume and mass when calculating the required quantities of material."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resin density"
+    },
+    {
+      "definition": [
+        "Resin leaks are the uncontrolled loss of epoxy resin through joints, seams, or defects in the formwork before curing. They can alter the final volume of the cast, compromise the project, and lead to additional material consumption."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Formwork"
+        },
+        {
+          "id": "etan-are",
+          "term": "Sealing Sealing"
+        },
+        {
+          "id": "fisur",
+          "term": "Crack"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resin leaks"
+    },
+    {
+      "definition": [
+        "A respirator is a piece of personal protective equipment designed to filter particles, vapors, or other contaminants from the air you breathe. The use of an appropriate respirator is recommended during sanding, woodworking, and the handling of chemicals, in accordance with the manufacturers\u2019 instructions."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Respiratory mask"
+    },
+    {
+      "definition": [
+        "A River Table is a type of table made from two or more pieces of wood with epoxy resin poured between them, forming a central area that resembles the flow of a river. This design style highlights the wood\u2019s natural grain and is one of the most well-known uses of epoxy resin in furniture."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "River Table"
+    },
+    {
+      "definition": [
+        "A planer is a machine used to bring wooden workpieces to a uniform and precise thickness. After planing, it removes material in a controlled manner until the desired final dimension is achieved."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "roughing",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Roughing machine"
+    },
+    {
+      "definition": [
+        "A router is a power tool used for precise woodworking through milling. It allows for the creation of profiled edges, grooves, cutouts, and other machining operations necessary for the construction and finishing of woodworking projects."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "router",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Milling cutter"
+        }
+      ],
+      "term": "Router"
+    },
+    {
+      "definition": [
+        "The Router Sled is a guidance system that allows for the controlled movement of a router over a large workpiece. This device is used for leveling surfaces that cannot be machined with a planer, such as River Tables or other large panels."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "Sled router",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router Sled"
+    },
+    {
+      "definition": [
+        "The safety factor represents the additional amount of material added to the calculated value to compensate for normal losses during preparation and pouring. Using a safety factor reduces the risk of running out of resin before the project is completed."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Safety factor"
+    },
+    {
+      "definition": [
+        "Safety glasses are personal protective equipment designed to protect the eyes from dust, flying particles, and accidental splashes. Wearing them is recommended during all stages of machining and when working with epoxy resins."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "glasses",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Safety glasses"
+    },
+    {
+      "definition": [
+        "Sanding is the process of treating the surface of wood or epoxy resin with abrasive materials to remove imperfections and achieve a smooth, uniform surface that is ready for the next stages of finishing."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sanding"
+    },
+    {
+      "definition": [
+        "Abrasive paper is a flexible material coated with abrasive particles, used for manual or mechanical sanding of surfaces. Choosing the right grit size affects the quality of the finish and the efficiency of the machining process."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sandpaper"
+    },
+    {
+      "definition": [
+        "A satin finish is a type of finish that provides a uniform appearance with subtle reflections and a moderate sheen. It highlights the texture of the material and is preferred in projects where a natural and elegant look is desired."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Satin finish"
+    },
+    {
+      "definition": [
+        "Saving a project is the process by which all the information in a project is saved to an HFZWood file so that it can be reopened and continued later without losing any data."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Saving the Project"
+    },
+    {
+      "definition": [
+        "Scratch resistance is the ability of a surface to withstand contact with hard objects without developing visible scratches. This property depends on the material used, the type of finish, and the operating conditions of the part."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scratch resistance"
+    },
+    {
+      "definition": [
+        "The seal coat is a thin layer of epoxy resin applied before the main pour to seal the pores of the wood and reduce air entrapment. This step helps minimize the formation of bubbles and ensures a high-quality final surface."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosity"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Deep Pour"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Working Time (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Mixing Ratio"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Seal Coat"
+    },
+    {
+      "definition": [
+        "Sealing is the process of preventing epoxy resin from leaking out of the formwork during pouring and curing. Proper sealing prevents material loss, maintains the shape of the project, and helps ensure a defect-free pour."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sealing Sealing"
+    },
+    {
+      "definition": [
+        "Sealing wood involves applying a thin layer of epoxy resin or another compatible material to reduce excessive absorption and the release of air from the wood\u2019s pores prior to the main pour. This step helps ensure a clean surface and reduces the formation of air bubbles."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sealing Wood"
+    },
+    {
+      "definition": [
+        "A shared project (*Read-Only*) is a project made available to another user for viewing only. It can be opened and reviewed, but its content cannot be modified by users who are not the project owners."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Shared project"
+    },
+    {
+      "definition": [
+        "Silicone sealant is an elastic material used to seal joints and seams in formwork before pouring epoxy resin. When applied correctly, it prevents leaks and can be easily removed after the formwork is dismantled."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Formwork"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Silicone sealant"
+    },
+    {
+      "definition": [
+        "A tacky surface is a defect characterized by the resin remaining soft or sticky to the touch after the normal curing period. This phenomenon usually indicates a problem that occurred during mixing, polymerization, or adherence to the recommended conditions of use."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sticky surface"
+    },
+    {
+      "definition": [
+        "A straightening router bit is designed to produce perfectly straight edges or surfaces. It is used to correct the edges of wooden workpieces and to prepare them for joining or other woodworking operations."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Straightening cutter"
+    },
+    {
+      "definition": [
+        "Wood planing is the process by which the surface of a piece of wood is brought to a straight, level plane, eliminating warping, unevenness, and imperfections. This process ensures a stable foundation for subsequent machining and contributes to high-quality joints and fittings."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Calibration"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Uniform thickness",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Straightening Wood"
+    },
+    {
+      "definition": [
+        "A structural defect is any imperfection in the wood that may reduce its strength, stability, or ability to withstand mechanical stresses. This category includes cracks, extensive fissures, rot, voids, or other forms of deterioration that affect the behavior of the piece during use."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Wooden knot"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Structural defect"
+    },
+    {
+      "definition": [
+        "A subscription is a form of licensing that grants the user access to certain features of the HFZWood application. The type of subscription determines which features are available and any usage limitations."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Subscription"
+    },
+    {
+      "definition": [
+        "Surface maintenance refers to the set of operations performed to preserve the appearance and protective properties of the wood and its finish during use. Regular cleaning and the reapplication of maintenance products help extend the life of the piece."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surface Maintenance"
+    },
+    {
+      "definition": [
+        "Surface protection during curing refers to the measures taken to prevent dust, insects, or other contaminants from settling on the epoxy resin until the curing process is complete. Proper protection helps ensure a clean finish and reduces the need for subsequent touch-ups."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Working Time (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "turnare",
+          "term": "Casting"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surface protection during curing"
+    },
+    {
+      "definition": [
+        "Surface reconditioning is the process by which a worn or damaged part is restored to an appearance and level of protection close to its original state. Depending on the condition of the surface, this may include sanding, repairing defects, and applying a new finish."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surface reconditioning"
+    },
+    {
+      "definition": [
+        "A technical reference is documented information used to support an explanation, a recommendation, or a procedure. Within the application, technical references support the accuracy and credibility of the educational content."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Technical Reference"
+    },
+    {
+      "definition": [
+        "Technological loss refers to the amount of resin that does not make it into the final product due to mixing, transfer, or pouring processes, or due to residues left in containers and tools. This is a normal occurrence and must be taken into account when estimating total material consumption."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Technological loss"
+    },
+    {
+      "definition": [
+        "The cavity outline is the geometric boundary that defines a cavity in wood intended to be filled with epoxy resin. Correctly defining this outline allows for the precise calculation of the cavity\u2019s surface area and volume."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "Measurement polygon"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "The outline of the cavity"
+    },
+    {
+      "definition": [
+        "Thermal cracking refers to the formation of cracks in the epoxy resin or wood as a result of large temperature fluctuations or excessive heat generation during polymerization. This defect can compromise both the aesthetic appearance and the strength of the final piece."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Thermal cracking"
+    },
+    {
+      "definition": [
+        "The casting layer thickness refers to the height of the epoxy resin layer applied in a single step. It must fall within the range recommended by the manufacturer for the type of resin used, so that the polymerization process proceeds under optimal conditions and without defects."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Degassing - De-icing"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Layered casting"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Deep Pour"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Thickness of the casting layer"
+    },
+    {
+      "definition": [
+        "The total project volume represents the volume occupied by the entire finished part, including both the wood and the epoxy resin. This parameter forms the basis for the calculations performed by the application and allows for the determination of the required material quantities."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Total project volume"
+    },
+    {
+      "definition": [
+        "Uniform thickness refers to a situation in which a piece of wood has the same thickness across its entire surface. Maintaining a constant thickness facilitates processing, joining, and the accurate calculation of volume in projects using epoxy resin."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Straightening the wood",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Uniform thickness"
+    },
+    {
+      "definition": [
+        "Unstable bark is bark that does not adhere firmly to the wood and may peel off during processing or after the resin is poured. In most projects, it must be removed to prevent voids, delamination, or other adhesion problems."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Natural edge"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Unstable bark"
+    },
+    {
+      "definition": [
+        "Unstable wood is wood that tends to warp, crack, or change dimensions after processing or during use. Instability is influenced by moisture content, internal stresses, the drying process, and the material\u2019s structure. Using such wood can compromise the quality of an epoxy resin casting."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Unstable wood"
+    },
+    {
+      "definition": [
+        "UV protection refers to a finish\u2019s ability to reduce the effects of ultraviolet radiation on wood and epoxy resin. An adequate level of protection helps limit discoloration, yellowing, and degradation caused by prolonged exposure to sunlight."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "UV Protection"
+    },
+    {
+      "definition": [
+        "Viscosity refers to the degree of fluidity of the epoxy resin, that is, its resistance to flow. A resin with low viscosity penetrates pores and cavities more easily, while one with high viscosity is better suited for applications that require flow control or the creation of thicker layers."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Curing time"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Working Time (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelling time"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exothermic reaction"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Viscosity"
+    },
+    {
+      "definition": [
+        "A vise is a clamping device used to securely hold workpieces in place during machining. Proper clamping increases the precision of operations and reduces the risk of accidental movement of the workpiece."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "vise",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vise"
+    },
+    {
+      "definition": [
+        "The volume of cavities represents the total volume of the voids in the wood that are to be filled with epoxy resin. This is one of the factors HFZWood uses to estimate the amount of material needed for the project."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume of the cavities"
+    },
+    {
+      "definition": [
+        "The volume of wood represents the space occupied by all the wooden pieces that are part of the project. It is expressed in units of volume and is used by the application to determine the total volume of the project and the required amount of resin."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Uniform thickness"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume of wood"
+    },
+    {
+      "definition": [
+        "Wet sanding is a finishing method performed using water or another compatible liquid, which reduces surface heating and limits dust formation. This technique is used primarily in the final stages to achieve very smooth surfaces that are ready for polishing."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wet sanding"
+    },
+    {
+      "definition": [
+        "Wood moisture content refers to the amount of water contained in the wood mass, expressed as a percentage relative to the dry wood mass. This parameter influences the dimensional stability, long-term behavior, and compatibility of the wood with epoxy resin. In projects using HFZWood, selecting wood with the appropriate moisture content reduces the risk of cracks, warping, and adhesion issues."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Hygroscopic wood"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Hygroscopic wood",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Wood Moisture Content"
+    },
+    {
+      "definition": [
+        "Wood oil is a finishing product that penetrates the wood\u2019s structure and protects it from moisture and wear, while highlighting the texture and natural appearance of the grain. Depending on the type used, the oil may require periodic maintenance and reapplication."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "oil",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wood oil"
+    },
+    {
+      "definition": [
+        "Wood warping refers to a change in the original shape of a piece of wood due to variations in moisture content, internal stresses, or other factors that affect the material\u2019s stability. The most common types of warping are bending, twisting, and cupping."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wood Warping"
+    },
+    {
+      "definition": [
+        "A wood island is a portion of wood completely surrounded by an epoxy resin casting area or formwork, with no direct connection to the rest of the wood piece in the same area. In HFZWood, wood islands are defined separately so that the volume and the required amount of resin can be calculated correctly."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Formwork"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wooden Island"
+    },
+    {
+      "definition": [
+        "A knot is the area of wood where a branch was inserted during the tree\u2019s growth. Knots can affect the aesthetic appearance, mechanical strength, and behavior of the wood during processing; they are evaluated individually based on their size, position, and stability."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Cavity"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wooden knot"
+    },
+    {
+      "definition": [
+        "A workbench is a surface or table designed for performing machining, assembly, and finishing operations. A stable and sufficiently rigid workbench contributes to the precision of operations and ensures the safe conduct of activities in the workshop."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Workbench"
+    },
+    {
+      "definition": [
+        "Pot life refers to the time period during which the mixture of resin and hardener can be used before its viscosity begins to increase significantly. Once this time has elapsed, the material can no longer be poured or processed under optimal conditions."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mixing"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxy resin"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Hardener"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Working Time (Pot Life)"
+    },
+    {
+      "definition": [
+        "The workspace is the main working area in the HFZWood application, where users create, open, edit, and manage projects, as well as access the features and resources available to them based on their role and subscription."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Workspace"
+    }
+  ],
   "locale": "en"
 }

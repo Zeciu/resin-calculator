@@ -187,12 +187,15 @@ export default function GlossaryPage() {
             {t("content.loadingGlossary")}
           </p>
         ) : null}
-        {loadState === "unavailable" || loadState === "error" ? (
+        {loadState === "unavailable" ? (
           <ContentUnavailableMessage
             unavailableKey="content.unavailableGlossary"
             englishAvailable={Boolean(payload?.englishAvailable)}
             onViewEnglish={viewEnglishVersion}
           />
+        ) : null}
+        {loadState === "error" ? (
+          <ContentUnavailableMessage unavailableKey="content.loadErrorGlossary" />
         ) : null}
         {loadState === "ready" ? (
           <>

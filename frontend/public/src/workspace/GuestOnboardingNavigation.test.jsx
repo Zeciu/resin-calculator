@@ -129,7 +129,10 @@ describe("Guest onboarding and Home navigation", () => {
     });
     expect(screen.queryByRole("heading", { name: "Ready to try HFZWood?", level: 2 })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Create Free Account" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
+    expect(within(getSidebar()).getByRole("link", { name: "Try a demo project" })).toHaveAttribute(
+      "href",
+      "/demo",
+    );
   });
 
   it("shows locked protected modules and intentional auth CTA for guests", async () => {
@@ -156,6 +159,7 @@ describe("Guest onboarding and Home navigation", () => {
     const registerCta = within(sidebar).getByRole("link", { name: "Create Free Account" });
     const loginCta = within(sidebar).getByRole("link", { name: "Already have an account? Log in" });
     expect(demoCta).toHaveAttribute("href", "/demo");
+    expect(demoCta).toHaveAttribute("data-nav", "demo-project");
     expect(demoCta).toHaveClass("guest-home-onboarding__demo");
     const previewCta = within(sidebar).getByRole("link", { name: "Public Knowledge Preview" });
     expect(previewCta).toHaveClass("workspace-sidebar__link--guest-explore");
@@ -166,6 +170,8 @@ describe("Guest onboarding and Home navigation", () => {
     expect(within(demoCta).queryByLabelText("Locked feature")).not.toBeInTheDocument();
     expect(registerCta).toHaveAttribute("href", "/register");
     expect(registerCta).toHaveClass("guest-home-onboarding__primary");
+    expect(demoCta).not.toHaveClass("guest-home-onboarding__primary");
+    expect(previewCta).not.toHaveClass("guest-home-onboarding__demo");
     expect(loginCta).toHaveAttribute("href", "/login");
     expect(demoCta.compareDocumentPosition(languageSelect) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(languageSelect.compareDocumentPosition(registerCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();

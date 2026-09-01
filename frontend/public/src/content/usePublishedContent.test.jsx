@@ -99,4 +99,17 @@ describe("usePublishedContent", () => {
     });
     expect(fetchContent).not.toHaveBeenCalledWith("ro");
   });
+
+  it("uses error state when the content request fails", async () => {
+    const fetchContent = vi.fn(async () => {
+      throw new Error("Request failed (401)");
+    });
+
+    const { result } = renderHook(() => usePublishedContent(fetchContent), { wrapper });
+
+    await waitFor(() => {
+      expect(result.current.loadState).toBe("error");
+    });
+    expect(result.current.payload).toBeNull();
+  });
 });

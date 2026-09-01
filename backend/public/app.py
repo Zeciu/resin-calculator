@@ -50,14 +50,19 @@ async def entitlements_service_unavailable_handler(
 
 
 def _include_local_editorial_routes() -> bool:
-    """Mount authoring routes when the local-only private source is available.
+    """Mount authoring routes when local editorial preview is allowed.
 
-    Editorial routes are never deployed to AWS: `backend/private` is excluded
-    from the Docker build context, so this import fails (and this function
-    returns False) in production regardless of environment configuration.
+    Local ``./dev.cmd`` includes ``backend/private`` and previews published
+    editorial snapshots from that tree. Production never does: the Docker
+    image omits ``backend/private``, and AWS/ECS runtimes refuse editorial
+    routes even if that source were copied in by mistake.
     Returns True when local editorial routes (and the CONTENT_DATA_DIR-backed
     public content reader that reads back what they write) were mounted.
     """
+    from public.content_corpus import EDITORIAL_PUBLISHED, resolve_content_corpus
+
+    if resolve_content_corpus() != EDITORIAL_PUBLISHED:
+        return False
     try:
         from private.routers.admin_editorial import router as admin_editorial_router
         from private.routers.admin_glossary import router as admin_glossary_router
@@ -87,10 +92,23 @@ def _include_local_editorial_routes() -> bool:
 # enabled) serves the packaged, entitlement-gated read-only corpus instead
 # (public.content_api). Both routers answer the same /api/content/* paths,
 # so exactly one is mounted per process.
-if not _include_local_editorial_routes():
+_EDITORIAL_CONTENT_MOUNTED = _include_local_editorial_routes()
+if not _EDITORIAL_CONTENT_MOUNTED:
     from public.content_api import router as public_content_router
 
     app.include_router(public_content_router, prefix="/api")
+
+from public.content_corpus import (
+    EDITORIAL_PUBLISHED,
+    PACKAGED_PUBLIC,
+    install_content_corpus_header,
+)
+
+install_content_corpus_header(
+    app,
+    EDITORIAL_PUBLISHED if _EDITORIAL_CONTENT_MOUNTED else PACKAGED_PUBLIC,
+)
+
 from public.public_preview_api import router as public_preview_router
 
 app.include_router(public_preview_router, prefix="/api")

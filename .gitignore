@@ -58,3 +58,9 @@ backend/private/content/**/*.tmp*
 # Local-only editorial/admin source is tracked, but never included in production Docker builds.
 # See frontend/private/README.md and backend/private/README.md.
 /frontend/public/node_modules/
+
+# Local runtime / probe junk that must never ship.
+/node_modules/
+/.tmp-probe/
+/backend/data/
+/backend/public/content/editorial/

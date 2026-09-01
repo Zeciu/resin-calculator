@@ -1636,6 +1636,44 @@ class FilesystemContentRepository:
         return deepcopy(variant)
 
     @_editorial_store_mutation
+    def publish_kb_variants_batch(self, content_ids: list[str], locale: str) -> None:
+        """Mark many locale variants published in one store write."""
+        if not content_ids:
+            return
+        records = self._read_store()
+        timestamp = isoformat(utc_now())
+        snapshot_key = f"published/knowledge-base/{locale}/entries.json"
+        for content_id in content_ids:
+            _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)
+            _, variant = _resolve_variant_key(
+                records,
+                content_id,
+                locale,
+                CONTENT_TYPE_KB_ENTRY,
+                make_kb_variant_key,
+                make_kb_meta_key,
+            )
+            if meta is None or variant is None:
+                raise KeyError(content_id)
+            variant["status"] = "published"
+            variant["publishedAt"] = timestamp
+            variant["updatedAt"] = timestamp
+            variant["snapshotKey"] = snapshot_key
+            meta["updatedAt"] = timestamp
+            self._persist_typed_meta(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key, meta)
+            self._persist_typed_variant(
+                records,
+                content_id,
+                locale,
+                CONTENT_TYPE_KB_ENTRY,
+                make_kb_variant_key,
+                make_kb_meta_key,
+                variant,
+            )
+            self._finalize_typed_record_migration(records, content_id, CONTENT_TYPE_KB_ENTRY)
+        self._write_store(records)
+
+    @_editorial_store_mutation
     def unpublish_kb_variant(self, content_id: str, locale: str) -> dict[str, Any]:
         records = self._read_store()
         _, meta = _resolve_meta_key(records, content_id, CONTENT_TYPE_KB_ENTRY, make_kb_meta_key)

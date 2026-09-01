@@ -4129,65 +4129,67 @@ export default forwardRef(function ResinCalculator(
                   {ui.planning.calculatePourPlan}
                 </button>
                 {pourPlanRows.length > 0 && (
-                  <div className="pour-plan-table-wrap">
-                    <table className="pour-plan-table">
-                      <thead>
-                        <tr>
-                          <th>{ui.planning.tablePour}</th>
-                          <th>{ui.planning.tableThickness}</th>
-                          <th>{ui.planning.tableResinVolume}</th>
-                          <th>{ui.planning.tableRecommendedAmount}</th>
-                          <th>{ui.planning.tableComponentA}</th>
-                          <th>{ui.planning.tableComponentB}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {pourPlanRows.map((row, idx) => {
-                          const recommendedVolumeLiters =
-                            getPourPlanRecommendedVolume(
-                              row,
-                              firstFillRecommendationMode
-                            );
-                          const { componentAMl, componentBMl } =
-                            calculateMixComponents(
-                              recommendedVolumeLiters,
-                              resinMixRatio
-                            );
+                  <>
+                    <div className="pour-plan-table-wrap">
+                      <table className="pour-plan-table">
+                        <thead>
+                          <tr>
+                            <th>{ui.planning.tablePour}</th>
+                            <th>{ui.planning.tableThickness}</th>
+                            <th>{ui.planning.tableResinVolume}</th>
+                            <th>{ui.planning.tableRecommendedAmount}</th>
+                            <th>{ui.planning.tableComponentA}</th>
+                            <th>{ui.planning.tableComponentB}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {pourPlanRows.map((row, idx) => {
+                            const recommendedVolumeLiters =
+                              getPourPlanRecommendedVolume(
+                                row,
+                                firstFillRecommendationMode
+                              );
+                            const { componentAMl, componentBMl } =
+                              calculateMixComponents(
+                                recommendedVolumeLiters,
+                                resinMixRatio
+                              );
 
-                          return (
-                            <tr key={`${row.label}-${idx}`}>
-                              <td>{localizePdfPourRowLabel(row, idx, ui)}</td>
-                              <td>{displayUnits.formatDepthWithUnit(row.thicknessMm)}</td>
-                              <td>
-                                {formatNumber(row.volumeLiters, 3)} L
-                                <EstimatedResinMass
-                                  volumeLiters={row.volumeLiters}
-                                  densityKgPerLiter={parsedResinDensityKgPerLiter}
-                                  ui={ui}
-                                />
-                              </td>
-                              <td>
-                                {formatNumber(recommendedVolumeLiters, 3)} L
-                                <EstimatedResinMass
-                                  volumeLiters={recommendedVolumeLiters}
-                                  densityKgPerLiter={parsedResinDensityKgPerLiter}
-                                  ui={ui}
-                                />
-                              </td>
-                              <td>{componentAMl} ml</td>
-                              <td>{componentBMl} ml</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
+                            return (
+                              <tr key={`${row.label}-${idx}`}>
+                                <td>{localizePdfPourRowLabel(row, idx, ui)}</td>
+                                <td>{displayUnits.formatDepthWithUnit(row.thicknessMm)}</td>
+                                <td>
+                                  {formatNumber(row.volumeLiters, 3)} L
+                                  <EstimatedResinMass
+                                    volumeLiters={row.volumeLiters}
+                                    densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                    ui={ui}
+                                  />
+                                </td>
+                                <td>
+                                  {formatNumber(recommendedVolumeLiters, 3)} L
+                                  <EstimatedResinMass
+                                    volumeLiters={recommendedVolumeLiters}
+                                    densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                    ui={ui}
+                                  />
+                                </td>
+                                <td>{componentAMl} ml</td>
+                                <td>{componentBMl} ml</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                     <div className="pour-plan-note">
                       {ui.planning.layerBalanceNote}
                     </div>
                     <div className="pour-plan-note">
                       {ui.planning.mixRatioVolumeNote}
                     </div>
-                  </div>
+                  </>
                 )}
                 {layerPlanningError && (
                   <div className="pour-layer-validation">{layerPlanningError}</div>

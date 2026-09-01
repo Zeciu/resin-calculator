@@ -1,4 +1,4484 @@
 {
-  "chapters": [],
+  "chapters": [
+    {
+      "contentId": "alegerea-lemnului",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Choosing the wood is the first step and, perhaps, the most important decision we make before starting a project with epoxy resin. The quality of the material, its condition, and how it is prepared will influence not only the final appearance of the work but also the entire execution process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many beginners are initially drawn to the striking appearance of a piece of wood. Pronounced grain, natural edges, knots, cracks, or strong contrasts between heartwood and sapwood are elements that can transform an ordinary piece into a remarkable project. This is only natural. However, the beauty of the wood says almost nothing about how well it is suited for an epoxy casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A spectacular but unstable piece of wood can cause problems that won\u2019t become apparent until after the project is completed. In contrast, a seemingly modest piece that is well-dried and sound almost always provides a more reliable foundation for a successful project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the project we want to create, we can use a single piece of wood or multiple pieces that will be positioned inside the formwork to achieve the final composition. Sometimes we choose the wood based on an idea we already have in mind. Other times, it\u2019s the shape of a piece of wood itself that inspires the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Checking the Moisture Content</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before proceeding with any other steps, the moisture content of the wood must be checked. This is often the most important technical parameter of the entire project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Wood is a hygroscopic material. It constantly absorbs and releases moisture from the surrounding environment. If we use wood that is not sufficiently dried, the water remaining inside can affect the resin\u2019s curing process and cause problems that sometimes appear weeks or even months after the project is completed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, it is recommended to use a moisture meter and check multiple points on the piece. The readings may vary from one area to another, especially in the case of thick pieces or wood that has not dried evenly.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For most projects using epoxy resin, the recommended moisture content is between <strong>6% and 12%</strong>.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Wood with too high a moisture content can cause:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 incomplete curing of the resin;<br>\u2022 the formation of air bubbles;<br>\u2022 areas that remain sticky;<br>\u2022 subsequent shrinkage and warping;<br>\u2022 cracks;<br>\u2022 the resin peeling away from the wood;<br>\u2022 compromising the entire project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Checking the moisture content takes only a few minutes, but it can prevent the loss of dozens of hours of work and significant amounts of material.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Assessing the Condition of the Wood</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After checking the moisture content, the piece is carefully evaluated.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The following must be inspected:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 existing cracks;<br>\u2022 knots;<br>\u2022 rotten areas;<br>\u2022 unstable sections;<br>\u2022 signs of biological damage;<br>\u2022 structural defects that may affect the strength of the piece.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Not all defects need to be removed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In many projects, it is precisely these natural imperfections that give the work character and uniqueness. Our role is not to find perfect wood, but to understand which defects can be incorporated into the project and which pose a risk to its stability.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The difference between a successful project and a problematic one isn\u2019t determined by the presence of defects, but by the ability to recognize them and decide what to do about them.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Project Planning</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this stage, it\u2019s helpful to already have a clear picture of the final result.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "We need to know whether we will be making:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 a river table;<br>\u2022 filling cavities;<br>\u2022 a decorative tabletop;<br>\u2022 a panel;<br>\u2022 a decorative object;<br>\u2022 a project in which the wood will be completely embedded in resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These decisions will influence all subsequent steps: the size of the formwork, the amount of resin needed, the pouring method, and even the type of finish that will be applied in the end.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "That\u2019s why choosing wood isn\u2019t just about choosing a material. It means choosing the foundation on which the entire project will be built.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The more care we take at this stage, the more reliable and predictable the execution will be, and the closer the final result will be to what we set out to achieve.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Key Concept</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Epoxy resin can bring out the beauty of wood, but it cannot correct a poor choice of wood. A successful project always begins with selecting a material that is sound, stable, and suitable for its intended use.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 100,
+      "title": "Choosing Wood"
+    },
+    {
+      "contentId": "preg-tirea-lemnului",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "After selecting the material, one of the most important steps in the entire process follows: preparing the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The purpose of this stage is not to achieve the project\u2019s final form. At this point, we are not yet concerned with the exact dimensions of the tabletop or the final shape the piece will take. The goal is to transform the raw wood into a stable, predictable, and safe material for pouring the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The more carefully this step is performed, the lower the risk of problems arising during pouring and subsequent processing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Sizing and straightening the wood</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first step is to size and straighten the piece.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most cases, wood that has been stored or kiln-dried does not have a uniform thickness across its entire surface. It may also exhibit warping, internal stresses, or differences in level between various areas.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before any other operation, it is recommended that the piece be planed so that the top and bottom surfaces are perfectly parallel. This ensures a uniform thickness and eliminates a number of problems that may arise later, both during placement in the formwork and in the final stages of processing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Inspection and cleaning of wood</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After grading, the entire surface is carefully inspected.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "All areas that may affect the quality of the project must be identified:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 rotten wood;<br>\u2022 loose fibers;<br>\u2022 loose bark;<br>\u2022 areas affected by biological damage;<br>\u2022 hidden cracks;<br>\u2022 loose knots;<br>\u2022 cavities containing organic debris.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "All of these areas must be cleaned as thoroughly as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many beginners are tempted to preserve as much of the original material as possible. In practice, it\u2019s almost always safer to remove an unstable area before pouring than to try to repair it after the resin has already been poured.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Clean the wood down to the sound wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In the case of cavities and cracks, it is recommended to completely remove any loose material and all impurities that have accumulated over time. Dust, sand, soil, bark debris, or loose fibers can become trapped in the resin and affect the final appearance of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Whenever possible, cavities should be cleaned to their full depth.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is important for two reasons.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "First of all, the resin will penetrate more easily into all areas and completely fill any existing voids.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Second, it reduces the risk of air pockets forming, which later turn into bubbles and visible defects in the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Leaving the bark on or removing it</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this stage, the stability of the bark must also be checked.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There are projects in which the natural edge of the wood is to be preserved. Even in these situations, the bark must be carefully inspected to ensure it is firmly attached to the wood. If there is a risk of it peeling off later, it is recommended to remove it before pouring.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "One simple principle must be kept in mind: resin cannot transform an unstable material into a stable one. It does not repair existing defects; rather, it preserves them.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, the time spent preparing the wood is almost always recouped by reducing the problems that may arise in subsequent stages.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the end of the preparation process, we should have a clean, sound, stable, and predictable material.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is not yet the final product.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It isn&#x27;t even the final version of the project yet.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, this is the foundation upon which everything that follows will be built.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Properly prepared wood ensures a more reliable casting process, better resin adhesion, and a significantly better final result, both aesthetically and structurally",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 200,
+      "title": "Wood Preparation"
+    },
+    {
+      "contentId": "stabilirea-compozi-iei-i-geometriei-proiectului",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once the wood has been selected, inspected, graded, and cleaned, one of the most important stages of the entire process begins. This is when the project starts to take shape.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "So far, we\u2019ve been working with raw materials and an idea of what we want to create. From this point on, that idea begins to take shape as a real object.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many people believe that a project begins with the construction of the formwork. In reality, the opposite is true. The formwork does not determine the shape of the project. Rather, the project determines the shape of the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, the composition and geometry of the future structure must be determined before the formwork is constructed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Positioning the wooden pieces</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first step is to lay out the pieces of wood on the workbench.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There are no strict rules at this stage. It is a creative process in which the pieces of wood are moved, rotated, and repositioned several times until we achieve a balanced composition that closely matches the image we have in mind.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In the case of a <em>river table</em>, for example, two pieces of wood define the central area that will be filled with resin. The distance between them, the shape of the natural edges, and the grain direction have a decisive influence on the final appearance of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In other cases, we may have several pieces of wood embedded in the same mass of resin, or a single piece completely encased in resin. Each configuration creates a different visual effect and deserves careful consideration.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is the time to experiment.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Often, the image we\u2019ve built in our minds changes the moment we see the wood laid out on the workbench. A piece that seemed suitable may not blend harmoniously into the whole, and simply rotating a piece of wood can completely change the character of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "We shouldn&#x27;t rush.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The time invested in this stage is one of the most valuable in the entire process, as the decisions made now will influence all subsequent stages.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Determining the final geometry</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once we have found the desired composition, the next step is to determine the final dimensions.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In this stage, we sketch the outer outline of the future structure. This outline represents the final shape we want to achieve and will serve as the basis for constructing the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The design can take the following forms:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 rectangular;<br>\u2022 square;<br>\u2022 circular;<br>\u2022 oval;<br>\u2022 organic;<br>\u2022 a combination of regular and natural shapes.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Not all projects need to adhere to perfect geometries.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Sometimes we want to preserve natural edges and irregularities that give the piece character and uniqueness. Other times, we aim for perfectly straight lines and precise edges. The choice depends entirely on the result we want to achieve.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Determining the material quantities</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After sketching the outer outline, we can examine each piece of wood and decide which areas need to be removed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For river table projects, it is very common for the outer sides to be cut at 90\u00b0 to achieve a tabletop with precise dimensions and perfectly parallel edges.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In other projects, one may choose to preserve the natural shapes of the wood, in which case the cutting process aims to follow the previously established outline as closely as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Regardless of the solution chosen, the cuts made at this stage must be guided by the project\u2019s final shape and minimize the amount of material that will need to be removed later.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The outcome of this stage</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once all the parts are in place, the outer contour is defined, and the necessary cuts have been made, the project already has a clear identity.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Only now can we move on to the next step: building the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, we already know:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 What shape will the project have?<br>\u2022 What will its dimensions be?<br>\u2022 Where will the wood be?<br>\u2022 Where will the resin be?<br>\u2022 Which areas will remain natural?<br>\u2022 Which areas will be treated?",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Formwork is no longer a guess. It simply becomes the physical manifestation of the geometry we have defined at this stage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Establishing the composition and geometry represents the link between the idea in our minds and the object to be built. From this point on, the project is no longer just an intention; it already has a clear form and a well-defined direction.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 300,
+      "title": "Determining the Composition and Geometry of the Project"
+    },
+    {
+      "contentId": "realizarea-cofrajului",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once we\u2019ve determined the design, the placement of the wooden pieces, and the final dimensions we want to achieve, we can move on to building the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Formwork is the temporary mold into which the resin will be poured. Although it is a temporary element that will be dismantled or destroyed after the project is completed, its quality directly influences the final result. A faulty seal or a structure that is not sufficiently rigid can compromise a project that has been flawlessly executed in all other stages.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many beginners pay too much attention to the resin and not enough to the formwork. In reality, many of the problems that arise during pouring originate precisely at this stage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Determining the form of the formwork</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first thing we need to decide is the shape of the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Most projects use rectangular or square formwork. These are easy to construct, provide good rigidity, and allow for the production of parts with precise dimensions.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, there are also situations in which we want to create circular, oval, or organically shaped structures. In these cases, flexible materials can be used to form the sides, so that the formwork follows the desired geometry as closely as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As we gain experience, we can also build partial molds. These are used when we want to pour resin only into a specific area of the wooden piece, without enclosing the entire project in a full formwork. This type of formwork requires more experience and will be covered in a separate chapter.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Choosing the material</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For most projects, the most commonly used material for formwork construction is melamine-faced particleboard.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is readily available, easy to find, sufficiently rigid, and can be worked with standard tools. In addition, the melamine-coated surface makes it easy to remove the project once the resin has cured.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Melamine-faced MDF, plywood, or other rigid materials may also be used, provided they do not warp under the weight of the wood and resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Determining the dimensions</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The dimensions of the formwork must be carefully calculated.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended that the formwork be slightly larger than the final dimensions of the project. Allowing for a margin of a few millimeters to about one centimeter provides sufficient space for any corrections and finishing work that will be done later.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The height of the side walls must exceed the final resin level by at least 20\u201330 mm. This margin provides added safety during pouring and reduces the risk of accidental resin spillage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Assembly and sealing</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After cutting the elements, the actual assembly begins.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The side panels are positioned on the bottom of the formwork and mechanically fastened with bolts. Mechanical fastening is important because the resin exerts pressure on the walls, and any movement can alter the geometry of the structure or cause leaks.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before securing the side panels, it is recommended to apply a thin bead of silicone to their lower edge. When the wood screws are tightened, the silicone is compressed and forms an initial barrier against leaks.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After assembly, special attention must be paid to sealing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "All joints between the formwork elements must be sealed with silicone. Corners, joints between the sides and the bottom, as well as any area through which the resin could escape, must be treated with the utmost care.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A seemingly insignificant leak may appear unimportant at first. In practice, however, a few drops per minute can add up to hundreds of milliliters or even liters of lost resin by the end of the curing process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Protecting the interior surface</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After the structure is completed and sealed, the interior surface must be insulated.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The resin adheres very well to most materials, and without proper protection, demolding can become difficult and may damage both the project and the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The most commonly used method is to cover the bottom and sides with smooth adhesive tape. The tape must be applied carefully, without wrinkles, air pockets, or areas where it has come loose. Any imperfections on its surface will later be reproduced in the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There are also special release sprays that create a non-stick film and make it easier to remove the structure after it has hardened.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Final inspections</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the formwork is complete, it is recommended not to proceed immediately to the next step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Silicone needs time to cure, and the manufacturer\u2019s instructions must be followed. Rushing this step is one of the most common causes of leaks.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before placing the lumber in the formwork, one more essential aspect must be checked.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The formwork must be perfectly horizontal.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended to check both the length and width with a spirit level. Even a seemingly insignificant slope can result in visible differences in thickness and unnecessary resin consumption.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Only after the formwork has been fully constructed, sealed, protected, and checked for level can we move on to the next step: positioning and securing the lumber inside it.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Well-constructed formwork may not be the most spectacular part of an epoxy resin project, but it is one of the essential requirements for achieving a safe, clean, and high-quality final result.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 400,
+      "title": "Formwork Construction"
+    },
+    {
+      "contentId": "pozi-ionarea-i-fixarea-lemnului-n-cofraj",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once the formwork has been built, sealed, protected, and checked for level, we can proceed to position the lumber inside it.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Although it may seem like a simple task at first glance, this step directly affects the final result. Now we must ensure that the wood remains exactly in the previously established position and that it will not be displaced by the resin that is about to be poured.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Pre-installation checks</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before placing the lumber in the formwork, it is recommended to perform a final inspection of all surfaces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Dust, sawdust, and any other debris must be removed from both the wood and the interior of the formwork. A single particle left between the wood and the bottom of the formwork can cause a level difference or allow resin to seep into an area where it is not desired.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After cleaning, the lumber is placed in the position determined in the previous step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the project is made from a single piece of wood, we double-check the grain direction, the position of the knots, and all important visual elements.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For projects consisting of two or more pieces, it\u2019s recommended to double-check the distances between them and the balance of the entire structure. Often, when we see the wood inside the formwork, we notice small adjustments that can significantly improve the final appearance.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Securing the lumber</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the position has been determined, the actual fastening follows.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many beginners believe that the weight of the lumber is enough to hold it in place. In practice, this is not always true.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The resin exerts a buoyant force on the wood. Even pieces that appear to be heavy can begin to rise, shift, or rotate during pouring.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, it is recommended to secure the lumber before pouring begins.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The simplest and most commonly used method involves applying a thin bead of silicone to the underside of the piece.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Silicone is applied around the perimeter, approximately 20\u201330 mm inward from the outer edge of the wood. After positioning, the piece is gently pressed against the bottom of the formwork, and the silicone creates both an effective seal and a barrier against resin seeping under the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There are situations where the lumber is perfectly calibrated, very straight, and has a large contact surface with the bottom of the formwork. In such cases, some builders choose to omit the silicone sealant.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, practical experience shows that the use of silicone provides a significant safety benefit and significantly reduces the risk of problems during pouring.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "We cannot always predict how the resin will flow inside the formwork or the forces that will arise during the pouring process. Therefore, it is safer to eliminate any possibility of the wood shifting in advance.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Reducing resin consumption</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Another advantage of the silicone cord is that it reduces the amount of resin that seeps under the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most projects, the bottom of the piece is not visible in the final product. For this reason, there is no real benefit to using extra resin to fill an area that will not be visible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Using silicone caulk reduces waste and improves control over the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Complete embedding of the lumber</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, there is also a second approach.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In certain projects, it is desirable for the wood to be completely embedded in the resin, including on the underside.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In this situation, a thin layer of resin can first be poured onto the bottom of the formwork. Once it has hardened, the wood is positioned over the resin layer, and the pouring process continues as usual.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This method produces a piece in which the wood is completely surrounded by resin, but it requires more material and greater care during the process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Final inspection</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Regardless of the method chosen, it is recommended to do a final check of the position of all components before proceeding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is the last opportunity to make changes quickly and at no additional cost.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once pouring has begun, making any adjustments becomes much more difficult.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once all the pieces are properly secured and positioned, we can move on to the next step: sealing the wood and preparing the surfaces for pouring the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, the design is already visually defined. We know where the wood will go, where the resin will go, and what the final shape we want to achieve is. Everything that follows involves transforming this configuration into a finished object.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 500,
+      "title": "Positioning and securing lumber in formwork"
+    },
+    {
+      "contentId": "sigilarea-lemnului-nainte-de-turnare",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once the wood has been positioned and secured in the formwork, the next step\u2014one that many beginners tend to ignore or treat superficially\u2014is sealing the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Although it is not always required, sealing is one of the most effective ways to reduce the risk of air bubbles and significantly improve the quality of the final result.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Why is sealing necessary?</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To understand the purpose of this process, we must first understand how wood behaves.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Wood is a porous material. Even when it is very well dried, there are numerous microscopic channels, cavities, cracks, and voids inside it that are invisible to the naked eye. When the resin penetrates these areas, the air inside begins to be expelled, and bubbles form.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the type of wood, its moisture content, and the complexity of the surface, these bubbles may be few in number or may become a major problem.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, before the actual pouring, it is recommended to apply a thin layer of resin to all surfaces that will come into contact with the resin in the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>How to Seal the Wood</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The easiest way to do this is with a brush.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is not to build up a thick layer of resin, but to evenly impregnate and coat the wood surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The following must be handled with care:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 top surface;<br>\u2022 bottom surface;<br>\u2022 sides;<br>\u2022 edges;<br>\u2022 cavities;<br>\u2022 cracks;<br>\u2022 knots;<br>\u2022 all areas that will come into contact with the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For deep cavities and complex cracks, it is recommended to apply the resin thoroughly with a brush so that it penetrates as deeply as possible into all existing spaces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "You\u2019ll often notice that the first coat is absorbed almost completely by the wood. This is normal and is one of the reasons why sealing is so effective.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The benefits of sealing</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In addition to reducing the number of air bubbles, sealing offers other important benefits.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the time of the main pour, the resin encounters a surface that is already impregnated and chemically compatible. The adhesion between the layers is very good, and the resin flows more easily into cavities and hard-to-reach areas.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is particularly important in the case of deep cracks and irregularly shaped cavities.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "On an unsealed surface, the resin can trap air pockets inside the wood. On a surface that has already been impregnated, the resin spreads more evenly and allows air to escape more efficiently.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Sealing is especially recommended for:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 highly porous wood;<br>\u2022 wood with numerous cavities;<br>\u2022 deep cracks;<br>\u2022 roots;<br>\u2022 wood with complex natural shapes;<br>\u2022 projects where the transparency of the resin is essential.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There are also situations in which some builders choose not to seal the wood before pouring. This is possible in certain simple projects using very dense, well-prepared wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, for most projects, the time invested in this step is recouped by reducing the problems that may arise later on.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "From practical experience, a few minutes spent with a brush before pouring can save many hours of repairs, additional sanding, or work to remove bubbles that appear after the resin has cured.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Observing reaction times</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After applying the sealing coat, the curing time recommended by the manufacturer of the resin used must be observed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the system used, the main pour can be performed either when the sealing coat has become tacky or after it has fully cured and the surface has undergone light mechanical preparation.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Following these recommendations is important for achieving optimal adhesion between layers.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the sealing is complete, the wood is ready for the next step: calculating the amount of resin needed and planning the casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, the project moves from the preparation phase to the actual construction phase.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 600,
+      "title": "Sealing the wood before pouring"
+    },
+    {
+      "contentId": "calculul-necesarului-de-r-in",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "At this stage, we assume that you have identified, at least roughly, the type of resin you intend to use. The actual selection process and the criteria for making that choice will be discussed in the next chapter. For now, it is sufficient to know that each resin has its own mixing ratio and its own recommended maximum viscosity for casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the wood has been prepared, positioned, and secured in the formwork, and the surfaces that will come into contact with the resin have been sealed, we can move on to one of the most important stages of the project: calculating the amount of resin required.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At first glance, this task seems simple. In reality, very few builders are able to accurately estimate the volume of resin needed for a project, especially when the project involves natural edges, cavities, cracks, or organic shapes.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In practice, almost everyone who works with epoxy resin has encountered at least one of the following situations at least once:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 They prepared too little resin and had to quickly prepare a new batch;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 They prepared too much resin and had to discard the unused material;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 They underestimated the volume of the cavities in the wood;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 They overestimated the amount needed and unnecessarily increased the project cost.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For small projects, the discrepancies can be minimal. For large tables or complex projects, an error of just a few liters can result in significant waste of material and money.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The HFZWood calculator was designed specifically to reduce these rough estimates and to turn the calculation of resin requirements into a measurable, repeatable, and verifiable process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To achieve the most accurate results possible, the app uses a photo of the project, along with the actual dimensions entered by the user and the manually defined geometry. Based on this information, the calculator determines the required volume of resin and can then plan the entire casting process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Preparing the project for photography</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before taking the photograph, the project must be fully prepared.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The wood must already be positioned and permanently secured inside the formwork. All positional adjustments must be made before this step, as the photograph will serve as the basis for the entire project in the application.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, the final level that the resin will reach must also be determined.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most projects, the final finish is applied approximately 2\u20133 millimeters above the wood surface. This allowance compensates for the very slight shrinkage that occurs during curing and provides enough material for sanding and the final surface finish.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To define this area, many builders apply a perimeter bead of silicone to the surface of the wood. This prevents the resin from spreading over the entire piece and clearly delineates the area to be filled.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The level selected at this stage directly influences the total amount of resin calculated later, which is why it must be determined before beginning the measurements in the application.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Taking the photograph</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first step in the application is to take a photo of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To obtain the most accurate results, the photo should be taken as perpendicular as possible to the surface of the workpiece.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The closer the camera is positioned to a 90\u00b0 angle relative to the project plane, the smaller the perspective distortions will be, and the more accurate the results will be.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "You don\u2019t need professional photography equipment. A photo taken with a cell phone is usually sufficient.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, it is recommended to follow a few simple rules:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Lighting should be as uniform as possible;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Avoid strong shadows;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Avoid reflections that hide the edges of the wood;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 The entire formwork must be visible in the photograph;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 The image should be as clear and in focus as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The quality of the photograph directly affects how easily the project outlines can be drawn later.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Uploading the image to the app</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After the photo is taken, it is uploaded to a new project in HFZWood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The image serves as the basis on which all the geometric information needed for the calculation will be constructed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Based on this, the following will be entered:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 dimensional specifications;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the inner edge of the formwork;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 wooden parts;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the cavities to be filled with resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this stage, the photo can be zoomed in, moved, or rotated to facilitate the most accurate tracing of all elements.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended that the image used not be replaced at a later date. All measurements and all contours defined in the project are based on this image, and changing it would require rebuilding the entire geometry.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Entering dimensional reference points</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is one of the most important steps in the entire process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The photo contains information about the shape of the project, but does not contain information about its actual dimensions.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In order for the app to convert the distances in the photo into actual measurements, the user must enter dimensional reference points.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A dimensional reference is created by selecting two visible points in the photograph and entering the actual distance between them, as measured directly on the drawing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The application requires at least four dimensional reference points before continuing the workflow.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These reference points should not be concentrated in a single area of the photograph. For the most accurate results, they should be distributed as evenly as possible across the entire surface of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Ideally, measurements should be taken near:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 for the upper section;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the lower part;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 on the left side;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the straight side;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 and, when possible, in the central area as well.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The following can be used, for example:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the interior length of the formwork at the top;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 interior length at the bottom;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 interior width on the left side;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 interior width on the right side;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the distance between two characteristic points on the wood;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the length of a measurable segment within the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is important that all these measurements be taken carefully and entered accurately.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Additional reference points allow the application to better compensate for perspective distortions and bring the digital geometry as close as possible to the actual geometry of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A large number of incorrectly entered measurements is less valuable than a smaller number of correctly measured data points.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Defining the formwork boundaries</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After entering the dimensional reference points, the next step is to define the inner boundary of the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This represents the maximum surface area within which resin can exist and forms the basis for the entire calculation.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The outline must be drawn on the inner edge of the formwork, as this effectively defines the volume available for pouring. If the polygon is drawn on the outside of the formwork walls, the calculated volume will be greater than the actual volume.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For rectangular formwork, the four inner corners are usually sufficient. For circular, oval, or irregularly shaped formwork, a larger number of points must be entered so that the geometry is represented as accurately as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is not recommended to add an excessive number of points to perfectly straight segments. Additional points are useful only where the direction of the contour changes or where the shape is curved.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After closing the outline, it is recommended to perform a visual inspection at a higher zoom level to identify any incorrectly placed points.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "An error made at this stage will affect all subsequent calculations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Marking the wood pieces</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After defining the formwork, the next step is to identify the wooden components.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Each piece of wood is marked separately by defining its own outline.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The purpose of this step is for the application to determine the surface area occupied by the wood and subtract it from the total volume previously defined by the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Essentially, the application first calculates the total available surface area inside the formwork, then subtracts the surface area occupied by all the wooden pieces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The outline should be traced as closely as possible along the edge of the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For straight edges, the points marking the changes in direction are sufficient.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For natural edges, it is recommended to insert a larger number of points in order to best reproduce the actual geometry.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, it is not necessary to replicate every microscopic irregularity. The goal is to faithfully represent the overall shape, not to reproduce every detail that has no effect on the volume.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the project includes multiple pieces of wood, each one must be marked separately.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After completing each contour, a thorough inspection is recommended.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A point located inside the wood will artificially reduce its surface area and result in the calculation of a larger quantity of resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A point placed too far to the outside will have the opposite effect and reduce the calculated amount.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Marking the cavities</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After defining the wood pieces, the application allows you to specify the cavities to be filled with resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This step is optional.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the part does not contain any significant cavities, the process can continue without this step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "On the other hand, when there is:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 open joints;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 cracks;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 natural voids;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 degraded areas;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 milled or cleaned cavities,",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These must be defined separately.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Each cavity is traced individually, following the outline visible in the photograph.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After drawing the outline, the user enters the actual depth of the cavity.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is a very important consideration.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A photograph can show the shape of a cavity, but it cannot determine its depth.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The depth must be measured directly on the piece of wood and entered manually.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For cavities with irregular bottoms, a representative average depth may be used; alternatively, if the differences are significant, the cavity may be divided into several zones with different depths.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A large and highly variable cavity should not be represented by a single approximate value if this could significantly affect the final result.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The volumes of all cavities are calculated separately and then added to the main resin volume.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Entering the main casting depth</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After defining the project geometry, the main casting depth must be entered.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This represents the distance between the bottom of the formwork and the final resin level.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is important not to confuse this value with the thickness of the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the wood is 50 mm thick and the resin will extend 3 mm beyond its surface, the total pour depth will be approximately 53 mm, assuming the wood is placed directly on the bottom of the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the wood is raised above the bottom of the formwork or if there is already a layer of resin beneath it, these differences must be included in the calculation.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The depth entered must reflect the actual conditions of the project, not just the nominal dimension of the board.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>How is the volume determined?</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once all the geometric information has been entered, the application can calculate the required volume of resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The calculation principle is simple.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "First, determine the area enclosed by the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "From this, subtract the area occupied by all the wooden pieces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The remaining surface area is multiplied by the main casting depth.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Separately, for each cavity, the application calculates the volume using its surface area and the depth entered by the user.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Finally, the volumes of all the cavities are added to the main volume.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Essentially, the calculator determines:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the total volume of the wooden parts;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the volume of each cavity;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the total volume required for the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The accuracy of the result depends directly on the quality of the information entered.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A good photograph, accurate measurements, and carefully drawn outlines will produce results that are very close to reality.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Safety margin</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After calculating the geometric volume, the user can add a safety margin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is not intended to correct an incorrect calculation, but rather to compensate for normal losses that occur during the work.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Some of the resin always remains on the walls of the mixing containers, on the spatulas, on the sticks used for mixing, or on other tools used during pouring.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In addition, every project involves slight differences between the actual geometry and the contours drawn in the application.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The safety margin accounts for these normal variations and reduces the risk of running short of material by a small amount at the end of the casting process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The amount of reserve required depends on the complexity of the project and the user\u2019s experience.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A simple, well-proportioned project with regular shapes may require only a small amount of resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Conversely, a design with many natural edges, numerous cavities, and complex geometry may warrant a larger reserve.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The reserve should be viewed as a safety measure, not as a way to compensate for careless measurements.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Planning the first pour</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In certain situations, a thin preliminary pour may be performed before the main pour.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This should not be confused with the sealing coat applied with a brush, as described in the previous chapter.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The sealing coat serves to close the pores of the wood and reduce the escape of air bubbles.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first pour, however, represents the actual amount of resin used in the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The thickness of this first pour can be entered into the application.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As a guideline, a thickness of approximately 3 mm is recommended, but this is not a strict rule.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The optimal thickness depends on the type of resin used, the specifics of the project, and the manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Based on this value, the app can calculate separately the amount of resin needed for the first pour and the amount remaining for subsequent pours.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Planning successive pours</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Calculating the total volume is only the first part of the process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In practice, very few resins allow the entire quantity to be poured in a single step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Each epoxy system has a recommended maximum thickness for a single pour.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Exceeding this limit can lead to resin overheating, uncontrolled exothermic reactions, cracking, warping, yellowing, or even complete failure of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, after calculating the total volume, the application allows you to plan successive pours.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Based on the maximum allowable thickness for the resin used, the calculator can determine:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 total number of castings;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the thickness of each coat;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the amount of resin required for each casting;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Allocating the total quantity to each work stage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This information allows the user to plan the entire project before preparing the first gram of resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, the app cannot replace the manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The working temperature, the time between pours, the maximum allowable thickness, and all other technical conditions must be observed in accordance with the technical data sheet for the resin used.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Entering the mixing ratio</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Most epoxy systems consist of two components that must be mixed in a precise ratio.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After entering the mixing ratio, the application can automatically divide the required quantity between Component A and Component B.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is very important that the ratio entered be identical to that recommended by the manufacturer.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "You should also check whether the requirement is expressed in weight or volume.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A ratio expressed by weight should not automatically be interpreted as being identical to one expressed by volume, since the densities of the two components may differ.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Converting Volume to Mass<br><br>The calculator first determines the volume of resin required for the project. In practice, however, resin is often prepared by weighing the components. For this reason, it is important to distinguish between volume and mass.<br>One liter of resin does not necessarily weigh one kilogram. Mass depends on the density of the product used.<br>The relationship between the three values is:<br><br>Mass = Volume \u00d7 Density<br><br>For example, if 1.65 liters of mixture are needed for a certain stage of the project, and the density of the mixture is 1.10 kg/L, the approximate mass<br>required will be:<br><br>1.65 L \u00d7 1.10 kg/L = 1.815 kg<br><br>Therefore, the 1.65 liters of resin represent approximately 1.82 kg of material, not 1.65 kg.<br><br>The density must be taken from the technical documentation of the product being used. It should not be assumed that all resins have the same density.<br><br>The conversion between total volume and total mass should not be confused with the mixing ratio between components A and B. These are two<br>different operations.<br><br>First, determine the total quantity required for the project. If it needs to be expressed in mass, the volume can be converted<br>using the appropriate density. Separately, the total quantity must be divided between components A and B according to the ratio specified by<br>the manufacturer.<br><br>For example, a 2:1 ratio may be defined by the manufacturer by weight or by volume. The two variants are not automatically equivalent. If<br>the densities of components A and B differ, a 2:1 ratio by volume will not yield the same quantities measured on a scale as a 2:1 ratio by<br>weight.<br><br>For this reason, before preparing the resin, you should always check three pieces of information in the product documentation:<br><br>\u2022 the ratio between components A and B; \u2022 whether the ratio is expressed by weight or by volume; \u2022 the density of the product or its components,<br>when conversion between volume and mass is necessary.<br><br>HFZWood can use this information to calculate and display the required quantities, but the values entered must always correspond<br>to the data provided by the epoxy system manufacturer.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The application performs the mathematical calculations based on the entered values, but the user is responsible for entering the ratio correctly.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Interpreting the results</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After completing all steps, the application calculates the amount of resin needed and displays the results.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the project configuration, these may include:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the main volume of resin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 total volume of the cavities;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 total volume required for the project;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 safety margin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the amount needed for the first pour;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the amount required for each successive pour;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 total number of pours;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Dividing the quantities between components A and B.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This information should be considered as a whole.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The total volume indicates the amount of resin required for the project, and the pouring schedule shows how this amount should be distributed throughout the entire project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Logical verification of the result</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "No matter how powerful the computer may be, the user must always maintain a critical mindset.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The result obtained must be compared with the actual dimensions of the project and with the practical experience gained in the workshop.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the application indicates an unusually large or unusually small quantity, it is recommended that you verify the data entered before preparing the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The most common causes of incorrect results are:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 a photo taken from a very oblique angle;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 insufficient or unevenly distributed dimensional references;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 incorrect dimensions entered;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the formwork outline was drawn incorrectly;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 omitting a piece of wood;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Incorrectly tracing the outline of a part;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 cavities omitted or entered with incorrect depths;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Incorrect entry of the main casting depth;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Using an incorrect mixing ratio.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most cases, a few additional checks are enough to identify and correct the problem.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Geometry correction</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the result is not as expected, it is not necessary to redo the entire project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The application allows you to modify points that have already been entered, correct measurements, adjust contours, and modify calculation parameters.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended that the verification be performed in the same order in which the information was entered:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 dimensional specifications;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 formwork dimensions;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 wooden parts;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 cavities;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 depths;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 molding parameters.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This approach allows for the rapid identification of any errors and avoids the unnecessary need to redo the entire geometry.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the end of this stage, we need to know more than just the total amount of resin required.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "We need to have a complete picture of the entire casting process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, we need to know:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the main volume of resin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the volume of the cavities;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the total amount required for the project;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 safety margin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the amount needed for the first pour;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the amount required for each successive pour;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 total number of castings;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the quantity of components A and B for each mixture.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The purpose of the HFZWood app is not to replace the user\u2019s experience, but to transform a process traditionally based on visual estimates into one based on objective measurements, calculations, and verifications.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "An accurate result always begins with a properly taken photograph, continues with precise measurements and a careful definition of the project\u2019s geometry, and concludes with a logical verification of the result before preparing the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Only after completing these steps can we confidently move on to the next stage: the actual preparation and pouring of the resin.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 700,
+      "title": "Calculating the amount of resin needed"
+    },
+    {
+      "contentId": "alegerea-r-inii-i-planificarea-turn-rii",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": "justify",
+              "text": "After determining the project\u2019s geometry, building the formwork, positioning and sealing the wood, and calculating the amount of resin needed, the next steps are selecting the type of resin and planning the actual casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Although all epoxy resins appear similar, they have very different properties. Choosing an unsuitable product can lead to overheating, cracks, warping, air bubbles, or even the complete failure of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "For this reason, the resin must always be selected before casting begins, and the entire process must be planned according to the characteristics of the product being used.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "<strong>The main categories of epoxy resins</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Broadly speaking, the resins used in woodworking projects can be divided into two categories.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "The first category consists of resins intended for thin-layer casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "These are designed for thin layers, typically ranging from a few millimeters to about 10 mm per layer, depending on the manufacturer\u2019s specifications.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Their main advantage is rapid curing. They are ideal for coating surfaces, for topcoats, or for projects that do not require thick pours.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "As a rule, however, they are more viscous, which means they penetrate fine cracks more slowly and make it more difficult to remove air bubbles.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "The second category consists of resins for thick pours, commonly known as <em>Deep Pour</em> or <em>Casting Resin</em>.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "These products allow for much greater thicknesses to be cast in a single step\u2014sometimes 30, 50, or even 100 mm\u2014depending on the product and the manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Because they are more fluid, they penetrate cavities more easily and allow air bubbles to rise to the surface more readily. At the same time, they reduce the total number of castings required.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Their main disadvantage is the longer curing time, which extends the overall duration of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "<strong>How to Choose the Right Resin</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "There is no single resin that is perfect for all projects.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "The selection should be based on:",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 the final thickness of the casting;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 the size and complexity of the cavities;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 the desired final appearance;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 workshop temperature;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 time available for the project;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 user experience.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "In addition, the limits specified by the manufacturer regarding the maximum casting thickness must always be observed.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "These values are determined under controlled conditions and do not guarantee that any project can be cast in a single step. Part size, ambient temperature, and total resin volume can significantly influence the resin\u2019s behavior.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "In many cases, two thinner castings are safer than a single very thick casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "<strong>Planning the casting</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "After selecting the resin, the next step is to plan the entire process.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Before preparing even a single gram of resin, we need to know:",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 how many castings will be needed;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 the thickness of each layer;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 the amount of resin for each stage;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 the time intervals between pours.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "The HFZWood application calculates and organizes this information based on the project\u2019s geometry and the parameters entered by the user, reducing the risk of having to improvise during the work.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "<strong>The importance of the first layer</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Regardless of the type of resin used, it is recommended to apply a thin first coat.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "For most projects, a thickness of about 3 mm is sufficient.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "The purpose of this layer is not to fill the design, but to check and stabilize the entire structure.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "It contributes to:",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 additional reinforcement of the wood;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 Sealing sensitive areas;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 reducing the risk of leaks;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 Filling hard-to-reach cavities;",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "\u2022 Checking the formwork\u2019s performance before large pours.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "If there is a sealing issue, it will be much easier to spot during a thin pour than after a large amount of resin has been prepared.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "<strong>Continuing with successive castings</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "After the first layer has cured, the casting process continues according to the established plan.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Depending on the type of resin and the thickness of the project, a single additional pour or several successive pours may be necessary.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Adhering to the manufacturer&#x27;s recommended intervals between pours is just as important as adhering to the maximum allowable thickness for each layer.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Proper planning reduces the risk of defects and allows the work to proceed in a controlled and predictable manner.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "By the end of this stage, we need to know the type of resin we will be using and have a complete plan for the casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "We need to know how many pours we will perform, how much resin is needed for each stage, and in what order they will be carried out.",
+              "type": "paragraph"
+            },
+            {
+              "align": "justify",
+              "text": "Careful planning eliminates the need for improvisation, reduces the risk of errors, and creates the conditions necessary for a safe and controlled casting process.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 800,
+      "title": "Resin Selection and Casting Planning"
+    },
+    {
+      "contentId": "prima-turnare",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once the project has been prepared and the casting plan has been finalized, we can proceed to the first actual resin casting.<br><br>This is the moment when all the preparation done so far begins to take the form of a real object. Although it may seem like just the beginning of the casting process, this stage directly influences the quality of the entire project.<br><br><strong>Preparing the resin</strong><br><br>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before preparing the resin, make sure you are working in a well-ventilated area and that you are using the protective equipment recommended by the resin manufacturer. Always consult the technical data sheet and safety data sheet for the product you are using, and follow the instructions regarding handling, personal protection, and working conditions. <br>Before preparing the resin, make sure all necessary materials and tools are ready.<br><br>Mixing containers, a scale, spatulas, pigments, gloves, and all other accessories must be within reach before combining the components.<br><br>Once Component A and Component B are mixed, the chemical reaction begins immediately, and the working time becomes limited.<br><br>The HFZWood app calculates the amount of resin needed for each stage of the project and displays the corresponding amounts for Components A and B separately, based on the mixing ratio of the product being used.<br><br>It is very important for the user to select the ratio recommended by the manufacturer.<br><br>Not all resins use the same mixing formula. Some use a 2:1 ratio, others 3:1, 100:45, or other specific combinations.<br><br>Adhering to these proportions is essential.<br><br>A resin prepared incorrectly may remain sticky, may cure only partially, or may not cure at all.<br><br>For this reason, the components must be weighed carefully, using a scale that is sufficiently accurate for the quantity being prepared.<br><br><strong>Mixing the Components</strong><br><br>After measuring the components, mix them.<br><br>This should be done slowly and evenly so that the two components blend completely without introducing unnecessary air into the mixture.<br><br>Careful attention must be paid to the walls and bottom of the container, as areas may remain insufficiently mixed in these regions.<br><br>A method recommended by many manufacturers is to transfer the resin, after the initial mixing, to a second clean container and continue mixing for a short time. This method reduces the risk that portions remaining on the walls of the first container will end up in the project insufficiently homogenized.<br><br>If the project involves the use of pigments or dyes, these should be added only after the components have been mixed according to the manufacturer\u2019s instructions.<br><br><strong>First Pour</strong><br><br>After preparing the resin, the first pour follows.<br><br>Regardless of whether the final project will be a few millimeters or a few centimeters thick, it is recommended that the first layer be thin.<br><br>In most projects, a thickness of approximately 3 mm is sufficient.<br><br>This layer is not intended to fill the project.<br><br>It serves as a verification and stabilization step.<br><br>The resin must be distributed evenly both in the main pouring area and in all cavities, cracks, and crevices in the wood.<br><br>In this way, the resin penetrates hard-to-reach areas and creates a solid foundation for subsequent pours.<br><br><strong>The Role of the First Coat</strong><br><br>The first coat helps to:<br><br>further secure the wood;<br>seal sensitive areas of the formwork;<br>reduce the risk of leaks;<br>fill difficult-to-reach cavities;<br>and minimize the risk of air bubbles forming in subsequent pours.<br><br>Many potential formwork issues become apparent at this stage.<br><br>If there is an area that is not sufficiently sealed, it is much easier to repair it after a pour of just a few millimeters than after pouring a large amount of resin.<br><br><strong>Project</strong><br><br><strong>Inspection</strong> After completing the first pour, it is recommended to carefully inspect the entire project.<br><br>Check for:<br><br>any leaks;<br>the stability of the wooden components;<br>uniform distribution of the resin;<br>proper filling of the cavities;<br>and the presence of air bubbles.<br><br>If the resin used allows it, surface bubbles can be removed using the methods recommended by the manufacturer.<br><br><strong>Curing the First Layer</strong><br><br>After inspection, the project must be allowed to cure.<br><br>The required curing time varies from product to product and must be strictly observed.<br><br>Rushing this step can affect the adhesion between layers and compromise the final appearance of the project.<br><br>Once the first coat has cured, the project is ready for the main applications.<br><br>The number of coats, the thickness of each coat, and the required quantities were already determined during the planning phase using the HFZWood app.<br><br><strong>The result of this stage</strong><br><br><strong>:</strong> By the end of this stage, we should have a uniform, well-cured first layer and a project that has been verified for watertightness and stability.<br><br>The first pour is not the most spectacular stage of the process, but it is one of the most important. It provides the opportunity to identify and correct any potential problems before they become costly or difficult to remedy, and it lays the foundation upon which all subsequent pours will be built.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 900,
+      "title": "First casting"
+    },
+    {
+      "contentId": "turn-rile-intermediare-i-turnarea-final",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "After the first safety layer has set, the pouring process can continue according to the previously established plan.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The number of coats, the thickness of each coat, and the amount of resin required were previously calculated using the HFZWood app and must be followed in accordance with the resin manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Exceeding the maximum recommended thickness can cause the resin to overheat, leading to cracks, warping, or other defects that may compromise the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Working conditions</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before each casting, it is recommended to check the conditions in the workshop.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Temperature directly affects the resin&#x27;s viscosity, pot life, and curing process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For most products, the optimal temperature is around 20\u00b0C, subject to the manufacturer\u2019s specified tolerances.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At lower temperatures, the resin becomes more viscous, air bubbles are harder to remove, and the curing time increases.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At high temperatures, the chemical reaction accelerates, and the time available for work is considerably reduced.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Equally important is environmental stability. Sudden changes in temperature or humidity during curing can affect the surface quality and the final appearance of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Preparing the next layer</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before each new pour, the surface of the previous layer must be inspected.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the resin used and the time that has elapsed since the previous pour, light sanding may be necessary to improve adhesion between layers.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After sanding, the entire surface must be thoroughly cleaned.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended that:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Complete dust extraction;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 cleaning hard-to-reach areas;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Wipe with a clean, lint-free cloth;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Carefully inspect the corners and cavities.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Any impurities remaining on the surface may become visible in the next layer.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Intermediate castings</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the surface has been prepared, pouring of the next layer can begin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The procedure remains the same for each stage:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 measuring the components;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 adherence to the mixing ratio;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 thorough mixing;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 adding pigments, if necessary;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 uniform pouring.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These operations are repeated until the project reaches a level close to the established final level.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Between coats, it is recommended to carefully inspect the surface to identify any impurities, persistent bubbles, or other defects that can be corrected before applying the next coat.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Preparing for the final pour</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The final layer requires special attention.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As the resin cures, it shrinks slightly. If the final coat is applied exactly flush with the wood, there is a possibility that, once cured, the resin surface will be slightly below the level of the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To compensate for this phenomenon, it is recommended that the final pour exceed the final level by approximately 2\u20134 mm, depending on the type of resin used and the manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This excess material will be removed later during the calibration and polishing stages.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Silicon perimeter barrier</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "When you want the wood and resin to be perfectly flush after processing, it is helpful to create a temporary silicone barrier.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is applied to the surface of the wood, a short distance from the edge of the area to be filled with resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Its role is to retain the excess needed to compensate for shrinkage and to prevent the resin from spreading unnecessarily over the surface of the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After complete curing, this barrier is removed, and the excess resin is removed during machining.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Final aging</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After the last pour, the cast must be allowed to cure completely.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Even though the resin may appear to have hardened after a few days, the curing process continues for a longer period, depending on the product used.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Adhering to this timeframe helps achieve better dimensional stability and reduces the risk of subsequent surface changes.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Rushing through this stage can compromise the result achieved after many hours of work.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this stage</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the end of this stage, the project must be fully cast, and the resin must have cured according to the manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, the casting stage ends and the machining stage begins, during which the rough casting will be gradually transformed into a finished product.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1000,
+      "title": "Intermediate pours and the final pour"
+    },
+    {
+      "contentId": "demularea-i-scoaterea-piesei-din-cofraj",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once all the casting operations are complete and the resin has fully cured, we can proceed to remove the project from the mold.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is important not to rush this step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Even if the resin appears to have hardened on the surface after a few days, demolding should not begin until the curing time recommended by the manufacturer has elapsed. A resin that has not cured sufficiently may be more susceptible to warping or edge damage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Removing the fasteners</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first step is to remove all the fasteners securing the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If self-tapping screws were used, they must be completely removed before attempting to detach the side panels.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended that this operation be performed methodically, ensuring that no fasteners remain in place.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Removing the side forms</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After removing the fasteners, we can begin dismantling the side panels.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In general, it\u2019s easier to start with one of them and proceed step by step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To begin the removal process, use a stiff putty knife, a knife, or another suitable tool, carefully inserting it between the formwork and the piece.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is not to force the formwork apart, but to create a small gap that allows for the controlled removal of the side panels.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the interior of the formwork has been properly prepared, this operation usually proceeds without major difficulties.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Removing the part from the bottom of the formwork</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After removing the side forms, detach the piece from the bottom of the formwork.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This step, too, must be carried out with patience.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the material used to construct the formwork and the protective system employed, traces of particleboard, MDF, melamine, adhesive tape, or other materials may remain on the underside of the structure.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is normal and does not constitute a design defect.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These marks will be removed later by cutting, trimming, and sanding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As early as the formwork design stage, we built in a dimensional allowance specifically to allow for the removal of these imperfections without affecting the final dimensions of the part.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Inspecting the part</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After the part has been completely removed from the formwork, a thorough inspection of the entire project is recommended.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Check the following:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 any casting defects;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 areas where the resin has not completely filled the cavities;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 cracks or voids that developed during curing;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 any leaks that may be visible after demolding;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Condition of the edges and corners.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This inspection allows for the identification of any necessary corrections before machining begins.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Handling the part</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "During demolding, avoid shocks and rough handling of the structure.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Although the resin has cured, corners, thin edges, or certain areas of the wood may be vulnerable to impact.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A part that took days or weeks to produce can be damaged in a matter of seconds by careless handling.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If the project is heavy, it is recommended that a second person assist in lifting and carrying it.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the formwork has been completely removed, we get our first real look at the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The final shape is already visible, but the part is still in its raw state. The surface may show excess resin from the casting process, traces of the curing process, and minor imperfections typical of this stage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Demolding does not mark the end of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This marks the transition from the casting stage to the machining stage, during which the part will be calibrated, cut, ground, and finished until it reaches its final shape and appearance.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1100,
+      "title": "Demolding and removing the part from the formwork"
+    },
+    {
+      "contentId": "ndep-rtarea-surplusului-de-r-in-i-calibrarea-suprafe-ei",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "After demolding, the piece already has its final shape, but its surface is still rough and requires finishing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In this step, we remove the excess resin, level the wood and resin, and prepare the piece for fine sanding and finishing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Removal of temporary elements</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The first step is to remove all materials used temporarily during casting.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Any traces of silicone remaining on the surface, edges, or other areas must be completely removed before processing begins.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Silicone remaining on the part can clog the abrasives and cause problems when applying the finish.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is also recommended to carefully inspect the entire surface to remove any adhesive tape residue, adhesive, or other impurities left behind after demolding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Removing excess resin</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most projects, the final layer of resin was intentionally poured a few millimeters above the level of the wood to compensate for shrinkage that occurred during curing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This excess must now be removed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is simple: to achieve a perfectly flat surface where the wood and resin are level with each other.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There are several methods for performing this operation.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>CNC machining</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The most precise method is milling on a CNC machine.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The workpiece is secured to the machine table, and the excess resin is carefully removed until a uniform surface is achieved.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This method offers excellent precision and repeatability, but it is used primarily in workshops equipped with such machinery.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Calibration using a calibrating machine</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Another solution is to use a sanding machine with abrasive belts.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The results are very good, but in practice this method is used less frequently.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many owners of this equipment avoid processing parts with epoxy resin because resin particles clog the abrasives and increase operating costs.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Sanding with a belt sander</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For most builders, this is the most affordable method.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "We recommend using a belt sander with a coarse grit, typically P40.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this stage, we are not aiming to finish the surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is the rapid and controlled removal of excess resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The sander\u2019s rigid base allows for simultaneous processing of both the wood and the resin, helping to maintain the surface\u2019s flatness.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Movements should be uniform, without applying excessive pressure to a single area.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As the excess resin subsides and the resin reaches the level of the wood, the pressure applied to the sander must be reduced to prevent unevenness.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Cutting and milling</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once a flat surface has been achieved, it is time to bring the project to its final dimensions.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If any cuts, trimming, or edge straightening is necessary, these steps should be performed now.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Any profiling and decorative milling of the edges is also performed during this stage.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These steps must be performed before fine sanding, as the marks left by the tools will be removed in subsequent stages.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Surface inspection</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before proceeding with progressive sanding, a final check is recommended.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The surface must be flat, with no unevenness between the wood and the resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is also the right time to identify any defects that can still be corrected, such as small voids, unfilled pores, or other localized imperfections.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is much easier to correct these issues now than after finishing has begun.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the end of this step, we should have:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the completed structure removed from the formwork;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 All traces of silicone and temporary materials have been removed;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 the wood and resin are brought to the same level;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 final dimensions achieved;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 edges and profiles, if specified;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Surface prepared for progressive sanding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "From this point on, the project begins to take on the appearance of the final product.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Next comes one of the most important and time-consuming stages of the entire process: progressive sanding, the quality of which will largely determine the final appearance of the piece.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1200,
+      "title": "Removing excess resin and surface finishing"
+    },
+    {
+      "contentId": "lefuirea-progresiv-i-preg-tirea-pentru-finisaj",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "After leveling the surface and bringing the wood and resin to the same level, one of the most important stages of the entire project begins.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The final appearance of the work depends to a very large extent on the quality of the sanding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In practice, most of the defects observed in the final result are not caused by the resin or the wood, but by the haste with which this stage is carried out.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The principle of progressive sanding</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Sanding is not just about smoothing the surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Each grit size is designed to remove the scratches left by the previous grit size.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If a step is skipped or performed carelessly, the resulting marks will become visible in subsequent steps and will be much harder to remove.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For this reason, each change in grit size should be made only after the scratches left by the previous abrasive have completely disappeared.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A commonly used progression is:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P40;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P60;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P80;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P100 or P120;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P180;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P220 or P240.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, this is not the only possible option.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is important that the transition between grit sizes be gradual, without any large jumps.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Cleaning between stages</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After each change in grit size, it is recommended to thoroughly clean the surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Any remaining dust can cause new scratches or hide imperfections that should be removed before the next step.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A clean surface is much easier to inspect and allows for the early detection of any defects.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Side lighting is very useful at this stage, as it highlights scratches and unevenness much better.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The final form of the project</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before fine sanding, all operations that alter the shape of the workpiece must be completed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These may include:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 cutting to final dimensions;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 rounding the edges;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 beveling the edges;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 decorative moldings;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 other milling operations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Performing these operations after the final sanding would require repeating a significant portion of the process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Sanding the entire workpiece</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Each grit size must be applied to all visible surfaces of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is not enough to sand only the main surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Edges, corners, and sides must be sanded using the same sequence of grit sizes to ensure that the entire project has a uniform appearance.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Option A \u2013 The wood remains exposed</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is the most common scenario for countertops, tables, and most decorative projects.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After using P220 or P240 grit, you can continue, if necessary, with a low-eccentricity orbital sander.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Depending on the project, sanding may go up to P320, and in some cases up to P400.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In general, it is not recommended to exceed these values when the wood is to be finished with oils or other penetrating products.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Sanding that is too fine reduces the wood&#x27;s ability to absorb the finish and can affect the final appearance.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Based on practical experience, a final grit size between P240 and P320 provides the best balance between the resin\u2019s appearance and the wood\u2019s behavior during finishing.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Option B \u2013 Clear final resin coat</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In some projects, it is desirable to apply a transparent final coat of resin over the entire surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In this situation, very fine sanding is not necessary.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is sufficient for the surface to be smooth, clean, and provide good adhesion for the new coat.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "However, applying this final coat is a separate step and will be covered in a dedicated chapter.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Patience Makes All the Difference</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Sanding is one of the most time-consuming steps in the entire process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Many beginners try to save time by skipping certain grits or moving on to the next step too quickly.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most cases, the time seemingly saved is later lost trying to remove the remaining scratches.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Proper sanding requires patience, attention to detail, and constant monitoring of the results.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Often, the difference between an ordinary project and a truly successful one lies precisely in the quality of the sanding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this stage</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "By the end of this chapter, we should have a fully sanded piece, with all surfaces smooth and ready for the finish.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this point, the project is very close to its final form, and the next steps will serve to highlight the beauty of the wood and protect the piece over time.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1300,
+      "title": "Progressive sanding and preparation for finishing"
+    },
+    {
+      "contentId": "aplicarea-unui-strat-final-transparent-de-r-in-top-coating",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Not all projects end with the direct application of a finish to the wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In certain situations, it is desirable to cover the entire surface of the piece with a transparent layer of resin, resulting in a glossy appearance, a perfectly uniform texture, and a visual effect of depth, in which the wood appears to be embedded in a continuous layer of resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This technique is known as <em>Top Coating</em>.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before applying this layer, the part must already have been shaped to its final form and dimensions and sanded to approximately P320\u2013P400.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "No finer sanding is necessary, as the surface will be completely covered by the new layer of resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Preparing the part</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The part is placed on temporary supports that are high enough to allow the resin to flow freely on all sides.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is recommended that the support points be placed as close as possible to the center of the part, so that any resulting marks are as inconspicuous as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Before pouring, carefully check that the part is perfectly horizontal.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Even a slight tilt can cause the resin to pool in a specific area and result in an uneven top coat.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Protecting the underside</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To make subsequent cleaning easier, it is recommended to apply adhesive tape to the underside of the part, as close to the edges as possible.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "During casting, the resin will inevitably flow over the edges and form droplets on the bottom surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After curing, the tape can be removed along with most of these deposits, significantly reducing the time required for cleaning.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Temporary barrier</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Apply adhesive tape along the upper edge of the part, raising it approximately 5\u201310 mm above the surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This forms a temporary barrier that allows for the even distribution of the resin before it flows in a controlled manner over the edges.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Choosing the resin</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Resins specially formulated for thin layers are used for this operation.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These are often marketed under names such as:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Art Resin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Coating Resin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Table Top Resin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 Top Coating Resin.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Compared to <em>casting</em> resins, these typically have:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 higher viscosity;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 shorter curing time;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 greater mechanical strength;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 improved scratch resistance.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These are not intended for thick castings, but rather for creating transparent and uniform surfaces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Applying the layer</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After preparing the resin according to the manufacturer\u2019s instructions, pour it onto the surface of the part.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The material can be applied using a putty knife, a special comb, or even your hand protected by a nitrile glove.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is to achieve a uniform layer across the entire surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After leveling the resin, the adhesive tape applied along the contour is gradually removed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As the resin begins to flow over the edges, it is distributed evenly across all the edges and sides of the part.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is to form a continuous film over the entire visible surface of the project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Surface inspection</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In the first few minutes after pouring, it is recommended to carefully inspect the entire surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If air bubbles appear, they must be removed using the method recommended by the resin manufacturer.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is also helpful to periodically check the edges as the resin flows, since in some areas the film may shrink slightly before gelation begins.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Removing drips</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Once the resin has fully cured, the adhesive tape applied to the underside can be removed.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This will also remove most of the droplets that formed during the flow.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Any minor marks left behind can be removed later by light sanding.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Sanding the top coat</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Even if the surface looks perfect immediately after curing, there are almost always fine dust particles or small imperfections that have settled on it during the curing process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "To achieve a high-quality finish, the top coat is progressively sanded.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "A commonly used sequence is:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P400;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P500;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P600;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P800;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P1000;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P1500;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P2000;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P2500;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 P3000.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As in the previous steps, each grit size must completely remove the marks left by the previous one.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The same procedure is applied to the main surface as well as to the edges, corners, and sides.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Polishing</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After sanding is complete, polishing follows.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Use a polishing machine with adjustable speed, a suitable sponge, and a polishing compound designed for resins or glossy surfaces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This step removes any remaining micro-scratches and restores the transparency and depth of the resin layer.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this step</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the end of this step, the surface should be completely transparent, uniform, and free of visible sanding marks.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The wood and resin are integrated into a single, continuous surface with a deep, glossy, and spectacular finish that highlights the full beauty of the project.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1400,
+      "title": "Applying a clear top coat of resin"
+    },
+    {
+      "contentId": "finisarea-proiectelor-n-care-lemnul-r-m-ne-expus",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Once sanding is complete, the project is ready for the finish to be applied.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At this stage, we choose not only how the piece will look, but also the level of protection it will have during everyday use.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "There is no one-size-fits-all finish.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The choice depends on the desired look, the project\u2019s purpose, and each builder\u2019s preferences.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Film-forming finishes</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "One category consists of polyurethane lacquers and finishes.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These products create a protective film on the surface of the wood and offer excellent resistance to water, stains, and mechanical wear.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For best results, application with a spray gun is recommended.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Application with a roller is possible, but in many cases, the effect known as \u201corange peel\u201d may occur\u2014a fine texture that requires additional sanding and polishing if a perfect finish is desired.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These products are especially recommended for projects subject to heavy use or in situations where periodic maintenance must be kept to a minimum.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Finishing with oil and wax</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "For those who want to preserve the natural look and feel of wood, one of the most popular solutions is still finishing with oil and wax.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This system does not form a thick film on the surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The wood retains its natural texture, and the grain gains depth and contrast.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The surface remains pleasant to the touch and retains the authentic feel of wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Applying oil</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Oil should always be applied in very thin coats.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is not to cover the wood, but to treat it in a controlled manner.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Application can be done using:",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 workbench;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 application pad;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 sponge;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 roller, depending on the type of product.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Regardless of the method used, excess oil must be removed according to the manufacturer\u2019s recommendations.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After each coat has dried completely, very fine sanding with P400\u2013P500 grit is recommended.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This sanding is not intended to remove the finish, but rather to even out the surface and prepare it for the next coat.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Number of coats</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The optimal number of coats varies depending on the type of wood.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Dense woods absorb less and quickly reach the desired level of protection.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Wood species with higher absorbency, such as walnut, may require three or even four successive applications.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Several thin coats almost always yield better results than one or two thick coats.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Applying wax</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After the final coat of oil has dried completely and after one last, very fine sanding, the surface is carefully cleaned.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Next, apply the wax.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Products containing carnauba wax offer superior mechanical strength and better protection against wear.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The wax should be applied evenly over the entire piece, including the edges and corners.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is to provide continuous protection on all exposed surfaces.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Polishing</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "After applying the wax, polish the surface.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This can be done by hand, but for large surfaces, it is more efficient to use a low-speed sander and a felt pad.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "No need to press hard.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The goal is to even out the wax and achieve a smooth surface that feels pleasant to the touch and has a natural sheen.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Long-term maintenance</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "One of the advantages of oil- and wax-based finishes is that they are easy to maintain.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Over time, the protective coating will gradually wear away, depending on how the piece is used.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "This is normal and does not constitute a defect.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "In most cases, it is not necessary to strip the entire finish.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Simply clean the surface and apply a new thin coat of wax or a maintenance product recommended by the manufacturer.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "With this periodic maintenance, the project can retain its appearance and protection for many years to come.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Wood is a living material.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Even after being processed and finished, it continues to react to the surrounding environment.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "It is precisely this characteristic that gives it the charm and uniqueness that synthetic materials cannot replicate.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>The result of this stage</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "At the end of this stage, we should have a project that is fully finished, protected, and ready for use.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Whether you\u2019ve chosen a finish that forms a protective film or an oil- and wax-based system, the goal is the same: to highlight the wood\u2019s natural beauty and provide protection that will allow the project to be used and enjoyed for many years to come.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1500,
+      "title": "Finishing projects where wood remains exposed"
+    },
+    {
+      "contentId": "anexa-a-echipamentul-minim-recomandat",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "Working with epoxy resin does not require an industrial workshop or very expensive equipment. Many of the projects presented in this book can be completed with a relatively small set of tools and equipment.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "The list below serves as a starting point for those who want to get started.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Measuring and preparation equipment</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 precision digital scale;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 containers for mixing the resin;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 spatulas and stirring sticks;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 resin mixer (optional, depending on the quantities being prepared).",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Woodworking Tools</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 circular saw or jigsaw;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 hand-held router;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 belt sander;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 orbital sander;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 vacuum cleaner.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Assembly Equipment</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 clamps;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 screwdriver or power screwdriver;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 ruler, tape measure, and set square;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 level.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Supplies</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 sandpaper in various grits;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 adhesive tape;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 silicone for sealing the formwork;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 nitrile gloves;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 lint-free cloths.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "<strong>Protective Equipment</strong>",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 safety goggles;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 a respirator suitable for vapors and particles, appropriate for the products being used;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 protective gloves;",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "\u2022 work clothes.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "As experience grows and projects become more complex, every builder will expand their workshop with equipment tailored to their own work style. However, it is not necessary to have all of this equipment available from the very first project.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1600,
+      "title": "APPENDIX A \u2013 Recommended Minimum Equipment"
+    },
+    {
+      "contentId": "ce-am-nv-at-dup-ani-de-lucru-cu-r-ina-epoxidic",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "I\u2019ll wrap up this post with a few ideas that don\u2019t come from manufacturers\u2019 manuals or resin data sheets.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "These are things I\u2019ve learned in the workshop\u2014sometimes after many hours of work, other times after making mistakes I\u2019d rather not have made.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Never try to rush the resin. Almost every time I've tried to save time, I've ended up spending more time fixing what went wrong.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Planning is one of the most important stages of a project. An hour spent properly preparing the materials, formwork, and work steps can save many hours of corrections.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Don\u2019t rush to use the wood as soon as you buy it. Wood has its own rhythm and needs time to settle. Allowing for this process means fewer surprises later on.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Learn to view each step as a foundation for the next. Careful sanding will make the finishing process easier. A well-planned pour will minimize the need for corrections. Almost every step influences what comes next.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Don\u2019t try to achieve perfection on the first try. Every project will teach you something new, and every mistake will give you experience. The important thing is to understand why it happened and not to repeat it.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Use high-quality materials, but don\u2019t rely solely on them. Even the best resin can\u2019t make up for a sloppy preparation.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Take care of your workshop. Cleanliness, order, and organization are just as important as the tools you use.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "And, perhaps most importantly, enjoy the process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Epoxy resin and wood offer the opportunity to create unique objects. Every piece of wood has its own story, its own shapes, and its own imperfections. It is precisely these qualities that make each project different.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Don\u2019t try to fight the nature of wood. Learn to work with it.",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1700,
+      "title": "What I've Learned After Years of Working with Epoxy Resin"
+    },
+    {
+      "contentId": "concluzie",
+      "sections": [
+        {
+          "blocks": [
+            {
+              "align": null,
+              "text": "You have reached the end of this manual.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "If you\u2019ve gone through all the chapters and understood the logic behind each step, you already have all the information you need to complete your first project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Don&#x27;t try to build the most spectacular resin table you&#x27;ve seen online on your first try.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Start with simple projects.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Give it a try.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Observe how different types of wood react, how the resin behaves, and how each decision influences the final result.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Experience isn\u2019t gained in a day, nor by reading a single book. It is built up project by project.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "I hope the information in this manual provides you with a solid starting point and shortens the path that many of us have traveled through trial and error and experience gained over time.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "I hope that each project is better than the last and, above all, that you enjoy the creative process.",
+              "type": "paragraph"
+            },
+            {
+              "align": null,
+              "text": "Good luck!",
+              "type": "paragraph"
+            }
+          ],
+          "id": "main",
+          "title": ""
+        }
+      ],
+      "sortOrder": 1800,
+      "title": "Conclusion"
+    }
+  ],
   "locale": "en"
 }

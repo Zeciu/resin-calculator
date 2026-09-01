@@ -472,7 +472,7 @@ describe("Glossary management workspace (Task 60)", () => {
 
     await user.click(screen.getByRole("button", { name: "Publish" }));
     await waitFor(() => {
-      expect(screen.getByText(/Live \(RO\)|Draft \(RO\)|Draft changes \(RO\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/Published \(RO\)|Draft \(RO\)|Draft changes \(RO\)/i)).toBeInTheDocument();
     });
   });
 
@@ -520,7 +520,7 @@ describe("Glossary management workspace (Task 60)", () => {
     });
 
     await user.click(screen.getByRole("button", { name: "EN" }));
-    expect(screen.getByText(/Live \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
+    expect(screen.getByText(/Published \(EN\)|Draft \(EN\)|Draft changes \(EN\)|No EN content yet/i)).toBeInTheDocument();
     expect(screen.getByLabelText("Related terms")).toBeInTheDocument();
   });
 

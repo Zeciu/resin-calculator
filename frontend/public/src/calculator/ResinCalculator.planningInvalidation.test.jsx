@@ -392,6 +392,31 @@ describe("ResinCalculator planning invalidation", () => {
     ).toBeCloseTo(500, 5);
   });
 
+  it("keeps the pour-plan table inside a dedicated overflow wrapper with notes outside", async () => {
+    const user = userEvent.setup();
+    const ref = createRef();
+    renderCalculator(
+      <ResinCalculator ref={ref} showHeader={false} workspaceVariant="dedicated" />,
+    );
+    await restoreSnapshot(ref, buildCompletedSnapshot());
+
+    await calculateFirstFill(user);
+    await calculatePourPlan(user);
+
+    const table = screen.getByRole("table");
+    const wrap = table.closest(".pour-plan-table-wrap");
+    expect(wrap).not.toBeNull();
+    expect(wrap.querySelector("table")).toBe(table);
+    expect(wrap.querySelector(".pour-plan-note")).toBeNull();
+    const mixNote = screen.getByText(/Component A and B quantities are volumes/i);
+    expect(mixNote).toHaveClass("pour-plan-note");
+    expect(mixNote.closest(".pour-plan-table-wrap")).toBeNull();
+    expect(mixNote.closest(".pour-layer-planning-controls")).not.toBeNull();
+    expect(
+      screen.getByRole("complementary", { name: /Pour Layer Planning/i }),
+    ).toHaveClass("pour-layer-helper");
+  });
+
   it("clears planning after a Modify Mode geometry edit and does not restore it on wood recalc", async () => {
     const user = userEvent.setup();
     const ref = createRef();

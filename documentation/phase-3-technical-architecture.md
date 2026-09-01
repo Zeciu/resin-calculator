@@ -7,6 +7,7 @@
 - `frontend/private/` and `backend/private/` contain local-only editorial UI, routes, DeepL integration, and editorial content.
 - Local editorial data is stored through `FilesystemContentRepository`, rooted at `backend/private/content/` unless `CONTENT_DATA_DIR` overrides it.
 - Manual, Glossary, Knowledge Base, and website variants are drafted locally and published to snapshots.
+- Local authenticated `/api/content` reads those published private snapshots so translations can be previewed before packaging. Production `/api/content` reads only packaged `backend/public/content`.
 - Production copies only the public frontend/backend runtime and the published corpus. It has no editorial routes, authoring UI, or DeepL credentials.
 - Public content readers require Cognito authentication. Knowledge Base entries are limited by the resolved capability tier.
 - Local editorial access has normal Cognito authentication only; it has no special administrator authorization. Editorial routes are never deployed to AWS — `backend/private` is excluded from the Docker build context — so the deployment boundary is already the access control.

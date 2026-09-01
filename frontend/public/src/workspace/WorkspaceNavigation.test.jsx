@@ -106,6 +106,9 @@ describe("Workspace navigation matrix — authenticated", () => {
     expect(screen.queryByRole("button", { name: /New Project/i })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Log out/i })).toBeInTheDocument();
+    const demoCta = screen.getByRole("link", { name: "Try a demo project" });
+    expect(demoCta).toHaveAttribute("href", "/demo");
+    expect(demoCta).not.toHaveClass("workspace-sidebar__link--primary-action");
   });
 
   it("opens New Project in the dedicated module layout with Home navigation", async () => {

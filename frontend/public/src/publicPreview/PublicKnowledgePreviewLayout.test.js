@@ -61,6 +61,18 @@ describe("Public Knowledge Preview layout contract", () => {
     );
     expect(exploreBlock).not.toMatch(/#3f5d3a/);
     expect(exploreBlock).not.toMatch(/color:\s*#fff;/);
+    expect(exploreBlock).toMatch(/justify-content:\s*flex-start;/);
+    expect(exploreBlock).toMatch(/text-align:\s*left;/);
+    expect(demoBlock).toMatch(/justify-content:\s*flex-start;/);
+    expect(demoBlock).toMatch(/text-align:\s*left;/);
+    expect(demoBlock).toMatch(/padding:\s*10px 12px;/);
+    expect(demoBlock).not.toMatch(/text-align:\s*center;/);
+    expect(stylesSource).toMatch(
+      /\.workspace-sidebar__link\s*\{[^}]*padding:\s*10px 12px;/,
+    );
+    expect(stylesSource).toMatch(
+      /\.workspace-sidebar__guest-auth \.guest-home-onboarding__primary\s*\{[^}]*text-align:\s*center;/,
+    );
     expect(stylesSource).toMatch(
       /\.workspace-sidebar__link\.workspace-sidebar__link--guest-explore:focus-visible\s*\{[^}]*outline:\s*2px solid #9d6c3b;/,
     );

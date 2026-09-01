@@ -213,6 +213,21 @@ describe("Workspace navigation active state — auth and preferences flow", () =
       "workspace-sidebar__link--active",
     );
   });
+
+  it("marks Try a demo project current without making it the primary project action", () => {
+    seedAuthenticatedSession();
+    renderWorkspace(ROUTES.DEMO);
+    const sidebar = getSidebar();
+
+    const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
+    expect(demoCta).toHaveClass("workspace-sidebar__link--active");
+    expect(demoCta).toHaveAttribute("aria-current", "page");
+    expect(demoCta).not.toHaveClass("workspace-sidebar__link--primary-action");
+
+    const newProjectLink = within(sidebar).getByRole("link", { name: "New Project" });
+    expect(newProjectLink).toHaveClass("workspace-sidebar__link--primary-action");
+    expect(newProjectLink).not.toHaveClass("workspace-sidebar__link--active");
+  });
 });
 
 describe("New Project primary-action visual contract", () => {

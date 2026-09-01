@@ -14,7 +14,10 @@ export function buildPublishedManualResponse(sections = MANUAL_SECTIONS) {
   };
 }
 
-export function mockPublishedManualFetch(sections = MANUAL_SECTIONS) {
+export function mockPublishedManualFetch(sections = MANUAL_SECTIONS, options = {}) {
+  const available = options.available ?? true;
+  const englishAvailable = options.englishAvailable ?? true;
+  const locale = options.locale ?? "en";
   const fetchMock = vi.fn(async (url) => {
     const requestUrl = String(url);
     if (requestUrl.includes("/api/content/public-languages")) {
@@ -22,14 +25,20 @@ export function mockPublishedManualFetch(sections = MANUAL_SECTIONS) {
         ok: true,
         json: async () => ({
           defaultPublicLocale: "en",
-          activePublicLocales: ["en", "ro"],
+          activePublicLocales: options.activePublicLocales ?? ["en", "ro", "fr"],
         }),
       };
     }
     if (requestUrl.includes("/api/content/manual")) {
       return {
         ok: true,
-        json: async () => buildPublishedManualResponse(sections),
+        json: async () => ({
+          ...buildPublishedManualResponse(available ? sections : []),
+          locale,
+          requestedLocale: locale,
+          available,
+          englishAvailable,
+        }),
       };
     }
     return {

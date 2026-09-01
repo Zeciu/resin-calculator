@@ -149,12 +149,15 @@ export default function KnowledgeBasePage() {
             {t("content.loadingKnowledgeBase")}
           </p>
         ) : null}
-        {loadState === "unavailable" || loadState === "error" ? (
+        {loadState === "unavailable" ? (
           <ContentUnavailableMessage
             unavailableKey="content.unavailableKnowledgeBase"
             englishAvailable={Boolean(payload?.englishAvailable)}
             onViewEnglish={viewEnglishVersion}
           />
+        ) : null}
+        {loadState === "error" ? (
+          <ContentUnavailableMessage unavailableKey="content.loadErrorKnowledgeBase" />
         ) : null}
         {loadState === "ready" ? (
           <>
