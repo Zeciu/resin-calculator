@@ -94,6 +94,37 @@ export function isWorkspaceNavItemActive(item, pathname) {
   return pathname === item.path;
 }
 
+/** Guest locked-section copy keys. Generic locked.title/body remain the fallback. */
+export const GUEST_LOCKED_MESSAGE_KEYS = {
+  "new-project": { titleKey: "locked.newProject.title", bodyKey: "locked.newProject.body" },
+  projects: { titleKey: "locked.projects.title", bodyKey: "locked.projects.body" },
+  "manual-tutorials": { titleKey: "locked.manual.title", bodyKey: "locked.manual.body" },
+  glossary: { titleKey: "locked.glossary.title", bodyKey: "locked.glossary.body" },
+  "knowledge-base": { titleKey: "locked.knowledgeBase.title", bodyKey: "locked.knowledgeBase.body" },
+};
+
+export function isGuestLockedNavItem(item) {
+  return Boolean(item?.requiresAuth && item.id !== "my-account" && item.id !== "login-register");
+}
+
+export function getGuestLockedNavItemId(pathname) {
+  const item = WORKSPACE_NAV_ITEMS.find(
+    (entry) => isGuestLockedNavItem(entry) && pathname === entry.path,
+  );
+  return item?.id ?? null;
+}
+
+export function resolveGuestLockedModuleId(lockedModuleId, pathname) {
+  return lockedModuleId || getGuestLockedNavItemId(pathname);
+}
+
+export function isGuestLockedNavItemSelected(item, lockedModuleId, pathname) {
+  if (!isGuestLockedNavItem(item)) {
+    return false;
+  }
+  return resolveGuestLockedModuleId(lockedModuleId, pathname) === item.id;
+}
+
 export function getVisibleWorkspaceNavItems(isAuthenticated) {
   return WORKSPACE_NAV_ITEMS.filter((item) => {
     if (item.guestOnly) {

@@ -118,8 +118,12 @@ describe("WorkspaceHero", () => {
     );
     expect(stylesSource).toMatch(/\.workspace-hero__headline \{[^}]*overflow-wrap: break-word/);
     expect(stylesSource).toMatch(
-      /@media \(min-width: 640px\) \{\s*\.workspace-hero__headline \{\s*max-width: min\(100%, 18em\)/,
+      /@media \(min-width: 640px\) \{\s*\.workspace-hero__headline \{\s*max-width: min\(100%, 28em\)/,
     );
+    expect(stylesSource).toMatch(
+      /@media \(min-width: 768px\) \{\s*\.workspace-hero__subtitle \{\s*max-width: min\(100%, 36em\)/,
+    );
+    expect(stylesSource).not.toMatch(/\.workspace-hero__headline \{[^}]*white-space:\s*nowrap/);
     expect(stylesSource).not.toMatch(/\.workspace-hero__headline \{[^}]*line-clamp/);
     expect(stylesSource).not.toMatch(/\.workspace-hero__headline \{[^}]*text-overflow:\s*ellipsis/);
     expect(stylesSource).not.toMatch(/\.workspace-hero__estimate \{[^}]*bottom:\s*10px/);

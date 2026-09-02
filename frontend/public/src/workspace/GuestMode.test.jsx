@@ -50,10 +50,16 @@ describe("Guest Mode", () => {
 
     await user.click(screen.getByRole("button", { name: /New Project/i }));
 
+    const main = screen.getByRole("main");
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      within(main).getByRole("heading", { name: "Create your free HFZWood account to start a project." }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Go to Login \/ Register/i)).toBeInTheDocument();
+    expect(within(main).getByRole("link", { name: "Log in" })).toHaveAttribute("href", "/login");
+    expect(within(main).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
+      "href",
+      "/register",
+    );
+    expect(within(main).getByRole("link", { name: "View plans" })).toHaveAttribute("href", "/pricing");
   });
 
   it("includes the guest intro platform overview video placeholder", () => {

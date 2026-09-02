@@ -19,12 +19,12 @@ const MANUAL_STACK_MAX_REM = 59.99;
 const MANUAL_DOCUMENT_MAX_REM = 52;
 const KB_TWO_COL_MIN_REM = 28.5;
 const KB_FOUR_COL_MIN_REM = 58;
-const KB_MODULE_MAX_REM = 78;
 const KB_SCROLL_PAD_DESKTOP_X = 64;
 const KB_BODY_PAD_LEFT_DESKTOP = 36;
+const APP_SHELL_MAX_WIDTH = 1760;
 
 function dedicatedContentWidth(viewportWidth) {
-  const workspaceWidth = Math.min(viewportWidth, 1680);
+  const workspaceWidth = Math.min(viewportWidth, APP_SHELL_MAX_WIDTH);
   if (viewportWidth <= 900) {
     return workspaceWidth - WORKSPACE_PAD_X - CONTENT_PAD_X;
   }
@@ -43,7 +43,7 @@ function manualReadingInnerWidth(viewportWidth) {
 }
 
 function kbCardContainerWidth(viewportWidth) {
-  const contentWidth = Math.min(dedicatedContentWidth(viewportWidth), KB_MODULE_MAX_REM * 16);
+  const contentWidth = dedicatedContentWidth(viewportWidth);
   const scrollPadX = viewportWidth <= 900 ? 36 : KB_SCROLL_PAD_DESKTOP_X;
   const bodyPadLeft = viewportWidth <= 560 ? 0 : viewportWidth <= 900 ? 28 : KB_BODY_PAD_LEFT_DESKTOP;
   return contentWidth - scrollPadX - bodyPadLeft;
@@ -136,5 +136,24 @@ describe("Content module responsive contracts", () => {
     expect(stylesSource).toMatch(
       /\.knowledge-base-module__scroll\s*\{[^}]*overflow:\s*visible;/,
     );
+  });
+});
+
+describe("Authenticated application shell contracts", () => {
+  it("uses one desktop max-width for Home hub and dedicated modules", () => {
+    expect(stylesSource).toMatch(/--app-shell-max-width:\s*1760px;/);
+    expect(stylesSource).toMatch(/--app-sidebar-width:\s*240px;/);
+    expect(stylesSource).toMatch(/--app-sidebar-gap:\s*20px;/);
+    expect(stylesSource).toMatch(
+      /\.application-workspace:has\(\.home-hub-layout\),\s*\.application-workspace:has\(\.dedicated-module-layout\)\s*\{[^}]*max-width:\s*min\(100%,\s*var\(--app-shell-max-width\)\);/,
+    );
+    expect(stylesSource).not.toMatch(
+      /\.application-workspace:has\(\.new-project-workspace\)\s*\{[^}]*max-width:/,
+    );
+  });
+
+  it("keeps Account and Manual inner columns from stretching with the shell", () => {
+    expect(stylesSource).toMatch(/\.my-account-page\s*\{[^}]*max-width:\s*520px;/);
+    expect(stylesSource).toMatch(/\.manual-module__document\s*\{[^}]*max-width:\s*52rem;/);
   });
 });

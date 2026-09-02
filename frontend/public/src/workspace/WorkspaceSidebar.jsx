@@ -6,17 +6,29 @@ import DemoProjectNavLink from "../demo/DemoProjectNavLink.jsx";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import QuickPreferences from "../preferences/QuickPreferences.jsx";
 import PublicLanguageSelector from "../preferences/PublicLanguageSelector.jsx";
-import { getLoggedInHomeNavItems, getVisibleWorkspaceNavItems, isWorkspaceNavItemActive } from "./navigation.js";
+import {
+  getLoggedInHomeNavItems,
+  getVisibleWorkspaceNavItems,
+  isGuestLockedNavItemSelected,
+  isWorkspaceNavItemActive,
+} from "./navigation.js";
 import { ROUTES } from "./routes.js";
 import { useWorkspaceNavigation } from "./useWorkspaceNavigation.js";
 
 const NARROW_NAV_QUERY = "(max-width: 767px)";
 
-function LockedNavItem({ label, lockLabel, onShowLockedMessage }) {
+function LockedNavItem({ label, lockLabel, isSelected, onShowLockedMessage }) {
   return (
     <button
       type="button"
-      className="workspace-sidebar__link workspace-sidebar__link--locked"
+      className={[
+        "workspace-sidebar__link",
+        "workspace-sidebar__link--locked",
+        isSelected ? "workspace-sidebar__link--active" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-current={isSelected ? "true" : undefined}
       onClick={onShowLockedMessage}
     >
       <span className="workspace-sidebar__label">{label}</span>
@@ -64,7 +76,7 @@ export default function WorkspaceSidebar() {
   const navigate = useNavigate();
   const detailsRef = useRef(null);
   const [isDisclosureOpen, setIsDisclosureOpen] = useState(true);
-  const { isNavItemLocked, showLockedModuleMessage, clearLockedModuleMessage } =
+  const { isNavItemLocked, lockedModuleId, showLockedModuleMessage, clearLockedModuleMessage } =
     useWorkspaceNavigation();
 
   const isLoggedInHome = isAuthenticated && location.pathname === ROUTES.HOME;
@@ -102,7 +114,21 @@ export default function WorkspaceSidebar() {
     const isLocked = isNavItemLocked(item);
     const isPrimaryAction = item.id === "new-project" && !isLocked;
     const isGuestExplore = item.id === "knowledge-preview";
-    const isItemActive = isWorkspaceNavItemActive(item, location.pathname);
+    const isLockedSelected = isLocked
+      ? isGuestLockedNavItemSelected(item, lockedModuleId, location.pathname)
+      : false;
+    const isItemActive = isLocked
+      ? isLockedSelected
+      : !lockedModuleId && isWorkspaceNavItemActive(item, location.pathname);
+
+    const itemClassName = [
+      "workspace-sidebar__link",
+      isPrimaryAction ? "workspace-sidebar__link--primary-action" : "",
+      isGuestExplore ? "workspace-sidebar__link--guest-explore" : "",
+      isItemActive ? "workspace-sidebar__link--active" : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <li key={item.id} className="workspace-sidebar__item">
@@ -110,22 +136,22 @@ export default function WorkspaceSidebar() {
           <LockedNavItem
             label={label}
             lockLabel={t("locked.featureAria")}
-            onShowLockedMessage={showLockedModuleMessage}
+            isSelected={isLockedSelected}
+            onShowLockedMessage={() => showLockedModuleMessage(item.id)}
           />
+        ) : lockedModuleId ? (
+          <Link
+            to={item.path}
+            className={itemClassName}
+            onClick={clearLockedModuleMessage}
+          >
+            <span className="workspace-sidebar__label">{label}</span>
+          </Link>
         ) : (
           <NavLink
             to={item.path}
             end={item.id !== "my-account" && item.id !== "knowledge-preview"}
-            className={() =>
-              [
-                "workspace-sidebar__link",
-                isPrimaryAction ? "workspace-sidebar__link--primary-action" : "",
-                isGuestExplore ? "workspace-sidebar__link--guest-explore" : "",
-                isItemActive ? "workspace-sidebar__link--active" : "",
-              ]
-                .filter(Boolean)
-                .join(" ")
-            }
+            className={itemClassName}
             aria-current={isItemActive ? "page" : undefined}
             onClick={clearLockedModuleMessage}
           >

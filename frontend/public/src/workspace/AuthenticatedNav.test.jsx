@@ -70,7 +70,7 @@ describe("Authenticated Mode navigation", () => {
 
     await user.click(screen.getByRole("button", { name: /New Project/i }));
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", { name: "Create your free HFZWood account to start a project." }),
     ).toBeInTheDocument();
   });
 

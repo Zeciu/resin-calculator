@@ -20,13 +20,23 @@ function splitHomeDescriptionBlocks(value) {
     }));
 }
 
+function HomeDescriptionBlocks({ blocks }) {
+  return blocks.map((block, index) => (
+    <div key={`${index}-${block.body.slice(0, 24)}`} className="public-home__description-block">
+      {block.title ? <h2>{block.title}</h2> : null}
+      <p>{block.body}</p>
+    </div>
+  ));
+}
+
 /**
  * CMS-driven Home marketing body (guest and authenticated share this content).
  * Hero title, subtitle, and hero image render in WorkspaceHero.
+ * `besideVideoExtras` is Home product-explanation copy in the left column beside the video.
  *
- * @param {{ body: Record<string, unknown> }} props
+ * @param {{ body: Record<string, unknown>, besideVideoExtras?: import("react").ReactNode }} props
  */
-export default function PublicHomePage({ body }) {
+export default function PublicHomePage({ body, besideVideoExtras = null }) {
   const cta = body.cta;
   const video = resolveHomeVideoSource(body.video);
   const showCta = canRenderHomeCta(cta);
@@ -39,12 +49,9 @@ export default function PublicHomePage({ body }) {
     <section className="public-home" aria-label="Home">
       <div className="public-home__upper">
         <div className="public-home__description">
-          {upperDescriptionBlocks.map((block, index) => (
-            <div key={`${index}-${block.body.slice(0, 24)}`} className="public-home__description-block">
-              {block.title ? <h2>{block.title}</h2> : null}
-              <p>{block.body}</p>
-            </div>
-          ))}
+          <HomeDescriptionBlocks blocks={upperDescriptionBlocks.slice(0, 1)} />
+          {besideVideoExtras}
+          <HomeDescriptionBlocks blocks={upperDescriptionBlocks.slice(1)} />
         </div>
 
         {video ? (

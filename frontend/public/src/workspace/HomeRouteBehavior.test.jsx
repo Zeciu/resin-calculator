@@ -36,6 +36,15 @@ describe("Workspace home route", () => {
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "Start with a photo and the real dimensions of your project",
+        level: 2,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "You don't need to be an epoxy expert", level: 2 }),
+    ).toBeInTheDocument();
   });
 
   it("renders LoggedInHome for authenticated users at /", () => {
@@ -52,5 +61,14 @@ describe("Workspace home route", () => {
     expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Start New Project/i })).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "Start with a photo and the real dimensions of your project",
+        level: 2,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "You don't need to be an epoxy expert", level: 2 }),
+    ).toBeInTheDocument();
   });
 });

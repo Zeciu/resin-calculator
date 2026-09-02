@@ -183,21 +183,23 @@ describe("Guest onboarding and Home navigation", () => {
       WORKSPACE_NAV_ITEMS.filter((item) => item.requiresAuth && item.id !== "my-account").length,
     );
 
-    for (const label of [
-      "New Project",
-      "Projects",
-      "Manual & Tutorials",
-      "Glossary",
-      "Knowledge Base",
-    ]) {
+    const lockedTitles = {
+      "New Project": "Create your free HFZWood account to start a project.",
+      Projects: "Create your free HFZWood account to access your projects.",
+      "Manual & Tutorials": "Create your free HFZWood account to unlock the Manual and tutorials.",
+      Glossary: "Create your free HFZWood account to explore the Glossary.",
+      "Knowledge Base": "Create your free HFZWood account to explore the Knowledge Base.",
+    };
+    for (const label of Object.keys(lockedTitles)) {
       await user.click(within(sidebar).getByRole("button", { name: new RegExp(label, "i") }));
-      expect(
-        screen.getByText(/Create your free HFZWood account to unlock this section/i),
-      ).toBeInTheDocument();
-      expect(screen.getByRole("link", { name: /Go to Login \/ Register/i })).toHaveAttribute(
+      const main = screen.getByRole("main");
+      expect(within(main).getByRole("heading", { name: lockedTitles[label], level: 2 })).toBeInTheDocument();
+      expect(within(main).getByRole("link", { name: "Log in" })).toHaveAttribute("href", "/login");
+      expect(within(main).getByRole("link", { name: "Create Free Account" })).toHaveAttribute(
         "href",
-        "/login",
+        "/register",
       );
+      expect(within(main).getByRole("link", { name: "View plans" })).toHaveAttribute("href", "/pricing");
     }
   });
 

@@ -19,35 +19,38 @@ export function isNavItemLocked(item, isAuthenticated) {
 export function WorkspaceNavigationProvider({ children }) {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
-  const [showLockedMessage, setShowLockedMessage] = useState(false);
+  const [lockedModuleId, setLockedModuleId] = useState(null);
 
   useEffect(() => {
-    setShowLockedMessage(false);
+    setLockedModuleId(null);
   }, [location.pathname]);
 
-  const showLockedModuleMessage = useCallback(() => {
-    setShowLockedMessage(true);
+  const showLockedModuleMessage = useCallback((itemId) => {
+    setLockedModuleId(itemId ?? null);
   }, []);
 
   const clearLockedModuleMessage = useCallback(() => {
-    setShowLockedMessage(false);
+    setLockedModuleId(null);
   }, []);
 
   const handleNavItemClick = useCallback(
     (item, event) => {
       if (isNavItemLocked(item, isAuthenticated)) {
         event.preventDefault();
-        setShowLockedMessage(true);
+        setLockedModuleId(item.id);
         return;
       }
-      setShowLockedMessage(false);
+      setLockedModuleId(null);
     },
     [isAuthenticated],
   );
 
+  const showLockedMessage = Boolean(lockedModuleId);
+
   const value = useMemo(
     () => ({
       isAuthenticated,
+      lockedModuleId,
       showLockedMessage,
       isNavItemLocked: (item) => isNavItemLocked(item, isAuthenticated),
       showLockedModuleMessage,
@@ -56,6 +59,7 @@ export function WorkspaceNavigationProvider({ children }) {
     }),
     [
       isAuthenticated,
+      lockedModuleId,
       showLockedMessage,
       showLockedModuleMessage,
       clearLockedModuleMessage,

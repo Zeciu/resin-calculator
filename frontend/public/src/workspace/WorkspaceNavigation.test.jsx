@@ -69,7 +69,7 @@ describe("Workspace navigation matrix — guest", () => {
 
     await user.click(screen.getByRole("button", { name: /New Project/i }));
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", { name: "Create your free HFZWood account to start a project." }),
     ).toBeInTheDocument();
   });
 
@@ -81,7 +81,7 @@ describe("Workspace navigation matrix — guest", () => {
     expect(within(screen.getByRole("banner", { name: "Module header" })).getByText("New Project")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", { name: "Create your free HFZWood account to start a project." }),
     ).toBeInTheDocument();
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),

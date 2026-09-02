@@ -30,6 +30,16 @@ function publishHome(bodyOverrides = {}) {
   });
 }
 
+const PHOTO_HEADING = "Start with a photo and the real dimensions of your project";
+const EXPERT_HEADING = "You don't need to be an epoxy expert";
+
+function expectIntroExtrasBesideVideo() {
+  const photoHeading = screen.getByRole("heading", { name: PHOTO_HEADING, level: 2 });
+  const expertHeading = screen.getByRole("heading", { name: EXPERT_HEADING, level: 2 });
+  expect(photoHeading.closest(".public-home__upper")).not.toBeNull();
+  expect(expertHeading.closest(".public-home__upper")).not.toBeNull();
+}
+
 describe("PublicHomePage CMS integration (Stage 6C)", () => {
   beforeEach(() => {
     sessionStorage.clear();
@@ -125,6 +135,7 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
       "src",
       "https://www.youtube.com/embed/abc123xyz",
     );
+    expectIntroExtrasBesideVideo();
   });
 
   it("replaces authenticated marketing body with the same CMS description", async () => {
@@ -140,6 +151,67 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     ).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Login / Register" })).not.toBeInTheDocument();
+  });
+
+  it("places intro extras in the left column beside the video for guests", async () => {
+    publishHome({
+      description:
+        "Intro copy.\n\nFrom estimation to pouring planning\nFollow-up copy.\n\nSave the project\nProject copy.\n\nKeep learning\nLearning copy.\n\nOwnership note\nOwnership copy.",
+      video: { url: "https://www.youtube.com/watch?v=abc123xyz", visible: true },
+    });
+    renderWorkspace(ROUTES.HOME);
+
+    await waitFor(() => {
+      expect(screen.getByText("Intro copy.")).toBeInTheDocument();
+    });
+
+    expectIntroExtrasBesideVideo();
+    expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
+    const followupHeading = screen.getByRole("heading", {
+      name: "From estimation to pouring planning",
+      level: 2,
+    });
+    expect(followupHeading.closest(".public-home__description--followup")).not.toBeNull();
+    expect(followupHeading.closest(".public-home__upper")).toBeNull();
+    expect(screen.getByText("Project copy.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByText("Learning copy.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByText("Ownership copy.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByTitle("Home video")).toHaveAttribute(
+      "src",
+      "https://www.youtube.com/embed/abc123xyz",
+    );
+    expect(screen.getAllByRole("link", { name: "Create Free Account" }).length).toBeGreaterThan(0);
+  });
+
+  it("places intro extras in the left column beside the video for authenticated users", async () => {
+    seedAuthenticatedSession();
+    publishHome({
+      description:
+        "Intro copy.\n\nFrom estimation to pouring planning\nFollow-up copy.\n\nSave the project\nProject copy.\n\nKeep learning\nLearning copy.\n\nOwnership note\nOwnership copy.",
+      video: { url: "https://www.youtube.com/watch?v=abc123xyz", visible: true },
+    });
+    renderWorkspace(ROUTES.HOME);
+
+    await waitFor(() => {
+      expect(screen.getByText("Intro copy.")).toBeInTheDocument();
+    });
+
+    expectIntroExtrasBesideVideo();
+    expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
+    const followupHeading = screen.getByRole("heading", {
+      name: "From estimation to pouring planning",
+      level: 2,
+    });
+    expect(followupHeading.closest(".public-home__description--followup")).not.toBeNull();
+    expect(followupHeading.closest(".public-home__upper")).toBeNull();
+    expect(screen.getByText("Project copy.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByText("Learning copy.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByText("Ownership copy.").closest(".public-home__features")).not.toBeNull();
+    expect(screen.getByTitle("Home video")).toHaveAttribute(
+      "src",
+      "https://www.youtube.com/embed/abc123xyz",
+    );
+    expect(screen.getByRole("link", { name: "My Account" })).toBeInTheDocument();
   });
 
   it("renders hero image only when visible", async () => {

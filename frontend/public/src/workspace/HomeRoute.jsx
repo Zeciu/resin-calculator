@@ -3,15 +3,17 @@ import { useAuth } from "../auth/useAuth.js";
 import PublicHomePage from "../website/PublicHomePage.jsx";
 import GuestHomeOnboarding from "./GuestHomeOnboarding.jsx";
 import GuestIntro from "./GuestIntro.jsx";
+import HomeIntroExtraBlocks from "./HomeIntroExtraBlocks.jsx";
 import LoggedInHome from "./LoggedInHome.jsx";
 
 export default function HomeRoute() {
   const { isAuthenticated } = useAuth();
   const { cmsHome = null } = useOutletContext() ?? {};
+  const besideVideoExtras = <HomeIntroExtraBlocks />;
 
   let content;
   if (cmsHome) {
-    content = <PublicHomePage body={cmsHome} />;
+    content = <PublicHomePage body={cmsHome} besideVideoExtras={besideVideoExtras} />;
   } else if (isAuthenticated) {
     content = <LoggedInHome />;
   } else {

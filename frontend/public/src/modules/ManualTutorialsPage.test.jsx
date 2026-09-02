@@ -112,7 +112,9 @@ describe("ManualTutorialsPage", () => {
 
     expectDedicatedManualShell();
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", {
+        name: "Create your free HFZWood account to unlock the Manual and tutorials.",
+      }),
     ).toBeInTheDocument();
     expect(screen.queryByRole("navigation", { name: "Table of contents" })).not.toBeInTheDocument();
   });

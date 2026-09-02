@@ -592,9 +592,12 @@ describe("GlossaryPage", () => {
 
     expectDedicatedGlossaryShell();
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", {
+        name: "Create your free HFZWood account to explore the Glossary.",
+      }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Go to Login / Register" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Log in" })).toHaveAttribute("href", "/login");
+    expect(screen.getByRole("link", { name: "View plans" })).toHaveAttribute("href", "/pricing");
     expect(screen.queryByRole("searchbox", { name: "Search glossary" })).not.toBeInTheDocument();
   });
 });

@@ -42,7 +42,9 @@ describe("Demo route", () => {
   it("keeps /new-project protected for anonymous visitors", () => {
     renderWorkspace(ROUTES.NEW_PROJECT);
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", {
+        name: "Create your free HFZWood account to start a project.",
+      }),
     ).toBeInTheDocument();
     expect(document.querySelector("[data-project-kind='demo']")).not.toBeInTheDocument();
   });
@@ -50,7 +52,9 @@ describe("Demo route", () => {
   it("keeps /projects protected for anonymous visitors", () => {
     renderWorkspace(ROUTES.PROJECTS);
     expect(
-      screen.getByText(/Create your free HFZWood account to unlock this section/i),
+      screen.getByRole("heading", {
+        name: "Create your free HFZWood account to access your projects.",
+      }),
     ).toBeInTheDocument();
   });
 
