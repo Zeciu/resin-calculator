@@ -1,4 +1,5 @@
 import { vi } from "vitest";
+import { isPackagedContentImageRequest } from "../content/authenticatedContentImageSrc.js";
 import { KNOWLEDGE_BASE_ENTRIES } from "./knowledgeBaseContent.js";
 import { buildPublishedManualResponse } from "../manual/manualTestHelpers.js";
 import { buildPublishedGlossaryResponse } from "../glossary/glossaryTestHelpers.js";
@@ -62,6 +63,12 @@ export function mockPublishedKnowledgeBaseFetch(
           defaultPublicLocale: "en",
           activePublicLocales,
         }),
+      };
+    }
+    if (isPackagedContentImageRequest(requestUrl)) {
+      return {
+        ok: true,
+        blob: async () => new Blob([new Uint8Array([0xff, 0xd8, 0xff])], { type: "image/jpeg" }),
       };
     }
     if (requestUrl.includes("/api/content/knowledge-base")) {

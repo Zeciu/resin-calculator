@@ -2,6 +2,8 @@
  * Renders the continuous manual document from published section data.
  */
 
+import AuthenticatedContentImage from "../content/AuthenticatedContentImage.jsx";
+
 /**
  * @param {{ sections: import("./manualContent.js").ManualSection[] }} props
  */
@@ -57,7 +59,12 @@ export function ManualBlock({ block }) {
   if (block.type === "image") {
     return (
       <figure className="manual-module__figure manual-module__figure--image">
-        <img className="manual-module__image" src={block.src} alt={block.alt} loading="lazy" />
+        <AuthenticatedContentImage
+          className="manual-module__image"
+          src={block.src}
+          alt={block.alt}
+          loading="lazy"
+        />
         {block.caption ? (
           <figcaption className="manual-module__figure-caption">{block.caption}</figcaption>
         ) : null}

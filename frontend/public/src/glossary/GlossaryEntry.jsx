@@ -3,6 +3,7 @@
  */
 
 import { Link } from "react-router-dom";
+import AuthenticatedContentImage from "../content/AuthenticatedContentImage.jsx";
 import { getGlossaryEntryElementId } from "./glossaryFilter.js";
 
 /**
@@ -143,7 +144,12 @@ function GlossaryEntryMedia({ block }) {
   if (block.type === "image") {
     return (
       <figure className="glossary-entry__figure glossary-entry__figure--image">
-        <img className="glossary-entry__image" src={block.src} alt={block.alt} loading="lazy" />
+        <AuthenticatedContentImage
+          className="glossary-entry__image"
+          src={block.src}
+          alt={block.alt}
+          loading="lazy"
+        />
         {block.caption ? (
           <figcaption className="glossary-entry__caption">{block.caption}</figcaption>
         ) : null}

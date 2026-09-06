@@ -1,4 +1,5 @@
 import { vi } from "vitest";
+import { isPackagedContentImageRequest } from "../content/authenticatedContentImageSrc.js";
 import { GLOSSARY_ENTRIES } from "./glossaryContent.js";
 import { buildPublishedManualResponse } from "../manual/manualTestHelpers.js";
 
@@ -34,6 +35,12 @@ export function mockPublishedGlossaryFetch(entries = GLOSSARY_ENTRIES, options =
           defaultPublicLocale: "en",
           activePublicLocales,
         }),
+      };
+    }
+    if (isPackagedContentImageRequest(requestUrl)) {
+      return {
+        ok: true,
+        blob: async () => new Blob([new Uint8Array([0xff, 0xd8, 0xff])], { type: "image/jpeg" }),
       };
     }
     if (requestUrl.includes("/api/content/glossary")) {

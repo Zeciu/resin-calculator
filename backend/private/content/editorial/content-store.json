@@ -34998,7 +34998,7 @@
       "sk": "META",
       "slug": "/",
       "sortOrder": 100,
-      "updatedAt": "2026-08-16T10:50:01.090671+00:00"
+      "updatedAt": "2026-09-06T17:54:34.691465+00:00"
     },
     "CONTENT#website_page#home|VARIANT#en": {
       "contentId": "home",
@@ -35018,7 +35018,7 @@
         "publicTitle": "Precision and confidence in working with resin.",
         "subtitle": "Calculate and plan epoxy resin projects based on the actual shape of your project.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
@@ -35027,12 +35027,12 @@
       "generatedFromSourceTextRevision": 12,
       "locale": "en",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-08-16T10:31:46.481024+00:00",
+      "publishedAt": "2026-09-06T17:54:34.691465+00:00",
       "sk": "VARIANT#en",
       "snapshotKey": "published/website/en/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-08-16T10:31:46.481024+00:00"
+      "updatedAt": "2026-09-06T17:54:34.691465+00:00"
     },
     "CONTENT#website_page#home|VARIANT#es": {
       "contentId": "home",
@@ -35154,19 +35154,19 @@
         "publicTitle": "Precizie \u0219i \u00eencredere \u00een lucrul cu r\u0103\u0219ina.",
         "subtitle": "Calculeaz\u0103 \u0219i planific\u0103 proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103 pe baza formei reale a proiectului t\u0103u.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
       "locale": "ro",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-08-16T10:18:03.005290+00:00",
+      "publishedAt": "2026-09-06T17:53:47.958155+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/website/ro/pages.json",
-      "sourceRevision": 14,
+      "sourceRevision": 15,
       "sourceTextRevision": 12,
       "status": "published",
-      "updatedAt": "2026-08-16T10:18:03.005290+00:00"
+      "updatedAt": "2026-09-06T17:53:47.958155+00:00"
     },
     "CONTENT#website_page#pricing|META": {
       "adminLabel": "Pricing",

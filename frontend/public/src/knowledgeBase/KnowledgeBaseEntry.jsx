@@ -3,6 +3,7 @@
  */
 
 import { Link } from "react-router-dom";
+import AuthenticatedContentImage from "../content/AuthenticatedContentImage.jsx";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { getKnowledgeBaseEntryElementId } from "./knowledgeBaseFilter.js";
 
@@ -273,7 +274,7 @@ function KnowledgeBaseEntryMedia({ block }) {
   if (block.type === "image") {
     return (
       <figure className="knowledge-base-entry__figure knowledge-base-entry__figure--image">
-        <img
+        <AuthenticatedContentImage
           className="knowledge-base-entry__image"
           src={block.src}
           alt={block.alt}

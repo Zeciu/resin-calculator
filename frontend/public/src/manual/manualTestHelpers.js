@@ -1,4 +1,5 @@
 import { vi } from "vitest";
+import { isPackagedContentImageRequest } from "../content/authenticatedContentImageSrc.js";
 import { MANUAL_SECTIONS } from "./manualContent.js";
 
 export function buildPublishedManualResponse(sections = MANUAL_SECTIONS) {
@@ -27,6 +28,12 @@ export function mockPublishedManualFetch(sections = MANUAL_SECTIONS, options = {
           defaultPublicLocale: "en",
           activePublicLocales: options.activePublicLocales ?? ["en", "ro", "fr"],
         }),
+      };
+    }
+    if (isPackagedContentImageRequest(requestUrl)) {
+      return {
+        ok: true,
+        blob: async () => new Blob([new Uint8Array([0xff, 0xd8, 0xff])], { type: "image/jpeg" }),
       };
     }
     if (requestUrl.includes("/api/content/manual")) {

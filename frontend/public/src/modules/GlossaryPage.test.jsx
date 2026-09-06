@@ -210,19 +210,34 @@ describe("GlossaryPage", () => {
     expect(screen.getByRole("button", { name: "Hardener" })).toHaveAttribute("aria-expanded", "true");
   });
 
-  it("renders stored Glossary media src on the native img element", async () => {
+  it("loads packaged Glossary images through an authenticated fetch instead of a raw img src", async () => {
     const publishedSrc =
+      "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg";
+    const englishSrc =
       "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp";
-    mockPublishedGlossaryFetch([
+    vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:glossary-image");
+    const fetchMock = mockPublishedGlossaryFetch([
       {
-        id: "ulei-pentru-lemn",
-        term: "Ulei pentru lemn",
-        definition: ["Oil finish for wood."],
+        id: "alburn",
+        term: "Alburn",
+        definition: ["Sapwood at the outer part of the trunk."],
         media: [
           {
             type: "image",
             src: publishedSrc,
-            alt: "ulei",
+            alt: "albur",
+          },
+        ],
+      },
+      {
+        id: "wood-oil",
+        term: "Wood oil",
+        definition: ["Oil finish for wood."],
+        media: [
+          {
+            type: "image",
+            src: englishSrc,
+            alt: "wood oil",
           },
         ],
       },
@@ -231,9 +246,22 @@ describe("GlossaryPage", () => {
     const user = userEvent.setup();
     renderWorkspace(ROUTES.GLOSSARY);
 
-    await user.click(await screen.findByRole("button", { name: "Ulei pentru lemn" }));
+    await user.click(await screen.findByRole("button", { name: "Alburn" }));
+    const alburnImage = await screen.findByRole("img", { name: "albur" });
+    expect(alburnImage).toHaveAttribute("src", "blob:glossary-image");
+    expect(alburnImage).not.toHaveAttribute("src", publishedSrc);
+    expect(fetchMock).toHaveBeenCalledWith(
+      publishedSrc,
+      expect.objectContaining({ cache: "no-store" }),
+    );
 
-    expect(screen.getByRole("img", { name: "ulei" })).toHaveAttribute("src", publishedSrc);
+    await user.click(screen.getByRole("button", { name: "Wood oil" }));
+    const englishImage = await screen.findByRole("img", { name: "wood oil" });
+    expect(englishImage).toHaveAttribute("src", "blob:glossary-image");
+    expect(fetchMock).toHaveBeenCalledWith(
+      englishSrc,
+      expect.objectContaining({ cache: "no-store" }),
+    );
   });
 
   it("opens and scrolls to a glossary entry from a canonical hash deep link", async () => {
