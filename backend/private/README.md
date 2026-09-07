@@ -5,7 +5,7 @@ This directory holds everything editorial:
 - `routers/` — authoring routes plus the local content reader that reads back what they write.
 - `services/`, `schemas/`, `repositories/` — editorial domain logic, validation, and the filesystem store.
 - `translation/` — DeepL integration.
-- `content/` — the editorial source of truth. Admin Publish writes snapshots under `content/published/`. Production still reads only `backend/public/content/`, so a separate packaging step copies selected published snapshots there.
+- `content/` — the editorial source of truth. Admin Publish writes snapshots under `content/published/`. Website Publish also synchronizes the selected locale's generated Website snapshot into `backend/public/content/`, so it is included in the next Git commit and Docker build.
 - `tools/` — local developer utilities. Never packaged into the production image.
 
 Normal Cognito authentication still applies, but any authenticated local user may use these routes: there is no editorial role or entitlement gate.
@@ -26,7 +26,7 @@ From `backend/`, the equivalent is `python -m private.tools.package_published_co
 
 - Source of truth: `backend/private/content/published/**` (already-published snapshots). Not the editorial store.
 - Romanian (`ro`) is the canonical editorial corpus. Translations are created intentionally from Romanian in Admin, then published, then packaged. Non-RO locales are not auto-filled from Romanian.
-- Supported modules: `manual`, `knowledge-base`, `glossary`. Repeat `--module` to package more than one. Website, config, and editorial data are not supported.
+- Supported modules: `manual`, `knowledge-base`, `glossary`. Repeat `--module` to package more than one. Website snapshots are synchronized automatically by the Admin Website Publish/Unpublish actions, so Website is intentionally not a command-line module. Config and editorial data are not supported.
 - Locale is required. There is no silent “all locales” default. Packaging `ro` does not touch `en`. There is no automatic all-locale destructive synchronization.
 - `--apply` writes the requested JSON and any missing/different images those snapshots reference. Unrelated public images are never deleted.
 - If destination IDs would be removed, `--apply` refuses unless `--allow-id-removal` is also passed.

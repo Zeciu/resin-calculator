@@ -34998,7 +34998,7 @@
       "sk": "META",
       "slug": "/",
       "sortOrder": 100,
-      "updatedAt": "2026-09-06T17:54:34.691465+00:00"
+      "updatedAt": "2026-09-07T08:17:22.938705+00:00"
     },
     "CONTENT#website_page#home|VARIANT#en": {
       "contentId": "home",
@@ -35027,12 +35027,12 @@
       "generatedFromSourceTextRevision": 12,
       "locale": "en",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-09-06T17:54:34.691465+00:00",
+      "publishedAt": "2026-09-07T08:17:22.938705+00:00",
       "sk": "VARIANT#en",
       "snapshotKey": "published/website/en/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-06T17:54:34.691465+00:00"
+      "updatedAt": "2026-09-07T08:17:22.938705+00:00"
     },
     "CONTENT#website_page#home|VARIANT#es": {
       "contentId": "home",
@@ -35154,19 +35154,19 @@
         "publicTitle": "Precizie \u0219i \u00eencredere \u00een lucrul cu r\u0103\u0219ina.",
         "subtitle": "Calculeaz\u0103 \u0219i planific\u0103 proiecte cu r\u0103\u0219in\u0103 epoxidic\u0103 pe baza formei reale a proiectului t\u0103u.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
+          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
           "visible": true
         }
       },
       "locale": "ro",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-09-06T17:53:47.958155+00:00",
+      "publishedAt": "2026-09-07T08:17:18.519813+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/website/ro/pages.json",
-      "sourceRevision": 15,
+      "sourceRevision": 16,
       "sourceTextRevision": 12,
       "status": "published",
-      "updatedAt": "2026-09-06T17:53:47.958155+00:00"
+      "updatedAt": "2026-09-07T08:17:18.519813+00:00"
     },
     "CONTENT#website_page#pricing|META": {
       "adminLabel": "Pricing",

@@ -533,6 +533,11 @@ class FilesystemContentRepository:
             self._write_store({})
         self.ensure_website_pages_exist()
 
+    @property
+    def content_root(self) -> Path:
+        """Filesystem root containing this repository's editorial corpus."""
+        return self._root
+
     @_editorial_store_mutation
     def ensure_website_pages_exist(self) -> dict[str, Any]:
         """Ensure fixed website pages exist; return the in-memory store used for the check."""

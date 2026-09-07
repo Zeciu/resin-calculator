@@ -87,6 +87,41 @@ class TestWebsiteAdminListAndGet:
 
 
 class TestWebsiteAdminMutations:
+    def test_publish_synchronizes_selected_locale_to_public_release_snapshot(self, client, tmp_path):
+        english_video = "https://www.youtube.com/watch?v=english-video"
+        response = client.put(
+            "/api/admin/website/pages/home/variants/en",
+            json={
+                "body": home_body(
+                    video={"url": english_video, "visible": True},
+                )
+            },
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+
+        publish = client.post(
+            "/api/admin/website/pages/home/variants/en/publish",
+            headers=admin_headers(),
+        )
+        assert publish.status_code == 200
+
+        private_snapshot_path = tmp_path / "published" / "website" / "en" / "pages.json"
+        public_snapshot_path = (
+            tmp_path / ".public-content" / "published" / "website" / "en" / "pages.json"
+        )
+        private_snapshot = json.loads(private_snapshot_path.read_text(encoding="utf-8"))
+        public_snapshot = json.loads(public_snapshot_path.read_text(encoding="utf-8"))
+
+        assert public_snapshot == private_snapshot
+        assert public_snapshot["pages"]["home"]["body"]["video"] == {
+            "url": english_video,
+            "visible": True,
+        }
+        assert not (
+            tmp_path / ".public-content" / "published" / "website" / "ro" / "pages.json"
+        ).exists()
+
     def test_save_draft(self, client):
         response = client.put(
             "/api/admin/website/pages/home/variants/ro",
@@ -142,6 +177,12 @@ class TestWebsiteAdminMutations:
         snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
         assert "contact" in snapshot["pages"]
 
+        public_snapshot_path = (
+            tmp_path / ".public-content" / "published" / "website" / "ro" / "pages.json"
+        )
+        public_snapshot = json.loads(public_snapshot_path.read_text(encoding="utf-8"))
+        assert "contact" in public_snapshot["pages"]
+
         unpublish = client.post(
             "/api/admin/website/pages/contact/variants/ro/unpublish",
             headers=admin_headers(),
@@ -150,6 +191,9 @@ class TestWebsiteAdminMutations:
 
         snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
         assert "contact" not in snapshot["pages"]
+
+        public_snapshot = json.loads(public_snapshot_path.read_text(encoding="utf-8"))
+        assert "contact" not in public_snapshot["pages"]
 
 
 class TestWebsiteAdminRestrictions:

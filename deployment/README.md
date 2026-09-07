@@ -118,7 +118,7 @@ Configure Stripe webhooks for `https://hfzwood.com/api/billing/webhook`:
 
 1. Run local editorial tooling with `./dev.cmd` and DeepL credentials in untracked `dev.local.cmd`.
 2. Edit, translate, review, and publish content locally.
-3. Commit the resulting content changes.
+3. Website Publish/Unpublish synchronizes the selected locale's Website `pages.json` into `backend/public/content/`. Commit the resulting private and public content changes.
 4. Build and push an image from that commit, then force an ECS rollout.
 
 Production has no `/admin` or `/api/admin/**` routes and must not receive DeepL credentials.
