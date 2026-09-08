@@ -197,9 +197,8 @@ describe("ResinCalculator capability enforcement", () => {
     await waitFor(() => {
       expect(ref.current.getProjectSnapshot().ui.calculationMode).toBe("wood");
     });
-    expect(screen.getByText("Mold")).toBeInTheDocument();
-    expect(screen.getByText("Wood")).toBeInTheDocument();
-    expect(screen.getByText("Cavities")).toBeInTheDocument();
+    expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
+    expect(screen.queryByText("Polygon Mode")).not.toBeInTheDocument();
   });
 
   it("blocks a fifth mold point for new free projects", async () => {

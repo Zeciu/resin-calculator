@@ -203,11 +203,7 @@ describe("ResinCalculator i18n", () => {
 
     expect(screen.getByText("Încarcă fotografie:")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Pasul 1 — Încarcă o fotografie" })).toBeInTheDocument();
-    expect(screen.getByText("Referințe")).toBeInTheDocument();
-    expect(screen.getByText("Cofraj")).toBeInTheDocument();
-    expect(screen.getByText("Lemn")).toBeInTheDocument();
-    expect(screen.getByText("Cavități")).toBeInTheDocument();
-    expect(screen.getByText("Calculează")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Progres flux de lucru")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Acțiuni proiect" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Salvează proiectul/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Exportă PDF/i })).toBeInTheDocument();
@@ -219,11 +215,7 @@ describe("ResinCalculator i18n", () => {
 
     expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Step 1 — Upload a Photo" })).toBeInTheDocument();
-    expect(screen.getByText("References")).toBeInTheDocument();
-    expect(screen.getByText("Mold")).toBeInTheDocument();
-    expect(screen.getByText("Wood")).toBeInTheDocument();
-    expect(screen.getByText("Cavities")).toBeInTheDocument();
-    expect(screen.getByText("Calculate")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Workflow progress")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Project Actions" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Save Project/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Export PDF/i })).toBeInTheDocument();
@@ -235,11 +227,7 @@ describe("ResinCalculator i18n", () => {
 
     expect(screen.getByText("Importer une photo :")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Étape 1 — Importer une photo" })).toBeInTheDocument();
-    expect(screen.getByText("Références")).toBeInTheDocument();
-    expect(screen.getByText("Moule")).toBeInTheDocument();
-    expect(screen.getByText("Bois")).toBeInTheDocument();
-    expect(screen.getByText("Cavités")).toBeInTheDocument();
-    expect(screen.getByText("Calculer")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Progression du flux de travail")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Actions du projet", level: 3 })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Enregistrer le projet/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Exporter en PDF/i })).toBeInTheDocument();
@@ -258,14 +246,12 @@ describe("ResinCalculator i18n", () => {
     );
 
     expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
-    expect(screen.getByText("References")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Toggle language" }));
 
     await waitFor(() => {
       expect(screen.getByText("Încarcă fotografie:")).toBeInTheDocument();
-      expect(screen.getByText("Referințe")).toBeInTheDocument();
-      expect(screen.getByText("Cofraj")).toBeInTheDocument();
+      expect(screen.getByText(/cofrajul/i)).toBeInTheDocument();
     });
   });
 
@@ -337,7 +323,7 @@ describe("ResinCalculator i18n", () => {
     seedDevicePreferences({ interfaceLanguage: "ro" });
     renderCalculator(<ResinCalculator showHeader={false} />);
 
-    expect(screen.getByText("Cofraj")).toBeInTheDocument();
+    expect(screen.getByText(/cofrajul/i)).toBeInTheDocument();
     expect(screen.queryByText("Mulaj")).not.toBeInTheDocument();
     expect(screen.queryByText(/mulaj/i)).not.toBeInTheDocument();
   });
@@ -380,7 +366,7 @@ describe("ResinCalculator i18n", () => {
       lengthUnit: "cm",
       volumeUnit: "ml",
     });
-    expect(screen.getByText("Referințe")).toBeInTheDocument();
+    expect(screen.getByText("Încarcă fotografie:")).toBeInTheDocument();
   });
 
   describe("free-tier capability messages", () => {

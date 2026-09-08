@@ -385,6 +385,14 @@ describe("ResinCalculator resin mass conversion", () => {
     });
     const table = screen.getByRole("table");
     expect(within(table).getAllByText(/≈/).length).toBeGreaterThan(1);
+    const mixCells = within(table)
+      .getAllByRole("cell")
+      .filter((cell) => /\d+\s*ml/.test(cell.textContent || ""));
+    expect(mixCells.length).toBeGreaterThanOrEqual(2);
+    mixCells.forEach((cell) => {
+      expect(cell.textContent).toMatch(/\d+\s*ml/);
+      expect(cell.textContent).toMatch(/≈/);
+    });
     expect(screen.getByText(/Component A and B quantities are volumes/i)).toBeInTheDocument();
   });
 

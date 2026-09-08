@@ -175,6 +175,76 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       const page = screen.getByRole("article", { name: "About HFZWood" });
       expect(within(page).queryByRole("img")).not.toBeInTheDocument();
     });
+
+    it("emphasizes the hero experience copy and groups later sections in pairs", async () => {
+      mockPublishedWebsiteFetch({
+        pages: {
+          about: buildPublishedAboutResponse({
+            publicTitle: "About HFZWood",
+            sections: [
+              buildAboutSection({
+                id: "hero",
+                title: "More than just an epoxy resin calculator",
+                blocks: [
+                  { type: "paragraph", text: "<p><strong>Built on real-world experience</strong></p>" },
+                  { type: "paragraph", text: "<p>Over fifteen years of workshop practice.</p>" },
+                  { type: "paragraph", text: "<p>Supporting intro copy remains visible.</p>" },
+                  { type: "paragraph", text: "" },
+                ],
+                image: { src: "", alt: "" },
+              }),
+              buildAboutSection({
+                id: "why",
+                title: "Why We Created HFZWood",
+                blocks: [{ type: "paragraph", text: "<p>Why copy.</p>" }],
+              }),
+              buildAboutSection({
+                id: "who",
+                title: "Who It Is For",
+                blocks: [{ type: "paragraph", text: "<p>Who copy.</p>" }],
+              }),
+              buildAboutSection({
+                id: "more",
+                title: "More Than a Calculator",
+                blocks: [{ type: "paragraph", text: "<p>More copy.</p>" }],
+              }),
+              buildAboutSection({
+                id: "philosophy",
+                title: "Our Philosophy",
+                blocks: [{ type: "paragraph", text: "<p>Philosophy copy.</p>" }],
+              }),
+            ],
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.ABOUT);
+
+      await waitFor(() => {
+        expect(
+          screen.getByRole("heading", {
+            name: "More than just an epoxy resin calculator",
+            level: 2,
+          }),
+        ).toHaveClass("public-about__proposition");
+      });
+
+      const experience = document.querySelector(".public-about__experience");
+      expect(experience).not.toBeNull();
+      expect(within(experience).getByText("Built on real-world experience")).toBeInTheDocument();
+      expect(within(experience).getByText("Over fifteen years of workshop practice.")).toBeInTheDocument();
+      expect(within(experience).queryByText("Supporting intro copy remains visible.")).not.toBeInTheDocument();
+      expect(screen.getByText("Supporting intro copy remains visible.")).toBeInTheDocument();
+
+      const clusters = document.querySelectorAll(".public-about__cluster");
+      expect(clusters).toHaveLength(2);
+      expect(clusters[0]).toHaveClass("public-about__cluster--ivory");
+      expect(clusters[1]).toHaveClass("public-about__cluster--green");
+      expect(within(clusters[0]).getByRole("heading", { name: "Why We Created HFZWood" })).toBeInTheDocument();
+      expect(within(clusters[0]).getByRole("heading", { name: "Who It Is For" })).toBeInTheDocument();
+      expect(within(clusters[1]).getByRole("heading", { name: "More Than a Calculator" })).toBeInTheDocument();
+      expect(within(clusters[1]).getByRole("heading", { name: "Our Philosophy" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Back to Home" })).toHaveAttribute("href", "/");
+    });
   });
 
   describe("Pricing", () => {
@@ -455,6 +525,65 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       expect(document.querySelector("form")).toBeNull();
       expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
       expect(screen.queryByRole("button", { name: /submit|send/i })).not.toBeInTheDocument();
+    });
+
+    it("places direct contact after the lead and groups published help and feedback copy", async () => {
+      mockPublishedWebsiteFetch({
+        pages: {
+          contact: buildPublishedContactResponse({
+            publicTitle: "We're here if you need help",
+            intro: [
+              "We're here if you need help",
+              "If you have questions about the app, contact us using the information below.",
+              "",
+              "Before you contact us",
+              "The answer may already be in the app.",
+              "Glossary explanations are mentioned in this published text.",
+              "",
+              "Feedback",
+              "User ideas help improve HFZWood.",
+              "",
+              "Thank you for choosing HFZWood.",
+            ].join("\n"),
+            supportEmail: "hefzech@gmail.com",
+            showManualLink: true,
+            showKnowledgeBaseLink: true,
+            manualLinkLabel: "Manual and tutorials",
+            knowledgeBaseLinkLabel: "Knowledge Base",
+            links: [],
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.CONTACT);
+
+      await waitFor(() => {
+        expect(
+          screen.getByRole("heading", { name: "We're here if you need help", level: 1 }),
+        ).toBeInTheDocument();
+      });
+
+      expect(
+        screen.getByText("If you have questions about the app, contact us using the information below."),
+      ).toHaveClass("public-contact__lead");
+      const direct = document.querySelector(".public-contact__direct");
+      expect(direct).not.toBeNull();
+      expect(within(direct).getByRole("heading", { name: "Write to us", level: 2 })).toBeInTheDocument();
+      expect(within(direct).getByRole("link", { name: "hefzech@gmail.com" })).toHaveAttribute(
+        "href",
+        "mailto:hefzech@gmail.com",
+      );
+      expect(
+        screen.getByRole("heading", { name: "Before you contact us", level: 2 }),
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Glossary explanations are mentioned/i)).toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: /glossary/i })).not.toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Manual and tutorials" })).toHaveAttribute("href", "/manual");
+      expect(screen.getByRole("link", { name: "Knowledge Base" })).toHaveAttribute(
+        "href",
+        "/knowledge-base",
+      );
+      expect(screen.getByRole("heading", { name: "Feedback", level: 3 })).toBeInTheDocument();
+      expect(screen.getByText("Thank you for choosing HFZWood.")).toBeInTheDocument();
     });
 
     it("hides built-in Manual and Knowledge Base links when visibility is false", async () => {

@@ -43,6 +43,7 @@ const GUEST_PUBLIC_SHELL_SOURCE_FILES = [
   "website/PublicWebsiteFooter.jsx",
   "website/PublicPricingPage.jsx",
   "website/OfficialCommunityLinks.jsx",
+  "website/PublicContactPage.jsx",
 ];
 
 const GUEST_CTA_KEYS = [

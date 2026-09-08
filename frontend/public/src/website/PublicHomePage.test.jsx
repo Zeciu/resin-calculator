@@ -128,8 +128,9 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     expect(
       screen
         .getByRole("heading", { name: "Calculate from the actual shape", level: 2 })
-        .closest(".public-home__description--followup"),
+        .closest(".public-home__upper"),
     ).not.toBeNull();
+    expect(screen.queryByText("Calculate from the actual shape").closest(".public-home__features")).toBeNull();
     expect(screen.getByText("Ownership note.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByTitle("Home video")).toHaveAttribute(
       "src",
@@ -167,12 +168,12 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
 
     expectIntroExtrasBesideVideo();
     expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
-    const followupHeading = screen.getByRole("heading", {
+    const pouringHeading = screen.getByRole("heading", {
       name: "From estimation to pouring planning",
       level: 2,
     });
-    expect(followupHeading.closest(".public-home__description--followup")).not.toBeNull();
-    expect(followupHeading.closest(".public-home__upper")).toBeNull();
+    expect(pouringHeading.closest(".public-home__upper")).not.toBeNull();
+    expect(pouringHeading.closest(".public-home__features")).toBeNull();
     expect(screen.getByText("Project copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Learning copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Ownership copy.").closest(".public-home__features")).not.toBeNull();
@@ -198,12 +199,12 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
 
     expectIntroExtrasBesideVideo();
     expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
-    const followupHeading = screen.getByRole("heading", {
+    const pouringHeading = screen.getByRole("heading", {
       name: "From estimation to pouring planning",
       level: 2,
     });
-    expect(followupHeading.closest(".public-home__description--followup")).not.toBeNull();
-    expect(followupHeading.closest(".public-home__upper")).toBeNull();
+    expect(pouringHeading.closest(".public-home__upper")).not.toBeNull();
+    expect(pouringHeading.closest(".public-home__features")).toBeNull();
     expect(screen.getByText("Project copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Learning copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Ownership copy.").closest(".public-home__features")).not.toBeNull();

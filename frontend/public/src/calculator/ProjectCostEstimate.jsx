@@ -9,9 +9,9 @@ import {
   storeCanonicalCostPerLiterFromDisplay,
 } from "./projectCostEstimate.js";
 
-function CostRow({ label, children }) {
+function CostRow({ label, children, className }) {
   return (
-    <div className="project-cost-estimate__row">
+    <div className={`project-cost-estimate__row${className ? ` ${className}` : ""}`}>
       <div className="project-cost-estimate__label">{label}</div>
       <div className="project-cost-estimate__value">{children}</div>
     </div>
@@ -110,7 +110,7 @@ export default function ProjectCostEstimate({
                 onChange={(event) => handleCostPerUnitChange(event.target.value)}
               />
             </CostRow>
-            <CostRow label={ui.cost.resinTotal}>
+            <CostRow label={ui.cost.resinTotal} className="project-cost-estimate__row--subtotal">
               <span data-testid="cost-resin-total" className="project-cost-estimate__readonly">
                 {formatCostAmount(totals.resinTotal)}
               </span>
@@ -128,8 +128,6 @@ export default function ProjectCostEstimate({
                 onChange={(event) => updateField("woodCostInput", event.target.value)}
               />
             </CostRow>
-          </div>
-          <div className="project-cost-estimate__group">
             <CostRow label={ui.cost.otherProjectCosts}>
               <input
                 type="number"
@@ -142,7 +140,7 @@ export default function ProjectCostEstimate({
               />
             </CostRow>
           </div>
-          <div className="project-cost-estimate__group">
+          <div className="project-cost-estimate__group project-cost-estimate__group--pair">
             <CostRow label={ui.cost.laborHours}>
               <input
                 type="number"
@@ -165,7 +163,7 @@ export default function ProjectCostEstimate({
                 onChange={(event) => updateField("laborHourlyRateInput", event.target.value)}
               />
             </CostRow>
-            <CostRow label={ui.cost.laborTotal}>
+            <CostRow label={ui.cost.laborTotal} className="project-cost-estimate__row--subtotal">
               <span data-testid="cost-labor-total" className="project-cost-estimate__readonly">
                 {formatCostAmount(totals.laborTotal)}
               </span>
@@ -173,7 +171,7 @@ export default function ProjectCostEstimate({
           </div>
         </div>
         <div className="project-cost-estimate__summary">
-          <CostRow label={ui.cost.estimatedProjectCost}>
+          <CostRow label={ui.cost.estimatedProjectCost} className="project-cost-estimate__row--output">
             <span
               data-testid="cost-estimated-project-cost"
               className="project-cost-estimate__readonly project-cost-estimate__project-total"
@@ -181,7 +179,7 @@ export default function ProjectCostEstimate({
               {formatCostAmount(totals.estimatedProjectCost)}
             </span>
           </CostRow>
-          <CostRow label={ui.cost.desiredMarkup}>
+          <CostRow label={ui.cost.desiredMarkup} className="project-cost-estimate__row--markup">
             <LengthUnitInput
               unit={ui.cost.percentUnit}
               min="0"
@@ -192,7 +190,7 @@ export default function ProjectCostEstimate({
               onChange={(event) => updateField("desiredMarkupPercentInput", event.target.value)}
             />
           </CostRow>
-          <CostRow label={ui.cost.suggestedSellingPrice}>
+          <CostRow label={ui.cost.suggestedSellingPrice} className="project-cost-estimate__row--output">
             <span
               data-testid="cost-suggested-selling-price"
               className="project-cost-estimate__readonly project-cost-estimate__selling-price"

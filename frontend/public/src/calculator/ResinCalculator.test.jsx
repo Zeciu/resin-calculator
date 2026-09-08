@@ -60,8 +60,8 @@ describe("ResinCalculator — smoke", () => {
     renderCalculator(<ResinCalculator />);
     const fileInput = document.querySelector("input[type='file'][accept='image/*']");
     expect(fileInput).toBeInTheDocument();
-    expect(screen.getByText("References")).toBeInTheDocument();
-    expect(screen.getByText("Calculate")).toBeInTheDocument();
+    expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Step 1 — Upload a Photo" })).toBeInTheDocument();
   });
 
   it("keeps project action controls in safe initial state", () => {
@@ -81,7 +81,7 @@ describe("ResinCalculator — header behavior", () => {
   it("hides legacy AppHeader when showHeader is false", () => {
     renderCalculator(<ResinCalculator showHeader={false} />);
     expect(screen.queryByText(/Epoxy Resin Volume Estimator/i)).not.toBeInTheDocument();
-    expect(screen.getByText("References")).toBeInTheDocument();
+    expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
   });
 
   it("omits duplicate product title when workspaceVariant is dedicated", () => {
@@ -89,7 +89,7 @@ describe("ResinCalculator — header behavior", () => {
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
-    expect(screen.getByText("References")).toBeInTheDocument();
+    expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
   });
 });
 

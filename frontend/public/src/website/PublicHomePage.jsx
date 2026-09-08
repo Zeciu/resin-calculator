@@ -41,8 +41,7 @@ export default function PublicHomePage({ body, besideVideoExtras = null }) {
   const video = resolveHomeVideoSource(body.video);
   const showCta = canRenderHomeCta(cta);
   const descriptionBlocks = splitHomeDescriptionBlocks(body.description);
-  const upperDescriptionBlocks = video ? descriptionBlocks.slice(0, 1) : descriptionBlocks;
-  const followupDescriptionBlocks = video ? descriptionBlocks.slice(1, 2) : [];
+  const upperDescriptionBlocks = video ? descriptionBlocks.slice(0, 2) : descriptionBlocks;
   const featureDescriptionBlocks = video ? descriptionBlocks.slice(2) : [];
 
   return (
@@ -73,17 +72,6 @@ export default function PublicHomePage({ body, besideVideoExtras = null }) {
           </div>
         ) : null}
       </div>
-
-      {followupDescriptionBlocks.length > 0 ? (
-        <div className="public-home__description public-home__description--followup">
-          {followupDescriptionBlocks.map((block, index) => (
-            <div key={`${index}-${block.body.slice(0, 24)}`} className="public-home__description-block">
-              {block.title ? <h2>{block.title}</h2> : null}
-              <p>{block.body}</p>
-            </div>
-          ))}
-        </div>
-      ) : null}
 
       {featureDescriptionBlocks.length > 0 ? (
         <div className="public-home__features">

@@ -224,6 +224,7 @@ export const GUEST_PUBLIC_SHELL_UI_KEYS = [
   "website.pricing.trustTitle",
   "website.contact.communityTitle",
   "website.contact.communityIntro",
+  "website.contact.writeToUs",
   "register.title",
   "register.comparePlansLead",
   "register.email",

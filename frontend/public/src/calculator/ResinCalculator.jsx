@@ -9,6 +9,7 @@ import {
   localizePdfPourRowLabel,
 } from "./pdfExportCopy.js";
 import {
+  Check,
   CircleHelp,
   FileText,
   Maximize2,
@@ -132,14 +133,29 @@ const WORKSPACE_EDIT_COLORS = {
   },
 };
 
-function GeometryFamilyGroup({ family, label, status, children, groupRef }) {
+function WorkflowStageMarker({ complete, completeLabel }) {
+  return (
+    <span
+      className={`workflow-stage-marker${complete ? " workflow-stage-marker--complete" : ""}`}
+      role={complete ? "img" : undefined}
+      aria-label={complete ? completeLabel : undefined}
+      aria-hidden={complete ? undefined : true}
+    >
+      {complete ? <Check size={10} strokeWidth={3} aria-hidden="true" /> : null}
+    </span>
+  );
+}
+
+function GeometryFamilyGroup({ family, label, complete = false, completeLabel, children, groupRef }) {
   return (
     <div
       ref={groupRef}
-      className={`geometry-family-group geometry-family-group--${family} active-step-group`}
+      className={`geometry-family-group geometry-family-group--${family}${complete ? " geometry-family-group--complete" : ""}`}
     >
-      <span className="geometry-family-label workflow-section-label">{label}</span>
-      {status ? <span className="geometry-family-status">{status}</span> : null}
+      <span className="geometry-family-heading">
+        <WorkflowStageMarker complete={complete} completeLabel={completeLabel} />
+        <span className="geometry-family-label workflow-section-label">{label}</span>
+      </span>
       {children}
     </div>
   );
@@ -2721,52 +2737,10 @@ export default forwardRef(function ResinCalculator(
             ? null
             : "calculate";
 
-  const workflowSteps =
+  const calculationComplete =
     calculationMode === "wood"
-      ? [
-          {
-            label: ui.workflow.references,
-            complete: measurementsComplete,
-            current: activeWorkflowStage === "references",
-          },
-          {
-            label: ui.workflow.mold,
-            complete: moldBoundaryComplete,
-            current: activeWorkflowStage === "mold",
-          },
-          {
-            label: ui.workflow.wood,
-            complete: woodBoundaryComplete,
-            current: activeWorkflowStage === "wood",
-          },
-          {
-            label: ui.workflow.cavities,
-            complete: cavitiesComplete,
-            current: activeWorkflowStage === "cavities",
-          },
-          {
-            label: ui.workflow.calculate,
-            complete: result?.calculationType === "wood" && !resultOutdated,
-            current: activeWorkflowStage === "calculate",
-          },
-        ]
-      : [
-          {
-            label: ui.workflow.references,
-            complete: measurementsComplete,
-            current: activeWorkflowStage === "references",
-          },
-          {
-            label: ui.workflow.area,
-            complete: polygonPoints.length >= 3,
-            current: activeWorkflowStage === "area",
-          },
-          {
-            label: ui.workflow.calculate,
-            complete: result?.calculationType === "standard" && !resultOutdated,
-            current: activeWorkflowStage === "calculate",
-          },
-        ];
+      ? result?.calculationType === "wood" && !resultOutdated
+      : result?.calculationType === "standard" && !resultOutdated;
 
   const isModifyMode = interactionMode === "modify";
   const showModifyProjectControl =
@@ -2859,22 +2833,6 @@ export default forwardRef(function ResinCalculator(
 
       </div>
 
-      <div className="workflow-progress" aria-label={ui.workflowProgress}>
-        {workflowSteps.map((step, idx) => (
-          <div
-            key={step.label}
-            className={`workflow-progress-step ${
-              step.complete ? "workflow-step-complete" : ""
-            } ${step.current ? "workflow-step-current" : ""}`}
-          >
-            <span className="workflow-step-marker">
-              {step.complete ? "✓" : idx + 1}
-            </span>
-            <span>{step.label}</span>
-          </div>
-        ))}
-      </div>
-
       {mode === "reference" && draftReferencePoints.length === 2 && (
         <div className="reference-draft" ref={referenceDraftRef}>
           <div>
@@ -2954,18 +2912,12 @@ export default forwardRef(function ResinCalculator(
             <GeometryFamilyGroup
               family="reference"
               label={ui.referenceMeasurements}
-              status={measurementsComplete ? ui.referencesComplete : null}
+              complete={measurementsComplete}
+              completeLabel={ui.referencesComplete}
             >
               {(!measurementsComplete || isModifyMode) && (
                 <button
-                  className={
-                    mode === "reference"
-                      ? "mode-active secondary-action"
-                      : activeWorkflowStage === "references" &&
-                          referenceMeasurements.length === 0
-                        ? "primary-action"
-                        : "secondary-action"
-                  }
+                  className={`${mode === "reference" ? "mode-active " : ""}primary-action`}
                   onClick={startAddReferenceMeasurement}
                   title={ui.clickSelectTwoPoints}
                 >
@@ -2997,12 +2949,7 @@ export default forwardRef(function ResinCalculator(
               </button>
               {!isModifyMode && !measurementsComplete && (
                 <button
-                  className={
-                    activeWorkflowStage === "references" &&
-                    referenceMeasurements.length > 0
-                      ? "primary-action"
-                      : "secondary-action"
-                  }
+                  className="secondary-action"
                   onClick={() => {
                     if (referenceMeasurements.length === 0) {
                       setError(ui.errors.addReferenceBeforeContinue);
@@ -3119,16 +3066,22 @@ export default forwardRef(function ResinCalculator(
                   }}
                 />
               </label>
-              <button
-                className={
-                  activeWorkflowStage === "calculate"
-                    ? "primary-action"
-                    : "secondary-action"
-                }
-                onClick={calculate}
-              >
-                {ui.calculate}
-              </button>
+              <span className="workflow-stage-calc">
+                <WorkflowStageMarker
+                  complete={calculationComplete}
+                  completeLabel={ui.workflow.calculate}
+                />
+                <button
+                  className={
+                    activeWorkflowStage === "calculate"
+                      ? "primary-action"
+                      : "secondary-action"
+                  }
+                  onClick={calculate}
+                >
+                  {ui.calculate}
+                </button>
+              </span>
             </>
           )}
 
@@ -3137,7 +3090,8 @@ export default forwardRef(function ResinCalculator(
               <GeometryFamilyGroup
                 family="mold"
                 label={ui.moldBoundary}
-                status={moldBoundaryComplete ? ui.moldComplete : null}
+                complete={moldBoundaryComplete}
+                completeLabel={ui.moldComplete}
               >
                 <button
                   className="secondary-action"
@@ -3152,7 +3106,7 @@ export default forwardRef(function ResinCalculator(
                 </button>
                 {moldBoundaryPoints.length < 3 && (
                   <button
-                    className={`${mode === "mold" ? "mode-active" : ""} secondary-action`}
+                    className={`${mode === "mold" ? "mode-active " : ""}primary-action`}
                     onClick={() => {
                       setUseImageBorderAsMold(false);
                       setMode("mold");
@@ -3175,7 +3129,8 @@ export default forwardRef(function ResinCalculator(
               <GeometryFamilyGroup
                 family="wood"
                 label={ui.woodIslands}
-                status={woodBoundaryComplete ? ui.woodComplete : null}
+                complete={woodBoundaryComplete}
+                completeLabel={ui.woodComplete}
               >
                 <button
                   className="secondary-action"
@@ -3188,7 +3143,7 @@ export default forwardRef(function ResinCalculator(
                   {ui.editSelectedWoodIsland}
                 </button>
                 <button
-                  className={`${mode === "wood" ? "mode-active" : ""} secondary-action`}
+                  className={`${mode === "wood" ? "mode-active " : ""}primary-action`}
                   onClick={startAddWoodIsland}
                 >
                   {ui.addWoodIsland}
@@ -3227,7 +3182,8 @@ export default forwardRef(function ResinCalculator(
               <GeometryFamilyGroup
                 family="cavity"
                 label={ui.resinCavities}
-                status={cavitiesComplete ? ui.cavitiesComplete : null}
+                complete={cavitiesComplete}
+                completeLabel={ui.cavitiesComplete}
                 groupRef={cavityControlsRef}
               >
                 <button
@@ -3241,7 +3197,7 @@ export default forwardRef(function ResinCalculator(
                   {ui.editSelectedCavity}
                 </button>
                 <button
-                  className={`${mode === "cavity" ? "mode-active" : ""} secondary-action`}
+                  className={`${mode === "cavity" ? "mode-active " : ""}primary-action`}
                   onClick={startAddCavity}
                 >
                   {ui.addResinCavity}
@@ -3275,16 +3231,14 @@ export default forwardRef(function ResinCalculator(
           {measurementsComplete && calculationMode === "wood" && !isModifyMode && (
             <>
               {!moldBoundaryComplete && (
-                <GeometryFamilyGroup family="mold" label={ui.moldBoundary}>
+                <GeometryFamilyGroup
+                  family="mold"
+                  label={ui.moldBoundary}
+                  complete={false}
+                  completeLabel={ui.moldComplete}
+                >
                   <button
-                    className={`${
-                      mode === "mold" ? "mode-active" : ""
-                    } ${
-                      activeWorkflowStage === "mold" &&
-                      moldBoundaryPoints.length < 3
-                        ? "primary-action"
-                        : "secondary-action"
-                    }`}
+                    className={`${mode === "mold" ? "mode-active " : ""}primary-action`}
                     onClick={() => {
                       setUseImageBorderAsMold(false);
                       setMode("mold");
@@ -3306,12 +3260,7 @@ export default forwardRef(function ResinCalculator(
                     {ui.clearMoldBoundary}
                   </button>
                   <button
-                    className={
-                      activeWorkflowStage === "mold" &&
-                      moldBoundaryPoints.length >= 3
-                        ? "primary-action"
-                        : "secondary-action"
-                    }
+                    className="secondary-action"
                     onClick={() => {
                       if (moldBoundaryPoints.length < 3) {
                         setError(ui.errors.drawMoldBeforeContinue);
@@ -3344,7 +3293,8 @@ export default forwardRef(function ResinCalculator(
                 <GeometryFamilyGroup
                   family="mold"
                   label={ui.moldBoundary}
-                  status={ui.moldComplete}
+                  complete
+                  completeLabel={ui.moldComplete}
                 >
                   <button
                     className="secondary-action"
@@ -3368,31 +3318,22 @@ export default forwardRef(function ResinCalculator(
               )}
 
               {moldBoundaryComplete && !woodBoundaryComplete && (
-                <GeometryFamilyGroup family="wood" label={ui.woodIslands}>
+                <GeometryFamilyGroup
+                  family="wood"
+                  label={ui.woodIslands}
+                  complete={false}
+                  completeLabel={ui.woodComplete}
+                >
                   <div className="toolbar-row toolbar-row-primary">
                     <button
-                      className={`${
-                        mode === "wood" ? "mode-active" : ""
-                      } ${
-                        activeWorkflowStage === "wood" &&
-                        woodBoundaryPoints.length < 3 &&
-                        (woodBoundaryPolygons.length === 0 ||
-                          woodBoundaryPoints.length === 0)
-                          ? "primary-action"
-                          : "secondary-action"
-                      }`}
+                      className={`${mode === "wood" ? "mode-active " : ""}primary-action`}
                       onClick={startAddWoodIsland}
                     >
                       {ui.addWoodIsland}
                       {renderHelpPopup("wood-boundary", ui.help.wood)}
                     </button>
                     <button
-                      className={
-                        activeWorkflowStage === "wood" &&
-                        woodBoundaryPoints.length >= 3
-                          ? "primary-action"
-                          : "secondary-action"
-                      }
+                      className="secondary-action"
                       onClick={finishWoodIsland}
                       disabled={woodBoundaryPoints.length < 3}
                     >
@@ -3406,13 +3347,7 @@ export default forwardRef(function ResinCalculator(
                       {ui.deleteSelectedWoodIsland}
                     </button>
                     <button
-                      className={
-                        activeWorkflowStage === "wood" &&
-                        woodBoundaryPolygons.length > 0 &&
-                        woodBoundaryPoints.length === 0
-                          ? "primary-action"
-                          : "secondary-action"
-                      }
+                      className="secondary-action"
                       onClick={() => {
                         if (woodBoundaryPoints.length > 0) {
                           setError(ui.errors.completeWoodIslandFirst);
@@ -3464,7 +3399,8 @@ export default forwardRef(function ResinCalculator(
                 <GeometryFamilyGroup
                   family="wood"
                   label={ui.woodIslands}
-                  status={ui.woodComplete}
+                  complete
+                  completeLabel={ui.woodComplete}
                 >
                   <button
                     className="secondary-action"
@@ -3477,7 +3413,7 @@ export default forwardRef(function ResinCalculator(
                     {ui.editSelectedWoodIsland}
                   </button>
                   <button
-                    className="secondary-action"
+                    className={`${mode === "wood" ? "mode-active " : ""}primary-action`}
                     onClick={startAddWoodIsland}
                   >
                     {ui.addWoodIsland}
@@ -3503,32 +3439,20 @@ export default forwardRef(function ResinCalculator(
                 <GeometryFamilyGroup
                   family="cavity"
                   label={ui.resinCavities}
+                  complete={false}
+                  completeLabel={ui.cavitiesComplete}
                   groupRef={cavityControlsRef}
                 >
                   <div className="toolbar-row toolbar-row-primary">
                     <button
-                      className={`${
-                        mode === "cavity" ? "mode-active" : ""
-                      } ${
-                        activeWorkflowStage === "cavities" &&
-                        currentCavityPoints.length < 3 &&
-                        (cavityPolygons.length === 0 ||
-                          editingCavityDepthIndex == null)
-                          ? "primary-action"
-                          : "secondary-action"
-                      }`}
+                      className={`${mode === "cavity" ? "mode-active " : ""}primary-action`}
                       onClick={startAddCavity}
                     >
                       {ui.addResinCavity}
                       {renderHelpPopup("resin-cavity", ui.help.cavity)}
                     </button>
                     <button
-                      className={
-                        activeWorkflowStage === "cavities" &&
-                        currentCavityPoints.length >= 3
-                          ? "primary-action"
-                          : "secondary-action"
-                      }
+                      className="secondary-action"
                       onClick={finishCavity}
                       disabled={currentCavityPoints.length < 3}
                     >
@@ -3552,14 +3476,7 @@ export default forwardRef(function ResinCalculator(
                       {ui.clearAllCavities}
                     </button>
                     <button
-                      className={
-                        activeWorkflowStage === "cavities" &&
-                        cavityPolygons.length > 0 &&
-                        currentCavityPoints.length < 3 &&
-                        editingCavityDepthIndex == null
-                          ? "primary-action"
-                          : "secondary-action"
-                      }
+                      className="secondary-action"
                       onClick={() => {
                         setCavitiesComplete(true);
                         setMode("edit");
@@ -3591,11 +3508,12 @@ export default forwardRef(function ResinCalculator(
                 <GeometryFamilyGroup
                   family="cavity"
                   label={ui.resinCavities}
-                  status={ui.cavitiesComplete}
+                  complete
+                  completeLabel={ui.cavitiesComplete}
                   groupRef={cavityControlsRef}
                 >
                   <button
-                    className="secondary-action"
+                    className={`${mode === "cavity" ? "mode-active " : ""}primary-action`}
                     onClick={startAddCavity}
                   >
                     {ui.addResinCavity}
@@ -3721,6 +3639,7 @@ export default forwardRef(function ResinCalculator(
               {ui.cavityNeedsReferences}
             </div>
           )}
+          <div className="cavity-list-items">
           {cavitySummaries.map((cavity, idx) => (
             <div
               key={idx}
@@ -3834,6 +3753,7 @@ export default forwardRef(function ResinCalculator(
               </button>
             </div>
           ))}
+          </div>
         </div>
       )}
 
@@ -3866,9 +3786,15 @@ export default forwardRef(function ResinCalculator(
                 onKeyDown={handleMainResinDepthKeyDown}
               />
             </label>
-            <button className="calculate-primary-button" onClick={calculateWood}>
-              {ui.calculateResinVolume}
-            </button>
+            <span className="workflow-stage-calc">
+              <WorkflowStageMarker
+                complete={calculationComplete}
+                completeLabel={ui.workflow.calculate}
+              />
+              <button className="calculate-primary-button" onClick={calculateWood}>
+                {ui.calculateResinVolume}
+              </button>
+            </span>
           </div>
         )}
 
@@ -4014,7 +3940,7 @@ export default forwardRef(function ResinCalculator(
                 </button>
                 {firstFillVolumeLiters != null && (
                   <div className="pour-layer-result">
-                    <div>
+                    <div className="pour-layer-result-metrics">
                       {ui.planning.firstFillVolume}{" "}
                       {formatNumber(firstFillVolumeLiters, 3)} L
                       <EstimatedResinMass
@@ -4175,8 +4101,26 @@ export default forwardRef(function ResinCalculator(
                                     ui={ui}
                                   />
                                 </td>
-                                <td>{componentAMl} ml</td>
-                                <td>{componentBMl} ml</td>
+                                <td>
+                                  {componentAMl} ml
+                                  <EstimatedResinMass
+                                    volumeLiters={
+                                      componentAMl == null ? null : componentAMl / 1000
+                                    }
+                                    densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                    ui={ui}
+                                  />
+                                </td>
+                                <td>
+                                  {componentBMl} ml
+                                  <EstimatedResinMass
+                                    volumeLiters={
+                                      componentBMl == null ? null : componentBMl / 1000
+                                    }
+                                    densityKgPerLiter={parsedResinDensityKgPerLiter}
+                                    ui={ui}
+                                  />
+                                </td>
                               </tr>
                             );
                           })}

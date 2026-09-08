@@ -48,7 +48,7 @@ describe("NewProjectWorkspace", () => {
   it("renders the calculator without duplicate product title chrome", () => {
     renderNewProjectWorkspace();
 
-    expect(screen.getByText("References")).toBeInTheDocument();
+    expect(screen.getByText("Upload Photo:")).toBeInTheDocument();
     expect(
       screen.queryByText(/River Table & Woodworking Resin Calculator/i),
     ).not.toBeInTheDocument();
