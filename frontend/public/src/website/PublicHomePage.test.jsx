@@ -38,6 +38,16 @@ function expectIntroExtrasBesideVideo() {
   const expertHeading = screen.getByRole("heading", { name: EXPERT_HEADING, level: 2 });
   expect(photoHeading.closest(".public-home__upper")).not.toBeNull();
   expect(expertHeading.closest(".public-home__upper")).not.toBeNull();
+  expect(photoHeading.closest(".public-home__description--followup")).toBeNull();
+  expect(expertHeading.closest(".public-home__description--followup")).toBeNull();
+}
+
+function expectFollowupInsideUpperCard(headingName) {
+  const heading = screen.getByRole("heading", { name: headingName, level: 2 });
+  expect(heading.closest(".public-home__upper")).not.toBeNull();
+  expect(heading.closest(".public-home__description--followup")).not.toBeNull();
+  expect(heading.closest(".public-home__features")).toBeNull();
+  return heading;
 }
 
 describe("PublicHomePage CMS integration (Stage 6C)", () => {
@@ -125,11 +135,8 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
     expect(screen.getByText("Supporting benefit copy.")).toBeInTheDocument();
     expect(screen.getByText("Ownership note.")).toBeInTheDocument();
     expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
-    expect(
-      screen
-        .getByRole("heading", { name: "Calculate from the actual shape", level: 2 })
-        .closest(".public-home__upper"),
-    ).not.toBeNull();
+    expect(screen.getByText("Intro copy.").closest(".public-home__description--followup")).toBeNull();
+    expectFollowupInsideUpperCard("Calculate from the actual shape");
     expect(screen.queryByText("Calculate from the actual shape").closest(".public-home__features")).toBeNull();
     expect(screen.getByText("Ownership note.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByTitle("Home video")).toHaveAttribute(
@@ -168,12 +175,8 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
 
     expectIntroExtrasBesideVideo();
     expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
-    const pouringHeading = screen.getByRole("heading", {
-      name: "From estimation to pouring planning",
-      level: 2,
-    });
-    expect(pouringHeading.closest(".public-home__upper")).not.toBeNull();
-    expect(pouringHeading.closest(".public-home__features")).toBeNull();
+    expect(screen.getByText("Intro copy.").closest(".public-home__description--followup")).toBeNull();
+    expectFollowupInsideUpperCard("From estimation to pouring planning");
     expect(screen.getByText("Project copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Learning copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Ownership copy.").closest(".public-home__features")).not.toBeNull();
@@ -199,12 +202,8 @@ describe("PublicHomePage CMS integration (Stage 6C)", () => {
 
     expectIntroExtrasBesideVideo();
     expect(screen.getByText("Intro copy.").closest(".public-home__upper")).not.toBeNull();
-    const pouringHeading = screen.getByRole("heading", {
-      name: "From estimation to pouring planning",
-      level: 2,
-    });
-    expect(pouringHeading.closest(".public-home__upper")).not.toBeNull();
-    expect(pouringHeading.closest(".public-home__features")).toBeNull();
+    expect(screen.getByText("Intro copy.").closest(".public-home__description--followup")).toBeNull();
+    expectFollowupInsideUpperCard("From estimation to pouring planning");
     expect(screen.getByText("Project copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Learning copy.").closest(".public-home__features")).not.toBeNull();
     expect(screen.getByText("Ownership copy.").closest(".public-home__features")).not.toBeNull();

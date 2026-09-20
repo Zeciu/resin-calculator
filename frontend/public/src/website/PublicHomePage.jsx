@@ -41,16 +41,16 @@ export default function PublicHomePage({ body, besideVideoExtras = null }) {
   const video = resolveHomeVideoSource(body.video);
   const showCta = canRenderHomeCta(cta);
   const descriptionBlocks = splitHomeDescriptionBlocks(body.description);
-  const upperDescriptionBlocks = video ? descriptionBlocks.slice(0, 2) : descriptionBlocks;
+  const besideDescriptionBlocks = video ? descriptionBlocks.slice(0, 1) : descriptionBlocks;
+  const followupDescriptionBlocks = video ? descriptionBlocks.slice(1, 2) : [];
   const featureDescriptionBlocks = video ? descriptionBlocks.slice(2) : [];
 
   return (
     <section className="public-home" aria-label="Home">
       <div className="public-home__upper">
         <div className="public-home__description">
-          <HomeDescriptionBlocks blocks={upperDescriptionBlocks.slice(0, 1)} />
+          <HomeDescriptionBlocks blocks={besideDescriptionBlocks} />
           {besideVideoExtras}
-          <HomeDescriptionBlocks blocks={upperDescriptionBlocks.slice(1)} />
         </div>
 
         {video ? (
@@ -69,6 +69,12 @@ export default function PublicHomePage({ body, besideVideoExtras = null }) {
                 allowFullScreen
               />
             )}
+          </div>
+        ) : null}
+
+        {followupDescriptionBlocks.length > 0 ? (
+          <div className="public-home__description public-home__description--followup">
+            <HomeDescriptionBlocks blocks={followupDescriptionBlocks} />
           </div>
         ) : null}
       </div>

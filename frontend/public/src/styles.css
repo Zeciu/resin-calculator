@@ -3617,6 +3617,10 @@ button.workspace-sidebar__link {
     grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1.1fr);
   }
 
+  .public-home__description--followup {
+    grid-column: 1 / -1;
+  }
+
   .public-home__features {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
