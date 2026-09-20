@@ -83,3 +83,82 @@ class TestCapabilityResolver:
         entries = ["one", "two", "three"]
         assert limit_knowledge_base_entries(entries, 2) == ["one", "two"]
         assert limit_knowledge_base_entries(entries, None) == entries
+
+
+class TestPromotionalGrantAccess:
+    NOW = 1_700_000_000
+
+    def _resolver(self, repository):
+        return CapabilityResolver(repository, now=lambda: self.NOW)
+
+    def test_future_grant_resolves_to_subscriber_catalog(self, capabilities_client):
+        _client, repository, _resolver = capabilities_client
+        repository.save_record(
+            "user-a",
+            {"accessTier": "free", "commercialStatus": "none"},
+        )
+        repository.set_grant_expires_at_if_absent("user-a", self.NOW + 90)
+        payload = self._resolver(repository).resolve("user-a")
+        assert payload.accessTier == "subscriber"
+        assert payload.capabilities == CAPABILITY_CATALOG["subscriber"]
+
+    def test_expired_grant_resolves_to_free_catalog(self, capabilities_client):
+        _client, repository, _resolver = capabilities_client
+        repository.save_record(
+            "user-a",
+            {"accessTier": "free", "commercialStatus": "none"},
+        )
+        repository.set_grant_expires_at_if_absent("user-a", self.NOW)
+        payload = self._resolver(repository).resolve("user-a")
+        assert payload.accessTier == "free"
+        assert payload.capabilities == CAPABILITY_CATALOG["free"]
+
+    def test_missing_grant_keeps_stored_free_tier(self, capabilities_client):
+        _client, repository, _resolver = capabilities_client
+        repository.save_record(
+            "user-a",
+            {"accessTier": "free", "commercialStatus": "none", "grantExpiresAt": None},
+        )
+        payload = self._resolver(repository).resolve("user-a")
+        assert payload.accessTier == "free"
+        assert payload.capabilities == CAPABILITY_CATALOG["free"]
+
+    def test_stripe_subscriber_without_grant_stays_subscriber(self, capabilities_client):
+        _client, repository, _resolver = capabilities_client
+        repository.save_record(
+            "user-a",
+            {
+                "accessTier": "subscriber",
+                "commercialStatus": "active",
+                "grantExpiresAt": None,
+            },
+        )
+        payload = self._resolver(repository).resolve("user-a")
+        assert payload.accessTier == "subscriber"
+        assert payload.capabilities == CAPABILITY_CATALOG["subscriber"]
+
+    def test_stripe_subscriber_with_expired_grant_stays_subscriber(
+        self, capabilities_client
+    ):
+        _client, repository, _resolver = capabilities_client
+        repository.save_record(
+            "user-a",
+            {"accessTier": "subscriber", "commercialStatus": "active"},
+        )
+        repository.set_grant_expires_at_if_absent("user-a", self.NOW - 1)
+        payload = self._resolver(repository).resolve("user-a")
+        assert payload.accessTier == "subscriber"
+        assert payload.capabilities == CAPABILITY_CATALOG["subscriber"]
+
+    def test_canceled_commercial_status_with_live_grant_is_subscriber(
+        self, capabilities_client
+    ):
+        _client, repository, _resolver = capabilities_client
+        repository.save_record(
+            "user-a",
+            {"accessTier": "free", "commercialStatus": "canceled"},
+        )
+        repository.set_grant_expires_at_if_absent("user-a", self.NOW + 1)
+        payload = self._resolver(repository).resolve("user-a")
+        assert payload.accessTier == "subscriber"
+        assert payload.capabilities == CAPABILITY_CATALOG["subscriber"]

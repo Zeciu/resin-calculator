@@ -19,6 +19,11 @@ os.environ.setdefault("COGNITO_USER_POOL_ID", "eu-central-1_testpool")
 os.environ.setdefault("COGNITO_REGION", "eu-central-1")
 os.environ.setdefault("COGNITO_CLIENT_ID", "test-client-id")
 
+
+@pytest.fixture(autouse=True)
+def _clear_promo_activation_env(monkeypatch):
+    monkeypatch.delenv("HFZWOOD_PROMO_ACTIVATED_AT", raising=False)
+
 ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))

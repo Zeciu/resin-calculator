@@ -118,7 +118,7 @@ def get_published_glossary(
                 "entries": filter_free_preview_entries(
                     response.entries,
                     _free_preview_config()["glossaryEntryIds"],
-                    resolver.resolve(user["id"]).accessTier,
+                    resolver.resolve(user["id"], username=user.get("username")).accessTier,
                 )
             }
         )
@@ -141,7 +141,7 @@ def get_published_knowledge_base(
                 "entries": filter_free_preview_entries(
                     response.entries,
                     _free_preview_config()["knowledgeBaseEntryIds"],
-                    resolver.resolve(user["id"]).accessTier,
+                    resolver.resolve(user["id"], username=user.get("username")).accessTier,
                 )
             }
         )

@@ -75,6 +75,9 @@ export class AppStack extends cdk.Stack {
     const stripePriceId =
       (this.node.tryGetContext('stripePriceId') as string | undefined)?.trim() ||
       (process.env.HFZWOOD_STRIPE_PRICE_ID || '').trim();
+    const promoActivatedAt =
+      (this.node.tryGetContext('promoActivatedAt') as string | undefined)?.trim() ||
+      (process.env.HFZWOOD_PROMO_ACTIVATED_AT || '').trim();
 
     const stripeSecret = secretsmanager.Secret.fromSecretNameV2(
       this,
@@ -82,32 +85,47 @@ export class AppStack extends cdk.Stack {
       STRIPE_SECRET_NAME,
     );
 
+    const appEnvironment: Record<string, string> = {
+      AUTH_MODE: "cognito",
+      COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
+      COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
+      COGNITO_REGION: this.region,
+      // Public content is embedded in backend/public/content; no editorial filesystem,
+      // authoring code, or mutation routes are deployed.
+      // Commercial/user state: DynamoDB (see EntitlementsTable below).
+      ENTITLEMENTS_TABLE_NAME: entitlementsTable.tableName,
+      CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,
+      STRIPE_PRICE_ID: stripePriceId,
+      STRIPE_CHECKOUT_SUCCESS_URL: `${PRODUCTION_ORIGIN}/account?billing=success`,
+      STRIPE_CHECKOUT_CANCEL_URL: `${PRODUCTION_ORIGIN}/account?billing=cancel`,
+      STRIPE_PORTAL_RETURN_URL: `${PRODUCTION_ORIGIN}/account`,
+    };
+    if (promoActivatedAt) {
+      appEnvironment.HFZWOOD_PROMO_ACTIVATED_AT = promoActivatedAt;
+    }
+
     const appContainer = taskDef.addContainer('app', {
       containerName: 'resin-calculator',
       image: ecs.ContainerImage.fromEcrRepository(props.repository, 'latest'),
       portMappings: [{ containerPort: 5000 }],
       logging: ecs.LogDrivers.awsLogs({ streamPrefix: 'ecs', logGroup }),
-      environment: {
-        AUTH_MODE: "cognito",
-        COGNITO_USER_POOL_ID: props.cognitoUserPoolId,
-        COGNITO_CLIENT_ID: props.cognitoUserPoolClientId,
-        COGNITO_REGION: this.region,
-        // Public content is embedded in backend/public/content; no editorial filesystem,
-        // authoring code, or mutation routes are deployed.
-        // Commercial/user state: DynamoDB (see EntitlementsTable below).
-        ENTITLEMENTS_TABLE_NAME: entitlementsTable.tableName,
-        CORS_ALLOWED_ORIGINS: PRODUCTION_ORIGIN,
-        STRIPE_PRICE_ID: stripePriceId,
-        STRIPE_CHECKOUT_SUCCESS_URL: `${PRODUCTION_ORIGIN}/account?billing=success`,
-        STRIPE_CHECKOUT_CANCEL_URL: `${PRODUCTION_ORIGIN}/account?billing=cancel`,
-        STRIPE_PORTAL_RETURN_URL: `${PRODUCTION_ORIGIN}/account`,
-      },
+      environment: appEnvironment,
       secrets: {
         STRIPE_SECRET_KEY: ecs.Secret.fromSecretsManager(stripeSecret, 'secret_key'),
         STRIPE_WEBHOOK_SECRET: ecs.Secret.fromSecretsManager(stripeSecret, 'webhook_secret'),
       },
     });
     entitlementsTable.grantReadWriteData(taskDef.taskRole);
+    taskDef.taskRole.addToPrincipalPolicy(
+      new iam.PolicyStatement({
+        sid: 'CognitoAdminGetUser',
+        effect: iam.Effect.ALLOW,
+        actions: ['cognito-idp:AdminGetUser'],
+        resources: [
+          `arn:aws:cognito-idp:${this.region}:${this.account}:userpool/${props.cognitoUserPoolId}`,
+        ],
+      }),
+    );
 
     // Local development (Option A): let the hfzwood deployer user assume this exact task
     // role so `boto3` running locally gets the same DynamoDB permissions as the running

@@ -29,6 +29,8 @@ class TestProductionDataWiringSource:
         source = _app_stack_source()
         assert "tableName: 'hfzwood-entitlements'" in source
         assert "ENTITLEMENTS_TABLE_NAME: entitlementsTable.tableName" in source
+        assert "cognito-idp:AdminGetUser" in source
+        assert "cognito-idp:ListUsers" not in source
         assert "stripeCustomerId-index" in source
         assert "aws-efs" not in source
         assert "aws-backup" not in source

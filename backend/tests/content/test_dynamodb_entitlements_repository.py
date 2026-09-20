@@ -15,6 +15,7 @@ from public.product.entitlements import (
     _create_dynamodb_resource,
     empty_entitlement_record,
     get_entitlements_repository,
+    normalize_entitlement_record,
 )
 
 TABLE_NAME = "test-hfzwood-entitlements"
@@ -74,6 +75,112 @@ class TestDynamoDbEntitlementsRepositoryRecords:
         assert loaded["accessTier"] == "subscriber"
         assert loaded["stripeCustomerId"] == "cus_123"
         assert loaded["commercialStatus"] == "active"
+
+    def test_save_then_get_preserves_grant_expires_at(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        record = empty_entitlement_record()
+        record["accessTier"] = "free"
+        record["currentPeriodEnd"] = 1_800_000_000
+        repository.save_record("user-a", record)
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000) is True
+
+        loaded = repository.get_record("user-a")
+        assert loaded["grantExpiresAt"] == 1_850_000_000
+        assert loaded["currentPeriodEnd"] == 1_800_000_000
+        assert loaded["accessTier"] == "free"
+
+    def test_save_record_does_not_write_grant_expires_at_from_payload(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        record = empty_entitlement_record()
+        record["accessTier"] = "free"
+        record["grantExpiresAt"] = 1_850_000_000
+        saved = repository.save_record("user-a", record)
+        assert saved["grantExpiresAt"] is None
+        assert repository.get_record("user-a")["grantExpiresAt"] is None
+
+    def test_stale_commercial_save_cannot_erase_grant_written_after_read(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        stripe_view = repository.get_record("user-a")
+        assert stripe_view["grantExpiresAt"] is None
+
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000) is True
+
+        stripe_view["accessTier"] = "subscriber"
+        stripe_view["stripeCustomerId"] = "cus_race"
+        stripe_view["stripeSubscriptionId"] = "sub_race"
+        stripe_view["stripePriceId"] = "price_race"
+        stripe_view["commercialStatus"] = "active"
+        stripe_view["currentPeriodEnd"] = 1_800_000_000
+        stripe_view["grantExpiresAt"] = None
+        repository.save_record("user-a", stripe_view)
+
+        loaded = repository.get_record("user-a")
+        assert loaded["grantExpiresAt"] == 1_850_000_000
+        assert loaded["accessTier"] == "subscriber"
+        assert loaded["stripeCustomerId"] == "cus_race"
+        assert loaded["stripeSubscriptionId"] == "sub_race"
+        assert loaded["stripePriceId"] == "price_race"
+        assert loaded["commercialStatus"] == "active"
+        assert loaded["currentPeriodEnd"] == 1_800_000_000
+
+    def test_grant_write_after_commercial_save_keeps_both(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        record = empty_entitlement_record()
+        record["accessTier"] = "subscriber"
+        record["stripeCustomerId"] = "cus_first"
+        record["stripeSubscriptionId"] = "sub_first"
+        record["stripePriceId"] = "price_first"
+        record["commercialStatus"] = "active"
+        record["currentPeriodEnd"] = 1_800_000_000
+        repository.save_record("user-a", record)
+
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000) is True
+
+        loaded = repository.get_record("user-a")
+        assert loaded["grantExpiresAt"] == 1_850_000_000
+        assert loaded["accessTier"] == "subscriber"
+        assert loaded["stripeCustomerId"] == "cus_first"
+        assert loaded["stripeSubscriptionId"] == "sub_first"
+        assert loaded["stripePriceId"] == "price_first"
+        assert loaded["commercialStatus"] == "active"
+        assert loaded["currentPeriodEnd"] == 1_800_000_000
+
+    def test_save_record_cannot_replace_or_shorten_existing_grant(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000) is True
+        stale = repository.get_record("user-a")
+        stale["accessTier"] = "free"
+        stale["grantExpiresAt"] = 1_999_000_000
+        repository.save_record("user-a", stale)
+        assert repository.get_record("user-a")["grantExpiresAt"] == 1_850_000_000
+
+    def test_set_grant_expires_at_if_absent_does_not_change_stripe_fields(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        record = empty_entitlement_record()
+        record["accessTier"] = "subscriber"
+        record["stripeCustomerId"] = "cus_keep"
+        record["stripeSubscriptionId"] = "sub_keep"
+        record["stripePriceId"] = "price_keep"
+        record["commercialStatus"] = "active"
+        record["currentPeriodEnd"] = 1_800_000_000
+        repository.save_record("user-a", record)
+
+        wrote = repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000)
+        assert wrote is True
+        loaded = repository.get_record("user-a")
+        assert loaded["grantExpiresAt"] == 1_850_000_000
+        assert loaded["accessTier"] == "subscriber"
+        assert loaded["stripeCustomerId"] == "cus_keep"
+        assert loaded["stripeSubscriptionId"] == "sub_keep"
+        assert loaded["stripePriceId"] == "price_keep"
+        assert loaded["commercialStatus"] == "active"
+        assert loaded["currentPeriodEnd"] == 1_800_000_000
+
+    def test_set_grant_expires_at_if_absent_is_idempotent(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000) is True
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_999_000_000) is False
+        assert repository.get_record("user-a")["grantExpiresAt"] == 1_850_000_000
 
     def test_save_record_normalizes_invalid_access_tier_to_free(self, dynamodb_table):
         # normalize_entitlement_record silently coerces an unrecognized accessTier
@@ -158,12 +265,48 @@ class TestDynamoDbEntitlementsRepositoryAccessTier:
         record["accessTier"] = "free"
         record["stripeCustomerId"] = "cus_456"
         repository.save_record("user-a", record)
+        assert repository.set_grant_expires_at_if_absent("user-a", 1_850_000_000) is True
 
         repository.save_access_tier("user-a", "subscriber")
 
         loaded = repository.get_record("user-a")
         assert loaded["accessTier"] == "subscriber"
         assert loaded["stripeCustomerId"] == "cus_456"
+        assert loaded["grantExpiresAt"] == 1_850_000_000
+
+
+class TestNormalizeEntitlementGrantExpiresAt:
+    def test_empty_record_includes_null_grant_expires_at(self):
+        record = empty_entitlement_record()
+        assert record["grantExpiresAt"] is None
+        assert record["currentPeriodEnd"] is None
+
+    def test_normalize_preserves_grant_expires_at(self):
+        record = normalize_entitlement_record(
+            {
+                "accessTier": "free",
+                "grantExpiresAt": 1_850_000_000,
+                "currentPeriodEnd": 1_800_000_000,
+                "stripeCustomerId": "cus_keep",
+            }
+        )
+        assert record["grantExpiresAt"] == 1_850_000_000
+        assert record["currentPeriodEnd"] == 1_800_000_000
+        assert record["stripeCustomerId"] == "cus_keep"
+
+    def test_normalize_rejects_invalid_grant_expires_at(self):
+        record = normalize_entitlement_record({"grantExpiresAt": True})
+        assert record["grantExpiresAt"] is None
+        record = normalize_entitlement_record({"grantExpiresAt": -1})
+        assert record["grantExpiresAt"] is None
+        record = normalize_entitlement_record({"grantExpiresAt": "1700000000"})
+        assert record["grantExpiresAt"] is None
+
+    def test_normalize_accepts_decimal_grant_expires_at(self):
+        from decimal import Decimal
+
+        record = normalize_entitlement_record({"grantExpiresAt": Decimal("1850000000")})
+        assert record["grantExpiresAt"] == 1_850_000_000
 
 
 class TestDynamoDbEntitlementsRepositoryStripeLookup:

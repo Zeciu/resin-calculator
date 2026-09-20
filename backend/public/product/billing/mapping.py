@@ -73,6 +73,9 @@ def map_stripe_subscription_to_entitlement(
     else:
         subscription_id = subscription_id.strip()
 
+    # Promotional grantExpiresAt is not a Stripe field and must never appear here.
+    # BillingService applies this mapping with record.update(); omitting the key
+    # leaves any existing grant intact, and normalize_entitlement_record preserves it.
     return {
         "accessTier": access_tier,
         "stripeCustomerId": customer_id,
@@ -93,6 +96,7 @@ def public_billing_status(record: dict[str, Any], *, access_tier: str, role: str
         "status": commercial_status,
         "cancelAtPeriodEnd": cancel_at_period_end,
         "currentPeriodEnd": record.get("currentPeriodEnd"),
+        "grantExpiresAt": record.get("grantExpiresAt"),
         "canCheckout": access_tier != "subscriber" or commercial_status in {"none", "canceled"},
         "canManage": bool(record.get("stripeCustomerId")),
     }

@@ -211,6 +211,22 @@ class TestCommercialMapping:
         )
         assert mapped["accessTier"] == "subscriber"
         assert mapped["commercialStatus"] == "past_due"
+        assert "grantExpiresAt" not in mapped
+
+    def test_stripe_mapping_never_includes_grant_expiry(self):
+        mapped = map_stripe_subscription_to_entitlement(
+            {
+                "id": "sub_1",
+                "status": "canceled",
+                "customer": "cus_1",
+                "current_period_end": 50,
+                "grantExpiresAt": 9_999_999_999,
+                "items": {"data": [{"price": {"id": "price_monthly_allowed"}}]},
+            },
+            previous_access_tier="subscriber",
+        )
+        assert "grantExpiresAt" not in mapped
+        assert mapped["currentPeriodEnd"] == 50
 
 
 class TestBillingService:
@@ -266,6 +282,41 @@ class TestBillingService:
         assert record["accessTier"] == "subscriber"
         assert record["stripeSubscriptionId"] == "sub_existing"
         assert record["lastStripeEventId"] == "evt_checkout_1"
+
+    def test_checkout_completed_preserves_promotional_grant(
+        self, billing_service, entitlements_repo, fake_stripe
+    ):
+        grant_expires_at = 1_900_000_000
+        entitlements_repo.save_record(
+            "user-a",
+            {"accessTier": "free"},
+        )
+        entitlements_repo.set_grant_expires_at_if_absent("user-a", grant_expires_at)
+        fake_stripe.seed_subscription(user_id="user-a")
+        event = {
+            "id": "evt_checkout_grant",
+            "type": "checkout.session.completed",
+            "created": 1000,
+            "data": {
+                "object": {
+                    "customer": "cus_existing",
+                    "subscription": "sub_existing",
+                    "metadata": {"hfzwood_user_id": "user-a"},
+                    "client_reference_id": "user-a",
+                }
+            },
+        }
+        import json
+
+        result = billing_service.process_webhook(
+            payload=json.dumps(event).encode("utf-8"),
+            signature="sig_valid",
+        )
+        assert result["status"] == "applied"
+        record = entitlements_repo.get_record("user-a")
+        assert record["accessTier"] == "subscriber"
+        assert record["grantExpiresAt"] == grant_expires_at
+        assert record["currentPeriodEnd"] == 1_800_000_000
 
     def test_duplicate_event_is_idempotent(self, billing_service, entitlements_repo, fake_stripe):
         fake_stripe.seed_subscription(user_id="user-a")
@@ -577,6 +628,151 @@ class TestBillingService:
         assert result["status"] == "applied"
         assert entitlements_repo.get_record("user-a")["accessTier"] == "free"
 
+    def test_subscription_deleted_preserves_promotional_grant(
+        self, billing_service, entitlements_repo, fake_stripe
+    ):
+        grant_expires_at = 1_900_000_000
+        entitlements_repo.save_record(
+            "user-a",
+            {
+                "accessTier": "subscriber",
+                "stripeCustomerId": "cus_existing",
+                "stripeSubscriptionId": "sub_existing",
+                "commercialStatus": "active",
+                "currentPeriodEnd": 1_800_000_000,
+            },
+        )
+        entitlements_repo.set_grant_expires_at_if_absent("user-a", grant_expires_at)
+        fake_stripe.seed_subscription(user_id="user-a", status="canceled")
+        event = {
+            "id": "evt_del_grant",
+            "type": "customer.subscription.deleted",
+            "created": 4000,
+            "data": {"object": fake_stripe.subscriptions["sub_existing"]},
+        }
+        import json
+
+        result = billing_service.process_webhook(
+            payload=json.dumps(event).encode("utf-8"),
+            signature="sig_valid",
+        )
+        assert result["status"] == "applied"
+        record = entitlements_repo.get_record("user-a")
+        assert record["accessTier"] == "free"
+        assert record["commercialStatus"] == "canceled"
+        assert record["grantExpiresAt"] == grant_expires_at
+        assert record["currentPeriodEnd"] == 1_800_000_000
+        capabilities = CapabilityResolver(
+            entitlements_repo, now=lambda: grant_expires_at - 1
+        ).resolve("user-a")
+        assert capabilities.accessTier == "subscriber"
+        assert capabilities.capabilities["calculator.pdfExport"] is True
+
+    def test_webhook_stale_commercial_save_cannot_erase_grant_written_after_read(
+        self, billing_config, fake_stripe
+    ):
+        grant_expires_at = 1_900_000_000
+
+        class InsertGrantBeforeCommercialSave(InMemoryEntitlementsRepository):
+            def save_record(self, user_id, record):
+                super().set_grant_expires_at_if_absent(user_id, grant_expires_at)
+                return super().save_record(user_id, record)
+
+        repository = InsertGrantBeforeCommercialSave()
+        billing = BillingService(
+            config=billing_config,
+            entitlements=repository,
+            stripe=fake_stripe,
+        )
+        fake_stripe.seed_subscription(user_id="user-a")
+        event = {
+            "id": "evt_race_grant",
+            "type": "checkout.session.completed",
+            "created": 1000,
+            "data": {
+                "object": {
+                    "customer": "cus_existing",
+                    "subscription": "sub_existing",
+                    "metadata": {"hfzwood_user_id": "user-a"},
+                    "client_reference_id": "user-a",
+                }
+            },
+        }
+        import json
+
+        result = billing.process_webhook(
+            payload=json.dumps(event).encode("utf-8"),
+            signature="sig_valid",
+        )
+        assert result["status"] == "applied"
+        record = repository.get_record("user-a")
+        assert record["grantExpiresAt"] == grant_expires_at
+        assert record["accessTier"] == "subscriber"
+        assert record["stripeSubscriptionId"] == "sub_existing"
+        assert record["commercialStatus"] == "active"
+
+    def test_webhook_then_grant_write_keeps_stripe_state_and_grant(
+        self, billing_service, entitlements_repo, fake_stripe
+    ):
+        grant_expires_at = 1_900_000_000
+        fake_stripe.seed_subscription(user_id="user-a")
+        event = {
+            "id": "evt_then_grant",
+            "type": "customer.subscription.updated",
+            "created": 2000,
+            "data": {"object": fake_stripe.subscriptions["sub_existing"]},
+        }
+        import json
+
+        result = billing_service.process_webhook(
+            payload=json.dumps(event).encode("utf-8"),
+            signature="sig_valid",
+        )
+        assert result["status"] == "applied"
+        assert entitlements_repo.set_grant_expires_at_if_absent("user-a", grant_expires_at) is True
+        record = entitlements_repo.get_record("user-a")
+        assert record["grantExpiresAt"] == grant_expires_at
+        assert record["accessTier"] == "subscriber"
+        assert record["stripeCustomerId"] == "cus_existing"
+        assert record["stripeSubscriptionId"] == "sub_existing"
+        assert record["commercialStatus"] == "active"
+        assert record["currentPeriodEnd"] == 1_800_000_000
+
+    def test_canceled_webhook_does_not_clear_grant_written_after_read(
+        self, billing_config, fake_stripe
+    ):
+        grant_expires_at = 1_900_000_000
+
+        class InsertGrantBeforeCommercialSave(InMemoryEntitlementsRepository):
+            def save_record(self, user_id, record):
+                super().set_grant_expires_at_if_absent(user_id, grant_expires_at)
+                return super().save_record(user_id, record)
+
+        repository = InsertGrantBeforeCommercialSave()
+        billing = BillingService(
+            config=billing_config,
+            entitlements=repository,
+            stripe=fake_stripe,
+        )
+        fake_stripe.seed_subscription(user_id="user-a", status="canceled")
+        event = {
+            "id": "evt_race_cancel",
+            "type": "customer.subscription.deleted",
+            "created": 4000,
+            "data": {"object": fake_stripe.subscriptions["sub_existing"]},
+        }
+        import json
+
+        result = billing.process_webhook(
+            payload=json.dumps(event).encode("utf-8"),
+            signature="sig_valid",
+        )
+        assert result["status"] == "applied"
+        record = repository.get_record("user-a")
+        assert record["grantExpiresAt"] == grant_expires_at
+        assert record["accessTier"] == "free"
+        assert record["commercialStatus"] == "canceled"
+
 
 class TestBillingApi:
     def test_checkout_requires_auth_identity(self, billing_client):
@@ -659,6 +855,25 @@ class TestBillingApi:
         assert "cus_secret" not in str(payload)
         assert "sub_secret" not in str(payload)
         assert payload["cancelAtPeriodEnd"] is True
+        assert payload["currentPeriodEnd"] == 1_900_000_000
+        assert payload["grantExpiresAt"] is None
+
+    def test_status_endpoint_returns_grant_expires_at(self, billing_client):
+        client, repository, _fake_stripe, _resolver, app = billing_client
+        grant_expires_at = 1_850_000_000
+        repository.save_record(
+            "user-a",
+            {"accessTier": "free", "commercialStatus": "none"},
+        )
+        repository.set_grant_expires_at_if_absent("user-a", grant_expires_at)
+        set_billing_client_user(app, "user-a")
+        response = client.get("/api/billing/status")
+        assert response.status_code == 200
+        payload = response.json()
+        assert payload["grantExpiresAt"] == grant_expires_at
+        assert payload["currentPeriodEnd"] is None
+        assert payload["status"] == "none"
+        assert "stripe" not in str(payload).lower()
 
 
 class TestEntitlementRecordPersistence:
@@ -675,3 +890,20 @@ class TestEntitlementRecordPersistence:
         loaded = entitlements_repo.get_record("user-a")
         assert loaded["stripeCustomerId"] == "cus_1"
         assert entitlements_repo.find_user_id_by_stripe_customer_id("cus_1") == "user-a"
+
+    def test_save_record_does_not_clear_or_replace_grant(self, entitlements_repo):
+        entitlements_repo.set_grant_expires_at_if_absent("user-a", 1_850_000_000)
+        saved = entitlements_repo.save_record(
+            "user-a",
+            {
+                "accessTier": "subscriber",
+                "stripeCustomerId": "cus_1",
+                "commercialStatus": "active",
+                "grantExpiresAt": 9_999_999_999,
+            },
+        )
+        assert saved["grantExpiresAt"] == 1_850_000_000
+        loaded = entitlements_repo.get_record("user-a")
+        assert loaded["grantExpiresAt"] == 1_850_000_000
+        assert loaded["accessTier"] == "subscriber"
+        assert loaded["currentPeriodEnd"] is None

@@ -45,6 +45,21 @@ class TestGetCurrentUserCognitoMode:
 
         assert user["id"] == "cognito-sub-123"
         assert user["role"] == "user"
+        assert user["username"] == "cognito-sub-123"
+
+    def test_uses_cognito_username_claim_when_present(self, monkeypatch):
+        monkeypatch.setenv("AUTH_MODE", "cognito")
+        request = _request_with_claims(
+            {
+                "sub": "cognito-sub-123",
+                "username": "email-user",
+            }
+        )
+
+        user = get_current_user(request)
+
+        assert user["id"] == "cognito-sub-123"
+        assert user["username"] == "email-user"
 
     def test_all_authenticated_identities_are_role_user(self, monkeypatch):
         # The public application has no administrator role or entitlement bypass;

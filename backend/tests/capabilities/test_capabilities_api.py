@@ -27,6 +27,9 @@ class TestCapabilitiesApi:
 
     def test_entitlement_service_failure_returns_controlled_503(self, client):
         class UnavailableEntitlementsRepository:
+            def get_record(self, _user_id):
+                raise EntitlementsServiceUnavailableError("DynamoDB is unavailable.")
+
             def get_access_tier(self, _user_id):
                 raise EntitlementsServiceUnavailableError("DynamoDB is unavailable.")
 

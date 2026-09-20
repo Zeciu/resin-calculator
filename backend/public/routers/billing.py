@@ -11,7 +11,10 @@ from public.product.billing.config import load_billing_config
 from public.product.billing.mapping import public_billing_status
 from public.product.billing.service import BillingConfigurationError, BillingService
 from public.product.billing.stripe_gateway import StripeApiGateway
-from public.product.capabilities.resolver import CapabilityResolver
+from public.product.capabilities.resolver import (
+    CapabilityResolver,
+    capability_resolver_with_promo_grants,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +39,7 @@ def get_billing_service(
 def get_capability_resolver(
     entitlements_repository: EntitlementsRepository = Depends(get_entitlements_repository),
 ) -> CapabilityResolver:
-    return CapabilityResolver(entitlements_repository)
+    return capability_resolver_with_promo_grants(entitlements_repository)
 
 
 @router.post("/checkout-session")
@@ -91,7 +94,7 @@ def get_billing_status(
     entitlements_repository: EntitlementsRepository = Depends(get_entitlements_repository),
     resolver: CapabilityResolver = Depends(get_capability_resolver),
 ) -> dict:
-    capabilities = resolver.resolve(user["id"])
+    capabilities = resolver.resolve(user["id"], username=user.get("username"))
     record = entitlements_repository.get_record(user["id"])
     return public_billing_status(
         record,

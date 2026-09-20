@@ -75,7 +75,7 @@ def _list_response(kind: str, locale: str, filename: str, title: str, lede: str,
 
 
 def _require_user_capabilities(user: dict, resolver: CapabilityResolver):
-    return resolver.resolve(user["id"])
+    return resolver.resolve(user["id"], username=user.get("username"))
 
 
 def _free_preview_config() -> dict[str, tuple[str, ...]]:

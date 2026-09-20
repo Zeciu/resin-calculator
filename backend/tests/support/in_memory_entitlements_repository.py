@@ -34,11 +34,16 @@ class InMemoryEntitlementsRepository(EntitlementsRepository):
         return deepcopy(record) if record is not None else empty_entitlement_record()
 
     def save_record(self, user_id: str, record: dict[str, Any]) -> dict[str, Any]:
+        """Persist Stripe/commercial fields; never replace an existing grantExpiresAt."""
         normalized = normalize_entitlement_record(record)
         if normalized["accessTier"] not in VALID_STORED_ACCESS_TIERS:
             raise ValueError(f"Unsupported access tier: {normalized['accessTier']}")
-        self._records[user_id] = deepcopy(normalized)
-        return deepcopy(normalized)
+        existing = self._records.get(user_id)
+        existing_grant = existing.get("grantExpiresAt") if existing is not None else None
+        persisted = deepcopy(normalized)
+        persisted["grantExpiresAt"] = existing_grant
+        self._records[user_id] = persisted
+        return deepcopy(persisted)
 
     def get_access_tier(self, user_id: str) -> str | None:
         record = self._records.get(user_id)
@@ -54,6 +59,22 @@ class InMemoryEntitlementsRepository(EntitlementsRepository):
         record["accessTier"] = access_tier
         saved = self.save_record(user_id, record)
         return saved["accessTier"]
+
+    def set_grant_expires_at_if_absent(self, user_id: str, grant_expires_at: int) -> bool:
+        if not isinstance(user_id, str) or not user_id.strip():
+            raise ValueError("user_id must be a non-empty string.")
+        if isinstance(grant_expires_at, bool) or not isinstance(grant_expires_at, int) or grant_expires_at < 0:
+            raise ValueError("grantExpiresAt must be a non-negative Unix timestamp.")
+        existing = self._records.get(user_id)
+        if existing is not None and existing.get("grantExpiresAt") is not None:
+            return False
+        if existing is None:
+            record = empty_entitlement_record()
+            record["grantExpiresAt"] = grant_expires_at
+            self._records[user_id] = record
+            return True
+        existing["grantExpiresAt"] = grant_expires_at
+        return True
 
     def find_user_id_by_stripe_customer_id(self, stripe_customer_id: str) -> str | None:
         if not isinstance(stripe_customer_id, str) or not stripe_customer_id.strip():

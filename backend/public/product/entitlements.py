@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from copy import deepcopy
 from datetime import datetime, timezone
+from decimal import Decimal
 from typing import Any
 import logging
 import os
@@ -17,6 +17,21 @@ VALID_COMMERCIAL_STATUSES = frozenset(
 )
 PROCESSED_EVENT_ID_LIMIT = 100
 HFZWOOD_USER_METADATA_KEY = "hfzwood_user_id"
+# Stripe/commercial persistence may SET/REMOVE only these attributes. grantExpiresAt
+# is owned exclusively by the promotional-grant write path.
+COMMERCIAL_RECORD_KEYS = (
+    "accessTier",
+    "stripeCustomerId",
+    "stripeSubscriptionId",
+    "stripePriceId",
+    "commercialStatus",
+    "currentPeriodEnd",
+    "cancelAtPeriodEnd",
+    "lastStripeEventId",
+    "lastStripeEventCreated",
+    "processedEventIds",
+    "updatedAt",
+)
 HFZWOOD_AWS_PROFILE_ENV = "HFZWOOD_AWS_PROFILE"
 HFZWOOD_TASK_ROLE_ARN_ENV = "HFZWOOD_TASK_ROLE_ARN"
 
@@ -31,6 +46,21 @@ def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
+def _normalize_unix_seconds(value: Any) -> int | None:
+    """Normalize durable Unix-second fields. Rejects bool (a subclass of int)."""
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, int) and value >= 0:
+        return value
+    if isinstance(value, Decimal):
+        if value < 0:
+            return None
+        return int(value)
+    if isinstance(value, float) and value >= 0:
+        return int(value)
+    return None
+
+
 def empty_entitlement_record() -> dict[str, Any]:
     return {
         "accessTier": "free",
@@ -39,6 +69,7 @@ def empty_entitlement_record() -> dict[str, Any]:
         "stripePriceId": None,
         "commercialStatus": "none",
         "currentPeriodEnd": None,
+        "grantExpiresAt": None,
         "cancelAtPeriodEnd": False,
         "lastStripeEventId": None,
         "lastStripeEventCreated": None,
@@ -70,11 +101,8 @@ def normalize_entitlement_record(payload: dict[str, Any] | None) -> dict[str, An
     if status in VALID_COMMERCIAL_STATUSES:
         record["commercialStatus"] = status
 
-    period_end = payload.get("currentPeriodEnd")
-    if isinstance(period_end, int) and period_end >= 0:
-        record["currentPeriodEnd"] = period_end
-    elif isinstance(period_end, float) and period_end >= 0:
-        record["currentPeriodEnd"] = int(period_end)
+    record["currentPeriodEnd"] = _normalize_unix_seconds(payload.get("currentPeriodEnd"))
+    record["grantExpiresAt"] = _normalize_unix_seconds(payload.get("grantExpiresAt"))
 
     record["cancelAtPeriodEnd"] = bool(payload.get("cancelAtPeriodEnd", False))
 
@@ -96,6 +124,45 @@ def normalize_entitlement_record(payload: dict[str, Any] | None) -> dict[str, An
     return record
 
 
+def _commercial_update_item_kwargs(user_id: str, record: dict[str, Any]) -> dict[str, Any]:
+    """Build an UpdateItem that never names grantExpiresAt."""
+    set_parts: list[str] = []
+    remove_parts: list[str] = []
+    names: dict[str, str] = {}
+    values: dict[str, Any] = {}
+    for key in COMMERCIAL_RECORD_KEYS:
+        name_token = f"#{key}"
+        names[name_token] = key
+        value = record.get(key)
+        if key == "stripeCustomerId":
+            if isinstance(value, str) and value.strip():
+                value_token = f":{key}"
+                set_parts.append(f"{name_token} = {value_token}")
+                values[value_token] = value.strip()
+            else:
+                remove_parts.append(name_token)
+            continue
+        if value is None:
+            remove_parts.append(name_token)
+            continue
+        value_token = f":{key}"
+        set_parts.append(f"{name_token} = {value_token}")
+        values[value_token] = value
+    expression_parts: list[str] = []
+    if set_parts:
+        expression_parts.append("SET " + ", ".join(set_parts))
+    if remove_parts:
+        expression_parts.append("REMOVE " + ", ".join(remove_parts))
+    kwargs: dict[str, Any] = {
+        "Key": {"userId": user_id},
+        "UpdateExpression": " ".join(expression_parts),
+        "ExpressionAttributeNames": names,
+    }
+    if values:
+        kwargs["ExpressionAttributeValues"] = values
+    return kwargs
+
+
 class EntitlementsRepository(ABC):
     @abstractmethod
     def get_access_tier(self, user_id: str) -> str | None:
@@ -111,6 +178,10 @@ class EntitlementsRepository(ABC):
 
     @abstractmethod
     def save_record(self, user_id: str, record: dict[str, Any]) -> dict[str, Any]:
+        raise NotImplementedError
+
+    @abstractmethod
+    def set_grant_expires_at_if_absent(self, user_id: str, grant_expires_at: int) -> bool:
         raise NotImplementedError
 
     @abstractmethod
@@ -191,17 +262,58 @@ class DynamoDbEntitlementsRepository(EntitlementsRepository):
         return normalize_entitlement_record(payload)
 
     def save_record(self, user_id: str, record: dict[str, Any]) -> dict[str, Any]:
+        """Persist Stripe/commercial fields without reading or writing grantExpiresAt.
+
+        Uses UpdateItem so a concurrent promotional grant cannot be erased by a
+        stale full-record PutItem. Incoming grantExpiresAt on `record` is ignored.
+        """
         normalized = normalize_entitlement_record(record)
         if normalized["accessTier"] not in VALID_STORED_ACCESS_TIERS:
             raise ValueError(f"Unsupported access tier: {normalized['accessTier']}")
         normalized["updatedAt"] = _utc_now_iso()
-        item = {"userId": user_id, **normalized}
-        # DynamoDB rejects empty strings as GSI key attribute values; omit when unset
-        # rather than writing None (attributes must be present with a real value or absent).
-        if not item.get("stripeCustomerId"):
-            item.pop("stripeCustomerId", None)
-        self._dynamodb_call("save_record", lambda: self._table.put_item(Item=item))
-        return deepcopy(normalized)
+        kwargs = _commercial_update_item_kwargs(user_id, normalized)
+        self._dynamodb_call(
+            "save_record",
+            lambda: self._table.update_item(**kwargs),
+        )
+        return self.get_record(user_id)
+
+    def set_grant_expires_at_if_absent(self, user_id: str, grant_expires_at: int) -> bool:
+        if not isinstance(user_id, str) or not user_id.strip():
+            raise ValueError("user_id must be a non-empty string.")
+        if isinstance(grant_expires_at, bool) or not isinstance(grant_expires_at, int) or grant_expires_at < 0:
+            raise ValueError("grantExpiresAt must be a non-negative Unix timestamp.")
+        try:
+            self._table.update_item(
+                Key={"userId": user_id},
+                UpdateExpression="SET grantExpiresAt = :exp",
+                ConditionExpression=(
+                    "attribute_not_exists(grantExpiresAt) OR attribute_type(grantExpiresAt, :null)"
+                ),
+                ExpressionAttributeValues={":exp": grant_expires_at, ":null": "NULL"},
+            )
+            return True
+        except ClientError as exc:
+            error_code = exc.response.get("Error", {}).get("Code", "unknown")
+            if error_code == "ConditionalCheckFailedException":
+                return False
+            logger.error(
+                "entitlements_dynamodb_unavailable operation=%s error_code=%s",
+                "set_grant_expires_at_if_absent",
+                error_code,
+            )
+            raise EntitlementsServiceUnavailableError(
+                "DynamoDB entitlement access is temporarily unavailable."
+            ) from exc
+        except BotoCoreError as exc:
+            logger.error(
+                "entitlements_dynamodb_unavailable operation=%s error_code=%s",
+                "set_grant_expires_at_if_absent",
+                type(exc).__name__,
+            )
+            raise EntitlementsServiceUnavailableError(
+                "DynamoDB entitlement access is temporarily unavailable."
+            ) from exc
 
     def get_access_tier(self, user_id: str) -> str | None:
         response = self._dynamodb_call(

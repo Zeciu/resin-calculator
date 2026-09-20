@@ -2,7 +2,7 @@ from typing import Any
 
 from fastapi import HTTPException, Request, status
 
-from public.auth.cognito import user_id_from_claims
+from public.auth.cognito import user_id_from_claims, username_from_claims
 
 
 def get_current_user(request: Request) -> dict[str, Any]:
@@ -19,4 +19,8 @@ def get_current_user(request: Request) -> dict[str, Any]:
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Authentication required.",
         ) from None
-    return {"id": user_id, "role": "user"}
+    return {
+        "id": user_id,
+        "role": "user",
+        "username": username_from_claims(claims) or user_id,
+    }
