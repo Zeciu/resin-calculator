@@ -42,6 +42,7 @@ const GUEST_PUBLIC_SHELL_SOURCE_FILES = [
   "website/PublicWebsitePageShell.jsx",
   "website/PublicWebsiteFooter.jsx",
   "website/PublicPricingPage.jsx",
+  "website/PromoAccessExplainer.jsx",
   "website/OfficialCommunityLinks.jsx",
   "website/PublicContactPage.jsx",
 ];
@@ -50,6 +51,7 @@ const GUEST_CTA_KEYS = [
   "demo.cta",
   "home.onboardingRegister",
   "home.onboardingLogin",
+  "home.onboardingPromoNote",
   "publicLanguage.label",
 ];
 
@@ -116,6 +118,7 @@ describe("Guest/public shell localization completeness", () => {
     const sidebar = getSidebar();
     expect(within(sidebar).getByRole("link", { name: "Try a demo project" })).toBeInTheDocument();
     expect(within(sidebar).getByRole("link", { name: "Create Free Account" })).toBeInTheDocument();
+    expect(within(sidebar).getByText("Full access free for 3 months. No credit card required.")).toBeInTheDocument();
     expect(
       within(sidebar).getByRole("link", { name: "Already have an account? Log in" }),
     ).toBeInTheDocument();
@@ -136,6 +139,9 @@ describe("Guest/public shell localization completeness", () => {
       await within(sidebar).findByRole("link", { name: "Încearcă un proiect demo" }),
     ).toBeInTheDocument();
     expect(within(sidebar).getByRole("link", { name: "Creează cont gratuit" })).toBeInTheDocument();
+    expect(
+      within(sidebar).getByText("Acces complet gratuit timp de 3 luni. Nu este necesar niciun card."),
+    ).toBeInTheDocument();
     expect(
       within(sidebar).getByRole("link", { name: "Ai deja un cont? Autentifică-te" }),
     ).toBeInTheDocument();
@@ -158,6 +164,9 @@ describe("Guest/public shell localization completeness", () => {
       await within(sidebar).findByRole("link", { name: "Essayer un projet de démonstration" }),
     ).toBeInTheDocument();
     expect(within(sidebar).getByRole("link", { name: "Créer un compte gratuit" })).toBeInTheDocument();
+    expect(
+      within(sidebar).getByText("Accès complet gratuit pendant 3 mois. Aucune carte bancaire requise."),
+    ).toBeInTheDocument();
     expect(
       within(sidebar).getByRole("link", { name: "Vous avez déjà un compte ? Se connecter" }),
     ).toBeInTheDocument();

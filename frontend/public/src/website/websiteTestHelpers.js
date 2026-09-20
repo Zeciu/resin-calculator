@@ -1,5 +1,43 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { vi } from "vitest";
 import { handleGlobalReferenceSearch } from "../../../private/admin/test/editorialTestHelpers.js";
+
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "../../../../");
+
+function publishedWebsiteCorpusRoot(corpus = "public") {
+  return corpus === "private"
+    ? join(REPO_ROOT, "backend/private/content/published/website")
+    : join(REPO_ROOT, "backend/public/content/published/website");
+}
+
+export function loadPublishedWebsitePages(locale, corpus = "public") {
+  return JSON.parse(
+    readFileSync(join(publishedWebsiteCorpusRoot(corpus), locale, "pages.json"), "utf8"),
+  );
+}
+
+export function buildPublishedWebsitePageFromCorpus(pageKey, locale, corpus = "public") {
+  const document = loadPublishedWebsitePages(locale, corpus);
+  const page = document.pages?.[pageKey] ?? null;
+  return {
+    locale,
+    requestedLocale: locale,
+    available: page != null,
+    englishAvailable: Boolean(loadPublishedWebsitePages("en", corpus).pages?.[pageKey]),
+    page,
+  };
+}
+
+function localeFromRequestUrl(requestUrl) {
+  try {
+    return new URL(requestUrl, "http://local.test").searchParams.get("locale") || "en";
+  } catch {
+    const match = String(requestUrl).match(/[?&]locale=([^&]+)/);
+    return match ? decodeURIComponent(match[1]) : "en";
+  }
+}
 
 export function buildPublishedWebsiteResponse(pageKey, overrides = {}) {
   return {
@@ -25,6 +63,8 @@ export function buildPublishedWebsiteResponse(pageKey, overrides = {}) {
  *   pages?: Record<string, object>;
  *   unavailableKeys?: string[];
  *   publishHome?: boolean;
+ *   usePublishedCorpus?: boolean;
+ *   corpus?: "public" | "private";
  *   activePublicLocales?: string[];
  *   defaultPublicLocale?: string;
  * }} [options]
@@ -33,6 +73,8 @@ export function mockPublishedWebsiteFetch(options = {}) {
   const pages = options.pages ?? {};
   const unavailableKeys = new Set(options.unavailableKeys ?? []);
   const publishHome = options.publishHome === true;
+  const usePublishedCorpus = options.usePublishedCorpus === true;
+  const corpus = options.corpus ?? "public";
 
   const fetchMock = vi.fn(async (url, init) => {
     const requestUrl = String(url);
@@ -54,26 +96,41 @@ export function mockPublishedWebsiteFetch(options = {}) {
     const match = requestUrl.match(/\/api\/content\/website\/([^/?]+)/);
     if (match) {
       const pageKey = decodeURIComponent(match[1]);
+      const locale = localeFromRequestUrl(requestUrl);
       if (unavailableKeys.has(pageKey)) {
         return {
           ok: true,
           status: 200,
           json: async () => ({
-            locale: "en",
-            requestedLocale: "en",
+            locale,
+            requestedLocale: locale,
             available: false,
             englishAvailable: true,
             page: null,
           }),
         };
       }
-      if (pageKey === "home" && !pages.home && !publishHome) {
+      if (pages[pageKey]) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => pages[pageKey],
+        };
+      }
+      if (usePublishedCorpus) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => buildPublishedWebsitePageFromCorpus(pageKey, locale, corpus),
+        };
+      }
+      if (pageKey === "home" && !publishHome) {
         return {
           ok: true,
           status: 200,
           json: async () => ({
-            locale: "en",
-            requestedLocale: "en",
+            locale,
+            requestedLocale: locale,
             available: false,
             englishAvailable: false,
             page: null,

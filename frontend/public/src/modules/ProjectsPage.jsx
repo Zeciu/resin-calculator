@@ -20,21 +20,27 @@ import { loadRecentProjects, removeRecentProject } from "../workspace/recentProj
 import { deleteRecentProjectHandle } from "../workspace/recentProjectHandles.js";
 import DeleteProjectDialog from "../workspace/DeleteProjectDialog.jsx";
 
-function formatRecentTimestamp(value) {
+function formatRecentTimestamp(value, language, unknownDate) {
   if (!value) {
-    return "Unknown date";
+    return unknownDate;
   }
 
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
-    return "Unknown date";
+    return unknownDate;
   }
 
-  return date.toLocaleString();
+  try {
+    return date.toLocaleString(language || undefined);
+  } catch {
+    return date.toLocaleString();
+  }
 }
 
 function RecentProjectCard({ entry, disabled, onOpen, onDelete, deleteLabel }) {
+  const { t, language } = useI18n();
   const isUnavailable = entry.localFileUnavailable === true;
+  const unknownDate = t("projects.unknownDate");
 
   return (
     <div
@@ -53,15 +59,19 @@ function RecentProjectCard({ entry, disabled, onOpen, onDelete, deleteLabel }) {
           <span className="projects-hub__recent-name">{entry.projectName}</span>
           {isUnavailable ? (
             <span className="projects-hub__recent-meta projects-hub__recent-meta--unavailable">
-              Local file unavailable or moved
+              {t("projects.localFileUnavailable")}
             </span>
           ) : null}
           <span className="projects-hub__recent-meta">
-            Opened {formatRecentTimestamp(entry.lastOpenedAt)}
+            {t("projects.openedAt", {
+              when: formatRecentTimestamp(entry.lastOpenedAt, language, unknownDate),
+            })}
           </span>
           {entry.lastSavedAt ? (
             <span className="projects-hub__recent-meta">
-              Saved {formatRecentTimestamp(entry.lastSavedAt)}
+              {t("projects.savedAt", {
+                when: formatRecentTimestamp(entry.lastSavedAt, language, unknownDate),
+              })}
             </span>
           ) : null}
           {entry.lastKnownFileName ? (
@@ -155,14 +165,14 @@ export default function ProjectsPage() {
             ? loadError.message
             : loadError instanceof Error
               ? loadError.message
-              : "Could not open project file.";
+              : t("projects.openFailed");
 
         setError(message);
       } finally {
         setIsOpening(false);
       }
     },
-    [openProjectInWorkspace, refreshRecentProjects],
+    [openProjectInWorkspace, refreshRecentProjects, t],
   );
 
   const handleOpenProjectClick = useCallback(async () => {
@@ -268,12 +278,9 @@ export default function ProjectsPage() {
     <section className="projects-hub" aria-labelledby="projects-hub-title">
       <div className="projects-hub__intro">
         <h1 id="projects-hub-title" className="projects-hub__title">
-          Projects
+          {t("projects.title")}
         </h1>
-        <p className="projects-hub__description">
-          Your projects are saved as <strong>.hfzproject</strong> files on your device.
-          Open a project file to continue your work in the Application Workspace.
-        </p>
+        <p className="projects-hub__description">{t("projects.description")}</p>
       </div>
 
       <div className="projects-hub__actions">
@@ -284,7 +291,7 @@ export default function ProjectsPage() {
           disabled={isOpening}
         >
           <FolderOpen size={18} aria-hidden="true" />
-          Open Project
+          {t("projects.open")}
         </button>
       </div>
 
@@ -306,7 +313,7 @@ export default function ProjectsPage() {
               onClick={handleLocateProject}
               disabled={isOpening}
             >
-              Locate Project File
+              {t("projects.locateFile")}
             </button>
           ) : null}
         </div>
@@ -315,18 +322,15 @@ export default function ProjectsPage() {
       <section className="projects-hub__recent" aria-labelledby="projects-hub-recent-title">
         <div className="projects-hub__recent-header">
           <h2 id="projects-hub-recent-title" className="projects-hub__recent-title">
-            Recent Projects
+            {t("projects.recentTitle")}
           </h2>
-          <p className="projects-hub__recent-note">Recent on this device only</p>
+          <p className="projects-hub__recent-note">{t("projects.recentNote")}</p>
         </div>
 
         {recentProjects.length === 0 ? (
           <div className="module-empty-state">
-            <p className="module-empty-state__title">No recent projects yet.</p>
-            <p className="module-empty-state__hint">
-              Use <strong>Open Project</strong> to select a saved <strong>.hfzproject</strong> file
-              from your device.
-            </p>
+            <p className="module-empty-state__title">{t("projects.emptyTitle")}</p>
+            <p className="module-empty-state__hint">{t("projects.emptyHint")}</p>
           </div>
         ) : (
           <div className="projects-hub__recent-list">

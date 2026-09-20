@@ -27,7 +27,7 @@ export default function ManualTutorialsPage() {
   }, []);
 
   return (
-    <section className="manual-module" aria-label="Manual and Tutorials">
+    <section className="manual-module" aria-label={t("content.manualTitle")}>
       <aside className="manual-module__toc-panel">
         {loadState === "ready" ? (
           <ManualTableOfContents sections={sections} onNavigate={scrollToSection} />

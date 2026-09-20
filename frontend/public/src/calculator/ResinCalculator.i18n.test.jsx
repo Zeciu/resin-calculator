@@ -221,6 +221,20 @@ describe("ResinCalculator i18n", () => {
     expect(screen.getByRole("button", { name: /Export PDF/i })).toBeInTheDocument();
   });
 
+  it("renders the primary calculator workflow in German when interface language is de", () => {
+    seedDevicePreferences({ interfaceLanguage: "de" });
+    renderCalculator(<ResinCalculator showHeader={false} />);
+
+    expect(screen.getByText("Foto hochladen:")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Schritt 1 — Foto hochladen" })).toBeInTheDocument();
+    expect(screen.getByText("Beginnen Sie mit dem Hochladen eines Fotos.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Projektaktionen" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Projekt speichern/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /PDF exportieren/i })).toBeInTheDocument();
+    expect(screen.queryByText("Upload Photo:")).not.toBeInTheDocument();
+    expect(screen.queryByText("Project Actions")).not.toBeInTheDocument();
+  });
+
   it("renders the primary calculator workflow in French when interface language is fr", () => {
     seedDevicePreferences({ interfaceLanguage: "fr" });
     renderCalculator(<ResinCalculator showHeader={false} />);

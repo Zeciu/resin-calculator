@@ -4,7 +4,7 @@ import { resolvePublicInterfaceLocale } from "../publicLanguages/publicLanguages
 import { usePreferences } from "./usePreferences.js";
 import {
   INTERFACE_LANGUAGE_LABELS,
-  PUBLIC_SIDEBAR_LANGUAGES,
+  listActiveInterfaceLanguages,
 } from "./preferencesConstants.js";
 
 /**
@@ -15,10 +15,7 @@ export default function PublicLanguageSelector() {
   const { t } = useI18n();
   const { preferences, updatePreferences, isLoading } = usePreferences();
   const { activePublicLocales, defaultPublicLocale, loadState } = usePublicLanguages();
-  const active =
-    activePublicLocales.length > 0 ? activePublicLocales : [defaultPublicLocale || "en"];
-  const languageOptions = PUBLIC_SIDEBAR_LANGUAGES.filter((code) => active.includes(code));
-  const options = languageOptions.length > 0 ? languageOptions : [defaultPublicLocale || "en"];
+  const options = listActiveInterfaceLanguages(activePublicLocales, defaultPublicLocale);
   const resolvedLanguage = options.includes(preferences.interfaceLanguage)
     ? preferences.interfaceLanguage
     : resolvePublicInterfaceLocale(

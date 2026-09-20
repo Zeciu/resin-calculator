@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { ADMIN_ROUTES } from "./adminRoutes.js";
 import { ROUTES } from "../../public/src/workspace/routes.js";
 import { renderWorkspace } from "../../public/src/workspace/renderWorkspaceRouter.jsx";
+import { seedDevicePreferences } from "../../public/src/preferences/testHelpers.js";
 
 const SESSION_STORAGE_KEY = "hfzwood.mockAuth";
 
@@ -26,6 +27,7 @@ function seedEditorialUser() {
 describe("Admin Panel foundation", () => {
   beforeEach(() => {
     sessionStorage.clear();
+    localStorage.clear();
   });
 
   describe("with an authenticated user", () => {
@@ -39,6 +41,27 @@ describe("Admin Panel foundation", () => {
       expect(screen.getByRole("heading", { name: "Administration" })).toBeInTheDocument();
       expect(screen.getByRole("heading", { name: "Public Languages" })).toBeInTheDocument();
       expect(screen.queryByRole("banner", { name: "Workspace hero" })).not.toBeInTheDocument();
+    });
+
+    it("stays English when the public application language is German", () => {
+      seedEditorialUser();
+      seedDevicePreferences({ interfaceLanguage: "de" });
+      renderWorkspace(ADMIN_ROUTES.ROOT);
+
+      expect(screen.getByText("Admin Panel")).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "← Back to HFZWood" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("navigation", { name: "Administration navigation" }),
+      ).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Administration" })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Public Languages" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Dashboard" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Manual & Tutorials" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Glossary" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Knowledge Base" })).toBeInTheDocument();
+      expect(screen.queryByRole("heading", { name: "Mein Konto" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: "Handbuch & Tutorials" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("heading", { name: "Anwendungseinstellungen" })).not.toBeInTheDocument();
     });
 
     it("does not show Admin Panel in workspace navigation", () => {

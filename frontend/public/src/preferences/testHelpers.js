@@ -7,8 +7,20 @@ import {
   saveDevicePreferences,
 } from "./devicePreferencesStorage.js";
 
-function capabilitiesResponse() {
-  return GUEST_CAPABILITIES_RESPONSE;
+function capabilitiesResponse(overrides) {
+  return overrides ?? GUEST_CAPABILITIES_RESPONSE;
+}
+
+function defaultBillingStatus() {
+  return {
+    plan: "free",
+    status: "none",
+    cancelAtPeriodEnd: false,
+    currentPeriodEnd: null,
+    grantExpiresAt: null,
+    canCheckout: true,
+    canManage: false,
+  };
 }
 
 function publicLanguagesConfigResponse(activePublicLocales = ["en", "ro"]) {
@@ -18,7 +30,8 @@ function publicLanguagesConfigResponse(activePublicLocales = ["en", "ro"]) {
   };
 }
 
-function handleCapabilitiesFetch(url, _init, activePublicLocales = ["en", "ro"]) {
+function handleCapabilitiesFetch(url, _init, options = {}) {
+  const activePublicLocales = options.activePublicLocales ?? ["en", "ro"];
   const path = String(url);
   if (path.endsWith("/api/content/public-languages")) {
     return Promise.resolve({
@@ -31,7 +44,7 @@ function handleCapabilitiesFetch(url, _init, activePublicLocales = ["en", "ro"])
     return Promise.resolve({
       ok: true,
       status: 200,
-      json: async () => capabilitiesResponse(),
+      json: async () => capabilitiesResponse(options.capabilities),
     });
   }
   if (path.endsWith("/api/billing/status")) {
@@ -39,12 +52,8 @@ function handleCapabilitiesFetch(url, _init, activePublicLocales = ["en", "ro"])
       ok: true,
       status: 200,
       json: async () => ({
-        plan: "free",
-        status: "none",
-        cancelAtPeriodEnd: false,
-        currentPeriodEnd: null,
-        canCheckout: true,
-        canManage: false,
+        ...defaultBillingStatus(),
+        ...options.billingStatus,
       }),
     });
   }
@@ -69,13 +78,17 @@ export function readDevicePreferencesFromStorage() {
 }
 
 export function mockCapabilitiesFetch(options = {}) {
-  const activePublicLocales = options.activePublicLocales ?? ["en", "ro"];
+  const fetchOptions = {
+    activePublicLocales: options.activePublicLocales ?? ["en", "ro"],
+    billingStatus: options.billingStatus,
+    capabilities: options.capabilities,
+  };
   return vi.spyOn(global, "fetch").mockImplementation((url, init) => {
     const path = String(url);
     if (path.includes("/api/preferences")) {
       return Promise.reject(new Error("Unexpected /api/preferences call"));
     }
-    return handleCapabilitiesFetch(url, init, activePublicLocales);
+    return handleCapabilitiesFetch(url, init, fetchOptions);
   });
 }
 

@@ -157,6 +157,9 @@ describe("Guest onboarding and Home navigation", () => {
     const demoCta = within(sidebar).getByRole("link", { name: "Try a demo project" });
     const languageSelect = await within(sidebar).findByRole("combobox", { name: "Language" });
     const registerCta = within(sidebar).getByRole("link", { name: "Create Free Account" });
+    const promoNote = within(sidebar).getByText(
+      "Full access free for 3 months. No credit card required.",
+    );
     const loginCta = within(sidebar).getByRole("link", { name: "Already have an account? Log in" });
     expect(demoCta).toHaveAttribute("href", "/demo");
     expect(demoCta).toHaveAttribute("data-nav", "demo-project");
@@ -175,7 +178,8 @@ describe("Guest onboarding and Home navigation", () => {
     expect(loginCta).toHaveAttribute("href", "/login");
     expect(demoCta.compareDocumentPosition(languageSelect) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(languageSelect.compareDocumentPosition(registerCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(registerCta.compareDocumentPosition(loginCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(registerCta.compareDocumentPosition(promoNote) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(promoNote.compareDocumentPosition(loginCta) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(within(screen.getByRole("main")).queryByRole("link", { name: "Try a demo project" })).not.toBeInTheDocument();
 
     expect(within(sidebar).getByRole("link", { name: "Home" })).toHaveAttribute("href", "/");

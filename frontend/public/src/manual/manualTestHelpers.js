@@ -30,6 +30,17 @@ export function mockPublishedManualFetch(sections = MANUAL_SECTIONS, options = {
         }),
       };
     }
+    if (requestUrl.includes("/api/me/capabilities")) {
+      return {
+        ok: true,
+        json: async () => ({
+          role: "user",
+          accessTier: "free",
+          catalogVersion: 1,
+          capabilities: {},
+        }),
+      };
+    }
     if (isPackagedContentImageRequest(requestUrl)) {
       return {
         ok: true,

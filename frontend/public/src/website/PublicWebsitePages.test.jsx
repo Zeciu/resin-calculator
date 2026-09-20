@@ -256,6 +256,9 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       expect(css).toContain("grid-column: 3 / 5");
       expect(css).toContain("grid-column: 2 / 4");
       expect(css).not.toContain("@media (min-width: 768px) and (max-width: 1050px)");
+      expect(css).toMatch(
+        /\.public-website-page\[data-page-key="pricing"\] \.public-website-page__title\s*\{[^}]*font-weight:\s*400;/,
+      );
     });
 
     it("renders offers in fixed free/monthly/annual order and omits hidden offers", async () => {
@@ -353,6 +356,87 @@ describe("Public Website fixed pages (Stage 6D)", () => {
       expect(document.querySelector(".public-pricing__grid")).toBeNull();
       expect(document.querySelector('[data-offers-empty="true"]')).toBeInTheDocument();
       expect(document.querySelector("form")).toBeNull();
+    });
+
+    it("shows the 3-month explainer after the page heading and before the pricing cards", async () => {
+      mockPublishedWebsiteFetch({
+        pages: {
+          pricing: buildPublishedPricingResponse({
+            publicTitle: "Choose the plan that fits your work style",
+            intro: "",
+            offers: [
+              buildPricingOffer("free", { title: "Free", displayedPriceText: "$0" }),
+              buildPricingOffer("monthly", { title: "Monthly", displayedPriceText: "$9.99" }),
+              buildPricingOffer("annual", { title: "Annual", displayedPriceText: "$89.99" }),
+            ],
+          }),
+        },
+      });
+      renderWorkspace(ROUTES.PRICING);
+
+      await waitFor(() => {
+        expect(screen.getByRole("heading", { name: "Free", level: 2 })).toBeInTheDocument();
+      });
+
+      const heading = screen.getByRole("heading", {
+        name: "Choose the plan that fits your work style",
+        level: 1,
+      });
+      const explainer = screen.getByText("You have full access to HFZWood free for 3 months.");
+      const cards = screen.getAllByRole("article").filter((node) => node.dataset.offerId);
+      expect(cards.map((card) => card.dataset.offerId)).toEqual(["free", "monthly", "annual"]);
+      expect(within(cards[0]).getByText("$0")).toBeInTheDocument();
+      expect(within(cards[1]).getByText("$9.99")).toBeInTheDocument();
+      expect(within(cards[2]).getByText("$89.99")).toBeInTheDocument();
+      expect(heading.compareDocumentPosition(explainer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(
+        explainer.compareDocumentPosition(cards[0]) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+      expect(
+        screen.queryByText(
+          "Monthly and Annual include the same functionality; only the billing period and price differ.",
+        ),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText(/upgrade later/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/upgrade any time/i)).not.toBeInTheDocument();
+      expect(screen.getByText("Paid plans remain available.")).toBeInTheDocument();
+    });
+
+    it("does not present contradictory upgrade-now copy in published EN/RO/FR/DE Pricing content", () => {
+      const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "../../../../");
+      const corpora = ["backend/public/content/published/website", "backend/private/content/published/website"];
+      for (const corpus of corpora) {
+        for (const locale of ["en", "ro", "fr", "de"]) {
+          const pages = JSON.parse(
+            readFileSync(join(repoRoot, corpus, locale, "pages.json"), "utf8"),
+          );
+          const intro = String(pages.pages?.pricing?.body?.intro ?? pages.pricing?.body?.intro ?? "");
+          const footnote = String(
+            pages.pages?.pricing?.body?.footnote ?? pages.pricing?.body?.footnote ?? "",
+          );
+          const haystack = `${intro} ${footnote}`.toLowerCase();
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/upgrade later/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/upgrade to a higher plan/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/trece ulterior la acces complet/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/trece la un plan superior/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/passez à l’accès abonné/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/passer à une formule supérieure/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/später auf den vollen abonnenten-zugang/);
+          expect(haystack, `${corpus} ${locale}`).not.toMatch(/auf einen höheren tarif umsteigen/);
+          if (locale === "en" || locale === "ro" || locale === "de") {
+            expect(intro.trim(), `${corpus} ${locale} intro`).toBe("");
+            expect(haystack, `${corpus} ${locale}`).not.toMatch(
+              /monthly and annual include the same functionality/,
+            );
+            expect(haystack, `${corpus} ${locale}`).not.toMatch(
+              /planul lunar .* planul anual includ aceeași funcționalitate/,
+            );
+            expect(haystack, `${corpus} ${locale}`).not.toMatch(
+              /monats- und der jahresplan umfassen denselben funktionsumfang/,
+            );
+          }
+        }
+      }
     });
 
     it("uses approved CTA labels and routes for all three offers", async () => {

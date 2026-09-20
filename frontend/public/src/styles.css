@@ -2203,6 +2203,16 @@ button.workspace-sidebar__link {
   overflow-wrap: break-word;
 }
 
+.workspace-sidebar__guest-promo {
+  margin: 0;
+  padding: 0 2px;
+  color: #6b5a48;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+}
+
 .workspace-sidebar__guest-auth .guest-home-onboarding__demo {
   display: flex;
   justify-content: flex-start;
@@ -4115,6 +4125,11 @@ button.workspace-sidebar__link {
   font-size: 15px;
   line-height: 1.6;
   color: #4a4034;
+}
+
+.my-account-page__promo {
+  color: #4a4034;
+  font-size: 15px;
 }
 
 .my-account-page__settings-list {
@@ -6801,6 +6816,10 @@ button.workspace-sidebar__link {
   margin-bottom: 10px;
 }
 
+.public-website-page[data-page-key="pricing"] .public-website-page__title {
+  font-weight: 400;
+}
+
 .public-about {
   display: flex;
   flex-direction: column;
@@ -6962,6 +6981,31 @@ button.workspace-sidebar__link {
   max-width: 100%;
   line-height: 1.55;
   overflow-wrap: break-word;
+}
+
+.public-pricing__promo,
+.my-account-page__promo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  width: 100%;
+  max-width: 65ch;
+}
+
+.promo-access-explainer__lead,
+.promo-access-explainer__body {
+  margin: 0;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.promo-access-explainer__lead {
+  font-weight: 600;
+}
+
+.promo-access-explainer__body {
+  font-weight: 400;
 }
 
 .public-pricing__empty {

@@ -138,7 +138,7 @@ export default function KnowledgeBasePage() {
   );
 
   return (
-    <section className="knowledge-base-module" aria-label="Knowledge Base">
+    <section className="knowledge-base-module" aria-label={t("content.knowledgeBaseTitle")}>
       <header className="knowledge-base-module__header">
         <h1 className="knowledge-base-module__title">{t("content.knowledgeBaseTitle")}</h1>
       </header>

@@ -3,6 +3,7 @@ import { useI18n } from "../i18n/I18nContext.jsx";
 import PublicWebsitePageShell from "./PublicWebsitePageShell.jsx";
 import WebsiteDestinationLink from "./WebsiteDestinationLink.jsx";
 import WebsitePlainText from "./WebsitePlainText.jsx";
+import PromoAccessExplainer from "./PromoAccessExplainer.jsx";
 import { WEBSITE_PAGE_KEYS } from "./websitePublicConstants.js";
 
 const PRICING_OFFER_ORDER = ["free", "monthly", "annual"];
@@ -59,7 +60,10 @@ export default function PublicPricingPage() {
 
         return (
           <div className="public-pricing">
-            <WebsitePlainText text={intro} className="public-pricing__intro" />
+            {intro ? (
+              <WebsitePlainText text={intro} className="public-pricing__intro" />
+            ) : null}
+            <PromoAccessExplainer t={t} className="public-pricing__promo" />
 
             {offers.length > 0 ? (
               <div className="public-pricing__grid">

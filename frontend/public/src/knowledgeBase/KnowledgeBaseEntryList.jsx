@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n/I18nContext.jsx";
 import KnowledgeBaseEntry from "./KnowledgeBaseEntry.jsx";
 
 /**
@@ -14,11 +15,12 @@ export default function KnowledgeBaseEntryList({
   onToggleEntry,
   onNavigateToEntry,
 }) {
+  const { t } = useI18n();
   if (entries.length === 0) {
     return (
       <div className="module-empty-state">
-        <p className="module-empty-state__title">No matching entries found.</p>
-        <p className="module-empty-state__hint">Try different keywords.</p>
+        <p className="module-empty-state__title">{t("knowledgeBase.emptyTitle")}</p>
+        <p className="module-empty-state__hint">{t("knowledgeBase.emptyHint")}</p>
       </div>
     );
   }

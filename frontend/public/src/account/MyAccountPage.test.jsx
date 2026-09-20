@@ -5,6 +5,7 @@ import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockCapabilitiesFetch, seedDevicePreferences } from "../preferences/testHelpers.js";
+import { FREE_CAPABILITIES } from "../capabilities/capabilityDefaults.js";
 import { ROUTES } from "../workspace/routes.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 
@@ -19,6 +20,20 @@ const MOCK_USER = {
   id: "stub-user",
   email: "account@example.com",
   username: "accountuser",
+};
+
+const GRANT_EXPIRES_AT = Math.floor(Date.UTC(2026, 11, 20) / 1000);
+
+const SUBSCRIBER_CAPABILITIES = {
+  role: "user",
+  accessTier: "subscriber",
+  catalogVersion: 1,
+  capabilities: {
+    ...FREE_CAPABILITIES,
+    "calculator.maxPolygonPoints": null,
+    "calculator.pdfExport": true,
+    "knowledgeBase.maxArticles": null,
+  },
 };
 
 function seedAuthenticatedSession(user = MOCK_USER) {
@@ -172,5 +187,90 @@ describe("My Account page", () => {
     expect(screen.getByRole("button", { name: /New Project/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Log out/i })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Create Free Account" })).toBeInTheDocument();
+  });
+
+  it("presents an active promotional grant as full access until the backend expiry", async () => {
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
+    mockCapabilitiesFetch({
+      capabilities: SUBSCRIBER_CAPABILITIES,
+      billingStatus: {
+        plan: "subscriber",
+        status: "none",
+        cancelAtPeriodEnd: false,
+        currentPeriodEnd: null,
+        grantExpiresAt: GRANT_EXPIRES_AT,
+        canCheckout: true,
+        canManage: false,
+      },
+    });
+    renderWorkspace(ROUTES.ACCOUNT);
+
+    await waitFor(() => {
+      expect(screen.getByText("Full access")).toBeInTheDocument();
+    });
+    expect(screen.getByText("Current access")).toBeInTheDocument();
+    expect(screen.getByText("Valid until")).toBeInTheDocument();
+    expect(screen.getByText("20 December 2026")).toBeInTheDocument();
+    expect(
+      screen.getByText("You have full access to HFZWood free for 3 months."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "View plans and pricing" })).toHaveAttribute(
+      "href",
+      ROUTES.PRICING,
+    );
+    expect(screen.getByRole("button", { name: /Refresh status/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Subscribe$/i })).not.toBeInTheDocument();
+    expect(screen.queryByText("Subscriber")).not.toBeInTheDocument();
+    expect(screen.queryByText("No active subscription")).not.toBeInTheDocument();
+  });
+
+  it("keeps existing Account behavior when the promotional grant is absent or expired", async () => {
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
+    mockCapabilitiesFetch({
+      billingStatus: {
+        plan: "free",
+        status: "none",
+        grantExpiresAt: 1,
+        canCheckout: true,
+        canManage: false,
+      },
+    });
+    renderWorkspace(ROUTES.ACCOUNT);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: /^Subscribe$/i })).toBeInTheDocument();
+    });
+    expect(screen.getByText("Current plan")).toBeInTheDocument();
+    expect(screen.getByText("Free")).toBeInTheDocument();
+    expect(screen.getByText("No active subscription")).toBeInTheDocument();
+    expect(screen.queryByText("Current access")).not.toBeInTheDocument();
+    expect(screen.queryByText("20 December 2026")).not.toBeInTheDocument();
+  });
+
+  it("keeps Manage billing for a Stripe customer who also has an active promotional grant", async () => {
+    seedAuthenticatedSession({ ...MOCK_USER, role: "user" });
+    mockCapabilitiesFetch({
+      capabilities: SUBSCRIBER_CAPABILITIES,
+      billingStatus: {
+        plan: "subscriber",
+        status: "active",
+        cancelAtPeriodEnd: false,
+        currentPeriodEnd: GRANT_EXPIRES_AT,
+        grantExpiresAt: GRANT_EXPIRES_AT,
+        canCheckout: false,
+        canManage: true,
+      },
+    });
+    renderWorkspace(ROUTES.ACCOUNT);
+
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: /Manage subscription/i })).toBeInTheDocument();
+    });
+    expect(screen.getByText("Full access")).toBeInTheDocument();
+    expect(screen.getByText("20 December 2026")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Subscribe$/i })).not.toBeInTheDocument();
+    expect(screen.queryByText("Subscriber")).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "View plans and pricing" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Refresh status/i })).toBeInTheDocument();
   });
 });

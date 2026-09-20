@@ -27,6 +27,7 @@
   "glossary.searchPlaceholder": "Hledat termíny a definice",
   "glossary.emptyTitle": "Žádný termín ve slovníku neodpovídá hledání.",
   "glossary.emptyHint": "Zkuste jiná klíčová slova.",
+  "glossary.alphabetNav": "Abecední rejstřík",
   "knowledgeBase.problemSummary": "Shrnutí problému",
   "knowledgeBase.symptoms": "Příznaky",
   "knowledgeBase.possibleCauses": "Možné příčiny",
@@ -41,5 +42,7 @@
   "knowledgeBase.relatedArticles": "Související články",
   "knowledgeBase.glossary": "Slovníček",
   "knowledgeBase.manual": "Manuál",
-  "knowledgeBase.backToTop": "Zpět nahoru"
+  "knowledgeBase.backToTop": "Zpět nahoru",
+  "knowledgeBase.emptyTitle": "Nenalezeny žádné odpovídající záznamy.",
+  "knowledgeBase.emptyHint": "Zkuste jiná klíčová slova."
 }

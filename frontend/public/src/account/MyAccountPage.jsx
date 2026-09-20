@@ -6,6 +6,8 @@ import { useCapabilities } from "../capabilities/CapabilitiesContext.jsx";
 import { ROUTES } from "../workspace/routes.js";
 import { useWorkspaceNavigation } from "../workspace/useWorkspaceNavigation.js";
 import { createPortalSession, fetchBillingStatus } from "./billingApi.js";
+import { formatGrantExpiryDate, hasActivePromotionalGrant } from "./promotionalGrant.js";
+import PromoAccessExplainer from "../website/PromoAccessExplainer.jsx";
 
 function displayValue(value) {
   return value && String(value).trim() ? String(value).trim() : "—";
@@ -125,6 +127,10 @@ export default function MyAccountPage() {
     setIsRefreshing(false);
   }
 
+  const hasActiveGrant = hasActivePromotionalGrant(billingStatus);
+  const grantExpiryLabel = hasActiveGrant
+    ? formatGrantExpiryDate(billingStatus.grantExpiresAt, language)
+    : null;
   const planLabel = (() => {
     if (billingStatus?.plan === "subscriber" || capabilities?.accessTier === "subscriber") {
       return t("account.planSubscriber");
@@ -154,7 +160,7 @@ export default function MyAccountPage() {
 
   const periodEndLabel = formatPeriodEnd(billingStatus?.currentPeriodEnd, language);
   const showSubscribe =
-    billingStatus?.canCheckout ?? capabilities?.accessTier !== "subscriber";
+    !hasActiveGrant && (billingStatus?.canCheckout ?? capabilities?.accessTier !== "subscriber");
   const showManage = Boolean(billingStatus?.canManage);
 
   return (
@@ -198,22 +204,40 @@ export default function MyAccountPage() {
         <h3 className="my-account-page__section-title" id="my-account-subscription-heading">
           {t("account.subscription")}
         </h3>
-        <dl className="my-account-page__details">
-          <div className="my-account-page__detail">
-            <dt className="my-account-page__detail-label">{t("account.currentPlan")}</dt>
-            <dd className="my-account-page__detail-value">{planLabel}</dd>
-          </div>
-          <div className="my-account-page__detail">
-            <dt className="my-account-page__detail-label">{t("account.subscriptionStatus")}</dt>
-            <dd className="my-account-page__detail-value">{statusLabel}</dd>
-          </div>
-          {periodEndLabel ? (
+        {hasActiveGrant ? (
+          <>
+            <dl className="my-account-page__details">
+              <div className="my-account-page__detail">
+                <dt className="my-account-page__detail-label">{t("account.currentAccess")}</dt>
+                <dd className="my-account-page__detail-value">{t("account.accessFull")}</dd>
+              </div>
+              {grantExpiryLabel ? (
+                <div className="my-account-page__detail">
+                  <dt className="my-account-page__detail-label">{t("account.validUntil")}</dt>
+                  <dd className="my-account-page__detail-value">{grantExpiryLabel}</dd>
+                </div>
+              ) : null}
+            </dl>
+            <PromoAccessExplainer t={t} className="my-account-page__promo" />
+          </>
+        ) : (
+          <dl className="my-account-page__details">
             <div className="my-account-page__detail">
-              <dt className="my-account-page__detail-label">{t("account.currentPeriodEnd")}</dt>
-              <dd className="my-account-page__detail-value">{periodEndLabel}</dd>
+              <dt className="my-account-page__detail-label">{t("account.currentPlan")}</dt>
+              <dd className="my-account-page__detail-value">{planLabel}</dd>
             </div>
-          ) : null}
-        </dl>
+            <div className="my-account-page__detail">
+              <dt className="my-account-page__detail-label">{t("account.subscriptionStatus")}</dt>
+              <dd className="my-account-page__detail-value">{statusLabel}</dd>
+            </div>
+            {periodEndLabel ? (
+              <div className="my-account-page__detail">
+                <dt className="my-account-page__detail-label">{t("account.currentPeriodEnd")}</dt>
+                <dd className="my-account-page__detail-value">{periodEndLabel}</dd>
+              </div>
+            ) : null}
+          </dl>
+        )}
         {billingMessage ? (
           <p className="my-account-page__billing-message" role="status">
             {billingMessage}

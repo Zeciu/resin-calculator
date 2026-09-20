@@ -8,6 +8,7 @@ import {
   INTERFACE_LANGUAGE_LABELS,
   LENGTH_UNITS,
   VOLUME_UNITS,
+  listActiveInterfaceLanguages,
 } from "./preferencesConstants.js";
 import { ROUTES } from "../workspace/routes.js";
 
@@ -15,8 +16,10 @@ export default function PreferencesPage() {
   const { t } = useI18n();
   const { preferences, isLoading, error, updatePreferences } = usePreferences();
   const { activePublicLocales, defaultPublicLocale } = usePublicLanguages();
-  const languageOptions =
-    activePublicLocales.length > 0 ? activePublicLocales : [defaultPublicLocale || "en"];
+  const languageOptions = listActiveInterfaceLanguages(
+    activePublicLocales,
+    defaultPublicLocale,
+  );
   const [draft, setDraft] = useState(preferences);
   const [statusMessage, setStatusMessage] = useState("");
 

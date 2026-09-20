@@ -6,6 +6,7 @@ import {
   INTERFACE_LANGUAGE_LABELS,
   LENGTH_UNITS,
   VOLUME_UNITS,
+  listActiveInterfaceLanguages,
 } from "./preferencesConstants.js";
 
 /**
@@ -17,8 +18,10 @@ export default function QuickPreferences({ variant = "sidebar" }) {
   const { t } = useI18n();
   const { preferences, updatePreferences, isLoading } = usePreferences();
   const { activePublicLocales, defaultPublicLocale } = usePublicLanguages();
-  const languageOptions =
-    activePublicLocales.length > 0 ? activePublicLocales : [defaultPublicLocale || "en"];
+  const languageOptions = listActiveInterfaceLanguages(
+    activePublicLocales,
+    defaultPublicLocale,
+  );
   const resolvedLanguage = resolvePublicInterfaceLocale(
     preferences.interfaceLanguage,
     languageOptions,

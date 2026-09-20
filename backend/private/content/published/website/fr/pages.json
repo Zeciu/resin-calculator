@@ -188,8 +188,8 @@
     },
     "pricing": {
       "body": {
-        "footnote": "Vous pouvez commencer gratuitement et passer à une formule supérieure à tout moment, sans perdre les projets déjà réalisés.",
-        "intro": "Commencez gratuitement, puis passez à l’accès abonné complet lorsque vous en avez besoin. Les forfaits mensuel et annuel offrent les mêmes fonctionnalités ; seuls la période de facturation et le prix diffèrent.",
+        "footnote": "Vos projets existants restent les vôtres.",
+        "intro": "Les forfaits mensuel et annuel offrent les mêmes fonctionnalités ; seuls la période de facturation et le prix diffèrent.",
         "offers": [
           {
             "benefits": [

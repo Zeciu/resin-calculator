@@ -27,6 +27,7 @@
   "glossary.searchPlaceholder": "Szukaj terminów i definicji",
   "glossary.emptyTitle": "Żaden termin z glosariusza nie pasuje do wyszukiwania.",
   "glossary.emptyHint": "Spróbuj innych słów kluczowych.",
+  "glossary.alphabetNav": "Indeks alfabetyczny",
   "knowledgeBase.problemSummary": "Podsumowanie problemu",
   "knowledgeBase.symptoms": "Objawy",
   "knowledgeBase.possibleCauses": "Możliwe przyczyny",
@@ -41,5 +42,7 @@
   "knowledgeBase.relatedArticles": "Powiązane artykuły",
   "knowledgeBase.glossary": "Glosariusz",
   "knowledgeBase.manual": "Podręcznik",
-  "knowledgeBase.backToTop": "Wróć na górę"
+  "knowledgeBase.backToTop": "Wróć na górę",
+  "knowledgeBase.emptyTitle": "Nie znaleziono pasujących wpisów.",
+  "knowledgeBase.emptyHint": "Spróbuj innych słów kluczowych."
 }

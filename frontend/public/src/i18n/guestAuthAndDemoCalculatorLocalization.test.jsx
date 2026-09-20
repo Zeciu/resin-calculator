@@ -372,6 +372,30 @@ describe("Guest authentication localization completeness", () => {
     expect(screen.getByLabelText("Confirmez le nouveau mot de passe")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Mettre à jour le mot de passe" })).toBeInTheDocument();
   });
+
+  it("renders German login and password recovery chrome without English fallback", async () => {
+    mockPublishedWebsiteFetch({ activePublicLocales: ["en", "ro", "de"] });
+    seedDevicePreferences({ interfaceLanguage: "de" });
+    renderWorkspace(ROUTES.LOGIN);
+
+    expect(await screen.findByRole("heading", { name: "Bei HFZWood anmelden", level: 2 })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "E-Mail oder Benutzername" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Passwort")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Anmelden" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Konto erstellen" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Passwort vergessen?" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Log in to HFZWood", level: 2 })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Forgot your password?" })).not.toBeInTheDocument();
+
+    cleanup();
+    renderWorkspace(ROUTES.PASSWORD_RECOVERY);
+    expect(screen.getByRole("heading", { name: "Passwort zurücksetzen", level: 2 })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Wiederherstellungsanweisungen senden" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Zurück zur Anmeldung" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Reset your password", level: 2 })).not.toBeInTheDocument();
+  });
 });
 
 describe("Demo calculator localization completeness", () => {
@@ -383,7 +407,7 @@ describe("Demo calculator localization completeness", () => {
     clearDevicePreferences();
     vi.restoreAllMocks();
     restoreImage = installImageMock();
-    mockCapabilitiesFetch({ activePublicLocales: ["en", "ro", "fr"] });
+    mockCapabilitiesFetch({ activePublicLocales: ["en", "ro", "fr", "de"] });
   });
 
   afterEach(() => {
@@ -564,5 +588,42 @@ describe("Demo calculator localization completeness", () => {
     expect(screen.queryByRole("button", { name: "Export PDF" })).not.toBeInTheDocument();
     expect(screen.queryByText("View & Navigation")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Zoom In" })).not.toBeInTheDocument();
+  });
+
+  it("renders German demo calculator chrome without English fallback", async () => {
+    seedDevicePreferences({ interfaceLanguage: "de" });
+    const ref = renderDemoCalculator();
+    await restoreSnapshot(ref, buildCompletedDemoSnapshot());
+
+    expect(await screen.findByText("Schnelleinstellungen")).toBeInTheDocument();
+    expect(screen.getByText("Oberflächensprache")).toBeInTheDocument();
+    expect(screen.getByText("Bevorzugte Längeneinheit")).toBeInTheDocument();
+    expect(screen.getByText("Bevorzugte Volumeneinheit")).toBeInTheDocument();
+    expectVisibleCopy("Referenzmaße");
+    expectVisibleCopy("Formbegrenzung");
+    expectVisibleCopy("Holzinseln");
+    expectVisibleCopy("Harzkavitäten");
+    expect(screen.getByText("Erweiterte Details")).toBeInTheDocument();
+    expect(screen.getByText("Dieses Projekt bearbeiten")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Referenzmaß hinzufügen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Ausgewähltes Referenzmaß bearbeiten/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Ausgewähltes Referenzmaß löschen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Formbegrenzung bearbeiten/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Formbegrenzung löschen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Holzinsel hinzufügen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Ausgewählte Holzinsel bearbeiten/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Ausgewählte Holzinsel löschen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Holzinseln löschen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Harzkavität hinzufügen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Ausgewählte Kavität bearbeiten/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Ausgewählte Kavität löschen/ })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Alle Kavitäten löschen/ })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Projektaktionen", level: 3 })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /PDF exportieren/ })).toBeDisabled();
+    expect(screen.queryByText("Quick preferences")).not.toBeInTheDocument();
+    expect(screen.queryByText("Advanced Details")).not.toBeInTheDocument();
+    expect(screen.queryByText("Reference Measurements")).not.toBeInTheDocument();
+    expect(screen.queryByText("Modify this project")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Export PDF" })).not.toBeInTheDocument();
   });
 });

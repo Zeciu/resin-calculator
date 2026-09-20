@@ -176,7 +176,7 @@ export default function GlossaryPage() {
   }, []);
 
   return (
-    <section className="glossary-module" aria-label="Glossary">
+    <section className="glossary-module" aria-label={t("content.glossaryTitle")}>
       <header className="glossary-module__header">
         <h1 className="glossary-module__title">{t("content.glossaryTitle")}</h1>
       </header>

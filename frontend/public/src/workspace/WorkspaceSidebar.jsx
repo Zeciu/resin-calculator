@@ -55,6 +55,7 @@ function GuestAuthActions({ t, pathname, onNavigate }) {
       >
         {t("home.onboardingRegister")}
       </Link>
+      <p className="workspace-sidebar__guest-promo">{t("home.onboardingPromoNote")}</p>
       <Link
         className="guest-home-onboarding__secondary"
         to={ROUTES.LOGIN}

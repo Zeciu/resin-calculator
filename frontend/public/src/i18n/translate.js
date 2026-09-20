@@ -29,6 +29,8 @@ export const KNOWLEDGE_BASE_UI_KEYS = [
   "knowledgeBase.glossary",
   "knowledgeBase.manual",
   "knowledgeBase.backToTop",
+  "knowledgeBase.emptyTitle",
+  "knowledgeBase.emptyHint",
 ];
 
 /** Public Glossary structural UI keys (must exist in every supported locale bundle). */
@@ -37,6 +39,7 @@ export const GLOSSARY_UI_KEYS = [
   "glossary.searchPlaceholder",
   "glossary.emptyTitle",
   "glossary.emptyHint",
+  "glossary.alphabetNav",
 ];
 
 /** Document titles and not-found copy (must exist in every supported locale bundle). */
@@ -136,6 +139,7 @@ export const GUEST_PUBLIC_SHELL_UI_KEYS = [
   "home.onboardingBody",
   "home.onboardingRegister",
   "home.onboardingLogin",
+  "home.onboardingPromoNote",
   "locked.title",
   "locked.body",
   "locked.action",
@@ -202,6 +206,8 @@ export const GUEST_PUBLIC_SHELL_UI_KEYS = [
   "content.manualTitle",
   "content.glossaryTitle",
   "content.knowledgeBaseTitle",
+  "content.contents",
+  "content.tableOfContents",
   "website.backHome",
   "website.footerLabel",
   "website.footerNavLabel",
@@ -222,6 +228,8 @@ export const GUEST_PUBLIC_SHELL_UI_KEYS = [
   "website.pricing.monthlyCta",
   "website.pricing.annualCta",
   "website.pricing.trustTitle",
+  "website.pricing.promoLead",
+  "website.pricing.promoBody",
   "website.contact.communityTitle",
   "website.contact.communityIntro",
   "website.contact.writeToUs",

@@ -1,0 +1,550 @@
+{
+  "locale": "de",
+  "pages": {
+    "about": {
+      "body": {
+        "pageKind": "about",
+        "publicTitle": "\u00dcber HFZWood",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "<strong>Auf praktischer Erfahrung aufgebaut</strong>",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood ist das Ergebnis von \u00fcber f\u00fcnfzehn Jahren praktischer Erfahrung bei der Umsetzung von Projekten aus Holz und Epoxidharz. In all dieser Zeit haben wir Unikate gefertigt, mit verschiedenen Techniken experimentiert, schwierige Situationen gemeistert und Projekt f\u00fcr Projekt gelernt, was in der Werkstatt wirklich funktioniert.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "All diese praktischen Erfahrungen sind in HFZWood eingeflossen. Der Arbeitsablauf, dem Sie in der Anwendung folgen, ist weder theoretischer Natur noch wurde er lediglich zur Vereinfachung der Benutzeroberfl\u00e4che konzipiert. Er bildet einen Arbeitsprozess ab, der sich in zahlreichen realen Projekten bew\u00e4hrt hat und darauf ausgelegt ist, Fehler zu reduzieren, die Genauigkeit der Sch\u00e4tzungen zu erh\u00f6hen und von Projekt zu Projekt konsistente Ergebnisse zu liefern.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood soll weder die Erfahrung noch die Kreativit\u00e4t oder das fachliche Urteilsverm\u00f6gen des Nutzers ersetzen. Im Gegenteil: Die App wurde entwickelt, um diese durch pr\u00e4zise Berechnungen und einen klaren Arbeitsablauf zu unterst\u00fctzen, sodass wichtige Entscheidungen stets in den H\u00e4nden des Projektverantwortlichen liegen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Jedes Projekt ist anders, und keine Software kann die Liebe zum Detail und die im Laufe der Zeit gesammelte Erfahrung ersetzen. Aus diesem Grund versucht HFZWood nicht, Entscheidungen anstelle des Nutzers zu treffen, und gibt keine auf Annahmen basierenden Sch\u00e4tzungen ab. Die Anwendung berechnet ausschlie\u00dflich auf der Grundlage der vom Nutzer definierten Informationen und liefert reproduzierbare und leicht \u00fcberpr\u00fcfbare Ergebnisse. Unser Ziel ist einfach: Wir m\u00f6chten Ihnen mehr Vertrauen in Ihre Kalkulationen geben, Materialverschwendung reduzieren und Ihnen helfen, Projekt f\u00fcr Projekt vorhersehbare Ergebnisse zu erzielen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "",
+                "type": "paragraph"
+              }
+            ],
+            "id": "hero",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Mehr als nur ein Rechner f\u00fcr Epoxidharz"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Jeder, der schon einmal mit Epoxidharz gearbeitet hat, wei\u00df, dass eine falsche Sch\u00e4tzung zu zus\u00e4tzlichen Kosten, Verz\u00f6gerungen oder Kompromissen w\u00e4hrend des Projekts f\u00fchren kann. In vielen F\u00e4llen werden die Berechnungen \u201enach Augenma\u00df\u201c oder auf der Grundlage von Erfahrungswerten vorgenommen, und die Ergebnisse k\u00f6nnen von Projekt zu Projekt variieren.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood wurde entwickelt, um eine praktische und einheitliche Methode zur Materialberechnung zu bieten, damit jedes Projekt mit einer besseren Planung und gr\u00f6\u00dferer Sicherheit hinsichtlich des Materialbedarfs beginnen kann.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-vigvsh",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Warum wir HFZWood gegr\u00fcndet haben"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Die App richtet sich sowohl an diejenigen, die ihre ersten Projekte mit Epoxidharz realisieren, als auch an Tischler, Kunsthandwerker, Maker und Werkst\u00e4tten, die diese Technologie regelm\u00e4\u00dfig einsetzen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Unabh\u00e4ngig vom Erfahrungsstand bietet HFZWood einen leicht nachvollziehbaren Arbeitsablauf, der dazu beitr\u00e4gt, Fehler zu reduzieren und von Projekt zu Projekt konsistente Kostenvoranschl\u00e4ge zu erstellen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-cac06z",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "An wen richtet sich das Angebot?"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Bei HFZWood geht es nicht nur um Volumenberechnungen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Die App enth\u00e4lt ein umfassendes Benutzerhandbuch, Video-Tutorials, ein Glossar mit Fachbegriffen sowie eine st\u00e4ndig erweiterte Wissensdatenbank. Diese Ressourcen sind so konzipiert, dass sie sowohl grundlegende Fragen als auch solche beantworten, die bei komplexeren Projekten auftreten, und machen die App damit zu einer Lern- und Arbeitsplattform und nicht nur zu einem Berechnungswerkzeug.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-h4j804",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Mehr als nur ein Computer"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Wir sind davon \u00fcberzeugt, dass ein qualitativ hochwertiges Ergebnis mit einer sorgf\u00e4ltigen Planung beginnt.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Deshalb entwickeln wir HFZWood unter Ber\u00fccksichtigung von drei einfachen Prinzipien: Pr\u00e4zision, Klarheit und kontinuierliches Lernen. Wir m\u00f6chten, dass jeder Nutzer Entscheidungen auf der Grundlage korrekter Informationen treffen, Materialverschwendung reduzieren und jedes Projekt mit mehr Selbstvertrauen angehen kann.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood ist ein Projekt, das sich st\u00e4ndig weiterentwickelt, und die App sowie die Lernressourcen werden auch weiterhin ausgebaut und verbessert, w\u00e4hrend die Community w\u00e4chst und neue Bed\u00fcrfnisse entstehen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-9v4a5y",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Unsere Philosophie"
+          }
+        ]
+      },
+      "pageKey": "about",
+      "pageKind": "about",
+      "slug": "/about"
+    },
+    "contact": {
+      "body": {
+        "intro": "Wir sind f\u00fcr dich da, wenn du Hilfe brauchst\nWir m\u00f6chten, dass die Nutzung von HFZWood so einfach und angenehm wie m\u00f6glich ist. Wenn du Fragen zur App hast, auf ein Problem st\u00f6\u00dft oder uns einen Vorschlag machen m\u00f6chtest, kannst du uns \u00fcber die unten stehenden Kontaktdaten erreichen.\nWir bem\u00fchen uns, alle Nachrichten so schnell wie m\u00f6glich zu beantworten, und freuen uns \u00fcber jedes Feedback, das uns hilft, die App zu verbessern.\n\nBevor du uns schreibst\nM\u00f6glicherweise findest du die gesuchte Antwort bereits in der App. Schau dir das Handbuch und die Tutorials zur Nutzung von HFZWood, das Glossar f\u00fcr fachspezifische Begriffe und die Wissensdatenbank f\u00fcr Erkl\u00e4rungen und praktische Empfehlungen an.\n\nFeedback\nHFZWood ist ein Projekt, das sich in st\u00e4ndiger Weiterentwicklung befindet.\nDie Ideen, Anmerkungen und Vorschl\u00e4ge der Nutzer tragen direkt zur Verbesserung der App und zur Entwicklung zuk\u00fcnftiger Funktionen bei. Wenn du einen Vorschlag hast, wie HFZWood f\u00fcr die gesamte Community noch n\u00fctzlicher werden k\u00f6nnte, w\u00fcrden wir uns freuen, davon zu h\u00f6ren.\n\nVielen Dank, dass du dich f\u00fcr HFZWood entschieden hast und Teil unserer Community bist.",
+        "knowledgeBaseLinkLabel": "Wissensdatenbank",
+        "links": [],
+        "manualLinkLabel": "Handbuch und Anleitungen",
+        "officialLinks": {
+          "facebook": "",
+          "instagram": "",
+          "linkedin": "",
+          "tiktok": "",
+          "website": "",
+          "youtube": "https://www.youtube.com/@Hefzech"
+        },
+        "pageKind": "contact",
+        "publicTitle": "Wir sind f\u00fcr dich da, wenn du Hilfe brauchst",
+        "showKnowledgeBaseLink": true,
+        "showManualLink": true,
+        "supportEmail": "hefzech@gmail.com"
+      },
+      "pageKey": "contact",
+      "pageKind": "contact",
+      "slug": "/contact"
+    },
+    "home": {
+      "body": {
+        "cta": {
+          "destination": "",
+          "label": "",
+          "visible": false
+        },
+        "description": "Berechnen Sie den Harzbedarf ausgehend von der tats\u00e4chlichen Form des Projekts\nHFZWood sch\u00e4tzt die Harzmenge f\u00fcr Projekte mit unregelm\u00e4\u00dfigen Formen, nat\u00fcrlichen Kanten, Aussparungen und Hohlr\u00e4umen. Sie definieren den Gussbereich und die tats\u00e4chlichen Abmessungen, und die App berechnet das erforderliche Volumen.\n\n\n\nVon der Sch\u00e4tzung bis zur Gussplanung\nNach der Volumenberechnung kannst du den schichtweisen Guss planen, den Materialbedarf \u00fcberpr\u00fcfen und die Projektkosten in einem einzigen Arbeitsablauf sch\u00e4tzen.\n\nSpeichern Sie das Projekt, nicht nur das Ergebnis einer Berechnung\nSie speichern das Projekt und k\u00f6nnen jederzeit auf Geometrie, Abmessungen und Berechnungen zur\u00fcckgreifen, um \u00dcberpr\u00fcfungen, \u00c4nderungen oder die n\u00e4chsten Arbeitsschritte durchzuf\u00fchren.\n\nTools und Informationen an einem Ort\nHFZWood beschr\u00e4nkt sich nicht nur auf die Berechnung. Das Handbuch, die Tutorials, das Glossar und die Wissensdatenbank vereinen an einem Ort Erkl\u00e4rungen und praktische Informationen zur Nutzung der Anwendung, zu Holz, Harz und den Projektphasen.\n\nDeine Projekte bleiben dein Eigentum\nDeine Arbeit bleibt dein Eigentum. Projekte, die du w\u00e4hrend der Laufzeit eines aktiven Abonnements erstellt hast, k\u00f6nnen auch nach dessen Ablauf ge\u00f6ffnet, bearbeitet und fortgesetzt werden; die Einschr\u00e4nkungen des Free-Tarifs gelten nur f\u00fcr neue Projekte.",
+        "image": {
+          "alt": "",
+          "src": "",
+          "visible": false
+        },
+        "pageKind": "home",
+        "publicTitle": "Pr\u00e4zision und Zuversicht bei der Arbeit mit Harz.",
+        "subtitle": "Berechnen und planen Sie Projekte mit Epoxidharz auf der Grundlage der tats\u00e4chlichen Form Ihres Projekts.",
+        "video": {
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
+          "visible": true
+        }
+      },
+      "pageKey": "home",
+      "pageKind": "home",
+      "slug": "/"
+    },
+    "pricing": {
+      "body": {
+        "footnote": "Deine bestehenden Projekte bleiben dein Eigentum.",
+        "intro": "",
+        "offers": [
+          {
+            "benefits": [
+              "Harzrechner f\u00fcr einfache Projekte.",
+              "Bis zu 4 Punkte pro Polygon \u2013 geeignet f\u00fcr einfache Projektformen.",
+              "Speichere und \u00f6ffne Projekte auf deinem Ger\u00e4t erneut.",
+              "Vollst\u00e4ndiger Zugriff auf das Handbuch und alle Video-Tutorials.",
+              "Zugang zur kostenlosen Auswahl aus dem Glossar und der Wissensdatenbank."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "0 $",
+            "id": "free",
+            "title": "Kostenloser Tarif",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Voller Zugriff auf die Tools und Ressourcen von HFZWood.",
+              "Unbegrenzte Polygonpunkte und Werkzeuge f\u00fcr komplexe Projekte.",
+              "PDF-Export und Planung der Gussschichten.",
+              "Voller Zugriff auf das Glossar und die Wissensdatenbank."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "9,99 $",
+            "id": "monthly",
+            "title": "Monatstarif",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Voller Zugriff auf die Tools und Ressourcen von HFZWood.",
+              "Unbegrenzte Polygonpunkte und Werkzeuge f\u00fcr komplexe Projekte.",
+              "PDF-Export und Planung der Gussschichten.",
+              "Voller Zugriff auf das Glossar und die Wissensdatenbank."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "89,99 $",
+            "id": "annual",
+            "title": "Jahresabo",
+            "visible": true
+          }
+        ],
+        "pageKind": "pricing",
+        "publicTitle": "W\u00e4hlen Sie den passenden Tarif f\u00fcr Ihre Arbeitsweise"
+      },
+      "pageKey": "pricing",
+      "pageKind": "pricing",
+      "slug": "/pricing"
+    },
+    "privacy": {
+      "body": {
+        "pageKind": "privacy",
+        "publicTitle": "Datenschutzerkl\u00e4rung",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Der Schutz der Nutzerdaten hat f\u00fcr HFZWood h\u00f6chste Priorit\u00e4t. Wir erheben nur die Daten, die f\u00fcr den Betrieb der App erforderlich sind, und bem\u00fchen uns, diese auf transparente und verantwortungsbewusste Weise sowie in \u00dcbereinstimmung mit den geltenden Datenschutzbestimmungen zu verarbeiten.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Wir respektieren den Schutz deiner Daten"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "F\u00fcr die Nutzung der App erfassen wir m\u00f6glicherweise Informationen wie die f\u00fcr die Anmeldung verwendete E-Mail-Adresse, App-Einstellungen, gespeicherte Projekte und andere Daten, die f\u00fcr den Betrieb der angebotenen Dienste erforderlich sind.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wir erheben keine Daten, die f\u00fcr die Nutzung der App nicht erforderlich sind.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-te5a1a",
+            "title": "Welche Daten erheben wir?"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Die erhobenen Daten werden ausschlie\u00dflich f\u00fcr folgende Zwecke verwendet:",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 Verwaltung des Benutzerkontos;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 Speichern und Synchronisieren von Projekten;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 Bereitstellung der Funktionen der App;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 Verbesserung der Dienste und der Benutzererfahrung;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 Verwaltung von Abonnements und Lizenzen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wir verwenden deine Daten nicht zur Erstellung von Marketingprofilen und verkaufen sie nicht an Dritte.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-nu3u5w",
+            "title": "Wie wir diese Informationen verwenden"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Wir ergreifen technische und organisatorische Ma\u00dfnahmen, um die Daten unserer Nutzer vor unbefugtem Zugriff, Verlust oder versehentlicher \u00c4nderung zu sch\u00fctzen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Obwohl kein mit dem Internet verbundenes System absolute Sicherheit garantieren kann, unternehmen wir alle zumutbaren Anstrengungen, um die uns anvertrauten Daten zu sch\u00fctzen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-drs6kj",
+            "title": "Datensicherheit"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood nutzt externe Dienste, die f\u00fcr den Betrieb der Anwendung erforderlich sind, wie beispielsweise die Benutzerauthentifizierung und die Zahlungsabwicklung.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Diese Dienste werden von spezialisierten Unternehmen bereitgestellt, die ihre eigenen Sicherheits- und Datenschutzrichtlinien anwenden.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-0abtcs",
+            "title": "Drittanbieter-Dienste"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Je nach geltendem Recht kannst du Auskunft \u00fcber deine Daten, deren Berichtigung, L\u00f6schung oder andere in den Datenschutzbestimmungen vorgesehene Rechte beantragen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wir werden Anfragen innerhalb einer angemessenen Frist und im Einklang mit den gesetzlichen Verpflichtungen beantworten.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-iipswe",
+            "title": "Deine Rechte"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Im Zuge der Weiterentwicklung der App kann diese Datenschutzerkl\u00e4rung aktualisiert werden, um \u00c4nderungen an den angebotenen Diensten oder gesetzlichen Anforderungen Rechnung zu tragen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wir empfehlen Ihnen, diese Seite regelm\u00e4\u00dfig zu besuchen, um \u00fcber eventuelle \u00c4nderungen auf dem Laufenden zu bleiben.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-qyxaxt",
+            "title": "Aktualisierung dieser Erkl\u00e4rung"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Wenn du Fragen dazu hast, wie deine Daten verarbeitet werden, kannst du uns \u00fcber die auf der Seite <strong>\u201eKontakt\u201c</strong> angegebenen Kontaktdaten erreichen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-ofnkyg",
+            "title": "Kontakt"
+          }
+        ]
+      },
+      "pageKey": "privacy",
+      "pageKind": "privacy",
+      "slug": "/privacy"
+    },
+    "terms": {
+      "body": {
+        "pageKind": "terms",
+        "publicTitle": "Allgemeine Gesch\u00e4ftsbedingungen",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Durch die Nutzung der HFZWood-App erkl\u00e4ren Sie sich mit den auf dieser Seite dargelegten Allgemeinen Gesch\u00e4ftsbedingungen einverstanden. Diese sollen allen Nutzern ein faires und transparentes Erlebnis gew\u00e4hrleisten und klarstellen, wie die von der App angebotenen Dienste genutzt werden d\u00fcrfen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Einfache Regeln f\u00fcr die Nutzung von HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood ist ein Software-Tool zur Berechnung der ben\u00f6tigten Menge an Epoxidharz f\u00fcr Projekte aus Holz und Harz.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Die von der Anwendung generierten Ergebnisse stellen Sch\u00e4tzungen dar, die auf der Grundlage der vom Nutzer eingegebenen Informationen berechnet wurden, und sollten als Unterst\u00fctzung bei der Projektplanung dienen. Der Nutzer bleibt daf\u00fcr verantwortlich, alle Daten vor Beginn der Projektdurchf\u00fchrung zu \u00fcberpr\u00fcfen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-i41f94",
+            "title": "Nutzung der App"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Um bestimmte Funktionen nutzen zu k\u00f6nnen, m\u00fcssen Sie ein Konto erstellen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Der Nutzer ist f\u00fcr die Geheimhaltung seiner Anmeldedaten sowie f\u00fcr die \u00fcber sein Konto durchgef\u00fchrten Aktivit\u00e4ten verantwortlich.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pmpk5b",
+            "title": "Benutzerkonto"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood bietet sowohl einen kostenlosen Tarif als auch kommerzielle Optionen auf Basis eines Abonnements oder einer unbefristeten Lizenz an.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Die verf\u00fcgbaren Funktionen h\u00e4ngen vom gew\u00e4hlten Tarif ab und k\u00f6nnen auf der Seite <strong>\u201ePreise\u201c</strong> eingesehen werden.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Im Falle einer \u00c4nderung des Nutzungsplans bleiben bestehende Projekte weiterhin verf\u00fcgbar und k\u00f6nnen entsprechend den Funktionen des neuen aktiven Plans fortgef\u00fchrt werden.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-muom6q",
+            "title": "Abonnements und Lizenzen"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Die App wird kontinuierlich weiterentwickelt.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wir behalten uns das Recht vor, die Funktionen, die Benutzeroberfl\u00e4che und die Lerninhalte zu verbessern, um den Nutzern ein m\u00f6glichst gutes Erlebnis zu bieten.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-mub4em",
+            "title": "Aktualisierungen"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Der Anwendungscode, die Benutzeroberfl\u00e4che, die Dokumentation, die Tutorials, die Bilder und die sonstigen \u00fcber HFZWood zur Verf\u00fcgung gestellten Materialien sind urheberrechtlich gesch\u00fctzt und d\u00fcrfen ohne Zustimmung des Rechteinhabers nicht kopiert, weiterverbreitet oder f\u00fcr andere Zwecke verwendet werden.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Die von den Nutzern erstellten Projekte und die in die App hochgeladenen Bilder bleiben Eigentum der Nutzer.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pz330d",
+            "title": "Geistiges Eigentum"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood ist bestrebt, m\u00f6glichst genaue Kostenvoranschl\u00e4ge und korrekte Informationen bereitzustellen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Der Nutzer ist jedoch daf\u00fcr verantwortlich, die Ergebnisse vor ihrer Verwendung in einem realen Projekt zu \u00fcberpr\u00fcfen sowie die Empfehlungen der Hersteller der verwendeten Harze, Materialien und Ger\u00e4te zu befolgen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-26nw02",
+            "title": "Haftungsbeschr\u00e4nkung"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Diese Allgemeinen Gesch\u00e4ftsbedingungen k\u00f6nnen von Zeit zu Zeit aktualisiert werden, um der Weiterentwicklung der App oder gesetzlichen \u00c4nderungen Rechnung zu tragen.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Die auf dieser Seite ver\u00f6ffentlichte Fassung ist stets die aktuellste.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-jifxt8",
+            "title": "\u00c4nderung der Bedingungen"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Bei Fragen zur Nutzung der App oder zu diesen Allgemeinen Gesch\u00e4ftsbedingungen kannst du uns \u00fcber die auf der <strong>Kontaktseite</strong> angegebenen Kontaktdaten erreichen.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-udmshq",
+            "title": "Kontakt"
+          }
+        ]
+      },
+      "pageKey": "terms",
+      "pageKind": "terms",
+      "slug": "/terms"
+    }
+  }
+}

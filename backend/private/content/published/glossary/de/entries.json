@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "Die Abdichtung ist der Vorgang, durch den verhindert wird, dass Epoxidharz w\u00e4hrend des Gie\u00dfens und Aush\u00e4rtens aus der Schalung austritt. Eine korrekt durchgef\u00fchrte Abdichtung verhindert Materialverluste, gew\u00e4hrleistet die Formtreue des Bauwerks und tr\u00e4gt zu einem fehlerfreien Guss bei."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abdichtung"
+    },
+    {
+      "definition": [
+        "Das Abonnement ist die Lizenzform, mit der der Nutzer Zugriff auf bestimmte Funktionen der HFZWood-Anwendung erh\u00e4lt. Die Art des Abonnements legt fest, welche Funktionen verf\u00fcgbar sind und welche Nutzungsbeschr\u00e4nkungen gegebenenfalls gelten."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abonnement"
+    },
+    {
+      "definition": [
+        "Unter Zuschnitt versteht man den Vorgang, bei dem Holz auf die f\u00fcr die Umsetzung des Projekts erforderlichen Ma\u00dfe und Formen zugeschnitten wird. Dies kann mit verschiedenen Maschinen erfolgen und dient dazu, Werkst\u00fccke zu erhalten, die in der n\u00e4chsten Phase des Projekts weiterverarbeitet und integriert werden k\u00f6nnen."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abzug"
+    },
+    {
+      "definition": [
+        "Die Projektaktualisierung ist der Vorgang, bei dem \u00c4nderungen an einem bestehenden Projekt gespeichert werden, ohne dass ein neues Projekt erstellt wird. Dabei bleibt die Identit\u00e4t des Projekts erhalten, und die zuvor gespeicherte Version wird durch die aktualisierte Version ersetzt."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aktualisierung des Projekts"
+    },
+    {
+      "definition": [
+        "Das Splintholz ist der \u00e4u\u00dfere Bereich des Holzes, der sich zwischen Kernholz und Rinde befindet. Dieser Teil des Stammes transportiert w\u00e4hrend der Lebenszeit des Baumes Wasser und N\u00e4hrstoffe und ist in der Regel heller und empfindlicher gegen\u00fcber Feuchtigkeit und biologischem Befall. Je nach Projekt kann das Splintholz aus \u00e4sthetischen Gr\u00fcnden erhalten bleiben oder zugunsten einer besseren Stabilit\u00e4t entfernt werden."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "Albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Duramen"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Kernholz",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "Eine Atemschutzmaske ist eine pers\u00f6nliche Schutzausr\u00fcstung, die dazu dient, Partikel, D\u00e4mpfe oder andere Schadstoffe aus der eingeatmeten Luft zu filtern. Die Verwendung einer geeigneten Atemschutzmaske wird beim Schleifen, bei der Holzbearbeitung und beim Umgang mit Chemikalien gem\u00e4\u00df den Anweisungen der Hersteller empfohlen."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Atemschutzmaske"
+    },
+    {
+      "definition": [
+        "Die Komposition des Entwurfs beschreibt die Art und Weise, wie alle Elemente, aus denen sich das fertige St\u00fcck zusammensetzt \u2013 wie beispielsweise Holz, Epoxidharz und eventuelle dekorative Komponenten \u2013, angeordnet und miteinander verbunden sind. Eine gut durchdachte Komposition gew\u00e4hrleistet sowohl die \u00e4sthetische Ausgewogenheit als auch die Funktionalit\u00e4t des Entwurfs."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aufbau des Projekts"
+    },
+    {
+      "definition": [
+        "Die Auftriebskraft ist die Kraft, die das fl\u00fcssige Harz auf das Holz aus\u00fcbt und die dazu neigt, dieses anzuheben, wenn dessen Dichte geringer ist als die des Harzes. Wenn die Holzteile nicht ordnungsgem\u00e4\u00df befestigt sind, k\u00f6nnen sie sich w\u00e4hrend des Gie\u00dfvorgangs verschieben oder aufschwimmen, was die Geometrie und das endg\u00fcltige Erscheinungsbild des Projekts beeintr\u00e4chtigt."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Auftriebskraft"
+    },
+    {
+      "definition": [
+        "Die Aush\u00e4rtungszeit ist der Zeitraum, der erforderlich ist, damit das Epoxidharz seine mechanischen Eigenschaften entwickelt und sicher gehandhabt oder weiterverarbeitet werden kann. Die Dauer dieses Prozesses h\u00e4ngt von der Art des Harzes, der Umgebungstemperatur und den Arbeitsbedingungen ab."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aush\u00e4rtungszeit"
+    },
+    {
+      "definition": [
+        "Das Nivellieren der Schalung ist der Vorgang, bei dem die Schalung vor dem Gie\u00dfen perfekt horizontal ausgerichtet wird. Eine korrekte Nivellierung gew\u00e4hrleistet eine gleichm\u00e4\u00dfige Verteilung des Epoxidharzes und tr\u00e4gt dazu bei, dass die fertige Oberfl\u00e4che keine H\u00f6henunterschiede aufweist."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (Wasserwaage)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ausrichten der Schalung"
+    },
+    {
+      "definition": [
+        "Der Richtfr\u00e4ser ist ein Fr\u00e4ser, der dazu dient, perfekt gerade Kanten oder Oberfl\u00e4chen zu erzielen. Er wird zum Korrigieren der Kanten von Holzwerkst\u00fccken und zu deren Vorbereitung vor dem Zusammenf\u00fcgen oder anderen Bearbeitungsschritten verwendet."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ausrichtfr\u00e4ser"
+    },
+    {
+      "definition": [
+        "Die Au\u00dfenkontur stellt die Begrenzung dar, die die \u00e4u\u00dfere Form des Entwurfs definiert. Sie legt die Gesamtfl\u00e4che des Bauteils fest und bildet den Ausgangspunkt f\u00fcr alle in der Anwendung durchgef\u00fchrten geometrischen Berechnungen."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Au\u00dfenkontur"
+    },
+    {
+      "definition": [
+        "Die Bands\u00e4ge ist eine Schneidmaschine, bei der ein durchgehendes S\u00e4geband verwendet wird, das auf zwei oder mehr Laufr\u00e4dern montiert ist. Sie erm\u00f6glicht pr\u00e4zise Schnitte, sowohl gerade als auch kurvige, und wird h\u00e4ufig zum Schneiden von Massivholz und zur Bearbeitung von Werkst\u00fccken mit unregelm\u00e4\u00dfigen Formen eingesetzt."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "Banzic",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bands\u00e4ge"
+    },
+    {
+      "definition": [
+        "Die Bearbeitungsberechtigung bezeichnet das Recht eines Benutzers, den Inhalt eines Projekts zu \u00e4ndern. Je nach Rolle des Benutzers und den Regeln der Anwendung kann ein Projekt bearbeitbar sein oder nur im Lesemodus verf\u00fcgbar sein."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bearbeitungsberechtigung"
+    },
+    {
+      "definition": [
+        "Die Befestigungsklemme ist eine Vorrichtung, die dazu dient, Teile oder Komponenten w\u00e4hrend des L\u00f6tens, der Bearbeitung oder der Montage vor\u00fcbergehend in der gew\u00fcnschten Position zu halten. Es gibt zahlreiche Arten von Klemmen, die f\u00fcr unterschiedliche Abmessungen und Anwendungen ausgelegt sind."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "Holzklemme",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Befestigungsklemme"
+    },
+    {
+      "definition": [
+        "Die Reparatur von Defekten umfasst alle Arbeitsschritte, die zur Behebung von M\u00e4ngeln durchgef\u00fchrt werden, die w\u00e4hrend des Gie\u00dfens, Aush\u00e4rtens oder der Endbearbeitung eines Projekts entstanden sind. Je nach Art des Defekts kann die Reparatur das Reinigen, Schleifen, Auff\u00fcllen mit Epoxidharz, Nachpolieren oder andere Ma\u00dfnahmen umfassen, die erforderlich sind, um das Teil wieder auf das gew\u00fcnschte Qualit\u00e4tsniveau zu bringen."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Behebung von M\u00e4ngeln"
+    },
+    {
+      "definition": [
+        "Die berechnete Fl\u00e4che ist die Fl\u00e4che, die von der Anwendung automatisch auf der Grundlage des vom Benutzer definierten Messpolygons ermittelt wird. Dieser Wert wird f\u00fcr geometrische Berechnungen verwendet und dient zur Sch\u00e4tzung des Volumens und der ben\u00f6tigten Harzmenge."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Berechnete Fl\u00e4che"
+    },
+    {
+      "definition": [
+        "Ein Bezugspunkt ist ein im Bild ausgew\u00e4hlter Punkt, der zur Definition einer bekannten Abmessung oder zur Durchf\u00fchrung geometrischer Messungen dient. In HFZWood werden Bezugspunkte bei der Kalibrierung und zum Zeichnen der Konturen verwendet, die f\u00fcr die Berechnung von Fl\u00e4chen und Volumen erforderlich sind."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bezugspunkt"
+    },
+    {
+      "definition": [
+        "Der Import eines Bildes ist der Vorgang, bei dem ein Foto in die HFZWood-Anwendung geladen wird, um es in einem neuen Projekt zu verwenden. Das importierte Bild bildet die Grundlage f\u00fcr alle nachfolgenden Messungen und Berechnungen."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bild importieren"
+    },
+    {
+      "definition": [
+        "Die Bildkalibrierung ist der Vorgang, bei dem die Anwendung anhand einer bekannten Referenzentfernung die Entsprechung zwischen den Abmessungen auf dem Foto und den tats\u00e4chlichen Abmessungen ermittelt. Eine korrekte Kalibrierung ist f\u00fcr pr\u00e4zise Ergebnisse unerl\u00e4sslich."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bildkalibrierung"
+    },
+    {
+      "definition": [
+        "Der Bildma\u00dfstab ist das Verh\u00e4ltnis zwischen den Abmessungen auf dem Foto und den tats\u00e4chlichen Abmessungen des gemessenen Objekts. Die korrekte Bestimmung des Ma\u00dfstabs erm\u00f6glicht pr\u00e4zise Berechnungen im Rahmen des Projekts."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bildskala"
+    },
+    {
+      "definition": [
+        "Unter biologischem Befall versteht man den durch Pilze, Schimmel, Bakterien oder holzfressende Insekten verursachten Zerfall von Holz. Das Ausma\u00df dieses Befalls kann sowohl die mechanische Festigkeit als auch das Aussehen des Holzes beeintr\u00e4chtigen. Das betroffene Holz muss vor der Verwendung in einem Projekt mit Epoxidharz sorgf\u00e4ltig gepr\u00fcft werden."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "Biologischer Angriff",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Instabiles Holz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Biologischer Angriff"
+    },
+    {
+      "definition": [
+        "Die Bohrmaschine ist ein Elektrowerkzeug, das zum Bohren von L\u00f6chern in Holz und anderen Materialien verwendet wird. Je nach montiertem Zubeh\u00f6r kann sie auch zum Schrauben, zum Aufbohren von L\u00f6chern oder f\u00fcr andere Bearbeitungsvorg\u00e4nge eingesetzt werden."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "Bohrmaschine",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bohrmaschine"
+    },
+    {
+      "definition": [
+        "Die Wasserwaage, auch Boloboc genannt, ist ein Instrument zur \u00dcberpr\u00fcfung der Horizontalit\u00e4t oder Vertikalit\u00e4t einer Fl\u00e4che. Bei Projekten mit Epoxidharz wird sie zum Nivellieren der Schalung und zur \u00dcberpr\u00fcfung der korrekten Position der Bauteile vor dem Gie\u00dfen verwendet."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "Boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Ausrichten der Schalung"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (Wasserwaage)"
+    },
+    {
+      "definition": [
+        "Die chemische Best\u00e4ndigkeit bezeichnet die F\u00e4higkeit eines Materials oder einer Oberfl\u00e4chenbehandlung, dem Kontakt mit verschiedenen chemischen Substanzen standzuhalten, ohne dass dabei das Aussehen oder die Eigenschaften des Materials wesentlich beeintr\u00e4chtigt werden. Der Grad dieser Best\u00e4ndigkeit variiert je nach Art des Produkts und der Art der Substanzen, mit denen es in Kontakt kommt."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Chemische Best\u00e4ndigkeit"
+    },
+    {
+      "definition": [
+        "CNC (Computer Numerical Control) ist ein automatisiertes Bearbeitungssystem, bei dem die Bewegungen der Maschine durch ein Computerprogramm gesteuert werden. In der Holzbearbeitung werden CNC-Maschinen zum S\u00e4gen, Fr\u00e4sen, Gravieren und zur Herstellung komplexer Formen mit hoher Pr\u00e4zision und Wiederholgenauigkeit eingesetzt."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "CNC",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC CNC"
+    },
+    {
+      "definition": [
+        "Das Holzvolumen entspricht dem Raum, den alle Holzbauteile des Projekts einnehmen. Es wird in Volumeneinheiten angegeben und von der Anwendung zur Ermittlung des Gesamtvolumens des Projekts und der ben\u00f6tigten Harzmenge herangezogen."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Gleichm\u00e4\u00dfige Dicke"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Das Holzvolumen"
+    },
+    {
+      "definition": [
+        "Das Speichern des Projekts ist der Vorgang, bei dem alle Informationen eines Projekts in einer HFZWood-Datei gespeichert werden, sodass es sp\u00e4ter ohne Datenverlust wieder ge\u00f6ffnet und fortgesetzt werden kann."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Das Projekt retten"
+    },
+    {
+      "definition": [
+        "Das Hohlraumvolumen entspricht dem Gesamtvolumen der im Holz vorhandenen Hohlr\u00e4ume, die mit Epoxidharz verf\u00fcllt werden sollen. Es ist einer der Faktoren, die HFZWood zur Sch\u00e4tzung der f\u00fcr das Projekt ben\u00f6tigten Materialmenge heranzieht."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Das Volumen der Hohlr\u00e4ume"
+    },
+    {
+      "definition": [
+        "Unter Delaminierung versteht man das Abl\u00f6sen oder Trennen der Schichten eines Materials oder von miteinander verklebten Oberfl\u00e4chen. Bei Projekten mit Epoxidharz deutet Delaminierung auf einen Haftungsverlust hin und kann sowohl die mechanische Festigkeit als auch das endg\u00fcltige Erscheinungsbild des Bauteils beeintr\u00e4chtigen."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Delaminierung"
+    },
+    {
+      "definition": [
+        "Der Arbeitsbereich ist der zentrale Arbeitsbereich der HFZWood-Anwendung, in dem der Benutzer Projekte erstellt, \u00f6ffnet, bearbeitet und verwaltet sowie je nach Rolle und Abonnement auf die verf\u00fcgbaren Funktionen und Ressourcen zugreifen kann."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Der Arbeitsbereich"
+    },
+    {
+      "definition": [
+        "Der Projektinhaber ist der Benutzer, der das Projekt erstellt hat und \u00fcber Bearbeitungsrechte daran verf\u00fcgt. Die Identit\u00e4t des Projektinhabers ist dauerhaft mit dem Projekt verkn\u00fcpft und bildet die Grundlage f\u00fcr die Verwaltung der Zugriffsberechtigungen."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Der Projektinhaber"
+    },
+    {
+      "definition": [
+        "Der Umriss des Hohlraums stellt die geometrische Begrenzung dar, die einen mit Epoxidharz zu f\u00fcllenden Hohlraum im Holz abgrenzt. Die korrekte Bestimmung dieses Umrisses erm\u00f6glicht die genaue Berechnung der Oberfl\u00e4che und des Volumens des Hohlraums."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "Messpolygon"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Der Umriss der Kavit\u00e4t"
+    },
+    {
+      "definition": [
+        "Dichtungssilikon ist ein elastisches Material, das zum Abdichten von Fugen und N\u00e4hten der Schalung vor dem Gie\u00dfen von Epoxidharz verwendet wird. Bei korrekter Anwendung verhindert es das Austreten von Fl\u00fcssigkeit und l\u00e4sst sich nach dem Abbau der Schalung leicht entfernen."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Schalung"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dichtungssilikon"
+    },
+    {
+      "definition": [
+        "Die Dicke der Gie\u00dfschicht entspricht der H\u00f6he der in einem Arbeitsgang aufgetragenen Epoxidharzschicht. Diese muss innerhalb der vom Hersteller f\u00fcr den verwendeten Harztyp empfohlenen Grenzen liegen, damit der Aush\u00e4rtungsprozess unter optimalen Bedingungen und ohne das Auftreten von Fehlern ablaufen kann."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Entgasung \u2013 Entw\u00e4sserung"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Schichtgussverfahren"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Tiefgie\u00dfen (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dicke der Gussschicht"
+    },
+    {
+      "definition": [
+        "Die Dichte des Harzes entspricht der Masse eines bestimmten Volumens an Epoxidharz und wird in der Regel in Gramm pro Kubikzentimeter oder Kilogramm pro Liter angegeben. Dieser Parameter dient zur Umrechnung zwischen Volumen und Masse bei der Berechnung der ben\u00f6tigten Materialmengen."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Die Dichte des Harzes"
+    },
+    {
+      "definition": [
+        "Die Endkontrolle ist die umfassende \u00dcberpr\u00fcfung des Projekts nach Abschluss aller Bearbeitungs- und Endbearbeitungsschritte. Sie dient dazu, eventuell noch vorhandene M\u00e4ngel zu identifizieren, die Ma\u00dfe und die Oberfl\u00e4chenqualit\u00e4t zu \u00fcberpr\u00fcfen und sicherzustellen, dass das Werkst\u00fcck die festgelegten Qualit\u00e4tsanforderungen erf\u00fcllt."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Die Endabnahme"
+    },
+    {
+      "definition": [
+        "Die Projektgeometrie beschreibt die Form, die Abmessungen und die r\u00e4umlichen Beziehungen zwischen allen Elementen, aus denen sich das Projekt zusammensetzt. In HFZWood bildet die Geometrie die Grundlage f\u00fcr die Berechnung der Fl\u00e4chen, Volumina und der gesch\u00e4tzten ben\u00f6tigten Harzmenge."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Die Geometrie des Projekts"
+    },
+    {
+      "definition": [
+        "Die Positionierung des Holzes ist der Vorgang, bei dem die Holzteile vor dem Gie\u00dfen des Epoxidharzes in der endg\u00fcltigen Konfiguration des Projekts angeordnet und ausgerichtet werden. Die Art und Weise, wie sie positioniert werden, beeinflusst das \u00e4sthetische Erscheinungsbild, die ben\u00f6tigte Harzmenge und die Stabilit\u00e4t des Gesamtkonstrukts."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Die Positionierung des Holzes"
+    },
+    {
+      "definition": [
+        "Das Kernholz ist der zentrale, ausgereifte und dichtere Teil des Baumstamms. Im Allgemeinen weist es eine h\u00f6here Best\u00e4ndigkeit gegen Feuchtigkeit, Pilze und Insekten auf als das Splintholz und wird aufgrund seiner Stabilit\u00e4t und Optik bevorzugt f\u00fcr die Herstellung von M\u00f6belst\u00fccken und dekorativen Projekten mit Epoxidharz verwendet."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "Albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Duramen"
+    },
+    {
+      "definition": [
+        "Unter der Einkapselung von Luftblasen versteht man das Einfangen der Blasen in der Epoxidharzmasse w\u00e4hrend des Aush\u00e4rtungsprozesses. Die eingeschlossenen Blasen k\u00f6nnen die Transparenz, das \u00e4sthetische Erscheinungsbild und in bestimmten F\u00e4llen auch die Festigkeit des Endprodukts beeintr\u00e4chtigen."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "Luftblasen im Harz",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Luftblasen"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Verarbeitungszeit (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Einschluss von Luftblasen"
+    },
+    {
+      "definition": [
+        "Das Trennmittel ist eine Substanz, die auf die Oberfl\u00e4che der Schalung aufgetragen wird, um das Anhaften des Epoxidharzes w\u00e4hrend des Aush\u00e4rtens zu verhindern. Seine Verwendung erleichtert das Entfernen der Schalung und verringert das Risiko einer Besch\u00e4digung des Werkst\u00fccks oder der Kontaktfl\u00e4chen."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "Entformungsmittel",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Entformungsmittel"
+    },
+    {
+      "definition": [
+        "Die Entgasung ist der Vorgang, bei dem Luft und Gase vor oder unmittelbar nach dem Gie\u00dfen aus dem Epoxidharz entfernt werden. Ziel dieses Vorgangs ist es, die Anzahl der Luftblasen zu reduzieren und ein m\u00f6glichst gleichm\u00e4\u00dfiges und transparentes Gussergebnis zu erzielen."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskosit\u00e4t"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Verarbeitungszeit (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Entgasung \u2013 Entw\u00e4sserung"
+    },
+    {
+      "definition": [
+        "Das Entformen ist der Vorgang, bei dem die Schalung entfernt wird, nachdem das Epoxidharz ausreichend ausgeh\u00e4rtet ist, um seine Form beizubehalten. Dieser Schritt muss sorgf\u00e4ltig durchgef\u00fchrt werden, um Besch\u00e4digungen am Werkst\u00fcck oder an den Gusskanten zu vermeiden."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Entschlammung"
+    },
+    {
+      "definition": [
+        "Epoxidharz ist ein Zweikomponentenmaterial, das sich nach dem Mischen mit dem H\u00e4rter im empfohlenen Verh\u00e4ltnis durch eine chemische Reaktion in ein festes, widerstandsf\u00e4higes und langlebiges Material verwandelt. In der Holzverarbeitung wird es zum Verf\u00fcllen von Hohlr\u00e4umen, zur Herstellung von dekorativen oder tragenden Gussteilen sowie zur Erzeugung transparenter oder pigmentierter Oberfl\u00e4chen verwendet."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Epoxidharz"
+    },
+    {
+      "definition": [
+        "Die ben\u00f6tigte Harzmenge entspricht dem gesch\u00e4tzten Volumen oder der Masse an Epoxidharz, die f\u00fcr die Umsetzung eines Projekts ben\u00f6tigt wird, einschlie\u00dflich eines eventuellen, vom Anwender festgelegten Sicherheitsfaktors. In HFZWood wird dieser Wert automatisch auf der Grundlage der Projektgeometrie und der eingegebenen Parameter berechnet."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Erforderliche Harzmenge"
+    },
+    {
+      "definition": [
+        "Die erforderliche Menge an H\u00e4rter entspricht dem Volumen oder der Masse des H\u00e4rters, berechnet auf der Grundlage der Harzmenge und des f\u00fcr das verwendete Produkt spezifischen Mischungsverh\u00e4ltnisses. Die Einhaltung dieses Wertes ist f\u00fcr den korrekten Ablauf des Polymerisationsprozesses unerl\u00e4sslich."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Erforderliche Menge an H\u00e4rter"
+    },
+    {
+      "definition": [
+        "Unter Ausdehnung versteht man die Zunahme der Abmessungen eines Materials infolge von Feuchtigkeitsaufnahme oder Temperatur\u00e4nderungen. Da Holz und Epoxidharz unterschiedliche Ausdehnungsverhalten aufweisen, muss dieses Ph\u00e4nomen bei der Konstruktion und Verwendung der Bauteile ber\u00fccksichtigt werden."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Erweiterung"
+    },
+    {
+      "definition": [
+        "Die exotherme Reaktion ist der Vorgang, bei dem das Epoxidharz w\u00e4hrend der Polymerisation W\u00e4rme freisetzt. Die Menge der erzeugten W\u00e4rme h\u00e4ngt von der Art des Harzes, dem Volumen der Mischung und der Umgebungstemperatur ab. Eine \u00fcberm\u00e4\u00dfig exotherme Reaktion kann die Qualit\u00e4t des Gussst\u00fccks beeintr\u00e4chtigen und das Material besch\u00e4digen."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerisation"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Exotherme Reaktion"
+    },
+    {
+      "definition": [
+        "Feuchtigkeitsbest\u00e4ndigkeit bezeichnet die F\u00e4higkeit eines Materials oder einer Oberfl\u00e4chenbehandlung, seine Eigenschaften beizubehalten, wenn es Wasser oder einer feuchten Umgebung ausgesetzt ist. Eine hohe Feuchtigkeitsbest\u00e4ndigkeit tr\u00e4gt dazu bei, die Stabilit\u00e4t und das Aussehen des Werkst\u00fccks \u00fcber einen langen Zeitraum hinweg zu erhalten."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Feuchtigkeitsbest\u00e4ndigkeit"
+    },
+    {
+      "definition": [
+        "Die Filzscheibe ist ein Zubeh\u00f6rteil, das zum Polieren von Oberfl\u00e4chen in Verbindung mit Schleif- oder Polierpasten verwendet wird. Dank ihrer kompakten Struktur wird sie insbesondere zum Erreichen eines hohen Glanzgrades und einer gleichm\u00e4\u00dfigen Oberfl\u00e4che eingesetzt."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Filzscheibe"
+    },
+    {
+      "definition": [
+        "Die Finishing-Paste ist eine Mischung mit sehr geringer Abrasivit\u00e4t, die in der letzten Phase des Poliervorgangs verwendet wird, um den Glanz und die Klarheit der Oberfl\u00e4che zu verbessern. Sie beseitigt die sehr feinen Spuren, die nach dem Polieren zur\u00fcckbleiben, und tr\u00e4gt zu einem hochwertigen Endergebnis bei."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finishing-Paste"
+    },
+    {
+      "definition": [
+        "Fischaugen, auch als \u201eFish Eyes\u201c bekannt, sind Oberfl\u00e4chenfehler, die in Form kreisf\u00f6rmiger Bereiche auftreten, in denen sich das Harz zur\u00fcckzieht und nicht gleichm\u00e4\u00dfig haftet. Sie werden in der Regel durch Verunreinigungen der Oberfl\u00e4che mit \u00d6len, Silikon oder anderen Substanzen verursacht, die die Haftung beeintr\u00e4chtigen."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fischaugen"
+    },
+    {
+      "definition": [
+        "Der Fr\u00e4ser ist ein Zerspanungswerkzeug, das an einer Oberfr\u00e4se oder anderen Bearbeitungsmaschinen angebracht wird und zum kontrollierten Abtragen von Material dient. Es gibt zahlreiche Arten von Fr\u00e4sern, die jeweils f\u00fcr einen bestimmten Arbeitsgang oder ein bestimmtes Bearbeitungsprofil ausgelegt sind."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "Fr\u00e4ser",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fr\u00e4se"
+    },
+    {
+      "definition": [
+        "Eine Funktion (*Capability*) ist eine Funktionalit\u00e4t oder eine Gruppe von Funktionalit\u00e4ten, die die HFZWood-Anwendung einem Benutzer zur Verf\u00fcgung stellt. Die verf\u00fcgbaren Funktionen h\u00e4ngen von der Art des Abonnements und der dem Konto zugewiesenen Rolle ab."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "F\u00e4higkeit"
+    },
+    {
+      "definition": [
+        "Der Gasbrenner ist ein Ger\u00e4t, das eine kontrollierte Flamme erzeugt und dazu dient, Luftblasen unmittelbar nach dem Gie\u00dfen von der Oberfl\u00e4che des Epoxidharzes zu entfernen. Bei der Verwendung ist Vorsicht geboten, da \u00fcberm\u00e4\u00dfige Hitzeeinwirkung das Harz oder umliegende Materialien besch\u00e4digen kann."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "Fackel",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Luftblasen"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gasbrenner"
+    },
+    {
+      "definition": [
+        "Die Gelierzeit ist die Zeitspanne, die erforderlich ist, damit das Epoxidharz vom fl\u00fcssigen in einen gelartigen Zustand \u00fcbergeht, in dem es nicht mehr frei flie\u00dfen kann. Dieser Zeitpunkt markiert das Ende der M\u00f6glichkeit, den Guss zu formen oder zu korrigieren, und geht der Phase der vollst\u00e4ndigen Aush\u00e4rtung voraus."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gelierzeit"
+    },
+    {
+      "definition": [
+        "Ein freigegebenes Projekt (*Read-Only*) ist ein Projekt, das einem anderen Benutzer ausschlie\u00dflich zur Ansicht zur Verf\u00fcgung gestellt wird. Es kann ge\u00f6ffnet und eingesehen werden, sein Inhalt kann jedoch von Benutzern, die nicht die Eigent\u00fcmer des Projekts sind, nicht ge\u00e4ndert werden."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gemeinsames Projekt"
+    },
+    {
+      "definition": [
+        "Das Gesamtvolumen des Projekts entspricht dem Volumen, das das gesamte fertige Werkst\u00fcck einnimmt, einschlie\u00dflich des Holzes und des Epoxidharzes. Dieser Parameter bildet die Grundlage f\u00fcr die von der Anwendung durchgef\u00fchrten Berechnungen und erm\u00f6glicht die Ermittlung der ben\u00f6tigten Materialmengen."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gesamtumfang des Projekts"
+    },
+    {
+      "definition": [
+        "Gesundes Holz ist Holz, das keine nennenswerten biologischen Sch\u00e4den oder strukturellen M\u00e4ngel aufweist und seine mechanischen und \u00e4sthetischen Eigenschaften bewahrt. Die Auswahl von gesundem Holz ist eine der wesentlichen Voraussetzungen f\u00fcr nachhaltige und qualitativ hochwertige Projekte."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gesundes Holz"
+    },
+    {
+      "definition": [
+        "Der Gie\u00dfbereich ist die Fl\u00e4che des Entwurfs, die mit Epoxidharz gef\u00fcllt werden soll. Dieser kann Hohlr\u00e4ume, die Zwischenr\u00e4ume zwischen den Holzteilen oder andere vom Benutzer f\u00fcr den Guss abgegrenzte Bereiche umfassen."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gie\u00dfbereich"
+    },
+    {
+      "definition": [
+        "Beim Gie\u00dfen wird fl\u00fcssiges Epoxidharz in die Schalung, in Hohlr\u00e4ume oder in andere Bereiche des Bauwerks eingebracht, um die verf\u00fcgbaren R\u00e4ume auszuf\u00fcllen und nach dem Aush\u00e4rten das Endprodukt zu formen. Die Qualit\u00e4t des Gie\u00dfvorgangs wird durch die Vorbereitung der Materialien, die Arbeitsbedingungen und die Einhaltung der vom Hersteller empfohlenen Parameter beeinflusst."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Schalung"
+        },
+        {
+          "id": "etan-are",
+          "term": "Abdichtung"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerisation"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Tiefgie\u00dfen (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Schichtgussverfahren"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gie\u00dfen"
+    },
+    {
+      "definition": [
+        "Eine gleichm\u00e4\u00dfige Dicke beschreibt den Zustand, bei dem ein Holzst\u00fcck \u00fcber seine gesamte Oberfl\u00e4che hinweg die gleiche Dicke aufweist. Die Einhaltung einer konstanten Dicke erleichtert die Bearbeitung, die Verbindung und die korrekte Berechnung des Volumens bei Projekten, die mit Epoxidharz ausgef\u00fchrt werden."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Holzausrichtung",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Gleichm\u00e4\u00dfige Dicke"
+    },
+    {
+      "definition": [
+        "Das Glossar ist eine Sammlung von Begriffen und Definitionen, die in der HFZWood-Anwendung sowie im Bereich der Holz- und Epoxidharzverarbeitung verwendet werden. Es soll eine einheitliche Verwendung der Terminologie gew\u00e4hrleisten und ein klares Verst\u00e4ndnis der in der Anwendung vorgestellten Konzepte erm\u00f6glichen."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Glossar"
+    },
+    {
+      "definition": [
+        "Die Hochglanzoberfl\u00e4che ist eine Oberfl\u00e4chenausf\u00fchrung, die sich durch einen hohen Lichtreflexionsgrad und eine sehr glatte Oberfl\u00e4che auszeichnet. Um dieses Erscheinungsbild zu erzielen, sind ein korrekt durchgef\u00fchrtes Schleifen und Polieren unter Verwendung geeigneter Materialien und Techniken erforderlich."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gl\u00e4nzende Oberfl\u00e4che"
+    },
+    {
+      "definition": [
+        "Ein Gussfehler ist jede Unvollkommenheit, die w\u00e4hrend des Gie\u00df- oder Aush\u00e4rtungsprozesses des Epoxidharzes auftritt und das Aussehen, die Funktionalit\u00e4t oder die Qualit\u00e4t des Endprodukts beeintr\u00e4chtigt. Zu den h\u00e4ufigsten Fehlern z\u00e4hlen Luftblasen, Hohlr\u00e4ume, Leckagen, Risse und Bereiche, die nicht ordnungsgem\u00e4\u00df ausgeh\u00e4rtet sind."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gussfehler"
+    },
+    {
+      "definition": [
+        "Das Gussvolumen entspricht der Gesamtmenge an Epoxidharz, die zum Ausf\u00fcllen eines Bereichs oder zur Durchf\u00fchrung eines vollst\u00e4ndigen Gusses erforderlich ist. Es wird anhand der geometrischen Abmessungen des Projekts ermittelt und stellt eines der wichtigsten Berechnungsergebnisse der HFZWood-Anwendung dar."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mischen"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Luftblasen"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Entgasung \u2013 Entw\u00e4sserung"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerisation"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exotherme Reaktion"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Umgebungstemperatur"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Tiefgie\u00dfen (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Schichtgussverfahren"
+        },
+        {
+          "id": "turnare",
+          "term": "Gie\u00dfen"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gussvolumen"
+    },
+    {
+      "definition": [
+        "Haftung bezeichnet die F\u00e4higkeit zweier Materialien, die miteinander in Kontakt stehen, fest aneinander zu haften. Bei Projekten mit Epoxidharz ist eine ausreichende Haftung zwischen Harz und Holz entscheidend f\u00fcr die Festigkeit und Haltbarkeit des Endprodukts."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Haftung"
+    },
+    {
+      "definition": [
+        "Harzaustritte sind der unkontrollierte Austritt von Epoxidharz durch Fugen, Verbindungsstellen oder Defekte in der Schalung vor dem Aush\u00e4rten. Sie k\u00f6nnen das Endvolumen des Gussst\u00fccks ver\u00e4ndern, das Bauvorhaben beeintr\u00e4chtigen und zu einem zus\u00e4tzlichen Materialverbrauch f\u00fchren."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Schalung"
+        },
+        {
+          "id": "etan-are",
+          "term": "Abdichtung"
+        },
+        {
+          "id": "fisur",
+          "term": "Riss"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Harzaustritt"
+    },
+    {
+      "definition": [
+        "Der Harzrechner ist ein Tool, das die f\u00fcr die Umsetzung eines Projekts erforderliche Menge an Epoxidharz und H\u00e4rter sch\u00e4tzt. In HFZWood basieren die Berechnungen auf der Projektgeometrie, dem Holzvolumen, dem Hohlraumvolumen und den vom Benutzer eingegebenen Parametern und liefern so eine schnelle und pr\u00e4zise Sch\u00e4tzung des Materialverbrauchs."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Harzrechner"
+    },
+    {
+      "definition": [
+        "Die Hei\u00dfluftpistole ist ein Ger\u00e4t, das einen Strom erw\u00e4rmter Luft erzeugt und zum Entfernen von Luftblasen von der Oberfl\u00e4che von Epoxidharz verwendet werden kann. Die Temperatur und der Arbeitsabstand m\u00fcssen sorgf\u00e4ltig kontrolliert werden, um eine \u00dcberhitzung oder Verformung der Oberfl\u00e4che zu vermeiden."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "Hei\u00dfluftpistole",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Luftblasen"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hei\u00dfluftpistole"
+    },
+    {
+      "definition": [
+        "Das HFZWood-Handbuch ist die wichtigste Dokumentation der Anwendung, in der die Funktionen, die Bedienung und die verf\u00fcgbaren Arbeitsabl\u00e4ufe erl\u00e4utert werden. Es bietet den Benutzern die notwendigen Informationen f\u00fcr die korrekte und effiziente Nutzung der Anwendung."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "HFZWood-Handbuch"
+    },
+    {
+      "definition": [
+        "Die Hobelmaschine ist eine Maschine, die dazu dient, eine ebene Oberfl\u00e4che und eine perfekt gerade Kante an Holzwerkst\u00fccken zu erzielen. Dies ist einer der grundlegenden Arbeitsschritte bei der Materialvorbereitung vor dem Vorhobeln und der Weiterbearbeitung. Eine Hobelmaschine kann manuell oder mit einem Arbeitstisch betrieben werden."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "gro\u00dfe Hobelmaschine",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hobelmaschine"
+    },
+    {
+      "definition": [
+        "Ein Hohlraum ist eine nat\u00fcrliche Vertiefung oder eine durch Holzverfall entstandene Vertiefung, die aus statischen oder dekorativen Gr\u00fcnden mit Epoxidharz gef\u00fcllt werden kann. Form und Gr\u00f6\u00dfe der Hohlr\u00e4ume haben direkten Einfluss auf die f\u00fcr die Umsetzung des Projekts ben\u00f6tigte Harzmenge."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Holzknoten"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Riss",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Hohlraum"
+    },
+    {
+      "definition": [
+        "Die Holzfeuchte bezeichnet die in der Holzmasse enthaltene Wassermenge, ausgedr\u00fcckt als Prozentsatz bezogen auf die Trockenmasse des Holzes. Dieser Parameter beeinflusst die Dimensionsstabilit\u00e4t, das Alterungsverhalten und die Vertr\u00e4glichkeit des Holzes mit dem Epoxidharz. Bei Projekten, die mit HFZWood realisiert werden, verringert die Verwendung von Holz mit entsprechendem Feuchtigkeitsgehalt das Risiko von Rissen, Verformungen und Haftungsproblemen."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Hygroskopisches Holz"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Hygroskopisches Holz",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Holzfeuchte"
+    },
+    {
+      "definition": [
+        "Eine Holzinsel ist ein Holzabschnitt, der vollst\u00e4ndig von einem mit Epoxidharz gef\u00fcllten Bereich oder einer Schalung umgeben ist und keine direkte Verbindung zum restlichen Holzteil desselben Bereichs aufweist. In HFZWood werden die Holzinseln separat definiert, damit das Volumen und die erforderliche Harzmenge korrekt berechnet werden k\u00f6nnen."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Schalung"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Holzinsel"
+    },
+    {
+      "definition": [
+        "Ein Astknoten ist die Stelle im Holz, an der w\u00e4hrend des Wachstums des Baumes ein Ast eingewachsen ist. Astknoten k\u00f6nnen das \u00e4sthetische Erscheinungsbild, die mechanische Festigkeit und das Verhalten des Holzes bei der Verarbeitung beeinflussen und werden individuell nach Gr\u00f6\u00dfe, Lage und Stabilit\u00e4t bewertet."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Hohlraum"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Holzknoten"
+    },
+    {
+      "definition": [
+        "Das Richten von Holz ist der Vorgang, bei dem die Oberfl\u00e4che eines Werkst\u00fccks in eine ebene Ebene gebracht wird, um Verformungen, Unebenheiten und M\u00e4ngel zu beseitigen. Dieser Prozess gew\u00e4hrleistet eine stabile Grundlage f\u00fcr die weitere Bearbeitung und tr\u00e4gt dazu bei, qualitativ hochwertige Verbindungen und Passungen zu erzielen."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Kalibrierung"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Gleichm\u00e4\u00dfige Dicke",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Holzrichten"
+    },
+    {
+      "definition": [
+        "Holz\u00f6l ist ein Oberfl\u00e4chenveredelungsprodukt, das in die Holzstruktur eindringt und diese vor Feuchtigkeit und Abnutzung sch\u00fctzt, w\u00e4hrend es gleichzeitig die Textur und das nat\u00fcrliche Aussehen der Holzmaserung hervorhebt. Je nach verwendetem Typ muss das \u00d6l m\u00f6glicherweise regelm\u00e4\u00dfig gepflegt und erneut aufgetragen werden."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "\u00d6l",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Holz\u00f6l"
+    },
+    {
+      "definition": [
+        "Hygroskopisches Holz ist Holz, das von Natur aus in der Lage ist, Feuchtigkeit aus der Umgebung aufzunehmen und abzugeben, bis ein Gleichgewicht mit der Atmosph\u00e4re erreicht ist. Aus diesem Grund k\u00f6nnen sich seine Abmessungen und Eigenschaften je nach Temperatur- und Feuchtigkeitsbedingungen ver\u00e4ndern. Dieses Verhalten muss bei der Konstruktion und Herstellung von Gussteilen aus Epoxidharz ber\u00fccksichtigt werden."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hygroskopisches Holz"
+    },
+    {
+      "definition": [
+        "Die Inhibitionsschicht, auch bekannt als \u201eAmine Blush\u201c, ist ein d\u00fcnner Film, der w\u00e4hrend der Aush\u00e4rtung auf der Oberfl\u00e4che des Epoxidharzes entstehen kann, insbesondere bei niedrigen Temperaturen oder hoher Luftfeuchtigkeit. Vor dem Auftragen einer neuen Schicht oder vor der Endbearbeitung muss dieser Film entfernt werden, um eine ausreichende Haftung zu gew\u00e4hrleisten."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inhibitionsschicht (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Eine instabile Rinde ist eine Rinde, die nicht fest am Holz haftet und sich w\u00e4hrend der Bearbeitung oder nach dem Gie\u00dfen des Harzes abl\u00f6sen kann. Bei den meisten Projekten muss sie entfernt werden, um Hohlr\u00e4ume, Abl\u00f6sungen oder andere Haftungsprobleme zu vermeiden."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Nat\u00fcrlicher Rand"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Instabile Rinde"
+    },
+    {
+      "definition": [
+        "Instabiles Holz ist Holz, das dazu neigt, sich nach der Bearbeitung oder w\u00e4hrend der Nutzung zu verformen, Risse zu bilden oder seine Abmessungen zu ver\u00e4ndern. Die Instabilit\u00e4t wird durch Feuchtigkeit, innere Spannungen, die Art der Trocknung und die Materialstruktur beeinflusst. Die Verwendung von solchem Holz kann die Qualit\u00e4t eines Gusses mit Epoxidharz beeintr\u00e4chtigen."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Instabiles Holz"
+    },
+    {
+      "definition": [
+        "Innenspannungen sind Spannungen, die aufgrund des nat\u00fcrlichen Wachstumsprozesses oder einer ungleichm\u00e4\u00dfigen Trocknung in der Holzstruktur auftreten. Diese k\u00f6nnen w\u00e4hrend der Verarbeitung und Nutzung zu Verformungen, Rissen oder Ma\u00df\u00e4nderungen f\u00fchren. Das Erkennen und Verringern der Auswirkungen innerer Spannungen tr\u00e4gt zur Realisierung stabiler und langlebiger Projekte bei."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Interne Spannungen"
+    },
+    {
+      "definition": [
+        "Die Kalibrierung ist der Vorgang, bei dem ein Bild anhand einer bekannten Gr\u00f6\u00dfe auf einen realen Ma\u00dfstab gebracht wird. In HFZWood erm\u00f6glicht die Kalibrierung die Umrechnung der im Bild durchgef\u00fchrten Messungen in reale Ma\u00dfe und gew\u00e4hrleistet so die Genauigkeit der Fl\u00e4chen- und Volumenberechnungen."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Holzrichten"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalibrierung"
+    },
+    {
+      "definition": [
+        "Eine klebrige Oberfl\u00e4che ist ein Fehler, der dadurch gekennzeichnet ist, dass das Harz nach der normalen Aush\u00e4rtungszeit beim Ber\u00fchren noch weich ist oder an den Fingern klebt. Dieses Ph\u00e4nomen deutet in der Regel auf ein Problem hin, das beim Anmischen, bei der Polymerisation oder bei der Einhaltung der empfohlenen Anwendungsbedingungen aufgetreten ist."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Klebrige Oberfl\u00e4che"
+    },
+    {
+      "definition": [
+        "Unter Verunreinigung versteht man das Vorhandensein unerw\u00fcnschter Substanzen oder Verunreinigungen wie Staub, \u00d6le, Fette, Wasser oder Silikon, die die Haftung, das Aussehen oder die Aush\u00e4rtung des Epoxidharzes beeintr\u00e4chtigen k\u00f6nnen. Die Aufrechterhaltung einer sauberen Umgebung und sauberer Oberfl\u00e4chen ist f\u00fcr qualitativ hochwertige Ergebnisse unerl\u00e4sslich."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskosit\u00e4t"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontamination"
+    },
+    {
+      "definition": [
+        "Schwindung bezeichnet die Verringerung der Abmessungen eines Materials infolge von Feuchtigkeitsverlust, Aush\u00e4rtungsprozess oder Temperaturschwankungen. Bei Projekten mit Holz und Epoxidharz kann die Schrumpfung die Ma\u00dfgenauigkeit beeintr\u00e4chtigen und das Entstehen von Rissen oder inneren Spannungen beg\u00fcnstigen."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontraktion"
+    },
+    {
+      "definition": [
+        "Ein Kontrollpunkt ist ein Punkt, der die Form und Lage eines Messpolygons definiert. Das Verschieben eines Kontrollpunkts ver\u00e4ndert automatisch die Geometrie der begrenzten Fl\u00e4che und beeinflusst die von der Anwendung berechneten Ergebnisse."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Bezugspunkt"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontrollpunkt"
+    },
+    {
+      "definition": [
+        "Der Kopierfr\u00e4ser ist ein Fr\u00e4ser, der mit einem oder mehreren F\u00fchrungslagern ausgestattet ist, die es erm\u00f6glichen, einer Schablone oder einer vorhandenen Kante zu folgen. Er wird zur pr\u00e4zisen Nachbildung von Konturen und zur Herstellung identischer Werkst\u00fccke verwendet."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kopierfr\u00e4ser"
+    },
+    {
+      "definition": [
+        "Ein Krater ist ein Oberfl\u00e4chenfehler, der sich nach dem Aush\u00e4rten des Epoxidharzes in Form einer kleinen Vertiefung oder einer kreisf\u00f6rmigen Vertiefung zeigt. Er kann durch Verunreinigungen, Luftblasen oder andere Umst\u00e4nde verursacht werden, die ein gleichm\u00e4\u00dfiges Verteilen des Harzes verhindern."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Krater"
+    },
+    {
+      "definition": [
+        "Die Kratzfestigkeit bezeichnet die F\u00e4higkeit einer Oberfl\u00e4che, dem Kontakt mit harten Gegenst\u00e4nden standzuhalten, ohne dass sichtbare Kratzer entstehen. Diese Eigenschaft h\u00e4ngt vom verwendeten Material, der Art der Oberfl\u00e4chenbehandlung und den Einsatzbedingungen des Bauteils ab."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kratzfestigkeit"
+    },
+    {
+      "definition": [
+        "Die Kreiss\u00e4ge ist eine Maschine oder ein Werkzeug, das mit einem rotierenden Kreiss\u00e4geblatt ausgestattet ist und zum Zers\u00e4gen von Holz in L\u00e4ngsrichtung, in der Breite oder in verschiedenen Winkeln verwendet wird. Die Pr\u00e4zision und Stabilit\u00e4t des Schnitts h\u00e4ngen von den Einstellungen der Maschine, der Art des S\u00e4geblatts und der Art der Materialf\u00fchrung ab."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "Kreiss\u00e4ge",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kreiss\u00e4ge"
+    },
+    {
+      "definition": [
+        "Kristallisation ist das Ph\u00e4nomen, bei dem bestimmte Epoxidharze w\u00e4hrend der Lagerung, insbesondere bei niedrigen Temperaturen, feste Kristalle bilden. In den meisten F\u00e4llen ist die Kristallisation reversibel und kann durch kontrolliertes Erw\u00e4rmen des Harzes vor der Verwendung gem\u00e4\u00df den Empfehlungen des Herstellers beseitigt werden."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Viskosit\u00e4t"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kristallisation"
+    },
+    {
+      "definition": [
+        "Ein lokales Projekt ist ein auf dem Ger\u00e4t des Nutzers gespeichertes Projekt, das ohne Internetverbindung ge\u00f6ffnet und bearbeitet werden kann. In der HFZWood-Architektur stehen dem Nutzer lokale Projekte auch nach Ablauf des Abonnements weiterhin zur Verf\u00fcgung."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lokales Projekt"
+    },
+    {
+      "definition": [
+        "Luftblasen sind Lufteinschl\u00fcsse, die beim Mischen, Gie\u00dfen oder beim Austritt aus den Poren des Holzes im Epoxidharz zur\u00fcckbleiben. Werden sie nicht entfernt, k\u00f6nnen sie das Aussehen und in manchen F\u00e4llen auch die Festigkeit des fertigen Werkst\u00fccks beeintr\u00e4chtigen."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "Luftblasen im Harz",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mischen"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Tiefgie\u00dfen (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Schichtgussverfahren"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Luftblasen"
+    },
+    {
+      "definition": [
+        "Ma\u00dfhaltigkeit bezeichnet die F\u00e4higkeit eines Materials, seine Form und Abmessungen \u00fcber einen l\u00e4ngeren Zeitraum hinweg trotz Temperatur- und Feuchtigkeitsschwankungen beizubehalten. Eine hohe Ma\u00dfhaltigkeit tr\u00e4gt zur Langlebigkeit und zum einwandfreien Funktionieren von Konstruktionen aus Holz und Epoxidharz bei."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ma\u00dfhaltigkeit"
+    },
+    {
+      "definition": [
+        "Die Materialvertr\u00e4glichkeit bezeichnet die F\u00e4higkeit verschiedener Materialien, die in einem Projekt verwendet werden, zusammenzuwirken, ohne unerw\u00fcnschte Reaktionen oder Defekte hervorzurufen. Die Auswahl kompatibler Werkstoffe tr\u00e4gt zu einer guten Haftung, einer hohen Haltbarkeit und einem stabilen Betriebsverhalten bei."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Materialvertr\u00e4glichkeit"
+    },
+    {
+      "definition": [
+        "Melaminbeschichtetes Spanplatten ist eine Platte aus gepressten Holzsp\u00e4nen, die mit einer Melaminbeschichtung versehen ist, welche eine glatte und widerstandsf\u00e4hige Oberfl\u00e4che bietet. Aufgrund der geringen Kosten und der relativ glatten Oberfl\u00e4che wird sie h\u00e4ufig beim Bau von Schalungen f\u00fcr G\u00fcsse mit Epoxidharz verwendet."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Melaminbeschichtete Spanplatte"
+    },
+    {
+      "definition": [
+        "Melaminbeschichtetes MDF ist eine Platte, die aus feinen, gepressten Holzfasern hergestellt und mit einer Melaminbeschichtung versehen wird. Ihre Oberfl\u00e4che ist sehr gleichm\u00e4\u00dfig und erm\u00f6glicht die Herstellung von Schalungen mit hochwertiger Oberfl\u00e4chenbeschaffenheit; sie wird insbesondere f\u00fcr Projekte verwendet, die Pr\u00e4zision und saubere Kanten erfordern."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Melaminbeschichtetes MDF"
+    },
+    {
+      "definition": [
+        "Die Messgenauigkeit gibt an, wie genau die von der Anwendung berechneten Werte den tats\u00e4chlichen Abmessungen des Projekts entsprechen. Sie h\u00e4ngt von der Bildqualit\u00e4t, der Korrektheit der Kalibrierung und der Genauigkeit ab, mit der die Messpunkte und -konturen definiert werden."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Messgenauigkeit"
+    },
+    {
+      "definition": [
+        "Das Messpolygon ist eine Abfolge miteinander verbundener Punkte, die den Umriss einer zu vermessenden Fl\u00e4che begrenzen. In HFZWood werden Polygone zur Definition der Au\u00dfenkontur, von Holzst\u00fccken, Hohlr\u00e4umen und anderen f\u00fcr geometrische Berechnungen erforderlichen Bereichen verwendet."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Messpolygon"
+    },
+    {
+      "definition": [
+        "Ein Mikroriss ist ein sehr kleiner Riss, der mit blo\u00dfem Auge oft kaum zu erkennen ist. Auch wenn er unbedeutend erscheinen mag, kann er sich im Laufe der Zeit vergr\u00f6\u00dfern und die Festigkeit, Dichtheit oder das Erscheinungsbild der Oberfl\u00e4che beeintr\u00e4chtigen."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mikroriss"
+    },
+    {
+      "definition": [
+        "Das Mischen ist der Vorgang, bei dem das Epoxidharz und der H\u00e4rter miteinander vermischt werden, bis eine vollst\u00e4ndig homogene Mischung entsteht. Ein korrektes Mischen gew\u00e4hrleistet einen gleichm\u00e4\u00dfigen Verlauf der Polymerisationsreaktion und verringert das Risiko, dass Bereiche entstehen, die klebrig bleiben oder nicht vollst\u00e4ndig aush\u00e4rten."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mischen"
+    },
+    {
+      "definition": [
+        "Das Mischungsverh\u00e4ltnis gibt das Verh\u00e4ltnis an, in dem Epoxidharz und H\u00e4rter gemischt werden m\u00fcssen, um eine korrekte Polymerisation zu erreichen. Dieses Verh\u00e4ltnis wird vom Hersteller festgelegt und muss genau eingehalten werden, da es die Verarbeitungszeit, die Aush\u00e4rtung und die endg\u00fcltigen Eigenschaften des Materials beeinflusst."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mischungsverh\u00e4ltnis"
+    },
+    {
+      "definition": [
+        "Das Nassschleifen ist ein Veredelungsverfahren, bei dem Wasser oder eine andere geeignete Fl\u00fcssigkeit zum Einsatz kommt, wodurch die Erw\u00e4rmung der Oberfl\u00e4che verringert und die Staubbildung begrenzt wird. Diese Technik wird insbesondere in den letzten Arbeitsschritten eingesetzt, um sehr feine, polierfertige Oberfl\u00e4chen zu erzielen."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nassschleifen"
+    },
+    {
+      "definition": [
+        "Die nat\u00fcrliche Kante ist die urspr\u00fcngliche Kontur des Holzes, die nach dem Entfernen der Rinde erhalten bleibt. Diese Art von Kante wird h\u00e4ufig bei River-Table-Projekten und anderen Dekorationsst\u00fccken verwendet, um die nat\u00fcrliche Form des Holzes hervorzuheben."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nat\u00fcrlicher Rand"
+    },
+    {
+      "definition": [
+        "Die Oberfl\u00e4chenaufbereitung ist der Prozess, bei dem ein abgenutztes oder besch\u00e4digtes Teil wieder in einen Zustand versetzt wird, der in Aussehen und Schutzgrad dem urspr\u00fcnglichen nahekommt. Je nach Zustand der Oberfl\u00e4che kann dies das Schleifen, die Reparatur von Defekten und das Auftragen einer neuen Deckschicht umfassen."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oberfl\u00e4chenaufbereitung"
+    },
+    {
+      "definition": [
+        "Die Oberfl\u00e4chenpflege umfasst alle Ma\u00dfnahmen, die dazu dienen, das Aussehen und die sch\u00fctzenden Eigenschaften des Holzes und der Oberfl\u00e4chenbehandlung w\u00e4hrend der Nutzung zu erhalten. Die regelm\u00e4\u00dfige Reinigung und das erneute Auftragen von Pflegeprodukten tragen dazu bei, die Lebensdauer des M\u00f6belst\u00fccks zu verl\u00e4ngern."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oberfl\u00e4chenpflege"
+    },
+    {
+      "definition": [
+        "Der Oberfl\u00e4chenschutz w\u00e4hrend der Aush\u00e4rtung umfasst die Ma\u00dfnahmen, die ergriffen werden, um zu verhindern, dass sich Staub, Insekten oder andere Verunreinigungen auf dem Epoxidharz ablagern, bis der Aush\u00e4rtungsprozess abgeschlossen ist. Ein angemessener Schutz tr\u00e4gt zu einer sauberen Oberfl\u00e4chenbeschaffenheit bei und verringert den Bedarf an nachtr\u00e4glichen Ma\u00dfnahmen."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Verarbeitungszeit (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "turnare",
+          "term": "Gie\u00dfen"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oberfl\u00e4chenschutz w\u00e4hrend der Aush\u00e4rtung"
+    },
+    {
+      "definition": [
+        "Die Oberfr\u00e4se, auch als Router bekannt, ist ein Elektrowerkzeug, das zur pr\u00e4zisen Bearbeitung von Holz durch Fr\u00e4sen verwendet wird. Sie erm\u00f6glicht die Herstellung von profilierten Kanten, Nuten, Ausschnitten und anderen Bearbeitungsvorg\u00e4ngen, die beim Bau und bei der Endbearbeitung von Holzprojekten erforderlich sind."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "Oberfr\u00e4se",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Fr\u00e4se"
+        }
+      ],
+      "term": "Oberfr\u00e4se (Router)"
+    },
+    {
+      "definition": [
+        "Die optische Klarheit bezeichnet die F\u00e4higkeit des Epoxidharzes, Licht ohne Verzerrungen, Tr\u00fcbungen oder sichtbare Bildver\u00e4nderungen durchzulassen. Eine hohe optische Klarheit erm\u00f6glicht es, die Details des Holzes hervorzuheben und hochwertige, transparente Gussteile herzustellen."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Optische Klarheit"
+    },
+    {
+      "definition": [
+        "Die Orangenschale, auch als \u201eOrange Peel\u201c bekannt, ist ein Oberfl\u00e4chenfehler, der durch eine unregelm\u00e4\u00dfige Textur gekennzeichnet ist, die der Schale einer Orange \u00e4hnelt. Dieser Fehler kann durch die Auftragsbedingungen, eine ungeeignete Viskosit\u00e4t oder andere Faktoren entstehen, die die Verlaufseigenschaften des Harzes beeintr\u00e4chtigen."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Orangenschale"
+    },
+    {
+      "definition": [
+        "Die Pendels\u00e4ge ist ein Elektrowerkzeug mit einem schmalen S\u00e4geblatt, das eine vertikale Hin- und Herbewegung ausf\u00fchrt und f\u00fcr gerade oder kurvige Schnitte in Holz und anderen Materialien verwendet wird. Dank ihrer Wendigkeit eignet sie sich f\u00fcr komplexe Ausschnitte und Konturen."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "Pendel",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pendels\u00e4ge"
+    },
+    {
+      "definition": [
+        "Die pers\u00f6nliche Schutzausr\u00fcstung umfasst die gesamte Ausr\u00fcstung, die vom Bediener getragen wird, um die mit der Holzbearbeitung und der Verwendung von Epoxidharzen verbundenen Risiken zu verringern. Zu dieser Kategorie geh\u00f6ren unter anderem Atemschutzmasken, Schutzbrillen, Handschuhe und Geh\u00f6rschutz."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pers\u00f6nliche Schutzausr\u00fcstung"
+    },
+    {
+      "definition": [
+        "Pigmente sind Stoffe, die zum Einf\u00e4rben von Epoxidharz verwendet werden, ohne den Aush\u00e4rtungsprozess zu beeintr\u00e4chtigen, sofern sie in der richtigen Dosierung eingesetzt werden. Pigmente sind in einer Vielzahl von Farben und Effekten erh\u00e4ltlich und erm\u00f6glichen je nach Art und Menge der verwendeten Pigmente transparente, halbtransparente oder opake Gussteile."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment"
+    },
+    {
+      "definition": [
+        "Unter Pigmentausf\u00e4llung versteht man die ungleichm\u00e4\u00dfige Verteilung des Pigments in der Epoxidharzmasse, was zu sichtbaren Unterschieden in Farbe oder Wirkung f\u00fchrt. Dieses Ph\u00e4nomen kann durch unzureichendes Mischen, Produktunvertr\u00e4glichkeit oder die Aush\u00e4rtungsbedingungen verursacht werden."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmentabscheidung"
+    },
+    {
+      "definition": [
+        "Die Pigmentabscheidung ist das Ph\u00e4nomen, bei dem sich Pigmentpartikel am Boden des Gussst\u00fccks absetzen, bevor das Harz vollst\u00e4ndig ausgeh\u00e4rtet ist. Dies kann das endg\u00fcltige Erscheinungsbild des Formteils ver\u00e4ndern und wird durch die Art des Pigments, die Viskosit\u00e4t des Harzes und die Dauer des Aush\u00e4rtungsprozesses beeinflusst."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmentabscheidung"
+    },
+    {
+      "definition": [
+        "Die Pigmentdosierung bezeichnet die Menge an Pigment, die dem Epoxidharz beigemischt wird, um die gew\u00fcnschte Farbe und Deckkraft zu erzielen. Die Einhaltung der vom Hersteller empfohlenen Dosierung ist wichtig, um die mechanischen Eigenschaften und den normalen Aush\u00e4rtungsprozess des Harzes zu gew\u00e4hrleisten."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmentdosierung"
+    },
+    {
+      "definition": [
+        "Die Pigmentpaste ist ein Pigment in Form einer konzentrierten Paste, das speziell f\u00fcr die Einf\u00e4rbung von Epoxidharzen entwickelt wurde. Dank ihrer Konsistenz l\u00e4sst sie sich leicht in die Mischung einarbeiten und erm\u00f6glicht es, mit geringem Materialaufwand gleichm\u00e4\u00dfige und intensive Farben zu erzielen."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmentpaste"
+    },
+    {
+      "definition": [
+        "Die Nivellierfr\u00e4se ist eine Fr\u00e4se mit gro\u00dfem Durchmesser, die dazu dient, Oberfl\u00e4chen durch kontrolliertes Abtragen von Material auf ein einheitliches Niveau zu bringen. Sie wird h\u00e4ufig in Verbindung mit einem Fr\u00e4sschlitten zum Nivellieren gro\u00dfer Arbeitsplatten aus Holz und Epoxidharz eingesetzt."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Planierfr\u00e4se"
+    },
+    {
+      "definition": [
+        "Das Polieren ist der abschlie\u00dfende Schritt der Oberfl\u00e4chenbehandlung, bei dem die Oberfl\u00e4che aus Holz oder Epoxidharz bearbeitet wird, um eine hohe Gl\u00e4tte und das gew\u00fcnschte Erscheinungsbild zu erzielen. Dieser Vorgang beseitigt feine Schleifspuren und verbessert die Klarheit, die Lichtreflexion sowie die optische Wirkung des Werkst\u00fccks."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polieren"
+    },
+    {
+      "definition": [
+        "Das Polierpad ist ein Aufsatz f\u00fcr die Poliermaschine, der zum Auftragen und gleichm\u00e4\u00dfigen Verteilen von Poliermitteln auf der Oberfl\u00e4che dient. Die Pads werden aus verschiedenen Materialien hergestellt, wobei jedes f\u00fcr einen bestimmten Korrektur- oder Veredelungsgrad vorgesehen ist."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "Polierpad",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polierpad"
+    },
+    {
+      "definition": [
+        "Die Polymerisation ist die chemische Reaktion, bei der das Epoxidharz und der H\u00e4rter eine feste und stabile Struktur bilden. Dieser Prozess beginnt unmittelbar nach dem Mischen und dauert so lange an, bis das Material seine endg\u00fcltigen Eigenschaften hinsichtlich Festigkeit, H\u00e4rte und Stabilit\u00e4t erreicht hat."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Mischungsverh\u00e4ltnis"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polymerisation"
+    },
+    {
+      "definition": [
+        "Por\u00f6ses Holz ist Holz, das eine hohe Anzahl an Poren oder mikroskopisch kleinen Hohlr\u00e4umen aufweist, durch die es Fl\u00fcssigkeiten, darunter auch Epoxidharz, aufnehmen kann. Der Porosit\u00e4tsgrad beeinflusst den Harzverbrauch, die Notwendigkeit des Auftragens einer Versiegelungsschicht und das endg\u00fcltige Erscheinungsbild der Oberfl\u00e4che."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Por\u00f6ses Holz"
+    },
+    {
+      "definition": [
+        "Die Projektkonfiguration beschreibt die Anordnung und Positionierung aller Elemente, aus denen sich das Projekt zusammensetzt, einschlie\u00dflich der Au\u00dfenkontur, der Holzteile, der Hohlr\u00e4ume und der sonstigen f\u00fcr die Berechnung relevanten Bereiche. Sie definiert die geometrische Struktur, auf deren Grundlage die Anwendung die Materialberechnungen durchf\u00fchrt."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projektkonfiguration"
+    },
+    {
+      "definition": [
+        "Das \u00d6ffnen eines Projekts bezeichnet den Vorgang, bei dem ein zuvor gespeichertes Projekt in die HFZWood-Anwendung geladen wird, um es anzuzeigen, zu bearbeiten oder die Arbeit daran fortzusetzen."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projektstart"
+    },
+    {
+      "definition": [
+        "Die Qualit\u00e4tskontrolle ist der Prozess der \u00dcberpr\u00fcfung von Materialien, Arbeitsschritten und des Endergebnisses, um sicherzustellen, dass das Projekt den festgelegten Qualit\u00e4tsanforderungen entspricht. Sie erm\u00f6glicht es, eventuelle Probleme zu erkennen und zu beheben, bevor das Werkst\u00fcck als fertiggestellt gilt."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Qualit\u00e4tskontrolle"
+    },
+    {
+      "definition": [
+        "Das Referenzbild ist das Foto, das in HFZWood als Grundlage f\u00fcr die Messung und Berechnung der f\u00fcr ein Projekt ben\u00f6tigten Harzmenge verwendet wird. Es dient als Grundlage f\u00fcr die Definition der von der Anwendung verwendeten geometrischen Elemente und bleibt dauerhaft mit dem Projekt verkn\u00fcpft."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Referenzbild"
+    },
+    {
+      "definition": [
+        "Die Referenzlinie ist das zwischen zwei Referenzpunkten definierte Segment und entspricht einer bekannten tats\u00e4chlichen Entfernung. In HFZWood wird diese Linie im Kalibrierungsprozess verwendet, um den korrekten Bildma\u00dfstab festzulegen und pr\u00e4zise Messungen durchzuf\u00fchren."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Referenzlinie"
+    },
+    {
+      "definition": [
+        "Die Reinigung der Hohlr\u00e4ume umfasst das Entfernen von Staub, Holzresten, abgel\u00f6ster Rinde und anderen Verunreinigungen aus den nat\u00fcrlichen Hohlr\u00e4umen des Holzes vor dem Gie\u00dfen des Epoxidharzes. Eine ordnungsgem\u00e4\u00dfe Reinigung verbessert die Haftung des Harzes und verringert das Risiko von Fehlern."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reinigung der Hohlr\u00e4ume"
+    },
+    {
+      "definition": [
+        "Ein Riss ist ein Bruch in der Holzstruktur, der durch innere Spannungen, Austrocknung oder mechanische Beanspruchung entsteht. Je nach Gr\u00f6\u00dfe und Lage m\u00fcssen Risse unter Umst\u00e4nden stabilisiert, mit Epoxidharz verf\u00fcllt oder der betroffene Abschnitt entfernt werden."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Hohlraum",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Riss"
+    },
+    {
+      "definition": [
+        "Ein River Table ist eine Art Tisch, der aus zwei oder mehr Holzst\u00fccken besteht, zwischen die Epoxidharz gegossen wird, wodurch ein mittlerer Bereich entsteht, der an den Lauf eines Flusses erinnert. Dieser Designstil hebt die nat\u00fcrlichen Maserungen des Holzes hervor und stellt eine der bekanntesten Anwendungen von Epoxidharz im M\u00f6belbau dar."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "River-Tabelle"
+    },
+    {
+      "definition": [
+        "Der Router Sled ist ein F\u00fchrungssystem, das die kontrollierte Bewegung einer Oberfr\u00e4se \u00fcber einem gro\u00dfformatigen Werkst\u00fcck erm\u00f6glicht. Dieses Ger\u00e4t wird zum Einebnen von Oberfl\u00e4chen verwendet, die nicht mit einer Hobelmaschine bearbeitet werden k\u00f6nnen, wie beispielsweise River-Tables oder andere gro\u00dfformatige Platten."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "Router Sled",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router-Schlitten"
+    },
+    {
+      "definition": [
+        "Die satinierte Oberfl\u00e4che ist eine Oberfl\u00e4chenbehandlung, die ein gleichm\u00e4\u00dfiges Erscheinungsbild mit dezenten Reflexen und m\u00e4\u00dfigem Glanz bietet. Sie betont die Textur des Materials und wird vor allem bei Projekten bevorzugt, bei denen ein nat\u00fcrliches und elegantes Erscheinungsbild gew\u00fcnscht ist."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Satinierte Oberfl\u00e4che"
+    },
+    {
+      "definition": [
+        "Die Schalung ist eine tempor\u00e4re Konstruktion, die dazu dient, das Epoxidharz w\u00e4hrend des Gie\u00dfens und Aush\u00e4rtens zu st\u00fctzen und einzugrenzen. Sie muss dicht und stabil sein und aus Materialien bestehen, die ein leichtes Entformen des Werkst\u00fccks nach Abschluss des Prozesses erm\u00f6glichen."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schalung"
+    },
+    {
+      "definition": [
+        "Die Schaumstoffscheibe ist ein Zubeh\u00f6rteil f\u00fcr Poliermaschinen, das zum Auftragen von Schleif- und Finishpasten verwendet wird. Je nach H\u00e4rtegrad des Schaumstoffs kann sie sowohl zur Beseitigung feiner Fehler als auch zum Erreichen des Endglanzes eingesetzt werden."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "Plisch-Pad",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schaumstoffscheibe"
+    },
+    {
+      "definition": [
+        "Beim schichtweisen Gie\u00dfen wird das Epoxidharz in mehreren aufeinanderfolgenden Schritten aufgetragen, nachdem die vorherige Schicht teilweise oder vollst\u00e4ndig ausgeh\u00e4rtet ist. Diese Methode erm\u00f6glicht die Herstellung dicker Gussteile, verringert das Risiko einer \u00dcberhitzung und bietet eine bessere Kontrolle \u00fcber das Endergebnis."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schichtgussverfahren"
+    },
+    {
+      "definition": [
+        "Das Schleifen ist der Vorgang, bei dem die Oberfl\u00e4che von Holz oder Epoxidharz mit Schleifmitteln bearbeitet wird, um Unebenheiten zu beseitigen und eine glatte, gleichm\u00e4\u00dfige Oberfl\u00e4che zu erzielen, die f\u00fcr die nachfolgenden Veredelungsschritte vorbereitet ist."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schleifen"
+    },
+    {
+      "definition": [
+        "Das Schleifgewebe ist ein Schleifmaterial mit perforierter Struktur, das f\u00fcr eine effiziente Staubabsaugung beim Schleifen ausgelegt ist. Sein Einsatz verringert die Staubablagerung auf der Schleiffl\u00e4che, verl\u00e4ngert die Lebensdauer und tr\u00e4gt zu einem gleichm\u00e4\u00dfigeren Schleifergebnis bei."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "Schleifgewebe",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Schleifscheiben"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schleifgewebe"
+    },
+    {
+      "definition": [
+        "Die Schleifkorngr\u00f6\u00dfe bezeichnet die Gr\u00f6\u00dfe der Schleifpartikel auf einem Schleifmittel und wird durch eine bestimmte Zahl angegeben. Feine K\u00f6rnungen werden zum schnellen Abtragen von Material verwendet, grobe K\u00f6rnungen hingegen zum Veredeln und Gl\u00e4tten von Oberfl\u00e4chen."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schleifk\u00f6rnung"
+    },
+    {
+      "definition": [
+        "Schleifpapier ist ein flexibles Material, das mit Schleifpartikeln beschichtet ist und zum manuellen oder maschinellen Schleifen von Oberfl\u00e4chen verwendet wird. Die Wahl der richtigen K\u00f6rnung beeinflusst die Qualit\u00e4t der Oberfl\u00e4chenbearbeitung und die Effizienz des Bearbeitungsprozesses."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schleifpapier"
+    },
+    {
+      "definition": [
+        "Schleifpaste ist eine Poliermasse, die feine Schleifpartikel enth\u00e4lt und zur Beseitigung von nach dem Schleifen verbleibenden Unebenheiten verwendet wird. Die Wahl der Paste h\u00e4ngt vom Zustand der Oberfl\u00e4che und vom gew\u00fcnschten Glanzgrad ab."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "Schleifpaste",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schleifpaste"
+    },
+    {
+      "definition": [
+        "Schleifscheiben sind runde Verbrauchsmaterialien, die in Verbindung mit Schleifmaschinen zur Bearbeitung von Holz und Epoxidharz eingesetzt werden. Sie sind in verschiedenen K\u00f6rnungen erh\u00e4ltlich und erm\u00f6glichen je nach Bearbeitungsschritt einen kontrollierten Materialabtrag."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "Schleifscheibe",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schleifscheiben"
+    },
+    {
+      "definition": [
+        "Der Schraubstock ist eine Spannvorrichtung, die zur festen Fixierung von Werkst\u00fccken w\u00e4hrend der Bearbeitung dient. Eine ordnungsgem\u00e4\u00dfe Befestigung erh\u00f6ht die Pr\u00e4zision der Bearbeitungsvorg\u00e4nge und verringert das Risiko einer unbeabsichtigten Verschiebung des Werkst\u00fccks."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "Schraubstock",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schraubstock"
+    },
+    {
+      "definition": [
+        "Die Hobelmaschine ist eine Maschine, die dazu dient, Holzwerkst\u00fccke auf eine gleichm\u00e4\u00dfige und pr\u00e4zise Dicke zu bringen. Nach dem Hobeln entfernt sie kontrolliert Material, bis die gew\u00fcnschte Endabmessung erreicht ist."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "Schruppen",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schruppmaschine"
+    },
+    {
+      "definition": [
+        "Schutzbrillen sind pers\u00f6nliche Schutzausr\u00fcstung, die dazu dient, die Augen vor Staub, umherfliegenden Partikeln und versehentlichen Spritzern zu sch\u00fctzen. Ihr Tragen wird in allen Phasen der mechanischen Bearbeitung sowie bei der Arbeit mit Epoxidharzen empfohlen."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "Brillen",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schutzbrillen"
+    },
+    {
+      "definition": [
+        "Schutzwachs ist ein Veredelungsprodukt, das auf die Holzoberfl\u00e4che oder \u00fcber eine \u00d6lschicht aufgetragen wird, um den Schutz und das endg\u00fcltige Erscheinungsbild zu verbessern. Es sorgt f\u00fcr eine angenehm anzufassende Oberfl\u00e4che, verringert die Schmutzaufnahme und erleichtert die Pflege der Oberfl\u00e4che."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "Wachs",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schutzwachs"
+    },
+    {
+      "definition": [
+        "Die Sch\u00e4tzung der Harzmenge ist der Vorgang, bei dem die Anwendung HFZWood das Volumen und die ben\u00f6tigte Menge an Epoxidharz f\u00fcr die Umsetzung eines Projekts berechnet, basierend auf der vom Benutzer definierten Geometrie und den verf\u00fcgbaren Berechnungsparametern."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sch\u00e4tzung der Harzmenge"
+    },
+    {
+      "definition": [
+        "Der Sicherheitsfaktor bezeichnet die zus\u00e4tzliche Materialmenge, die \u00fcber den berechneten Wert hinaus hinzugef\u00fcgt wird, um normale Verluste w\u00e4hrend der Vorbereitung und des Gie\u00dfvorgangs auszugleichen. Die Verwendung eines Sicherheitsfaktors verringert das Risiko, dass das Harz vor Abschluss des Projekts ausgeht."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sicherheitsfaktor"
+    },
+    {
+      "definition": [
+        "Eine Sicherheitskopie, auch als Backup bezeichnet, ist eine zus\u00e4tzliche Kopie von Projekten oder Daten, die aufbewahrt wird, um im Falle eines Verlusts, einer Besch\u00e4digung oder einer versehentlichen L\u00f6schung der Informationen eine Wiederherstellung zu erm\u00f6glichen."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sicherungskopie"
+    },
+    {
+      "definition": [
+        "Die Staubabsaugung ist der Vorgang des Auffangens und Entfernens von Staub, der bei der Bearbeitung von Holz und Epoxidharz entsteht. Der Einsatz eines effizienten Absaugsystems tr\u00e4gt zur Aufrechterhaltung einer sauberen Arbeitsumgebung bei, sch\u00fctzt die Gesundheit des Bedieners und verbessert die Qualit\u00e4t der Oberfl\u00e4chenbehandlung."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Staubabsaugung"
+    },
+    {
+      "definition": [
+        "Staubeinschl\u00fcsse sind Staubpartikel oder andere Verunreinigungen, die w\u00e4hrend der Aush\u00e4rtung im Epoxidharz eingeschlossen wurden. Diese M\u00e4ngel beeintr\u00e4chtigen das Erscheinungsbild der Oberfl\u00e4che und erfordern unter Umst\u00e4nden zus\u00e4tzliches Schleifen und Polieren, um sie zu beseitigen."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Staubeinschl\u00fcsse"
+    },
+    {
+      "definition": [
+        "Ein struktureller Defekt ist jede Unvollkommenheit des Holzes, die dessen Festigkeit, Stabilit\u00e4t oder F\u00e4higkeit, mechanischen Belastungen standzuhalten, beeintr\u00e4chtigen kann. Zu dieser Kategorie geh\u00f6ren Risse, ausgedehnte Spalten, F\u00e4ulnis, Hohlr\u00e4ume oder andere Besch\u00e4digungen, die das Verhalten des Bauteils im Betrieb beeinflussen."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Holzknoten"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Struktureller Defekt"
+    },
+    {
+      "definition": [
+        "Eine technische Referenz ist eine dokumentierte Information, die zur Untermauerung einer Erkl\u00e4rung, einer Empfehlung oder eines Verfahrens dient. Innerhalb der Anwendung untermauern technische Referenzen die Genauigkeit und Glaubw\u00fcrdigkeit der Bildungsinhalte."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Technische Referenz"
+    },
+    {
+      "definition": [
+        "Der technologische Verlust bezeichnet die Menge an Harz, die aufgrund von Misch-, Umf\u00fcll- und Gie\u00dfvorg\u00e4ngen oder aufgrund von R\u00fcckst\u00e4nden in Beh\u00e4ltern und Werkzeugen nicht in das Endprodukt gelangt. Dies ist ein normales Ph\u00e4nomen und muss bei der Sch\u00e4tzung des Gesamtmaterialverbrauchs ber\u00fccksichtigt werden."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Technologischer Verlust"
+    },
+    {
+      "definition": [
+        "Unter thermischer Rissbildung versteht man das Auftreten von Rissen im Epoxidharz oder im Holz infolge starker Temperaturschwankungen oder \u00fcberm\u00e4\u00dfiger W\u00e4rmeentwicklung w\u00e4hrend der Polymerisation. Dieser Defekt kann sowohl das \u00e4sthetische Erscheinungsbild als auch die Festigkeit des Endprodukts beeintr\u00e4chtigen."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Thermische Rissbildung"
+    },
+    {
+      "definition": [
+        "Das Tiefgussverfahren, auch als Deep Pour bekannt, ist eine Technik, bei der speziell f\u00fcr dickwandige Gussteile in einem einzigen Schritt entwickelte Epoxidharze zum Einsatz kommen. Diese Harze entwickeln w\u00e4hrend der Aush\u00e4rtung weniger W\u00e4rme und erm\u00f6glichen die Herstellung gro\u00dfer Volumina, ohne dass durch \u00dcberhitzung verursachte Defekte auftreten."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskosit\u00e4t"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Verarbeitungszeit (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exotherme Reaktion"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Mischungsverh\u00e4ltnis"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerisation"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tiefgie\u00dfen (Deep Pour)"
+    },
+    {
+      "definition": [
+        "Trockenschleifen ist ein Schleifverfahren, das ohne den Einsatz von K\u00fchl- oder Schmierfl\u00fcssigkeiten durchgef\u00fchrt wird. Es ist die am h\u00e4ufigsten verwendete Methode bei der Bearbeitung von Holz und Epoxidharz und erm\u00f6glicht eine effiziente Materialabtragung in allen Bearbeitungsstufen."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Trockenschleifen"
+    },
+    {
+      "definition": [
+        "Die Umgebungstemperatur ist die Lufttemperatur in dem Raum, in dem die Epoxidharze gelagert, gemischt und verarbeitet werden. Sie beeinflusst die Viskosit\u00e4t, die Verarbeitungszeit, die Aush\u00e4rtungsgeschwindigkeit und die Endqualit\u00e4t des Gussteils, weshalb sie innerhalb des vom Hersteller empfohlenen Bereichs gehalten werden muss."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Umgebungstemperatur"
+    },
+    {
+      "definition": [
+        "Eine unvollst\u00e4ndige Aush\u00e4rtung liegt vor, wenn das Epoxidharz nach Ablauf der normalen Aush\u00e4rtungszeit seine mechanischen Eigenschaften nicht vollst\u00e4ndig entwickelt hat. Ursachen hierf\u00fcr k\u00f6nnen ein falsches Mischungsverh\u00e4ltnis, unzureichendes Mischen oder ungeeignete Arbeitsbedingungen sein."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Unvollst\u00e4ndige Aush\u00e4rtung"
+    },
+    {
+      "definition": [
+        "UV-Schutz bezeichnet die F\u00e4higkeit einer Oberfl\u00e4chenbehandlung, die Auswirkungen ultravioletter Strahlung auf Holz und Epoxidharz zu mindern. Ein angemessener Schutzgrad tr\u00e4gt dazu bei, Verf\u00e4rbungen, Vergilbung und Zersetzung durch langanhaltende Sonneneinstrahlung zu begrenzen."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "UV-Schutz"
+    },
+    {
+      "definition": [
+        "Die Verarbeitungszeit, auch als \u201ePot Life\u201c bezeichnet, ist der Zeitraum, in dem die Mischung aus Harz und H\u00e4rter verarbeitet werden kann, bevor die Viskosit\u00e4t deutlich zunimmt. Nach Ablauf dieses Zeitraums kann das Material nicht mehr unter optimalen Bedingungen gegossen oder verarbeitet werden."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mischen"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Verst\u00e4rker"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Verarbeitungszeit (Pot Life)"
+    },
+    {
+      "definition": [
+        "Unter Verformung der Schalung versteht man die Ver\u00e4nderung der Form oder Lage der Schalung w\u00e4hrend des Gie\u00dfens oder des Aush\u00e4rtens des Epoxidharzes. Dies kann durch den Druck des Harzes, eine unzureichende Befestigung oder eine geringe Steifigkeit der Schalung verursacht werden und zu Abweichungen von den Konstruktionsma\u00dfen f\u00fchren."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Verformung der Schalung"
+    },
+    {
+      "definition": [
+        "Unter der Verformung von Holz versteht man die Ver\u00e4nderung der urspr\u00fcnglichen Form eines Werkst\u00fccks infolge von Feuchtigkeitsschwankungen, inneren Spannungen oder anderen Faktoren, die die Stabilit\u00e4t des Materials beeinflussen. Die h\u00e4ufigsten Formen der Verformung sind Verbiegen, Verdrehen und W\u00f6lben."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Verformung von Holz"
+    },
+    {
+      "definition": [
+        "Bei der Versiegelung von Holz wird vor dem Hauptguss eine d\u00fcnne Schicht Epoxidharz oder eines anderen geeigneten Materials aufgetragen, um eine \u00fcberm\u00e4\u00dfige Absorption und das Entweichen von Luft aus den Poren des Holzes zu verringern. Dieser Schritt tr\u00e4gt dazu bei, eine saubere Oberfl\u00e4che zu erzielen und das Entstehen von Luftblasen zu verringern."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Versiegelung von Holz"
+    },
+    {
+      "definition": [
+        "Die Versiegelungsschicht, auch als \u201eSeal Coat\u201c bekannt, ist eine d\u00fcnne Schicht aus Epoxidharz, die vor dem Hauptguss aufgetragen wird, um die Poren des Holzes zu verschlie\u00dfen und die Luftfreisetzung zu reduzieren. Dieser Schritt tr\u00e4gt dazu bei, die Bildung von Blasen zu verringern und eine hochwertige Endoberfl\u00e4che zu erzielen."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskosit\u00e4t"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Tiefgie\u00dfen (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Verarbeitungszeit (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Mischungsverh\u00e4ltnis"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Versiegelungsschicht (Seal Coat)"
+    },
+    {
+      "definition": [
+        "Der H\u00e4rter ist die Komponente, die die f\u00fcr die Aush\u00e4rtung des Epoxidharzes erforderliche chemische Reaktion ausl\u00f6st. Es darf ausschlie\u00dflich zusammen mit dem Harz verwendet werden, f\u00fcr das es entwickelt wurde, und zwar in dem vom Hersteller empfohlenen Mischungsverh\u00e4ltnis, da jede Abweichung die Qualit\u00e4t und Festigkeit des Endmaterials beeintr\u00e4chtigen kann."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Verst\u00e4rker"
+    },
+    {
+      "definition": [
+        "Die Viskosit\u00e4t bezeichnet den Flie\u00dfgrad des Epoxidharzes, d. h. dessen Widerstand gegen das Flie\u00dfen. Ein Harz mit geringer Viskosit\u00e4t dringt leichter in Poren und Hohlr\u00e4ume ein, w\u00e4hrend ein Harz mit hoher Viskosit\u00e4t besser f\u00fcr Anwendungen geeignet ist, bei denen eine Kontrolle des Flie\u00dfverhaltens erforderlich ist oder dickere Schichten aufgetragen werden sollen."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Aush\u00e4rtungszeit"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Verarbeitungszeit (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Gelierzeit"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidharz"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exotherme Reaktion"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Viskosit\u00e4t"
+    },
+    {
+      "definition": [
+        "Die Werkbank ist die Fl\u00e4che oder der Tisch, der f\u00fcr die Durchf\u00fchrung von Bearbeitungs-, Montage- und Endbearbeitungsarbeiten vorgesehen ist. Eine stabile und ausreichend steife Werkbank tr\u00e4gt zur Pr\u00e4zision der Arbeiten und zur sicheren Durchf\u00fchrung der T\u00e4tigkeiten in der Werkstatt bei."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Werkbank"
+    },
+    {
+      "definition": [
+        "Die Wissensdatenbank (Knowledge Base) ist eine Sammlung von Fachartikeln und erg\u00e4nzenden Informationen, die das Anwendungshandbuch vervollst\u00e4ndigen. Sie bietet detaillierte Erl\u00e4uterungen, Empfehlungen und n\u00fctzliche Informationen zu den Materialien, Verfahren und Techniken, die bei Projekten mit Holz und Epoxidharz zum Einsatz kommen."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wissensdatenbank"
+    },
+    {
+      "definition": [
+        "\u00dcberhitzung, auch als \u201eOverheating\u201c bezeichnet, ist ein \u00fcberm\u00e4\u00dfiger Temperaturanstieg des Epoxidharzes w\u00e4hrend der Aush\u00e4rtung. Dieses Ph\u00e4nomen tritt in der Regel bei zu dicken Gussteilen oder bei gro\u00dfen Gussmengen auf und kann zu Rissen, Verformungen, Vergilbung oder anderen M\u00e4ngeln am Bauteil f\u00fchren."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00dcberhitzung"
+    },
+    {
+      "definition": [
+        "\u00dcberm\u00e4\u00dfige Feuchtigkeit bedeutet, dass der Wassergehalt im Holz oder in der Arbeitsumgebung \u00fcber dem f\u00fcr die Verwendung von Epoxidharz empfohlenen Wert liegt. Dies kann die Haftfestigkeit, die Dimensionsstabilit\u00e4t, den Aush\u00e4rtungsprozess und die Endqualit\u00e4t des Projekts beeintr\u00e4chtigen."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00dcberm\u00e4\u00dfige Feuchtigkeit"
+    }
+  ],
   "locale": "de"
 }

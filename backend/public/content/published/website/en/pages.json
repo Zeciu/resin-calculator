@@ -188,8 +188,8 @@
     },
     "pricing": {
       "body": {
-        "footnote": "You can start for free and upgrade to a higher plan at any time without losing your existing projects.",
-        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
+        "footnote": "Your existing projects remain yours.",
+        "intro": "",
         "offers": [
           {
             "benefits": [

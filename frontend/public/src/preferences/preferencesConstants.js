@@ -23,10 +23,28 @@ export const INTERFACE_LANGUAGE_LABELS = {
   it: "Italiano",
 };
 
-/** Languages offered in the logged-out/public sidebar selector. */
-export const PUBLIC_SIDEBAR_LANGUAGES = ["en", "ro", "fr"];
-
 export const LENGTH_UNITS = ["mm", "cm", "m", "in", "ft"];
+
+/**
+ * Public/authenticated language menus list Active locales from Admin.
+ * Unknown codes are ignored so a stale API payload cannot offer a locale
+ * with no UI bundle.
+ */
+export function listActiveInterfaceLanguages(
+  activePublicLocales = [],
+  defaultPublicLocale = "en",
+) {
+  const fallback =
+    typeof defaultPublicLocale === "string" && defaultPublicLocale
+      ? defaultPublicLocale
+      : "en";
+  const active =
+    Array.isArray(activePublicLocales) && activePublicLocales.length > 0
+      ? activePublicLocales
+      : [fallback];
+  const known = active.filter((code) => CONFIGURED_PUBLIC_LANGUAGES.includes(code));
+  return known.length > 0 ? known : [fallback];
+}
 
 export const VOLUME_UNITS = ["ml", "L", "fl_oz", "pt", "qt", "gal"];
 
