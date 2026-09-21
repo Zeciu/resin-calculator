@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from pathlib import Path
 from typing import Any
+
+import os
 
 from private.repositories.filesystem import atomic_write_json, default_content_root
 from private.schemas.common import (
@@ -13,6 +16,24 @@ from private.schemas.common import (
 )
 
 CONFIG_RELATIVE_PATH = "config/public-languages.json"
+PUBLIC_CONTENT_DATA_DIR_ENV = "PUBLIC_CONTENT_DATA_DIR"
+
+
+def default_production_languages_root():
+    """Packaged public corpus root: the production activation registry.
+
+    AWS and the production content API read ``backend/public/content``. Tests
+    isolate that tree with ``PUBLIC_CONTENT_DATA_DIR``. When only
+    ``CONTENT_DATA_DIR`` is set, reuse that temp root so existing tests never
+    touch the real checkout public registry.
+    """
+    public_override = os.environ.get(PUBLIC_CONTENT_DATA_DIR_ENV)
+    if public_override:
+        return Path(public_override)
+    editorial_override = os.environ.get("CONTENT_DATA_DIR")
+    if editorial_override:
+        return Path(editorial_override)
+    return Path(__file__).resolve().parents[2] / "public" / "content"
 
 
 def default_public_languages_config() -> dict[str, Any]:

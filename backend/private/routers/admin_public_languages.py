@@ -10,7 +10,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from private.access import require_local_editorial_access
 from private.editorial_content_mode import require_editorial_writes_allowed
 from private.repositories.filesystem import FilesystemContentRepository
-from private.repositories.public_languages import PublicLanguagesRepository
+from private.repositories.public_languages import (
+    PublicLanguagesRepository,
+    default_production_languages_root,
+)
 from private.schemas.locale_readiness import AdminLocaleReadinessResponse, PrepareProductionResponse
 from private.schemas.public_languages import AdminPublicLanguagesResponse
 from private.services.admin_locale_readiness import get_admin_locale_readiness
@@ -34,10 +37,16 @@ def get_languages_repository() -> PublicLanguagesRepository:
     return PublicLanguagesRepository()
 
 
+@lru_cache
+def get_production_languages_repository() -> PublicLanguagesRepository:
+    return PublicLanguagesRepository(default_production_languages_root())
+
+
 def get_public_languages_service() -> PublicLanguagesService:
     return PublicLanguagesService(
         languages_repository=get_languages_repository(),
         content_repository=get_content_repository(),
+        production_repository=get_production_languages_repository(),
     )
 
 
@@ -105,7 +114,9 @@ def deactivate_public_language(
 def reset_repository_cache() -> None:
     get_content_repository.cache_clear()
     get_languages_repository.cache_clear()
+    get_production_languages_repository.cache_clear()
     if "CONTENT_DATA_DIR" not in os.environ:
         return
     get_content_repository()
     get_languages_repository()
+    get_production_languages_repository()

@@ -5,7 +5,10 @@ from __future__ import annotations
 from typing import Any
 
 from private.repositories.filesystem import FilesystemContentRepository
-from private.repositories.public_languages import PublicLanguagesRepository
+from private.repositories.public_languages import (
+    PublicLanguagesRepository,
+    default_production_languages_root,
+)
 from private.schemas.common import (
     ADMIN_EDITORIAL_LOCALE_ORDER,
     DEFAULT_PUBLIC_LOCALE,
@@ -99,12 +102,21 @@ class PublicLanguagesService:
         self,
         languages_repository: PublicLanguagesRepository | None = None,
         content_repository: FilesystemContentRepository | None = None,
+        production_repository: PublicLanguagesRepository | None = None,
     ) -> None:
-        self._languages = languages_repository or PublicLanguagesRepository()
+        self._editorial = languages_repository or PublicLanguagesRepository()
+        # Explicit editorial-only construction (tests) must not fall through to
+        # the real checkout public registry. Routers pass both repositories.
+        if production_repository is not None:
+            self._production = production_repository
+        elif languages_repository is not None:
+            self._production = languages_repository
+        else:
+            self._production = PublicLanguagesRepository(default_production_languages_root())
         self._content = content_repository or FilesystemContentRepository()
 
     def get_config(self) -> PublicLanguagesConfigResponse:
-        config = self._languages.read()
+        config = self._production.read()
         return PublicLanguagesConfigResponse(
             defaultPublicLocale=config["defaultPublicLocale"],
             activePublicLocales=list(config["activePublicLocales"]),
@@ -121,7 +133,7 @@ class PublicLanguagesService:
         return normalized
 
     def get_admin_overview(self) -> AdminPublicLanguagesResponse:
-        config = self._languages.read()
+        config = self._production.read()
         default_locale = config["defaultPublicLocale"]
         active = set(config["activePublicLocales"])
         rows: list[PublicLanguageRow] = []
@@ -149,12 +161,12 @@ class PublicLanguagesService:
 
     def activate(self, locale: str) -> AdminPublicLanguagesResponse:
         normalized = parse_admin_locale(locale)
-        config = self._languages.read()
+        config = self._production.read()
         active = list(config["activePublicLocales"])
         if normalized in active:
-            # Already public: idempotent no-op. Readiness is not re-checked here so an
-            # already-active locale cannot fail Activate. Inactive → active still requires
-            # Production Ready below.
+            # Already production-active: idempotent no-op. Readiness is not
+            # re-checked here so an already-active locale cannot fail Activate.
+            # Inactive → active still requires Production Ready below.
             return self.get_admin_overview()
 
         readiness = evaluate_locale_readiness(normalized)
@@ -167,27 +179,46 @@ class PublicLanguagesService:
             )
 
         active.append(normalized)
-        self._languages.write(
+        self._production.write(
             {
                 "defaultPublicLocale": config["defaultPublicLocale"],
                 "activePublicLocales": active,
             }
         )
+        self._sync_editorial_active(normalized)
         return self.get_admin_overview()
 
     def deactivate(self, locale: str) -> AdminPublicLanguagesResponse:
         normalized = parse_admin_locale(locale)
-        config = self._languages.read()
+        config = self._production.read()
         default_locale = config["defaultPublicLocale"]
         if normalized == default_locale:
             raise ValueError(
                 f"Cannot deactivate the default public language ({default_locale})."
             )
         active = [item for item in config["activePublicLocales"] if item != normalized]
-        self._languages.write(
+        self._production.write(
             {
                 "defaultPublicLocale": default_locale,
                 "activePublicLocales": active,
             }
         )
         return self.get_admin_overview()
+
+    def _sync_editorial_active(self, locale: str) -> None:
+        """Add locale to the private editorial registry without removing others."""
+        if self._editorial is self._production:
+            return
+        if self._editorial.path.resolve() == self._production.path.resolve():
+            return
+        editorial = self._editorial.read()
+        active = list(editorial["activePublicLocales"])
+        if locale in active:
+            return
+        active.append(locale)
+        self._editorial.write(
+            {
+                "defaultPublicLocale": editorial["defaultPublicLocale"],
+                "activePublicLocales": active,
+            }
+        )

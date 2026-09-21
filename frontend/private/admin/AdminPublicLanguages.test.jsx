@@ -278,6 +278,21 @@ describe("Admin Public Languages dashboard", () => {
     expect(within(romanianRow).getByRole("button", { name: "Activate" })).toBeDisabled();
     expect(within(romanianRow).getByText("Production not ready")).toBeInTheDocument();
   });
+
+  it("shows Activate for production-ready German that is not public-active", async () => {
+    seedEditorialUser();
+    mockPublicLanguagesAdminApi(["en", "ro"], {
+      readinessLocales: readinessFor(["en", "ro", "de"]),
+    });
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+
+    const table = await screen.findByRole("table", { name: "Public languages" });
+    const germanRow = within(table).getByText("German").closest("tr");
+    expect(within(germanRow).getByText("Inactive")).toBeInTheDocument();
+    expect(within(germanRow).getByRole("button", { name: "Activate" })).toBeEnabled();
+    expect(within(germanRow).queryByText("Production not ready")).not.toBeInTheDocument();
+    expect(within(table).getByText("Romanian").closest("tr")).toHaveTextContent("Active");
+  });
 });
 
 describe("Public language selector activation", () => {

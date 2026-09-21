@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
 
 from private.repositories.filesystem import FilesystemContentRepository
 from private.repositories.public_languages import PublicLanguagesRepository
-from private.routers import admin_public_languages, public_languages
+from private.routers import admin_public_languages, public_content, public_languages
 from private.services.locale_readiness import evaluate_locale_readiness
 from private.services.public_languages import ProductionNotReadyError, PublicLanguagesService
 from tests.content.test_admin_locale_readiness import (
@@ -20,11 +21,16 @@ from tests.content.test_admin_locale_readiness import (
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
+def _reset_language_caches() -> None:
+    admin_public_languages.reset_repository_cache()
+    public_languages.reset_repository_cache()
+    public_content.reset_repository_cache()
+
+
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("CONTENT_DATA_DIR", str(tmp_path))
-    admin_public_languages.reset_repository_cache()
-    public_languages.reset_repository_cache()
+    _reset_language_caches()
     from app import app
 
     return AuthenticatedTestClient(app)
@@ -212,6 +218,7 @@ class TestActivateRequiresProductionReady:
         )
         admin_public_languages.reset_repository_cache()
         public_languages.reset_repository_cache()
+        public_content.reset_repository_cache()
         with patch_activation_readiness(production_ready=True):
             assert (
                 client.post(
@@ -230,3 +237,190 @@ class TestActivateRequiresProductionReady:
 
     def test_production_not_ready_error_is_value_error_subclass(self):
         assert issubclass(ProductionNotReadyError, ValueError)
+
+
+CHECKOUT_PRIVATE_LANGUAGES = (
+    Path(__file__).resolve().parents[2] / "private" / "content" / "config" / "public-languages.json"
+)
+CHECKOUT_PUBLIC_LANGUAGES = (
+    Path(__file__).resolve().parents[2] / "public" / "content" / "config" / "public-languages.json"
+)
+
+
+def _write_languages(root: Path, active: list[str]) -> Path:
+    path = root / "config" / "public-languages.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            {"defaultPublicLocale": "en", "activePublicLocales": active},
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return path
+
+
+def _read_languages(root: Path) -> list[str]:
+    path = root / "config" / "public-languages.json"
+    if not path.is_file():
+        return ["en"]
+    return json.loads(path.read_text(encoding="utf-8"))["activePublicLocales"]
+
+
+class TestProductionRegistryIsAuthoritative:
+    @pytest.fixture
+    def split_roots(self, tmp_path, monkeypatch):
+        editorial = tmp_path / "editorial"
+        production = tmp_path / "production"
+        editorial.mkdir()
+        production.mkdir()
+        monkeypatch.setenv("CONTENT_DATA_DIR", str(editorial))
+        monkeypatch.setenv("PUBLIC_CONTENT_DATA_DIR", str(production))
+        _reset_language_caches()
+        from app import app
+
+        return {
+            "editorial": editorial,
+            "production": production,
+            "client": AuthenticatedTestClient(app),
+        }
+
+    def test_private_de_without_public_de_is_admin_inactive(self, split_roots):
+        _write_languages(split_roots["editorial"], ["en", "ro", "de"])
+        _write_languages(split_roots["production"], ["en", "ro"])
+        overview = split_roots["client"].get(
+            "/api/admin/public-languages", headers=admin_headers()
+        ).json()
+        german = next(row for row in overview["languages"] if row["locale"] == "de")
+        assert overview["activePublicLocales"] == ["en", "ro"]
+        assert german["publicVisibility"] == "Inactive"
+        assert german["canDeactivate"] is False
+        assert _read_languages(split_roots["editorial"]) == ["en", "ro", "de"]
+        assert _read_languages(split_roots["production"]) == ["en", "ro"]
+
+    def test_activate_de_writes_public_registry_when_production_ready(self, split_roots):
+        _write_languages(split_roots["editorial"], ["en", "ro", "de"])
+        _write_languages(split_roots["production"], ["en", "ro"])
+        with patch_activation_readiness(production_ready=True):
+            response = split_roots["client"].post(
+                "/api/admin/public-languages/de/activate",
+                headers=admin_headers(),
+            )
+        assert response.status_code == 200
+        body = response.json()
+        assert body["activePublicLocales"] == ["en", "ro", "de"]
+        german = next(row for row in body["languages"] if row["locale"] == "de")
+        assert german["publicVisibility"] == "Active"
+        assert german["canDeactivate"] is True
+        assert _read_languages(split_roots["production"]) == ["en", "ro", "de"]
+        assert _read_languages(split_roots["editorial"]) == ["en", "ro", "de"]
+
+    def test_activate_de_does_not_require_private_presence(self, split_roots):
+        _write_languages(split_roots["editorial"], ["en", "ro"])
+        _write_languages(split_roots["production"], ["en", "ro"])
+        with patch_activation_readiness(production_ready=True):
+            response = split_roots["client"].post(
+                "/api/admin/public-languages/de/activate",
+                headers=admin_headers(),
+            )
+        assert response.status_code == 200
+        assert _read_languages(split_roots["production"]) == ["en", "ro", "de"]
+        assert "de" in _read_languages(split_roots["editorial"])
+
+    def test_production_ready_no_leaves_both_registries_unchanged(self, split_roots):
+        _write_languages(split_roots["editorial"], ["en", "ro", "de"])
+        public_path = _write_languages(split_roots["production"], ["en", "ro"])
+        before_public = public_path.read_bytes()
+        before_private = (
+            split_roots["editorial"] / "config" / "public-languages.json"
+        ).read_bytes()
+        with patch_activation_readiness(production_ready=False):
+            response = split_roots["client"].post(
+                "/api/admin/public-languages/de/activate",
+                headers=admin_headers(),
+            )
+        assert response.status_code == 409
+        assert public_path.read_bytes() == before_public
+        assert (
+            split_roots["editorial"] / "config" / "public-languages.json"
+        ).read_bytes() == before_private
+        assert _read_languages(split_roots["production"]) == ["en", "ro"]
+
+    def test_already_public_active_is_idempotent(self, split_roots):
+        _write_languages(split_roots["editorial"], ["en", "ro", "de"])
+        public_path = _write_languages(split_roots["production"], ["en", "ro", "de"])
+        before = public_path.read_bytes()
+        with patch(
+            "private.services.public_languages.evaluate_locale_readiness",
+            return_value=_result("de", preview_ready=True, production_ready=False),
+        ) as readiness:
+            response = split_roots["client"].post(
+                "/api/admin/public-languages/de/activate",
+                headers=admin_headers(),
+            )
+        readiness.assert_not_called()
+        assert response.status_code == 200
+        assert response.json()["activePublicLocales"] == ["en", "ro", "de"]
+        assert public_path.read_bytes() == before
+
+    def test_deactivate_removes_from_public_and_keeps_private(self, split_roots):
+        _write_languages(split_roots["editorial"], ["en", "ro", "de"])
+        _write_languages(split_roots["production"], ["en", "ro", "de"])
+        response = split_roots["client"].post(
+            "/api/admin/public-languages/de/deactivate",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 200
+        assert response.json()["activePublicLocales"] == ["en", "ro"]
+        german = next(
+            row for row in response.json()["languages"] if row["locale"] == "de"
+        )
+        assert german["publicVisibility"] == "Inactive"
+        assert _read_languages(split_roots["production"]) == ["en", "ro"]
+        assert _read_languages(split_roots["editorial"]) == ["en", "ro", "de"]
+
+    def test_default_locale_still_cannot_be_deactivated(self, split_roots):
+        _write_languages(split_roots["production"], ["en", "ro"])
+        response = split_roots["client"].post(
+            "/api/admin/public-languages/en/deactivate",
+            headers=admin_headers(),
+        )
+        assert response.status_code == 400
+        assert "default public language" in response.json()["detail"].lower()
+        assert _read_languages(split_roots["production"]) == ["en", "ro"]
+
+    def test_stale_frontend_cannot_bypass_backend_readiness(self, split_roots):
+        _write_languages(split_roots["production"], ["en", "ro"])
+        with patch_activation_readiness(production_ready=False):
+            response = split_roots["client"].post(
+                "/api/admin/public-languages/de/activate",
+                headers=admin_headers(),
+            )
+        assert response.status_code == 409
+        assert _read_languages(split_roots["production"]) == ["en", "ro"]
+
+    def test_split_activate_does_not_mutate_checkout_registries(self, split_roots):
+        before_private = CHECKOUT_PRIVATE_LANGUAGES.read_bytes()
+        before_public = CHECKOUT_PUBLIC_LANGUAGES.read_bytes()
+        _write_languages(split_roots["editorial"], ["en", "ro", "de"])
+        _write_languages(split_roots["production"], ["en", "ro"])
+        with patch_activation_readiness(production_ready=True):
+            assert (
+                split_roots["client"].post(
+                    "/api/admin/public-languages/de/activate",
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
+        assert CHECKOUT_PRIVATE_LANGUAGES.read_bytes() == before_private
+        assert CHECKOUT_PUBLIC_LANGUAGES.read_bytes() == before_public
+        assert json.loads(before_public.decode("utf-8"))["activePublicLocales"] == [
+            "en",
+            "ro",
+        ]
+        assert json.loads(before_private.decode("utf-8"))["activePublicLocales"] == [
+            "en",
+            "ro",
+            "de",
+        ]

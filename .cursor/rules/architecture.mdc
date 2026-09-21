@@ -23,7 +23,7 @@ The guiding principle for deciding where logic belongs:
 
 Anonymous Public Knowledge Preview is a separate backend API over the public packaged corpus. Locked educational bodies must never be sent to the client.
 
-Local authenticated Manual, Glossary, and Knowledge Base preview published private editorial snapshots (`backend/private/content`). Production reads only the packaged corpus (`backend/public/content`). Packaging is the release boundary. Drafts never appear in the workspace.
+Local authenticated Manual, Glossary, and Knowledge Base preview published private editorial snapshots (`backend/private/content`). Production reads only the packaged corpus (`backend/public/content`). Packaging is the release boundary. Drafts never appear in the workspace. Admin Activate writes the packaged public `public-languages.json`; that file is the production-active locale registry. The private copy is editorial/local only.
 
 # Coding rules
 If you write new code that implements significant functionality or changes existing functionality significantly,
