@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import html
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Literal
@@ -427,6 +428,18 @@ def extract_translatable_items(
     raise ValueError(f"Unsupported editorial module: {module}")
 
 
+def decode_plain_translated_text(text: str) -> str:
+    """Decode HTML character references on plain-text translation results.
+
+    DeepL HTML mode encodes apostrophes as ``&#x27;``. Plain titles/terms must
+    store ordinary apostrophes. Already-decoded text is unchanged. HTML markup
+    fields are not passed through this helper.
+    """
+    if not isinstance(text, str) or "&" not in text:
+        return text
+    return html.unescape(text)
+
+
 def reconstruct_draft_body(
     source_draft: dict[str, Any],
     translations: list[tuple[TranslatableItem, str]],
@@ -436,3 +449,21 @@ def reconstruct_draft_body(
     for item, translated in translations:
         _set_path(result, item.path, translated)
     return result
+
+
+def repair_plain_entities_in_draft(
+    module: EditorialModule,
+    draft_body: dict[str, Any],
+) -> tuple[dict[str, Any], int]:
+    """Decode persisted HTML entities in plain-text fields only. No provider call."""
+    items = extract_translatable_items(module, draft_body)
+    updates: list[tuple[TranslatableItem, str]] = []
+    for item in items:
+        if item.content_format != "plain":
+            continue
+        decoded = decode_plain_translated_text(item.text)
+        if decoded != item.text:
+            updates.append((item, decoded))
+    if not updates:
+        return draft_body, 0
+    return reconstruct_draft_body(draft_body, updates), len(updates)

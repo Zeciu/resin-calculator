@@ -595,7 +595,7 @@ class TestUpdateEngineActions:
 
 
 class TestBatchedFieldTranslation:
-    def test_manual_multi_field_uses_one_provider_batch(self, repository):
+    def test_manual_splits_plain_and_html_provider_batches(self, repository):
         meta = repository.create_manual_chapter("Capitol")
         cid = meta["contentId"]
         body = manual_body(
@@ -609,12 +609,67 @@ class TestBatchedFieldTranslation:
         provider = FakeTranslationProvider()
         service = TranslationUpdateService(repository, provider=provider)
         saved, _ = service.update(module="manual", content_id=cid, target_locale="en")
-        assert len(provider.batch_calls) == 1
-        assert len(provider.batch_calls[0]["texts"]) == len(provider.calls)
-        assert len(provider.calls) >= 3
+        formats = {call["content_format"] for call in provider.batch_calls}
+        assert formats == {"plain", "html"}
+        plain_texts = next(
+            call["texts"] for call in provider.batch_calls if call["content_format"] == "plain"
+        )
+        html_texts = next(
+            call["texts"] for call in provider.batch_calls if call["content_format"] == "html"
+        )
+        assert "Titlu" in plain_texts
+        assert "Titlu" not in html_texts
+        assert "Primul." in html_texts
+        assert "Al doilea." in html_texts
         assert saved["draftBody"]["title"] == "[en]Titlu"
         assert saved["draftBody"]["sections"][0]["blocks"][0]["text"] == "[en]Primul."
         assert saved["draftBody"]["sections"][0]["blocks"][1]["text"] == "[en]Al doilea."
+
+    def test_plain_apostrophe_entities_are_decoded_html_markup_is_kept(self, repository):
+        meta = repository.create_manual_chapter("Capitol")
+        cid = meta["contentId"]
+        body = manual_body(
+            title="Umiditatea lemnului",
+            blocks=[{"type": "paragraph", "text": "Text cu <em>marcaj</em>."}],
+        )
+        repository.save_manual_variant(cid, "ro", body)
+
+        class EntityProvider(FakeTranslationProvider):
+            def translate_many(self, texts, *, content_format="html", **kwargs):
+                self.batch_calls.append(
+                    {
+                        "texts": list(texts),
+                        "content_format": content_format,
+                        "source_locale": kwargs.get("source_locale"),
+                        "target_locale": kwargs.get("target_locale"),
+                    }
+                )
+                results = []
+                for text in texts:
+                    if content_format == "plain":
+                        rendered = "L&#x27;humidité du bois"
+                    else:
+                        rendered = "Texte avec <em>l&#x27;humidité</em>."
+                    results.append(
+                        TranslationResult(
+                            text=rendered,
+                            provider="deepl",
+                            source_locale=kwargs.get("source_locale") or "ro",
+                            target_locale=kwargs.get("target_locale") or "fr",
+                        )
+                    )
+                return results
+
+        provider = EntityProvider()
+        saved, _ = TranslationUpdateService(repository, provider=provider).update(
+            module="manual", content_id=cid, target_locale="fr"
+        )
+        assert saved["draftBody"]["title"] == "L'humidité du bois"
+        assert "&#x27;" not in saved["draftBody"]["title"]
+        assert saved["draftBody"]["sections"][0]["blocks"][0]["text"] == (
+            "Texte avec <em>l&#x27;humidité</em>."
+        )
+        assert {call["content_format"] for call in provider.batch_calls} == {"plain", "html"}
 
     def test_provider_failure_mid_item_saves_no_partial_draft(self, repository):
         from private.translation.exceptions import TranslationTemporaryProviderError
@@ -641,6 +696,7 @@ class TestBatchedFieldTranslation:
         provider = FakeTranslationProvider()
         service = TranslationUpdateService(repository, provider=provider)
         saved, _ = service.update(module="glossary", content_id=cid, target_locale="en")
-        assert len(provider.batch_calls) == 1
+        formats = {call["content_format"] for call in provider.batch_calls}
+        assert formats == {"plain", "html"}
         assert saved["draftBody"]["term"] == "[en]Termen"
         assert "[en]" in saved["draftBody"]["definitionBlocks"][0]["text"]

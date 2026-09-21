@@ -11,6 +11,7 @@ from private.schemas.common import parse_admin_locale
 from private.translation.deepl import DeepLTranslationProvider, PROVIDER_NAME
 from private.translation.editorial_text import (
     EditorialModule,
+    decode_plain_translated_text,
     extract_translatable_items,
     reconstruct_draft_body,
 )
@@ -359,55 +360,7 @@ class TranslationUpdateService:
         if isinstance(provider, DeepLTranslationProvider):
             provider._config.require_available()
 
-        # Batch all fields for this item into one provider request when supported.
-        # Mixed plain/html uses html tag handling (safe for plain strings).
-        formats = {item.content_format for item in items}
-        content_format: Literal["plain", "html"] = (
-            "html" if "html" in formats else "plain"
-        )
-        contexts = [
-            item.context.strip()
-            for item in items
-            if isinstance(item.context, str) and item.context.strip()
-        ]
-        batch_context = contexts[0] if contexts else None
-        texts = [item.text for item in items]
-
-        translate_many = getattr(provider, "translate_many", None)
-        if callable(translate_many):
-            results = translate_many(
-                texts,
-                source_locale=CANONICAL_SOURCE_LOCALE,
-                target_locale=target_locale,
-                context=batch_context,
-                content_format=content_format,
-            )
-        else:
-            results = [
-                provider.translate(
-                    text,
-                    source_locale=CANONICAL_SOURCE_LOCALE,
-                    target_locale=target_locale,
-                    context=batch_context,
-                    content_format=content_format,
-                )
-                for text in texts
-            ]
-
-        if not isinstance(results, list) or len(results) != len(items):
-            raise TranslationUpdateError(
-                "Translation provider returned an unexpected number of translations."
-            )
-
-        translated_pairs: list[tuple[Any, str]] = []
-        for item, result in zip(items, results, strict=True):
-            translated = getattr(result, "text", None)
-            if not isinstance(translated, str):
-                raise TranslationUpdateError(
-                    "Translation provider returned an invalid translation entry."
-                )
-            translated_pairs.append((item, translated))
-
+        translated_pairs = self._translate_items(provider, items, target_locale)
         new_body = reconstruct_draft_body(draft_body, translated_pairs)
         source_revision = read_source_revision(ro_variant) or 1
         source_text_revision = effective_source_text_revision(ro_variant)
@@ -427,6 +380,71 @@ class TranslationUpdateService:
             body=new_body,
             generation_metadata=generation_metadata,
         )
+
+    def _translate_items(
+        self,
+        provider: TranslationProvider,
+        items: list[Any],
+        target_locale: str,
+    ) -> list[tuple[Any, str]]:
+        """Translate items in format-specific batches. Plain is never sent as HTML."""
+        translated: list[str | None] = [None] * len(items)
+        translate_many = getattr(provider, "translate_many", None)
+        for content_format in ("plain", "html"):
+            grouped = [
+                (index, item)
+                for index, item in enumerate(items)
+                if item.content_format == content_format
+            ]
+            if not grouped:
+                continue
+            texts = [item.text for _index, item in grouped]
+            contexts = [
+                item.context.strip()
+                for _index, item in grouped
+                if isinstance(item.context, str) and item.context.strip()
+            ]
+            batch_context = contexts[0] if contexts else None
+            if callable(translate_many):
+                results = translate_many(
+                    texts,
+                    source_locale=CANONICAL_SOURCE_LOCALE,
+                    target_locale=target_locale,
+                    context=batch_context,
+                    content_format=content_format,
+                )
+            else:
+                results = [
+                    provider.translate(
+                        text,
+                        source_locale=CANONICAL_SOURCE_LOCALE,
+                        target_locale=target_locale,
+                        context=batch_context,
+                        content_format=content_format,
+                    )
+                    for text in texts
+                ]
+            if not isinstance(results, list) or len(results) != len(grouped):
+                raise TranslationUpdateError(
+                    "Translation provider returned an unexpected number of translations."
+                )
+            for (index, item), result in zip(grouped, results, strict=True):
+                value = getattr(result, "text", None)
+                if not isinstance(value, str):
+                    raise TranslationUpdateError(
+                        "Translation provider returned an invalid translation entry."
+                    )
+                if content_format == "plain":
+                    value = decode_plain_translated_text(value)
+                translated[index] = value
+        pairs: list[tuple[Any, str]] = []
+        for item, value in zip(items, translated, strict=True):
+            if not isinstance(value, str):
+                raise TranslationUpdateError(
+                    "Translation provider returned an unexpected number of translations."
+                )
+            pairs.append((item, value))
+        return pairs
 
     def _load_ro_variant(self, module: GenerateModule, content_id: str) -> dict[str, Any] | None:
         if module == "manual":

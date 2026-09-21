@@ -16,8 +16,10 @@ from private.services.translation_generation import (
     TranslationGenerationService,
 )
 from private.translation.editorial_text import (
+    decode_plain_translated_text,
     extract_translatable_items,
     reconstruct_draft_body,
+    repair_plain_entities_in_draft,
 )
 from private.translation.exceptions import TranslationConfigurationError, TranslationTemporaryProviderError
 from private.translation.types import TranslationResult
@@ -148,6 +150,35 @@ class TestExtractionReconstruction:
         assert rebuilt["sections"][0]["id"] == "main"
         assert rebuilt["sections"][0]["blocks"][1]["src"] == "/img/a.png"
         assert rebuilt["title"].startswith("T:")
+
+    def test_plain_french_apostrophe_entity_is_decoded_without_touching_html(self):
+        assert decode_plain_translated_text("L&#x27;humidité du bois") == "L'humidité du bois"
+        assert decode_plain_translated_text("L'humidité du bois") == "L'humidité du bois"
+        assert decode_plain_translated_text("Écorce d&#x27;orange") == "Écorce d'orange"
+        body = {
+            "title": "L&#x27;humidité du bois",
+            "sections": [
+                {
+                    "id": "main",
+                    "title": "",
+                    "blocks": [
+                        {
+                            "type": "paragraph",
+                            "text": "Voir <em>l&#x27;humidité</em> &amp; plus.",
+                        }
+                    ],
+                }
+            ],
+        }
+        repaired, count = repair_plain_entities_in_draft("manual", body)
+        assert count == 1
+        assert repaired["title"] == "L'humidité du bois"
+        assert repaired["sections"][0]["blocks"][0]["text"] == (
+            "Voir <em>l&#x27;humidité</em> &amp; plus."
+        )
+        again, second = repair_plain_entities_in_draft("manual", repaired)
+        assert second == 0
+        assert again["title"] == "L'humidité du bois"
 
     def test_glossary_and_kb_field_maps(self):
         glossary_items = extract_translatable_items(
