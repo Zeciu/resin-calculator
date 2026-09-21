@@ -130,8 +130,10 @@ function mockAdminDashboardApis(options = {}) {
   const readinessHandler =
     options.readiness ?? (async () => ({ locales: defaultReadinessLocales() }));
   const prepareHandler = options.prepare;
+  const activateHandler = options.activate;
   let active = options.active ?? ["en"];
   const activateCalls = [];
+  const prepareCalls = [];
 
   const spy = vi.spyOn(global, "fetch").mockImplementation(async (url, init = {}) => {
     const path = String(url);
@@ -186,6 +188,7 @@ function mockAdminDashboardApis(options = {}) {
     const prepareMatch = path.match(/\/api\/admin\/public-languages\/([^/]+)\/prepare-production$/);
     if (prepareMatch && method === "POST") {
       const locale = decodeURIComponent(prepareMatch[1]);
+      prepareCalls.push(locale);
       try {
         const payload = prepareHandler
           ? await prepareHandler(locale)
@@ -212,6 +215,19 @@ function mockAdminDashboardApis(options = {}) {
     if (activateMatch && method === "POST") {
       const locale = decodeURIComponent(activateMatch[1]);
       activateCalls.push(locale);
+      if (activateHandler) {
+        try {
+          await activateHandler(locale);
+        } catch (error) {
+          return {
+            ok: false,
+            status: error.status ?? 409,
+            json: async () => ({
+              detail: error instanceof Error ? error.message : "Activation refused.",
+            }),
+          };
+        }
+      }
       if (!active.includes(locale)) {
         active.push(locale);
       }
@@ -229,9 +245,37 @@ function mockAdminDashboardApis(options = {}) {
         }),
       };
     }
+    const deactivateMatch = path.match(/\/api\/admin\/public-languages\/([^/]+)\/deactivate$/);
+    if (deactivateMatch && method === "POST") {
+      const locale = decodeURIComponent(deactivateMatch[1]);
+      if (locale === "en") {
+        return {
+          ok: false,
+          status: 400,
+          json: async () => ({
+            detail: "Cannot deactivate the default public language (en).",
+          }),
+        };
+      }
+      active = active.filter((item) => item !== locale);
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          defaultPublicLocale: "en",
+          activePublicLocales: [...active],
+          languages: LANGUAGE_ROWS.map((row) => ({
+            ...row,
+            publicVisibility: active.includes(row.locale) ? "Active" : "Inactive",
+            canDeactivate: active.includes(row.locale) && row.locale !== "en",
+          })),
+        }),
+      };
+    }
     return { ok: false, status: 404, json: async () => ({ detail: `Unhandled ${path}` }) };
   });
   spy.activateCalls = activateCalls;
+  spy.prepareCalls = prepareCalls;
   return spy;
 }
 
@@ -332,19 +376,28 @@ describe("Admin Locale Readiness overview", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent("Readiness unavailable.");
   });
 
-  it("does not block Activate when production is not ready", async () => {
-    const user = userEvent.setup();
+  it("disables Activate when Production Ready is NO and keeps Prepare available", async () => {
     mockAdminDashboardApis();
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
     const languages = await screen.findByRole("table", { name: "Public languages" });
     const germanLangRow = within(languages).getByText("German").closest("tr");
-    const activate = within(germanLangRow).getByRole("button", { name: "Activate" });
-    expect(activate).toBeEnabled();
-    await user.click(activate);
-    await waitFor(() => {
-      expect(within(germanLangRow).getByText("Active")).toBeInTheDocument();
-    });
+    const romanianLangRow = within(languages).getByText("Romanian").closest("tr");
+    const frenchLangRow = within(languages).getByText("French").closest("tr");
+    expect(within(germanLangRow).getByRole("button", { name: "Activate" })).toBeDisabled();
+    expect(within(germanLangRow).getByText("Production not ready")).toBeInTheDocument();
+    expect(within(romanianLangRow).getByRole("button", { name: "Activate" })).toBeDisabled();
+    expect(within(frenchLangRow).getByRole("button", { name: "Activate" })).toBeDisabled();
+
+    const readinessTable = screen.getByRole("table", { name: "Locale readiness" });
+    const germanReadyRow = within(readinessTable).getByText("German").closest("tr");
+    const frenchReadyRow = within(readinessTable).getByText("French").closest("tr");
+    expect(
+      within(germanReadyRow).getByRole("button", { name: "Prepare for Production" }),
+    ).toBeEnabled();
+    expect(
+      within(frenchReadyRow).queryByRole("button", { name: "Prepare for Production" }),
+    ).not.toBeInTheDocument();
   });
 
   it("refresh reloads readiness data", async () => {
@@ -429,8 +482,12 @@ describe("Admin Locale Readiness overview", () => {
       ).not.toBeInTheDocument();
     });
     expect(spy.activateCalls).toEqual([]);
+    expect(spy.prepareCalls).toEqual(["ro"]);
     const languages = screen.getByRole("table", { name: "Public languages" });
-    expect(within(languages).getByText("Romanian").closest("tr")).toHaveTextContent("Inactive");
+    const romanianLangRow = within(languages).getByText("Romanian").closest("tr");
+    expect(romanianLangRow).toHaveTextContent("Inactive");
+    expect(within(romanianLangRow).getByRole("button", { name: "Activate" })).toBeEnabled();
+    expect(within(romanianLangRow).queryByText("Production not ready")).not.toBeInTheDocument();
   });
 
   it("does not call prepare when confirmation is cancelled", async () => {
@@ -462,5 +519,68 @@ describe("Admin Locale Readiness overview", () => {
     expect(await screen.findByRole("button", { name: "Preparing…" })).toBeDisabled();
     resolvePrepare();
     expect(await screen.findByRole("alert")).toHaveTextContent("Packaging refused.");
+  });
+
+  it("does not send Prepare when Activate is used on a production-ready locale", async () => {
+    const user = userEvent.setup();
+    const spy = mockAdminDashboardApis({
+      readiness: async () => ({
+        locales: defaultReadinessLocales().map((row) =>
+          row.locale === "cs" ? { ...row, preview_ready: true, production_ready: true } : row,
+        ),
+      }),
+    });
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const languages = await screen.findByRole("table", { name: "Public languages" });
+    const czechRow = within(languages).getByText("Czech").closest("tr");
+    expect(within(czechRow).getByRole("button", { name: "Activate" })).toBeEnabled();
+    await user.click(within(czechRow).getByRole("button", { name: "Activate" }));
+    await waitFor(() => {
+      expect(within(czechRow).getByText("Active")).toBeInTheDocument();
+    });
+    expect(spy.activateCalls).toEqual(["cs"]);
+    expect(spy.prepareCalls).toEqual([]);
+  });
+
+  it("keeps Deactivate available for an active non-default locale regardless of readiness", async () => {
+    const user = userEvent.setup();
+    mockAdminDashboardApis({ active: ["en", "de"] });
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const languages = await screen.findByRole("table", { name: "Public languages" });
+    const germanRow = within(languages).getByText("German").closest("tr");
+    const deactivate = within(germanRow).getByRole("button", { name: "Deactivate" });
+    expect(deactivate).toBeEnabled();
+    await user.click(deactivate);
+    await waitFor(() => {
+      expect(within(germanRow).getByText("Inactive")).toBeInTheDocument();
+      expect(within(germanRow).getByRole("button", { name: "Activate" })).toBeDisabled();
+    });
+  });
+
+  it("surfaces a backend activation error when frontend readiness is stale", async () => {
+    const user = userEvent.setup();
+    const spy = mockAdminDashboardApis({
+      readiness: async () => ({
+        locales: defaultReadinessLocales().map((row) =>
+          row.locale === "de" ? { ...row, production_ready: true } : row,
+        ),
+      }),
+      activate: async () => {
+        const error = new Error(
+          "German is not Production Ready. See Locale Readiness, then Prepare for Production if Preview is ready.",
+        );
+        error.status = 409;
+        throw error;
+      },
+    });
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const languages = await screen.findByRole("table", { name: "Public languages" });
+    const germanRow = within(languages).getByText("German").closest("tr");
+    expect(within(germanRow).getByRole("button", { name: "Activate" })).toBeEnabled();
+    await user.click(within(germanRow).getByRole("button", { name: "Activate" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("not Production Ready");
+    expect(within(germanRow).getByText("Inactive")).toBeInTheDocument();
+    expect(spy.activateCalls).toEqual(["de"]);
+    expect(spy.prepareCalls).toEqual([]);
   });
 });

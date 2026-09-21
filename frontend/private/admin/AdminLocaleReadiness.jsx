@@ -125,8 +125,8 @@ export default function AdminLocaleReadiness({
         </button>
       </div>
       <p className="admin-dashboard__status">
-        Structural completeness for Preview and Production. Public activation is separate and is
-        not blocked by this overview.
+        Structural completeness for Preview and Production. Activate requires Production Ready.
+        Public visibility remains a separate action.
       </p>
 
       {error ? (

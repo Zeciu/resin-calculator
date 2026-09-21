@@ -5,6 +5,7 @@ import pytest
 from private.routers import admin_glossary, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
 from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
+from tests.content.test_admin_locale_readiness import patch_activation_readiness
 
 
 @pytest.fixture
@@ -524,13 +525,14 @@ class TestGlossaryRelationshipPublishQa:
 
         admin_public_languages.reset_repository_cache()
         public_languages.reset_repository_cache()
-        assert (
-            client.post(
-                "/api/admin/public-languages/ro/activate",
-                headers=admin_headers(),
-            ).status_code
-            == 200
-        )
+        with patch_activation_readiness(production_ready=True):
+            assert (
+                client.post(
+                    "/api/admin/public-languages/ro/activate",
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
         public = client.get("/api/content/glossary?locale=ro").json()
         assert public["available"] is True
         assert any(item["id"] == entry_id for item in public["entries"])

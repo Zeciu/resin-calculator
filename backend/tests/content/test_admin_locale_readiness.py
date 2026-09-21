@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from unittest.mock import patch
 
 import pytest
@@ -119,6 +120,27 @@ def _result(
             glossary=_store(173, 173 if glossary_preview is None else glossary_preview.present_count),
             knowledge_base=_store(112, 112),
         ),
+    )
+
+
+def patch_activation_readiness(
+    *,
+    production_ready: bool = True,
+    preview_ready: bool | None = None,
+):
+    """Patch Phase 1 evaluation used by Activate. Does not package or write config."""
+    preview = production_ready if preview_ready is None else preview_ready
+
+    def fake(locale, **kwargs):
+        return _result(
+            str(locale),
+            preview_ready=preview,
+            production_ready=production_ready,
+        )
+
+    return patch(
+        "private.services.public_languages.evaluate_locale_readiness",
+        side_effect=fake,
     )
 
 
@@ -249,11 +271,8 @@ class TestAdminLocaleReadinessEndpoint:
         assert get_response.status_code == 200
         assert post_response.status_code == 405
 
-    def test_activation_endpoints_are_unchanged(self, client):
-        with patch(
-            "private.services.admin_locale_readiness.evaluate_configured_locales",
-            return_value=_configured_results(),
-        ):
+    def test_activation_payload_unchanged_when_production_ready(self, client):
+        with patch_activation_readiness(production_ready=True):
             activated = client.post(
                 "/api/admin/public-languages/fr/activate",
                 headers=admin_headers(),
@@ -275,3 +294,16 @@ class TestAdminLocaleReadinessEndpoint:
             "isDefault",
             "canDeactivate",
         }
+
+    def test_activation_refused_when_production_not_ready(self, client, tmp_path):
+        config_path = tmp_path / "config" / "public-languages.json"
+        with patch_activation_readiness(production_ready=False):
+            activated = client.post(
+                "/api/admin/public-languages/fr/activate",
+                headers=admin_headers(),
+            )
+        assert activated.status_code == 409
+        assert "Production Ready" in activated.json()["detail"]
+        assert not config_path.exists() or json.loads(config_path.read_text(encoding="utf-8"))[
+            "activePublicLocales"
+        ] == ["en"]

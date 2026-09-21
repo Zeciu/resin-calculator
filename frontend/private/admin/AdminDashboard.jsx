@@ -159,6 +159,12 @@ export default function AdminDashboard() {
                 {overview.languages.map((row) => {
                   const isPending = pendingLocale === row.locale;
                   const isActive = row.publicVisibility === "Active";
+                  const localeReadiness = readiness?.locales?.find(
+                    (item) => item.locale === row.locale,
+                  );
+                  const productionReady = localeReadiness?.production_ready === true;
+                  const showProductionNotReady =
+                    !isActive && localeReadiness?.production_ready === false;
                   return (
                     <tr key={row.locale}>
                       <td>
@@ -195,14 +201,26 @@ export default function AdminDashboard() {
                               {isPending ? "Working…" : "Deactivate"}
                             </button>
                           ) : (
-                            <button
-                              type="button"
-                              className="admin-public-languages__action"
-                              disabled={isPending}
-                              onClick={() => void handleActivate(row.locale)}
-                            >
-                              {isPending ? "Working…" : "Activate"}
-                            </button>
+                            <>
+                              <button
+                                type="button"
+                                className="admin-public-languages__action"
+                                disabled={isPending || !productionReady}
+                                title={
+                                  productionReady
+                                    ? undefined
+                                    : "Locale is not Production Ready. See Locale Readiness."
+                                }
+                                onClick={() => void handleActivate(row.locale)}
+                              >
+                                {isPending ? "Working…" : "Activate"}
+                              </button>
+                              {showProductionNotReady ? (
+                                <span className="admin-public-languages__hint">
+                                  Production not ready
+                                </span>
+                              ) : null}
+                            </>
                           )}
                         </div>
                       </td>

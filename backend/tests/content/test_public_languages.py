@@ -21,6 +21,7 @@ from private.routers import (
 )
 from private.services.manual_public import ManualPublicService
 from private.services.public_languages import PublicLanguagesService
+from tests.content.test_admin_locale_readiness import patch_activation_readiness
 from tests.support.authenticated_client import AuthenticatedTestClient
 
 
@@ -112,10 +113,11 @@ class TestPublicLanguagesConfig:
         assert on_disk["activePublicLocales"] == ["en", "ro"]
 
     def test_activate_and_deactivate_locale(self, client):
-        activated = client.post(
-            "/api/admin/public-languages/ro/activate",
-            headers=admin_headers(),
-        )
+        with patch_activation_readiness(production_ready=True):
+            activated = client.post(
+                "/api/admin/public-languages/ro/activate",
+                headers=admin_headers(),
+            )
         assert activated.status_code == 200
         assert "ro" in activated.json()["activePublicLocales"]
         row = next(item for item in activated.json()["languages"] if item["locale"] == "ro")
@@ -195,8 +197,9 @@ class TestPublicLanguagesConfig:
             raising=False,
         )
 
-        service.activate("de")
-        service.deactivate("de")
+        with patch_activation_readiness(production_ready=True):
+            service.activate("de")
+            service.deactivate("de")
 
         translation_mock.assert_not_called()
         publish_mock.assert_not_called()
@@ -211,7 +214,8 @@ class TestPublicLanguagesConfig:
         repository.write_manual_snapshot("de", {"locale": "de", "chapters": []})
 
         # An empty published snapshot owns the locale: no content, and no substitute.
-        client.post("/api/admin/public-languages/de/activate", headers=admin_headers())
+        with patch_activation_readiness(production_ready=True):
+            client.post("/api/admin/public-languages/de/activate", headers=admin_headers())
         response = client.get("/api/content/manual?locale=de")
         assert response.status_code == 200
         payload = response.json()
@@ -278,10 +282,11 @@ class TestPublicLanguagesConfig:
         assert by_locale["fr"]["translationStatus"] == "Not generated"
         assert by_locale["fr"]["publishedContentStatus"] == "Not published"
 
-        # Status does not block activation.
-        activated = client.post(
-            "/api/admin/public-languages/fr/activate",
-            headers=admin_headers(),
-        )
+        # Informational status columns do not replace Phase 1 Production Ready.
+        with patch_activation_readiness(production_ready=True):
+            activated = client.post(
+                "/api/admin/public-languages/fr/activate",
+                headers=admin_headers(),
+            )
         assert activated.status_code == 200
         assert "fr" in activated.json()["activePublicLocales"]

@@ -2,6 +2,7 @@ import pytest
 
 from private.routers import admin_manual, public_content
 from tests.support.authenticated_client import AuthenticatedTestClient
+from tests.content.test_admin_locale_readiness import patch_activation_readiness
 
 
 @pytest.fixture
@@ -72,13 +73,14 @@ class TestPublicManualApi:
 
     def test_active_ro_locale_is_unavailable_without_autofallback(self, client):
         publish_en_chapter(client)
-        assert (
-            client.post(
-                "/api/admin/public-languages/ro/activate",
-                headers=admin_headers(),
-            ).status_code
-            == 200
-        )
+        with patch_activation_readiness(production_ready=True):
+            assert (
+                client.post(
+                    "/api/admin/public-languages/ro/activate",
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
 
         response = client.get("/api/content/manual?locale=ro")
         assert response.status_code == 200
@@ -133,13 +135,14 @@ class TestPublicManualApi:
 
     def test_published_en_drafts_are_served_without_changing_romanian(self, client):
         """RO live + EN generated drafts + Publish all EN must serve EN, not unavailable."""
-        assert (
-            client.post(
-                "/api/admin/public-languages/ro/activate",
-                headers=admin_headers(),
-            ).status_code
-            == 200
-        )
+        with patch_activation_readiness(production_ready=True):
+            assert (
+                client.post(
+                    "/api/admin/public-languages/ro/activate",
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
 
         chapter_count = 18
         for index in range(1, chapter_count + 1):

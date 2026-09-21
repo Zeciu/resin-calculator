@@ -11,6 +11,7 @@ from private.repositories.filesystem import FilesystemContentRepository
 from private.routers import admin_public_languages, admin_website, public_content, public_languages
 from private.website_pages import WEBSITE_PAGE_DEFINITIONS, empty_website_draft_body, website_page_definition
 from tests.support.authenticated_client import AuthenticatedTestClient
+from tests.content.test_admin_locale_readiness import patch_activation_readiness
 
 PNG_1X1 = (
     b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
@@ -123,13 +124,14 @@ class TestWebsitePublicGating:
 
     def test_active_romanian_locale_returns_published_content(self, client):
         publish_page(client, "home", locale="ro", subtitle="RO subtitle")
-        assert (
-            client.post(
-                "/api/admin/public-languages/ro/activate",
-                headers=admin_headers(),
-            ).status_code
-            == 200
-        )
+        with patch_activation_readiness(production_ready=True):
+            assert (
+                client.post(
+                    "/api/admin/public-languages/ro/activate",
+                    headers=admin_headers(),
+                ).status_code
+                == 200
+            )
 
         response = client.get("/api/content/website/home?locale=ro")
         assert response.status_code == 200

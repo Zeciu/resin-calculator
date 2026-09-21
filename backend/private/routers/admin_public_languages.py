@@ -19,7 +19,7 @@ from private.services.admin_prepare_production import (
     ProductionPrepareError,
     prepare_locale_production,
 )
-from private.services.public_languages import PublicLanguagesService
+from private.services.public_languages import ProductionNotReadyError, PublicLanguagesService
 
 router = APIRouter(prefix="/admin/public-languages", tags=["admin-public-languages"])
 
@@ -83,6 +83,8 @@ def activate_public_language(
 ) -> AdminPublicLanguagesResponse:
     try:
         return service.activate(locale)
+    except ProductionNotReadyError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

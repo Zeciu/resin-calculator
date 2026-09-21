@@ -49,8 +49,46 @@ function seedUser() {
   );
 }
 
-function mockPublicLanguagesAdminApi(initialActive = ["en"]) {
+const COMPLETE_LAYER = {
+  status: "complete",
+  required_count: 1,
+  present_count: 1,
+  missing: [],
+  extra: [],
+};
+
+const EMPTY_STORE = {
+  canonical_count: 0,
+  published_count: 0,
+  draft_count: 0,
+  no_variant_count: 0,
+  draft_ids: [],
+  no_variant_ids: [],
+};
+
+function readinessFor(productionReadyLocales) {
+  const ready = new Set(productionReadyLocales);
+  return ADMIN_EDITORIAL_LOCALES.map((locale) => ({
+    locale,
+    label: ADMIN_LOCALE_LABELS[locale],
+    ui: COMPLETE_LAYER,
+    website_preview: COMPLETE_LAYER,
+    website_production: COMPLETE_LAYER,
+    manual_preview: COMPLETE_LAYER,
+    manual_production: COMPLETE_LAYER,
+    glossary_preview: COMPLETE_LAYER,
+    glossary_production: COMPLETE_LAYER,
+    knowledge_base_preview: COMPLETE_LAYER,
+    knowledge_base_production: COMPLETE_LAYER,
+    preview_ready: ready.has(locale),
+    production_ready: ready.has(locale),
+    store: { manual: EMPTY_STORE, glossary: EMPTY_STORE, knowledge_base: EMPTY_STORE },
+  }));
+}
+
+function mockPublicLanguagesAdminApi(initialActive = ["en"], options = {}) {
   let active = [...initialActive];
+  const readinessLocales = options.readinessLocales ?? readinessFor(["en"]);
 
   return vi.spyOn(global, "fetch").mockImplementation(async (url, init = {}) => {
     const path = String(url);
@@ -84,7 +122,7 @@ function mockPublicLanguagesAdminApi(initialActive = ["en"]) {
       return {
         ok: true,
         status: 200,
-        json: async () => ({ locales: [] }),
+        json: async () => ({ locales: readinessLocales }),
       };
     }
 
@@ -200,7 +238,7 @@ describe("Admin Public Languages dashboard", () => {
   it("activates and deactivates a non-default language", async () => {
     const user = userEvent.setup();
     seedEditorialUser();
-    mockPublicLanguagesAdminApi(["en"]);
+    mockPublicLanguagesAdminApi(["en"], { readinessLocales: readinessFor(["en", "ro"]) });
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
     const table = await screen.findByRole("table", { name: "Public languages" });
@@ -228,6 +266,17 @@ describe("Admin Public Languages dashboard", () => {
     const englishRow = within(table).getByText("English").closest("tr");
     const deactivate = within(englishRow).getByRole("button", { name: "Deactivate" });
     expect(deactivate).toBeDisabled();
+  });
+
+  it("disables Activate when Production Ready is NO", async () => {
+    seedEditorialUser();
+    mockPublicLanguagesAdminApi(["en"]);
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+
+    const table = await screen.findByRole("table", { name: "Public languages" });
+    const romanianRow = within(table).getByText("Romanian").closest("tr");
+    expect(within(romanianRow).getByRole("button", { name: "Activate" })).toBeDisabled();
+    expect(within(romanianRow).getByText("Production not ready")).toBeInTheDocument();
   });
 });
 

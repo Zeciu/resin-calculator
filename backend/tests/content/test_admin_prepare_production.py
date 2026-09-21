@@ -18,6 +18,7 @@ from tests.content.test_admin_locale_readiness import (
     _layer,
     _result,
     admin_headers,
+    patch_activation_readiness,
 )
 from tests.content.test_package_published_content import (
     IMAGE_A,
@@ -289,9 +290,10 @@ class TestPrepareProductionEndpoint:
         assert french["publicVisibility"] == "Inactive"
 
     def test_activate_still_works_independently(self, client):
-        activated = client.post(
-            "/api/admin/public-languages/fr/activate",
-            headers=_headers(),
-        )
+        with patch_activation_readiness(production_ready=True):
+            activated = client.post(
+                "/api/admin/public-languages/fr/activate",
+                headers=_headers(),
+            )
         assert activated.status_code == 200
         assert "fr" in activated.json()["activePublicLocales"]

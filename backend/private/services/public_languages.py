@@ -18,6 +18,11 @@ from private.schemas.public_languages import (
     PublicLanguageRow,
     PublicLanguagesConfigResponse,
 )
+from private.services.locale_readiness import evaluate_locale_readiness
+
+
+class ProductionNotReadyError(ValueError):
+    """Activation refused because Phase 1 Production Ready is NO."""
 
 STATUS_NOT_GENERATED = "Not generated"
 STATUS_PARTIAL = "Partial"
@@ -146,14 +151,28 @@ class PublicLanguagesService:
         normalized = parse_admin_locale(locale)
         config = self._languages.read()
         active = list(config["activePublicLocales"])
-        if normalized not in active:
-            active.append(normalized)
-            self._languages.write(
-                {
-                    "defaultPublicLocale": config["defaultPublicLocale"],
-                    "activePublicLocales": active,
-                }
+        if normalized in active:
+            # Already public: idempotent no-op. Readiness is not re-checked here so an
+            # already-active locale cannot fail Activate. Inactive → active still requires
+            # Production Ready below.
+            return self.get_admin_overview()
+
+        readiness = evaluate_locale_readiness(normalized)
+        if not readiness.production_ready:
+            label = PUBLIC_LANGUAGE_LABELS.get(normalized, normalized)
+            raise ProductionNotReadyError(
+                f"{label} is not Production Ready. "
+                "Activation is unavailable until production requirements are complete. "
+                "See Locale Readiness, then Prepare for Production if Preview is ready."
             )
+
+        active.append(normalized)
+        self._languages.write(
+            {
+                "defaultPublicLocale": config["defaultPublicLocale"],
+                "activePublicLocales": active,
+            }
+        )
         return self.get_admin_overview()
 
     def deactivate(self, locale: str) -> AdminPublicLanguagesResponse:

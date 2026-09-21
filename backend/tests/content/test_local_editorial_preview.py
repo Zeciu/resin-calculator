@@ -18,6 +18,7 @@ from private.routers import (
 from public.content_corpus import CONTENT_CORPUS_HEADER, EDITORIAL_PUBLISHED
 from tests.support.authenticated_client import AuthenticatedTestClient
 from tests.support.in_memory_entitlements_repository import InMemoryEntitlementsRepository
+from tests.content.test_admin_locale_readiness import patch_activation_readiness
 
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
 PRIVATE_CORPUS = BACKEND_ROOT / "private" / "content"
@@ -132,13 +133,14 @@ def client(tmp_path, monkeypatch):
 
 
 def _activate_ro(client: AuthenticatedTestClient) -> None:
-    assert (
-        client.post(
-            "/api/admin/public-languages/ro/activate",
-            headers=ADMIN_HEADERS,
-        ).status_code
-        == 200
-    )
+    with patch_activation_readiness(production_ready=True):
+        assert (
+            client.post(
+                "/api/admin/public-languages/ro/activate",
+                headers=ADMIN_HEADERS,
+            ).status_code
+            == 200
+        )
 
 
 def _publish_manual(client: AuthenticatedTestClient, locale: str, title: str, text: str) -> str:

@@ -5676,6 +5676,11 @@ button.workspace-sidebar__link {
   cursor: not-allowed;
 }
 
+.admin-public-languages__hint {
+  color: #5a4a32;
+  font-size: 12px;
+}
+
 .admin-locale-readiness {
   margin-top: 12px;
 }
