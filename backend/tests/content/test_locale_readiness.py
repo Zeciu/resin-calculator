@@ -470,12 +470,18 @@ class TestCheckoutReadOnly:
 
         german = by_locale["de"]
         assert german.preview_ready is True
-        assert german.production_ready is False
-        assert german.manual_production.status is LayerStatus.MISSING
-        assert german.glossary_production.status is LayerStatus.INCOMPLETE
-        assert german.glossary_production.present_count == 0
-        assert german.knowledge_base_production.status is LayerStatus.INCOMPLETE
-        assert german.knowledge_base_production.present_count == 0
+        assert german.production_ready is True
+        assert german.website_production.status is LayerStatus.COMPLETE
+        assert german.website_production.present_count == len(catalogs.website_pages)
+        assert german.manual_production.status is LayerStatus.COMPLETE
+        assert german.manual_production.present_count == len(catalogs.manual_ids)
+        assert german.manual_production.missing == ()
+        assert german.glossary_production.status is LayerStatus.COMPLETE
+        assert german.glossary_production.present_count == len(catalogs.glossary_ids)
+        assert german.glossary_production.missing == ()
+        assert german.knowledge_base_production.status is LayerStatus.COMPLETE
+        assert german.knowledge_base_production.present_count == len(catalogs.knowledge_base_ids)
+        assert german.knowledge_base_production.missing == ()
 
         romanian = by_locale["ro"]
         assert romanian.preview_ready is True
@@ -508,21 +514,26 @@ class TestLocaleReadinessCli:
         assert "Preview Ready:    YES" in stdout
         assert "Production Ready: YES" in stdout
 
-    def test_locale_de_succeeds_when_production_not_ready(self) -> None:
+    def test_locale_de_preview_and_production_ready(self) -> None:
         code, stdout, stderr = _run_cli(["--locale", "de"])
         assert code == 0
         assert stderr == ""
         assert "Preview Ready:    YES" in stdout
-        assert "Production Ready: NO" in stdout
-        assert "MISSING 0/" in stdout
-        assert "Manual" in stdout
-        assert "INCOMPLETE 0/" in stdout
-        assert "Glossary" in stdout
-        assert "Knowledge Base" in stdout
-        production = stdout.split("Production blockers:", 1)[1]
-        assert "Manual production: MISSING" in production
-        assert "Glossary production: INCOMPLETE" in production
-        assert "Knowledge Base production: INCOMPLETE" in production
+        assert "Production Ready: YES" in stdout
+        assert "Production Ready: NO" not in stdout
+        website = stdout.split("Website", 1)[1].split("Manual", 1)[0]
+        assert "Preview:    COMPLETE 6/6" in website
+        assert "Production: COMPLETE 6/6" in website
+        manual = stdout.split("Manual", 1)[1].split("Glossary", 1)[0]
+        assert "Preview:    COMPLETE 18/18" in manual
+        assert "Production: COMPLETE 18/18" in manual
+        glossary = stdout.split("Glossary", 1)[1].split("Knowledge Base", 1)[0]
+        assert "Preview:    COMPLETE 173/173" in glossary
+        assert "Production: COMPLETE 173/173" in glossary
+        knowledge_base = stdout.split("Knowledge Base", 1)[1]
+        assert "Preview:    COMPLETE 112/112" in knowledge_base
+        assert "Production: COMPLETE 112/112" in knowledge_base
+        assert "Production blockers:" not in stdout
 
     def test_locale_ro_preview_and_production_ready(self) -> None:
         code, stdout, stderr = _run_cli(["--locale", "ro"])
@@ -647,5 +658,8 @@ class TestLocaleReadinessCli:
         assert "Preview Ready:    YES" in stdout
         serialized = locale_to_json(real_evaluate("de"))
         assert serialized["preview_ready"] is True
-        assert serialized["production_ready"] is False
-        assert serialized["manual_production"]["status"] == "missing"
+        assert serialized["production_ready"] is True
+        assert serialized["website_production"]["status"] == "complete"
+        assert serialized["manual_production"]["status"] == "complete"
+        assert serialized["glossary_production"]["status"] == "complete"
+        assert serialized["knowledge_base_production"]["status"] == "complete"
