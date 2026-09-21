@@ -108,6 +108,8 @@ export default function AdminLocaleReadiness({
   error,
   onRefresh,
   refreshing,
+  onPrepareProduction,
+  preparingLocale,
 }) {
   return (
     <div className="admin-locale-readiness">
@@ -171,15 +173,27 @@ export default function AdminLocaleReadiness({
                     </span>
                   </td>
                   <td>
-                    <span
-                      className={
-                        row.production_ready
-                          ? "admin-locale-readiness__ready admin-locale-readiness__ready--yes"
-                          : "admin-locale-readiness__ready"
-                      }
-                    >
-                      {readyLabel(row.production_ready)}
-                    </span>
+                    <div className="admin-locale-readiness__production-action">
+                      <span
+                        className={
+                          row.production_ready
+                            ? "admin-locale-readiness__ready admin-locale-readiness__ready--yes"
+                            : "admin-locale-readiness__ready"
+                        }
+                      >
+                        {readyLabel(row.production_ready)}
+                      </span>
+                      {row.preview_ready && !row.production_ready ? (
+                        <button
+                          type="button"
+                          className="admin-public-languages__action"
+                          disabled={Boolean(preparingLocale) || refreshing || loadState === "loading"}
+                          onClick={() => void onPrepareProduction(row.locale)}
+                        >
+                          {preparingLocale === row.locale ? "Preparing…" : "Prepare for Production"}
+                        </button>
+                      ) : null}
+                    </div>
                   </td>
                   <td>
                     <LayerCounts layer={row.ui} />

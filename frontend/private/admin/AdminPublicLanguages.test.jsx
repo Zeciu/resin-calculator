@@ -88,6 +88,15 @@ function mockPublicLanguagesAdminApi(initialActive = ["en"]) {
       };
     }
 
+    const prepareMatch = path.match(/\/api\/admin\/public-languages\/([^/]+)\/prepare-production$/);
+    if (prepareMatch && method === "POST") {
+      return {
+        ok: false,
+        status: 400,
+        json: async () => ({ detail: "Prepare not used in this test." }),
+      };
+    }
+
     if (path.endsWith("/api/admin/public-languages") && method === "GET") {
       return {
         ok: true,

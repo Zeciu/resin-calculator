@@ -49,3 +49,14 @@ export async function fetchAdminLocaleReadiness() {
   }
   return response.json();
 }
+
+export async function prepareLocaleProduction(locale) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/admin/public-languages/${encodeURIComponent(locale)}/prepare-production`,
+    { method: "POST", headers: await adminHeaders(false) },
+  );
+  if (!response.ok) {
+    throw new AdminApiError(await parseAdminError(response), response.status);
+  }
+  return response.json();
+}

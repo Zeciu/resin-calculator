@@ -679,3 +679,63 @@ class TestPackagedCorpusIsWhatProductionReads:
         assert [entry["id"] for entry in glossary["entries"]] == ["resin", "hardener"]
         assert knowledge_base["available"] is True
         assert [entry["id"] for entry in knowledge_base["entries"]] == ["bubbles", "leakage"]
+
+
+class TestTransactionalApply:
+    def test_mid_replace_failure_restores_all_three_modules(self, tmp_path: Path, monkeypatch):
+        import private.tools.package_published_content as pkg
+
+        private_root, public_root = _layout(tmp_path)
+        _seed_manual(private_root, "fr", ["new-manual"])
+        _seed_glossary(private_root, "fr", ["new-term"])
+        _seed_kb(private_root, "fr", ["new-article"])
+        manual_dest = _seed_manual(public_root, "fr", ["old-manual"])
+        glossary_dest = _seed_glossary(public_root, "fr", ["old-term"])
+        kb_dest = _seed_kb(public_root, "fr", ["old-article"])
+        manual_before = manual_dest.read_bytes()
+        glossary_before = glossary_dest.read_bytes()
+        kb_before = kb_dest.read_bytes()
+
+        original = pkg._atomic_replace_bytes
+        calls = {"n": 0}
+
+        def flaky(destination: Path, data: bytes) -> None:
+            calls["n"] += 1
+            if calls["n"] == 2:
+                raise OSError("simulated destination failure")
+            original(destination, data)
+
+        monkeypatch.setattr(pkg, "_atomic_replace_bytes", flaky)
+        operations = plan_operations(
+            ["manual", "knowledge-base", "glossary"],
+            "fr",
+            private_root=private_root,
+            public_root=public_root,
+        )
+        with pytest.raises(PackageContentError, match="Production preparation failed"):
+            apply_operations(operations)
+
+        assert manual_dest.read_bytes() == manual_before
+        assert glossary_dest.read_bytes() == glossary_before
+        assert kb_dest.read_bytes() == kb_before
+
+    def test_successful_three_module_apply_updates_all_destinations(self, tmp_path: Path):
+        private_root, public_root = _layout(tmp_path)
+        manual_source = _seed_manual(private_root, "fr", ["new-manual"])
+        glossary_source = _seed_glossary(private_root, "fr", ["new-term"])
+        kb_source = _seed_kb(private_root, "fr", ["new-article"])
+        manual_dest = _seed_manual(public_root, "fr", ["old-manual"])
+        glossary_dest = _seed_glossary(public_root, "fr", ["old-term"])
+        kb_dest = _seed_kb(public_root, "fr", ["old-article"])
+
+        operations = plan_operations(
+            ["manual", "knowledge-base", "glossary"],
+            "fr",
+            private_root=private_root,
+            public_root=public_root,
+        )
+        apply_operations(operations)
+
+        assert manual_dest.read_bytes() == manual_source.read_bytes()
+        assert glossary_dest.read_bytes() == glossary_source.read_bytes()
+        assert kb_dest.read_bytes() == kb_source.read_bytes()

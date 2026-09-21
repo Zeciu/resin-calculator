@@ -11,9 +11,14 @@ from private.access import require_local_editorial_access
 from private.editorial_content_mode import require_editorial_writes_allowed
 from private.repositories.filesystem import FilesystemContentRepository
 from private.repositories.public_languages import PublicLanguagesRepository
-from private.schemas.locale_readiness import AdminLocaleReadinessResponse
+from private.schemas.locale_readiness import AdminLocaleReadinessResponse, PrepareProductionResponse
 from private.schemas.public_languages import AdminPublicLanguagesResponse
 from private.services.admin_locale_readiness import get_admin_locale_readiness
+from private.services.admin_prepare_production import (
+    PreviewNotReadyError,
+    ProductionPrepareError,
+    prepare_locale_production,
+)
 from private.services.public_languages import PublicLanguagesService
 
 router = APIRouter(prefix="/admin/public-languages", tags=["admin-public-languages"])
@@ -50,6 +55,23 @@ def get_admin_locale_readiness_overview(
 ) -> AdminLocaleReadinessResponse:
     """Read-only locale readiness. Does not activate, publish, or package."""
     return get_admin_locale_readiness()
+
+
+@router.post("/{locale}/prepare-production", response_model=PrepareProductionResponse)
+def prepare_public_language_production(
+    locale: str,
+    _: dict = Depends(require_local_editorial_access),
+    _writes: None = Depends(require_editorial_writes_allowed),
+) -> PrepareProductionResponse:
+    """Prepare Manual/Glossary/KB production for one locale. Does not activate."""
+    try:
+        return prepare_locale_production(locale)
+    except PreviewNotReadyError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except ProductionPrepareError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @router.post("/{locale}/activate", response_model=AdminPublicLanguagesResponse)

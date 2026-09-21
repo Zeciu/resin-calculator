@@ -129,9 +129,11 @@ const LANGUAGE_ROWS = ADMIN_EDITORIAL_LOCALES.map((locale) => ({
 function mockAdminDashboardApis(options = {}) {
   const readinessHandler =
     options.readiness ?? (async () => ({ locales: defaultReadinessLocales() }));
+  const prepareHandler = options.prepare;
   let active = options.active ?? ["en"];
+  const activateCalls = [];
 
-  return vi.spyOn(global, "fetch").mockImplementation(async (url, init = {}) => {
+  const spy = vi.spyOn(global, "fetch").mockImplementation(async (url, init = {}) => {
     const path = String(url);
     const method = (init.method ?? "GET").toUpperCase();
 
@@ -181,9 +183,35 @@ function mockAdminDashboardApis(options = {}) {
         }),
       };
     }
+    const prepareMatch = path.match(/\/api\/admin\/public-languages\/([^/]+)\/prepare-production$/);
+    if (prepareMatch && method === "POST") {
+      const locale = decodeURIComponent(prepareMatch[1]);
+      try {
+        const payload = prepareHandler
+          ? await prepareHandler(locale)
+          : {
+              locale,
+              prepared: true,
+              modules: ["manual", "knowledge-base", "glossary"],
+              preview_ready: true,
+              production_ready: true,
+              warning: null,
+            };
+        return { ok: true, status: 200, json: async () => payload };
+      } catch (error) {
+        return {
+          ok: false,
+          status: 400,
+          json: async () => ({
+            detail: error instanceof Error ? error.message : "Prepare failed.",
+          }),
+        };
+      }
+    }
     const activateMatch = path.match(/\/api\/admin\/public-languages\/([^/]+)\/activate$/);
     if (activateMatch && method === "POST") {
       const locale = decodeURIComponent(activateMatch[1]);
+      activateCalls.push(locale);
       if (!active.includes(locale)) {
         active.push(locale);
       }
@@ -203,6 +231,8 @@ function mockAdminDashboardApis(options = {}) {
     }
     return { ok: false, status: 404, json: async () => ({ detail: `Unhandled ${path}` }) };
   });
+  spy.activateCalls = activateCalls;
+  return spy;
 }
 
 describe("Admin Locale Readiness overview", () => {
@@ -230,7 +260,7 @@ describe("Admin Locale Readiness overview", () => {
     const germanRow = within(table).getByText("German").closest("tr");
     const cells = within(germanRow).getAllByRole("cell");
     expect(cells[1]).toHaveTextContent(/^Ready$/);
-    expect(cells[2]).toHaveTextContent(/^Not ready$/);
+    expect(within(cells[2]).getByText(/^Not ready$/)).toBeInTheDocument();
     expect(within(germanRow).getByText(/MISSING 0\/18/)).toBeInTheDocument();
     expect(within(germanRow).getByText(/INCOMPLETE 0\/173/)).toBeInTheDocument();
     expect(within(germanRow).getByText(/INCOMPLETE 0\/112/)).toBeInTheDocument();
@@ -343,5 +373,94 @@ describe("Admin Locale Readiness overview", () => {
     await waitFor(() => {
       expect(within(table).getByText("COMPLETE 567/567")).toBeInTheDocument();
     });
+  });
+
+  it("offers Prepare only when Preview is ready and Production is not", async () => {
+    mockAdminDashboardApis();
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const germanRow = within(table).getByText("German").closest("tr");
+    const romanianRow = within(table).getByText("Romanian").closest("tr");
+    const frenchRow = within(table).getByText("French").closest("tr");
+    const englishRow = within(table).getByText("English").closest("tr");
+    expect(within(germanRow).getByRole("button", { name: "Prepare for Production" })).toBeEnabled();
+    expect(within(romanianRow).getByRole("button", { name: "Prepare for Production" })).toBeEnabled();
+    expect(within(frenchRow).queryByRole("button", { name: "Prepare for Production" })).not.toBeInTheDocument();
+    expect(within(englishRow).queryByRole("button", { name: "Prepare for Production" })).not.toBeInTheDocument();
+  });
+
+  it("requires confirmation and refreshes readiness after successful prepare", async () => {
+    const user = userEvent.setup();
+    let prepared = false;
+    const spy = mockAdminDashboardApis({
+      readiness: async () => ({
+        locales: defaultReadinessLocales().map((row) =>
+          row.locale === "ro" && prepared
+            ? {
+                ...row,
+                production_ready: true,
+                glossary_production: completeLayer(173),
+              }
+            : row,
+        ),
+      }),
+      prepare: async (locale) => {
+        prepared = true;
+        return {
+          locale,
+          prepared: true,
+          modules: ["manual", "knowledge-base", "glossary"],
+          preview_ready: true,
+          production_ready: true,
+          warning: null,
+        };
+      },
+    });
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const romanianRow = within(table).getByText("Romanian").closest("tr");
+    await user.click(within(romanianRow).getByRole("button", { name: "Prepare for Production" }));
+    expect(confirm).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(within(romanianRow).getAllByText(/^Ready$/)).toHaveLength(2);
+      expect(
+        within(romanianRow).queryByRole("button", { name: "Prepare for Production" }),
+      ).not.toBeInTheDocument();
+    });
+    expect(spy.activateCalls).toEqual([]);
+    const languages = screen.getByRole("table", { name: "Public languages" });
+    expect(within(languages).getByText("Romanian").closest("tr")).toHaveTextContent("Inactive");
+  });
+
+  it("does not call prepare when confirmation is cancelled", async () => {
+    const user = userEvent.setup();
+    const prepare = vi.fn();
+    mockAdminDashboardApis({ prepare });
+    vi.spyOn(window, "confirm").mockReturnValue(false);
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const germanRow = within(table).getByText("German").closest("tr");
+    await user.click(within(germanRow).getByRole("button", { name: "Prepare for Production" }));
+    expect(prepare).not.toHaveBeenCalled();
+  });
+
+  it("shows prepare errors and prevents duplicate requests", async () => {
+    const user = userEvent.setup();
+    let resolvePrepare;
+    mockAdminDashboardApis({
+      prepare: () =>
+        new Promise((_, reject) => {
+          resolvePrepare = () => reject(new Error("Packaging refused."));
+        }),
+    });
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const germanRow = within(table).getByText("German").closest("tr");
+    await user.click(within(germanRow).getByRole("button", { name: "Prepare for Production" }));
+    expect(await screen.findByRole("button", { name: "Preparing…" })).toBeDisabled();
+    resolvePrepare();
+    expect(await screen.findByRole("alert")).toHaveTextContent("Packaging refused.");
   });
 });

@@ -71,6 +71,19 @@ class AdminLocaleReadinessResponse(BaseModel):
     locales: list[LocaleReadinessRow] = Field(default_factory=list)
 
 
+class PrepareProductionResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    locale: str
+    label: str
+    prepared: bool
+    modules: list[str]
+    preview_ready: bool
+    production_ready: bool
+    warning: str | None = None
+    readiness: LocaleReadinessRow
+
+
 def layer_to_response(layer: LayerReadiness) -> LayerReadinessResponse:
     return LayerReadinessResponse(
         status=layer.status.value,  # type: ignore[arg-type]

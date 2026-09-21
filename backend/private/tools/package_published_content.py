@@ -15,6 +15,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import sys
 import tempfile
 from dataclasses import dataclass, field
@@ -29,6 +30,8 @@ from private.schemas.common import ADMIN_EDITORIAL_LOCALES, parse_admin_locale
 from private.services.editorial_images import IMAGE_FILENAME_PATTERN
 
 SUPPORTED_MODULES = ("manual", "knowledge-base", "glossary")
+# Admin Prepare for Production always uses this fixed set. Website is excluded.
+PRODUCTION_PREPARE_MODULES = SUPPORTED_MODULES
 
 _MODULE_SPECS = {
     "manual": {
@@ -390,17 +393,92 @@ def plan_operations(
     return tuple(plans)
 
 
-def apply_operations(operations: Sequence[OperationPlan]) -> None:
+def _collect_destination_writes(
+    operations: Sequence[OperationPlan],
+) -> tuple[tuple[Path, bytes, bytes | None], ...]:
+    """Return (destination, new_bytes, previous_bytes_or_None) with destinations unique."""
+    writes: list[tuple[Path, bytes, bytes | None]] = []
+    seen: set[Path] = set()
     for operation in operations:
         for image in operation.images_to_copy:
-            _atomic_replace_bytes(image.destination_path, image.source_path.read_bytes())
-        _atomic_replace_bytes(operation.destination_snapshot, operation.source_snapshot.read_bytes())
-        written = operation.destination_snapshot.read_bytes()
-        if written != operation.source_snapshot.read_bytes():
-            raise PackageContentError(
-                f"Destination snapshot did not match source after write: "
-                f"{operation.destination_snapshot}"
-            )
+            dest = image.destination_path
+            if dest in seen:
+                continue
+            seen.add(dest)
+            previous = dest.read_bytes() if dest.is_file() else None
+            writes.append((dest, image.source_path.read_bytes(), previous))
+        dest = operation.destination_snapshot
+        if dest in seen:
+            continue
+        seen.add(dest)
+        previous = dest.read_bytes() if dest.is_file() else None
+        writes.append((dest, operation.source_snapshot.read_bytes(), previous))
+    return tuple(writes)
+
+
+def _restore_previous(committed: Sequence[tuple[Path, bytes | None]]) -> None:
+    failures: list[str] = []
+    for dest, previous in reversed(tuple(committed)):
+        try:
+            if previous is None:
+                dest.unlink(missing_ok=True)
+            else:
+                _atomic_replace_bytes(dest, previous)
+        except OSError as exc:
+            failures.append(f"{dest.name}: {exc}")
+    if failures:
+        raise PackageContentError(
+            "Preparation failed and rollback could not restore every file: "
+            + "; ".join(failures)
+        )
+
+
+def apply_operations(operations: Sequence[OperationPlan]) -> None:
+    """Write every planned snapshot and image as one locale-level unit.
+
+    All payloads are staged first. Destinations are untouched until every staged
+    file is complete. If any destination replace or verification fails, already
+    replaced destinations are restored from in-memory backups (or removed if they
+    did not exist). Sequential live writes without rollback are not used.
+    """
+    writes = _collect_destination_writes(operations)
+    if not writes:
+        return
+    staging_root = Path(tempfile.mkdtemp(prefix="hfzwood-pkg-stage-"))
+    staged_files: list[tuple[Path, Path, bytes, bytes | None]] = []
+    committed: list[tuple[Path, bytes | None]] = []
+    try:
+        for index, (dest, data, previous) in enumerate(writes):
+            staged = staging_root / f"{index:04d}"
+            staged.write_bytes(data)
+            with staged.open("rb+") as handle:
+                handle.flush()
+                os.fsync(handle.fileno())
+            if staged.read_bytes() != data:
+                raise PackageContentError("Staged payload did not match source bytes.")
+            staged_files.append((staged, dest, data, previous))
+
+        try:
+            for staged, dest, data, previous in staged_files:
+                _atomic_replace_bytes(dest, staged.read_bytes())
+                committed.append((dest, previous))
+                if dest.read_bytes() != data:
+                    raise PackageContentError(
+                        f"Destination did not match staged payload after write: {dest.name}"
+                    )
+            for operation in operations:
+                written = operation.destination_snapshot.read_bytes()
+                if written != operation.source_snapshot.read_bytes():
+                    raise PackageContentError(
+                        "Destination snapshot did not match source after write."
+                    )
+        except Exception as exc:
+            _restore_previous(committed)
+            if isinstance(exc, PackageContentError):
+                raise
+            raise PackageContentError(f"Production preparation failed: {exc}") from exc
+    finally:
+        shutil.rmtree(staging_root, ignore_errors=True)
 
 
 def format_report(report: SyncReport) -> str:
@@ -488,7 +566,15 @@ def run_packaging(
         )
 
     if apply:
-        apply_operations(operations)
+        try:
+            apply_operations(operations)
+        except PackageContentError as exc:
+            return SyncReport(
+                dry_run=False,
+                applied=False,
+                operations=operations,
+                errors=tuple(str(exc).split("\n")),
+            )
         return SyncReport(dry_run=False, applied=True, operations=operations)
     return SyncReport(dry_run=True, applied=False, operations=operations)
 

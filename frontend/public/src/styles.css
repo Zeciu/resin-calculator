@@ -5718,6 +5718,13 @@ button.workspace-sidebar__link {
   color: #2f6b3a;
 }
 
+.admin-locale-readiness__production-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
 .admin-locale-readiness__code {
   display: inline-block;
   margin-left: 8px;

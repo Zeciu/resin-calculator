@@ -5,6 +5,7 @@ import {
   deactivatePublicLanguage,
   fetchAdminLocaleReadiness,
   fetchAdminPublicLanguages,
+  prepareLocaleProduction,
 } from "./publicLanguagesApi.js";
 import { usePublicLanguages } from "../../public/src/publicLanguages/usePublicLanguages.js";
 import AdminLocaleReadiness from "./AdminLocaleReadiness.jsx";
@@ -19,6 +20,7 @@ export default function AdminDashboard() {
   const [readinessState, setReadinessState] = useState("loading");
   const [readinessError, setReadinessError] = useState("");
   const [readinessRefreshing, setReadinessRefreshing] = useState(false);
+  const [preparingLocale, setPreparingLocale] = useState(null);
 
   const loadReadiness = useCallback(async () => {
     setReadinessState((current) => (current === "ready" ? "ready" : "loading"));
@@ -89,6 +91,30 @@ export default function AdminDashboard() {
       setError(err instanceof AdminApiError ? err.message : "Failed to deactivate language.");
     } finally {
       setPendingLocale(null);
+    }
+  };
+
+  const handlePrepareProduction = async (locale) => {
+    const confirmed = window.confirm(
+      `Prepare published Manual, Glossary, and Knowledge Base content for public production for ${locale.toUpperCase()}?\n\nThis updates production artifacts. It will not activate the language.`,
+    );
+    if (!confirmed) {
+      return;
+    }
+    setPreparingLocale(locale);
+    setReadinessError("");
+    try {
+      const result = await prepareLocaleProduction(locale);
+      await loadReadiness();
+      if (result?.warning) {
+        setReadinessError(result.warning);
+      }
+    } catch (err) {
+      setReadinessError(
+        err instanceof AdminApiError ? err.message : "Failed to prepare locale for production.",
+      );
+    } finally {
+      setPreparingLocale(null);
     }
   };
 
@@ -194,6 +220,8 @@ export default function AdminDashboard() {
           error={readinessError}
           onRefresh={refreshReadiness}
           refreshing={readinessRefreshing}
+          onPrepareProduction={handlePrepareProduction}
+          preparingLocale={preparingLocale}
         />
       </div>
     </section>
