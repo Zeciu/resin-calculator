@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "O salvamento do projeto \u00e9 a opera\u00e7\u00e3o pela qual todas as informa\u00e7\u00f5es de um projeto s\u00e3o gravadas em um arquivo HFZWood, de modo que ele possa ser reaberto e continuado posteriormente sem perda de dados."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "A salva\u00e7\u00e3o do projeto"
+    },
+    {
+      "definition": [
+        "O acabamento acetinado \u00e9 um tipo de acabamento que proporciona uma apar\u00eancia uniforme, com reflexos discretos e brilho moderado. Ele real\u00e7a a textura do material e \u00e9 preferido em projetos nos quais se busca uma apar\u00eancia natural e elegante."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Acabamento acetinado"
+    },
+    {
+      "definition": [
+        "O acabamento brilhante \u00e9 um tipo de acabamento caracterizado por um alto grau de reflex\u00e3o da luz e uma superf\u00edcie muito lisa. Para obter esse aspecto, \u00e9 necess\u00e1rio realizar um lixamento e um polimento corretos, utilizando materiais e t\u00e9cnicas adequadas."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Acabamento brilhante"
+    },
+    {
+      "definition": [
+        "A ader\u00eancia \u00e9 a capacidade de dois materiais em contato se fixarem firmemente um ao outro. Em projetos com resina ep\u00f3xi, uma ader\u00eancia adequada entre a resina e a madeira \u00e9 essencial para a resist\u00eancia e a durabilidade da pe\u00e7a final."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ader\u00eancia"
+    },
+    {
+      "definition": [
+        "O agente desmoldante \u00e9 uma subst\u00e2ncia aplicada na superf\u00edcie da forma para impedir a ader\u00eancia da resina ep\u00f3xi durante o endurecimento. Seu uso facilita a remo\u00e7\u00e3o da forma e reduz o risco de danos \u00e0 pe\u00e7a ou \u00e0s superf\u00edcies de contato."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "agente de desmoldagem",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Agente desmoldante"
+    },
+    {
+      "definition": [
+        "O alburno \u00e9 a parte externa da madeira, localizada entre o duramen e a casca. Essa parte do tronco transporta \u00e1gua e nutrientes durante a vida da \u00e1rvore e, geralmente, apresenta uma cor mais clara e \u00e9 mais sens\u00edvel \u00e0 umidade e a ataques biol\u00f3gicos. Dependendo do projeto, o alburno pode ser mantido para fins est\u00e9ticos ou removido para proporcionar maior estabilidade."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "branco",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Duramen"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Duramen",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "A almofada de polimento \u00e9 um acess\u00f3rio acoplado \u00e0 polidora, utilizado para aplicar e distribuir uniformemente os compostos de polimento sobre a superf\u00edcie. As almofadas s\u00e3o fabricadas em diferentes materiais, sendo cada uma destinada a um determinado n\u00edvel de corre\u00e7\u00e3o ou acabamento."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "almofada de polimento",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Almofada para polimento"
+    },
+    {
+      "definition": [
+        "A aspira\u00e7\u00e3o de poeira \u00e9 o processo de coleta e remo\u00e7\u00e3o da poeira gerada durante o processamento da madeira e da resina ep\u00f3xi. O uso de um sistema eficiente de aspira\u00e7\u00e3o contribui para manter um ambiente de trabalho limpo, protege a sa\u00fade do operador e melhora a qualidade do acabamento."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aspira\u00e7\u00e3o de poeira"
+    },
+    {
+      "definition": [
+        "A assinatura \u00e9 a forma de licenciamento pela qual o usu\u00e1rio obt\u00e9m acesso a determinados recursos do aplicativo HFZWood. O tipo de assinatura determina os recursos dispon\u00edveis e eventuais limita\u00e7\u00f5es de uso."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Assinatura"
+    },
+    {
+      "definition": [
+        "O ataque biol\u00f3gico consiste na degrada\u00e7\u00e3o da madeira causada por fungos, mofo, bact\u00e9rias ou insetos xil\u00f3fagos. A intensidade desse dano pode afetar tanto a resist\u00eancia mec\u00e2nica quanto a apar\u00eancia da pe\u00e7a. A madeira afetada deve ser avaliada cuidadosamente antes de ser utilizada em um projeto com resina ep\u00f3xi."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "ataque biol\u00f3gico",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Madeira inst\u00e1vel"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ataque biol\u00f3gico"
+    },
+    {
+      "definition": [
+        "A atualiza\u00e7\u00e3o do projeto \u00e9 a opera\u00e7\u00e3o pela qual as altera\u00e7\u00f5es feitas em um projeto existente s\u00e3o salvas sem a cria\u00e7\u00e3o de um novo projeto. Essa opera\u00e7\u00e3o mant\u00e9m a identidade do projeto e substitui a vers\u00e3o salva anteriormente pela vers\u00e3o atualizada."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Atualiza\u00e7\u00e3o do projeto"
+    },
+    {
+      "definition": [
+        "A bancada de trabalho \u00e9 a superf\u00edcie ou mesa destinada \u00e0 realiza\u00e7\u00e3o de opera\u00e7\u00f5es de usinagem, montagem e acabamento. Uma bancada de trabalho est\u00e1vel e suficientemente r\u00edgida contribui para a precis\u00e3o das opera\u00e7\u00f5es e para a realiza\u00e7\u00e3o segura das atividades na oficina."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bancada de trabalho"
+    },
+    {
+      "definition": [
+        "A Base de Conhecimento (Knowledge Base) \u00e9 uma cole\u00e7\u00e3o de artigos t\u00e9cnicos e informa\u00e7\u00f5es complementares que complementam o manual do aplicativo. Ela oferece explica\u00e7\u00f5es detalhadas, recomenda\u00e7\u00f5es e informa\u00e7\u00f5es \u00fateis sobre os materiais, processos e t\u00e9cnicas utilizados em projetos com madeira e resina ep\u00f3xi."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Base de conhecimento"
+    },
+    {
+      "definition": [
+        "As bolhas de ar s\u00e3o inclus\u00f5es de ar que permanecem na resina ep\u00f3xi durante a mistura, o vazamento ou a libera\u00e7\u00e3o dos poros da madeira. Se n\u00e3o forem removidas, elas podem afetar a apar\u00eancia e, em alguns casos, a resist\u00eancia da pe\u00e7a final."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "bolhas de ar na resina",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mistura"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Fundi\u00e7\u00e3o profunda (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Moldagem em camadas"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bolhas de ar"
+    },
+    {
+      "definition": [
+        "O boloboc, tamb\u00e9m chamado de n\u00edvel, \u00e9 o instrumento utilizado para verificar a horizontalidade ou a verticalidade de uma superf\u00edcie. Na execu\u00e7\u00e3o de projetos com resina ep\u00f3xi, ele \u00e9 usado para nivelar a cofragem e para verificar o posicionamento correto das pe\u00e7as antes do vazamento."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Nivelamento da forma"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (n\u00edvel)"
+    },
+    {
+      "definition": [
+        "O calculador de resina \u00e9 uma ferramenta que estima a quantidade de resina ep\u00f3xi e endurecedor necess\u00e1ria para a realiza\u00e7\u00e3o de um projeto. No HFZWood, os c\u00e1lculos se baseiam na geometria do projeto, no volume da madeira, no volume das cavidades e nos par\u00e2metros inseridos pelo usu\u00e1rio, oferecendo uma estimativa r\u00e1pida e precisa do consumo de material."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calculadora de resina"
+    },
+    {
+      "definition": [
+        "A calibra\u00e7\u00e3o \u00e9 o processo pelo qual uma imagem \u00e9 ajustada a uma escala de medi\u00e7\u00e3o real por meio de uma dimens\u00e3o conhecida. No HFZWood, a calibra\u00e7\u00e3o permite transformar as medi\u00e7\u00f5es realizadas na imagem em dimens\u00f5es reais, garantindo a precis\u00e3o dos c\u00e1lculos de \u00e1rea e volume."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Endireitamento da madeira"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibra\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "A calibra\u00e7\u00e3o da imagem \u00e9 o processo pelo qual o aplicativo estabelece a correspond\u00eancia entre as dimens\u00f5es da foto e as dimens\u00f5es reais, utilizando uma dist\u00e2ncia de refer\u00eancia conhecida. Uma calibra\u00e7\u00e3o correta \u00e9 essencial para obter resultados precisos."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibra\u00e7\u00e3o da imagem"
+    },
+    {
+      "definition": [
+        "A camada de veda\u00e7\u00e3o, tamb\u00e9m conhecida como Seal Coat, \u00e9 uma fina camada de resina ep\u00f3xi aplicada antes do vazamento principal para fechar os poros da madeira e reduzir a sa\u00edda de ar. Essa etapa contribui para diminuir o aparecimento de bolhas e para obter uma superf\u00edcie final de qualidade."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosidade"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Fundi\u00e7\u00e3o profunda (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo de trabalho (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Relat\u00f3rio de mistura"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Camada de selagem (Seal Coat)"
+    },
+    {
+      "definition": [
+        "A camada de inibi\u00e7\u00e3o, tamb\u00e9m conhecida como Amine Blush, \u00e9 uma fina pel\u00edcula que pode surgir na superf\u00edcie da resina ep\u00f3xi durante a cura, especialmente em condi\u00e7\u00f5es de baixa temperatura ou alta umidade. Antes da aplica\u00e7\u00e3o de uma nova camada ou do acabamento, essa pel\u00edcula deve ser removida para garantir uma ader\u00eancia adequada."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Camada inibidora (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Uma funcionalidade (*Capability*) representa uma funcionalidade ou um conjunto de funcionalidades que o aplicativo HFZWood disponibiliza ao usu\u00e1rio. As funcionalidades dispon\u00edveis s\u00e3o determinadas pelo tipo de assinatura e pela fun\u00e7\u00e3o associada \u00e0 conta."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Capacidade"
+    },
+    {
+      "definition": [
+        "A casca de laranja, tamb\u00e9m conhecida como \u201cOrange Peel\u201d, \u00e9 um defeito de superf\u00edcie caracterizado por uma textura irregular que se assemelha \u00e0 casca de uma laranja. Esse defeito pode surgir devido \u00e0s condi\u00e7\u00f5es de aplica\u00e7\u00e3o, \u00e0 viscosidade inadequada ou a outros fatores que afetam o nivelamento da resina."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Casca de laranja"
+    },
+    {
+      "definition": [
+        "A casca inst\u00e1vel \u00e9 aquela que n\u00e3o adere firmemente \u00e0 madeira e pode se soltar durante o processamento ou ap\u00f3s a aplica\u00e7\u00e3o da resina. Na maioria dos projetos, ela deve ser removida para evitar a forma\u00e7\u00e3o de vazios, descolamentos ou outros problemas de ader\u00eancia."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Margem natural"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Casca inst\u00e1vel"
+    },
+    {
+      "definition": [
+        "A cavidade \u00e9 um espa\u00e7o vazio natural ou resultante da degrada\u00e7\u00e3o da madeira, que pode ser preenchido com resina ep\u00f3xi para fins estruturais ou decorativos. A forma e o tamanho das cavidades influenciam diretamente o volume de resina necess\u00e1rio para a realiza\u00e7\u00e3o do projeto."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "N\u00f3 de madeira"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Fenda",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Cavidade"
+    },
+    {
+      "definition": [
+        "A cera protetora \u00e9 um produto de acabamento aplicado sobre a superf\u00edcie da madeira ou sobre uma camada de \u00f3leo para melhorar a prote\u00e7\u00e3o e o aspecto final. Ela proporciona um acabamento agrad\u00e1vel ao toque, reduz a absor\u00e7\u00e3o de sujeira e facilita a manuten\u00e7\u00e3o da superf\u00edcie."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "cera",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cera protetora"
+    },
+    {
+      "definition": [
+        "A clareza \u00f3ptica \u00e9 a capacidade da resina ep\u00f3xi de transmitir a luz sem distor\u00e7\u00f5es, turva\u00e7\u00f5es ou altera\u00e7\u00f5es vis\u00edveis na imagem. Uma alta clareza \u00f3ptica permite destacar os detalhes da madeira e obter moldagens transparentes de alta qualidade."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Clareza \u00f3ptica"
+    },
+    {
+      "definition": [
+        "CNC (Controle Num\u00e9rico Computadorizado) \u00e9 um sistema de usinagem automatizada no qual os movimentos da m\u00e1quina s\u00e3o controlados por um programa de computador. Na usinagem de madeira, as m\u00e1quinas CNC s\u00e3o utilizadas para corte, fresagem, grava\u00e7\u00e3o e a produ\u00e7\u00e3o de formas complexas com alto n\u00edvel de precis\u00e3o e repetibilidade."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC CNC"
+    },
+    {
+      "definition": [
+        "O corte consiste na opera\u00e7\u00e3o de cortar a madeira nas dimens\u00f5es e na forma necess\u00e1rias para a realiza\u00e7\u00e3o do projeto. Essa opera\u00e7\u00e3o pode ser realizada com diversos equipamentos e tem como objetivo obter pe\u00e7as que possam ser trabalhadas e integradas na etapa seguinte do projeto."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cobran\u00e7a"
+    },
+    {
+      "definition": [
+        "A compatibilidade dos materiais refere-se \u00e0 capacidade dos diversos materiais utilizados em um projeto de funcionarem em conjunto sem causar rea\u00e7\u00f5es indesejadas ou defeitos. A escolha de materiais compat\u00edveis contribui para obter boa ader\u00eancia, alta durabilidade e um comportamento est\u00e1vel durante a opera\u00e7\u00e3o."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Compatibilidade dos materiais"
+    },
+    {
+      "definition": [
+        "A configura\u00e7\u00e3o do projeto descreve a organiza\u00e7\u00e3o e o posicionamento de todos os elementos que comp\u00f5em o projeto, incluindo o contorno externo, as pe\u00e7as de madeira, as cavidades e as demais \u00e1reas relevantes para o c\u00e1lculo. Ela define a estrutura geom\u00e9trica com base na qual o aplicativo realiza as estimativas de material."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Configura\u00e7\u00e3o do projeto"
+    },
+    {
+      "definition": [
+        "A contamina\u00e7\u00e3o consiste na presen\u00e7a de subst\u00e2ncias ou impurezas indesejadas, como poeira, \u00f3leos, gorduras, \u00e1gua ou silicone, que podem afetar a ader\u00eancia, a apar\u00eancia ou a cura da resina ep\u00f3xi. Manter um ambiente e superf\u00edcies limpas \u00e9 essencial para obter resultados de qualidade."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosidade"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contamina\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O contorno externo representa o limite que define a forma externa do projeto. Ele determina a \u00e1rea total da pe\u00e7a e constitui o ponto de partida para todos os c\u00e1lculos geom\u00e9tricos realizados no aplicativo."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contorno externo"
+    },
+    {
+      "definition": [
+        "A contra\u00e7\u00e3o \u00e9 a redu\u00e7\u00e3o das dimens\u00f5es de um material em consequ\u00eancia da perda de umidade, do processo de endurecimento ou de varia\u00e7\u00f5es de temperatura. Em projetos com madeira e resina ep\u00f3xi, a contra\u00e7\u00e3o pode influenciar a precis\u00e3o dimensional e favorecer o surgimento de fissuras ou tens\u00f5es internas."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contra\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O controle de qualidade \u00e9 o processo de verifica\u00e7\u00e3o dos materiais, das etapas de trabalho e do resultado final, a fim de confirmar que o projeto atende aos requisitos de qualidade estabelecidos. Ele permite identificar e corrigir eventuais problemas antes que a pe\u00e7a seja considerada conclu\u00edda."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Controle de qualidade"
+    },
+    {
+      "definition": [
+        "A cratera \u00e9 um defeito de superf\u00edcie que se apresenta na forma de uma pequena depress\u00e3o ou de um vazio circular na resina ep\u00f3xi ap\u00f3s a cura. Ela pode ser causada por contamina\u00e7\u00e3o, bolhas de ar ou outras condi\u00e7\u00f5es que impe\u00e7am a aplica\u00e7\u00e3o uniforme da resina."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cratera"
+    },
+    {
+      "definition": [
+        "A cristaliza\u00e7\u00e3o \u00e9 o fen\u00f4meno pelo qual algumas resinas ep\u00f3xi formam cristais s\u00f3lidos durante o armazenamento, especialmente em baixas temperaturas. Na maioria dos casos, a cristaliza\u00e7\u00e3o \u00e9 revers\u00edvel e pode ser eliminada por meio do aquecimento controlado da resina antes do uso, de acordo com as recomenda\u00e7\u00f5es do fabricante."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Viscosidade"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cristaliza\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O backup, tamb\u00e9m conhecido como c\u00f3pia de seguran\u00e7a, \u00e9 uma c\u00f3pia adicional dos projetos ou dados, mantida para permitir a recupera\u00e7\u00e3o dos mesmos em caso de perda, danos ou exclus\u00e3o acidental das informa\u00e7\u00f5es."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "C\u00f3pia de seguran\u00e7a"
+    },
+    {
+      "definition": [
+        "O defeito de moldagem \u00e9 qualquer imperfei\u00e7\u00e3o que ocorra durante o processo de moldagem ou de endurecimento da resina ep\u00f3xi, que afete a apar\u00eancia, a funcionalidade ou a qualidade da pe\u00e7a final. Entre os defeitos mais comuns est\u00e3o bolhas de ar, cavidades, vazamentos, rachaduras e \u00e1reas que n\u00e3o endureceram adequadamente."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Defeito de fundi\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "Um defeito estrutural \u00e9 qualquer imperfei\u00e7\u00e3o da madeira que possa reduzir sua resist\u00eancia, estabilidade ou capacidade de suportar solicita\u00e7\u00f5es mec\u00e2nicas. Fazem parte dessa categoria fissuras, rachaduras extensas, podrid\u00e3o, cavidades ou outras formas de degrada\u00e7\u00e3o que influenciam o comportamento da pe\u00e7a durante o uso."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "N\u00f3 de madeira"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Defeito estrutural"
+    },
+    {
+      "definition": [
+        "A deforma\u00e7\u00e3o da forma representa a altera\u00e7\u00e3o da forma ou da posi\u00e7\u00e3o da forma durante o vazamento ou o endurecimento da resina ep\u00f3xi. Isso pode ser causado pela press\u00e3o da resina, fixa\u00e7\u00e3o insuficiente ou rigidez reduzida da forma e pode levar \u00e0 altera\u00e7\u00e3o das dimens\u00f5es do projeto."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deforma\u00e7\u00e3o da f\u00f4rma"
+    },
+    {
+      "definition": [
+        "A deforma\u00e7\u00e3o da madeira consiste na altera\u00e7\u00e3o da forma inicial de uma pe\u00e7a em consequ\u00eancia de varia\u00e7\u00f5es de umidade, tens\u00f5es internas ou outros fatores que influenciam a estabilidade do material. As formas mais comuns de deforma\u00e7\u00e3o s\u00e3o a curvatura, a tor\u00e7\u00e3o e o arqueamento."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deforma\u00e7\u00e3o da madeira"
+    },
+    {
+      "definition": [
+        "A delamina\u00e7\u00e3o consiste no desprendimento ou na separa\u00e7\u00e3o das camadas de um material ou das superf\u00edcies coladas entre si. Em projetos com resina ep\u00f3xi, a delamina\u00e7\u00e3o indica perda de ader\u00eancia e pode comprometer tanto a resist\u00eancia mec\u00e2nica quanto a apar\u00eancia final da pe\u00e7a."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Delamina\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "A densidade da resina representa a massa de um determinado volume de resina ep\u00f3xi e \u00e9 expressa, geralmente, em gramas por cent\u00edmetro c\u00fabico ou em quilogramas por litro. Esse par\u00e2metro \u00e9 utilizado para a convers\u00e3o entre volume e massa ao calcular as quantidades necess\u00e1rias de material."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Densidade da resina"
+    },
+    {
+      "definition": [
+        "A desgaseifica\u00e7\u00e3o \u00e9 o processo de remo\u00e7\u00e3o do ar e dos gases da resina ep\u00f3xi antes ou imediatamente ap\u00f3s a moldagem. O objetivo dessa opera\u00e7\u00e3o \u00e9 reduzir o n\u00famero de bolhas de ar e obter uma moldagem o mais uniforme e transparente poss\u00edvel."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosidade"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo de trabalho (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Desgaseifica\u00e7\u00e3o - Descongelamento"
+    },
+    {
+      "definition": [
+        "A remo\u00e7\u00e3o da cofragem consiste na opera\u00e7\u00e3o de retirar a cofragem depois que a resina ep\u00f3xi endureceu o suficiente para manter sua forma. Essa etapa deve ser realizada com cuidado para evitar danos \u00e0 pe\u00e7a ou \u00e0s bordas moldadas."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Desmoldagem"
+    },
+    {
+      "definition": [
+        "A dilata\u00e7\u00e3o consiste no aumento das dimens\u00f5es de um material em consequ\u00eancia da absor\u00e7\u00e3o de umidade ou de varia\u00e7\u00f5es de temperatura. Como a madeira e a resina ep\u00f3xi apresentam comportamentos diferentes em rela\u00e7\u00e3o \u00e0 dilata\u00e7\u00e3o, esse fen\u00f4meno deve ser levado em considera\u00e7\u00e3o no projeto e na utiliza\u00e7\u00e3o das pe\u00e7as."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dila\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O disco de espuma \u00e9 um acess\u00f3rio para polidoras, utilizado na aplica\u00e7\u00e3o de compostos abrasivos e de acabamento. Dependendo da dureza da espuma, ele pode ser usado tanto para corrigir imperfei\u00e7\u00f5es finas quanto para obter o brilho final."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "almofada de plish",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disco de espuma"
+    },
+    {
+      "definition": [
+        "O disco de feltro \u00e9 um acess\u00f3rio utilizado para polir superf\u00edcies em conjunto com pastas abrasivas ou de acabamento. Gra\u00e7as \u00e0 sua estrutura compacta, \u00e9 utilizado especialmente para obter um alto brilho e uma superf\u00edcie uniforme."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disco de feltro"
+    },
+    {
+      "definition": [
+        "Os discos abrasivos s\u00e3o consum\u00edveis circulares utilizados em conjunto com lixadeiras para o processamento de madeira e resina ep\u00f3xi. Est\u00e3o dispon\u00edveis em diferentes granulometrias e permitem a remo\u00e7\u00e3o controlada do material, de acordo com a etapa de processamento."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "disco abrasivo",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Discos abrasivos"
+    },
+    {
+      "definition": [
+        "A dosagem do pigmento corresponde \u00e0 quantidade de pigmento adicionada \u00e0 resina ep\u00f3xi para obter a cor e a opacidade desejadas. \u00c9 importante respeitar a dosagem recomendada pelo fabricante para manter as propriedades mec\u00e2nicas e o processo normal de polimeriza\u00e7\u00e3o da resina."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dosagem do pigmento"
+    },
+    {
+      "definition": [
+        "O duramen \u00e9 a parte central, madura e mais densa do tronco de uma \u00e1rvore. Em geral, ela apresenta maior resist\u00eancia \u00e0 umidade, fungos e insetos do que o alburno e \u00e9 preferida para a confec\u00e7\u00e3o de m\u00f3veis e projetos decorativos com resina ep\u00f3xi, devido \u00e0 sua estabilidade e apar\u00eancia."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Duramen"
+    },
+    {
+      "definition": [
+        "O encapsulamento das bolhas de ar consiste na reten\u00e7\u00e3o das bolhas na massa da resina ep\u00f3xi durante o processo de cura. As bolhas retidas podem afetar a transpar\u00eancia, a apar\u00eancia est\u00e9tica e, em certas situa\u00e7\u00f5es, a resist\u00eancia da pe\u00e7a final."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "bolhas de ar na resina",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bolhas de ar"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo de trabalho (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Encapsulamento das bolhas de ar"
+    },
+    {
+      "definition": [
+        "O endireitamento da madeira \u00e9 a opera\u00e7\u00e3o pela qual a superf\u00edcie de uma pe\u00e7a \u00e9 alinhada a um plano correto, eliminando deforma\u00e7\u00f5es, irregularidades e imperfei\u00e7\u00f5es. Esse processo garante uma base est\u00e1vel para os processamentos posteriores e contribui para a obten\u00e7\u00e3o de juntas e encaixes de qualidade."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Calibra\u00e7\u00e3o"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Espessura uniforme",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Endireitamento da madeira"
+    },
+    {
+      "definition": [
+        "A cura incompleta refere-se \u00e0 situa\u00e7\u00e3o em que a resina ep\u00f3xi n\u00e3o desenvolve completamente suas propriedades mec\u00e2nicas ap\u00f3s o tempo normal de cura. As causas podem incluir uma propor\u00e7\u00e3o de mistura incorreta, uma mistura insuficiente ou condi\u00e7\u00f5es de trabalho inadequadas."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Endurecimento incompleto"
+    },
+    {
+      "definition": [
+        "O equipamento de prote\u00e7\u00e3o individual \u00e9 o conjunto de equipamentos utilizados pelo operador para reduzir os riscos associados ao processamento de madeira e ao uso de resinas ep\u00f3xi. Fazem parte dessa categoria, entre outros, m\u00e1scaras respirat\u00f3rias, \u00f3culos de prote\u00e7\u00e3o, luvas e prote\u00e7\u00e3o auditiva."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Equipamento de prote\u00e7\u00e3o individual"
+    },
+    {
+      "definition": [
+        "A escala da imagem representa a rela\u00e7\u00e3o entre as dimens\u00f5es na fotografia e as dimens\u00f5es reais do objeto medido. A determina\u00e7\u00e3o correta da escala permite realizar c\u00e1lculos precisos no \u00e2mbito do projeto."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Escala da imagem"
+    },
+    {
+      "definition": [
+        "A \u00e1rea de trabalho \u00e9 o principal espa\u00e7o de trabalho do aplicativo HFZWood, onde o usu\u00e1rio cria, abre, edita e gerencia projetos, al\u00e9m de ter acesso \u00e0s fun\u00e7\u00f5es e recursos dispon\u00edveis de acordo com sua fun\u00e7\u00e3o e sua assinatura."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Espa\u00e7o de trabalho"
+    },
+    {
+      "definition": [
+        "A espessura da camada de moldagem corresponde \u00e0 altura da camada de resina ep\u00f3xi aplicada em uma \u00fanica etapa. Ela deve estar dentro do limite recomendado pelo fabricante para o tipo de resina utilizada, de modo que o processo de polimeriza\u00e7\u00e3o ocorra em condi\u00e7\u00f5es ideais e sem a ocorr\u00eancia de defeitos."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Desgaseifica\u00e7\u00e3o - Descongelamento"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Moldagem em camadas"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Fundi\u00e7\u00e3o profunda (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Espessura da camada de moldagem"
+    },
+    {
+      "definition": [
+        "A espessura uniforme refere-se \u00e0 situa\u00e7\u00e3o em que uma pe\u00e7a de madeira apresenta a mesma espessura em toda a sua superf\u00edcie. Manter uma espessura constante facilita o usinagem, a uni\u00e3o e o c\u00e1lculo correto do volume em projetos realizados com resina ep\u00f3xi."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Endireitamento da madeira",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Espessura uniforme"
+    },
+    {
+      "definition": [
+        "A estabilidade dimensional \u00e9 a capacidade de um material de manter sua forma e suas dimens\u00f5es ao longo do tempo, apesar das varia\u00e7\u00f5es de temperatura e umidade. Uma elevada estabilidade dimensional contribui para a durabilidade e o bom funcionamento de projetos realizados com madeira e resina ep\u00f3xi."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Estabilidade dimensional"
+    },
+    {
+      "definition": [
+        "A estimativa da quantidade de resina \u00e9 o processo pelo qual o aplicativo HFZWood calcula o volume e a quantidade necess\u00e1ria de resina ep\u00f3xi para a realiza\u00e7\u00e3o de um projeto, com base na geometria definida pelo usu\u00e1rio e nos par\u00e2metros de c\u00e1lculo dispon\u00edveis."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Estimativa da quantidade de resina"
+    },
+    {
+      "definition": [
+        "A composi\u00e7\u00e3o do projeto representa a forma como todos os elementos que comp\u00f5em a pe\u00e7a final \u2014 como a madeira, a resina ep\u00f3xi e eventuais componentes decorativos \u2014 s\u00e3o dispostos e integrados. Uma composi\u00e7\u00e3o bem planejada garante tanto o equil\u00edbrio est\u00e9tico quanto a funcionalidade do projeto."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Estrutura do projeto"
+    },
+    {
+      "definition": [
+        "O fator de seguran\u00e7a representa a quantidade adicional de material adicionada ao valor calculado para compensar as perdas normais durante a prepara\u00e7\u00e3o e a inje\u00e7\u00e3o. O uso de um fator de seguran\u00e7a reduz o risco de ficar sem resina antes da conclus\u00e3o do projeto."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fator de seguran\u00e7a"
+    },
+    {
+      "definition": [
+        "A fenda \u00e9 uma rachadura que surge na estrutura da madeira em consequ\u00eancia de tens\u00f5es internas, secagem ou solicita\u00e7\u00f5es mec\u00e2nicas. Dependendo do tamanho e da localiza\u00e7\u00e3o, as fendas podem exigir estabiliza\u00e7\u00e3o, preenchimento com resina ep\u00f3xi ou remo\u00e7\u00e3o da parte afetada."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Cavidade",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Fenda"
+    },
+    {
+      "definition": [
+        "A fissura\u00e7\u00e3o t\u00e9rmica consiste no surgimento de fissuras na resina ep\u00f3xi ou na madeira, em consequ\u00eancia de grandes varia\u00e7\u00f5es de temperatura ou do desenvolvimento excessivo de calor durante a polimeriza\u00e7\u00e3o. Esse defeito pode comprometer tanto a apar\u00eancia est\u00e9tica quanto a resist\u00eancia da pe\u00e7a final."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fissura t\u00e9rmica"
+    },
+    {
+      "definition": [
+        "O endurecedor \u00e9 o componente que desencadeia a rea\u00e7\u00e3o qu\u00edmica necess\u00e1ria para o endurecimento da resina ep\u00f3xi. Ele deve ser utilizado exclusivamente em conjunto com a resina para a qual foi concebido e na propor\u00e7\u00e3o de mistura recomendada pelo fabricante, pois qualquer desvio pode afetar a qualidade e a resist\u00eancia do material final."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fortalecedor"
+    },
+    {
+      "definition": [
+        "A for\u00e7a de flutua\u00e7\u00e3o \u00e9 a for\u00e7a exercida pela resina l\u00edquida sobre a madeira, tendendo a levant\u00e1-la quando a densidade da madeira \u00e9 menor do que a da resina. Se as pe\u00e7as de madeira n\u00e3o estiverem devidamente fixadas, elas podem se deslocar ou flutuar durante a moldagem, afetando a geometria e a apar\u00eancia final do projeto."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "For\u00e7a de flutuabilidade"
+    },
+    {
+      "definition": [
+        "A fresa de copiar \u00e9 uma fresa equipada com um ou mais rolamentos de guia que permitem seguir um gabarito ou uma aresta existente. Ela \u00e9 utilizada para reproduzir contornos com precis\u00e3o e para fabricar pe\u00e7as id\u00eanticas."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresa de c\u00f3pia"
+    },
+    {
+      "definition": [
+        "A fresa \u00e9 uma ferramenta de corte montada em uma fresadora ou em outras m\u00e1quinas de usinagem, utilizada para a remo\u00e7\u00e3o controlada de material. Existem in\u00fameros tipos de fresas, cada uma projetada para uma determinada opera\u00e7\u00e3o ou perfil de usinagem."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "fresa",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresadora"
+    },
+    {
+      "definition": [
+        "A fresa de endireitamento \u00e9 uma fresa destinada a obter arestas ou superf\u00edcies perfeitamente retas. Ela \u00e9 utilizada para corrigir as bordas de pe\u00e7as de madeira e para prepar\u00e1-las antes da uni\u00e3o ou de outras opera\u00e7\u00f5es de usinagem."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresadora de endireitamento"
+    },
+    {
+      "definition": [
+        "A fresa de nivelamento \u00e9 uma fresa de grande di\u00e2metro, utilizada para nivelar superf\u00edcies por meio da remo\u00e7\u00e3o controlada de material. \u00c9 frequentemente utilizada em conjunto com um carrinho de fresagem para nivelar grandes bancadas de madeira e resina ep\u00f3xi."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresadora de nivelamento"
+    },
+    {
+      "definition": [
+        "A moldagem \u00e9 a opera\u00e7\u00e3o pela qual a resina ep\u00f3xi l\u00edquida \u00e9 introduzida na forma, nas cavidades ou em outras \u00e1reas do projeto para preencher os espa\u00e7os dispon\u00edveis e formar a pe\u00e7a final ap\u00f3s a cura. A qualidade da moldagem \u00e9 influenciada pela prepara\u00e7\u00e3o dos materiais, pelas condi\u00e7\u00f5es de trabalho e pelo cumprimento dos par\u00e2metros recomendados pelo fabricante."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "F\u00f4rma"
+        },
+        {
+          "id": "etan-are",
+          "term": "Veda\u00e7\u00e3o"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeriza\u00e7\u00e3o"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Fundi\u00e7\u00e3o profunda (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Moldagem em camadas"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fundi\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "A moldagem profunda, tamb\u00e9m conhecida como Deep Pour, \u00e9 uma t\u00e9cnica que utiliza resinas ep\u00f3xi especialmente formuladas para moldagens de grande espessura em uma \u00fanica etapa. Essas resinas geram menos calor durante a polimeriza\u00e7\u00e3o e permitem a produ\u00e7\u00e3o de grandes volumes sem o surgimento de defeitos causados pelo superaquecimento."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosidade"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo de trabalho (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Rea\u00e7\u00e3o exot\u00e9rmica"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Relat\u00f3rio de mistura"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeriza\u00e7\u00e3o"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fundi\u00e7\u00e3o profunda (Deep Pour)"
+    },
+    {
+      "definition": [
+        "A furadeira \u00e9 uma ferramenta el\u00e9trica usada para fazer furos em madeira e em outros materiais. Dependendo dos acess\u00f3rios instalados, ela tamb\u00e9m pode ser usada para aparafusar, alargar furos ou realizar outras opera\u00e7\u00f5es de usinagem."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "furadeira",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Furadeira"
+    },
+    {
+      "definition": [
+        "A forma \u00e9 a estrutura tempor\u00e1ria utilizada para sustentar e delimitar a resina ep\u00f3xi durante o vazamento e a cura. Ela deve ser estanque, est\u00e1vel e fabricada com materiais que permitam a f\u00e1cil remo\u00e7\u00e3o da pe\u00e7a ap\u00f3s a conclus\u00e3o do processo."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "F\u00f4rma"
+    },
+    {
+      "definition": [
+        "A geometria do projeto descreve a forma, as dimens\u00f5es e as rela\u00e7\u00f5es espaciais entre todos os elementos que comp\u00f5em o projeto. No HFZWood, a geometria serve de base para o c\u00e1lculo das \u00e1reas, dos volumes e da quantidade estimada de resina necess\u00e1ria."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Geometria do projeto"
+    },
+    {
+      "definition": [
+        "O gloss\u00e1rio \u00e9 uma cole\u00e7\u00e3o de termos e defini\u00e7\u00f5es utilizados no aplicativo HFZWood e na \u00e1rea de processamento de madeira e resinas ep\u00f3xi. Sua fun\u00e7\u00e3o \u00e9 garantir o uso consistente da terminologia e uma compreens\u00e3o clara dos conceitos apresentados no aplicativo."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Gloss\u00e1rio"
+    },
+    {
+      "definition": [
+        "A bra\u00e7adeira de fixa\u00e7\u00e3o \u00e9 um dispositivo utilizado para manter temporariamente pe\u00e7as ou componentes na posi\u00e7\u00e3o desejada durante a colagem, o usinagem ou a montagem. Existem diversos tipos de bra\u00e7adeiras, adaptadas a diferentes dimens\u00f5es e aplica\u00e7\u00f5es."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "grampo de madeira",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Grampo de fixa\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "A granula\u00e7\u00e3o abrasiva representa o tamanho das part\u00edculas abrasivas presentes em um material de lixa, expresso por um n\u00famero espec\u00edfico. As granula\u00e7\u00f5es finas s\u00e3o utilizadas para a remo\u00e7\u00e3o r\u00e1pida de material, enquanto as grossas s\u00e3o usadas para o acabamento e o alisamento das superf\u00edcies."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Granulometria abrasiva"
+    },
+    {
+      "definition": [
+        "A ilha de madeira \u00e9 uma por\u00e7\u00e3o de madeira totalmente cercada por uma \u00e1rea de moldagem com resina ep\u00f3xi ou por uma forma, sem liga\u00e7\u00e3o direta com o restante da pe\u00e7a de madeira na mesma \u00e1rea. No HFZWood, as ilhas de madeira s\u00e3o definidas separadamente para que o volume e a quantidade necess\u00e1ria de resina sejam calculados corretamente."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "F\u00f4rma"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ilha de madeira"
+    },
+    {
+      "definition": [
+        "A imagem de refer\u00eancia \u00e9 a fotografia utilizada no HFZWood como base para a medi\u00e7\u00e3o e o c\u00e1lculo do volume de resina necess\u00e1rio para um projeto. Ela serve de suporte para a defini\u00e7\u00e3o dos elementos geom\u00e9tricos utilizados pelo aplicativo e permanece permanentemente associada ao projeto."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Imagem de refer\u00eancia"
+    },
+    {
+      "definition": [
+        "A selagem da madeira consiste na aplica\u00e7\u00e3o de uma fina camada de resina ep\u00f3xi ou de outro material compat\u00edvel para reduzir a absor\u00e7\u00e3o excessiva e a libera\u00e7\u00e3o de ar dos poros da madeira antes da moldagem principal. Essa etapa contribui para obter uma superf\u00edcie limpa e reduzir o aparecimento de bolhas de ar."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Impermeabiliza\u00e7\u00e3o da madeira"
+    },
+    {
+      "definition": [
+        "A importa\u00e7\u00e3o da imagem \u00e9 a opera\u00e7\u00e3o pela qual uma fotografia \u00e9 carregada no aplicativo HFZWood para ser utilizada em um novo projeto. A imagem importada passa a servir de base para todas as medi\u00e7\u00f5es e c\u00e1lculos realizados posteriormente."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Importa\u00e7\u00e3o da imagem"
+    },
+    {
+      "definition": [
+        "As inclus\u00f5es de poeira s\u00e3o part\u00edculas de poeira ou outras impurezas que ficam incorporadas na resina ep\u00f3xi durante o endurecimento. Esses defeitos prejudicam a apar\u00eancia da superf\u00edcie e podem exigir lixamento e polimento adicionais para serem eliminados."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inclus\u00f5es de poeira"
+    },
+    {
+      "definition": [
+        "A inspe\u00e7\u00e3o final consiste na verifica\u00e7\u00e3o completa do projeto ap\u00f3s a conclus\u00e3o de todas as etapas de usinagem e acabamento. Seu objetivo \u00e9 identificar poss\u00edveis defeitos remanescentes, verificar as dimens\u00f5es e a qualidade das superf\u00edcies e confirmar se a pe\u00e7a atende aos requisitos de qualidade estabelecidos."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inspe\u00e7\u00e3o final"
+    },
+    {
+      "definition": [
+        "A abertura do projeto \u00e9 a opera\u00e7\u00e3o pela qual um projeto salvo anteriormente \u00e9 carregado no aplicativo HFZWood para visualiza\u00e7\u00e3o, edi\u00e7\u00e3o ou continua\u00e7\u00e3o do trabalho."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lan\u00e7amento do projeto"
+    },
+    {
+      "definition": [
+        "A limpeza das cavidades consiste na remo\u00e7\u00e3o de poeira, res\u00edduos de madeira, casca solta e outras impurezas das cavidades naturais da madeira antes do vazamento da resina ep\u00f3xi. Uma limpeza adequada melhora a ader\u00eancia da resina e reduz o risco de ocorr\u00eancia de defeitos."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Limpeza das cavidades"
+    },
+    {
+      "definition": [
+        "A linha de refer\u00eancia \u00e9 o segmento definido entre dois pontos de refer\u00eancia e corresponde a uma dist\u00e2ncia real conhecida. No HFZWood, essa linha \u00e9 utilizada no processo de calibra\u00e7\u00e3o para estabelecer a escala correta da imagem e realizar medi\u00e7\u00f5es com precis\u00e3o."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Linha de refer\u00eancia"
+    },
+    {
+      "definition": [
+        "A lixa \u00e9 um material flex\u00edvel revestido com part\u00edculas abrasivas, utilizado para o lixamento manual ou mec\u00e2nico de superf\u00edcies. A escolha da granulometria adequada influencia a qualidade do acabamento e a efici\u00eancia do processo de usinagem."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lixa"
+    },
+    {
+      "definition": [
+        "O polimento \u00e9 o processo de tratamento da superf\u00edcie da madeira ou da resina ep\u00f3xi com materiais abrasivos, com o objetivo de remover imperfei\u00e7\u00f5es e obter uma superf\u00edcie lisa, uniforme e preparada para as pr\u00f3ximas etapas de acabamento."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lixamento"
+    },
+    {
+      "definition": [
+        "O polimento a seco \u00e9 o processo de polimento realizado sem o uso de l\u00edquidos de resfriamento ou lubrifica\u00e7\u00e3o. \u00c9 o m\u00e9todo mais comumente utilizado no trabalho com madeira e resina ep\u00f3xi e permite a remo\u00e7\u00e3o eficiente do material em todas as etapas do processo."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lixamento a seco"
+    },
+    {
+      "definition": [
+        "O lixamento \u00famido \u00e9 um m\u00e9todo de acabamento realizado com \u00e1gua ou outro l\u00edquido compat\u00edvel, que reduz o aquecimento da superf\u00edcie e limita a forma\u00e7\u00e3o de poeira. Essa t\u00e9cnica \u00e9 utilizada principalmente nas etapas finais para obter superf\u00edcies muito lisas e preparadas para o polimento."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lixamento \u00famido"
+    },
+    {
+      "definition": [
+        "A madeira higrosc\u00f3pica \u00e9 aquela que possui a capacidade natural de absorver e liberar umidade do ambiente at\u00e9 atingir um equil\u00edbrio com a atmosfera. Por esse motivo, suas dimens\u00f5es e propriedades podem sofrer altera\u00e7\u00f5es de acordo com as condi\u00e7\u00f5es de temperatura e umidade. Esse comportamento deve ser levado em considera\u00e7\u00e3o no projeto e na fabrica\u00e7\u00e3o de pe\u00e7as moldadas com resina ep\u00f3xi."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Madeira higrosc\u00f3pica"
+    },
+    {
+      "definition": [
+        "A madeira inst\u00e1vel \u00e9 aquela que apresenta tend\u00eancia a se deformar, rachar ou sofrer altera\u00e7\u00f5es dimensionais ap\u00f3s o processamento ou durante o uso. A instabilidade \u00e9 influenciada pela umidade, pelas tens\u00f5es internas, pelo m\u00e9todo de secagem e pela estrutura do material. O uso desse tipo de madeira pode comprometer a qualidade de uma moldagem com resina ep\u00f3xi."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Madeira inst\u00e1vel"
+    },
+    {
+      "definition": [
+        "A madeira porosa \u00e9 aquela que cont\u00e9m um grande n\u00famero de poros ou cavidades microsc\u00f3picas, por meio dos quais pode absorver l\u00edquidos, incluindo a resina ep\u00f3xi. O grau de porosidade influencia o consumo de resina, a necessidade de aplica\u00e7\u00e3o de uma camada de selante e o aspecto final da superf\u00edcie."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Madeira porosa"
+    },
+    {
+      "definition": [
+        "A madeira saud\u00e1vel \u00e9 aquela que n\u00e3o apresenta degrada\u00e7\u00e3o biol\u00f3gica nem defeitos estruturais significativos e que mant\u00e9m suas propriedades mec\u00e2nicas e est\u00e9ticas. A escolha de uma madeira saud\u00e1vel \u00e9 uma das condi\u00e7\u00f5es essenciais para a realiza\u00e7\u00e3o de projetos dur\u00e1veis e de qualidade."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Madeira saud\u00e1vel"
+    },
+    {
+      "definition": [
+        "O Manual do HFZWood \u00e9 a principal documenta\u00e7\u00e3o do aplicativo, que explica as funcionalidades, como us\u00e1-lo e os fluxos de trabalho dispon\u00edveis. Ele oferece aos usu\u00e1rios as informa\u00e7\u00f5es necess\u00e1rias para o uso correto e eficiente do aplicativo."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Manual do HFZWood"
+    },
+    {
+      "definition": [
+        "A manuten\u00e7\u00e3o da superf\u00edcie consiste no conjunto de opera\u00e7\u00f5es realizadas para preservar a apar\u00eancia e as propriedades de prote\u00e7\u00e3o da madeira e do acabamento durante o uso. A limpeza peri\u00f3dica e a reaplica\u00e7\u00e3o de produtos de manuten\u00e7\u00e3o contribuem para prolongar a vida \u00fatil da pe\u00e7a."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Manuten\u00e7\u00e3o da superf\u00edcie"
+    },
+    {
+      "definition": [
+        "A borda natural \u00e9 o contorno original da madeira, preservado ap\u00f3s a remo\u00e7\u00e3o da casca. Esse tipo de borda \u00e9 frequentemente utilizado em projetos do tipo River Table e em outras pe\u00e7as decorativas para destacar a forma natural da madeira."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Margem natural"
+    },
+    {
+      "definition": [
+        "O aglomerado melaminado \u00e9 um painel fabricado a partir de lascas de madeira prensadas e revestido com uma camada de melamina, que proporciona uma superf\u00edcie lisa e resistente. Devido ao seu baixo custo e \u00e0 superf\u00edcie relativamente antiaderente, \u00e9 frequentemente utilizado na constru\u00e7\u00e3o de cofragens para moldagens com resina ep\u00f3xi."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF melaminado"
+    },
+    {
+      "definition": [
+        "O MDF melaminado \u00e9 um painel obtido a partir de fibras finas de madeira prensadas e revestido com uma camada de melamina. Sua superf\u00edcie \u00e9 muito uniforme e permite a confec\u00e7\u00e3o de cofragens com acabamento de boa qualidade, sendo utilizada especialmente em projetos que exigem precis\u00e3o e bordas bem definidas."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF melaminado"
+    },
+    {
+      "definition": [
+        "A Mesa River \u00e9 um tipo de mesa feita de duas ou mais pe\u00e7as de madeira entre as quais \u00e9 derramada resina ep\u00f3xi, formando uma \u00e1rea central que lembra o curso de um rio. Esse estilo de design destaca os contornos naturais da madeira e representa uma das aplica\u00e7\u00f5es mais conhecidas da resina ep\u00f3xi em m\u00f3veis."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mesa do Rio"
+    },
+    {
+      "definition": [
+        "A microfissura \u00e9 uma fissura de dimens\u00f5es muito pequenas, muitas vezes dif\u00edcil de ser observada a olho nu. Embora possa parecer insignificante, ela pode evoluir com o tempo e afetar a resist\u00eancia, a estanqueidade ou a apar\u00eancia da superf\u00edcie."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Microfissura"
+    },
+    {
+      "definition": [
+        "A mistura \u00e9 o processo pelo qual a resina ep\u00f3xi e o endurecedor s\u00e3o combinados at\u00e9 se obter uma mistura totalmente homog\u00eanea. Uma mistura correta garante o andamento uniforme da rea\u00e7\u00e3o de polimeriza\u00e7\u00e3o e reduz o risco de surgirem \u00e1reas que permane\u00e7am pegajosas ou que n\u00e3o endure\u00e7am completamente."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mistura"
+    },
+    {
+      "definition": [
+        "A moldagem em camadas \u00e9 a t\u00e9cnica pela qual a resina ep\u00f3xi \u00e9 aplicada em v\u00e1rias etapas sucessivas, ap\u00f3s o endurecimento parcial ou total da camada anterior. Esse m\u00e9todo permite a realiza\u00e7\u00e3o de moldagens espessas, reduz o risco de superaquecimento e oferece um melhor controle sobre o resultado final."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Moldagem em camadas"
+    },
+    {
+      "definition": [
+        "O torno \u00e9 um dispositivo de fixa\u00e7\u00e3o utilizado para imobilizar firmemente as pe\u00e7as durante o usinagem. Uma fixa\u00e7\u00e3o adequada aumenta a precis\u00e3o das opera\u00e7\u00f5es e reduz o risco de deslocamento acidental do material."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "morsa",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Morsa"
+    },
+    {
+      "definition": [
+        "A m\u00e1quina de desbaste \u00e9 um equipamento utilizado para deixar as pe\u00e7as de madeira com uma espessura uniforme e precisa. Ap\u00f3s o aplainamento, ela remove o material de forma controlada at\u00e9 atingir a dimens\u00e3o final desejada."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "desbaste",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u00e1quina de desbaste"
+    },
+    {
+      "definition": [
+        "A m\u00e1scara respirat\u00f3ria \u00e9 um equipamento de prote\u00e7\u00e3o individual destinado a filtrar part\u00edculas, vapores ou outros contaminantes do ar inalado. Recomenda-se o uso de uma m\u00e1scara adequada durante o lixamento, o trabalho com madeira e o manuseio de produtos qu\u00edmicos, de acordo com as instru\u00e7\u00f5es dos fabricantes."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u00e1scara respirat\u00f3ria"
+    },
+    {
+      "definition": [
+        "O nivelamento da forma \u00e9 a opera\u00e7\u00e3o pela qual a forma \u00e9 posicionada perfeitamente na horizontal antes do vazamento. Um nivelamento correto garante a distribui\u00e7\u00e3o uniforme da resina ep\u00f3xi e contribui para a obten\u00e7\u00e3o de uma superf\u00edcie final sem diferen\u00e7as de n\u00edvel."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (n\u00edvel)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nivelamento da forma"
+    },
+    {
+      "definition": [
+        "O n\u00f3 \u00e9 a \u00e1rea da madeira na qual um galho foi inserido durante o crescimento da \u00e1rvore. Os n\u00f3s podem influenciar a apar\u00eancia est\u00e9tica, a resist\u00eancia mec\u00e2nica e o comportamento da madeira durante o processamento, sendo avaliados individualmente de acordo com o tamanho, a posi\u00e7\u00e3o e a estabilidade."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Cavidade"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "N\u00f3 de madeira"
+    },
+    {
+      "definition": [
+        "O contorno da cavidade representa o limite geom\u00e9trico que delimita uma cavidade na madeira destinada ao preenchimento com resina ep\u00f3xi. A defini\u00e7\u00e3o correta desse contorno permite o c\u00e1lculo preciso da \u00e1rea e do volume da cavidade."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "\u00c1rea de medi\u00e7\u00e3o"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "O contorno da cavidade"
+    },
+    {
+      "definition": [
+        "Os olhos de peixe, tamb\u00e9m conhecidos como Fish Eyes, s\u00e3o defeitos superficiais que se apresentam na forma de \u00e1reas circulares nas quais a resina se retrai e n\u00e3o adere uniformemente. Esses defeitos s\u00e3o causados, em geral, pela contamina\u00e7\u00e3o da superf\u00edcie com \u00f3leos, silicone ou outras subst\u00e2ncias que reduzem a ader\u00eancia."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Olhos de peixe"
+    },
+    {
+      "definition": [
+        "A pasta abrasiva \u00e9 um composto de polimento que cont\u00e9m part\u00edculas abrasivas finas e \u00e9 utilizada para corrigir imperfei\u00e7\u00f5es remanescentes ap\u00f3s o lixamento. A escolha do tipo de pasta depende do estado da superf\u00edcie e do n\u00edvel de acabamento desejado."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "pasta abrasiva",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta abrasiva"
+    },
+    {
+      "definition": [
+        "A pasta de acabamento \u00e9 um composto com abrasividade muito baixa, utilizado na \u00faltima etapa do polimento para melhorar o brilho e a transpar\u00eancia da superf\u00edcie. Ela elimina os tra\u00e7os muito finos que permanecem ap\u00f3s o polimento e contribui para a obten\u00e7\u00e3o de um acabamento de alta qualidade."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta de acabamento"
+    },
+    {
+      "definition": [
+        "A pasta pigment\u00e1ria \u00e9 um pigmento na forma de pasta concentrada, especialmente formulado para a colora\u00e7\u00e3o de resinas ep\u00f3xi. Gra\u00e7as \u00e0 sua consist\u00eancia, ela se dispersa facilmente na mistura e permite obter cores uniformes e intensas com uma quantidade reduzida de material."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta pigmentada"
+    },
+    {
+      "definition": [
+        "A perda tecnol\u00f3gica representa a quantidade de resina que n\u00e3o chega ao produto final devido aos processos de mistura, transfer\u00eancia, moldagem ou aos res\u00edduos que permanecem nos recipientes e nas ferramentas. Trata-se de um fen\u00f4meno normal e deve ser levado em considera\u00e7\u00e3o na estimativa do consumo total de material."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Perda tecnol\u00f3gica"
+    },
+    {
+      "definition": [
+        "A permiss\u00e3o de edi\u00e7\u00e3o \u00e9 o direito de um usu\u00e1rio de alterar o conte\u00fado de um projeto. Dependendo da fun\u00e7\u00e3o do usu\u00e1rio e das regras do aplicativo, um projeto pode ser edit\u00e1vel ou estar dispon\u00edvel apenas para visualiza\u00e7\u00e3o."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Permiss\u00e3o para editar"
+    },
+    {
+      "definition": [
+        "O pigmento \u00e9 uma subst\u00e2ncia utilizada para colorir a resina ep\u00f3xi sem alterar o processo de cura, quando dosado adequadamente. Os pigmentos est\u00e3o dispon\u00edveis em uma ampla variedade de cores e efeitos e permitem a obten\u00e7\u00e3o de pe\u00e7as moldadas transparentes, semitransparentes ou opacas, dependendo do tipo e da quantidade utilizada."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmento"
+    },
+    {
+      "definition": [
+        "A pistola de ar quente \u00e9 um equipamento que gera um jato de ar aquecido e pode ser usada para remover bolhas de ar da superf\u00edcie da resina ep\u00f3xi. A temperatura e a dist\u00e2ncia de trabalho devem ser controladas com cuidado para evitar o superaquecimento ou a deforma\u00e7\u00e3o da superf\u00edcie."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "pistola de ar quente",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bolhas de ar"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pistola de ar quente"
+    },
+    {
+      "definition": [
+        "A plaina \u00e9 uma m\u00e1quina utilizada para obter uma superf\u00edcie plana e uma aresta perfeitamente reta nas pe\u00e7as de madeira. Essa \u00e9 uma das opera\u00e7\u00f5es b\u00e1sicas na prepara\u00e7\u00e3o do material antes do desbaste e da usinagem. A plaina pode ser manual ou com mesa."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "plano de grande porte",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Plainadeira"
+    },
+    {
+      "definition": [
+        "O polimento \u00e9 a etapa final do acabamento, na qual a superf\u00edcie da madeira ou da resina ep\u00f3xi \u00e9 tratada para obter um alto grau de lisura e a apar\u00eancia desejada. Esse processo elimina os finos vest\u00edgios do lixamento e melhora a nitidez, o reflexo da luz e a apar\u00eancia est\u00e9tica da pe\u00e7a."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polimento"
+    },
+    {
+      "definition": [
+        "A polimeriza\u00e7\u00e3o \u00e9 a rea\u00e7\u00e3o qu\u00edmica pela qual a resina ep\u00f3xi e o endurecedor formam uma estrutura s\u00f3lida e est\u00e1vel. Esse processo come\u00e7a imediatamente ap\u00f3s a mistura e continua at\u00e9 que o material desenvolva suas propriedades finais de resist\u00eancia, dureza e estabilidade."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Relat\u00f3rio de mistura"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polimeriza\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O ponto de controle \u00e9 um ponto que define a forma e a posi\u00e7\u00e3o de um pol\u00edgono de medi\u00e7\u00e3o. A movimenta\u00e7\u00e3o de um ponto de controle altera automaticamente a geometria da superf\u00edcie delimitada e influencia os resultados calculados pelo aplicativo."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Ponto de refer\u00eancia"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ponto de controle"
+    },
+    {
+      "definition": [
+        "O ponto de refer\u00eancia \u00e9 um ponto escolhido na imagem para definir uma dimens\u00e3o conhecida ou para realizar medi\u00e7\u00f5es geom\u00e9tricas. No HFZWood, os pontos de refer\u00eancia s\u00e3o utilizados na calibra\u00e7\u00e3o e no tra\u00e7ado dos contornos necess\u00e1rios ao c\u00e1lculo de \u00e1reas e volumes."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ponto de refer\u00eancia"
+    },
+    {
+      "definition": [
+        "O posicionamento da madeira \u00e9 o processo de disposi\u00e7\u00e3o e alinhamento das pe\u00e7as de madeira na configura\u00e7\u00e3o final do projeto antes da aplica\u00e7\u00e3o da resina ep\u00f3xi. A maneira como elas s\u00e3o posicionadas influencia a apar\u00eancia est\u00e9tica, a quantidade de resina necess\u00e1ria e a estabilidade do conjunto."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Posicionamento da madeira"
+    },
+    {
+      "definition": [
+        "A precis\u00e3o da medi\u00e7\u00e3o representa o grau de proximidade entre os valores calculados pelo aplicativo e as dimens\u00f5es reais do projeto. Ela depende da qualidade da imagem, da exatid\u00e3o da calibra\u00e7\u00e3o e da precis\u00e3o com que os pontos e contornos de medi\u00e7\u00e3o s\u00e3o definidos."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Precis\u00e3o da medi\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "Um projeto compartilhado (*Somente leitura*) \u00e9 um projeto disponibilizado a outro usu\u00e1rio exclusivamente para visualiza\u00e7\u00e3o. Ele pode ser aberto e analisado, mas seu conte\u00fado n\u00e3o pode ser alterado por usu\u00e1rios que n\u00e3o sejam os propriet\u00e1rios do projeto."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projeto compartilhado"
+    },
+    {
+      "definition": [
+        "Um projeto local \u00e9 um projeto salvo no dispositivo do usu\u00e1rio, que pode ser aberto e editado sem depender de uma conex\u00e3o com a internet. Na arquitetura do HFZWood, os projetos locais permanecem dispon\u00edveis para o usu\u00e1rio mesmo ap\u00f3s o t\u00e9rmino da assinatura."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projeto local"
+    },
+    {
+      "definition": [
+        "A prote\u00e7\u00e3o da superf\u00edcie durante a cura consiste nas medidas tomadas para impedir o ac\u00famulo de poeira, insetos ou outras impurezas sobre a resina ep\u00f3xi at\u00e9 a conclus\u00e3o do processo de cura. Uma prote\u00e7\u00e3o adequada contribui para a obten\u00e7\u00e3o de um acabamento limpo e reduz a necessidade de interven\u00e7\u00f5es posteriores."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo de trabalho (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "turnare",
+          "term": "Fundi\u00e7\u00e3o"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Prote\u00e7\u00e3o da superf\u00edcie durante o endurecimento"
+    },
+    {
+      "definition": [
+        "A prote\u00e7\u00e3o UV \u00e9 a capacidade de um acabamento de reduzir os efeitos da radia\u00e7\u00e3o ultravioleta sobre a madeira e a resina ep\u00f3xi. Um n\u00edvel adequado de prote\u00e7\u00e3o ajuda a limitar a descolora\u00e7\u00e3o, o amarelamento e a degrada\u00e7\u00e3o causados pela exposi\u00e7\u00e3o prolongada \u00e0 luz solar."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Prote\u00e7\u00e3o UV"
+    },
+    {
+      "definition": [
+        "A quantidade necess\u00e1ria de endurecedor corresponde ao volume ou \u00e0 massa do endurecedor calculada com base na quantidade de resina e na propor\u00e7\u00e3o de mistura espec\u00edfica do produto utilizado. O cumprimento desse valor \u00e9 essencial para o correto andamento do processo de polimeriza\u00e7\u00e3o."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quantidade necess\u00e1ria de endurecedor"
+    },
+    {
+      "definition": [
+        "A quantidade necess\u00e1ria de resina representa o volume ou a massa estimada de resina ep\u00f3xi para a execu\u00e7\u00e3o de um projeto, incluindo o eventual fator de seguran\u00e7a definido pelo usu\u00e1rio. No HFZWood, esse valor \u00e9 calculado automaticamente com base na geometria do projeto e nos par\u00e2metros inseridos."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quantidade necess\u00e1ria de resina"
+    },
+    {
+      "definition": [
+        "A rea\u00e7\u00e3o exot\u00e9rmica \u00e9 o processo pelo qual a resina ep\u00f3xi libera calor durante a polimeriza\u00e7\u00e3o. A quantidade de calor produzida depende do tipo de resina, do volume da mistura e da temperatura do ambiente. Uma rea\u00e7\u00e3o exot\u00e9rmica excessiva pode afetar a qualidade da moldagem e deteriorar o material."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeriza\u00e7\u00e3o"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rea\u00e7\u00e3o exot\u00e9rmica"
+    },
+    {
+      "definition": [
+        "O recondicionamento da superf\u00edcie \u00e9 o processo pelo qual uma pe\u00e7a desgastada ou danificada \u00e9 restaurada a uma apar\u00eancia e a um n\u00edvel de prote\u00e7\u00e3o pr\u00f3ximos aos originais. Dependendo do estado da superf\u00edcie, isso pode incluir o polimento, a repara\u00e7\u00e3o de defeitos e a aplica\u00e7\u00e3o de uma nova camada de acabamento."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Recondicionamento da superf\u00edcie"
+    },
+    {
+      "definition": [
+        "A refer\u00eancia t\u00e9cnica \u00e9 uma informa\u00e7\u00e3o documentada utilizada para fundamentar uma explica\u00e7\u00e3o, uma recomenda\u00e7\u00e3o ou um procedimento. No \u00e2mbito do aplicativo, as refer\u00eancias t\u00e9cnicas garantem a precis\u00e3o e a credibilidade do conte\u00fado educacional."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Refer\u00eancia t\u00e9cnica"
+    },
+    {
+      "definition": [
+        "A propor\u00e7\u00e3o de mistura representa a rela\u00e7\u00e3o na qual a resina ep\u00f3xi e o endurecedor devem ser combinados para obter uma polimeriza\u00e7\u00e3o adequada. Essa propor\u00e7\u00e3o \u00e9 estabelecida pelo fabricante e deve ser respeitada com precis\u00e3o, pois influencia o tempo de trabalho, o endurecimento e as propriedades finais do material."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Relat\u00f3rio de mistura"
+    },
+    {
+      "definition": [
+        "A repara\u00e7\u00e3o de defeitos consiste no conjunto de opera\u00e7\u00f5es realizadas para corrigir imperfei\u00e7\u00f5es surgidas durante a fundi\u00e7\u00e3o, a solidifica\u00e7\u00e3o ou o acabamento de um projeto. Dependendo da natureza do defeito, a repara\u00e7\u00e3o pode incluir limpeza, lixamento, preenchimento com resina ep\u00f3xi, polimento ou outras interven\u00e7\u00f5es necess\u00e1rias para restaurar a pe\u00e7a ao n\u00edvel de qualidade desejado."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reparo de defeitos"
+    },
+    {
+      "definition": [
+        "A resina ep\u00f3xi \u00e9 um material bicomponente que, ap\u00f3s ser misturado com o endurecedor na propor\u00e7\u00e3o recomendada, se transforma, por meio de uma rea\u00e7\u00e3o qu\u00edmica, em um material s\u00f3lido, resistente e dur\u00e1vel. No trabalho com madeira, ela \u00e9 utilizada para preencher cavidades, realizar moldagens decorativas ou estruturais e obter superf\u00edcies transparentes ou pigmentadas."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resina ep\u00f3xi"
+    },
+    {
+      "definition": [
+        "A resist\u00eancia a arranh\u00f5es \u00e9 a capacidade de uma superf\u00edcie de suportar o contato com objetos duros sem que apare\u00e7am arranh\u00f5es vis\u00edveis. Essa propriedade depende do material utilizado, do tipo de acabamento e das condi\u00e7\u00f5es de uso da pe\u00e7a."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resist\u00eancia a arranh\u00f5es"
+    },
+    {
+      "definition": [
+        "A resist\u00eancia qu\u00edmica \u00e9 a capacidade de um material ou acabamento de resistir ao contato com diversas subst\u00e2ncias qu\u00edmicas sem sofrer degrada\u00e7\u00f5es significativas em sua apar\u00eancia ou propriedades. O n\u00edvel dessa resist\u00eancia varia de acordo com o tipo do produto e a natureza das subst\u00e2ncias com as quais ele entra em contato."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resist\u00eancia qu\u00edmica"
+    },
+    {
+      "definition": [
+        "A resist\u00eancia \u00e0 umidade \u00e9 a capacidade de um material ou acabamento de manter suas propriedades quando exposto \u00e0 \u00e1gua ou a um ambiente \u00famido. Um alto n\u00edvel de resist\u00eancia \u00e0 umidade contribui para manter a estabilidade e a apar\u00eancia da pe\u00e7a ao longo do tempo."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resist\u00eancia \u00e0 umidade"
+    },
+    {
+      "definition": [
+        "O propriet\u00e1rio do projeto \u00e9 o usu\u00e1rio que criou o projeto e det\u00e9m os direitos de edi\u00e7\u00e3o sobre ele. A identidade do propriet\u00e1rio est\u00e1 permanentemente associada ao projeto e serve de base para o gerenciamento das permiss\u00f5es de acesso."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Respons\u00e1vel pelo projeto"
+    },
+    {
+      "definition": [
+        "O Router Sled \u00e9 um sistema de guia que permite o deslocamento controlado de uma fresadora sobre uma pe\u00e7a de grandes dimens\u00f5es. Esse dispositivo \u00e9 utilizado para nivelar superf\u00edcies que n\u00e3o podem ser usinadas com uma plaina, como mesas do tipo River Table ou outros pain\u00e9is de grandes dimens\u00f5es."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "router sleed",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router Sled"
+    },
+    {
+      "definition": [
+        "A sedimenta\u00e7\u00e3o do pigmento \u00e9 o fen\u00f4meno pelo qual as part\u00edculas de pigmento se depositam na parte inferior da pe\u00e7a moldada antes que a resina endure\u00e7a completamente. Isso pode alterar a apar\u00eancia final da pe\u00e7a e \u00e9 influenciado pelo tipo de pigmento, pela viscosidade da resina e pela dura\u00e7\u00e3o do processo de endurecimento."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sedimenta\u00e7\u00e3o do pigmento"
+    },
+    {
+      "definition": [
+        "A separa\u00e7\u00e3o do pigmento consiste na distribui\u00e7\u00e3o n\u00e3o uniforme do pigmento na massa da resina ep\u00f3xi, o que leva a diferen\u00e7as vis\u00edveis de cor ou efeito. Esse fen\u00f4meno pode ser causado por uma mistura insuficiente, pela incompatibilidade dos produtos ou pelas condi\u00e7\u00f5es de cura."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Separa\u00e7\u00e3o do pigmento"
+    },
+    {
+      "definition": [
+        "A serra circular \u00e9 uma m\u00e1quina ou ferramenta equipada com uma l\u00e2mina circular girat\u00f3ria, utilizada para cortar madeira no sentido do comprimento, da largura ou em diferentes \u00e2ngulos. A precis\u00e3o e a estabilidade do corte dependem dos ajustes da m\u00e1quina, do tipo de l\u00e2mina e da forma como o material \u00e9 guiado."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "serra circular",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Serra circular"
+    },
+    {
+      "definition": [
+        "A serra de fita \u00e9 uma m\u00e1quina de corte que utiliza uma l\u00e2mina cont\u00ednua montada em dois ou mais rolos. Ela permite realizar cortes precisos, tanto retos quanto curvos, sendo frequentemente utilizada para o corte de madeira maci\u00e7a e para o usinagem de pe\u00e7as com formas irregulares."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "serra de fita",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Serra de fita"
+    },
+    {
+      "definition": [
+        "A serra pendular \u00e9 uma ferramenta el\u00e9trica equipada com uma l\u00e2mina estreita que realiza um movimento alternado vertical, sendo utilizada para cortes retos ou curvos em madeira e outros materiais. Gra\u00e7as \u00e0 sua facilidade de manobra, \u00e9 ideal para recortes e contornos complexos."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "pendular",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Serra pendular"
+    },
+    {
+      "definition": [
+        "A silicone de veda\u00e7\u00e3o \u00e9 um material el\u00e1stico utilizado para vedar as juntas e as frestas da f\u00f4rma antes do vazamento da resina ep\u00f3xi. Quando aplicada corretamente, ela evita vazamentos e pode ser removida com facilidade ap\u00f3s a desmontagem da f\u00f4rma."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "F\u00f4rma"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Silicone de veda\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O superaquecimento, tamb\u00e9m conhecido como Overheating, \u00e9 o aumento excessivo da temperatura da resina ep\u00f3xi durante a polimeriza\u00e7\u00e3o. Esse fen\u00f4meno geralmente ocorre em pe\u00e7as moldadas muito espessas ou em grandes volumes e pode causar rachaduras, deforma\u00e7\u00f5es, amarelamento ou outros defeitos na pe\u00e7a."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Superaquecimento"
+    },
+    {
+      "definition": [
+        "A superf\u00edcie pegajosa \u00e9 um defeito caracterizado pelo fato de a resina permanecer mole ou aderente ao toque ap\u00f3s o per\u00edodo normal de cura. Esse fen\u00f4meno geralmente indica um problema ocorrido durante a mistura, a polimeriza\u00e7\u00e3o ou o cumprimento das condi\u00e7\u00f5es recomendadas de uso."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Superf\u00edcie pegajosa"
+    },
+    {
+      "definition": [
+        "A tela abrasiva \u00e9 um material abrasivo com estrutura perfurada, projetada para permitir a remo\u00e7\u00e3o eficiente do p\u00f3 durante o lixamento. Seu uso reduz o ac\u00famulo de poeira na superf\u00edcie abrasiva, prolonga a vida \u00fatil e contribui para um acabamento mais uniforme."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "tela abrasiva",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Discos abrasivos"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tela abrasiva"
+    },
+    {
+      "definition": [
+        "A temperatura ambiente \u00e9 a temperatura do ar no local onde as resinas ep\u00f3xi s\u00e3o armazenadas, misturadas e utilizadas. Ela influencia a viscosidade, o tempo de trabalho, a velocidade de polimeriza\u00e7\u00e3o e a qualidade final da moldagem; por isso, deve ser mantida dentro do intervalo recomendado pelo fabricante."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temperatura ambiente"
+    },
+    {
+      "definition": [
+        "O tempo de cura \u00e9 o per\u00edodo necess\u00e1rio para que a resina ep\u00f3xi desenvolva suas propriedades mec\u00e2nicas e possa ser manuseada ou processada com seguran\u00e7a. A dura\u00e7\u00e3o desse processo depende do tipo de resina, da temperatura do ambiente e das condi\u00e7\u00f5es de trabalho."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tempo de endurecimento"
+    },
+    {
+      "definition": [
+        "O tempo de gelifica\u00e7\u00e3o \u00e9 o per\u00edodo necess\u00e1rio para que a resina ep\u00f3xi passe do estado l\u00edquido para um estado gelatinoso, no qual j\u00e1 n\u00e3o pode escorrer livremente. Esse momento marca o fim da possibilidade de modelagem ou corre\u00e7\u00e3o da moldagem e precede a etapa de endurecimento completo."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tempo de gelifica\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O tempo de trabalho, tamb\u00e9m conhecido como Pot Life, \u00e9 o intervalo durante o qual a mistura de resina e endurecedor pode ser utilizada antes que a viscosidade comece a aumentar significativamente. Ap\u00f3s o t\u00e9rmino desse intervalo, o material n\u00e3o pode mais ser moldado ou processado em condi\u00e7\u00f5es ideais."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mistura"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Fortalecedor"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tempo de trabalho (Pot Life)"
+    },
+    {
+      "definition": [
+        "As tens\u00f5es internas s\u00e3o for\u00e7as presentes na estrutura da madeira, decorrentes do processo natural de crescimento ou da secagem n\u00e3o uniforme. Elas podem causar deforma\u00e7\u00f5es, rachaduras ou altera\u00e7\u00f5es dimensionais durante o processamento e o uso. Identificar e reduzir os efeitos das tens\u00f5es internas contribui para a realiza\u00e7\u00e3o de projetos est\u00e1veis e dur\u00e1veis."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tens\u00f5es internas"
+    },
+    {
+      "definition": [
+        "O ma\u00e7arico a g\u00e1s \u00e9 um instrumento que produz uma chama controlada e \u00e9 utilizado para remover bolhas de ar da superf\u00edcie da resina ep\u00f3xi imediatamente ap\u00f3s a moldagem. Seu uso requer cuidado, pois a exposi\u00e7\u00e3o excessiva ao calor pode danificar a resina ou os materiais ao redor."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "tocha",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bolhas de ar"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tocha a g\u00e1s"
+    },
+    {
+      "definition": [
+        "A fresadora, tamb\u00e9m conhecida como router, \u00e9 uma ferramenta el\u00e9trica utilizada para o usinagem precisa da madeira por meio de fresagem. Ela permite a realiza\u00e7\u00e3o de bordas perfiladas, ranhuras, recortes e outras opera\u00e7\u00f5es de usinagem necess\u00e1rias na constru\u00e7\u00e3o e no acabamento de projetos em madeira."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "tupia",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Fresadora"
+        }
+      ],
+      "term": "Tupia (Router)"
+    },
+    {
+      "definition": [
+        "A umidade da madeira representa a quantidade de \u00e1gua contida na massa da madeira, expressa em porcentagem em rela\u00e7\u00e3o \u00e0 massa da madeira seca. Esse par\u00e2metro influencia a estabilidade dimensional, o comportamento ao longo do tempo e a compatibilidade da madeira com a resina ep\u00f3xi. Nos projetos realizados com HFZWood, o uso de madeira com umidade adequada reduz o risco de surgimento de fissuras, deforma\u00e7\u00f5es e problemas de ader\u00eancia."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Madeira higrosc\u00f3pica"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Madeira higrosc\u00f3pica",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Umidade da madeira"
+    },
+    {
+      "definition": [
+        "A umidade excessiva consiste na presen\u00e7a de uma quantidade de \u00e1gua na madeira ou no ambiente de trabalho acima do n\u00edvel recomendado para o uso de resina ep\u00f3xi. Isso pode afetar a ader\u00eancia, a estabilidade dimensional, o processo de cura e a qualidade final do projeto."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Umidade excessiva"
+    },
+    {
+      "definition": [
+        "Os vazamentos de resina representam a perda descontrolada de resina ep\u00f3xi pelas juntas, un\u00e7\u00f5es ou defeitos da f\u00f4rma antes do endurecimento. Eles podem alterar o volume final da pe\u00e7a moldada, comprometer o projeto e levar a um consumo adicional de material."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "F\u00f4rma"
+        },
+        {
+          "id": "etan-are",
+          "term": "Veda\u00e7\u00e3o"
+        },
+        {
+          "id": "fisur",
+          "term": "Fenda"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vazamentos de resina"
+    },
+    {
+      "definition": [
+        "A veda\u00e7\u00e3o \u00e9 o processo que impede o vazamento da resina ep\u00f3xi da forma durante o vazamento e a cura. Uma veda\u00e7\u00e3o bem executada evita perdas de material, mant\u00e9m a forma do projeto e contribui para a obten\u00e7\u00e3o de um vazamento sem defeitos."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Veda\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "A viscosidade representa o grau de fluidez da resina ep\u00f3xi, ou seja, sua resist\u00eancia ao escoamento. Uma resina com baixa viscosidade penetra mais facilmente nos poros e cavidades, enquanto uma com alta viscosidade \u00e9 mais adequada para aplica\u00e7\u00f5es que exigem controle do escoamento ou a forma\u00e7\u00e3o de camadas mais espessas."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo de endurecimento"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo de trabalho (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo de gelifica\u00e7\u00e3o"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina ep\u00f3xi"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Rea\u00e7\u00e3o exot\u00e9rmica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Viscosidade"
+    },
+    {
+      "definition": [
+        "O volume da madeira representa o espa\u00e7o ocupado por todas as pe\u00e7as de madeira que fazem parte do projeto. Ele \u00e9 expresso em unidades de volume e \u00e9 utilizado pelo aplicativo para determinar o volume total do projeto e a quantidade necess\u00e1ria de resina."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Espessura uniforme"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume da madeira"
+    },
+    {
+      "definition": [
+        "O volume das cavidades representa o volume total dos espa\u00e7os vazios existentes na madeira que ser\u00e3o preenchidos com resina ep\u00f3xi. Esse \u00e9 um dos elementos utilizados pela HFZWood para estimar a quantidade de material necess\u00e1ria para o projeto."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume das cavidades"
+    },
+    {
+      "definition": [
+        "O volume de moldagem representa a quantidade total de resina ep\u00f3xi necess\u00e1ria para preencher uma \u00e1rea ou para realizar uma moldagem completa. Ele \u00e9 determinado com base nas dimens\u00f5es geom\u00e9tricas do projeto e constitui um dos principais resultados calculados pelo aplicativo HFZWood."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mistura"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Bolhas de ar"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Desgaseifica\u00e7\u00e3o - Descongelamento"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeriza\u00e7\u00e3o"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Rea\u00e7\u00e3o exot\u00e9rmica"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Temperatura ambiente"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Fundi\u00e7\u00e3o profunda (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Moldagem em camadas"
+        },
+        {
+          "id": "turnare",
+          "term": "Fundi\u00e7\u00e3o"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume de vazamento"
+    },
+    {
+      "definition": [
+        "O volume total do projeto representa o volume ocupado pela pe\u00e7a final completa, incluindo tanto a madeira quanto a resina ep\u00f3xi. Esse par\u00e2metro serve de base para os c\u00e1lculos realizados pelo aplicativo e permite determinar as quantidades de material necess\u00e1rias."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume total do projeto"
+    },
+    {
+      "definition": [
+        "A \u00e1rea calculada representa a superf\u00edcie determinada automaticamente pelo aplicativo com base no pol\u00edgono de medi\u00e7\u00e3o definido pelo usu\u00e1rio. Esse valor \u00e9 utilizado nos c\u00e1lculos geom\u00e9tricos e contribui para a estimativa do volume e da quantidade necess\u00e1ria de resina."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c1rea calculada"
+    },
+    {
+      "definition": [
+        "O pol\u00edgono de medi\u00e7\u00e3o \u00e9 uma sucess\u00e3o de pontos interligados que delimitam o contorno de uma superf\u00edcie a ser medida. No HFZWood, os pol\u00edgonos s\u00e3o utilizados para definir o contorno externo, as pe\u00e7as de madeira, as cavidades e outras \u00e1reas necess\u00e1rias para os c\u00e1lculos geom\u00e9tricos."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c1rea de medi\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "A \u00e1rea de moldagem \u00e9 a superf\u00edcie do projeto destinada ao preenchimento com resina ep\u00f3xi. Ela pode incluir cavidades, os espa\u00e7os entre as pe\u00e7as de madeira ou outras \u00e1reas delimitadas pelo usu\u00e1rio para a realiza\u00e7\u00e3o da moldagem."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c1rea de moldagem"
+    },
+    {
+      "definition": [
+        "Os \u00f3culos de prote\u00e7\u00e3o s\u00e3o equipamentos de prote\u00e7\u00e3o individual concebidos para proteger os olhos contra poeira, part\u00edculas projetadas e respingos acidentais. Recomenda-se o uso desses \u00f3culos em todas as etapas do processamento mec\u00e2nico e durante o trabalho com resinas ep\u00f3xi."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "\u00f3culos",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00d3culos de prote\u00e7\u00e3o"
+    },
+    {
+      "definition": [
+        "O \u00f3leo para madeira \u00e9 um produto de acabamento que penetra na estrutura da madeira e oferece prote\u00e7\u00e3o contra a umidade e o desgaste, ao mesmo tempo em que real\u00e7a a textura e a apar\u00eancia natural da fibra. Dependendo do tipo utilizado, o \u00f3leo pode exigir manuten\u00e7\u00e3o e reaplica\u00e7\u00e3o peri\u00f3dica."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "\u00f3leo",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00d3leo para madeira"
+    }
+  ],
   "locale": "pt"
 }
