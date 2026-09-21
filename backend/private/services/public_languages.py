@@ -49,24 +49,32 @@ def _module_has_any_variant(
 def translation_status_for_locale(
     repository: FilesystemContentRepository,
     locale: str,
+    records: dict[str, Any] | None = None,
 ) -> str:
     """Informational only: presence of any draft/variant per editorial module."""
+    store = records if records is not None else repository.read_editorial_records()
     modules_present = 0
     if _module_has_any_variant(
-        repository.list_manual_chapter_ids(),
-        repository.get_manual_variant,
+        repository.list_manual_chapter_ids_from_store(store),
+        lambda content_id, loc: repository.get_manual_variant_from_store(
+            store, content_id, loc
+        ),
         locale,
     ):
         modules_present += 1
     if _module_has_any_variant(
-        repository.list_glossary_entry_ids(),
-        repository.get_glossary_variant,
+        repository.list_glossary_entry_ids_from_store(store),
+        lambda content_id, loc: repository.get_glossary_variant_from_store(
+            store, content_id, loc
+        ),
         locale,
     ):
         modules_present += 1
     if _module_has_any_variant(
-        repository.list_kb_entry_ids(),
-        repository.get_kb_variant,
+        repository.list_kb_entry_ids_from_store(store),
+        lambda content_id, loc: repository.get_kb_variant_from_store(
+            store, content_id, loc
+        ),
         locale,
     ):
         modules_present += 1
@@ -136,6 +144,7 @@ class PublicLanguagesService:
         config = self._production.read()
         default_locale = config["defaultPublicLocale"]
         active = set(config["activePublicLocales"])
+        records = self._content.read_editorial_records()
         rows: list[PublicLanguageRow] = []
         for locale in ADMIN_EDITORIAL_LOCALE_ORDER:
             is_active = locale in active
@@ -144,10 +153,12 @@ class PublicLanguagesService:
                 PublicLanguageRow(
                     locale=locale,
                     label=PUBLIC_LANGUAGE_LABELS.get(locale, locale),
-                    translationStatus=translation_status_for_locale(self._content, locale),  # type: ignore[arg-type]
+                    translationStatus=translation_status_for_locale(
+                        self._content, locale, records=records
+                    ),
                     publishedContentStatus=published_content_status_for_locale(
                         self._content, locale
-                    ),  # type: ignore[arg-type]
+                    ),
                     publicVisibility="Active" if is_active else "Inactive",
                     isDefault=is_default,
                     canDeactivate=is_active and not is_default,
