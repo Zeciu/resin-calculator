@@ -60,3 +60,25 @@ export async function prepareLocaleProduction(locale) {
   }
   return response.json();
 }
+
+export async function previewMissingUiTranslations(locale) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/admin/ui-translations/${encodeURIComponent(locale)}/preview`,
+    { headers: await adminHeaders(false), cache: "no-store" },
+  );
+  if (!response.ok) {
+    throw new AdminApiError(await parseAdminError(response), response.status);
+  }
+  return response.json();
+}
+
+export async function generateMissingUiTranslations(locale) {
+  const response = await fetch(
+    `${API_BASE_URL}/api/admin/ui-translations/${encodeURIComponent(locale)}/generate-missing`,
+    { method: "POST", headers: await adminHeaders(false) },
+  );
+  if (!response.ok) {
+    throw new AdminApiError(await parseAdminError(response), response.status);
+  }
+  return response.json();
+}

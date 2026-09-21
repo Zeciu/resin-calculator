@@ -5,8 +5,11 @@ import {
   deactivatePublicLanguage,
   fetchAdminLocaleReadiness,
   fetchAdminPublicLanguages,
+  generateMissingUiTranslations,
   prepareLocaleProduction,
+  previewMissingUiTranslations,
 } from "./publicLanguagesApi.js";
+import { adminLocaleLabel } from "../editorial/editorialLocales.js";
 import { usePublicLanguages } from "../../public/src/publicLanguages/usePublicLanguages.js";
 import AdminLocaleReadiness from "./AdminLocaleReadiness.jsx";
 
@@ -21,6 +24,7 @@ export default function AdminDashboard() {
   const [readinessError, setReadinessError] = useState("");
   const [readinessRefreshing, setReadinessRefreshing] = useState(false);
   const [preparingLocale, setPreparingLocale] = useState(null);
+  const [updatingUiLocale, setUpdatingUiLocale] = useState(null);
 
   const loadReadiness = useCallback(async () => {
     setReadinessState((current) => (current === "ready" ? "ready" : "loading"));
@@ -91,6 +95,32 @@ export default function AdminDashboard() {
       setError(err instanceof AdminApiError ? err.message : "Failed to deactivate language.");
     } finally {
       setPendingLocale(null);
+    }
+  };
+
+  const handleUpdateMissingUi = async (locale) => {
+    setReadinessError("");
+    try {
+      const preview = await previewMissingUiTranslations(locale);
+      if (!preview.missing_count) {
+        window.alert(`No missing UI translations for ${adminLocaleLabel(locale)}.`);
+        return;
+      }
+      const confirmed = window.confirm(
+        `Update missing UI translations for ${adminLocaleLabel(locale)}?\n\nUI: ${preview.present_count} / ${preview.required_count}\n${preview.missing_count} missing\n\nExisting translations will be kept. Missing keys will be translated from Romanian via DeepL.`,
+      );
+      if (!confirmed) {
+        return;
+      }
+      setUpdatingUiLocale(locale);
+      await generateMissingUiTranslations(locale);
+      await loadReadiness();
+    } catch (err) {
+      setReadinessError(
+        err instanceof AdminApiError ? err.message : "Failed to update missing UI translations.",
+      );
+    } finally {
+      setUpdatingUiLocale(null);
     }
   };
 
@@ -240,6 +270,8 @@ export default function AdminDashboard() {
           refreshing={readinessRefreshing}
           onPrepareProduction={handlePrepareProduction}
           preparingLocale={preparingLocale}
+          onUpdateMissingUi={handleUpdateMissingUi}
+          updatingUiLocale={updatingUiLocale}
         />
       </div>
     </section>

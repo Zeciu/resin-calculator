@@ -70,6 +70,7 @@ def _include_local_editorial_routes() -> bool:
         from private.routers.admin_manual import router as admin_manual_router
         from private.routers.admin_public_languages import router as admin_public_languages_router
         from private.routers.admin_translation_bulk import router as admin_translation_bulk_router
+        from private.routers.admin_ui_translations import router as admin_ui_translations_router
         from private.routers.admin_website import router as admin_website_router
         from private.routers.public_content import router as local_public_content_router
     except ImportError:
@@ -81,6 +82,7 @@ def _include_local_editorial_routes() -> bool:
     app.include_router(admin_knowledge_base_router, prefix="/api")
     app.include_router(admin_website_router, prefix="/api")
     app.include_router(admin_translation_bulk_router, prefix="/api")
+    app.include_router(admin_ui_translations_router, prefix="/api")
     app.include_router(admin_public_languages_router, prefix="/api")
     app.include_router(local_public_content_router, prefix="/api")
     return True

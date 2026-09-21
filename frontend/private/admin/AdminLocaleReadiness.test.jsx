@@ -131,9 +131,13 @@ function mockAdminDashboardApis(options = {}) {
     options.readiness ?? (async () => ({ locales: defaultReadinessLocales() }));
   const prepareHandler = options.prepare;
   const activateHandler = options.activate;
+  const uiPreviewHandler = options.uiPreview;
+  const uiGenerateHandler = options.uiGenerate;
   let active = options.active ?? ["en"];
   const activateCalls = [];
   const prepareCalls = [];
+  const uiPreviewCalls = [];
+  const uiGenerateCalls = [];
 
   const spy = vi.spyOn(global, "fetch").mockImplementation(async (url, init = {}) => {
     const path = String(url);
@@ -245,6 +249,49 @@ function mockAdminDashboardApis(options = {}) {
         }),
       };
     }
+    const uiPreviewMatch = path.match(/\/api\/admin\/ui-translations\/([^/]+)\/preview$/);
+    if (uiPreviewMatch && method === "GET") {
+      const locale = decodeURIComponent(uiPreviewMatch[1]);
+      uiPreviewCalls.push(locale);
+      const payload = uiPreviewHandler
+        ? await uiPreviewHandler(locale)
+        : {
+            locale,
+            required_count: 567,
+            present_count: 509,
+            missing_count: 58,
+            missing_keys: ["key.000"],
+          };
+      return { ok: true, status: 200, json: async () => payload };
+    }
+    const uiGenerateMatch = path.match(/\/api\/admin\/ui-translations\/([^/]+)\/generate-missing$/);
+    if (uiGenerateMatch && method === "POST") {
+      const locale = decodeURIComponent(uiGenerateMatch[1]);
+      uiGenerateCalls.push(locale);
+      try {
+        const payload = uiGenerateHandler
+          ? await uiGenerateHandler(locale)
+          : {
+              locale,
+              required_count: 567,
+              present_count_before: 509,
+              present_count_after: 567,
+              generated_count: 58,
+              preserved_count: 509,
+              failed: [],
+              provider_called: true,
+            };
+        return { ok: true, status: 200, json: async () => payload };
+      } catch (error) {
+        return {
+          ok: false,
+          status: 400,
+          json: async () => ({
+            detail: error instanceof Error ? error.message : "UI translation failed.",
+          }),
+        };
+      }
+    }
     const deactivateMatch = path.match(/\/api\/admin\/public-languages\/([^/]+)\/deactivate$/);
     if (deactivateMatch && method === "POST") {
       const locale = decodeURIComponent(deactivateMatch[1]);
@@ -276,6 +323,8 @@ function mockAdminDashboardApis(options = {}) {
   });
   spy.activateCalls = activateCalls;
   spy.prepareCalls = prepareCalls;
+  spy.uiPreviewCalls = uiPreviewCalls;
+  spy.uiGenerateCalls = uiGenerateCalls;
   return spy;
 }
 
@@ -519,6 +568,93 @@ describe("Admin Locale Readiness overview", () => {
     expect(await screen.findByRole("button", { name: "Preparing…" })).toBeDisabled();
     resolvePrepare();
     expect(await screen.findByRole("alert")).toHaveTextContent("Packaging refused.");
+  });
+
+  it("offers Update missing UI translations only for incomplete non-source locales", async () => {
+    mockAdminDashboardApis();
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const frenchRow = within(table).getByText("French").closest("tr");
+    const englishRow = within(table).getByText("English").closest("tr");
+    const romanianRow = within(table).getByText("Romanian").closest("tr");
+    const germanRow = within(table).getByText("German").closest("tr");
+    expect(
+      within(frenchRow).getByRole("button", { name: "Update missing UI translations" }),
+    ).toBeEnabled();
+    expect(
+      within(englishRow).queryByRole("button", { name: "Update missing UI translations" }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(romanianRow).queryByRole("button", { name: "Update missing UI translations" }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(germanRow).queryByRole("button", { name: "Update missing UI translations" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("requires confirmation and refreshes UI completeness after generating missing translations", async () => {
+    const user = userEvent.setup();
+    let generated = false;
+    const spy = mockAdminDashboardApis({
+      readiness: async () => ({
+        locales: defaultReadinessLocales().map((row) =>
+          row.locale === "fr" && generated
+            ? { ...row, ui: completeLayer(567) }
+            : row,
+        ),
+      }),
+      uiGenerate: async (locale) => {
+        generated = true;
+        return {
+          locale,
+          required_count: 567,
+          present_count_before: 509,
+          present_count_after: 567,
+          generated_count: 58,
+          preserved_count: 509,
+          failed: [],
+          provider_called: true,
+        };
+      },
+    });
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(true);
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const frenchRow = within(table).getByText("French").closest("tr");
+    await user.click(
+      within(frenchRow).getByRole("button", { name: "Update missing UI translations" }),
+    );
+    await waitFor(() => {
+      expect(confirm).toHaveBeenCalled();
+    });
+    expect(confirm.mock.calls[0][0]).toMatch(/UI: 509 \/ 567/);
+    expect(confirm.mock.calls[0][0]).toMatch(/58 missing/);
+    await waitFor(() => {
+      expect(within(frenchRow).getByText("COMPLETE 567/567")).toBeInTheDocument();
+      expect(
+        within(frenchRow).queryByRole("button", { name: "Update missing UI translations" }),
+      ).not.toBeInTheDocument();
+    });
+    expect(spy.uiPreviewCalls).toEqual(["fr"]);
+    expect(spy.uiGenerateCalls).toEqual(["fr"]);
+    expect(spy.prepareCalls).toEqual([]);
+    expect(spy.activateCalls).toEqual([]);
+  });
+
+  it("does not generate missing UI translations when confirmation is cancelled", async () => {
+    const user = userEvent.setup();
+    const spy = mockAdminDashboardApis();
+    vi.spyOn(window, "confirm").mockReturnValue(false);
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const frenchRow = within(table).getByText("French").closest("tr");
+    await user.click(
+      within(frenchRow).getByRole("button", { name: "Update missing UI translations" }),
+    );
+    await waitFor(() => {
+      expect(spy.uiPreviewCalls).toEqual(["fr"]);
+    });
+    expect(spy.uiGenerateCalls).toEqual([]);
   });
 
   it("does not send Prepare when Activate is used on a production-ready locale", async () => {

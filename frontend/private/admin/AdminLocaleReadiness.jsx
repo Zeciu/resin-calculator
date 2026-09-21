@@ -1,4 +1,12 @@
 const INLINE_MISSING_LIMIT = 12;
+const UI_SOURCE_LOCALES = new Set(["en", "ro"]);
+
+function canUpdateMissingUi(row) {
+  if (UI_SOURCE_LOCALES.has(row.locale)) {
+    return false;
+  }
+  return row.ui.present_count < row.ui.required_count;
+}
 
 function statusLabel(status) {
   if (status === "complete") {
@@ -110,6 +118,8 @@ export default function AdminLocaleReadiness({
   refreshing,
   onPrepareProduction,
   preparingLocale,
+  onUpdateMissingUi,
+  updatingUiLocale,
 }) {
   return (
     <div className="admin-locale-readiness">
@@ -187,7 +197,12 @@ export default function AdminLocaleReadiness({
                         <button
                           type="button"
                           className="admin-public-languages__action"
-                          disabled={Boolean(preparingLocale) || refreshing || loadState === "loading"}
+                          disabled={
+                            Boolean(preparingLocale) ||
+                            Boolean(updatingUiLocale) ||
+                            refreshing ||
+                            loadState === "loading"
+                          }
                           onClick={() => void onPrepareProduction(row.locale)}
                         >
                           {preparingLocale === row.locale ? "Preparing…" : "Prepare for Production"}
@@ -196,8 +211,27 @@ export default function AdminLocaleReadiness({
                     </div>
                   </td>
                   <td>
-                    <LayerCounts layer={row.ui} />
-                    <InlineMissing layer={row.ui} />
+                    <div className="admin-locale-readiness__production-action">
+                      <LayerCounts layer={row.ui} />
+                      <InlineMissing layer={row.ui} />
+                      {canUpdateMissingUi(row) ? (
+                        <button
+                          type="button"
+                          className="admin-public-languages__action"
+                          disabled={
+                            Boolean(preparingLocale) ||
+                            Boolean(updatingUiLocale) ||
+                            refreshing ||
+                            loadState === "loading"
+                          }
+                          onClick={() => void onUpdateMissingUi(row.locale)}
+                        >
+                          {updatingUiLocale === row.locale
+                            ? "Updating UI…"
+                            : "Update missing UI translations"}
+                        </button>
+                      ) : null}
+                    </div>
                   </td>
                   <td>
                     <ModuleCell preview={row.website_preview} production={row.website_production} />
