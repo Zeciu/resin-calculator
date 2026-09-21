@@ -5548,7 +5548,7 @@ button.workspace-sidebar__link {
 }
 
 .admin-dashboard {
-  max-width: 720px;
+  max-width: 1080px;
 }
 
 .admin-dashboard__title {
@@ -5674,6 +5674,129 @@ button.workspace-sidebar__link {
 .admin-public-languages__action:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.admin-locale-readiness {
+  margin-top: 12px;
+}
+
+.admin-locale-readiness__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-locale-readiness__table-wrap {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.admin-locale-readiness__status {
+  white-space: nowrap;
+  color: #5a4a32;
+}
+
+.admin-locale-readiness__status--complete {
+  color: #2f6b3a;
+  font-weight: 600;
+}
+
+.admin-locale-readiness__status--incomplete,
+.admin-locale-readiness__status--missing {
+  color: #9b2c2c;
+  font-weight: 600;
+}
+
+.admin-locale-readiness__ready {
+  font-weight: 600;
+  color: #9b2c2c;
+}
+
+.admin-locale-readiness__ready--yes {
+  color: #2f6b3a;
+}
+
+.admin-locale-readiness__code {
+  display: inline-block;
+  margin-left: 8px;
+  color: #5a4a32;
+  font-size: 12px;
+}
+
+.admin-locale-readiness__module {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.admin-locale-readiness__plane {
+  display: inline-block;
+  min-width: 5.5rem;
+  color: #5a4a32;
+}
+
+.admin-locale-readiness__inline-missing {
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #9b2c2c;
+  white-space: normal;
+}
+
+.admin-locale-readiness__details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.admin-locale-readiness__locale-details {
+  border: 1px solid #d9d0c0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: #fff;
+}
+
+.admin-locale-readiness__locale-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #3a3228;
+}
+
+.admin-locale-readiness__layer-detail {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #4a4034;
+}
+
+.admin-locale-readiness__ids-label {
+  margin: 6px 0 0;
+  font-weight: 600;
+}
+
+.admin-locale-readiness__ids {
+  margin: 4px 0 0;
+  padding-left: 1.25rem;
+}
+
+.admin-locale-readiness__disclosure {
+  margin-top: 6px;
+}
+
+.admin-locale-readiness__store-block {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #d9d0c0;
+}
+
+.admin-locale-readiness__store {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #4a4034;
 }
 
 .admin-placeholder-page {

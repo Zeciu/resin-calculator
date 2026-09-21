@@ -38,3 +38,14 @@ export async function deactivatePublicLanguage(locale) {
   }
   return response.json();
 }
+
+export async function fetchAdminLocaleReadiness() {
+  const response = await fetch(`${API_BASE_URL}/api/admin/public-languages/readiness`, {
+    headers: await adminHeaders(false),
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    throw new AdminApiError(await parseAdminError(response), response.status);
+  }
+  return response.json();
+}

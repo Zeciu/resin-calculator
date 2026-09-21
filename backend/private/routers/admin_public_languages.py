@@ -11,7 +11,9 @@ from private.access import require_local_editorial_access
 from private.editorial_content_mode import require_editorial_writes_allowed
 from private.repositories.filesystem import FilesystemContentRepository
 from private.repositories.public_languages import PublicLanguagesRepository
+from private.schemas.locale_readiness import AdminLocaleReadinessResponse
 from private.schemas.public_languages import AdminPublicLanguagesResponse
+from private.services.admin_locale_readiness import get_admin_locale_readiness
 from private.services.public_languages import PublicLanguagesService
 
 router = APIRouter(prefix="/admin/public-languages", tags=["admin-public-languages"])
@@ -40,6 +42,14 @@ def get_admin_public_languages(
     service: PublicLanguagesService = Depends(get_public_languages_service),
 ) -> AdminPublicLanguagesResponse:
     return service.get_admin_overview()
+
+
+@router.get("/readiness", response_model=AdminLocaleReadinessResponse)
+def get_admin_locale_readiness_overview(
+    _: dict = Depends(require_local_editorial_access),
+) -> AdminLocaleReadinessResponse:
+    """Read-only locale readiness. Does not activate, publish, or package."""
+    return get_admin_locale_readiness()
 
 
 @router.post("/{locale}/activate", response_model=AdminPublicLanguagesResponse)

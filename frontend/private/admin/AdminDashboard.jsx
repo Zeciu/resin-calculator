@@ -3,9 +3,11 @@ import { AdminApiError } from "../editorial/editorialAdminApi.js";
 import {
   activatePublicLanguage,
   deactivatePublicLanguage,
+  fetchAdminLocaleReadiness,
   fetchAdminPublicLanguages,
 } from "./publicLanguagesApi.js";
 import { usePublicLanguages } from "../../public/src/publicLanguages/usePublicLanguages.js";
+import AdminLocaleReadiness from "./AdminLocaleReadiness.jsx";
 
 export default function AdminDashboard() {
   const { reload: reloadPublicConfig } = usePublicLanguages();
@@ -13,6 +15,35 @@ export default function AdminDashboard() {
   const [loadState, setLoadState] = useState("loading");
   const [error, setError] = useState("");
   const [pendingLocale, setPendingLocale] = useState(null);
+  const [readiness, setReadiness] = useState(null);
+  const [readinessState, setReadinessState] = useState("loading");
+  const [readinessError, setReadinessError] = useState("");
+  const [readinessRefreshing, setReadinessRefreshing] = useState(false);
+
+  const loadReadiness = useCallback(async () => {
+    setReadinessState((current) => (current === "ready" ? "ready" : "loading"));
+    setReadinessError("");
+    try {
+      const payload = await fetchAdminLocaleReadiness();
+      setReadiness(payload);
+      setReadinessState("ready");
+    } catch (err) {
+      setReadiness(null);
+      setReadinessState("error");
+      setReadinessError(
+        err instanceof AdminApiError ? err.message : "Failed to load locale readiness.",
+      );
+    }
+  }, []);
+
+  const refreshReadiness = useCallback(async () => {
+    setReadinessRefreshing(true);
+    try {
+      await loadReadiness();
+    } finally {
+      setReadinessRefreshing(false);
+    }
+  }, [loadReadiness]);
 
   const load = useCallback(async () => {
     setLoadState("loading");
@@ -26,7 +57,8 @@ export default function AdminDashboard() {
       setLoadState("error");
       setError(err instanceof AdminApiError ? err.message : "Failed to load public languages.");
     }
-  }, []);
+    await loadReadiness();
+  }, [loadReadiness]);
 
   useEffect(() => {
     void load();
@@ -88,7 +120,7 @@ export default function AdminDashboard() {
 
         {overview ? (
           <div className="admin-public-languages">
-            <table className="admin-public-languages__table">
+            <table className="admin-public-languages__table" aria-label="Public languages">
               <thead>
                 <tr>
                   <th scope="col">Language</th>
@@ -155,6 +187,14 @@ export default function AdminDashboard() {
             </table>
           </div>
         ) : null}
+
+        <AdminLocaleReadiness
+          payload={readiness}
+          loadState={readinessState}
+          error={readinessError}
+          onRefresh={refreshReadiness}
+          refreshing={readinessRefreshing}
+        />
       </div>
     </section>
   );

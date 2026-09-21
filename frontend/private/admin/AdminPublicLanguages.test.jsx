@@ -80,6 +80,14 @@ function mockPublicLanguagesAdminApi(initialActive = ["en"]) {
       };
     }
 
+    if (path.endsWith("/api/admin/public-languages/readiness") && method === "GET") {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ locales: [] }),
+      };
+    }
+
     if (path.endsWith("/api/admin/public-languages") && method === "GET") {
       return {
         ok: true,
@@ -172,7 +180,7 @@ describe("Admin Public Languages dashboard", () => {
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
     expect(await screen.findByRole("heading", { name: "Public Languages" })).toBeInTheDocument();
-    const table = screen.getByRole("table");
+    const table = screen.getByRole("table", { name: "Public languages" });
     for (const locale of ADMIN_EDITORIAL_LOCALES) {
       expect(within(table).getByText(ADMIN_LOCALE_LABELS[locale])).toBeInTheDocument();
     }
@@ -186,7 +194,7 @@ describe("Admin Public Languages dashboard", () => {
     mockPublicLanguagesAdminApi(["en"]);
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
-    const table = await screen.findByRole("table");
+    const table = await screen.findByRole("table", { name: "Public languages" });
     const romanianRow = within(table).getByText("Romanian").closest("tr");
     await user.click(within(romanianRow).getByRole("button", { name: "Activate" }));
 
@@ -207,7 +215,7 @@ describe("Admin Public Languages dashboard", () => {
     mockPublicLanguagesAdminApi(["en"]);
     renderWorkspace(ADMIN_ROUTES.ROOT);
 
-    const table = await screen.findByRole("table");
+    const table = await screen.findByRole("table", { name: "Public languages" });
     const englishRow = within(table).getByText("English").closest("tr");
     const deactivate = within(englishRow).getByRole("button", { name: "Deactivate" });
     expect(deactivate).toBeDisabled();
