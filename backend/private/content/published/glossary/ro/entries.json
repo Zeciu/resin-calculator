@@ -488,6 +488,17 @@
     },
     {
       "definition": [
+        "Conturul exterior reprezint\u0103 limita care define\u0219te forma exterioar\u0103 a proiectului. Acesta stabile\u0219te suprafa\u021ba total\u0103 a piesei \u0219i constituie punctul de plecare pentru toate calculele geometrice realizate \u00een aplica\u021bie."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contur exterior"
+    },
+    {
+      "definition": [
         "Conturul cavit\u0103\u021bii reprezint\u0103 limita geometric\u0103 care delimiteaz\u0103 o cavitate din lemn destinat\u0103 umplerii cu r\u0103\u0219in\u0103 epoxidic\u0103. Definirea corect\u0103 a acestui contur permite calcularea precis\u0103 a suprafe\u021bei \u0219i a volumului cavit\u0103\u021bii."
       ],
       "id": "conturul-cavit-ii",

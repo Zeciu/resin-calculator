@@ -478,16 +478,19 @@ class TestCheckoutReadOnly:
         assert german.knowledge_base_production.present_count == 0
 
         romanian = by_locale["ro"]
-        assert romanian.preview_ready is False
+        assert romanian.preview_ready is True
         assert romanian.production_ready is False
-        assert romanian.glossary_preview.status is LayerStatus.INCOMPLETE
-        assert romanian.glossary_preview.missing == ("contur-exterior",)
-        assert romanian.glossary_preview.present_count == len(catalogs.glossary_ids) - 1
+        assert romanian.glossary_preview.status is LayerStatus.COMPLETE
+        assert romanian.glossary_preview.present_count == len(catalogs.glossary_ids)
+        assert romanian.glossary_preview.missing == ()
+        assert romanian.glossary_production.status is LayerStatus.INCOMPLETE
+        assert romanian.glossary_production.present_count == len(catalogs.glossary_ids) - 1
+        assert romanian.glossary_production.missing == ("contur-exterior",)
         assert romanian.store.glossary.canonical_count == len(catalogs.glossary_ids)
-        assert romanian.store.glossary.published_count == len(catalogs.glossary_ids) - 1
-        assert romanian.store.glossary.draft_count == 1
+        assert romanian.store.glossary.published_count == len(catalogs.glossary_ids)
+        assert romanian.store.glossary.draft_count == 0
         assert romanian.store.glossary.no_variant_count == 0
-        assert romanian.store.glossary.draft_ids == ("contur-exterior",)
+        assert romanian.store.glossary.draft_ids == ()
 
 
 def _run_cli(argv: list[str], *, roots: LocaleReadinessRoots | None = None) -> tuple[int, str, str]:
@@ -521,14 +524,18 @@ class TestLocaleReadinessCli:
         assert "Glossary production: INCOMPLETE" in production
         assert "Knowledge Base production: INCOMPLETE" in production
 
-    def test_locale_ro_succeeds_when_preview_not_ready(self) -> None:
+    def test_locale_ro_preview_ready_production_missing_contur_exterior(self) -> None:
         code, stdout, stderr = _run_cli(["--locale", "ro"])
         assert code == 0
         assert stderr == ""
-        assert "Preview Ready:    NO" in stdout
+        assert "Preview Ready:    YES" in stdout
         assert "Production Ready: NO" in stdout
+        assert "COMPLETE 173/173" in stdout
+        assert "INCOMPLETE 172/173" in stdout
         assert "contur-exterior" in stdout
-        assert "INCOMPLETE 172/173" in stdout or "INCOMPLETE 172/" in stdout
+        production = stdout.split("Production blockers:", 1)[1]
+        assert "Glossary production: INCOMPLETE 172/173" in production
+        assert "contur-exterior" in production
 
     def test_all_includes_every_configured_locale(self) -> None:
         code, stdout, stderr = _run_cli(["--all"])

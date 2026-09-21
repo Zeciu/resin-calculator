@@ -3391,7 +3391,7 @@
       "pk": "CONTENT#contur-exterior",
       "sk": "META",
       "sortOrder": 2300,
-      "updatedAt": "2026-09-20T18:12:41.464361+00:00"
+      "updatedAt": "2026-09-21T08:26:41.455638+00:00"
     },
     "CONTENT#glossary_entry#contur-exterior|VARIANT#de": {
       "contentId": "contur-exterior",
@@ -3467,13 +3467,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#contur-exterior",
-      "publishedAt": null,
+      "publishedAt": "2026-09-21T08:26:41.455638+00:00",
       "sk": "VARIANT#ro",
-      "snapshotKey": null,
+      "snapshotKey": "published/glossary/ro/entries.json",
       "sourceRevision": 2,
       "sourceTextRevision": 2,
-      "status": "draft",
-      "updatedAt": "2026-07-23T09:06:19.995870+00:00"
+      "status": "published",
+      "updatedAt": "2026-09-21T08:26:41.455638+00:00"
     },
     "CONTENT#glossary_entry#conturul-cavit-ii|META": {
       "contentId": "conturul-cavit-ii",
