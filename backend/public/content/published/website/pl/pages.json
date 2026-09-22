@@ -1,0 +1,550 @@
+{
+  "locale": "pl",
+  "pages": {
+    "about": {
+      "body": {
+        "pageKind": "about",
+        "publicTitle": "O firmie HFZWood",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "<strong>Oparte na prawdziwym do\u015bwiadczeniu</strong>",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood to efekt ponad pi\u0119tnastu lat praktycznego do\u015bwiadczenia w realizacji projekt\u00f3w z drewna i \u017cywicy epoksydowej. Przez ca\u0142y ten czas tworzyli\u015bmy unikatowe dzie\u0142a, eksperymentowali\u015bmy z r\u00f3\u017cnymi technikami, napotykali\u015bmy trudne sytuacje i projekt po projekcie uczyli\u015bmy si\u0119, co naprawd\u0119 sprawdza si\u0119 w warsztacie.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Ca\u0142e to praktyczne do\u015bwiadczenie zosta\u0142o wykorzystane w HFZWood. Proces pracy, kt\u00f3ry realizujesz w aplikacji, nie jest teoretyczny ani nie zosta\u0142 zaprojektowany wy\u0142\u0105cznie w celu uproszczenia interfejsu. Odzwierciedla on proces pracy sprawdzony w wielu rzeczywistych projektach, zaprojektowany tak, aby ograniczy\u0107 b\u0142\u0119dy, zwi\u0119kszy\u0107 dok\u0142adno\u015b\u0107 szacunk\u00f3w i zapewni\u0107 sp\u00f3jne wyniki w poszczeg\u00f3lnych projektach.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood nie ma na celu zast\u0105pienia do\u015bwiadczenia, kreatywno\u015bci ani profesjonalnej oceny u\u017cytkownika. Wr\u0119cz przeciwnie \u2013 aplikacja zosta\u0142a stworzona, aby wspiera\u0107 te elementy poprzez precyzyjne obliczenia i przejrzysty proces pracy, tak aby wa\u017cne decyzje zawsze pozostawa\u0142y w r\u0119kach osoby realizuj\u0105cej projekt.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Ka\u017cdy projekt jest inny, a \u017cadne oprogramowanie nie zast\u0105pi dba\u0142o\u015bci o szczeg\u00f3\u0142y i do\u015bwiadczenia zdobytego z biegiem czasu. Z tego powodu HFZWood nie pr\u00f3buje podejmowa\u0107 decyzji w imieniu u\u017cytkownika ani nie dokonuje szacunk\u00f3w opartych na przypuszczeniach. Aplikacja wykonuje obliczenia wy\u0142\u0105cznie na podstawie informacji podanych przez u\u017cytkownika, zapewniaj\u0105c powtarzalne i \u0142atwe do zweryfikowania wyniki. Nasz cel jest prosty: chcemy zwi\u0119kszy\u0107 Twoje zaufanie do w\u0142asnych szacunk\u00f3w, ograniczy\u0107 marnotrawstwo materia\u0142u i pom\u00f3c Ci osi\u0105ga\u0107 przewidywalne wyniki, projekt po projekcie.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "",
+                "type": "paragraph"
+              }
+            ],
+            "id": "hero",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Wi\u0119cej ni\u017c tylko kalkulator do obliczania \u017cywic epoksydowych"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Ka\u017cdy, kto pracowa\u0142 z \u017cywic\u0105 epoksydow\u0105, wie, \u017ce b\u0142\u0119dne oszacowanie mo\u017ce oznacza\u0107 dodatkowe koszty, op\u00f3\u017anienia lub konieczno\u015b\u0107 p\u00f3j\u015bcia na kompromisy w trakcie realizacji projektu. W wielu przypadkach obliczenia wykonuje si\u0119 \u201ena oko\u201d lub w oparciu o do\u015bwiadczenie, a wyniki mog\u0105 si\u0119 r\u00f3\u017cni\u0107 w zale\u017cno\u015bci od projektu.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Firma HFZWood powsta\u0142a, aby zapewni\u0107 praktyczn\u0105 i sp\u00f3jn\u0105 metod\u0119 szacowania, dzi\u0119ki czemu ka\u017cdy projekt mo\u017ce rozpocz\u0105\u0107 si\u0119 od lepszego planowania i z wi\u0119ksz\u0105 pewno\u015bci\u0105 co do ilo\u015bci potrzebnego materia\u0142u.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-vigvsh",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Dlaczego stworzyli\u015bmy HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Aplikacja zosta\u0142a stworzona zar\u00f3wno dla os\u00f3b realizuj\u0105cych swoje pierwsze projekty z wykorzystaniem \u017cywicy epoksydowej, jak i dla stolarzy, rzemie\u015blnik\u00f3w, tw\u00f3rc\u00f3w oraz warsztat\u00f3w, kt\u00f3re cz\u0119sto korzystaj\u0105 z tej technologii.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Niezale\u017cnie od poziomu do\u015bwiadczenia, HFZWood oferuje \u0142atwy do \u015bledzenia przebieg pracy, kt\u00f3ry pomaga ograniczy\u0107 liczb\u0119 b\u0142\u0119d\u00f3w i uzyska\u0107 sp\u00f3jne wyceny w poszczeg\u00f3lnych projektach.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-cac06z",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Dla kogo jest przeznaczony"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood to nie tylko obliczenia obj\u0119to\u015bci.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Aplikacja zawiera kompletn\u0105 instrukcj\u0119 obs\u0142ugi, samouczki wideo, s\u0142ownik termin\u00f3w bran\u017cowych oraz stale rozbudowywan\u0105 baz\u0119 wiedzy. Zasoby te maj\u0105 na celu udzielenie odpowiedzi zar\u00f3wno na podstawowe pytania, jak i na te pojawiaj\u0105ce si\u0119 w bardziej z\u0142o\u017conych projektach, dzi\u0119ki czemu aplikacja staje si\u0119 platform\u0105 do nauki i pracy, a nie tylko narz\u0119dziem obliczeniowym.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-h4j804",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Wi\u0119cej ni\u017c tylko komputer"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Wierzymy, \u017ce wysokiej jako\u015bci efekt zaczyna si\u0119 od prawid\u0142owego planowania.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Dlatego rozwijamy HFZWood, kieruj\u0105c si\u0119 trzema prostymi zasadami: precyzj\u0105, przejrzysto\u015bci\u0105 i ci\u0105g\u0142ym uczeniem si\u0119. Pragniemy, aby ka\u017cdy u\u017cytkownik m\u00f3g\u0142 podejmowa\u0107 decyzje w oparciu o rzetelne informacje, ogranicza\u0107 marnotrawstwo materia\u0142\u00f3w i podchodzi\u0107 do ka\u017cdego projektu z wi\u0119ksz\u0105 pewno\u015bci\u0105 siebie.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood to projekt podlegaj\u0105cy ci\u0105g\u0142ej ewolucji, a aplikacja oraz materia\u0142y edukacyjne b\u0119d\u0105 nadal rozwijane i ulepszane w miar\u0119 powi\u0119kszania si\u0119 spo\u0142eczno\u015bci i pojawiania si\u0119 nowych potrzeb.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-9v4a5y",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Nasza filozofia"
+          }
+        ]
+      },
+      "pageKey": "about",
+      "pageKind": "about",
+      "slug": "/about"
+    },
+    "contact": {
+      "body": {
+        "intro": "Jeste\u015bmy tu, je\u015bli potrzebujesz pomocy\nChcemy, aby korzystanie z HFZWood by\u0142o jak najprostsze i jak najbardziej przyjemne. Je\u015bli masz pytania dotycz\u0105ce aplikacji, napotkasz problem lub chcesz przekaza\u0107 nam sugesti\u0119, mo\u017cesz skontaktowa\u0107 si\u0119 z nami, korzystaj\u0105c z poni\u017cszych danych.\nStaramy si\u0119 odpowiada\u0107 na wszystkie wiadomo\u015bci w jak najkr\u00f3tszym czasie i doceniamy ka\u017cd\u0105 opini\u0119, kt\u00f3ra pomaga nam ulepsza\u0107 aplikacj\u0119.\n\nZanim do nas napiszesz\nBy\u0107 mo\u017ce odpowied\u017a, kt\u00f3rej szukasz, znajduje si\u0119 ju\u017c w aplikacji. Zapoznaj si\u0119 z Podr\u0119cznikiem i samouczkami dotycz\u0105cymi korzystania z HFZWood, S\u0142ownikiem termin\u00f3w specjalistycznych oraz Baz\u0105 wiedzy, w kt\u00f3rej znajdziesz wyja\u015bnienia i praktyczne porady.\n\nOpinie\nHFZWood to projekt, kt\u00f3ry nieustannie si\u0119 rozwija.\nPomys\u0142y, uwagi i sugestie u\u017cytkownik\u00f3w bezpo\u015brednio przyczyniaj\u0105 si\u0119 do ulepszania aplikacji i opracowywania przysz\u0142ych funkcji. Je\u015bli masz propozycj\u0119, kt\u00f3ra mo\u017ce sprawi\u0107, \u017ce HFZWood stanie si\u0119 bardziej przydatny dla ca\u0142ej spo\u0142eczno\u015bci, ch\u0119tnie j\u0105 poznamy.\n\nDzi\u0119kujemy za wyb\u00f3r HFZWood i za to, \u017ce jeste\u015b cz\u0119\u015bci\u0105 naszej spo\u0142eczno\u015bci.",
+        "knowledgeBaseLinkLabel": "Baza wiedzy",
+        "links": [],
+        "manualLinkLabel": "Podr\u0119cznik i samouczki",
+        "officialLinks": {
+          "facebook": "",
+          "instagram": "",
+          "linkedin": "",
+          "tiktok": "",
+          "website": "",
+          "youtube": "https://www.youtube.com/@Hefzech"
+        },
+        "pageKind": "contact",
+        "publicTitle": "Jeste\u015bmy tu, je\u015bli potrzebujesz pomocy",
+        "showKnowledgeBaseLink": true,
+        "showManualLink": true,
+        "supportEmail": "hefzech@gmail.com"
+      },
+      "pageKey": "contact",
+      "pageKind": "contact",
+      "slug": "/contact"
+    },
+    "home": {
+      "body": {
+        "cta": {
+          "destination": "",
+          "label": "",
+          "visible": false
+        },
+        "description": "Oblicz zapotrzebowanie na \u017cywic\u0119 na podstawie rzeczywistego kszta\u0142tu projektu\nHFZWood szacuje ilo\u015b\u0107 \u017cywicy potrzebn\u0105 do projekt\u00f3w o nieregularnych kszta\u0142tach, naturalnych kraw\u0119dziach, otworach i wn\u0119kach. Wystarczy okre\u015bli\u0107 obszar wylewania i rzeczywiste wymiary, a aplikacja obliczy niezb\u0119dn\u0105 obj\u0119to\u015b\u0107.\n\n\n\nOd oszacowania do planowania odlewania\nPo obliczeniu obj\u0119to\u015bci mo\u017cesz zaplanowa\u0107 odlewanie warstwowe, sprawdzi\u0107 zapotrzebowanie na materia\u0142 i oszacowa\u0107 koszty projektu w ramach jednego procesu roboczego.\n\nZachowaj projekt, a nie tylko wynik oblicze\u0144\nZapisz projekt i w dowolnym momencie wr\u00f3\u0107 do geometrii, wymiar\u00f3w i oblicze\u0144 w celu weryfikacji, wprowadzenia zmian lub realizacji kolejnych etap\u00f3w prac.\n\nNarz\u0119dzia i informacje w jednym miejscu\nHFZWood to nie tylko obliczenia. Podr\u0119cznik, samouczki, s\u0142ownik i baza wiedzy gromadz\u0105 w jednym miejscu wyja\u015bnienia i praktyczne informacje dotycz\u0105ce korzystania z aplikacji, drewna, \u017cywicy oraz etap\u00f3w projektu.\n\nTwoje projekty pozostaj\u0105 Twoje\nTwoja praca pozostaje Twoja. Projekty utworzone w okresie wa\u017cno\u015bci aktywnej subskrypcji mo\u017cna otwiera\u0107, modyfikowa\u0107 i kontynuowa\u0107 nawet po jej wyga\u015bni\u0119ciu; ograniczenia planu Free dotycz\u0105 wy\u0142\u0105cznie nowych projekt\u00f3w.",
+        "image": {
+          "alt": "",
+          "src": "",
+          "visible": false
+        },
+        "pageKind": "home",
+        "publicTitle": "Precyzja i pewno\u015b\u0107 podczas pracy z \u017cywic\u0105.",
+        "subtitle": "Obliczaj i planuj projekty z wykorzystaniem \u017cywicy epoksydowej w oparciu o rzeczywisty kszta\u0142t Twojego projektu.",
+        "video": {
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
+          "visible": true
+        }
+      },
+      "pageKey": "home",
+      "pageKind": "home",
+      "slug": "/"
+    },
+    "pricing": {
+      "body": {
+        "footnote": "Mo\u017cesz zacz\u0105\u0107 za darmo i w dowolnym momencie przej\u015b\u0107 na wy\u017cszy plan, nie trac\u0105c przy tym ju\u017c zrealizowanych projekt\u00f3w.",
+        "intro": "Mo\u017cesz zacz\u0105\u0107 za darmo, a p\u00f3\u017aniej przej\u015b\u0107 na pe\u0142ny dost\u0119p w ramach subskrypcji. Plan miesi\u0119czny i plan roczny oferuj\u0105 te same funkcje; r\u00f3\u017cni\u0105 si\u0119 jedynie okresem rozliczeniowym i cen\u0105.",
+        "offers": [
+          {
+            "benefits": [
+              "Kalkulator \u017cywicy do prostych projekt\u00f3w.",
+              "Do 4 punkt\u00f3w na ka\u017cdy wielok\u0105t \u2014 odpowiedni do prostych projekt\u00f3w.",
+              "Zapisuj i otwieraj projekty na swoim urz\u0105dzeniu.",
+              "Pe\u0142ny dost\u0119p do podr\u0119cznika i wszystkich film\u00f3w instrukta\u017cowych.",
+              "Dost\u0119p do bezp\u0142atnych zasob\u00f3w ze S\u0142ownika i Bazy wiedzy."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "0 USD",
+            "id": "free",
+            "title": "Plan bezp\u0142atny",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Pe\u0142ny dost\u0119p do narz\u0119dzi i zasob\u00f3w HFZWood.",
+              "Nieograniczona liczba punkt\u00f3w dla wielok\u0105t\u00f3w i narz\u0119dzi do realizacji z\u0142o\u017conych projekt\u00f3w.",
+              "Eksport do formatu PDF i planowanie warstw wylewki.",
+              "Pe\u0142ny dost\u0119p do s\u0142ownika i bazy wiedzy."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "9,99 $",
+            "id": "monthly",
+            "title": "Plan miesi\u0119czny",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Pe\u0142ny dost\u0119p do narz\u0119dzi i zasob\u00f3w HFZWood.",
+              "Nieograniczona liczba punkt\u00f3w dla wielok\u0105t\u00f3w i narz\u0119dzi do realizacji z\u0142o\u017conych projekt\u00f3w.",
+              "Eksport do formatu PDF oraz planowanie warstw wylewki.",
+              "Pe\u0142ny dost\u0119p do s\u0142ownika i bazy wiedzy."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "89,99 $",
+            "id": "annual",
+            "title": "Plan roczny",
+            "visible": true
+          }
+        ],
+        "pageKind": "pricing",
+        "publicTitle": "Wybierz plan dostosowany do Twojego stylu pracy"
+      },
+      "pageKey": "pricing",
+      "pageKind": "pricing",
+      "slug": "/pricing"
+    },
+    "privacy": {
+      "body": {
+        "pageKind": "privacy",
+        "publicTitle": "Polityka prywatno\u015bci",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Ochrona danych u\u017cytkownik\u00f3w jest priorytetem dla HFZWood. Gromadzimy wy\u0142\u0105cznie dane niezb\u0119dne do dzia\u0142ania aplikacji i staramy si\u0119 przetwarza\u0107 je w spos\u00f3b przejrzysty, odpowiedzialny oraz zgodny z obowi\u0105zuj\u0105cymi przepisami dotycz\u0105cymi ochrony danych osobowych.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Szanujemy prywatno\u015b\u0107 Twoich danych"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "W zwi\u0105zku z korzystaniem z aplikacji mo\u017cemy gromadzi\u0107 takie informacje, jak adres e-mail u\u017cywany do logowania, preferencje aplikacji, zapisane projekty oraz inne dane niezb\u0119dne do funkcjonowania oferowanych us\u0142ug.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Nie prosimy o podawanie informacji, kt\u00f3re nie s\u0105 niezb\u0119dne do korzystania z aplikacji.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-te5a1a",
+            "title": "Jakie dane gromadzimy"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Zebrane dane s\u0105 wykorzystywane wy\u0142\u0105cznie w celu:",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 zarz\u0105dzanie kontem u\u017cytkownika;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 zapisywanie i synchronizacja projekt\u00f3w;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 zapewnienie funkcjonalno\u015bci aplikacji;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 poprawa jako\u015bci us\u0142ug i komfortu u\u017cytkowania;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 zarz\u0105dzanie subskrypcjami i licencjami.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Nie wykorzystujemy Twoich danych do tworzenia profili marketingowych i nie sprzedajemy ich stronom trzecim.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-nu3u5w",
+            "title": "W jaki spos\u00f3b wykorzystujemy te informacje"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Wdra\u017camy \u015brodki techniczne i organizacyjne maj\u0105ce na celu ochron\u0119 danych u\u017cytkownik\u00f3w przed nieuprawnionym dost\u0119pem, utrat\u0105 lub przypadkow\u0105 zmian\u0105.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Chocia\u017c \u017caden system pod\u0142\u0105czony do Internetu nie mo\u017ce zagwarantowa\u0107 ca\u0142kowitego bezpiecze\u0144stwa, dok\u0142adamy wszelkich stara\u0144, aby chroni\u0107 powierzone nam dane.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-drs6kj",
+            "title": "Bezpiecze\u0144stwo danych"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood korzysta z zewn\u0119trznych us\u0142ug niezb\u0119dnych do funkcjonowania aplikacji, takich jak uwierzytelnianie u\u017cytkownik\u00f3w i przetwarzanie p\u0142atno\u015bci.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Us\u0142ugi te s\u0105 \u015bwiadczone przez wyspecjalizowane firmy, kt\u00f3re stosuj\u0105 w\u0142asne zasady bezpiecze\u0144stwa i polityk\u0119 prywatno\u015bci.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-0abtcs",
+            "title": "Us\u0142ugi stron trzecich"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Zgodnie z obowi\u0105zuj\u0105cymi przepisami mo\u017cesz za\u017c\u0105da\u0107 dost\u0119pu do swoich danych, ich sprostowania, usuni\u0119cia lub skorzysta\u0107 z innych praw przewidzianych w przepisach dotycz\u0105cych ochrony danych.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Odpowiemy na zg\u0142oszenia w rozs\u0105dnym terminie i zgodnie z obowi\u0105zuj\u0105cymi przepisami prawa.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-iipswe",
+            "title": "Twoje prawa"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "W miar\u0119 rozwoju aplikacji niniejsza Polityka prywatno\u015bci mo\u017ce by\u0107 aktualizowana w celu odzwierciedlenia zmian wprowadzonych w oferowanych us\u0142ugach lub wymogach prawnych.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Zalecamy regularne sprawdzanie tej strony, aby by\u0107 na bie\u017c\u0105co z ewentualnymi zmianami.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-qyxaxt",
+            "title": "Aktualizacja niniejszej polityki"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Je\u015bli masz pytania dotycz\u0105ce sposobu przetwarzania Twoich danych, mo\u017cesz skontaktowa\u0107 si\u0119 z nami, korzystaj\u0105c z informacji dost\u0119pnych na stronie <strong>Kontakt</strong>.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-ofnkyg",
+            "title": "Kontakt"
+          }
+        ]
+      },
+      "pageKey": "privacy",
+      "pageKind": "privacy",
+      "slug": "/privacy"
+    },
+    "terms": {
+      "body": {
+        "pageKind": "terms",
+        "publicTitle": "Warunki korzystania z serwisu",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Korzystaj\u0105c z aplikacji HFZWood, akceptujesz warunki przedstawione na tej stronie. Ich celem jest zapewnienie wszystkim u\u017cytkownikom uczciwego i przejrzystego do\u015bwiadczenia oraz wyja\u015bnienie, w jaki spos\u00f3b mo\u017cna korzysta\u0107 z us\u0142ug oferowanych przez aplikacj\u0119.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Proste zasady korzystania z HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood to narz\u0119dzie programowe s\u0142u\u017c\u0105ce do szacowania ilo\u015bci \u017cywicy epoksydowej potrzebnej do realizacji projekt\u00f3w z drewna i \u017cywicy.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wyniki generowane przez aplikacj\u0119 stanowi\u0105 szacunki obliczone na podstawie informacji wprowadzonych przez u\u017cytkownika i powinny by\u0107 wykorzystywane jako pomoc w planowaniu projekt\u00f3w. U\u017cytkownik ponosi odpowiedzialno\u015b\u0107 za sprawdzenie wszystkich danych przed rozpocz\u0119ciem realizacji projektu.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-i41f94",
+            "title": "Korzystanie z aplikacji"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Aby uzyska\u0107 dost\u0119p do niekt\u00f3rych funkcji, konieczne jest utworzenie konta.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "U\u017cytkownik ponosi odpowiedzialno\u015b\u0107 za zachowanie poufno\u015bci danych logowania oraz za dzia\u0142ania podejmowane za po\u015brednictwem w\u0142asnego konta.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pmpk5b",
+            "title": "Konto u\u017cytkownika"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood oferuje zar\u00f3wno bezp\u0142atn\u0105 wersj\u0119, jak i opcje komercyjne oparte na subskrypcji lub licencji wieczystej.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Dost\u0119pne funkcje zale\u017c\u0105 od wybranego planu i mo\u017cna je sprawdzi\u0107 na stronie <strong>Ceny</strong>.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "W przypadku zmiany planu u\u017cytkowania istniej\u0105ce projekty pozostaj\u0105 dost\u0119pne i mo\u017cna je kontynuowa\u0107 zgodnie z funkcjami oferowanymi przez nowy, aktywny plan.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-muom6q",
+            "title": "Subskrypcje i licencje"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Aplikacja jest stale rozwijana.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Zastrzegamy sobie prawo do ulepszania funkcjonalno\u015bci, interfejsu i tre\u015bci edukacyjnych, aby zapewni\u0107 u\u017cytkownikom jak najlepsze wra\u017cenia z korzystania z serwisu.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-mub4em",
+            "title": "Aktualizacje"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Kod aplikacji, interfejs, dokumentacja, samouczki, obrazy i inne materia\u0142y udost\u0119pniane za po\u015brednictwem HFZWood s\u0105 chronione przepisami dotycz\u0105cymi praw autorskich i nie mog\u0105 by\u0107 kopiowane, rozpowszechniane ani wykorzystywane do innych cel\u00f3w bez zgody w\u0142a\u015bciciela praw.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Projekty tworzone przez u\u017cytkownik\u00f3w oraz zdj\u0119cia przes\u0142ane do aplikacji pozostaj\u0105 w\u0142asno\u015bci\u0105 u\u017cytkownik\u00f3w.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pz330d",
+            "title": "W\u0142asno\u015b\u0107 intelektualna"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood dok\u0142ada wszelkich stara\u0144, aby zapewni\u0107 jak najdok\u0142adniejsze wyceny i rzetelne informacje.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "U\u017cytkownik jest jednak odpowiedzialny za sprawdzenie wynik\u00f3w przed wykorzystaniem ich w rzeczywistym projekcie, a tak\u017ce za przestrzeganie zalece\u0144 producent\u00f3w stosowanych \u017cywic, materia\u0142\u00f3w i sprz\u0119tu.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-26nw02",
+            "title": "Ograniczenie odpowiedzialno\u015bci"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Niniejsze Warunki mog\u0105 by\u0107 okresowo aktualizowane w celu uwzgl\u0119dnienia zmian w aplikacji lub zmian w przepisach prawnych.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Wersja opublikowana na tej stronie jest zawsze najnowsza.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-jifxt8",
+            "title": "Zmiana warunk\u00f3w"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "W przypadku jakichkolwiek pyta\u0144 dotycz\u0105cych korzystania z aplikacji lub niniejszych Warunk\u00f3w u\u017cytkowania mo\u017cesz skontaktowa\u0107 si\u0119 z nami, korzystaj\u0105c z danych kontaktowych dost\u0119pnych na stronie <strong>Kontakt</strong>.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-udmshq",
+            "title": "Kontakt"
+          }
+        ]
+      },
+      "pageKey": "terms",
+      "pageKind": "terms",
+      "slug": "/terms"
+    }
+  }
+}

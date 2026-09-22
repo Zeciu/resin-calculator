@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "Subskrypcja to forma licencji, dzi\u0119ki kt\u00f3rej u\u017cytkownik uzyskuje dost\u0119p do okre\u015blonych funkcji aplikacji HFZWood. Rodzaj subskrypcji okre\u015bla dost\u0119pne funkcje oraz ewentualne ograniczenia u\u017cytkowania."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abonament"
+    },
+    {
+      "definition": [
+        "Aktualizacja projektu to operacja, w ramach kt\u00f3rej zmiany wprowadzone w istniej\u0105cym projekcie s\u0105 zapisywane bez tworzenia nowego projektu. Operacja ta zachowuje to\u017csamo\u015b\u0107 projektu i zast\u0119puje poprzednio zapisan\u0105 wersj\u0119 zaktualizowan\u0105 wersj\u0105."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aktualizacja projektu"
+    },
+    {
+      "definition": [
+        "Biel to zewn\u0119trzna cz\u0119\u015b\u0107 drewna, znajduj\u0105ca si\u0119 pomi\u0119dzy twardziel\u0105 a kor\u0105. Ta cz\u0119\u015b\u0107 pnia transportuje wod\u0119 i substancje od\u017cywcze w trakcie \u017cycia drzewa i zazwyczaj ma ja\u015bniejszy kolor oraz jest bardziej wra\u017cliwa na wilgo\u0107 i ataki organizm\u00f3w \u017cywych. W zale\u017cno\u015bci od projektu biel mo\u017cna pozostawi\u0107 ze wzgl\u0119d\u00f3w estetycznych lub usun\u0105\u0107 w celu uzyskania wi\u0119kszej stabilno\u015bci."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Duramen"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Twardziel",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "Atak biologiczny to proces degradacji drewna wywo\u0142any przez grzyby, ple\u015bnie, bakterie lub owady drzewojadowe. Nasilenie tego zjawiska mo\u017ce wp\u0142ywa\u0107 zar\u00f3wno na wytrzyma\u0142o\u015b\u0107 mechaniczn\u0105, jak i na wygl\u0105d elementu. Zniszczone drewno nale\u017cy dok\u0142adnie oceni\u0107 przed zastosowaniem w projekcie z wykorzystaniem \u017cywicy epoksydowej."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "atak biologiczny",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Drewno niestabilne"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Atak biologiczny"
+    },
+    {
+      "definition": [
+        "Baza wiedzy (Knowledge Base) to zbi\u00f3r artyku\u0142\u00f3w technicznych i dodatkowych informacji, kt\u00f3re uzupe\u0142niaj\u0105 instrukcj\u0119 obs\u0142ugi aplikacji. Zawiera ona szczeg\u00f3\u0142owe obja\u015bnienia, zalecenia oraz przydatne informacje dotycz\u0105ce materia\u0142\u00f3w, proces\u00f3w i technik stosowanych w projektach z wykorzystaniem drewna i \u017cywicy epoksydowej."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Baza wiedzy"
+    },
+    {
+      "definition": [
+        "Boloboc, zwany r\u00f3wnie\u017c poziomnic\u0105, to przyrz\u0105d s\u0142u\u017c\u0105cy do sprawdzania poziomo\u015bci lub pionowo\u015bci powierzchni. Podczas realizacji projekt\u00f3w z wykorzystaniem \u017cywicy epoksydowej s\u0142u\u017cy on do wyr\u00f3wnywania szalunku oraz sprawdzania prawid\u0142owego po\u0142o\u017cenia element\u00f3w przed wylaniem betonu."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Wyr\u00f3wnanie szalunku"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (poziomica)"
+    },
+    {
+      "definition": [
+        "Ca\u0142kowita obj\u0119to\u015b\u0107 projektu to obj\u0119to\u015b\u0107 zajmowana przez ca\u0142y gotowy element, obejmuj\u0105ca zar\u00f3wno drewno, jak i \u017cywic\u0119 epoksydow\u0105. Parametr ten stanowi podstaw\u0119 oblicze\u0144 wykonywanych przez aplikacj\u0119 i pozwala okre\u015bli\u0107 niezb\u0119dne ilo\u015bci materia\u0142u."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ca\u0142kowita warto\u015b\u0107 projektu"
+    },
+    {
+      "definition": [
+        "Ci\u0119cie to operacja polegaj\u0105ca na przycinaniu drewna do wymiar\u00f3w i kszta\u0142tu niezb\u0119dnych do realizacji projektu. Mo\u017cna je wykonywa\u0107 przy u\u017cyciu r\u00f3\u017cnych maszyn, a jego celem jest uzyskanie element\u00f3w, kt\u00f3re mo\u017cna podda\u0107 dalszej obr\u00f3bce i wykorzysta\u0107 w kolejnym etapie projektu."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ci\u0119cie"
+    },
+    {
+      "definition": [
+        "CNC (Computer Numerical Control) to system automatycznej obr\u00f3bki, w kt\u00f3rym ruchy maszyny s\u0105 sterowane przez program komputerowy. W obr\u00f3bce drewna maszyny CNC s\u0105 wykorzystywane do ci\u0119cia, frezowania, grawerowania oraz wykonywania skomplikowanych kszta\u0142t\u00f3w z zachowaniem wysokiego poziomu precyzji i powtarzalno\u015bci."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC CNC"
+    },
+    {
+      "definition": [
+        "Czas obr\u00f3bki, znany r\u00f3wnie\u017c jako Pot Life, to okres, w kt\u00f3rym mieszanka \u017cywicy i utwardzacza mo\u017ce by\u0107 wykorzystywana, zanim lepko\u015b\u0107 zacznie znacz\u0105co wzrasta\u0107. Po up\u0142ywie tego czasu materia\u0142u nie mo\u017cna ju\u017c wylewa\u0107 ani obrabia\u0107 w optymalnych warunkach."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mieszanie"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Czas obr\u00f3bki (Pot Life)"
+    },
+    {
+      "definition": [
+        "Czas utwardzania to okres niezb\u0119dny do tego, aby \u017cywica epoksydowa osi\u0105gn\u0119\u0142a w\u0142a\u015bciwo\u015bci mechaniczne i mo\u017cna j\u0105 by\u0142o bezpiecznie obrabia\u0107 lub przetwarza\u0107. Czas trwania tego procesu zale\u017cy od rodzaju \u017cywicy, temperatury otoczenia oraz warunk\u00f3w pracy."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Czas utwardzania"
+    },
+    {
+      "definition": [
+        "Czas \u017celowania to okres niezb\u0119dny do przej\u015bcia \u017cywicy epoksydowej ze stanu p\u0142ynnego do stanu \u017celowego, w kt\u00f3rym nie mo\u017ce ju\u017c swobodnie p\u0142yn\u0105\u0107. Moment ten oznacza koniec mo\u017cliwo\u015bci modelowania lub korygowania odlewu i poprzedza etap ca\u0142kowitego utwardzenia."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Czas \u017celowania"
+    },
+    {
+      "definition": [
+        "Czyszczenie wn\u0119k polega na usuni\u0119ciu kurzu, resztek drewna, odpad\u0142ej kory i innych zanieczyszcze\u0144 z naturalnych wn\u0119k w drewnie przed wlaniem \u017cywicy epoksydowej. Prawid\u0142owe oczyszczenie poprawia przyczepno\u015b\u0107 \u017cywicy i zmniejsza ryzyko wyst\u0105pienia wad."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Czyszczenie wn\u0119k"
+    },
+    {
+      "definition": [
+        "Dok\u0142adno\u015b\u0107 pomiaru oznacza stopie\u0144 zgodno\u015bci mi\u0119dzy warto\u015bciami obliczonymi przez aplikacj\u0119 a rzeczywistymi wymiarami projektu. Zale\u017cy ona od jako\u015bci obrazu, poprawno\u015bci kalibracji oraz dok\u0142adno\u015bci, z jak\u0105 definiowane s\u0105 punkty i kontury pomiarowe."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dok\u0142adno\u015b\u0107 pomiaru"
+    },
+    {
+      "definition": [
+        "Dozowanie pigmentu oznacza ilo\u015b\u0107 pigmentu dodawan\u0105 do \u017cywicy epoksydowej w celu uzyskania po\u017c\u0105danego koloru i stopnia krycia. Przestrzeganie dawki zalecanej przez producenta jest wa\u017cne dla zachowania w\u0142a\u015bciwo\u015bci mechanicznych i prawid\u0142owego przebiegu procesu polimeryzacji \u017cywicy."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dozowanie pigmentu"
+    },
+    {
+      "definition": [
+        "Wyspa drewniana to fragment drewna ca\u0142kowicie otoczony obszarem zalewania \u017cywic\u0105 epoksydow\u0105 lub szalunkiem, bez bezpo\u015bredniego po\u0142\u0105czenia z pozosta\u0142\u0105 cz\u0119\u015bci\u0105 elementu drewnianego w tym samym obszarze. W programie HFZWood wyspy drewniane s\u0105 definiowane oddzielnie, aby zapewni\u0107 prawid\u0142owe obliczenie obj\u0119to\u015bci i wymaganej ilo\u015bci \u017cywicy."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Szalunek"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Drewniana wyspa"
+    },
+    {
+      "definition": [
+        "Drewno higroskopijne to drewno, kt\u00f3re posiada naturaln\u0105 zdolno\u015b\u0107 do poch\u0142aniania i oddawania wilgoci z otoczenia a\u017c do osi\u0105gni\u0119cia r\u00f3wnowagi z atmosfer\u0105. Z tego powodu jego wymiary i w\u0142a\u015bciwo\u015bci mog\u0105 ulega\u0107 zmianom w zale\u017cno\u015bci od temperatury i wilgotno\u015bci. Zachowanie to nale\u017cy uwzgl\u0119dni\u0107 podczas projektowania i wykonywania odlew\u00f3w z \u017cywic\u0105 epoksydow\u0105."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Drewno higroskopijne"
+    },
+    {
+      "definition": [
+        "Drewno niestabilne to drewno, kt\u00f3re ma tendencj\u0119 do odkszta\u0142cania si\u0119, p\u0119kania lub zmiany wymiar\u00f3w po obr\u00f3bce lub w trakcie u\u017cytkowania. Na niestabilno\u015b\u0107 wp\u0142ywaj\u0105 wilgotno\u015b\u0107, napr\u0119\u017cenia wewn\u0119trzne, spos\u00f3b suszenia oraz struktura materia\u0142u. Zastosowanie takiego drewna mo\u017ce negatywnie wp\u0142yn\u0105\u0107 na jako\u015b\u0107 odlewu z \u017cywic\u0105 epoksydow\u0105."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Drewno niestabilne"
+    },
+    {
+      "definition": [
+        "Drewno porowate to drewno zawieraj\u0105ce du\u017c\u0105 liczb\u0119 por\u00f3w lub mikroskopijnych wn\u0119k, dzi\u0119ki kt\u00f3rym mo\u017ce wch\u0142ania\u0107 ciecze, w tym \u017cywic\u0119 epoksydow\u0105. Stopie\u0144 porowato\u015bci wp\u0142ywa na zu\u017cycie \u017cywicy, konieczno\u015b\u0107 na\u0142o\u017cenia warstwy uszczelniaj\u0105cej oraz ostateczny wygl\u0105d powierzchni."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Drewno porowate"
+    },
+    {
+      "definition": [
+        "Duramen to \u015brodkowa, dojrza\u0142a i g\u0119stsza cz\u0119\u015b\u0107 pnia drzewa. Og\u00f3lnie rzecz bior\u0105c, charakteryzuje si\u0119 wi\u0119ksz\u0105 odporno\u015bci\u0105 na wilgo\u0107, grzyby i owady ni\u017c biel i jest preferowany do produkcji mebli oraz projekt\u00f3w dekoracyjnych z wykorzystaniem \u017cywicy epoksydowej ze wzgl\u0119du na swoj\u0105 stabilno\u015b\u0107 i wygl\u0105d."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "biel",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Duramen"
+    },
+    {
+      "definition": [
+        "Frez do wyr\u00f3wnywania to frez przeznaczony do uzyskiwania idealnie prostych kraw\u0119dzi lub powierzchni. S\u0142u\u017cy on do korygowania kraw\u0119dzi element\u00f3w drewnianych oraz do ich przygotowania przed \u0142\u0105czeniem lub innymi operacjami obr\u00f3bki."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez do prostowania"
+    },
+    {
+      "definition": [
+        "Frez do wyr\u00f3wnywania to frez o du\u017cej \u015brednicy, s\u0142u\u017c\u0105cy do wyr\u00f3wnywania powierzchni poprzez kontrolowane usuwanie materia\u0142u. Jest cz\u0119sto stosowany w po\u0142\u0105czeniu z prowadnic\u0105 do frezarki (Router Sled) do wyr\u00f3wnywania du\u017cych blat\u00f3w z drewna i \u017cywicy epoksydowej."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez do wyr\u00f3wnywania"
+    },
+    {
+      "definition": [
+        "Frezer kopiuj\u0105cy to frezer wyposa\u017cony w jedno lub wi\u0119cej \u0142o\u017cysk prowadz\u0105cych, kt\u00f3re umo\u017cliwiaj\u0105 \u015bledzenie szablonu lub istniej\u0105cej kraw\u0119dzi. S\u0142u\u017cy on do precyzyjnego odtwarzania kontur\u00f3w oraz do wykonywania identycznych element\u00f3w."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frez kopiuj\u0105cy"
+    },
+    {
+      "definition": [
+        "Freza to narz\u0119dzie skrawaj\u0105ce montowane na frezarce lub innych maszynach obr\u00f3bczych, s\u0142u\u017c\u0105ce do kontrolowanego usuwania materia\u0142u. Istnieje wiele rodzaj\u00f3w frez\u00f3w, z kt\u00f3rych ka\u017cdy jest przeznaczony do okre\u015blonej operacji lub profilu obr\u00f3bki."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "frez",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Frezarka"
+    },
+    {
+      "definition": [
+        "Frezarka g\u00f3rnowrzecionowa, znana r\u00f3wnie\u017c pod nazw\u0105 router, to elektronarz\u0119dzie s\u0142u\u017c\u0105ce do precyzyjnej obr\u00f3bki drewna metod\u0105 frezowania. Umo\u017cliwia ona wykonywanie profilowanych kraw\u0119dzi, rowk\u00f3w, wyci\u0119\u0107 oraz innych operacji obr\u00f3bczych niezb\u0119dnych przy budowie i wyka\u0144czaniu projekt\u00f3w drewnianych."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "frezarka",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Frezarka"
+        }
+      ],
+      "term": "Frezarka (router)"
+    },
+    {
+      "definition": [
+        "Geometria projektu opisuje kszta\u0142t, wymiary oraz relacje przestrzenne mi\u0119dzy wszystkimi elementami sk\u0142adaj\u0105cymi si\u0119 na projekt. W programie HFZWood geometria stanowi podstaw\u0119 do obliczania powierzchni, obj\u0119to\u015bci oraz szacowanej ilo\u015bci potrzebnej \u017cywicy."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Geometria projektu"
+    },
+    {
+      "definition": [
+        "Grubo\u015b\u0107 warstwy odlewowej to wysoko\u015b\u0107 warstwy \u017cywicy epoksydowej na\u0142o\u017conej w jednym etapie. Musi ona mie\u015bci\u0107 si\u0119 w granicach zalecanych przez producenta dla danego rodzaju \u017cywicy, tak aby proces polimeryzacji przebiega\u0142 w optymalnych warunkach i bez powstawania wad."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Odgazowanie \u2013 Odparowanie"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Odlewanie warstwowe"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Odlewanie g\u0142\u0119bokie (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Grubo\u015b\u0107 warstwy wylewki"
+    },
+    {
+      "definition": [
+        "Tarcza polerska to akcesorium montowane na polerce, s\u0142u\u017c\u0105ce do nak\u0142adania i r\u00f3wnomiernego rozprowadzania \u015brodk\u00f3w polerskich na powierzchni. Tarcze s\u0105 wykonane z r\u00f3\u017cnych materia\u0142\u00f3w, a ka\u017cda z nich jest przeznaczona do okre\u015blonego stopnia korekcji lub wyko\u0144czenia."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "podk\u0142adka do polerowania",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "G\u0105bka do polerowania"
+    },
+    {
+      "definition": [
+        "G\u0119sto\u015b\u0107 \u017cywicy to masa okre\u015blonej obj\u0119to\u015bci \u017cywicy epoksydowej i jest zazwyczaj wyra\u017cana w gramach na centymetr sze\u015bcienny lub kilogramach na litr. Parametr ten s\u0142u\u017cy do przeliczania obj\u0119to\u015bci na mas\u0119 podczas obliczania niezb\u0119dnych ilo\u015bci materia\u0142u."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "G\u0119sto\u015b\u0107 \u017cywicy"
+    },
+    {
+      "definition": [
+        "Imad\u0142o to urz\u0105dzenie mocuj\u0105ce s\u0142u\u017c\u0105ce do stabilnego unieruchomienia element\u00f3w podczas obr\u00f3bki. Prawid\u0142owe zamocowanie zwi\u0119ksza precyzj\u0119 operacji i zmniejsza ryzyko przypadkowego przesuni\u0119cia materia\u0142u."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "imad\u0142o",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Imad\u0142o"
+    },
+    {
+      "definition": [
+        "Importowanie obrazu to operacja polegaj\u0105ca na za\u0142adowaniu zdj\u0119cia do aplikacji HFZWood w celu wykorzystania go w nowym projekcie. Zaimportowany obraz stanowi podstaw\u0119 wszystkich p\u00f3\u017aniejszych pomiar\u00f3w i oblicze\u0144."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Importowanie obrazu"
+    },
+    {
+      "definition": [
+        "Indywidualne \u015brodki ochrony to zbi\u00f3r element\u00f3w wyposa\u017cenia noszonych przez operatora w celu ograniczenia zagro\u017ce\u0144 zwi\u0105zanych z obr\u00f3bk\u0105 drewna i stosowaniem \u017cywic epoksydowych. Do tej kategorii nale\u017c\u0105 mi\u0119dzy innymi maski oddechowe, okulary ochronne, r\u0119kawice oraz ochronniki s\u0142uchu."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Indywidualne \u015brodki ochrony"
+    },
+    {
+      "definition": [
+        "Odniesienie techniczne to udokumentowana informacja wykorzystywana do uzasadnienia wyja\u015bnienia, zalecenia lub procedury. W ramach aplikacji odniesienia techniczne potwierdzaj\u0105 dok\u0142adno\u015b\u0107 i wiarygodno\u015b\u0107 tre\u015bci edukacyjnych."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Informacje techniczne"
+    },
+    {
+      "definition": [
+        "Jednolita grubo\u015b\u0107 oznacza, \u017ce element drewniany ma tak\u0105 sam\u0105 grubo\u015b\u0107 na ca\u0142ej swojej powierzchni. Utrzymanie sta\u0142ej grubo\u015bci u\u0142atwia obr\u00f3bk\u0119, \u0142\u0105czenie oraz prawid\u0142owe obliczenie obj\u0119to\u015bci w projektach realizowanych z wykorzystaniem \u017cywicy epoksydowej."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Prostowanie drewna",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Jednolita grubo\u015b\u0107"
+    },
+    {
+      "definition": [
+        "Kalibracja to proces, w ramach kt\u00f3rego obraz jest dostosowywany do rzeczywistej skali pomiarowej przy u\u017cyciu znanego wymiaru. W programie HFZWood kalibracja umo\u017cliwia przekszta\u0142cenie pomiar\u00f3w wykonanych na obrazie na rzeczywiste wymiary, zapewniaj\u0105c dok\u0142adno\u015b\u0107 oblicze\u0144 powierzchni i obj\u0119to\u015bci."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Prostowanie drewna"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalibracja"
+    },
+    {
+      "definition": [
+        "Kalibracja obrazu to proces, w ramach kt\u00f3rego aplikacja ustala zgodno\u015b\u0107 mi\u0119dzy wymiarami na zdj\u0119ciu a wymiarami rzeczywistymi, wykorzystuj\u0105c znan\u0105 odleg\u0142o\u015b\u0107 odniesienia. Prawid\u0142owa kalibracja ma zasadnicze znaczenie dla uzyskania precyzyjnych wynik\u00f3w."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalibracja obrazu"
+    },
+    {
+      "definition": [
+        "Kalkulator \u017cywicy to narz\u0119dzie s\u0142u\u017c\u0105ce do oszacowania ilo\u015bci \u017cywicy epoksydowej i utwardzacza niezb\u0119dnej do realizacji projektu. W programie HFZWood obliczenia opieraj\u0105 si\u0119 na geometrii projektu, obj\u0119to\u015bci drewna, obj\u0119to\u015bci wn\u0119k oraz parametrach wprowadzonych przez u\u017cytkownika, zapewniaj\u0105c szybkie i precyzyjne oszacowanie zu\u017cycia materia\u0142u."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalkulator \u017cywicy"
+    },
+    {
+      "definition": [
+        "Konfiguracja projektu opisuje rozmieszczenie i po\u0142o\u017cenie wszystkich element\u00f3w sk\u0142adaj\u0105cych si\u0119 na projekt, w tym obrysu zewn\u0119trznego, element\u00f3w drewnianych, wn\u0119k oraz innych obszar\u00f3w istotnych dla oblicze\u0144. Okre\u015bla ona struktur\u0119 geometryczn\u0105, na podstawie kt\u00f3rej aplikacja dokonuje oszacowa\u0144 ilo\u015bci materia\u0142\u00f3w."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Konfiguracja projektu"
+    },
+    {
+      "definition": [
+        "Konserwacja powierzchni to zbi\u00f3r czynno\u015bci maj\u0105cych na celu zachowanie wygl\u0105du i w\u0142a\u015bciwo\u015bci ochronnych drewna oraz wyko\u0144czenia w trakcie u\u017cytkowania. Okresowe czyszczenie i ponowne nak\u0142adanie \u015brodk\u00f3w piel\u0119gnacyjnych przyczynia si\u0119 do przed\u0142u\u017cenia \u017cywotno\u015bci elementu."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Konserwacja powierzchni"
+    },
+    {
+      "definition": [
+        "Kontrola jako\u015bci to proces sprawdzania materia\u0142\u00f3w, poszczeg\u00f3lnych etap\u00f3w pracy oraz efektu ko\u0144cowego w celu potwierdzenia, \u017ce projekt spe\u0142nia ustalone wymagania jako\u015bciowe. Pozwala to na wykrycie i usuni\u0119cie ewentualnych problem\u00f3w, zanim element zostanie uznany za uko\u0144czony."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontrola jako\u015bci"
+    },
+    {
+      "definition": [
+        "Kontrola ko\u0144cowa to kompleksowa weryfikacja projektu po zako\u0144czeniu wszystkich etap\u00f3w obr\u00f3bki i wyko\u0144czenia. Ma ona na celu wykrycie ewentualnych pozosta\u0142ych wad, sprawdzenie wymiar\u00f3w i jako\u015bci powierzchni oraz potwierdzenie, \u017ce element spe\u0142nia ustalone wymagania jako\u015bciowe."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontrola ko\u0144cowa"
+    },
+    {
+      "definition": [
+        "Kontur wn\u0119ki stanowi granic\u0119 geometryczn\u0105 wyznaczaj\u0105c\u0105 wn\u0119k\u0119 w drewnie przeznaczon\u0105 do wype\u0142nienia \u017cywic\u0105 epoksydow\u0105. Prawid\u0142owe okre\u015blenie tego konturu pozwala na dok\u0142adne obliczenie powierzchni i obj\u0119to\u015bci wn\u0119ki."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "Poligon pomiarowy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontur wn\u0119ki"
+    },
+    {
+      "definition": [
+        "Kontur zewn\u0119trzny stanowi granic\u0119 okre\u015blaj\u0105c\u0105 zewn\u0119trzny kszta\u0142t projektu. Okre\u015bla on ca\u0142kowit\u0105 powierzchni\u0119 elementu i stanowi punkt wyj\u015bcia dla wszystkich oblicze\u0144 geometrycznych wykonywanych w aplikacji."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontur zewn\u0119trzny"
+    },
+    {
+      "definition": [
+        "Kopia zapasowa, zwana r\u00f3wnie\u017c \u201ebackupem\u201d, to dodatkowa kopia projekt\u00f3w lub danych, przechowywana w celu umo\u017cliwienia ich odzyskania w przypadku utraty, uszkodzenia lub przypadkowego usuni\u0119cia informacji."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kopia zapasowa"
+    },
+    {
+      "definition": [
+        "Krater to wada powierzchniowa, kt\u00f3ra po utwardzeniu \u017cywicy epoksydowej przybiera posta\u0107 niewielkiego zag\u0142\u0119bienia lub okr\u0105g\u0142ej dziury. Mo\u017ce by\u0107 spowodowany zanieczyszczeniami, p\u0119cherzykami powietrza lub innymi czynnikami uniemo\u017cliwiaj\u0105cymi r\u00f3wnomierne rozprowadzenie \u017cywicy."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Krater"
+    },
+    {
+      "definition": [
+        "Krystalizacja to zjawisko, w wyniku kt\u00f3rego niekt\u00f3re \u017cywice epoksydowe tworz\u0105 kryszta\u0142y w trakcie przechowywania, zw\u0142aszcza w niskich temperaturach. W wi\u0119kszo\u015bci przypadk\u00f3w krystalizacja jest zjawiskiem odwracalnym i mo\u017cna j\u0105 wyeliminowa\u0107 poprzez kontrolowane ogrzanie \u017cywicy przed u\u017cyciem, zgodnie z zaleceniami producenta."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Lepko\u015b\u0107"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Krystalizacja"
+    },
+    {
+      "definition": [
+        "Lepka powierzchnia to wada polegaj\u0105ca na tym, \u017ce \u017cywica pozostaje mi\u0119kka lub przylegaj\u0105ca w dotyku po up\u0142ywie normalnego czasu utwardzania. Zjawisko to wskazuje zazwyczaj na problem, kt\u00f3ry wyst\u0105pi\u0142 podczas mieszania, polimeryzacji lub nieprzestrzegania zalecanych warunk\u00f3w stosowania."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lepka powierzchnia"
+    },
+    {
+      "definition": [
+        "Lepko\u015b\u0107 to stopie\u0144 p\u0142ynno\u015bci \u017cywicy epoksydowej, czyli jej op\u00f3r wobec p\u0142yni\u0119cia. \u017bywica o niskiej lepko\u015bci \u0142atwiej wnika w pory i wn\u0119ki, natomiast \u017cywica o wysokiej lepko\u015bci lepiej nadaje si\u0119 do zastosowa\u0144 wymagaj\u0105cych kontroli rozlewania lub tworzenia grubszych warstw."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Czas obr\u00f3bki (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reakcja egzotermiczna"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lepko\u015b\u0107"
+    },
+    {
+      "definition": [
+        "Linia odniesienia to odcinek wyznaczony mi\u0119dzy dwoma punktami odniesienia, odpowiadaj\u0105cy znanej rzeczywistej odleg\u0142o\u015bci. W programie HFZWood linia ta jest wykorzystywana w procesie kalibracji w celu ustalenia prawid\u0142owej skali obrazu i wykonania precyzyjnych pomiar\u00f3w."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Linia odniesienia"
+    },
+    {
+      "definition": [
+        "Maska oddechowa to \u015brodek ochrony indywidualnej s\u0142u\u017c\u0105cy do filtrowania cz\u0105stek sta\u0142ych, opar\u00f3w lub innych zanieczyszcze\u0144 z wdychanego powietrza. Zaleca si\u0119 stosowanie odpowiedniej maski podczas szlifowania, obr\u00f3bki drewna oraz pracy z chemikaliami, zgodnie z instrukcjami producent\u00f3w."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Maska oddechowa"
+    },
+    {
+      "definition": [
+        "Strugarka zgrubna to maszyna s\u0142u\u017c\u0105ca do wyr\u00f3wnywania element\u00f3w drewnianych do jednolitej i precyzyjnej grubo\u015bci. Po struganiu maszyna ta w kontrolowany spos\u00f3b usuwa nadmiar materia\u0142u, a\u017c do osi\u0105gni\u0119cia po\u017c\u0105danego wymiaru ko\u0144cowego."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "zgrubne obr\u00f3bki",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Maszyna do zgrubnego obr\u00f3bki"
+    },
+    {
+      "definition": [
+        "P\u0142yta MDF melaminowana to p\u0142yta wykonana z prasowanych drobnych w\u0142\u00f3kien drzewnych i pokryta warstw\u0105 melaminow\u0105. Jej powierzchnia jest bardzo jednolita i pozwala na wykonanie szalunk\u00f3w o wysokiej jako\u015bci wyko\u0144czenia, dlatego jest stosowana przede wszystkim w projektach wymagaj\u0105cych precyzji i czystych kraw\u0119dzi."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF pokryty melamin\u0105"
+    },
+    {
+      "definition": [
+        "Obszar roboczy stanowi g\u0142\u00f3wny obszar pracy w aplikacji HFZWood, w kt\u00f3rym u\u017cytkownik tworzy, otwiera, edytuje i zarz\u0105dza projektami, a tak\u017ce uzyskuje dost\u0119p do funkcji i zasob\u00f3w dost\u0119pnych w zale\u017cno\u015bci od pe\u0142nionej roli i posiadanego abonamentu."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Miejsce pracy"
+    },
+    {
+      "definition": [
+        "Mieszanie to proces, w kt\u00f3rym \u017cywica epoksydowa i utwardzacz s\u0105 \u0142\u0105czone a\u017c do uzyskania ca\u0142kowicie jednorodnej mieszaniny. Prawid\u0142owe mieszanie zapewnia r\u00f3wnomierny przebieg reakcji polimeryzacji i zmniejsza ryzyko powstania obszar\u00f3w, kt\u00f3re pozostaj\u0105 lepkie lub nie utwardzaj\u0105 si\u0119 ca\u0142kowicie."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mieszanie"
+    },
+    {
+      "definition": [
+        "Mikrop\u0119kni\u0119cie to p\u0119kni\u0119cie o bardzo niewielkich rozmiarach, cz\u0119sto trudne do zauwa\u017cenia go\u0142ym okiem. Cho\u0107 mo\u017ce wydawa\u0107 si\u0119 nieistotne, z czasem mo\u017ce si\u0119 powi\u0119ksza\u0107 i wp\u0142ywa\u0107 na wytrzyma\u0142o\u015b\u0107, szczelno\u015b\u0107 lub wygl\u0105d powierzchni."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mikrop\u0119kni\u0119cie"
+    },
+    {
+      "definition": [
+        "Nadmierna wilgotno\u015b\u0107 oznacza obecno\u015b\u0107 w drewnie lub w \u015brodowisku roboczym ilo\u015bci wody przekraczaj\u0105cej poziom zalecany do stosowania \u017cywicy epoksydowej. Mo\u017ce to wp\u0142ywa\u0107 na przyczepno\u015b\u0107, stabilno\u015b\u0107 wymiarow\u0105, proces utwardzania oraz ostateczn\u0105 jako\u015b\u0107 projektu."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nadmierna wilgotno\u015b\u0107"
+    },
+    {
+      "definition": [
+        "Napr\u0119\u017cenia wewn\u0119trzne to napr\u0119\u017cenia wyst\u0119puj\u0105ce w strukturze drewna w wyniku naturalnego procesu wzrostu lub nier\u00f3wnomiernego suszenia. Mog\u0105 one powodowa\u0107 odkszta\u0142cenia, p\u0119kni\u0119cia lub zmiany wymiar\u00f3w podczas obr\u00f3bki i u\u017cytkowania. Rozpoznanie i ograniczenie skutk\u00f3w napr\u0119\u017ce\u0144 wewn\u0119trznych przyczynia si\u0119 do realizacji stabilnych i trwa\u0142ych projekt\u00f3w."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Napi\u0119cia wewn\u0119trzne"
+    },
+    {
+      "definition": [
+        "Naprawa uszkodze\u0144 to zbi\u00f3r czynno\u015bci maj\u0105cych na celu usuni\u0119cie niedoskona\u0142o\u015bci powsta\u0142ych podczas odlewania, utwardzania lub wyka\u0144czania projektu. W zale\u017cno\u015bci od charakteru wady naprawa mo\u017ce obejmowa\u0107 czyszczenie, szlifowanie, uzupe\u0142nianie \u017cywic\u0105 epoksydow\u0105, ponowne polerowanie lub inne czynno\u015bci niezb\u0119dne do przywr\u00f3cenia elementu do po\u017c\u0105danego poziomu jako\u015bci."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Naprawa usterek"
+    },
+    {
+      "definition": [
+        "Naturalna kraw\u0119d\u017a to oryginalny kontur drewna, zachowany po usuni\u0119ciu kory. Ten rodzaj kraw\u0119dzi jest cz\u0119sto stosowany w projektach typu \u201eRiver Table\u201d oraz w innych elementach dekoracyjnych w celu podkre\u015blenia naturalnego kszta\u0142tu drewna."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Naturalna kraw\u0119d\u017a"
+    },
+    {
+      "definition": [
+        "Niekompletne utwardzanie to sytuacja, w kt\u00f3rej \u017cywica epoksydowa nie osi\u0105ga pe\u0142nych w\u0142a\u015bciwo\u015bci mechanicznych po up\u0142ywie normalnego czasu utwardzania. Przyczyny mog\u0105 obejmowa\u0107 nieprawid\u0142owy stosunek mieszania, niewystarczaj\u0105ce wymieszanie lub nieodpowiednie warunki pracy."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Niekompletne utwardzenie"
+    },
+    {
+      "definition": [
+        "Niestabilna kora to taka, kt\u00f3ra nie przylega mocno do drewna i mo\u017ce si\u0119 odrywa\u0107 podczas obr\u00f3bki lub po wlaniu \u017cywicy. W wi\u0119kszo\u015bci projekt\u00f3w nale\u017cy j\u0105 usun\u0105\u0107, aby unikn\u0105\u0107 powstawania pustych przestrzeni, odwarstwie\u0144 lub innych problem\u00f3w z przyczepno\u015bci\u0105."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Naturalna kraw\u0119d\u017a"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Niestabilna kora"
+    },
+    {
+      "definition": [
+        "Obj\u0119to\u015b\u0107 drewna to przestrze\u0144 zajmowana przez wszystkie elementy drewniane wchodz\u0105ce w sk\u0142ad projektu. Jest ona wyra\u017cana w jednostkach obj\u0119to\u015bci i wykorzystywana przez aplikacj\u0119 do obliczenia ca\u0142kowitej obj\u0119to\u015bci projektu oraz wymaganej ilo\u015bci \u017cywicy."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Jednolita grubo\u015b\u0107"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Obj\u0119to\u015b\u0107 drewna"
+    },
+    {
+      "definition": [
+        "Obj\u0119to\u015b\u0107 odlewu to ca\u0142kowita ilo\u015b\u0107 \u017cywicy epoksydowej potrzebna do wype\u0142nienia danego obszaru lub wykonania pe\u0142nego odlewu. Jest ona okre\u015blana na podstawie wymiar\u00f3w geometrycznych projektu i stanowi jeden z g\u0142\u00f3wnych wynik\u00f3w obliczanych przez aplikacj\u0119 HFZWood."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mieszanie"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "P\u0119cherzyki powietrza"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Odgazowanie \u2013 Odparowanie"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeryzacja"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reakcja egzotermiczna"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Temperatura otoczenia"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Odlewanie g\u0142\u0119bokie (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Odlewanie warstwowe"
+        },
+        {
+          "id": "turnare",
+          "term": "Odlewanie"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Obj\u0119to\u015b\u0107 odlewu"
+    },
+    {
+      "definition": [
+        "Obj\u0119to\u015b\u0107 ubytk\u00f3w to ca\u0142kowita obj\u0119to\u015b\u0107 pustych przestrzeni w drewnie, kt\u00f3re maj\u0105 zosta\u0107 wype\u0142nione \u017cywic\u0105 epoksydow\u0105. Stanowi to jeden z element\u00f3w wykorzystywanych przez HFZWood do oszacowania ilo\u015bci materia\u0142u niezb\u0119dnego do realizacji projektu."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Obj\u0119to\u015b\u0107 wn\u0119k"
+    },
+    {
+      "definition": [
+        "Obliczona powierzchnia to powierzchnia okre\u015blona automatycznie przez aplikacj\u0119 na podstawie wielok\u0105ta pomiarowego zdefiniowanego przez u\u017cytkownika. Warto\u015b\u0107 ta jest wykorzystywana w obliczeniach geometrycznych i pomaga oszacowa\u0107 obj\u0119to\u015b\u0107 oraz niezb\u0119dn\u0105 ilo\u015b\u0107 \u017cywicy."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Obliczona powierzchnia"
+    },
+    {
+      "definition": [
+        "Obszar wylewania to powierzchnia projektu przeznaczona do wype\u0142nienia \u017cywic\u0105 epoksydow\u0105. Mo\u017ce ona obejmowa\u0107 wn\u0119ki, przestrzenie mi\u0119dzy elementami drewnianymi lub inne obszary wyznaczone przez u\u017cytkownika w celu wykonania wylewania."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Obszar odlewania"
+    },
+    {
+      "definition": [
+        "Ochrona powierzchni podczas utwardzania to dzia\u0142ania maj\u0105ce na celu zapobieganie osadzaniu si\u0119 kurzu, owad\u00f3w lub innych zanieczyszcze\u0144 na \u017cywicy epoksydowej do momentu zako\u0144czenia procesu utwardzania. Odpowiednia ochrona przyczynia si\u0119 do uzyskania czystego wyko\u0144czenia i ogranicza konieczno\u015b\u0107 p\u00f3\u017aniejszych interwencji."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Czas obr\u00f3bki (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "turnare",
+          "term": "Odlewanie"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochrona powierzchni podczas utwardzania"
+    },
+    {
+      "definition": [
+        "Ochrona przed promieniowaniem UV to zdolno\u015b\u0107 pow\u0142oki wyko\u0144czeniowej do ograniczania wp\u0142ywu promieniowania ultrafioletowego na drewno i \u017cywic\u0119 epoksydow\u0105. Odpowiedni poziom ochrony przyczynia si\u0119 do ograniczenia odbarwie\u0144, \u017c\u00f3\u0142kni\u0119cia i degradacji spowodowanych d\u0142ugotrwa\u0142ym nas\u0142onecznieniem."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochrona przed promieniowaniem UV"
+    },
+    {
+      "definition": [
+        "Rozwarstwienie pigmentu polega na nier\u00f3wnomiernym roz\u0142o\u017ceniu pigmentu w masie \u017cywicy epoksydowej, co prowadzi do widocznych r\u00f3\u017cnic w kolorze lub efekcie. Zjawisko to mo\u017ce by\u0107 spowodowane niewystarczaj\u0105cym wymieszaniem, niezgodno\u015bci\u0105 produkt\u00f3w lub warunkami utwardzania."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oddzielanie pigmentu"
+    },
+    {
+      "definition": [
+        "Odgazowanie to proces usuwania powietrza i gaz\u00f3w z \u017cywicy epoksydowej przed lub bezpo\u015brednio po wylewaniu. Celem tej operacji jest zmniejszenie liczby p\u0119cherzyk\u00f3w powietrza oraz uzyskanie jak najbardziej jednolitego i przezroczystego wylewu."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Lepko\u015b\u0107"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Czas obr\u00f3bki (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odgazowanie \u2013 Odparowanie"
+    },
+    {
+      "definition": [
+        "Odkszta\u0142cenie drewna to zmiana pierwotnego kszta\u0142tu elementu w wyniku zmian wilgotno\u015bci, napr\u0119\u017ce\u0144 wewn\u0119trznych lub innych czynnik\u00f3w wp\u0142ywaj\u0105cych na stabilno\u015b\u0107 materia\u0142u. Najcz\u0119stszymi rodzajami odkszta\u0142ce\u0144 s\u0105 wygi\u0119cie, skr\u0119cenie i wygi\u0119cie \u0142ukowate."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odkszta\u0142cenie drewna"
+    },
+    {
+      "definition": [
+        "Odkszta\u0142cenie szalunku to zmiana kszta\u0142tu lub po\u0142o\u017cenia szalunku podczas wylewania lub utwardzania \u017cywicy epoksydowej. Mo\u017ce to wynika\u0107 z ci\u015bnienia wywieranego przez \u017cywic\u0119, niewystarczaj\u0105cego zamocowania lub zbyt ma\u0142ej sztywno\u015bci szalunku i mo\u017ce prowadzi\u0107 do zmiany wymiar\u00f3w projektu."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odkszta\u0142cenie szalunku"
+    },
+    {
+      "definition": [
+        "Odkurzanie to proces zbierania i usuwania py\u0142u powstaj\u0105cego podczas obr\u00f3bki drewna i \u017cywicy epoksydowej. Zastosowanie wydajnego systemu odsysania przyczynia si\u0119 do utrzymania czysto\u015bci \u015brodowiska pracy, chroni zdrowie operatora oraz poprawia jako\u015b\u0107 wyko\u0144czenia."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odkurzanie"
+    },
+    {
+      "definition": [
+        "Odlewanie to proces, w kt\u00f3rym p\u0142ynna \u017cywica epoksydowa jest wprowadzana do szalunku, wn\u0119k lub innych obszar\u00f3w konstrukcji w celu wype\u0142nienia dost\u0119pnej przestrzeni i ukszta\u0142towania gotowego elementu po utwardzeniu. Na jako\u015b\u0107 odlewu wp\u0142ywaj\u0105 przygotowanie materia\u0142\u00f3w, warunki pracy oraz przestrzeganie parametr\u00f3w zalecanych przez producenta."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Szalunek"
+        },
+        {
+          "id": "etan-are",
+          "term": "Uszczelnienie"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeryzacja"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Odlewanie g\u0142\u0119bokie (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Odlewanie warstwowe"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odlewanie"
+    },
+    {
+      "definition": [
+        "Odlewanie g\u0142\u0119bokie, znane r\u00f3wnie\u017c pod nazw\u0105 Deep Pour, to technika wykorzystuj\u0105ca \u017cywice epoksydowe opracowane specjalnie do odlew\u00f3w o du\u017cej grubo\u015bci w jednym etapie. \u017bywice te wytwarzaj\u0105 mniej ciep\u0142a podczas polimeryzacji i umo\u017cliwiaj\u0105 uzyskanie du\u017cych obj\u0119to\u015bci bez powstawania wad spowodowanych przegrzaniem."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Lepko\u015b\u0107"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Czas obr\u00f3bki (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reakcja egzotermiczna"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Raport dotycz\u0105cy mieszanki"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeryzacja"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odlewanie g\u0142\u0119bokie (Deep Pour)"
+    },
+    {
+      "definition": [
+        "Odlewanie warstwowe to technika, w kt\u00f3rej \u017cywica epoksydowa jest nak\u0142adana w kilku kolejnych etapach, po cz\u0119\u015bciowym lub ca\u0142kowitym utwardzeniu poprzedniej warstwy. Metoda ta pozwala na wykonywanie grubych odlew\u00f3w, zmniejsza ryzyko przegrzania i zapewnia lepsz\u0105 kontrol\u0119 nad efektem ko\u0144cowym."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odlewanie warstwowe"
+    },
+    {
+      "definition": [
+        "Odporno\u015b\u0107 chemiczna to zdolno\u015b\u0107 materia\u0142u lub pow\u0142oki do wytrzymywania kontaktu z r\u00f3\u017cnymi substancjami chemicznymi bez znacz\u0105cego pogorszenia wygl\u0105du lub w\u0142a\u015bciwo\u015bci. Poziom tej odporno\u015bci r\u00f3\u017cni si\u0119 w zale\u017cno\u015bci od rodzaju produktu i charakteru substancji, z kt\u00f3rymi wchodzi on w kontakt."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odporno\u015b\u0107 chemiczna"
+    },
+    {
+      "definition": [
+        "Odporno\u015b\u0107 na wilgo\u0107 to zdolno\u015b\u0107 materia\u0142u lub pow\u0142oki do zachowania swoich w\u0142a\u015bciwo\u015bci pod wp\u0142ywem dzia\u0142ania wody lub wilgotnego \u015brodowiska. Wysoki poziom odporno\u015bci na wilgo\u0107 przyczynia si\u0119 do utrzymania stabilno\u015bci i wygl\u0105du elementu w miar\u0119 up\u0142ywu czasu."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odporno\u015b\u0107 na wilgo\u0107"
+    },
+    {
+      "definition": [
+        "Odporno\u015b\u0107 na zarysowania to zdolno\u015b\u0107 powierzchni do wytrzymywania kontaktu z twardymi przedmiotami bez powstawania widocznych zarysowa\u0144. Ta w\u0142a\u015bciwo\u015b\u0107 zale\u017cy od zastosowanego materia\u0142u, rodzaju wyko\u0144czenia oraz warunk\u00f3w eksploatacji elementu."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odporno\u015b\u0107 na zarysowania"
+    },
+    {
+      "definition": [
+        "Oczy rybie, znane r\u00f3wnie\u017c pod nazw\u0105 Fish Eyes, to wady powierzchniowe wyst\u0119puj\u0105ce w postaci okr\u0105g\u0142ych obszar\u00f3w, w kt\u00f3rych \u017cywica cofa si\u0119 i nie przylega r\u00f3wnomiernie. S\u0105 one zazwyczaj spowodowane zanieczyszczeniem powierzchni olejami, silikonem lub innymi substancjami, kt\u00f3re zmniejszaj\u0105 przyczepno\u015b\u0107."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oko rybie"
+    },
+    {
+      "definition": [
+        "Okulary ochronne to \u015brodki ochrony indywidualnej przeznaczone do ochrony oczu przed py\u0142em, rozpryskuj\u0105cymi si\u0119 cz\u0105stkami i przypadkowymi rozpryskami. Zaleca si\u0119 ich noszenie na wszystkich etapach obr\u00f3bki mechanicznej oraz podczas pracy z \u017cywicami epoksydowymi."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "okulary",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Okulary ochronne"
+    },
+    {
+      "definition": [
+        "Olej do drewna to \u015brodek wyko\u0144czeniowy, kt\u00f3ry wnika w struktur\u0119 drewna i zapewnia mu ochron\u0119 przed wilgoci\u0105 oraz zu\u017cyciem, jednocze\u015bnie podkre\u015blaj\u0105c faktur\u0119 i naturalny wygl\u0105d w\u0142\u00f3kien. W zale\u017cno\u015bci od zastosowanego rodzaju olej mo\u017ce wymaga\u0107 okresowej konserwacji i ponownego nak\u0142adania."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "olej",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Olej do drewna"
+    },
+    {
+      "definition": [
+        "Osadzanie si\u0119 pigmentu to zjawisko, w wyniku kt\u00f3rego cz\u0105steczki pigmentu gromadz\u0105 si\u0119 w dolnej cz\u0119\u015bci odlewu, zanim \u017cywica ca\u0142kowicie stwardnieje. Mo\u017ce to wp\u0142yn\u0105\u0107 na ostateczny wygl\u0105d elementu i zale\u017cy od rodzaju pigmentu, lepko\u015bci \u017cywicy oraz czasu trwania procesu utwardzania."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Osadzanie si\u0119 pigmentu"
+    },
+    {
+      "definition": [
+        "Oszacowanie ilo\u015bci \u017cywicy to proces, w ramach kt\u00f3rego aplikacja HFZWood oblicza obj\u0119to\u015b\u0107 i ilo\u015b\u0107 \u017cywicy epoksydowej niezb\u0119dn\u0105 do realizacji projektu na podstawie geometrii zdefiniowanej przez u\u017cytkownika oraz dost\u0119pnych parametr\u00f3w obliczeniowych."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oszacowanie ilo\u015bci \u017cywicy"
+    },
+    {
+      "definition": [
+        "Palnik gazowy to urz\u0105dzenie wytwarzaj\u0105ce kontrolowany p\u0142omie\u0144, s\u0142u\u017c\u0105ce do usuwania p\u0119cherzyk\u00f3w powietrza z powierzchni \u017cywicy epoksydowej bezpo\u015brednio po wylaniu. Nale\u017cy zachowa\u0107 ostro\u017cno\u015b\u0107 podczas jego u\u017cytkowania, poniewa\u017c nadmierna ekspozycja na ciep\u0142o mo\u017ce spowodowa\u0107 uszkodzenie \u017cywicy lub otaczaj\u0105cych materia\u0142\u00f3w."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "pochodnia",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "P\u0119cherzyki powietrza"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Palnik gazowy"
+    },
+    {
+      "definition": [
+        "Papier \u015bcierny to elastyczny materia\u0142 pokryty cz\u0105stkami \u015bciernymi, stosowany do r\u0119cznego lub mechanicznego szlifowania powierzchni. Wyb\u00f3r odpowiedniej ziarnisto\u015bci ma wp\u0142yw na jako\u015b\u0107 wyko\u0144czenia i wydajno\u015b\u0107 procesu obr\u00f3bki."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Papier \u015bcierny"
+    },
+    {
+      "definition": [
+        "Pasta pigmentowa to pigment w postaci skoncentrowanej pasty, opracowany specjalnie do barwienia \u017cywic epoksydowych. Dzi\u0119ki swojej konsystencji \u0142atwo rozprowadza si\u0119 w mieszance i pozwala uzyska\u0107 jednolite, intensywne kolory przy niewielkim zu\u017cyciu materia\u0142u."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta pigmentowa"
+    },
+    {
+      "definition": [
+        "Pasta wyko\u0144czeniowa to \u015brodek o bardzo niskiej \u015bcieralno\u015bci, stosowany na ostatnim etapie polerowania w celu poprawy po\u0142ysku i przejrzysto\u015bci powierzchni. Usuwa ona bardzo drobne \u015blady pozosta\u0142e po polerowaniu i przyczynia si\u0119 do uzyskania wyko\u0144czenia o wysokiej jako\u015bci."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta wyko\u0144czeniowa"
+    },
+    {
+      "definition": [
+        "Pasta \u015bcierna to \u015brodek polerski zawieraj\u0105cy drobne cz\u0105stki \u015bcierne, stosowany do usuwania niedoskona\u0142o\u015bci pozosta\u0142ych po szlifowaniu. Wyb\u00f3r rodzaju pasty zale\u017cy od stanu powierzchni i po\u017c\u0105danego poziomu wyko\u0144czenia."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "pasta \u015bcierna",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta \u015bcierna"
+    },
+    {
+      "definition": [
+        "Pigment to substancja stosowana do barwienia \u017cywicy epoksydowej, kt\u00f3ra przy odpowiednim dozowaniu nie wp\u0142ywa na proces utwardzania. Pigmenty s\u0105 dost\u0119pne w szerokiej gamie kolor\u00f3w i efekt\u00f3w i pozwalaj\u0105 uzyska\u0107 odlewy przezroczyste, p\u00f3\u0142przezroczyste lub nieprzezroczyste, w zale\u017cno\u015bci od rodzaju i ilo\u015bci zastosowanego pigmentu."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment"
+    },
+    {
+      "definition": [
+        "Pistolet na gor\u0105ce powietrze to urz\u0105dzenie wytwarzaj\u0105ce strumie\u0144 ogrzanego powietrza, kt\u00f3re mo\u017ce s\u0142u\u017cy\u0107 do usuwania p\u0119cherzyk\u00f3w powietrza z powierzchni \u017cywicy epoksydowej. Nale\u017cy dok\u0142adnie kontrolowa\u0107 temperatur\u0119 i odleg\u0142o\u015b\u0107 robocz\u0105, aby unikn\u0105\u0107 przegrzania lub odkszta\u0142cenia powierzchni."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "pistolet na gor\u0105ce powietrze",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "P\u0119cherzyki powietrza"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pistolet na gor\u0105ce powietrze"
+    },
+    {
+      "definition": [
+        "Pi\u0142a tarczowa to maszyna lub narz\u0119dzie wyposa\u017cone w obracaj\u0105ce si\u0119 ostrze tarczowe, s\u0142u\u017c\u0105ce do ci\u0119cia drewna na d\u0142ugo\u015b\u0107, szeroko\u015b\u0107 lub pod r\u00f3\u017cnymi k\u0105tami. Precyzja i stabilno\u015b\u0107 ci\u0119cia zale\u017c\u0105 od ustawie\u0144 maszyny, rodzaju pi\u0142y oraz sposobu prowadzenia materia\u0142u."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "pi\u0142a tarczowa",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pi\u0142a tarczowa"
+    },
+    {
+      "definition": [
+        "Pi\u0142a ta\u015bmowa to urz\u0105dzenie do ci\u0119cia, w kt\u00f3rym wykorzystuje si\u0119 ci\u0105g\u0142\u0105 ta\u015bm\u0119 zamontowan\u0105 na dw\u00f3ch lub wi\u0119cej ko\u0142ach pasowych. Umo\u017cliwia on wykonywanie precyzyjnych ci\u0119\u0107, zar\u00f3wno prostych, jak i \u0142ukowych, i jest cz\u0119sto wykorzystywany do ci\u0119cia drewna litego oraz obr\u00f3bki element\u00f3w o nieregularnych kszta\u0142tach."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "banzic",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pi\u0142a ta\u015bmowa"
+    },
+    {
+      "definition": [
+        "Pi\u0142a wahad\u0142owa to narz\u0119dzie elektryczne wyposa\u017cone w w\u0105skie ostrze, kt\u00f3re wykonuje ruchy wahad\u0142owe w pionie. S\u0142u\u017cy do wykonywania prostych lub zakrzywionych ci\u0119\u0107 w drewnie i innych materia\u0142ach. Dzi\u0119ki swojej zwrotno\u015bci nadaje si\u0119 do wykonywania skomplikowanych wyci\u0119\u0107 i kontur\u00f3w."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "wahad\u0142owa",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pi\u0142a wahad\u0142owa"
+    },
+    {
+      "definition": [
+        "Podr\u0119cznik HFZWood stanowi g\u0142\u00f3wn\u0105 dokumentacj\u0119 aplikacji, wyja\u015bniaj\u0105c\u0105 jej funkcje, spos\u00f3b u\u017cytkowania oraz dost\u0119pne procesy robocze. Zawiera on informacje niezb\u0119dne u\u017cytkownikom do prawid\u0142owego i efektywnego korzystania z aplikacji."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Podr\u0119cznik HFZWood"
+    },
+    {
+      "definition": [
+        "Polerowanie to ostatni etap wyko\u0144czenia, podczas kt\u00f3rego powierzchnia drewna lub \u017cywicy epoksydowej jest obrabiana w celu uzyskania wysokiego stopnia g\u0142adko\u015bci i po\u017c\u0105danego wygl\u0105du. Proces ten usuwa drobne \u015blady szlifowania oraz poprawia przejrzysto\u015b\u0107, odbicie \u015bwiat\u0142a i estetyczny wygl\u0105d elementu."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polerowanie"
+    },
+    {
+      "definition": [
+        "Poligon pomiarowy to ci\u0105g po\u0142\u0105czonych ze sob\u0105 punkt\u00f3w, kt\u00f3re wyznaczaj\u0105 kontur powierzchni przeznaczonej do pomiaru. W programie HFZWood wielok\u0105ty s\u0142u\u017c\u0105 do definiowania konturu zewn\u0119trznego, element\u00f3w drewnianych, wn\u0119k oraz innych obszar\u00f3w niezb\u0119dnych do oblicze\u0144 geometrycznych."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Poligon pomiarowy"
+    },
+    {
+      "definition": [
+        "Polimeryzacja to reakcja chemiczna, w wyniku kt\u00f3rej \u017cywica epoksydowa i utwardzacz tworz\u0105 sta\u0142\u0105 i stabiln\u0105 struktur\u0119. Proces ten rozpoczyna si\u0119 natychmiast po wymieszaniu i trwa do momentu, a\u017c materia\u0142 osi\u0105gnie swoje ostateczne w\u0142a\u015bciwo\u015bci w zakresie wytrzyma\u0142o\u015bci, twardo\u015bci i stabilno\u015bci."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Raport dotycz\u0105cy mieszanki"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polimeryzacja"
+    },
+    {
+      "definition": [
+        "Projekt lokalny to projekt zapisany na urz\u0105dzeniu u\u017cytkownika, kt\u00f3ry mo\u017cna otworzy\u0107 i edytowa\u0107 bez konieczno\u015bci po\u0142\u0105czenia z Internetem. W architekturze HFZWood projekty lokalne pozostaj\u0105 dost\u0119pne dla u\u017cytkownika nawet po wyga\u015bni\u0119ciu subskrypcji."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projekt lokalny"
+    },
+    {
+      "definition": [
+        "Projekt udost\u0119pniony (*tylko do odczytu*) to projekt udost\u0119pniony innemu u\u017cytkownikowi wy\u0142\u0105cznie do przegl\u0105dania. Mo\u017cna go otworzy\u0107 i przejrze\u0107, ale jego zawarto\u015b\u0107 nie mo\u017ce by\u0107 modyfikowana przez u\u017cytkownik\u00f3w, kt\u00f3rzy nie s\u0105 w\u0142a\u015bcicielami projektu."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projekt wsp\u00f3lny"
+    },
+    {
+      "definition": [
+        "Wyr\u00f3wnywanie drewna to operacja polegaj\u0105ca na doprowadzeniu powierzchni elementu do prawid\u0142owej p\u0142aszczyzny poprzez usuni\u0119cie odkszta\u0142ce\u0144, nier\u00f3wno\u015bci i niedoskona\u0142o\u015bci. Proces ten zapewnia stabiln\u0105 podstaw\u0119 do dalszej obr\u00f3bki i przyczynia si\u0119 do uzyskania wysokiej jako\u015bci po\u0142\u0105cze\u0144 i wylewek."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Kalibracja"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Jednolita grubo\u015b\u0107",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Prostowanie drewna"
+    },
+    {
+      "definition": [
+        "Przegrzanie, znane r\u00f3wnie\u017c pod nazw\u0105 Overheating, oznacza nadmierny wzrost temperatury \u017cywicy epoksydowej podczas polimeryzacji. Zjawisko to wyst\u0119puje zazwyczaj w przypadku zbyt grubych odlew\u00f3w lub odlew\u00f3w o du\u017cej obj\u0119to\u015bci i mo\u017ce powodowa\u0107 p\u0119kni\u0119cia, odkszta\u0142cenia, \u017c\u00f3\u0142kni\u0119cie lub inne wady elementu."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Przegrzanie"
+    },
+    {
+      "definition": [
+        "Przejrzysto\u015b\u0107 optyczna to zdolno\u015b\u0107 \u017cywicy epoksydowej do przepuszczania \u015bwiat\u0142a bez zniekszta\u0142ce\u0144, zak\u0142\u00f3ce\u0144 ani widocznych zmian obrazu. Wysoka przejrzysto\u015b\u0107 optyczna pozwala uwydatni\u0107 detale drewna i uzyska\u0107 wysokiej jako\u015bci przezroczyste odlewy."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Przejrzysto\u015b\u0107 optyczna"
+    },
+    {
+      "definition": [
+        "Przyczepno\u015b\u0107 to zdolno\u015b\u0107 dw\u00f3ch stykaj\u0105cych si\u0119 materia\u0142\u00f3w do trwa\u0142ego po\u0142\u0105czenia si\u0119 ze sob\u0105. W projektach z wykorzystaniem \u017cywicy epoksydowej odpowiednia przyczepno\u015b\u0107 mi\u0119dzy \u017cywic\u0105 a drewnem ma kluczowe znaczenie dla wytrzyma\u0142o\u015bci i trwa\u0142o\u015bci gotowego elementu."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Przyczepno\u015b\u0107"
+    },
+    {
+      "definition": [
+        "Punkt kontrolny to punkt okre\u015blaj\u0105cy kszta\u0142t i po\u0142o\u017cenie wielok\u0105ta pomiarowego. Przesuni\u0119cie punktu kontrolnego automatycznie zmienia geometri\u0119 wyznaczonej powierzchni i wp\u0142ywa na wyniki obliczane przez aplikacj\u0119."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Punkt odniesienia"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Punkt kontrolny"
+    },
+    {
+      "definition": [
+        "Punkt odniesienia to punkt wybrany na obrazie w celu okre\u015blenia znanego wymiaru lub wykonania pomiar\u00f3w geometrycznych. W programie HFZWood punkty odniesienia s\u0105 wykorzystywane podczas kalibracji oraz do wyznaczania kontur\u00f3w niezb\u0119dnych do obliczenia powierzchni i obj\u0119to\u015bci."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Punkt odniesienia"
+    },
+    {
+      "definition": [
+        "P\u0119cherzyki powietrza to p\u0119cherzyki powietrza, kt\u00f3re pozosta\u0142y w \u017cywicy epoksydowej podczas mieszania, wylewania lub wydostawania si\u0119 z por\u00f3w drewna. Je\u015bli nie zostan\u0105 usuni\u0119te, mog\u0105 wp\u0142yn\u0105\u0107 na wygl\u0105d, a w niekt\u00f3rych przypadkach r\u00f3wnie\u017c na wytrzyma\u0142o\u015b\u0107 gotowego elementu."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "p\u0119cherzyki powietrza w \u017cywicy",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Mieszanie"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Odlewanie g\u0142\u0119bokie (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Odlewanie warstwowe"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0119cherzyki powietrza"
+    },
+    {
+      "definition": [
+        "P\u0119kni\u0119cie to szczelina powsta\u0142a w strukturze drewna w wyniku napr\u0119\u017ce\u0144 wewn\u0119trznych, wysychania lub obci\u0105\u017ce\u0144 mechanicznych. W zale\u017cno\u015bci od rozmiaru i po\u0142o\u017cenia p\u0119kni\u0119cia mog\u0105 wymaga\u0107 stabilizacji, wype\u0142nienia \u017cywic\u0105 epoksydow\u0105 lub usuni\u0119cia uszkodzonej cz\u0119\u015bci."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Wg\u0142\u0119bienie",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "P\u0119kni\u0119cie"
+    },
+    {
+      "definition": [
+        "P\u0119kanie termiczne polega na powstawaniu p\u0119kni\u0119\u0107 w \u017cywicy epoksydowej lub drewnie w wyniku du\u017cych waha\u0144 temperatury lub nadmiernego wydzielania ciep\u0142a podczas polimeryzacji. Wada ta mo\u017ce negatywnie wp\u0142yn\u0105\u0107 zar\u00f3wno na estetyk\u0119, jak i wytrzyma\u0142o\u015b\u0107 gotowego elementu."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0119kni\u0119cie termiczne"
+    },
+    {
+      "definition": [
+        "P\u0142yta melaminowana to p\u0142yta wykonana z prasowanych wi\u00f3r\u00f3w drzewnych i pokryta warstw\u0105 melaminow\u0105, kt\u00f3ra zapewnia g\u0142adk\u0105 i wytrzyma\u0142\u0105 powierzchni\u0119. Ze wzgl\u0119du na niski koszt i stosunkowo nieprzywieraj\u0105c\u0105 powierzchni\u0119 jest cz\u0119sto stosowana do budowy szalunk\u00f3w do odlew\u00f3w z \u017cywic\u0105 epoksydow\u0105."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0142yta wi\u00f3rowa pokryta melamin\u0105"
+    },
+    {
+      "definition": [
+        "Proporcje mieszania okre\u015blaj\u0105 stosunek, w jakim nale\u017cy po\u0142\u0105czy\u0107 \u017cywic\u0119 epoksydow\u0105 i utwardzacz, aby uzyska\u0107 prawid\u0142ow\u0105 polimeryzacj\u0119. Proporcje te s\u0105 ustalane przez producenta i nale\u017cy ich \u015bci\u015ble przestrzega\u0107, poniewa\u017c maj\u0105 one wp\u0142yw na czas obr\u00f3bki, utwardzanie oraz ostateczne w\u0142a\u015bciwo\u015bci materia\u0142u."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Raport dotycz\u0105cy mieszanki"
+    },
+    {
+      "definition": [
+        "Reakcja egzotermiczna to proces, w kt\u00f3rym \u017cywica epoksydowa wydziela ciep\u0142o podczas polimeryzacji. Ilo\u015b\u0107 wytworzonego ciep\u0142a zale\u017cy od rodzaju \u017cywicy, obj\u0119to\u015bci mieszaniny oraz temperatury otoczenia. Nadmierna reakcja egzotermiczna mo\u017ce negatywnie wp\u0142yn\u0105\u0107 na jako\u015b\u0107 odlewu i spowodowa\u0107 uszkodzenie materia\u0142u."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Wzmacniacz"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimeryzacja"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reakcja egzotermiczna"
+    },
+    {
+      "definition": [
+        "Regeneracja powierzchni to proces, w ramach kt\u00f3rego zu\u017cyta lub uszkodzona cz\u0119\u015b\u0107 zostaje przywr\u00f3cona do stanu i poziomu ochrony zbli\u017conego do pierwotnego. W zale\u017cno\u015bci od stanu powierzchni mo\u017ce ona obejmowa\u0107 szlifowanie, napraw\u0119 uszkodze\u0144 oraz na\u0142o\u017cenie nowej warstwy wyko\u0144czeniowej."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Renowacja powierzchni"
+    },
+    {
+      "definition": [
+        "Router Sled to system prowadz\u0105cy, kt\u00f3ry umo\u017cliwia kontrolowane przemieszczanie frezarki nad du\u017cymi elementami. Urz\u0105dzenie to s\u0142u\u017cy do wyr\u00f3wnywania powierzchni, kt\u00f3rych nie mo\u017cna obrabia\u0107 za pomoc\u0105 strugarki, takich jak sto\u0142y typu River Table lub inne du\u017ce p\u0142yty."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "router sleed",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router Sled"
+    },
+    {
+      "definition": [
+        "Otwarcie projektu to operacja, w ramach kt\u00f3rej wcze\u015bniej zapisany projekt jest wczytywany do aplikacji HFZWood w celu wy\u015bwietlenia, edycji lub kontynuowania pracy."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rozpocz\u0119cie projektu"
+    },
+    {
+      "definition": [
+        "Rozszerzalno\u015b\u0107 to zwi\u0119kszenie wymiar\u00f3w materia\u0142u w wyniku wch\u0142aniania wilgoci lub zmian temperatury. Poniewa\u017c drewno i \u017cywica epoksydowa wykazuj\u0105 r\u00f3\u017cne w\u0142a\u015bciwo\u015bci w zakresie rozszerzalno\u015bci, zjawisko to nale\u017cy uwzgl\u0119dni\u0107 podczas projektowania i u\u017cytkowania element\u00f3w."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rozszerzenie"
+    },
+    {
+      "definition": [
+        "Delaminacja to odrywanie si\u0119 lub rozdzielanie warstw materia\u0142u lub powierzchni po\u0142\u0105czonych ze sob\u0105. W projektach wykorzystuj\u0105cych \u017cywic\u0119 epoksydow\u0105 delaminacja oznacza utrat\u0119 przyczepno\u015bci i mo\u017ce negatywnie wp\u0142yn\u0105\u0107 zar\u00f3wno na wytrzyma\u0142o\u015b\u0107 mechaniczn\u0105, jak i na ostateczny wygl\u0105d elementu."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rozwarstwienie"
+    },
+    {
+      "definition": [
+        "Siatka \u015bcierna to materia\u0142 \u015bcierny o perforowanej strukturze, zaprojektowany w celu zapewnienia skutecznego odprowadzania py\u0142u podczas szlifowania. Jej zastosowanie ogranicza gromadzenie si\u0119 py\u0142u na powierzchni \u015bciernej, wyd\u0142u\u017ca okres u\u017cytkowania i przyczynia si\u0119 do uzyskania bardziej jednolitego wyko\u0144czenia."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "siatka \u015bcierna",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Tarcze \u015bcierne"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Siatka \u015bcierna"
+    },
+    {
+      "definition": [
+        "Silikon uszczelniaj\u0105cy to elastyczny materia\u0142 stosowany do uszczelniania po\u0142\u0105cze\u0144 i szczelin szalunku przed wylaniem \u017cywicy epoksydowej. Prawid\u0142owo na\u0142o\u017cony zapobiega powstawaniu wyciek\u00f3w i mo\u017cna go \u0142atwo usun\u0105\u0107 po demonta\u017cu szalunku."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Szalunek"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Silikon uszczelniaj\u0105cy"
+    },
+    {
+      "definition": [
+        "Si\u0142a wyporu to si\u0142a wywierana przez p\u0142ynn\u0105 \u017cywic\u0119 na drewno, powoduj\u0105ca jego uniesienie, gdy g\u0119sto\u015b\u0107 drewna jest mniejsza ni\u017c g\u0119sto\u015b\u0107 \u017cywicy. Je\u015bli elementy drewniane nie s\u0105 odpowiednio zamocowane, mog\u0105 si\u0119 przesuwa\u0107 lub unosi\u0107 na powierzchni podczas odlewania, co wp\u0142ywa na geometri\u0119 i ostateczny wygl\u0105d projektu."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Si\u0142a wyporu"
+    },
+    {
+      "definition": [
+        "Skala obrazu to stosunek wymiar\u00f3w widocznych na zdj\u0119ciu do rzeczywistych wymiar\u00f3w mierzonego obiektu. Prawid\u0142owe ustalenie skali pozwala na wykonywanie precyzyjnych oblicze\u0144 w ramach projektu."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Skala obrazu"
+    },
+    {
+      "definition": [
+        "Skurcz to zmniejszenie wymiar\u00f3w materia\u0142u w wyniku utraty wilgoci, procesu utwardzania lub zmian temperatury. W projektach wykorzystuj\u0105cych drewno i \u017cywic\u0119 epoksydow\u0105 skurcz mo\u017ce wp\u0142ywa\u0107 na dok\u0142adno\u015b\u0107 wymiarow\u0105 oraz sprzyja\u0107 powstawaniu p\u0119kni\u0119\u0107 lub napr\u0119\u017ce\u0144 wewn\u0119trznych."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Skurcz"
+    },
+    {
+      "definition": [
+        "Sk\u00f3rka pomara\u0144czowa, znana r\u00f3wnie\u017c pod nazw\u0105 Orange Peel, to wada powierzchniowa charakteryzuj\u0105ca si\u0119 nieregularn\u0105 tekstur\u0105 przypominaj\u0105c\u0105 sk\u00f3rk\u0119 pomara\u0144czy. Wada ta mo\u017ce wynika\u0107 z warunk\u00f3w nak\u0142adania, nieodpowiedniej lepko\u015bci lub innych czynnik\u00f3w wp\u0142ywaj\u0105cych na wyr\u00f3wnanie \u017cywicy."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sk\u00f3rka pomara\u0144czy"
+    },
+    {
+      "definition": [
+        "Stabilno\u015b\u0107 wymiarowa to zdolno\u015b\u0107 materia\u0142u do zachowania swojego kszta\u0142tu i wymiar\u00f3w w czasie, pomimo zmian temperatury i wilgotno\u015bci. Wysoka stabilno\u015b\u0107 wymiarowa przyczynia si\u0119 do trwa\u0142o\u015bci i prawid\u0142owego funkcjonowania konstrukcji wykonanych z drewna i \u017cywicy epoksydowej."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Stabilno\u015b\u0107 wymiarowa"
+    },
+    {
+      "definition": [
+        "Strata technologiczna to ilo\u015b\u0107 \u017cywicy, kt\u00f3ra nie trafia do produktu ko\u0144cowego z powodu proces\u00f3w mieszania, przenoszenia, odlewania lub pozosta\u0142o\u015bci w pojemnikach i narz\u0119dziach. Jest to zjawisko normalne i nale\u017cy je uwzgl\u0119dni\u0107 przy szacowaniu ca\u0142kowitego zu\u017cycia materia\u0142u."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Strata technologiczna"
+    },
+    {
+      "definition": [
+        "Strugarka to maszyna s\u0142u\u017c\u0105ca do uzyskania p\u0142askiej powierzchni i idealnie prostej kraw\u0119dzi na elementach drewnianych. Jest to jedna z podstawowych operacji przygotowuj\u0105cych materia\u0142 przed zgrubn\u0105 obr\u00f3bk\u0105 i dalsz\u0105 obr\u00f3bk\u0105. Strugarka mo\u017ce by\u0107 r\u0119czna lub sto\u0142owa."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "struganie na du\u017c\u0105 skal\u0119",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Strugarka"
+    },
+    {
+      "definition": [
+        "Kompozycja projektu to spos\u00f3b, w jaki rozmieszczone i po\u0142\u0105czone s\u0105 wszystkie elementy sk\u0142adaj\u0105ce si\u0119 na gotowy produkt, takie jak drewno, \u017cywica epoksydowa oraz ewentualne elementy dekoracyjne. Dobrze przemy\u015blana kompozycja zapewnia zar\u00f3wno estetyczn\u0105 r\u00f3wnowag\u0119, jak i funkcjonalno\u015b\u0107 projektu."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Struktura projektu"
+    },
+    {
+      "definition": [
+        "St\u00f3\u0142 warsztatowy to powierzchnia lub blat przeznaczony do wykonywania operacji obr\u00f3bki, monta\u017cu i wyka\u0144czania. Stabilny i wystarczaj\u0105co sztywny st\u00f3\u0142 warsztatowy przyczynia si\u0119 do precyzji operacji oraz bezpiecznego wykonywania czynno\u015bci w warsztacie."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "St\u00f3\u0142 warsztatowy"
+    },
+    {
+      "definition": [
+        "St\u00f3\u0142 River to rodzaj sto\u0142u wykonanego z dw\u00f3ch lub wi\u0119cej kawa\u0142k\u00f3w drewna, pomi\u0119dzy kt\u00f3rymi wlewa si\u0119 \u017cywic\u0119 epoksydow\u0105, tworz\u0105c centraln\u0105 cz\u0119\u015b\u0107 przypominaj\u0105c\u0105 bieg rzeki. Ten styl projektowania podkre\u015bla naturalne kraw\u0119dzie drewna i stanowi jedno z najbardziej znanych zastosowa\u0144 \u017cywicy epoksydowej w meblarstwie."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "St\u00f3\u0142 z rzek\u0105"
+    },
+    {
+      "definition": [
+        "Szalunek to tymczasowa konstrukcja s\u0142u\u017c\u0105ca do podtrzymywania i ograniczania obszaru stosowania \u017cywicy epoksydowej podczas wylewania i utwardzania. Musi by\u0107 szczelny, stabilny i wykonany z materia\u0142\u00f3w umo\u017cliwiaj\u0105cych \u0142atwe oddzielenie elementu po zako\u0144czeniu procesu."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Szalunek"
+    },
+    {
+      "definition": [
+        "Szlifowanie to proces obr\u00f3bki powierzchni drewna lub \u017cywicy epoksydowej za pomoc\u0105 materia\u0142\u00f3w \u015bciernych, maj\u0105cy na celu usuni\u0119cie niedoskona\u0142o\u015bci oraz uzyskanie g\u0142adkiej, jednolitej powierzchni, gotowej do kolejnych etap\u00f3w wyko\u0144czenia."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Szlifowanie"
+    },
+    {
+      "definition": [
+        "Szlifowanie na mokro to metoda wyka\u0144czania powierzchni z wykorzystaniem wody lub innego odpowiedniego p\u0142ynu, kt\u00f3ra ogranicza nagrzewanie si\u0119 powierzchni i zmniejsza powstawanie py\u0142u. Technika ta jest stosowana przede wszystkim na ko\u0144cowych etapach obr\u00f3bki w celu uzyskania bardzo g\u0142adkich powierzchni, gotowych do polerowania."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Szlifowanie na mokro"
+    },
+    {
+      "definition": [
+        "Szlifowanie na sucho to proces szlifowania przeprowadzany bez u\u017cycia p\u0142yn\u00f3w ch\u0142odz\u0105cych lub smaruj\u0105cych. Jest to metoda najcz\u0119\u015bciej stosowana w obr\u00f3bce drewna i \u017cywic epoksydowych i pozwala na skuteczne usuwanie materia\u0142u na wszystkich etapach obr\u00f3bki."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Szlifowanie na sucho"
+    },
+    {
+      "definition": [
+        "S\u0142ownik stanowi zbi\u00f3r termin\u00f3w i definicji stosowanych w aplikacji HFZWood oraz w bran\u017cy obr\u00f3bki drewna i \u017cywic epoksydowych. Jego rol\u0105 jest zapewnienie sp\u00f3jnego stosowania terminologii oraz jasnego zrozumienia poj\u0119\u0107 przedstawionych w aplikacji."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "S\u0142ownik termin\u00f3w"
+    },
+    {
+      "definition": [
+        "Tarcza filcowa to akcesorium s\u0142u\u017c\u0105ce do polerowania powierzchni w po\u0142\u0105czeniu z pastami \u015bciernymi lub wyko\u0144czeniowymi. Dzi\u0119ki swojej zwartej budowie jest stosowana przede wszystkim w celu uzyskania wysokiego po\u0142ysku i jednolitej powierzchni."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tarcza filcowa"
+    },
+    {
+      "definition": [
+        "Tarcza z pianki to akcesorium do polerek, stosowane do nak\u0142adania \u015brodk\u00f3w \u015bciernych i wyko\u0144czeniowych. W zale\u017cno\u015bci od twardo\u015bci pianki mo\u017ce by\u0107 u\u017cywana zar\u00f3wno do korygowania drobnych niedoskona\u0142o\u015bci, jak i do uzyskania ostatecznego po\u0142ysku."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "podk\u0142adka z plishu",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tarcza z pianki"
+    },
+    {
+      "definition": [
+        "Tarcze \u015bcierne to okr\u0105g\u0142e materia\u0142y eksploatacyjne stosowane wraz z szlifierkami do obr\u00f3bki drewna i \u017cywic epoksydowych. S\u0105 one dost\u0119pne w r\u00f3\u017cnych ziarnisto\u015bciach i umo\u017cliwiaj\u0105 kontrolowane usuwanie materia\u0142u w zale\u017cno\u015bci od etapu obr\u00f3bki."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "tarcza \u015bcierna",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tarcze \u015bcierne"
+    },
+    {
+      "definition": [
+        "Temperatura otoczenia to temperatura powietrza w pomieszczeniu, w kt\u00f3rym przechowuje si\u0119, miesza i stosuje \u017cywice epoksydowe. Wp\u0142ywa ona na lepko\u015b\u0107, czas obr\u00f3bki, szybko\u015b\u0107 polimeryzacji oraz ostateczn\u0105 jako\u015b\u0107 odlewu, dlatego nale\u017cy j\u0105 utrzymywa\u0107 w zakresie zalecanym przez producenta."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temperatura otoczenia"
+    },
+    {
+      "definition": [
+        "Uprawnienie do edycji oznacza prawo u\u017cytkownika do modyfikowania tre\u015bci projektu. W zale\u017cno\u015bci od roli u\u017cytkownika i zasad obowi\u0105zuj\u0105cych w aplikacji projekt mo\u017ce by\u0107 edytowalny lub dost\u0119pny wy\u0142\u0105cznie w trybie przegl\u0105dania."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Uprawnienie do edycji"
+    },
+    {
+      "definition": [
+        "Zapisanie projektu to operacja, w wyniku kt\u00f3rej wszystkie informacje dotycz\u0105ce projektu s\u0105 zapisywane w pliku HFZWood, dzi\u0119ki czemu mo\u017cna go p\u00f3\u017aniej ponownie otworzy\u0107 i kontynuowa\u0107 prac\u0119 bez utraty danych."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Uratowanie projektu"
+    },
+    {
+      "definition": [
+        "Rozszalowanie to czynno\u015b\u0107 polegaj\u0105ca na usuni\u0119ciu szalunku po tym, jak \u017cywica epoksydowa wystarczaj\u0105co stwardnia\u0142a, aby zachowa\u0107 sw\u00f3j kszta\u0142t. Etap ten nale\u017cy przeprowadzi\u0107 ostro\u017cnie, aby unikn\u0105\u0107 uszkodzenia elementu lub odlewanych kraw\u0119dzi."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Usuwanie rdzy"
+    },
+    {
+      "definition": [
+        "Uszczelnianie to proces zapobiegania wyciekaniu \u017cywicy epoksydowej ze szalunku podczas wylewania i utwardzania. Prawid\u0142owo wykonane uszczelnienie zapobiega stratom materia\u0142u, pozwala zachowa\u0107 kszta\u0142t projektu i przyczynia si\u0119 do uzyskania wylewki bez wad."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Uszczelnienie"
+    },
+    {
+      "definition": [
+        "Uk\u0142adanie drewna to proces rozmieszczania i wyr\u00f3wnywania element\u00f3w drewnianych w ostatecznej konfiguracji projektu przed wylaniem \u017cywicy epoksydowej. Spos\u00f3b ich u\u0142o\u017cenia wp\u0142ywa na estetyk\u0119, ilo\u015b\u0107 potrzebnej \u017cywicy oraz stabilno\u015b\u0107 ca\u0142o\u015bci."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "U\u0142o\u017cenie drewna"
+    },
+    {
+      "definition": [
+        "Wada konstrukcyjna to ka\u017cda niedoskona\u0142o\u015b\u0107 drewna, kt\u00f3ra mo\u017ce zmniejszy\u0107 jego wytrzyma\u0142o\u015b\u0107, stabilno\u015b\u0107 lub zdolno\u015b\u0107 do wytrzymywania obci\u0105\u017ce\u0144 mechanicznych. Do tej kategorii nale\u017c\u0105 p\u0119kni\u0119cia, rozleg\u0142e szczeliny, zgnilizna, puste przestrzenie lub inne uszkodzenia, kt\u00f3re wp\u0142ywaj\u0105 na zachowanie elementu podczas eksploatacji."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "W\u0119ze\u0142 drewniany"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wada konstrukcyjna"
+    },
+    {
+      "definition": [
+        "Wada odlewnicza to ka\u017cda niedoskona\u0142o\u015b\u0107 powsta\u0142a podczas procesu odlewania lub utwardzania \u017cywicy epoksydowej, kt\u00f3ra wp\u0142ywa na wygl\u0105d, funkcjonalno\u015b\u0107 lub jako\u015b\u0107 gotowego elementu. Do najcz\u0119stszych wad zaliczaj\u0105 si\u0119 p\u0119cherzyki powietrza, puste przestrzenie, wycieki, p\u0119kni\u0119cia oraz obszary, kt\u00f3re nie utwardzi\u0142y si\u0119 prawid\u0142owo."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wada odlewu"
+    },
+    {
+      "definition": [
+        "Warstwa hamuj\u0105ca, znana r\u00f3wnie\u017c pod nazw\u0105 Amine Blush, to cienka warstwa, kt\u00f3ra mo\u017ce pojawi\u0107 si\u0119 na powierzchni \u017cywicy epoksydowej podczas utwardzania, szczeg\u00f3lnie w warunkach niskiej temperatury lub wysokiej wilgotno\u015bci. Przed na\u0142o\u017ceniem kolejnej warstwy lub wyko\u0144czeniem pow\u0142oki warstw\u0119 t\u0119 nale\u017cy usun\u0105\u0107, aby zapewni\u0107 odpowiedni\u0105 przyczepno\u015b\u0107."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Warstwa hamuj\u0105ca (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Warstwa uszczelniaj\u0105ca, znana r\u00f3wnie\u017c pod nazw\u0105 Seal Coat, to cienka warstwa \u017cywicy epoksydowej nak\u0142adana przed g\u0142\u00f3wnym wylewaniem w celu zamkni\u0119cia por\u00f3w drewna i ograniczenia ulatniania si\u0119 powietrza. Ten etap przyczynia si\u0119 do ograniczenia powstawania p\u0119cherzyk\u00f3w powietrza i uzyskania wysokiej jako\u015bci powierzchni ko\u0144cowej."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Lepko\u015b\u0107"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Odlewanie g\u0142\u0119bokie (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Czas obr\u00f3bki (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Raport dotycz\u0105cy mieszanki"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Warstwa uszczelniaj\u0105ca (Seal Coat)"
+    },
+    {
+      "definition": [
+        "Wiertarka to narz\u0119dzie elektryczne s\u0142u\u017c\u0105ce do wykonywania otwor\u00f3w w drewnie i innych materia\u0142ach. W zale\u017cno\u015bci od zamontowanych akcesori\u00f3w mo\u017ce by\u0107 r\u00f3wnie\u017c wykorzystywana do wkr\u0119cania \u015brub, poszerzania otwor\u00f3w lub innych operacji obr\u00f3bczych."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "wiertarka",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wiertarka"
+    },
+    {
+      "definition": [
+        "Wilgotno\u015b\u0107 drewna to ilo\u015b\u0107 wody zawartej w masie drewna, wyra\u017cona procentowo w stosunku do masy drewna suchego. Parametr ten wp\u0142ywa na stabilno\u015b\u0107 wymiarow\u0105, zachowanie drewna w czasie oraz jego kompatybilno\u015b\u0107 z \u017cywic\u0105 epoksydow\u0105. W projektach realizowanych z wykorzystaniem HFZWood zastosowanie drewna o odpowiedniej wilgotno\u015bci zmniejsza ryzyko pojawienia si\u0119 p\u0119kni\u0119\u0107, odkszta\u0142ce\u0144 i problem\u00f3w z przyczepno\u015bci\u0105."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Drewno higroskopijne"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Drewno higroskopijne",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Wilgotno\u015b\u0107 drewna"
+    },
+    {
+      "definition": [
+        "Wg\u0142\u0119bienie to naturalna lub powsta\u0142a w wyniku degradacji drewna puste miejsce, kt\u00f3re mo\u017cna wype\u0142ni\u0107 \u017cywic\u0105 epoksydow\u0105 w celach konstrukcyjnych lub dekoracyjnych. Kszta\u0142t i rozmiar wg\u0142\u0119bie\u0144 maj\u0105 bezpo\u015bredni wp\u0142yw na ilo\u015b\u0107 \u017cywicy niezb\u0119dn\u0105 do realizacji projektu."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "W\u0119ze\u0142 drewniany"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "P\u0119kni\u0119cie",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Wn\u0119ka"
+    },
+    {
+      "definition": [
+        "Wosk ochronny to produkt wyko\u0144czeniowy nak\u0142adany na powierzchni\u0119 drewna lub na warstw\u0119 oleju w celu poprawy ochrony i wygl\u0105du ko\u0144cowego. Zapewnia przyjemne w dotyku wyko\u0144czenie, ogranicza wch\u0142anianie zanieczyszcze\u0144 i u\u0142atwia piel\u0119gnacj\u0119 powierzchni."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "wosk",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wosk ochronny"
+    },
+    {
+      "definition": [
+        "Wsp\u00f3\u0142czynnik bezpiecze\u0144stwa to dodatkowa ilo\u015b\u0107 materia\u0142u dodawana do obliczonej warto\u015bci w celu zrekompensowania normalnych strat powstaj\u0105cych podczas przygotowania i wylewania. Zastosowanie wsp\u00f3\u0142czynnika bezpiecze\u0144stwa zmniejsza ryzyko wyczerpania si\u0119 \u017cywicy przed zako\u0144czeniem projektu."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wsp\u00f3\u0142czynnik bezpiecze\u0144stwa"
+    },
+    {
+      "definition": [
+        "Wtr\u0105cenia py\u0142owe to cz\u0105steczki py\u0142u lub inne zanieczyszczenia, kt\u00f3re pozosta\u0142y w \u017cywicy epoksydowej podczas utwardzania. Wady te wp\u0142ywaj\u0105 na wygl\u0105d powierzchni i mog\u0105 wymaga\u0107 dodatkowego szlifowania oraz polerowania w celu ich usuni\u0119cia."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wtr\u0105cenia py\u0142u"
+    },
+    {
+      "definition": [
+        "Wycieki \u017cywicy to niekontrolowana utrata \u017cywicy epoksydowej przez szczeliny, po\u0142\u0105czenia lub uszkodzenia szalunku przed utwardzeniem. Mog\u0105 one wp\u0142yn\u0105\u0107 na ostateczn\u0105 obj\u0119to\u015b\u0107 odlewu, zagrozi\u0107 realizacji projektu i spowodowa\u0107 dodatkowe zu\u017cycie materia\u0142u."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Szalunek"
+        },
+        {
+          "id": "etan-are",
+          "term": "Uszczelnienie"
+        },
+        {
+          "id": "fisur",
+          "term": "P\u0119kni\u0119cie"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wycieki \u017cywicy"
+    },
+    {
+      "definition": [
+        "Wyko\u0144czenie b\u0142yszcz\u0105ce to rodzaj wyko\u0144czenia charakteryzuj\u0105cy si\u0119 wysokim stopniem odbicia \u015bwiat\u0142a i bardzo g\u0142adk\u0105 powierzchni\u0105. Uzyskanie takiego wygl\u0105du wymaga prawid\u0142owego szlifowania i polerowania przy u\u017cyciu odpowiednich materia\u0142\u00f3w i technik."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wyko\u0144czenie na po\u0142ysk"
+    },
+    {
+      "definition": [
+        "Wyko\u0144czenie satynowe to rodzaj wyko\u0144czenia, kt\u00f3re zapewnia jednolity wygl\u0105d z dyskretnymi refleksami i umiarkowanym po\u0142yskiem. Podkre\u015bla ono faktur\u0119 materia\u0142u i jest preferowane w projektach, w kt\u00f3rych po\u017c\u0105dany jest naturalny i elegancki wygl\u0105d."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wyko\u0144czenie satynowe"
+    },
+    {
+      "definition": [
+        "Wymagana ilo\u015b\u0107 utwardzacza to obj\u0119to\u015b\u0107 lub masa utwardzacza obliczona na podstawie ilo\u015bci \u017cywicy oraz stosunku mieszania w\u0142a\u015bciwego dla danego produktu. Przestrzeganie tej warto\u015bci ma zasadnicze znaczenie dla prawid\u0142owego przebiegu procesu polimeryzacji."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wymagana ilo\u015b\u0107 utwardzacza"
+    },
+    {
+      "definition": [
+        "Wymagana ilo\u015b\u0107 \u017cywicy to szacowana obj\u0119to\u015b\u0107 lub masa \u017cywicy epoksydowej potrzebna do realizacji projektu, z uwzgl\u0119dnieniem ewentualnego wsp\u00f3\u0142czynnika bezpiecze\u0144stwa ustalonego przez u\u017cytkownika. W programie HFZWood warto\u015b\u0107 ta jest obliczana automatycznie na podstawie geometrii projektu i wprowadzonych parametr\u00f3w."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wymagana ilo\u015b\u0107 \u017cywicy"
+    },
+    {
+      "definition": [
+        "Wyr\u00f3wnanie szalunku to czynno\u015b\u0107 polegaj\u0105ca na ustawieniu szalunku w idealnej pozycji poziomej przed wylaniem betonu. Prawid\u0142owe wyr\u00f3wnanie zapewnia r\u00f3wnomierny rozk\u0142ad \u017cywicy epoksydowej i przyczynia si\u0119 do uzyskania powierzchni ko\u0144cowej bez r\u00f3\u017cnic poziom\u00f3w."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (poziomica)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wyr\u00f3wnanie szalunku"
+    },
+    {
+      "definition": [
+        "Utwardzacz jest sk\u0142adnikiem, kt\u00f3ry wywo\u0142uje reakcj\u0119 chemiczn\u0105 niezb\u0119dn\u0105 do utwardzenia \u017cywicy epoksydowej. Nale\u017cy go stosowa\u0107 wy\u0142\u0105cznie w po\u0142\u0105czeniu z \u017cywic\u0105, do kt\u00f3rej zosta\u0142 przeznaczony, oraz w proporcjach mieszania zalecanych przez producenta, poniewa\u017c ka\u017cde odst\u0119pstwo mo\u017ce wp\u0142yn\u0105\u0107 na jako\u015b\u0107 i wytrzyma\u0142o\u015b\u0107 gotowego materia\u0142u."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Wzmacniacz"
+    },
+    {
+      "definition": [
+        "S\u0119k to obszar drewna, w kt\u00f3rym podczas wzrostu drzewa wros\u0142a ga\u0142\u0105\u017a. S\u0119ki mog\u0105 wp\u0142ywa\u0107 na wygl\u0105d estetyczny, wytrzyma\u0142o\u015b\u0107 mechaniczn\u0105 oraz zachowanie drewna podczas obr\u00f3bki, dlatego ocenia si\u0119 je indywidualnie pod k\u0105tem wymiar\u00f3w, po\u0142o\u017cenia i stabilno\u015bci."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Wn\u0119ka"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "W\u0119ze\u0142 drewniany"
+    },
+    {
+      "definition": [
+        "W\u0142a\u015bcicielem projektu jest u\u017cytkownik, kt\u00f3ry utworzy\u0142 projekt i posiada uprawnienia do jego edycji. To\u017csamo\u015b\u0107 w\u0142a\u015bciciela jest trwale powi\u0105zana z projektem i stanowi podstaw\u0119 zarz\u0105dzania uprawnieniami dost\u0119pu."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "W\u0142a\u015bciciel projektu"
+    },
+    {
+      "definition": [
+        "Uszczelnianie drewna polega na na\u0142o\u017ceniu cienkiej warstwy \u017cywicy epoksydowej lub innego odpowiedniego materia\u0142u w celu ograniczenia nadmiernej absorpcji i ulatniania si\u0119 powietrza z por\u00f3w drewna przed g\u0142\u00f3wnym wylewaniem. Ten etap przyczynia si\u0119 do uzyskania czystej powierzchni oraz ograniczenia powstawania p\u0119cherzyk\u00f3w powietrza."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zabezpieczanie drewna"
+    },
+    {
+      "definition": [
+        "Zacisk mocuj\u0105cy to urz\u0105dzenie s\u0142u\u017c\u0105ce do tymczasowego utrzymywania element\u00f3w lub podzespo\u0142\u00f3w w po\u017c\u0105danej pozycji podczas lutowania, obr\u00f3bki lub monta\u017cu. Istnieje wiele rodzaj\u00f3w zacisk\u00f3w, dostosowanych do r\u00f3\u017cnych rozmiar\u00f3w i zastosowa\u0144."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "klamra drewniana",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zacisk mocuj\u0105cy"
+    },
+    {
+      "definition": [
+        "Zatrzymywanie p\u0119cherzyk\u00f3w powietrza polega na uwi\u0119zieniu p\u0119cherzyk\u00f3w w masie \u017cywicy epoksydowej podczas procesu utwardzania. Uwi\u0119zione p\u0119cherzyki mog\u0105 negatywnie wp\u0142ywa\u0107 na przezroczysto\u015b\u0107, wygl\u0105d estetyczny, a w niekt\u00f3rych sytuacjach r\u00f3wnie\u017c na wytrzyma\u0142o\u015b\u0107 gotowego elementu."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "p\u0119cherzyki powietrza w \u017cywicy",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "P\u0119cherzyki powietrza"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Czas obr\u00f3bki (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Czas \u017celowania"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zamkni\u0119cie p\u0119cherzyk\u00f3w powietrza"
+    },
+    {
+      "definition": [
+        "Zanieczyszczenie oznacza obecno\u015b\u0107 niepo\u017c\u0105danych substancji lub zanieczyszcze\u0144, takich jak kurz, oleje, t\u0142uszcze, woda lub silikon, kt\u00f3re mog\u0105 wp\u0142ywa\u0107 na przyczepno\u015b\u0107, wygl\u0105d lub utwardzanie \u017cywicy epoksydowej. Utrzymanie czysto\u015bci otoczenia i powierzchni ma zasadnicze znaczenie dla uzyskania wysokiej jako\u015bci wynik\u00f3w."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Lepko\u015b\u0107"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Czas utwardzania"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "\u017bywica epoksydowa"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zanieczyszczenie"
+    },
+    {
+      "definition": [
+        "Obraz referencyjny to zdj\u0119cie wykorzystywane w programie HFZWood jako podstawa do pomiaru i obliczenia obj\u0119to\u015bci \u017cywicy niezb\u0119dnej do realizacji projektu. Stanowi ono pod\u0142o\u017ce, na kt\u00f3rym definiowane s\u0105 elementy geometryczne wykorzystywane przez aplikacj\u0119 i pozostaje trwale powi\u0105zane z projektem."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zdj\u0119cie pogl\u0105dowe"
+    },
+    {
+      "definition": [
+        "Funkcja (*Capability*) to funkcja lub grupa funkcji, kt\u00f3re aplikacja HFZWood udost\u0119pnia u\u017cytkownikowi. Dost\u0119pne funkcje zale\u017c\u0105 od rodzaju subskrypcji oraz roli przypisanej do konta."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zdolno\u015b\u0107"
+    },
+    {
+      "definition": [
+        "Drewno zdrowe to drewno, kt\u00f3re nie wykazuje \u015blad\u00f3w degradacji biologicznej ani znacz\u0105cych wad strukturalnych oraz zachowuje swoje w\u0142a\u015bciwo\u015bci mechaniczne i estetyczne. Wyb\u00f3r zdrowego drewna stanowi jeden z podstawowych warunk\u00f3w realizacji trwa\u0142ych i wysokiej jako\u015bci projekt\u00f3w."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zdrowe drewno"
+    },
+    {
+      "definition": [
+        "Kompatybilno\u015b\u0107 materia\u0142\u00f3w to zdolno\u015b\u0107 r\u00f3\u017cnych materia\u0142\u00f3w stosowanych w danym projekcie do wsp\u00f3\u0142dzia\u0142ania bez wywo\u0142ywania niepo\u017c\u0105danych reakcji lub uszkodze\u0144. Wyb\u00f3r materia\u0142\u00f3w kompatybilnych przyczynia si\u0119 do uzyskania dobrej przyczepno\u015bci, wysokiej trwa\u0142o\u015bci oraz stabilnego zachowania podczas eksploatacji."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zgodno\u015b\u0107 materia\u0142\u00f3w"
+    },
+    {
+      "definition": [
+        "Ziarnisto\u015b\u0107 \u015bcierna to wielko\u015b\u0107 cz\u0105stek \u015bciernych na materiale szlifierskim, wyra\u017cona okre\u015blon\u0105 liczb\u0105. Ma\u0142e ziarna stosuje si\u0119 do szybkiego usuwania materia\u0142u, a du\u017ce \u2013 do wyka\u0144czania i wyg\u0142adzania powierzchni."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ziarnisto\u015b\u0107 \u015bcierna"
+    },
+    {
+      "definition": [
+        "\u015arodek antyadhezyjny to substancja nak\u0142adana na powierzchni\u0119 szalunku w celu zapobiegania przywieraniu \u017cywicy epoksydowej podczas utwardzania. Jego zastosowanie u\u0142atwia demonta\u017c szalunku i zmniejsza ryzyko uszkodzenia elementu lub powierzchni styku."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "\u015brodek do usuwania osadu",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u015arodek do usuwania osadu"
+    },
+    {
+      "definition": [
+        "\u017bywica epoksydowa to materia\u0142 dwusk\u0142adnikowy, kt\u00f3ry po zmieszaniu z utwardzaczem w zalecanej proporcji przekszta\u0142ca si\u0119 w wyniku reakcji chemicznej w materia\u0142 sta\u0142y, wytrzyma\u0142y i trwa\u0142y. W obr\u00f3bce drewna stosuje si\u0119 j\u0105 do wype\u0142niania ubytk\u00f3w, wykonywania odlew\u00f3w dekoracyjnych lub konstrukcyjnych oraz uzyskiwania powierzchni przezroczystych lub barwionych."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u017bywica epoksydowa"
+    }
+  ],
   "locale": "pl"
 }

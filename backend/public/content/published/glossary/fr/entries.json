@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "L'abonnement est le type de licence qui permet \u00e0 l'utilisateur d'acc\u00e9der \u00e0 certaines fonctionnalit\u00e9s de l'application HFZWood. Le type d'abonnement d\u00e9termine les fonctionnalit\u00e9s disponibles et les \u00e9ventuelles restrictions d'utilisation."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abonnement"
+    },
+    {
+      "definition": [
+        "L'adh\u00e9rence d\u00e9signe la capacit\u00e9 de deux mat\u00e9riaux en contact \u00e0 se fixer solidement l'un \u00e0 l'autre. Dans les projets utilisant de la r\u00e9sine \u00e9poxy, une adh\u00e9rence ad\u00e9quate entre la r\u00e9sine et le bois est essentielle pour la r\u00e9sistance et la durabilit\u00e9 de la pi\u00e8ce finale."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Adh\u00e9rence"
+    },
+    {
+      "definition": [
+        "L'agent de d\u00e9moulage est une substance appliqu\u00e9e sur la surface du coffrage afin d'emp\u00eacher la r\u00e9sine \u00e9poxy d'adh\u00e9rer lors du durcissement. Son utilisation facilite le d\u00e9montage du coffrage et r\u00e9duit le risque d'endommagement de la pi\u00e8ce ou des surfaces de contact."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "agent de d\u00e9moulage",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Agent de d\u00e9moulage"
+    },
+    {
+      "definition": [
+        "L'aubier est la partie externe du bois, situ\u00e9e entre le c\u0153ur et l'\u00e9corce. Cette partie du tronc assure le transport de l'eau et des nutriments pendant la vie de l'arbre ; elle est g\u00e9n\u00e9ralement de couleur plus claire et plus sensible \u00e0 l'humidit\u00e9 et aux attaques biologiques. Selon le projet, l'aubier peut \u00eatre conserv\u00e9 pour son aspect esth\u00e9tique ou retir\u00e9 pour une meilleure stabilit\u00e9."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "blanc",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Duramen"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Duramen",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "L'aspiration de la poussi\u00e8re d\u00e9signe le processus de collecte et d'\u00e9limination de la poussi\u00e8re g\u00e9n\u00e9r\u00e9e lors du traitement du bois et de la r\u00e9sine \u00e9poxy. L'utilisation d'un syst\u00e8me d'aspiration efficace contribue \u00e0 maintenir un environnement de travail propre, prot\u00e8ge la sant\u00e9 de l'op\u00e9rateur et am\u00e9liore la qualit\u00e9 de la finition."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aspiration de la poussi\u00e8re"
+    },
+    {
+      "definition": [
+        "L'attaque biologique d\u00e9signe la d\u00e9gradation du bois provoqu\u00e9e par des champignons, des moisissures, des bact\u00e9ries ou des insectes xylophages. Son intensit\u00e9 peut affecter \u00e0 la fois la r\u00e9sistance m\u00e9canique et l'aspect de la pi\u00e8ce. Le bois affect\u00e9 doit \u00eatre soigneusement \u00e9valu\u00e9 avant d'\u00eatre utilis\u00e9 dans un projet impliquant de la r\u00e9sine \u00e9poxy."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "attaque biologique",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Bois instable"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Attaque biologique"
+    },
+    {
+      "definition": [
+        "L'autorisation d'\u00e9dition correspond au droit d'un utilisateur de modifier le contenu d'un projet. En fonction du r\u00f4le de l'utilisateur et des r\u00e8gles de l'application, un projet peut \u00eatre modifiable ou accessible uniquement en lecture seule."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Autorisation de modification"
+    },
+    {
+      "definition": [
+        "La base de connaissances (Knowledge Base) regroupe des articles techniques et des informations compl\u00e9mentaires qui viennent compl\u00e9ter le manuel d'utilisation de l'application. Elle fournit des explications d\u00e9taill\u00e9es, des recommandations et des informations utiles sur les mat\u00e9riaux, les proc\u00e9d\u00e9s et les techniques utilis\u00e9s dans les projets associant le bois et la r\u00e9sine \u00e9poxy."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Base de connaissances"
+    },
+    {
+      "definition": [
+        "Le bois hygroscopique est un bois qui poss\u00e8de la capacit\u00e9 naturelle d'absorber et de restituer l'humidit\u00e9 pr\u00e9sente dans l'environnement jusqu'\u00e0 atteindre un \u00e9quilibre avec l'atmosph\u00e8re. C'est pourquoi ses dimensions et ses propri\u00e9t\u00e9s peuvent varier en fonction des conditions de temp\u00e9rature et d'humidit\u00e9. Ce comportement doit \u00eatre pris en compte lors de la conception et de la fabrication de pi\u00e8ces moul\u00e9es \u00e0 base de r\u00e9sine \u00e9poxy."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bois hygroscopique"
+    },
+    {
+      "definition": [
+        "Le bois instable est un bois qui a tendance \u00e0 se d\u00e9former, \u00e0 se fendre ou \u00e0 changer de dimensions apr\u00e8s transformation ou pendant son utilisation. L'instabilit\u00e9 est influenc\u00e9e par l'humidit\u00e9, les contraintes internes, le mode de s\u00e9chage et la structure du mat\u00e9riau. L'utilisation d'un tel bois peut compromettre la qualit\u00e9 d'un moulage \u00e0 la r\u00e9sine \u00e9poxy."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bois instable"
+    },
+    {
+      "definition": [
+        "Le bois poreux est un bois qui contient un grand nombre de pores ou de cavit\u00e9s microscopiques lui permettant d'absorber des liquides, y compris la r\u00e9sine \u00e9poxy. Le degr\u00e9 de porosit\u00e9 influe sur la consommation de r\u00e9sine, la n\u00e9cessit\u00e9 d'appliquer une couche d'\u00e9tanch\u00e9it\u00e9 et l'aspect final de la surface."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bois poreux"
+    },
+    {
+      "definition": [
+        "Le bois sain est un bois qui ne pr\u00e9sente ni d\u00e9gradation biologique ni d\u00e9fauts structurels significatifs et qui conserve ses propri\u00e9t\u00e9s m\u00e9caniques et esth\u00e9tiques. Le choix d'un bois sain est l'une des conditions essentielles pour r\u00e9aliser des projets durables et de qualit\u00e9."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bois sain"
+    },
+    {
+      "definition": [
+        "Le boloboc, \u00e9galement appel\u00e9 niveau, est l'instrument utilis\u00e9 pour v\u00e9rifier l'horizontalit\u00e9 ou la verticalit\u00e9 d'une surface. Dans le cadre de projets utilisant de la r\u00e9sine \u00e9poxy, il sert \u00e0 mettre \u00e0 niveau le coffrage et \u00e0 v\u00e9rifier le bon positionnement des pi\u00e8ces avant le coulage."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Mise \u00e0 niveau du coffrage"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (niveau)"
+    },
+    {
+      "definition": [
+        "Le bord naturel correspond au contour d'origine du bois, conserv\u00e9 apr\u00e8s le d\u00e9corticage. Ce type de bord est fr\u00e9quemment utilis\u00e9 dans les projets de type \u00ab River Table \u00bb et dans d'autres pi\u00e8ces d\u00e9coratives afin de mettre en valeur la forme naturelle du bois."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bordure naturelle"
+    },
+    {
+      "definition": [
+        "Les bulles d'air sont des inclusions d'air qui restent dans la r\u00e9sine \u00e9poxy lors du m\u00e9lange, du coulage ou de l'\u00e9chappement par les pores du bois. Si elles ne sont pas \u00e9limin\u00e9es, elles peuvent alt\u00e9rer l'aspect et, dans certains cas, la r\u00e9sistance de la pi\u00e8ce finale."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "bulles d'air dans la r\u00e9sine",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "M\u00e9lange"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Coul\u00e9e en profondeur (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Coul\u00e9e en couches"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bulles d'air"
+    },
+    {
+      "definition": [
+        "Le calculateur de r\u00e9sine est un outil qui estime la quantit\u00e9 de r\u00e9sine \u00e9poxy et de durcisseur n\u00e9cessaire \u00e0 la r\u00e9alisation d\u2019un projet. Dans HFZWood, les calculs s'appuient sur la g\u00e9om\u00e9trie du projet, le volume de bois, le volume des cavit\u00e9s et les param\u00e8tres saisis par l'utilisateur, offrant ainsi une estimation rapide et pr\u00e9cise de la consommation de mat\u00e9riaux."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calculateur de r\u00e9sine"
+    },
+    {
+      "definition": [
+        "Le calibrage de l'image est le processus par lequel l'application \u00e9tablit la correspondance entre les dimensions de la photo et les dimensions r\u00e9elles, \u00e0 l'aide d'une distance de r\u00e9f\u00e9rence connue. Un calibrage correct est essentiel pour obtenir des r\u00e9sultats pr\u00e9cis."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibrage de l'image"
+    },
+    {
+      "definition": [
+        "Une fonctionnalit\u00e9 (*Capability*) d\u00e9signe une fonctionnalit\u00e9 ou un ensemble de fonctionnalit\u00e9s que l'application HFZWood met \u00e0 la disposition d'un utilisateur. Les fonctionnalit\u00e9s disponibles d\u00e9pendent du type d'abonnement et du r\u00f4le associ\u00e9 au compte."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Capacit\u00e9"
+    },
+    {
+      "definition": [
+        "Une cavit\u00e9 est un espace vide naturel ou r\u00e9sultant de la d\u00e9gradation du bois, qui peut \u00eatre combl\u00e9 avec de la r\u00e9sine \u00e9poxy \u00e0 des fins structurelles ou d\u00e9coratives. La forme et la taille des cavit\u00e9s influencent directement la quantit\u00e9 de r\u00e9sine n\u00e9cessaire \u00e0 la r\u00e9alisation du projet."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "N\u0153ud en bois"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Fissure",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Cavit\u00e9"
+    },
+    {
+      "definition": [
+        "La cire de protection est un produit de finition appliqu\u00e9 sur la surface du bois ou par-dessus une couche d'huile afin d'am\u00e9liorer la protection et l'aspect final. Elle offre un fini agr\u00e9able au toucher, r\u00e9duit l'absorption de la salet\u00e9 et facilite l'entretien de la surface."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "cire",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cire protectrice"
+    },
+    {
+      "definition": [
+        "La clart\u00e9 optique d\u00e9signe la capacit\u00e9 de la r\u00e9sine \u00e9poxy \u00e0 transmettre la lumi\u00e8re sans distorsion, sans trouble ni alt\u00e9ration visible de l'image. Une clart\u00e9 optique \u00e9lev\u00e9e permet de mettre en valeur les d\u00e9tails du bois et d'obtenir des moulages transparents de qualit\u00e9."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Clart\u00e9 optique"
+    },
+    {
+      "definition": [
+        "Le CNC (Computer Numerical Control) est un syst\u00e8me d\u2019usinage automatis\u00e9 dans lequel les mouvements de la machine sont contr\u00f4l\u00e9s par un programme informatique. Dans le domaine de l'usinage du bois, les machines CNC sont utilis\u00e9es pour la d\u00e9coupe, le fraisage, la gravure et la r\u00e9alisation de formes complexes avec un haut niveau de pr\u00e9cision et de r\u00e9p\u00e9tabilit\u00e9."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC CNC"
+    },
+    {
+      "definition": [
+        "Le facteur de s\u00e9curit\u00e9 correspond \u00e0 la quantit\u00e9 suppl\u00e9mentaire de mat\u00e9riau ajout\u00e9e \u00e0 la valeur calcul\u00e9e afin de compenser les pertes normales survenant lors de la pr\u00e9paration et du coulage. L'utilisation d'un facteur de s\u00e9curit\u00e9 r\u00e9duit le risque de se retrouver \u00e0 court de r\u00e9sine avant la fin du projet."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Coefficient de s\u00e9curit\u00e9"
+    },
+    {
+      "definition": [
+        "Le coffrage est la structure temporaire utilis\u00e9e pour soutenir et d\u00e9limiter la r\u00e9sine \u00e9poxy pendant le coulage et le durcissement. Il doit \u00eatre \u00e9tanche, stable et fabriqu\u00e9 \u00e0 partir de mat\u00e9riaux permettant de d\u00e9mouler facilement la pi\u00e8ce une fois le processus termin\u00e9."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Coffrage"
+    },
+    {
+      "definition": [
+        "La compatibilit\u00e9 des mat\u00e9riaux d\u00e9signe la capacit\u00e9 des diff\u00e9rents mat\u00e9riaux utilis\u00e9s dans un projet \u00e0 fonctionner ensemble sans provoquer de r\u00e9actions ind\u00e9sirables ni de d\u00e9fauts. Le choix de mat\u00e9riaux compatibles contribue \u00e0 obtenir une bonne adh\u00e9rence, une durabilit\u00e9 \u00e9lev\u00e9e et un comportement stable en service."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Compatibilit\u00e9 des mat\u00e9riaux"
+    },
+    {
+      "definition": [
+        "La configuration du projet d\u00e9crit l'organisation et l'emplacement de tous les \u00e9l\u00e9ments qui composent le projet, y compris le contour ext\u00e9rieur, les pi\u00e8ces en bois, les cavit\u00e9s et les autres zones pertinentes pour le calcul. Elle d\u00e9finit la structure g\u00e9om\u00e9trique sur la base de laquelle l'application effectue les estimations de mat\u00e9riaux."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Configuration du projet"
+    },
+    {
+      "definition": [
+        "La contamination d\u00e9signe la pr\u00e9sence de substances ou d'impuret\u00e9s ind\u00e9sirables, telles que la poussi\u00e8re, les huiles, les graisses, l'eau ou le silicone, qui peuvent nuire \u00e0 l'adh\u00e9rence, \u00e0 l'aspect ou au durcissement de la r\u00e9sine \u00e9poxy. Il est essentiel de veiller \u00e0 la propret\u00e9 de l'environnement et des surfaces pour obtenir des r\u00e9sultats de qualit\u00e9."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e9"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contamination"
+    },
+    {
+      "definition": [
+        "Le contour ext\u00e9rieur repr\u00e9sente la limite qui d\u00e9finit la forme ext\u00e9rieure de la pi\u00e8ce. Il d\u00e9termine la surface totale de la pi\u00e8ce et sert de point de d\u00e9part \u00e0 tous les calculs g\u00e9om\u00e9triques effectu\u00e9s dans l'application."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contour ext\u00e9rieur"
+    },
+    {
+      "definition": [
+        "Le retrait d\u00e9signe la r\u00e9duction des dimensions d'un mat\u00e9riau due \u00e0 la perte d'humidit\u00e9, au processus de durcissement ou aux variations de temp\u00e9rature. Dans les projets utilisant du bois et de la r\u00e9sine \u00e9poxy, le retrait peut influencer la pr\u00e9cision dimensionnelle et favoriser l'apparition de fissures ou de contraintes internes."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contraction"
+    },
+    {
+      "definition": [
+        "Le contr\u00f4le qualit\u00e9 d\u00e9signe le processus consistant \u00e0 v\u00e9rifier les mat\u00e9riaux, les \u00e9tapes de fabrication et le r\u00e9sultat final afin de s'assurer que le projet respecte les exigences de qualit\u00e9 d\u00e9finies. Il permet d'identifier et de corriger d'\u00e9ventuels probl\u00e8mes avant que la pi\u00e8ce ne soit consid\u00e9r\u00e9e comme achev\u00e9e."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contr\u00f4le qualit\u00e9"
+    },
+    {
+      "definition": [
+        "La sauvegarde, \u00e9galement appel\u00e9e \u00ab backup \u00bb, est une copie suppl\u00e9mentaire des projets ou des donn\u00e9es, conserv\u00e9e afin de permettre leur r\u00e9cup\u00e9ration en cas de perte, de d\u00e9t\u00e9rioration ou de suppression accidentelle des informations."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Copie de sauvegarde"
+    },
+    {
+      "definition": [
+        "La couche d'\u00e9tanch\u00e9it\u00e9, \u00e9galement appel\u00e9e \u00ab Seal Coat \u00bb, est une fine couche de r\u00e9sine \u00e9poxy appliqu\u00e9e avant le coulage principal afin de boucher les pores du bois et de r\u00e9duire les d\u00e9gagements d'air. Cette \u00e9tape contribue \u00e0 limiter la formation de bulles et \u00e0 obtenir une surface finale de qualit\u00e9."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e9"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Coul\u00e9e en profondeur (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Dur\u00e9e de vie en pot (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Rapport de m\u00e9lange"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Couche d'\u00e9tanch\u00e9it\u00e9 (Seal Coat)"
+    },
+    {
+      "definition": [
+        "La couche d'inhibition, \u00e9galement appel\u00e9e \u00ab Amine Blush \u00bb, est un mince film qui peut se former \u00e0 la surface de la r\u00e9sine \u00e9poxy pendant le durcissement, notamment en cas de basse temp\u00e9rature ou d'humidit\u00e9 \u00e9lev\u00e9e. Avant d'appliquer une nouvelle couche ou de proc\u00e9der \u00e0 la finition, ce film doit \u00eatre \u00e9limin\u00e9 afin de garantir une adh\u00e9rence ad\u00e9quate."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Couche inhibitrice (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Le moulage est l'op\u00e9ration consistant \u00e0 introduire de la r\u00e9sine \u00e9poxy liquide dans un coffrage, des cavit\u00e9s ou d'autres zones de l'ouvrage afin de remplir les espaces disponibles et de former la pi\u00e8ce finale apr\u00e8s durcissement. La qualit\u00e9 du coulage d\u00e9pend de la pr\u00e9paration des mat\u00e9riaux, des conditions de travail et du respect des param\u00e8tres recommand\u00e9s par le fabricant."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Coffrage"
+        },
+        {
+          "id": "etan-are",
+          "term": "\u00c9tanch\u00e9it\u00e9"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polym\u00e9risation"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Coul\u00e9e en profondeur (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Coul\u00e9e en couches"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Coul\u00e9e"
+    },
+    {
+      "definition": [
+        "Le moulage par couches est une technique consistant \u00e0 appliquer la r\u00e9sine \u00e9poxy en plusieurs \u00e9tapes successives, apr\u00e8s durcissement partiel ou complet de la couche pr\u00e9c\u00e9dente. Cette m\u00e9thode permet de r\u00e9aliser des moulages \u00e9pais, r\u00e9duit le risque de surchauffe et offre un meilleur contr\u00f4le du r\u00e9sultat final."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Coul\u00e9e en couches"
+    },
+    {
+      "definition": [
+        "Le moulage en profondeur, \u00e9galement appel\u00e9 \u00ab Deep Pour \u00bb, est une technique qui utilise des r\u00e9sines \u00e9poxy sp\u00e9cialement formul\u00e9es pour les moulages de grande \u00e9paisseur en une seule \u00e9tape. Ces r\u00e9sines d\u00e9gagent moins de chaleur lors de la polym\u00e9risation et permettent de r\u00e9aliser des volumes importants sans que des d\u00e9fauts dus \u00e0 la surchauffe n'apparaissent."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e9"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Dur\u00e9e de vie en pot (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "R\u00e9action exothermique"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Rapport de m\u00e9lange"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polym\u00e9risation"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Coul\u00e9e en profondeur (Deep Pour)"
+    },
+    {
+      "definition": [
+        "Un crat\u00e8re est un d\u00e9faut de surface qui se pr\u00e9sente sous la forme d\u2019une petite d\u00e9pression ou d\u2019un creux circulaire dans la r\u00e9sine \u00e9poxy apr\u00e8s durcissement. Il peut \u00eatre caus\u00e9 par des impuret\u00e9s, des bulles d\u2019air ou d\u2019autres facteurs emp\u00eachant la r\u00e9sine de s\u2019\u00e9taler uniform\u00e9ment."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Crat\u00e8re"
+    },
+    {
+      "definition": [
+        "La cristallisation est le ph\u00e9nom\u00e8ne par lequel certaines r\u00e9sines \u00e9poxy d\u00e9veloppent des cristaux solides pendant le stockage, en particulier \u00e0 basse temp\u00e9rature. Dans la plupart des cas, la cristallisation est r\u00e9versible et peut \u00eatre \u00e9limin\u00e9e par un r\u00e9chauffement contr\u00f4l\u00e9 de la r\u00e9sine avant utilisation, conform\u00e9ment aux recommandations du fabricant."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e9"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cristallisation"
+    },
+    {
+      "definition": [
+        "La densit\u00e9 de la r\u00e9sine correspond \u00e0 la masse d'un volume donn\u00e9 de r\u00e9sine \u00e9poxy et s'exprime g\u00e9n\u00e9ralement en grammes par centim\u00e8tre cube ou en kilogrammes par litre. Ce param\u00e8tre sert \u00e0 effectuer la conversion entre le volume et la masse lors du calcul des quantit\u00e9s de mat\u00e9riau n\u00e9cessaires."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Densit\u00e9 de la r\u00e9sine"
+    },
+    {
+      "definition": [
+        "La dilatation d\u00e9signe l'augmentation des dimensions d'un mat\u00e9riau due \u00e0 l'absorption d'humidit\u00e9 ou \u00e0 des variations de temp\u00e9rature. Le bois et la r\u00e9sine \u00e9poxy pr\u00e9sentant des comportements diff\u00e9rents en mati\u00e8re de dilatation, ce ph\u00e9nom\u00e8ne doit \u00eatre pris en compte lors de la conception et de l'utilisation des pi\u00e8ces."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dilatation"
+    },
+    {
+      "definition": [
+        "Le disque en feutre est un accessoire utilis\u00e9 pour le polissage des surfaces, en association avec des p\u00e2tes abrasives ou de finition. Gr\u00e2ce \u00e0 sa structure compacte, il est notamment utilis\u00e9 pour obtenir un brillant \u00e9lev\u00e9 et une surface uniforme."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disque en feutre"
+    },
+    {
+      "definition": [
+        "Le disque en mousse est un accessoire pour polisseuses, utilis\u00e9 pour l'application de compos\u00e9s abrasifs et de finition. En fonction de la duret\u00e9 de la mousse, il peut \u00eatre utilis\u00e9 aussi bien pour corriger les d\u00e9fauts fins que pour obtenir le brillant final."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "tampon en plish",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disque en mousse"
+    },
+    {
+      "definition": [
+        "Les disques abrasifs sont des consommables circulaires utilis\u00e9s avec des ponceuses pour le travail du bois et de la r\u00e9sine \u00e9poxy. Ils sont disponibles en diff\u00e9rentes granulom\u00e9tries et permettent un enl\u00e8vement contr\u00f4l\u00e9 de mati\u00e8re en fonction de l'\u00e9tape de traitement."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "disque abrasif",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disques abrasifs"
+    },
+    {
+      "definition": [
+        "Le dosage du pigment correspond \u00e0 la quantit\u00e9 de pigment ajout\u00e9e \u00e0 la r\u00e9sine \u00e9poxy pour obtenir la couleur et l'opacit\u00e9 souhait\u00e9es. Il est important de respecter le dosage recommand\u00e9 par le fabricant afin de pr\u00e9server les propri\u00e9t\u00e9s m\u00e9caniques de la r\u00e9sine et d'assurer un processus de polym\u00e9risation normal."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dosage du pigment"
+    },
+    {
+      "definition": [
+        "Le duramen est la partie centrale, mature et plus dense du tronc d'un arbre. En g\u00e9n\u00e9ral, il pr\u00e9sente une meilleure r\u00e9sistance \u00e0 l'humidit\u00e9, aux champignons et aux insectes que l'aubier et est privil\u00e9gi\u00e9 pour la fabrication de meubles et de projets d\u00e9coratifs \u00e0 base de r\u00e9sine \u00e9poxy en raison de sa stabilit\u00e9 et de son aspect."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "albure",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Duramen"
+    },
+    {
+      "definition": [
+        "On parle de durcissement incomplet lorsque la r\u00e9sine \u00e9poxy n'atteint pas pleinement ses propri\u00e9t\u00e9s m\u00e9caniques \u00e0 l'issue du temps de durcissement normal. Cela peut \u00eatre d\u00fb \u00e0 un rapport de m\u00e9lange incorrect, \u00e0 un malaxage insuffisant ou \u00e0 des conditions de travail inadapt\u00e9es."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Durcissement incomplet"
+    },
+    {
+      "definition": [
+        "Le temps de travail, \u00e9galement appel\u00e9 \u00ab Pot Life \u00bb, correspond \u00e0 la p\u00e9riode pendant laquelle le m\u00e9lange de r\u00e9sine et de durcisseur peut \u00eatre utilis\u00e9 avant que la viscosit\u00e9 ne commence \u00e0 augmenter de mani\u00e8re significative. Une fois ce d\u00e9lai \u00e9coul\u00e9, le mat\u00e9riau ne peut plus \u00eatre coul\u00e9 ou mis en \u0153uvre dans des conditions optimales."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "M\u00e9lange"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dur\u00e9e de vie en pot (Pot Life)"
+    },
+    {
+      "definition": [
+        "La d\u00e9coupe consiste \u00e0 couper le bois aux dimensions et \u00e0 la forme requises pour la r\u00e9alisation du projet. Elle peut \u00eatre effectu\u00e9e \u00e0 l'aide de diff\u00e9rents \u00e9quipements et vise \u00e0 obtenir des pi\u00e8ces pouvant \u00eatre usin\u00e9es et int\u00e9gr\u00e9es \u00e0 l'\u00e9tape suivante du projet."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9coupe"
+    },
+    {
+      "definition": [
+        "Un d\u00e9faut de moulage d\u00e9signe toute imperfection apparue au cours du processus de moulage ou de durcissement de la r\u00e9sine \u00e9poxy, qui affecte l'aspect, la fonctionnalit\u00e9 ou la qualit\u00e9 de la pi\u00e8ce finale. Parmi les d\u00e9fauts les plus courants, on trouve les bulles d'air, les vides, les fuites, les fissures et les zones qui n'ont pas durci correctement."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9faut de moulage"
+    },
+    {
+      "definition": [
+        "Un d\u00e9faut structurel d\u00e9signe toute imperfection du bois susceptible de r\u00e9duire sa r\u00e9sistance, sa stabilit\u00e9 ou sa capacit\u00e9 \u00e0 supporter des contraintes m\u00e9caniques. Cette cat\u00e9gorie comprend les fissures, les fentes \u00e9tendues, la pourriture, les cavit\u00e9s ou toute autre d\u00e9gradation susceptible d'influencer le comportement de la pi\u00e8ce en service."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "N\u0153ud en bois"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9faut structurel"
+    },
+    {
+      "definition": [
+        "La d\u00e9fonceuse, \u00e9galement appel\u00e9e \u00ab router \u00bb, est un outil \u00e9lectrique utilis\u00e9 pour l'usinage pr\u00e9cis du bois par fraisage. Elle permet de r\u00e9aliser des ar\u00eates profil\u00e9es, des rainures, des d\u00e9coupes et d'autres op\u00e9rations d'usinage n\u00e9cessaires \u00e0 la construction et \u00e0 la finition de projets en bois."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "d\u00e9fonceuse",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Fraise"
+        }
+      ],
+      "term": "D\u00e9fonceuse (Router)"
+    },
+    {
+      "definition": [
+        "La d\u00e9formation du bois d\u00e9signe la modification de la forme initiale d'une pi\u00e8ce sous l'effet des variations d'humidit\u00e9, des contraintes internes ou d'autres facteurs influen\u00e7ant la stabilit\u00e9 du mat\u00e9riau. Les formes de d\u00e9formation les plus courantes sont le fl\u00e9chissement, la torsion et le bombement."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9formation du bois"
+    },
+    {
+      "definition": [
+        "La d\u00e9formation du coffrage correspond \u00e0 la modification de la forme ou de la position du coffrage pendant le coulage ou le durcissement de la r\u00e9sine \u00e9poxy. Elle peut \u00eatre due \u00e0 la pression exerc\u00e9e par la r\u00e9sine, \u00e0 une fixation insuffisante ou \u00e0 une rigidit\u00e9 insuffisante du coffrage, et peut entra\u00eener une modification des dimensions de l'ouvrage."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9formation du coffrage"
+    },
+    {
+      "definition": [
+        "Le d\u00e9gazage est le processus consistant \u00e0 \u00e9liminer l'air et les gaz de la r\u00e9sine \u00e9poxy avant ou imm\u00e9diatement apr\u00e8s le coulage. L'objectif de cette op\u00e9ration est de r\u00e9duire le nombre de bulles d'air et d'obtenir un coulage aussi uniforme et transparent que possible."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e9"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Dur\u00e9e de vie en pot (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9gazage - D\u00e9graissage"
+    },
+    {
+      "definition": [
+        "La d\u00e9lamination d\u00e9signe le d\u00e9collement ou la s\u00e9paration des couches d'un mat\u00e9riau ou de surfaces coll\u00e9es entre elles. Dans les projets utilisant de la r\u00e9sine \u00e9poxy, la d\u00e9lamination indique une perte d'adh\u00e9rence et peut compromettre \u00e0 la fois la r\u00e9sistance m\u00e9canique et l'aspect final de la pi\u00e8ce."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9laminage"
+    },
+    {
+      "definition": [
+        "Le d\u00e9moulage consiste \u00e0 retirer le coffrage une fois que la r\u00e9sine \u00e9poxy a suffisamment durci pour conserver sa forme. Cette \u00e9tape doit \u00eatre r\u00e9alis\u00e9e avec soin afin d\u2019\u00e9viter d\u2019endommager la pi\u00e8ce ou les bords moul\u00e9s."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e9moulage"
+    },
+    {
+      "definition": [
+        "L'entretien de la surface d\u00e9signe l'ensemble des op\u00e9rations effectu\u00e9es pour pr\u00e9server l'aspect et les propri\u00e9t\u00e9s protectrices du bois et de la finition au cours de son utilisation. Un nettoyage r\u00e9gulier et la r\u00e9application de produits d'entretien contribuent \u00e0 prolonger la dur\u00e9e de vie de la pi\u00e8ce."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Entretien de la surface"
+    },
+    {
+      "definition": [
+        "L'estimation de la quantit\u00e9 de r\u00e9sine d\u00e9signe le processus par lequel l'application HFZWood calcule le volume et la quantit\u00e9 de r\u00e9sine \u00e9poxy n\u00e9cessaires \u00e0 la r\u00e9alisation d'un projet, sur la base de la g\u00e9om\u00e9trie d\u00e9finie par l'utilisateur et des param\u00e8tres de calcul disponibles."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Estimation de la quantit\u00e9 de r\u00e9sine"
+    },
+    {
+      "definition": [
+        "La finition brillante est un type de finition caract\u00e9ris\u00e9 par un haut degr\u00e9 de r\u00e9flexion de la lumi\u00e8re et une surface tr\u00e8s lisse. L'obtention de cet aspect n\u00e9cessite un pon\u00e7age et un polissage r\u00e9alis\u00e9s dans les r\u00e8gles de l'art, \u00e0 l'aide de mat\u00e9riaux et de techniques adapt\u00e9s."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finition brillante"
+    },
+    {
+      "definition": [
+        "La finition satin\u00e9e est un type de finition qui offre un aspect uniforme, avec des reflets discrets et un \u00e9clat mod\u00e9r\u00e9. Elle met en valeur la texture du mat\u00e9riau et est privil\u00e9gi\u00e9e dans les projets o\u00f9 l'on recherche un aspect naturel et \u00e9l\u00e9gant."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finition satin\u00e9e"
+    },
+    {
+      "definition": [
+        "La fissuration thermique d\u00e9signe l'apparition de fissures dans la r\u00e9sine \u00e9poxy ou dans le bois \u00e0 la suite de fortes variations de temp\u00e9rature ou d'un d\u00e9gagement de chaleur excessif pendant la polym\u00e9risation. Ce d\u00e9faut peut compromettre \u00e0 la fois l'aspect esth\u00e9tique et la r\u00e9sistance de la pi\u00e8ce finale."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fissuration thermique"
+    },
+    {
+      "definition": [
+        "Une fissure est une fente apparue dans la structure du bois \u00e0 la suite de tensions internes, du s\u00e9chage ou de contraintes m\u00e9caniques. Selon leur taille et leur emplacement, les fissures peuvent n\u00e9cessiter une stabilisation, un remplissage \u00e0 la r\u00e9sine \u00e9poxy ou l'\u00e9limination de la partie endommag\u00e9e."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Cavit\u00e9",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Fissure"
+    },
+    {
+      "definition": [
+        "La fraise est un outil d'usinage mont\u00e9 sur une d\u00e9fonceuse ou d'autres machines d'usinage, utilis\u00e9 pour l'enl\u00e8vement contr\u00f4l\u00e9 de mati\u00e8re. Il existe de nombreux types de fraises, chacune \u00e9tant con\u00e7ue pour une op\u00e9ration ou un profil d'usinage sp\u00e9cifique."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "fraise",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fraise"
+    },
+    {
+      "definition": [
+        "La fraise de nivellement est une fraise de grand diam\u00e8tre, utilis\u00e9e pour mettre les surfaces au m\u00eame niveau gr\u00e2ce \u00e0 un enl\u00e8vement contr\u00f4l\u00e9 de mati\u00e8re. Elle est souvent utilis\u00e9e avec un chariot de d\u00e9fon\u00e7age pour niveler les grands plans de travail en bois et en r\u00e9sine \u00e9poxy."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fraise de nivellement"
+    },
+    {
+      "definition": [
+        "La fraise \u00e0 redresser est une fraise destin\u00e9e \u00e0 obtenir des ar\u00eates ou des surfaces parfaitement droites. Elle est utilis\u00e9e pour corriger les bords des pi\u00e8ces en bois et pour les pr\u00e9parer avant l'assemblage ou d'autres op\u00e9rations d'usinage."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fraise de redressage"
+    },
+    {
+      "definition": [
+        "La fraise \u00e0 copier est une fraise \u00e9quip\u00e9e d'un ou plusieurs roulements de guidage qui permettent de suivre un gabarit ou une ar\u00eate existante. Elle est utilis\u00e9e pour reproduire avec pr\u00e9cision des contours et pour r\u00e9aliser des pi\u00e8ces identiques."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fraise \u00e0 copier"
+    },
+    {
+      "definition": [
+        "Les fuites de r\u00e9sine correspondent \u00e0 une perte incontr\u00f4l\u00e9e de r\u00e9sine \u00e9poxy par les joints, les raccords ou les d\u00e9fauts du coffrage avant le durcissement. Elles peuvent modifier le volume final de la coul\u00e9e, compromettre le projet et entra\u00eener une consommation suppl\u00e9mentaire de mat\u00e9riau."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Coffrage"
+        },
+        {
+          "id": "etan-are",
+          "term": "\u00c9tanch\u00e9it\u00e9"
+        },
+        {
+          "id": "fisur",
+          "term": "Fissure"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fuites de r\u00e9sine"
+    },
+    {
+      "definition": [
+        "Le glossaire regroupe les termes et d\u00e9finitions utilis\u00e9s dans l\u2019application HFZWood ainsi que dans le domaine du travail du bois et des r\u00e9sines \u00e9poxy. Son r\u00f4le est de garantir une utilisation coh\u00e9rente de la terminologie et une compr\u00e9hension claire des concepts pr\u00e9sent\u00e9s dans l'application."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Glossaire"
+    },
+    {
+      "definition": [
+        "La granulom\u00e9trie abrasive correspond \u00e0 la taille des particules abrasives pr\u00e9sentes sur un mat\u00e9riau de pon\u00e7age, exprim\u00e9e par un chiffre sp\u00e9cifique. Les petites granulom\u00e9tries sont utilis\u00e9es pour l'enl\u00e8vement rapide de mati\u00e8re, tandis que les grandes granulom\u00e9tries servent \u00e0 la finition et au lissage des surfaces."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Granulom\u00e9trie abrasive"
+    },
+    {
+      "definition": [
+        "L'huile pour bois est un produit de finition qui p\u00e9n\u00e8tre dans la structure du bois et lui offre une protection contre l'humidit\u00e9 et l'usure, tout en mettant en valeur la texture et l'aspect naturel du grain. Selon le type utilis\u00e9, l'huile peut n\u00e9cessiter un entretien et une r\u00e9application p\u00e9riodiques."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "huile",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Huile pour bois"
+    },
+    {
+      "definition": [
+        "L'humidit\u00e9 excessive correspond \u00e0 la pr\u00e9sence d'une quantit\u00e9 d'eau dans le bois ou dans l'environnement de travail sup\u00e9rieure au niveau recommand\u00e9 pour l'utilisation de la r\u00e9sine \u00e9poxy. Elle peut nuire \u00e0 l'adh\u00e9rence, \u00e0 la stabilit\u00e9 dimensionnelle, au processus de durcissement et \u00e0 la qualit\u00e9 finale du projet."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Humidit\u00e9 excessive"
+    },
+    {
+      "definition": [
+        "L'image de r\u00e9f\u00e9rence est la photographie utilis\u00e9e dans HFZWood comme base pour mesurer et calculer le volume de r\u00e9sine n\u00e9cessaire \u00e0 un projet. Elle sert de support \u00e0 la d\u00e9finition des \u00e9l\u00e9ments g\u00e9om\u00e9triques utilis\u00e9s par l'application et reste associ\u00e9e de mani\u00e8re permanente au projet."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Image de r\u00e9f\u00e9rence"
+    },
+    {
+      "definition": [
+        "L'importation d'une image d\u00e9signe l'op\u00e9ration consistant \u00e0 charger une photo dans l'application HFZWood en vue de son utilisation dans un nouveau projet. L'image import\u00e9e sert de base \u00e0 toutes les mesures et tous les calculs effectu\u00e9s par la suite."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Importation de l'image"
+    },
+    {
+      "definition": [
+        "Les inclusions de poussi\u00e8re sont des particules de poussi\u00e8re ou d\u2019autres impuret\u00e9s qui restent incorpor\u00e9es dans la r\u00e9sine \u00e9poxy pendant le durcissement. Ces d\u00e9fauts alt\u00e8rent l\u2019aspect de la surface et peuvent n\u00e9cessiter un pon\u00e7age et un polissage suppl\u00e9mentaires pour \u00eatre \u00e9limin\u00e9s."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inclusions de poussi\u00e8re"
+    },
+    {
+      "definition": [
+        "L'inspection finale consiste en une v\u00e9rification compl\u00e8te du projet une fois toutes les \u00e9tapes d'usinage et de finition achev\u00e9es. Elle vise \u00e0 identifier les \u00e9ventuels d\u00e9fauts r\u00e9siduels, \u00e0 v\u00e9rifier les dimensions et la qualit\u00e9 des surfaces, et \u00e0 confirmer que la pi\u00e8ce r\u00e9pond aux exigences de qualit\u00e9 d\u00e9finies."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inspection finale"
+    },
+    {
+      "definition": [
+        "L'encapsulation des bulles d'air consiste \u00e0 retenir les bulles dans la masse de r\u00e9sine \u00e9poxy pendant le processus de durcissement. Les bulles ainsi emprisonn\u00e9es peuvent nuire \u00e0 la transparence, \u00e0 l'aspect esth\u00e9tique et, dans certains cas, \u00e0 la r\u00e9sistance de la pi\u00e8ce finale."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "bulles d'air dans la r\u00e9sine",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bulles d'air"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Dur\u00e9e de vie en pot (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "L'encapsulation des bulles d'air"
+    },
+    {
+      "definition": [
+        "L'espace de travail est l'espace principal de l'application HFZWood, dans lequel l'utilisateur cr\u00e9e, ouvre, modifie et g\u00e8re ses projets, et acc\u00e8de aux fonctions et ressources disponibles en fonction de son r\u00f4le et de son abonnement."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "L'espace de travail"
+    },
+    {
+      "definition": [
+        "L'humidit\u00e9 du bois correspond \u00e0 la quantit\u00e9 d'eau contenue dans la masse du bois, exprim\u00e9e en pourcentage par rapport \u00e0 la masse du bois sec. Ce param\u00e8tre influe sur la stabilit\u00e9 dimensionnelle, le comportement dans le temps et la compatibilit\u00e9 du bois avec la r\u00e9sine \u00e9poxy. Dans les projets r\u00e9alis\u00e9s avec HFZWood, l'utilisation d'un bois pr\u00e9sentant une humidit\u00e9 ad\u00e9quate r\u00e9duit le risque d'apparition de fissures, de d\u00e9formations et de probl\u00e8mes d'adh\u00e9rence."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Bois hygroscopique"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Bois hygroscopique",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "L'humidit\u00e9 du bois"
+    },
+    {
+      "definition": [
+        "La force de flottabilit\u00e9 est la force exerc\u00e9e par la r\u00e9sine liquide sur le bois, qui tend \u00e0 le faire remonter \u00e0 la surface lorsque sa densit\u00e9 est inf\u00e9rieure \u00e0 celle de la r\u00e9sine. Si les pi\u00e8ces de bois ne sont pas correctement fix\u00e9es, elles peuvent se d\u00e9placer ou flotter pendant le moulage, ce qui affecte la g\u00e9om\u00e9trie et l\u2019aspect final de l\u2019ouvrage."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "La force de flottabilit\u00e9"
+    },
+    {
+      "definition": [
+        "La g\u00e9om\u00e9trie du projet d\u00e9crit la forme, les dimensions et les relations spatiales entre tous les \u00e9l\u00e9ments qui composent le projet. Dans HFZWood, la g\u00e9om\u00e9trie sert de base au calcul des surfaces, des volumes et de la quantit\u00e9 estim\u00e9e de r\u00e9sine n\u00e9cessaire."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "La g\u00e9om\u00e9trie du projet"
+    },
+    {
+      "definition": [
+        "L'ouverture d'un projet d\u00e9signe l'op\u00e9ration consistant \u00e0 charger un projet pr\u00e9c\u00e9demment enregistr\u00e9 dans l'application HFZWood afin de le visualiser, de le modifier ou de poursuivre le travail."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lancement du projet"
+    },
+    {
+      "definition": [
+        "Le contour de la cavit\u00e9 correspond \u00e0 la limite g\u00e9om\u00e9trique qui d\u00e9limite une cavit\u00e9 dans le bois destin\u00e9e \u00e0 \u00eatre remplie de r\u00e9sine \u00e9poxy. La d\u00e9finition correcte de ce contour permet de calculer avec pr\u00e9cision la surface et le volume de la cavit\u00e9."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "Parcours de mesure"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Le contour de la cavit\u00e9"
+    },
+    {
+      "definition": [
+        "Le propri\u00e9taire du projet est l'utilisateur qui a cr\u00e9\u00e9 le projet et qui d\u00e9tient les droits de modification sur celui-ci. L'identit\u00e9 du propri\u00e9taire est associ\u00e9e de mani\u00e8re permanente au projet et sert de base \u00e0 la gestion des autorisations d'acc\u00e8s."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Le ma\u00eetre d'ouvrage"
+    },
+    {
+      "definition": [
+        "L'imperm\u00e9abilisation du bois consiste \u00e0 appliquer une fine couche de r\u00e9sine \u00e9poxy ou d'un autre mat\u00e9riau compatible afin de r\u00e9duire l'absorption excessive et le d\u00e9gagement d'air par les pores du bois avant le coulage principal. Cette \u00e9tape permet d\u2019obtenir une surface propre et de limiter la formation de bulles d\u2019air."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Le traitement de protection du bois"
+    },
+    {
+      "definition": [
+        "Le volume de bois correspond \u00e0 l'espace occup\u00e9 par toutes les pi\u00e8ces en bois qui composent le projet. Il est exprim\u00e9 en unit\u00e9s de volume et sert \u00e0 l'application pour d\u00e9terminer le volume total du projet et la quantit\u00e9 de r\u00e9sine n\u00e9cessaire."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "\u00c9paisseur uniforme"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Le volume du bois"
+    },
+    {
+      "definition": [
+        "La ligne de r\u00e9f\u00e9rence est le segment d\u00e9fini entre deux points de r\u00e9f\u00e9rence et correspond \u00e0 une distance r\u00e9elle connue. Dans HFZWood, cette ligne est utilis\u00e9e lors du processus d'\u00e9talonnage pour \u00e9tablir l'\u00e9chelle correcte de l'image et effectuer des mesures avec pr\u00e9cision."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ligne de r\u00e9f\u00e9rence"
+    },
+    {
+      "definition": [
+        "Les lunettes de protection sont des \u00e9quipements de protection individuelle con\u00e7us pour prot\u00e9ger les yeux contre la poussi\u00e8re, les projections de particules et les \u00e9claboussures accidentelles. Leur port est recommand\u00e9 \u00e0 toutes les \u00e9tapes de l'usinage m\u00e9canique et lors de la manipulation de r\u00e9sines \u00e9poxy."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "lunettes",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lunettes de protection"
+    },
+    {
+      "definition": [
+        "La d\u00e9gauchisseuse est une machine utilis\u00e9e pour donner aux pi\u00e8ces en bois une \u00e9paisseur uniforme et pr\u00e9cise. Apr\u00e8s le rabotage, elle enl\u00e8ve la mati\u00e8re de mani\u00e8re contr\u00f4l\u00e9e jusqu\u2019\u00e0 atteindre la dimension finale souhait\u00e9e."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "\u00e9bauche",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Machine \u00e0 d\u00e9grossir"
+    },
+    {
+      "definition": [
+        "Le manuel HFZWood constitue la documentation principale de l'application ; il explique ses fonctionnalit\u00e9s, son mode d'emploi et les flux de travail disponibles. Il fournit aux utilisateurs les informations n\u00e9cessaires \u00e0 une utilisation correcte et efficace de l'application."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Manuel HFZWood"
+    },
+    {
+      "definition": [
+        "Le masque respiratoire est un \u00e9quipement de protection individuelle destin\u00e9 \u00e0 filtrer les particules, les vapeurs ou d'autres contaminants pr\u00e9sents dans l'air inhal\u00e9. Il est recommand\u00e9 d'utiliser un masque adapt\u00e9 lors du pon\u00e7age, du travail du bois et de la manipulation de produits chimiques, conform\u00e9ment aux instructions des fabricants."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Masque respiratoire"
+    },
+    {
+      "definition": [
+        "Le MDF m\u00e9lamin\u00e9 est un panneau obtenu \u00e0 partir de fibres de bois fines press\u00e9es et recouvert d\u2019une couche de m\u00e9lamine. Sa surface est tr\u00e8s uniforme et permet de r\u00e9aliser des coffrages avec une finition de bonne qualit\u00e9 ; il est notamment utilis\u00e9 pour les projets qui exigent de la pr\u00e9cision et des ar\u00eates nettes."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF m\u00e9lamin\u00e9"
+    },
+    {
+      "definition": [
+        "Une microfissure est une fissure de tr\u00e8s petite taille, souvent difficile \u00e0 observer \u00e0 l'\u0153il nu. Bien qu'elle puisse sembler insignifiante, elle peut \u00e9voluer avec le temps et affecter la r\u00e9sistance, l'\u00e9tanch\u00e9it\u00e9 ou l'aspect de la surface."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Microfissure"
+    },
+    {
+      "definition": [
+        "La mise \u00e0 jour d\u2019un projet consiste \u00e0 enregistrer les modifications apport\u00e9es \u00e0 un projet existant sans cr\u00e9er de nouveau projet. Cette op\u00e9ration conserve l\u2019identit\u00e9 du projet et remplace la version pr\u00e9c\u00e9demment enregistr\u00e9e par la version mise \u00e0 jour."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mise \u00e0 jour du projet"
+    },
+    {
+      "definition": [
+        "Le nivellement du coffrage est l'op\u00e9ration qui consiste \u00e0 placer le coffrage parfaitement \u00e0 l'horizontale avant le coulage. Un nivellement correct garantit une r\u00e9partition homog\u00e8ne de la r\u00e9sine \u00e9poxy et contribue \u00e0 l'obtention d'une surface finale sans d\u00e9nivel\u00e9s."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (niveau)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mise \u00e0 niveau du coffrage"
+    },
+    {
+      "definition": [
+        "Le m\u00e9lange est le processus par lequel la r\u00e9sine \u00e9poxy et le durcisseur sont combin\u00e9s jusqu\u2019\u00e0 l\u2019obtention d\u2019un m\u00e9lange parfaitement homog\u00e8ne. Un m\u00e9lange correct garantit un d\u00e9roulement uniforme de la r\u00e9action de polym\u00e9risation et r\u00e9duit le risque d'apparition de zones qui restent collantes ou qui ne durcissent pas compl\u00e8tement."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u00e9lange"
+    },
+    {
+      "definition": [
+        "Le nettoyage des cavit\u00e9s consiste \u00e0 \u00e9liminer la poussi\u00e8re, les r\u00e9sidus de bois, l'\u00e9corce d\u00e9tach\u00e9e et autres impuret\u00e9s pr\u00e9sentes dans les cavit\u00e9s naturelles du bois avant de couler la r\u00e9sine \u00e9poxy. Un nettoyage ad\u00e9quat am\u00e9liore l'adh\u00e9rence de la r\u00e9sine et r\u00e9duit le risque d'apparition de d\u00e9fauts."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nettoyage des cavit\u00e9s"
+    },
+    {
+      "definition": [
+        "Un n\u0153ud est la partie du bois dans laquelle une branche s'est ins\u00e9r\u00e9e pendant la croissance de l'arbre. Les n\u0153uds peuvent influencer l'aspect esth\u00e9tique, la r\u00e9sistance m\u00e9canique et le comportement du bois lors de son usinage ; ils sont \u00e9valu\u00e9s individuellement en fonction de leur taille, de leur position et de leur stabilit\u00e9."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Cavit\u00e9"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "N\u0153ud en bois"
+    },
+    {
+      "definition": [
+        "Le panneau agglom\u00e9r\u00e9 m\u00e9lamin\u00e9 est un panneau constitu\u00e9 de copeaux de bois press\u00e9s et recouvert d'une couche de m\u00e9lamine qui offre une surface lisse et r\u00e9sistante. En raison de son faible co\u00fbt et de sa surface relativement non adh\u00e9rente, il est fr\u00e9quemment utilis\u00e9 pour la fabrication de coffrages destin\u00e9s aux coul\u00e9es de r\u00e9sine \u00e9poxy."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Panneaux de particules m\u00e9lamin\u00e9s"
+    },
+    {
+      "definition": [
+        "Le papier abrasif est un mat\u00e9riau souple recouvert de particules abrasives, utilis\u00e9 pour le pon\u00e7age manuel ou m\u00e9canique des surfaces. Le choix d'un grain adapt\u00e9 influe sur la qualit\u00e9 de la finition et l'efficacit\u00e9 du processus d'usinage."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Papier abrasif"
+    },
+    {
+      "definition": [
+        "Le polygone de mesure est une succession de points reli\u00e9s entre eux qui d\u00e9limite le contour d\u2019une surface \u00e0 mesurer. Dans HFZWood, les polygones sont utilis\u00e9s pour d\u00e9finir le contour ext\u00e9rieur, les pi\u00e8ces de bois, les cavit\u00e9s et d'autres zones n\u00e9cessaires aux calculs g\u00e9om\u00e9triques."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Parcours de mesure"
+    },
+    {
+      "definition": [
+        "La perceuse est un outil \u00e9lectrique utilis\u00e9 pour percer des trous dans le bois et d\u2019autres mat\u00e9riaux. Selon les accessoires mont\u00e9s, elle peut \u00e9galement servir \u00e0 visser, \u00e0 al\u00e9ser des trous ou \u00e0 effectuer d\u2019autres op\u00e9rations d\u2019usinage."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "perceuse",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Perceuse"
+    },
+    {
+      "definition": [
+        "La perte technologique correspond \u00e0 la quantit\u00e9 de r\u00e9sine qui n'entre pas dans le produit final en raison des processus de m\u00e9lange, de transfert, de coul\u00e9e ou des r\u00e9sidus restant dans les r\u00e9cipients et les outils. Il s'agit d'un ph\u00e9nom\u00e8ne normal qui doit \u00eatre pris en compte lors de l'estimation de la consommation totale de mati\u00e8re."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Perte technologique"
+    },
+    {
+      "definition": [
+        "Le pigment est une substance utilis\u00e9e pour colorer la r\u00e9sine \u00e9poxy sans alt\u00e9rer le processus de durcissement lorsqu'il est dos\u00e9 correctement. Les pigments sont disponibles dans une large gamme de couleurs et d'effets et permettent d'obtenir des moulages transparents, semi-transparents ou opaques, selon le type et la quantit\u00e9 utilis\u00e9s."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment"
+    },
+    {
+      "definition": [
+        "La pince de fixation est un dispositif utilis\u00e9 pour maintenir temporairement des pi\u00e8ces ou des composants dans la position souhait\u00e9e pendant le soudage, l'usinage ou l'assemblage. Il existe de nombreux types de pinces, adapt\u00e9s \u00e0 diff\u00e9rentes tailles et applications."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "pince en bois",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pince de fixation"
+    },
+    {
+      "definition": [
+        "Le pistolet \u00e0 air chaud est un appareil qui g\u00e9n\u00e8re un flux d'air chauff\u00e9 et qui peut \u00eatre utilis\u00e9 pour \u00e9liminer les bulles d'air \u00e0 la surface de la r\u00e9sine \u00e9poxy. La temp\u00e9rature et la distance de travail doivent \u00eatre contr\u00f4l\u00e9es avec soin afin d'\u00e9viter toute surchauffe ou d\u00e9formation de la surface."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "pistolet \u00e0 air chaud",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bulles d'air"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pistolet \u00e0 air chaud"
+    },
+    {
+      "definition": [
+        "Un point de contr\u00f4le est un point qui d\u00e9finit la forme et la position d'un polygone de mesure. Le d\u00e9placement d'un point de contr\u00f4le modifie automatiquement la g\u00e9om\u00e9trie de la surface d\u00e9limit\u00e9e et influe sur les r\u00e9sultats calcul\u00e9s par l'application."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Point de r\u00e9f\u00e9rence"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Point de contr\u00f4le"
+    },
+    {
+      "definition": [
+        "Le point de r\u00e9f\u00e9rence est un point choisi sur l'image pour d\u00e9finir une dimension connue ou pour effectuer des mesures g\u00e9om\u00e9triques. Dans HFZWood, les points de r\u00e9f\u00e9rence sont utilis\u00e9s pour l'\u00e9talonnage et pour tracer les contours n\u00e9cessaires au calcul des surfaces et des volumes."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Point de r\u00e9f\u00e9rence"
+    },
+    {
+      "definition": [
+        "Le polissage est l'\u00e9tape finale de la finition, au cours de laquelle la surface du bois ou de la r\u00e9sine \u00e9poxy est trait\u00e9e afin d'obtenir un haut degr\u00e9 de lissage et l'aspect souhait\u00e9. Ce processus \u00e9limine les fines traces de pon\u00e7age et am\u00e9liore la clart\u00e9, la r\u00e9flexion de la lumi\u00e8re et l'aspect esth\u00e9tique de la pi\u00e8ce."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polissage"
+    },
+    {
+      "definition": [
+        "La polym\u00e9risation est la r\u00e9action chimique par laquelle la r\u00e9sine \u00e9poxy et le durcisseur forment une structure solide et stable. Ce processus commence imm\u00e9diatement apr\u00e8s le m\u00e9lange et se poursuit jusqu\u2019\u00e0 ce que le mat\u00e9riau acqui\u00e8re ses propri\u00e9t\u00e9s finales de r\u00e9sistance, de duret\u00e9 et de stabilit\u00e9."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Rapport de m\u00e9lange"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polym\u00e9risation"
+    },
+    {
+      "definition": [
+        "Le pon\u00e7age est le processus consistant \u00e0 traiter la surface du bois ou de la r\u00e9sine \u00e9poxy \u00e0 l'aide de mat\u00e9riaux abrasifs, dans le but d'\u00e9liminer les imperfections et d'obtenir une surface lisse, uniforme et pr\u00eate pour les \u00e9tapes suivantes de finition."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pon\u00e7age"
+    },
+    {
+      "definition": [
+        "Le pon\u00e7age humide est une m\u00e9thode de finition r\u00e9alis\u00e9e \u00e0 l'aide d'eau ou d'un autre liquide compatible, qui r\u00e9duit l'\u00e9chauffement de la surface et limite la formation de poussi\u00e8re. Cette technique est notamment utilis\u00e9e lors des derni\u00e8res \u00e9tapes afin d'obtenir des surfaces tr\u00e8s lisses et pr\u00eates \u00e0 \u00eatre polies."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pon\u00e7age \u00e0 l'eau"
+    },
+    {
+      "definition": [
+        "Le pon\u00e7age \u00e0 sec est un proc\u00e9d\u00e9 de pon\u00e7age r\u00e9alis\u00e9 sans utiliser de liquides de refroidissement ou de lubrification. C'est la m\u00e9thode la plus couramment utilis\u00e9e dans le travail du bois et de la r\u00e9sine \u00e9poxy ; elle permet d'enlever efficacement la mati\u00e8re \u00e0 toutes les \u00e9tapes de l'usinage."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pon\u00e7age \u00e0 sec"
+    },
+    {
+      "definition": [
+        "Le positionnement du bois consiste \u00e0 disposer et \u00e0 aligner les pi\u00e8ces de bois selon la configuration finale du projet avant le coulage de la r\u00e9sine \u00e9poxy. La mani\u00e8re dont elles sont positionn\u00e9es influe sur l'aspect esth\u00e9tique, la quantit\u00e9 de r\u00e9sine n\u00e9cessaire et la stabilit\u00e9 de l'ensemble."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Positionnement du bois"
+    },
+    {
+      "definition": [
+        "Un projet partag\u00e9 (*Read-Only*) est un projet mis \u00e0 la disposition d'un autre utilisateur \u00e0 des fins de consultation uniquement. Il peut \u00eatre ouvert et consult\u00e9, mais son contenu ne peut pas \u00eatre modifi\u00e9 par les utilisateurs qui ne sont pas les propri\u00e9taires du projet."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projet collaboratif"
+    },
+    {
+      "definition": [
+        "Un projet local est un projet enregistr\u00e9 sur l'appareil de l'utilisateur, qui peut \u00eatre ouvert et modifi\u00e9 sans n\u00e9cessiter de connexion Internet. Dans l'architecture HFZWood, les projets locaux restent \u00e0 la disposition de l'utilisateur m\u00eame apr\u00e8s l'expiration de son abonnement."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Projet local"
+    },
+    {
+      "definition": [
+        "La protection contre les UV d\u00e9signe la capacit\u00e9 d'une finition \u00e0 r\u00e9duire les effets des rayons ultraviolets sur le bois et la r\u00e9sine \u00e9poxy. Un niveau de protection ad\u00e9quat contribue \u00e0 limiter la d\u00e9coloration, le jaunissement et la d\u00e9gradation caus\u00e9s par une exposition prolong\u00e9e au soleil."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protection contre les UV"
+    },
+    {
+      "definition": [
+        "La protection de la surface pendant le durcissement d\u00e9signe les mesures prises pour emp\u00eacher le d\u00e9p\u00f4t de poussi\u00e8re, d\u2019insectes ou d\u2019autres impuret\u00e9s sur la r\u00e9sine \u00e9poxy jusqu\u2019\u00e0 la fin du processus de durcissement. Une protection ad\u00e9quate contribue \u00e0 obtenir une finition propre et r\u00e9duit la n\u00e9cessit\u00e9 d'interventions ult\u00e9rieures."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Dur\u00e9e de vie en pot (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "turnare",
+          "term": "Coul\u00e9e"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protection de la surface pendant le durcissement"
+    },
+    {
+      "definition": [
+        "La pr\u00e9cision de la mesure correspond au degr\u00e9 de proximit\u00e9 entre les valeurs calcul\u00e9es par l'application et les dimensions r\u00e9elles du projet. Elle d\u00e9pend de la qualit\u00e9 de l'image, de l'exactitude de l'\u00e9talonnage et de la pr\u00e9cision avec laquelle les points et les contours de mesure sont d\u00e9finis."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pr\u00e9cision de la mesure"
+    },
+    {
+      "definition": [
+        "La p\u00e2te abrasive est un produit de polissage contenant des particules abrasives fines, utilis\u00e9 pour corriger les imperfections restantes apr\u00e8s le pon\u00e7age. Le choix du type de p\u00e2te d\u00e9pend de l'\u00e9tat de la surface et du niveau de finition souhait\u00e9."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "p\u00e2te abrasive",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u00e2te abrasive"
+    },
+    {
+      "definition": [
+        "La p\u00e2te de finition est un compos\u00e9 \u00e0 tr\u00e8s faible abrasivit\u00e9, utilis\u00e9 lors de la derni\u00e8re \u00e9tape du polissage afin d'am\u00e9liorer la brillance et la clart\u00e9 de la surface. Elle \u00e9limine les traces tr\u00e8s fines laiss\u00e9es par le polish et contribue \u00e0 obtenir une finition de haute qualit\u00e9."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u00e2te de finition"
+    },
+    {
+      "definition": [
+        "La p\u00e2te pigmentaire est un pigment sous forme de p\u00e2te concentr\u00e9e, sp\u00e9cialement formul\u00e9e pour la coloration des r\u00e9sines \u00e9poxy. Gr\u00e2ce \u00e0 sa consistance, elle se disperse facilement dans le m\u00e9lange et permet d'obtenir des couleurs uniformes et intenses avec une quantit\u00e9 r\u00e9duite de produit."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u00e2te pigmentaire"
+    },
+    {
+      "definition": [
+        "La quantit\u00e9 de r\u00e9sine n\u00e9cessaire correspond au volume ou \u00e0 la masse de r\u00e9sine \u00e9poxy estim\u00e9e pour la r\u00e9alisation d\u2019un projet, y compris le facteur de s\u00e9curit\u00e9 \u00e9ventuellement d\u00e9fini par l\u2019utilisateur. Dans HFZWood, cette valeur est calcul\u00e9e automatiquement en fonction de la g\u00e9om\u00e9trie du projet et des param\u00e8tres saisis."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quantit\u00e9 de r\u00e9sine n\u00e9cessaire"
+    },
+    {
+      "definition": [
+        "La quantit\u00e9 n\u00e9cessaire de durcisseur correspond au volume ou \u00e0 la masse de durcisseur calcul\u00e9e en fonction de la quantit\u00e9 de r\u00e9sine et du rapport de m\u00e9lange sp\u00e9cifique au produit utilis\u00e9. Le respect de cette valeur est essentiel au bon d\u00e9roulement du processus de polym\u00e9risation."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quantit\u00e9 n\u00e9cessaire de durcisseur"
+    },
+    {
+      "definition": [
+        "La raboteuse est une machine utilis\u00e9e pour obtenir une surface plane et une ar\u00eate parfaitement droite sur les pi\u00e8ces en bois. Il s'agit de l'une des op\u00e9rations de base dans la pr\u00e9paration du mat\u00e9riau avant le d\u00e9grossissage et l'usinage. La raboteuse peut \u00eatre manuelle ou \u00e9quip\u00e9e d'une table."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "rabotage de grande envergure",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Raboteuse"
+    },
+    {
+      "definition": [
+        "Le rapport de m\u00e9lange correspond \u00e0 la proportion dans laquelle la r\u00e9sine \u00e9poxy et le durcisseur doivent \u00eatre m\u00e9lang\u00e9s pour obtenir une polym\u00e9risation correcte. Ce rapport est d\u00e9fini par le fabricant et doit \u00eatre respect\u00e9 avec pr\u00e9cision, car il influe sur le temps de travail, le durcissement et les propri\u00e9t\u00e9s finales du mat\u00e9riau."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rapport de m\u00e9lange"
+    },
+    {
+      "definition": [
+        "Le dressage du bois est l'op\u00e9ration qui consiste \u00e0 mettre la surface d'une pi\u00e8ce \u00e0 niveau, en \u00e9liminant les d\u00e9formations, les irr\u00e9gularit\u00e9s et les imperfections. Ce processus garantit une base stable pour les op\u00e9rations d'usinage ult\u00e9rieures et contribue \u00e0 obtenir des assemblages et des moulages de qualit\u00e9."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "\u00c9talonnage"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "\u00c9paisseur uniforme",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Redressage du bois"
+    },
+    {
+      "definition": [
+        "La remise \u00e0 neuf de la surface est le processus par lequel une pi\u00e8ce us\u00e9e ou endommag\u00e9e retrouve un aspect et un niveau de protection proches de ceux d'origine. En fonction de l'\u00e9tat de la surface, ce processus peut inclure le pon\u00e7age, la r\u00e9paration des d\u00e9fauts et l'application d'une nouvelle couche de finition."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Remise \u00e0 neuf de la surface"
+    },
+    {
+      "definition": [
+        "Le durcisseur est le composant qui d\u00e9clenche la r\u00e9action chimique n\u00e9cessaire au durcissement de la r\u00e9sine \u00e9poxy. Il doit \u00eatre utilis\u00e9 exclusivement avec la r\u00e9sine pour laquelle il a \u00e9t\u00e9 con\u00e7u et selon le rapport de m\u00e9lange recommand\u00e9 par le fabricant, car tout \u00e9cart peut nuire \u00e0 la qualit\u00e9 et \u00e0 la r\u00e9sistance du mat\u00e9riau final."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Renfor\u00e7ateur"
+    },
+    {
+      "definition": [
+        "La r\u00e9action exothermique est le processus par lequel la r\u00e9sine \u00e9poxy d\u00e9gage de la chaleur pendant la polym\u00e9risation. La quantit\u00e9 de chaleur produite d\u00e9pend du type de r\u00e9sine, du volume du m\u00e9lange et de la temp\u00e9rature ambiante. Une r\u00e9action exothermique excessive peut nuire \u00e0 la qualit\u00e9 du moulage et endommager le mat\u00e9riau."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polym\u00e9risation"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9action exothermique"
+    },
+    {
+      "definition": [
+        "Une r\u00e9f\u00e9rence technique est une information document\u00e9e servant \u00e0 \u00e9tayer une explication, une recommandation ou une proc\u00e9dure. Dans le cadre de l'application, les r\u00e9f\u00e9rences techniques garantissent l'exactitude et la cr\u00e9dibilit\u00e9 du contenu p\u00e9dagogique."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9f\u00e9rence technique"
+    },
+    {
+      "definition": [
+        "La r\u00e9paration des d\u00e9fauts d\u00e9signe l'ensemble des op\u00e9rations effectu\u00e9es pour corriger les imperfections apparues lors du moulage, du durcissement ou de la finition d'une pi\u00e8ce. En fonction de la nature du d\u00e9faut, la r\u00e9paration peut inclure le nettoyage, le pon\u00e7age, le comblement \u00e0 la r\u00e9sine \u00e9poxy, le polissage ou toute autre intervention n\u00e9cessaire pour ramener la pi\u00e8ce au niveau de qualit\u00e9 souhait\u00e9."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9paration des d\u00e9fauts"
+    },
+    {
+      "definition": [
+        "La r\u00e9sine \u00e9poxy est un mat\u00e9riau bicomposant qui, apr\u00e8s avoir \u00e9t\u00e9 m\u00e9lang\u00e9 avec le durcisseur dans les proportions recommand\u00e9es, se transforme par r\u00e9action chimique en un mat\u00e9riau solide, r\u00e9sistant et durable. Dans le domaine du travail du bois, elle est utilis\u00e9e pour combler les cavit\u00e9s, r\u00e9aliser des moulages d\u00e9coratifs ou structurels et obtenir des surfaces transparentes ou pigment\u00e9es."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9sine \u00e9poxy"
+    },
+    {
+      "definition": [
+        "La r\u00e9sistance aux rayures d\u00e9signe la capacit\u00e9 d'une surface \u00e0 supporter le contact avec des objets durs sans pr\u00e9senter de rayures visibles. Cette propri\u00e9t\u00e9 d\u00e9pend du mat\u00e9riau utilis\u00e9, du type de finition et des conditions d'utilisation de la pi\u00e8ce."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9sistance aux rayures"
+    },
+    {
+      "definition": [
+        "La r\u00e9sistance chimique d\u00e9signe la capacit\u00e9 d'un mat\u00e9riau ou d'une finition \u00e0 r\u00e9sister au contact avec diff\u00e9rentes substances chimiques sans d\u00e9gradation significative de son aspect ou de ses propri\u00e9t\u00e9s. Le niveau de cette r\u00e9sistance varie en fonction du type de produit et de la nature des substances avec lesquelles il entre en contact."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9sistance chimique"
+    },
+    {
+      "definition": [
+        "La r\u00e9sistance \u00e0 l'humidit\u00e9 d\u00e9signe la capacit\u00e9 d'un mat\u00e9riau ou d'une finition \u00e0 conserver ses propri\u00e9t\u00e9s lorsqu'il est expos\u00e9 \u00e0 l'eau ou \u00e0 un environnement humide. Un niveau \u00e9lev\u00e9 de r\u00e9sistance \u00e0 l'humidit\u00e9 contribue \u00e0 pr\u00e9server la stabilit\u00e9 et l'aspect de la pi\u00e8ce au fil du temps."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "R\u00e9sistance \u00e0 l'humidit\u00e9"
+    },
+    {
+      "definition": [
+        "L'enregistrement du projet d\u00e9signe l'op\u00e9ration consistant \u00e0 enregistrer toutes les informations d'un projet dans un fichier HFZWood, afin de pouvoir le rouvrir et poursuivre son \u00e9dition ult\u00e9rieurement sans perte de donn\u00e9es."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sauver le projet"
+    },
+    {
+      "definition": [
+        "La scie circulaire est une machine ou un outil \u00e9quip\u00e9 d'une lame circulaire rotative, utilis\u00e9 pour couper le bois en longueur, en largeur ou selon diff\u00e9rents angles. La pr\u00e9cision et la stabilit\u00e9 de la coupe d\u00e9pendent des r\u00e9glages de la machine, du type de lame et de la mani\u00e8re dont le mat\u00e9riau est guid\u00e9."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "scie circulaire",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scie circulaire"
+    },
+    {
+      "definition": [
+        "La scie pendulaire est un outil \u00e9lectrique muni d\u2019une lame \u00e9troite qui effectue un mouvement alternatif vertical ; elle est utilis\u00e9e pour r\u00e9aliser des coupes droites ou courbes dans le bois et d\u2019autres mat\u00e9riaux. Gr\u00e2ce \u00e0 sa maniabilit\u00e9, elle est id\u00e9ale pour les d\u00e9coupes et les contours complexes."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "pendulaire",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scie pendulaire"
+    },
+    {
+      "definition": [
+        "La scie \u00e0 ruban est une machine de d\u00e9coupe qui utilise une lame continue mont\u00e9e sur deux ou plusieurs roues motrices. Elle permet de r\u00e9aliser des coupes pr\u00e9cises, tant droites que courbes, et est fr\u00e9quemment utilis\u00e9e pour la d\u00e9coupe du bois massif et l'usinage de pi\u00e8ces de formes irr\u00e9guli\u00e8res."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "scie \u00e0 ruban",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scie \u00e0 ruban"
+    },
+    {
+      "definition": [
+        "Le mastic silicone est un mat\u00e9riau \u00e9lastique utilis\u00e9 pour colmater les joints et les raccords du coffrage avant le coulage de la r\u00e9sine \u00e9poxy. Appliqu\u00e9 correctement, il emp\u00eache les fuites et s'enl\u00e8ve facilement apr\u00e8s le d\u00e9montage du coffrage."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Coffrage"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Silicone d'\u00e9tanch\u00e9it\u00e9"
+    },
+    {
+      "definition": [
+        "La stabilit\u00e9 dimensionnelle d\u00e9signe la capacit\u00e9 d'un mat\u00e9riau \u00e0 conserver sa forme et ses dimensions au fil du temps, malgr\u00e9 les variations de temp\u00e9rature et d'humidit\u00e9. Une grande stabilit\u00e9 dimensionnelle contribue \u00e0 la durabilit\u00e9 et au bon fonctionnement des r\u00e9alisations en bois et en r\u00e9sine \u00e9poxy."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Stabilit\u00e9 dimensionnelle"
+    },
+    {
+      "definition": [
+        "La composition du projet d\u00e9signe la mani\u00e8re dont tous les \u00e9l\u00e9ments qui constituent la pi\u00e8ce finale \u2013 tels que le bois, la r\u00e9sine \u00e9poxy et les \u00e9ventuels \u00e9l\u00e9ments d\u00e9coratifs \u2013 sont agenc\u00e9s et int\u00e9gr\u00e9s. Une composition bien pens\u00e9e garantit \u00e0 la fois l'\u00e9quilibre esth\u00e9tique et la fonctionnalit\u00e9 du projet."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Structure du projet"
+    },
+    {
+      "definition": [
+        "Le Router Sled est un syst\u00e8me de guidage qui permet le d\u00e9placement contr\u00f4l\u00e9 d\u2019une d\u00e9fonceuse au-dessus d\u2019une pi\u00e8ce de grandes dimensions. Ce dispositif est utilis\u00e9 pour le nivellement de surfaces qui ne peuvent pas \u00eatre usin\u00e9es avec une raboteuse, telles que les tables de type \u00ab River Table \u00bb ou d'autres panneaux de grandes dimensions."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "routeur sleed",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Support pour routeur"
+    },
+    {
+      "definition": [
+        "La surchauffe, \u00e9galement appel\u00e9e \u00ab Overheating \u00bb, correspond \u00e0 une augmentation excessive de la temp\u00e9rature de la r\u00e9sine \u00e9poxy pendant la polym\u00e9risation. Ce ph\u00e9nom\u00e8ne se produit g\u00e9n\u00e9ralement lors de coul\u00e9es trop \u00e9paisses ou en grands volumes et peut entra\u00eener des fissures, des d\u00e9formations, un jaunissement ou d'autres d\u00e9fauts de la pi\u00e8ce."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surchauffe"
+    },
+    {
+      "definition": [
+        "La surface collante est un d\u00e9faut caract\u00e9ris\u00e9 par le fait que la r\u00e9sine reste molle ou adh\u00e9rente au toucher apr\u00e8s la p\u00e9riode normale de durcissement. Ce ph\u00e9nom\u00e8ne indique g\u00e9n\u00e9ralement un probl\u00e8me survenu lors du m\u00e9lange, de la polym\u00e9risation ou du non-respect des conditions d'utilisation recommand\u00e9es."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surface adh\u00e9sive"
+    },
+    {
+      "definition": [
+        "L'aire calcul\u00e9e correspond \u00e0 la surface d\u00e9termin\u00e9e automatiquement par l'application \u00e0 partir du polygone de mesure d\u00e9fini par l'utilisateur. Cette valeur est utilis\u00e9e dans les calculs g\u00e9om\u00e9triques et permet d'estimer le volume et la quantit\u00e9 de r\u00e9sine n\u00e9cessaire."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surface calcul\u00e9e"
+    },
+    {
+      "definition": [
+        "La s\u00e9dimentation du pigment est le ph\u00e9nom\u00e8ne par lequel les particules de pigment se d\u00e9posent au fond du moulage avant que la r\u00e9sine ne durcisse compl\u00e8tement. Ce ph\u00e9nom\u00e8ne peut modifier l'aspect final de la pi\u00e8ce et d\u00e9pend du type de pigment, de la viscosit\u00e9 de la r\u00e9sine et de la dur\u00e9e du processus de durcissement."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "S\u00e9dimentation du pigment"
+    },
+    {
+      "definition": [
+        "La s\u00e9paration du pigment correspond \u00e0 une r\u00e9partition in\u00e9gale du pigment dans la masse de r\u00e9sine \u00e9poxy, ce qui entra\u00eene des diff\u00e9rences visibles de couleur ou d'aspect. Ce ph\u00e9nom\u00e8ne peut \u00eatre d\u00fb \u00e0 un m\u00e9lange insuffisant, \u00e0 l'incompatibilit\u00e9 des produits ou aux conditions de durcissement."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "S\u00e9paration du pigment"
+    },
+    {
+      "definition": [
+        "La table \u00ab River Table \u00bb est un type de table compos\u00e9e de deux ou plusieurs morceaux de bois entre lesquels on coule de la r\u00e9sine \u00e9poxy, formant ainsi une zone centrale qui rappelle le cours d\u2019une rivi\u00e8re. Ce style de conception met en valeur les veines naturelles du bois et constitue l'une des applications les plus connues de la r\u00e9sine \u00e9poxy dans le domaine du mobilier."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Table River"
+    },
+    {
+      "definition": [
+        "Le tampon de polissage est un accessoire mont\u00e9 sur la polisseuse, utilis\u00e9 pour appliquer et r\u00e9partir uniform\u00e9ment les compos\u00e9s de polissage sur la surface. Les tampons sont fabriqu\u00e9s \u00e0 partir de diff\u00e9rents mat\u00e9riaux, chacun \u00e9tant destin\u00e9 \u00e0 un certain niveau de correction ou de finition."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "tampon de polissage",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tampon \u00e0 polir"
+    },
+    {
+      "definition": [
+        "Le temps de durcissement correspond \u00e0 la p\u00e9riode n\u00e9cessaire pour que la r\u00e9sine \u00e9poxy d\u00e9veloppe ses propri\u00e9t\u00e9s m\u00e9caniques et puisse \u00eatre manipul\u00e9e ou trait\u00e9e en toute s\u00e9curit\u00e9. La dur\u00e9e de ce processus d\u00e9pend du type de r\u00e9sine, de la temp\u00e9rature ambiante et des conditions de travail."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temps de durcissement"
+    },
+    {
+      "definition": [
+        "Le temps de g\u00e9lification correspond \u00e0 la dur\u00e9e n\u00e9cessaire pour que la r\u00e9sine \u00e9poxy passe de l'\u00e9tat liquide \u00e0 un \u00e9tat g\u00e9latineux, dans lequel elle ne peut plus s'\u00e9couler librement. Ce moment marque la fin de la possibilit\u00e9 de modeler ou de corriger le moulage et pr\u00e9c\u00e8de la phase de durcissement complet."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temps de g\u00e9lification"
+    },
+    {
+      "definition": [
+        "La temp\u00e9rature ambiante correspond \u00e0 la temp\u00e9rature de l\u2019air dans le local o\u00f9 sont stock\u00e9es, m\u00e9lang\u00e9es et utilis\u00e9es les r\u00e9sines \u00e9poxy. Elle influe sur la viscosit\u00e9, le temps de travail, la vitesse de polym\u00e9risation et la qualit\u00e9 finale du moulage ; c'est pourquoi elle doit \u00eatre maintenue dans la plage recommand\u00e9e par le fabricant."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temp\u00e9rature ambiante"
+    },
+    {
+      "definition": [
+        "Les contraintes internes sont des contraintes pr\u00e9sentes dans la structure du bois, r\u00e9sultant du processus naturel de croissance ou d\u2019un s\u00e9chage irr\u00e9gulier. Elles peuvent entra\u00eener des d\u00e9formations, des fissures ou des variations dimensionnelles lors de la transformation et de l'utilisation. L'identification et la r\u00e9duction des effets des tensions internes contribuent \u00e0 la r\u00e9alisation de projets stables et durables."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tensions internes"
+    },
+    {
+      "definition": [
+        "La toile abrasive est un mat\u00e9riau abrasif \u00e0 structure perfor\u00e9e, con\u00e7u pour permettre une \u00e9vacuation efficace de la poussi\u00e8re pendant le pon\u00e7age. Son utilisation r\u00e9duit l'accumulation de poussi\u00e8re sur la surface abrasive, prolonge sa dur\u00e9e de vie et contribue \u00e0 obtenir une finition plus uniforme."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "toile abrasive",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Disques abrasifs"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Toile abrasive"
+    },
+    {
+      "definition": [
+        "Le chalumeau \u00e0 gaz est un outil qui produit une flamme contr\u00f4l\u00e9e et qui sert \u00e0 \u00e9liminer les bulles d'air \u00e0 la surface de la r\u00e9sine \u00e9poxy imm\u00e9diatement apr\u00e8s le coulage. Son utilisation n\u00e9cessite une certaine prudence, car une exposition excessive \u00e0 la chaleur peut endommager la r\u00e9sine ou les mat\u00e9riaux environnants."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "torche",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bulles d'air"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Torche \u00e0 gaz"
+    },
+    {
+      "definition": [
+        "La viscosit\u00e9 correspond au degr\u00e9 de fluidit\u00e9 de la r\u00e9sine \u00e9poxy, c'est-\u00e0-dire \u00e0 sa r\u00e9sistance \u00e0 l'\u00e9coulement. Une r\u00e9sine \u00e0 faible viscosit\u00e9 p\u00e9n\u00e8tre plus facilement dans les pores et les cavit\u00e9s, tandis qu'une r\u00e9sine \u00e0 viscosit\u00e9 \u00e9lev\u00e9e est plus adapt\u00e9e aux applications n\u00e9cessitant un contr\u00f4le de l'\u00e9coulement ou la r\u00e9alisation de couches plus \u00e9paisses."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Temps de durcissement"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Dur\u00e9e de vie en pot (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Temps de g\u00e9lification"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "R\u00e9action exothermique"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Viscosit\u00e9"
+    },
+    {
+      "definition": [
+        "Le volume de coul\u00e9e correspond \u00e0 la quantit\u00e9 totale de r\u00e9sine \u00e9poxy n\u00e9cessaire pour remplir une zone ou r\u00e9aliser une coul\u00e9e compl\u00e8te. Il est d\u00e9termin\u00e9 en fonction des dimensions g\u00e9om\u00e9triques du projet et constitue l'un des principaux r\u00e9sultats calcul\u00e9s par l'application HFZWood."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "M\u00e9lange"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Bulles d'air"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "D\u00e9gazage - D\u00e9graissage"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polym\u00e9risation"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "R\u00e9action exothermique"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Temp\u00e9rature ambiante"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Coul\u00e9e en profondeur (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Coul\u00e9e en couches"
+        },
+        {
+          "id": "turnare",
+          "term": "Coul\u00e9e"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume de coul\u00e9e"
+    },
+    {
+      "definition": [
+        "Le volume des cavit\u00e9s correspond au volume total des vides pr\u00e9sents dans le bois qui doivent \u00eatre combl\u00e9s avec de la r\u00e9sine \u00e9poxy. Il s'agit de l'un des \u00e9l\u00e9ments utilis\u00e9s par HFZWood pour estimer la quantit\u00e9 de mat\u00e9riau n\u00e9cessaire au projet."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume des cavit\u00e9s"
+    },
+    {
+      "definition": [
+        "Le volume total du projet correspond au volume occup\u00e9 par la pi\u00e8ce finie dans son ensemble, y compris le bois et la r\u00e9sine \u00e9poxy. Ce param\u00e8tre sert de base aux calculs effectu\u00e9s par l'application et permet de d\u00e9terminer les quantit\u00e9s de mat\u00e9riaux n\u00e9cessaires."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume total du projet"
+    },
+    {
+      "definition": [
+        "Les \u00ab yeux de poisson \u00bb, \u00e9galement appel\u00e9s \u00ab Fish Eyes \u00bb, sont des d\u00e9fauts de surface qui se pr\u00e9sentent sous la forme de zones circulaires dans lesquelles la r\u00e9sine se r\u00e9tracte et n'adh\u00e8re pas uniform\u00e9ment. Ils sont g\u00e9n\u00e9ralement caus\u00e9s par la contamination de la surface par des huiles, du silicone ou d\u2019autres substances qui r\u00e9duisent l\u2019adh\u00e9rence."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Yeux de poisson"
+    },
+    {
+      "definition": [
+        "La zone de coul\u00e9e correspond \u00e0 la surface de la pi\u00e8ce destin\u00e9e \u00e0 \u00eatre remplie de r\u00e9sine \u00e9poxy. Elle peut inclure des cavit\u00e9s, les espaces entre les pi\u00e8ces en bois ou d\u2019autres zones d\u00e9limit\u00e9es par l\u2019utilisateur pour la r\u00e9alisation de la coul\u00e9e."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zone de coul\u00e9e"
+    },
+    {
+      "definition": [
+        "L'\u00e9chelle de l'image correspond au rapport entre les dimensions figurant sur la photographie et les dimensions r\u00e9elles de l'objet mesur\u00e9. Une d\u00e9termination correcte de l'\u00e9chelle permet d'effectuer des calculs pr\u00e9cis dans le cadre du projet."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9chelle de l'image"
+    },
+    {
+      "definition": [
+        "L'effet \u00ab peau d'orange \u00bb, \u00e9galement appel\u00e9 \u00ab Orange Peel \u00bb, est un d\u00e9faut de surface caract\u00e9ris\u00e9 par une texture irr\u00e9guli\u00e8re qui ressemble \u00e0 la peau d'une orange. Ce d\u00e9faut peut appara\u00eetre en raison des conditions d'application, d'une viscosit\u00e9 inadapt\u00e9e ou d'autres facteurs affectant l'\u00e9talement de la r\u00e9sine."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9corce d'orange"
+    },
+    {
+      "definition": [
+        "L'\u00e9corce instable est une \u00e9corce qui n'adh\u00e8re pas fermement au bois et qui peut se d\u00e9tacher pendant l'usinage ou apr\u00e8s le coulage de la r\u00e9sine. Dans la plupart des projets, elle doit \u00eatre retir\u00e9e pour \u00e9viter l'apparition de vides, de d\u00e9collements ou d'autres probl\u00e8mes d'adh\u00e9rence."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Bordure naturelle"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9corce instable"
+    },
+    {
+      "definition": [
+        "L'\u00e9paisseur de la couche de coul\u00e9e correspond \u00e0 la hauteur de la couche de r\u00e9sine \u00e9poxy appliqu\u00e9e en une seule fois. Elle doit se situer dans la fourchette recommand\u00e9e par le fabricant pour le type de r\u00e9sine utilis\u00e9, afin que le processus de polym\u00e9risation se d\u00e9roule dans des conditions optimales et sans apparition de d\u00e9fauts."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "D\u00e9gazage - D\u00e9graissage"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Renfor\u00e7ateur"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "R\u00e9sine \u00e9poxy"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Coul\u00e9e en couches"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Coul\u00e9e en profondeur (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9paisseur de la couche de coul\u00e9e"
+    },
+    {
+      "definition": [
+        "L'\u00e9paisseur uniforme d\u00e9signe le fait qu'une pi\u00e8ce de bois pr\u00e9sente la m\u00eame \u00e9paisseur sur toute sa surface. Le maintien d'une \u00e9paisseur constante facilite l'usinage, l'assemblage et le calcul correct du volume dans les projets r\u00e9alis\u00e9s avec de la r\u00e9sine \u00e9poxy."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Redressage du bois",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "\u00c9paisseur uniforme"
+    },
+    {
+      "definition": [
+        "L'\u00e9quipement de protection individuelle d\u00e9signe l'ensemble des \u00e9quipements port\u00e9s par l'op\u00e9rateur afin de r\u00e9duire les risques li\u00e9s \u00e0 la transformation du bois et \u00e0 l'utilisation de r\u00e9sines \u00e9poxy. Cette cat\u00e9gorie comprend, entre autres, les masques respiratoires, les lunettes de protection, les gants et les protections auditives."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9quipement de protection individuelle"
+    },
+    {
+      "definition": [
+        "L'\u00e9tabli est la surface ou la table destin\u00e9e \u00e0 la r\u00e9alisation des op\u00e9rations d'usinage, d'assemblage et de finition. Un \u00e9tabli stable et suffisamment rigide contribue \u00e0 la pr\u00e9cision des op\u00e9rations et au d\u00e9roulement en toute s\u00e9curit\u00e9 des activit\u00e9s dans l'atelier."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9tabli"
+    },
+    {
+      "definition": [
+        "La calibration est le processus par lequel une image est ramen\u00e9e \u00e0 une \u00e9chelle de mesure r\u00e9elle \u00e0 l'aide d'une dimension connue. Dans HFZWood, la calibration permet de convertir les mesures effectu\u00e9es sur l'image en dimensions r\u00e9elles, garantissant ainsi la pr\u00e9cision des calculs de surface et de volume."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Redressage du bois"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9talonnage"
+    },
+    {
+      "definition": [
+        "L'\u00e9tanch\u00e9it\u00e9 consiste \u00e0 emp\u00eacher la r\u00e9sine \u00e9poxy de s'\u00e9couler du coffrage pendant le coulage et le durcissement. Une \u00e9tanch\u00e9it\u00e9 correctement r\u00e9alis\u00e9e \u00e9vite les pertes de mat\u00e9riau, pr\u00e9serve la forme de l'ouvrage et contribue \u00e0 obtenir un coulage sans d\u00e9fauts."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9tanch\u00e9it\u00e9"
+    },
+    {
+      "definition": [
+        "L'\u00e9tau est un dispositif de serrage utilis\u00e9 pour immobiliser fermement les pi\u00e8ces pendant leur usinage. Un serrage ad\u00e9quat am\u00e9liore la pr\u00e9cision des op\u00e9rations et r\u00e9duit le risque de d\u00e9placement accidentel de la pi\u00e8ce."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "\u00e9tau",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00c9tau"
+    },
+    {
+      "definition": [
+        "Un \u00eelot de bois est une partie de bois enti\u00e8rement entour\u00e9e d\u2019une zone de coul\u00e9e en r\u00e9sine \u00e9poxy ou d\u2019un coffrage, sans lien direct avec le reste de la pi\u00e8ce en bois situ\u00e9e dans la m\u00eame zone. Dans HFZWood, les \u00eelots de bois sont d\u00e9finis s\u00e9par\u00e9ment afin que le volume et la quantit\u00e9 de r\u00e9sine n\u00e9cessaire soient calcul\u00e9s correctement."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Coffrage"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00cele en bois"
+    }
+  ],
   "locale": "fr"
 }

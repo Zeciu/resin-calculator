@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "Aktualizace projektu je operace, p\u0159i kter\u00e9 se zm\u011bny proveden\u00e9 v existuj\u00edc\u00edm projektu ulo\u017e\u00ed, ani\u017e by byl vytvo\u0159en nov\u00fd projekt. Tato operace zachov\u00e1v\u00e1 identitu projektu a nahrazuje d\u0159\u00edve ulo\u017eenou verzi aktualizovanou verz\u00ed."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aktualizace projektu"
+    },
+    {
+      "definition": [
+        "B\u011bl je vn\u011bj\u0161\u00ed \u010d\u00e1st d\u0159eva, kter\u00e1 se nach\u00e1z\u00ed mezi j\u00e1drem a k\u016frou. Tato \u010d\u00e1st kmene transportuje vodu a \u017eiviny b\u011bhem \u017eivota stromu a je zpravidla sv\u011btlej\u0161\u00ed a citliv\u011bj\u0161\u00ed na vlhkost a biologick\u00fd \u00fatok. V z\u00e1vislosti na projektu m\u016f\u017ee b\u00fdt b\u011bl zachov\u00e1na z estetick\u00fdch d\u016fvod\u016f nebo odstran\u011bna pro zaji\u0161t\u011bn\u00ed lep\u0161\u00ed stability."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "b\u011blov\u00e9",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Duramen"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Duramen",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "Bedn\u011bn\u00ed je do\u010dasn\u00e1 konstrukce, kter\u00e1 slou\u017e\u00ed k podep\u0159en\u00ed a ohrani\u010den\u00ed epoxidov\u00e9 prysky\u0159ice b\u011bhem lit\u00ed a vytvrzov\u00e1n\u00ed. Mus\u00ed b\u00fdt t\u011bsn\u00e9, stabiln\u00ed a vyroben\u00e9 z materi\u00e1l\u016f, kter\u00e9 umo\u017e\u0148uj\u00ed snadn\u00e9 vyjmut\u00ed d\u00edlu po dokon\u010den\u00ed procesu."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bedn\u011bn\u00ed"
+    },
+    {
+      "definition": [
+        "Bezpe\u010dnostn\u00ed faktor p\u0159edstavuje mno\u017estv\u00ed materi\u00e1lu nav\u00edc, kter\u00e9 se p\u0159id\u00e1v\u00e1 k vypo\u010d\u00edtan\u00e9 hodnot\u011b, aby se kompenzovaly b\u011b\u017en\u00e9 ztr\u00e1ty vznikaj\u00edc\u00ed p\u0159i p\u0159\u00edprav\u011b a lit\u00ed. Pou\u017eit\u00ed bezpe\u010dnostn\u00edho faktoru sni\u017euje riziko, \u017ee v\u00e1m dojde prysky\u0159ice je\u0161t\u011b p\u0159ed dokon\u010den\u00edm projektu."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bezpe\u010dnostn\u00ed faktor"
+    },
+    {
+      "definition": [
+        "Biologick\u00fd \u00fatok p\u0159edstavuje po\u0161kozen\u00ed d\u0159eva zp\u016fsoben\u00e9 houbami, pl\u00edsn\u011bmi, bakteriemi nebo d\u0159evokazn\u00fdm hmyzem. Jeho intenzita m\u016f\u017ee ovlivnit jak mechanickou pevnost, tak vzhled dan\u00e9ho kusu. Napaden\u00e9 d\u0159evo je t\u0159eba p\u0159ed pou\u017eit\u00edm v projektu s epoxidovou prysky\u0159ic\u00ed pe\u010dliv\u011b posoudit."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "biologick\u00fd \u00fatok",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Nestabiln\u00ed d\u0159evo"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Biologick\u00fd \u00fatok"
+    },
+    {
+      "definition": [
+        "Boloboc, naz\u00fdvan\u00fd tak\u00e9 vodov\u00e1ha, je n\u00e1stroj pou\u017e\u00edvan\u00fd ke kontrole vodorovnosti nebo svislosti povrchu. P\u0159i realizaci projekt\u016f s epoxidovou prysky\u0159ic\u00ed se pou\u017e\u00edv\u00e1 k vyrovn\u00e1n\u00ed bedn\u011bn\u00ed a ke kontrole spr\u00e1vn\u00e9ho um\u00edst\u011bn\u00ed d\u00edl\u016f p\u0159ed lit\u00edm."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Vyrovn\u00e1n\u00ed bedn\u011bn\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (vodov\u00e1ha)"
+    },
+    {
+      "definition": [
+        "Brou\u0161en\u00ed je proces \u00fapravy povrchu d\u0159eva nebo epoxidov\u00e9 prysky\u0159ice pomoc\u00ed brusiv, jeho\u017e c\u00edlem je odstranit nedokonalosti a dos\u00e1hnout hladk\u00e9ho, rovnom\u011brn\u00e9ho povrchu p\u0159ipraven\u00e9ho pro dal\u0161\u00ed f\u00e1ze povrchov\u00e9 \u00fapravy."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Brou\u0161en\u00ed"
+    },
+    {
+      "definition": [
+        "Brusn\u00e1 pasta je le\u0161tic\u00ed sm\u011bs obsahuj\u00edc\u00ed jemn\u00e9 brusn\u00e9 \u010d\u00e1stice, kter\u00e1 se pou\u017e\u00edv\u00e1 k odstran\u011bn\u00ed nedokonalost\u00ed zb\u00fdvaj\u00edc\u00edch po brou\u0161en\u00ed. V\u00fdb\u011br typu pasty z\u00e1vis\u00ed na stavu povrchu a po\u017eadovan\u00e9 \u00farovni povrchov\u00e9 \u00fapravy."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "brusn\u00e1 pasta",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Brusn\u00e1 pasta"
+    },
+    {
+      "definition": [
+        "Brusn\u00e1 s\u00ed\u0165 je brusn\u00fd materi\u00e1l s perforovanou strukturou, navr\u017een\u00fd tak, aby umo\u017e\u0148oval \u00fa\u010dinn\u00e9 odv\u00e1d\u011bn\u00ed prachu b\u011bhem brou\u0161en\u00ed. Jeho pou\u017eit\u00ed sni\u017euje zan\u00e1\u0161en\u00ed brusn\u00e9 plochy prachem, prodlu\u017euje \u017eivotnost a p\u0159isp\u00edv\u00e1 k dosa\u017een\u00ed rovnom\u011brn\u011bj\u0161\u00edho povrchu."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "brusn\u00e1 s\u00ed\u0165",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Brusn\u00e9 kotou\u010de"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Brusn\u00e1 s\u00ed\u0165ka"
+    },
+    {
+      "definition": [
+        "Brusn\u00e9 kotou\u010de jsou kruhov\u00e9 spot\u0159ebn\u00ed materi\u00e1ly pou\u017e\u00edvan\u00e9 spole\u010dn\u011b s brusn\u00fdmi stroji pro zpracov\u00e1n\u00ed d\u0159eva a epoxidov\u00fdch prysky\u0159ic. Jsou k dispozici v r\u016fzn\u00fdch zrnitostn\u00edch t\u0159\u00edd\u00e1ch a umo\u017e\u0148uj\u00ed \u0159\u00edzen\u00e9 odstra\u0148ov\u00e1n\u00ed materi\u00e1lu v z\u00e1vislosti na f\u00e1zi zpracov\u00e1n\u00ed."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "brusn\u00fd kotou\u010d",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Brusn\u00e9 kotou\u010de"
+    },
+    {
+      "definition": [
+        "Brusn\u00fd pap\u00edr je pru\u017en\u00fd materi\u00e1l pota\u017een\u00fd brusn\u00fdmi \u010d\u00e1sticemi, kter\u00fd se pou\u017e\u00edv\u00e1 k ru\u010dn\u00edmu nebo strojov\u00e9mu brou\u0161en\u00ed povrch\u016f. Volba spr\u00e1vn\u00e9 zrnitosti ovliv\u0148uje kvalitu povrchov\u00e9 \u00fapravy a efektivitu obr\u00e1b\u011bc\u00edho procesu."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Brusn\u00fd pap\u00edr"
+    },
+    {
+      "definition": [
+        "Celkov\u00fd objem projektu p\u0159edstavuje objem, kter\u00fd zab\u00edr\u00e1 cel\u00fd hotov\u00fd d\u00edl, v\u010detn\u011b d\u0159eva i epoxidov\u00e9 prysky\u0159ice. Tento parametr je z\u00e1kladem v\u00fdpo\u010dt\u016f prov\u00e1d\u011bn\u00fdch aplikac\u00ed a umo\u017e\u0148uje ur\u010dit pot\u0159ebn\u00e9 mno\u017estv\u00ed materi\u00e1lu."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Celkov\u00fd objem projektu"
+    },
+    {
+      "definition": [
+        "Chemick\u00e1 odolnost p\u0159edstavuje schopnost materi\u00e1lu nebo povrchov\u00e9 \u00fapravy odol\u00e1vat kontaktu s r\u016fzn\u00fdmi chemick\u00fdmi l\u00e1tkami bez v\u00fdznamn\u00e9ho zhor\u0161en\u00ed vzhledu nebo vlastnost\u00ed. \u00darove\u0148 t\u00e9to odolnosti se li\u0161\u00ed v z\u00e1vislosti na typu v\u00fdrobku a povaze l\u00e1tek, s nimi\u017e p\u0159ich\u00e1z\u00ed do styku."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Chemick\u00e1 odolnost"
+    },
+    {
+      "definition": [
+        "CNC (Computer Numerical Control) je syst\u00e9m automatizovan\u00e9ho obr\u00e1b\u011bn\u00ed, ve kter\u00e9m jsou pohyby stroje \u0159\u00edzeny po\u010d\u00edta\u010dov\u00fdm programem. P\u0159i zpracov\u00e1n\u00ed d\u0159eva se CNC stroje pou\u017e\u00edvaj\u00ed k \u0159ez\u00e1n\u00ed, fr\u00e9zov\u00e1n\u00ed, grav\u00edrov\u00e1n\u00ed a vytv\u00e1\u0159en\u00ed slo\u017eit\u00fdch tvar\u016f s vysokou p\u0159esnost\u00ed a opakovatelnost\u00ed."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC"
+    },
+    {
+      "definition": [
+        "Deformace bedn\u011bn\u00ed p\u0159edstavuje zm\u011bnu tvaru nebo polohy bedn\u011bn\u00ed b\u011bhem lit\u00ed nebo tuhnut\u00ed epoxidov\u00e9 prysky\u0159ice. M\u016f\u017ee b\u00fdt zp\u016fsobena tlakem prysky\u0159ice, nedostate\u010dn\u00fdm upevn\u011bn\u00edm nebo sn\u00ed\u017eenou tuhost\u00ed bedn\u011bn\u00ed a m\u016f\u017ee v\u00e9st ke zm\u011bn\u011b rozm\u011br\u016f konstrukce."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deformace bedn\u011bn\u00ed"
+    },
+    {
+      "definition": [
+        "Deformace d\u0159eva p\u0159edstavuje zm\u011bnu p\u016fvodn\u00edho tvaru d\u0159ev\u011bn\u00e9ho d\u00edlu v d\u016fsledku kol\u00eds\u00e1n\u00ed vlhkosti, vnit\u0159n\u00edch pnut\u00ed nebo jin\u00fdch faktor\u016f, kter\u00e9 ovliv\u0148uj\u00ed stabilitu materi\u00e1lu. Nej\u010dast\u011bj\u0161\u00edmi formami deformace jsou ohyb, zkroucen\u00ed a prohnut\u00ed."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deformace d\u0159eva"
+    },
+    {
+      "definition": [
+        "Delaminace p\u0159edstavuje odlou\u010den\u00ed nebo odd\u011blen\u00ed vrstev materi\u00e1lu nebo k sob\u011b slepen\u00fdch povrch\u016f. U projekt\u016f s pou\u017eit\u00edm epoxidov\u00e9 prysky\u0159ice delaminace signalizuje ztr\u00e1tu p\u0159ilnavosti a m\u016f\u017ee ohrozit jak mechanickou pevnost, tak i kone\u010dn\u00fd vzhled d\u00edlu."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Delaminace"
+    },
+    {
+      "definition": [
+        "Demont\u00e1\u017e je proces odstran\u011bn\u00ed bedn\u011bn\u00ed pot\u00e9, co epoxidov\u00e1 prysky\u0159ice dostate\u010dn\u011b ztvrdla, aby si zachovala sv\u016fj tvar. Tuto f\u00e1zi je t\u0159eba prov\u00e1d\u011bt opatrn\u011b, aby nedo\u0161lo k po\u0161kozen\u00ed v\u00fdrobku nebo odlit\u00fdch hran."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Demulace"
+    },
+    {
+      "definition": [
+        "Doba gelace je doba pot\u0159ebn\u00e1 k tomu, aby epoxidov\u00e1 prysky\u0159ice p\u0159e\u0161la z tekut\u00e9ho stavu do gelovit\u00e9ho stavu, ve kter\u00e9m ji\u017e nem\u016f\u017ee voln\u011b t\u00e9ct. Tento okam\u017eik zna\u010d\u00ed konec mo\u017enosti tvarov\u00e1n\u00ed nebo opravy odlitku a p\u0159edch\u00e1z\u00ed f\u00e1zi \u00fapln\u00e9ho vytvrzen\u00ed."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Doba gelifikace"
+    },
+    {
+      "definition": [
+        "Doba vytvrzov\u00e1n\u00ed p\u0159edstavuje \u010das pot\u0159ebn\u00fd k tomu, aby epoxidov\u00e1 prysky\u0159ice z\u00edskala sv\u00e9 mechanick\u00e9 vlastnosti a bylo mo\u017en\u00e9 s n\u00ed bezpe\u010dn\u011b manipulovat nebo ji d\u00e1le zpracov\u00e1vat. D\u00e9lka tohoto procesu z\u00e1vis\u00ed na typu prysky\u0159ice, teplot\u011b okol\u00ed a pracovn\u00edch podm\u00ednk\u00e1ch."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Doba vytvrzov\u00e1n\u00ed"
+    },
+    {
+      "definition": [
+        "Doba zpracovatelnosti, zn\u00e1m\u00e1 tak\u00e9 pod n\u00e1zvem Pot Life, p\u0159edstavuje \u010dasov\u00fd interval, b\u011bhem kter\u00e9ho lze sm\u011bs prysky\u0159ice a tu\u017eidla pou\u017e\u00edvat, ne\u017e za\u010dne viskozita v\u00fdrazn\u011b stoupat. Po uplynut\u00ed tohoto intervalu ji\u017e nelze materi\u00e1l lit ani zpracov\u00e1vat za optim\u00e1ln\u00edch podm\u00ednek."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "M\u00edch\u00e1n\u00ed"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Doba zpracovatelnosti (Pot Life)"
+    },
+    {
+      "definition": [
+        "Le\u0161tic\u00ed pasta je p\u0159\u00edpravek s velmi n\u00edzkou abrazivitou, kter\u00fd se pou\u017e\u00edv\u00e1 v posledn\u00ed f\u00e1zi le\u0161t\u011bn\u00ed k vylep\u0161en\u00ed lesku a \u010distoty povrchu. Odstra\u0148uje velmi jemn\u00e9 stopy, kter\u00e9 z\u016fstaly po le\u0161t\u011bn\u00ed, a p\u0159isp\u00edv\u00e1 k dosa\u017een\u00ed vysoce kvalitn\u00edho povrchu."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dokon\u010dovac\u00ed pasta"
+    },
+    {
+      "definition": [
+        "Duramen p\u0159edstavuje centr\u00e1ln\u00ed, zralou a hust\u0161\u00ed \u010d\u00e1st kmene stromu. Obecn\u011b m\u00e1 vy\u0161\u0161\u00ed odolnost proti vlhkosti, pl\u00edsn\u00edm a hmyzu ne\u017e b\u011blov\u00e9 d\u0159evo a d\u00edky sv\u00e9 stabilit\u011b a vzhledu je preferov\u00e1n pro v\u00fdrobu n\u00e1bytku a dekorativn\u00edch projekt\u016f s pou\u017eit\u00edm epoxidov\u00e9 prysky\u0159ice."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "b\u011blov\u00e9 d\u0159evo",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Duramen"
+    },
+    {
+      "definition": [
+        "Dutina je p\u0159irozen\u00e1 nebo v d\u016fsledku rozkladu d\u0159eva vznikl\u00e1 dutina, kterou lze z konstruk\u010dn\u00edch nebo dekorativn\u00edch d\u016fvod\u016f vyplnit epoxidovou prysky\u0159ic\u00ed. Tvar a rozm\u011bry dutin p\u0159\u00edmo ovliv\u0148uj\u00ed mno\u017estv\u00ed prysky\u0159ice pot\u0159ebn\u00e9 k realizaci projektu."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "D\u0159ev\u011bn\u00fd uzel"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Trhlina",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Dutina"
+    },
+    {
+      "definition": [
+        "D\u00e1vkov\u00e1n\u00ed pigmentu p\u0159edstavuje mno\u017estv\u00ed pigmentu p\u0159idan\u00e9ho do epoxidov\u00e9 prysky\u0159ice za \u00fa\u010delem dosa\u017een\u00ed po\u017eadovan\u00e9 barvy a kryvosti. Dodr\u017eov\u00e1n\u00ed d\u00e1vkov\u00e1n\u00ed doporu\u010den\u00e9ho v\u00fdrobcem je d\u016fle\u017eit\u00e9 pro zachov\u00e1n\u00ed mechanick\u00fdch vlastnost\u00ed a norm\u00e1ln\u00edho pr\u016fb\u011bhu polymerizace prysky\u0159ice."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00e1vkov\u00e1n\u00ed pigmentu"
+    },
+    {
+      "definition": [
+        "Respira\u010dn\u00ed maska je osobn\u00ed ochrann\u00fd prost\u0159edek ur\u010den\u00fd k filtraci \u010d\u00e1stic, par nebo jin\u00fdch zne\u010di\u0161\u0165uj\u00edc\u00edch l\u00e1tek z vdechovan\u00e9ho vzduchu. Pou\u017e\u00edv\u00e1n\u00ed vhodn\u00e9 masky se doporu\u010duje p\u0159i brou\u0161en\u00ed, zpracov\u00e1n\u00ed d\u0159eva a manipulaci s chemick\u00fdmi l\u00e1tkami v souladu s pokyny v\u00fdrobc\u016f."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u00fdchac\u00ed maska"
+    },
+    {
+      "definition": [
+        "D\u0159ev\u011bn\u00fd ostrov p\u0159edstavuje \u010d\u00e1st d\u0159eva zcela obklopenou oblast\u00ed zalitou epoxidovou prysky\u0159ic\u00ed nebo bedn\u011bn\u00edm, bez p\u0159\u00edm\u00e9ho spojen\u00ed se zbytkem d\u0159ev\u011bn\u00e9ho d\u00edlu ve stejn\u00e9 oblasti. V programu HFZWood se d\u0159ev\u011bn\u00e9 ostrovy definuj\u00ed samostatn\u011b, aby bylo mo\u017en\u00e9 spr\u00e1vn\u011b vypo\u010d\u00edtat objem a pot\u0159ebn\u00e9 mno\u017estv\u00ed prysky\u0159ice."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Bedn\u011bn\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u0159ev\u011bn\u00fd ostrov"
+    },
+    {
+      "definition": [
+        "Suk je \u010d\u00e1st d\u0159eva, do kter\u00e9 se b\u011bhem r\u016fstu stromu vpletla v\u011btev. Suki mohou ovliv\u0148ovat estetick\u00fd vzhled, mechanickou pevnost a chov\u00e1n\u00ed d\u0159eva p\u0159i zpracov\u00e1n\u00ed a jsou hodnoceny individu\u00e1ln\u011b podle velikosti, polohy a stability."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Dutina"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "D\u0159ev\u011bn\u00fd uzel"
+    },
+    {
+      "definition": [
+        "Epoxidov\u00e1 prysky\u0159ice je dvouslo\u017ekov\u00fd materi\u00e1l, kter\u00fd se po sm\u00edch\u00e1n\u00ed s tu\u017eidlem v doporu\u010den\u00e9m pom\u011bru chemickou reakc\u00ed p\u0159em\u011bn\u00ed na pevn\u00fd, odoln\u00fd a trvanliv\u00fd materi\u00e1l. P\u0159i zpracov\u00e1n\u00ed d\u0159eva se pou\u017e\u00edv\u00e1 k vypl\u0148ov\u00e1n\u00ed dutin, k vytv\u00e1\u0159en\u00ed dekorativn\u00edch nebo konstruk\u010dn\u00edch odlitk\u016f a k z\u00edsk\u00e1n\u00ed pr\u016fhledn\u00fdch nebo pigmentovan\u00fdch povrch\u016f."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Epoxidov\u00e1 prysky\u0159ice"
+    },
+    {
+      "definition": [
+        "Exotermick\u00e1 reakce je proces, p\u0159i kter\u00e9m epoxidov\u00e1 prysky\u0159ice b\u011bhem polymerace uvol\u0148uje teplo. Mno\u017estv\u00ed vyprodukovan\u00e9ho tepla z\u00e1vis\u00ed na typu prysky\u0159ice, objemu sm\u011bsi a teplot\u011b prost\u0159ed\u00ed. P\u0159\u00edli\u0161 exotermick\u00e1 reakce m\u016f\u017ee ovlivnit kvalitu odlitku a po\u0161kodit materi\u00e1l."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerizace"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Exotermick\u00e1 reakce"
+    },
+    {
+      "definition": [
+        "Filcov\u00fd kotou\u010d je p\u0159\u00edslu\u0161enstv\u00ed pou\u017e\u00edvan\u00e9 k le\u0161t\u011bn\u00ed povrch\u016f ve spojen\u00ed s brusn\u00fdmi nebo dokon\u010dovac\u00edmi pastami. D\u00edky sv\u00e9 kompaktn\u00ed struktu\u0159e se pou\u017e\u00edv\u00e1 zejm\u00e9na k dosa\u017een\u00ed vysok\u00e9ho lesku a rovnom\u011brn\u00e9ho povrchu."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Filcov\u00fd kotou\u010d"
+    },
+    {
+      "definition": [
+        "Fr\u00e9za je \u0159ezn\u00fd n\u00e1stroj namontovan\u00fd na horn\u00ed fr\u00e9zce nebo na jin\u00fdch obr\u00e1b\u011bc\u00edch stroj\u00edch, kter\u00fd se pou\u017e\u00edv\u00e1 k \u0159\u00edzen\u00e9mu odstra\u0148ov\u00e1n\u00ed materi\u00e1lu. Existuje mnoho typ\u016f fr\u00e9z, z nich\u017e ka\u017ed\u00e1 je navr\u017eena pro konkr\u00e9tn\u00ed operaci nebo profil obr\u00e1b\u011bn\u00ed."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "fr\u00e9za",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fr\u00e9za"
+    },
+    {
+      "definition": [
+        "Geometrie projektu popisuje tvar, rozm\u011bry a prostorov\u00e9 vztahy mezi v\u0161emi prvky, z nich\u017e se projekt skl\u00e1d\u00e1. V programu HFZWood tvo\u0159\u00ed geometrie z\u00e1klad pro v\u00fdpo\u010det ploch, objem\u016f a odhadovan\u00e9ho mno\u017estv\u00ed pot\u0159ebn\u00e9 prysky\u0159ice."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Geometrie projektu"
+    },
+    {
+      "definition": [
+        "Hlubok\u00e9 lit\u00ed, zn\u00e1m\u00e9 tak\u00e9 pod n\u00e1zvem Deep Pour, je technika, kter\u00e1 vyu\u017e\u00edv\u00e1 epoxidov\u00e9 prysky\u0159ice speci\u00e1ln\u011b vyvinut\u00e9 pro lit\u00ed velk\u00fdch tlou\u0161t\u011bk v jedin\u00e9m kroku. Tyto prysky\u0159ice p\u0159i polymeraci vyv\u00edjej\u00ed m\u00e9n\u011b tepla a umo\u017e\u0148uj\u00ed vytv\u00e1\u0159et velk\u00e9 objemy bez vzniku vad zp\u016fsoben\u00fdch p\u0159eh\u0159\u00e1t\u00edm."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskozita"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Doba zpracovatelnosti (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exotermick\u00e1 reakce"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Pom\u011br sm\u011bsi"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerizace"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hlubok\u00e9 lit\u00ed (Deep Pour)"
+    },
+    {
+      "definition": [
+        "Hoblovac\u00ed stroj je za\u0159\u00edzen\u00ed pou\u017e\u00edvan\u00e9 k dosa\u017een\u00ed rovn\u00e9ho povrchu a dokonale rovn\u00e9 hrany na d\u0159ev\u011bn\u00fdch d\u00edlech. Jedn\u00e1 se o jeden ze z\u00e1kladn\u00edch \u00fakon\u016f p\u0159i p\u0159\u00edprav\u011b materi\u00e1lu p\u0159ed hrubov\u00e1n\u00edm a dal\u0161\u00edm opracov\u00e1n\u00edm. Hoblova\u010dka m\u016f\u017ee b\u00fdt ru\u010dn\u00ed nebo stoln\u00ed."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "velk\u00e9 hoblov\u00e1n\u00ed",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hoblovka"
+    },
+    {
+      "definition": [
+        "Horkovzdu\u0161n\u00e1 pistole je za\u0159\u00edzen\u00ed, kter\u00e9 vytv\u00e1\u0159\u00ed proud oh\u0159\u00e1t\u00e9ho vzduchu a lze ji pou\u017e\u00edt k odstran\u011bn\u00ed vzduchov\u00fdch bublin z povrchu epoxidov\u00e9 prysky\u0159ice. Teplotu a pracovn\u00ed vzd\u00e1lenost je t\u0159eba pe\u010dliv\u011b kontrolovat, aby nedo\u0161lo k p\u0159eh\u0159\u00e1t\u00ed nebo deformaci povrchu."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "horkovzdu\u0161n\u00e1 pistole",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Vzduchov\u00e9 bubliny"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Horkovzdu\u0161n\u00e1 pistole"
+    },
+    {
+      "definition": [
+        "Horn\u00ed fr\u00e9zka, zn\u00e1m\u00e1 tak\u00e9 pod n\u00e1zvem router, je elektrick\u00e9 n\u00e1\u0159ad\u00ed pou\u017e\u00edvan\u00e9 k p\u0159esn\u00e9mu obr\u00e1b\u011bn\u00ed d\u0159eva fr\u00e9zov\u00e1n\u00edm. Umo\u017e\u0148uje vytv\u00e1\u0159et profilovan\u00e9 hrany, dr\u00e1\u017eky, v\u00fd\u0159ezy a prov\u00e1d\u011bt dal\u0161\u00ed operace pot\u0159ebn\u00e9 p\u0159i v\u00fdrob\u011b a dokon\u010dov\u00e1n\u00ed d\u0159ev\u011bn\u00fdch projekt\u016f."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "horn\u00ed fr\u00e9zka",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Fr\u00e9za"
+        }
+      ],
+      "term": "Horn\u00ed fr\u00e9zka (router)"
+    },
+    {
+      "definition": [
+        "Hoblovac\u00ed stroj je za\u0159\u00edzen\u00ed pou\u017e\u00edvan\u00e9 k \u00faprav\u011b d\u0159ev\u011bn\u00fdch d\u00edl\u016f na jednotnou a p\u0159esnou tlou\u0161\u0165ku. Po hoblov\u00e1n\u00ed odstra\u0148uje materi\u00e1l kontrolovan\u00fdm zp\u016fsobem, dokud nen\u00ed dosa\u017eeno po\u017eadovan\u00fdch kone\u010dn\u00fdch rozm\u011br\u016f."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "hrub\u00e9 obr\u00e1b\u011bn\u00ed",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hrubovac\u00ed stroj"
+    },
+    {
+      "definition": [
+        "Hustota prysky\u0159ice p\u0159edstavuje hmotnost dan\u00e9ho objemu epoxidov\u00e9 prysky\u0159ice a je obvykle uv\u00e1d\u011bna v gramech na centimetr krychlov\u00fd nebo v kilogramech na litr. Tento parametr se pou\u017e\u00edv\u00e1 pro p\u0159evod mezi objemem a hmotnost\u00ed p\u0159i v\u00fdpo\u010dtu pot\u0159ebn\u00e9ho mno\u017estv\u00ed materi\u00e1lu."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hustota prysky\u0159ice"
+    },
+    {
+      "definition": [
+        "Hygroskopick\u00e9 d\u0159evo je d\u0159evo, kter\u00e9 m\u00e1 p\u0159irozenou schopnost absorbovat a uvol\u0148ovat vlhkost z okoln\u00edho prost\u0159ed\u00ed, dokud nedos\u00e1hne rovnov\u00e1hy s atmosf\u00e9rou. Z tohoto d\u016fvodu se jeho rozm\u011bry a vlastnosti mohou m\u011bnit v z\u00e1vislosti na teplotn\u00edch a vlhkostn\u00edch podm\u00ednk\u00e1ch. Toto chov\u00e1n\u00ed je t\u0159eba zohlednit p\u0159i navrhov\u00e1n\u00ed a v\u00fdrob\u011b odlitk\u016f z epoxidov\u00e9 prysky\u0159ice."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Hygroskopick\u00e9 d\u0159evo"
+    },
+    {
+      "definition": [
+        "Inhibi\u010dn\u00ed vrstva, zn\u00e1m\u00e1 tak\u00e9 pod n\u00e1zvem Amine Blush, je tenk\u00fd film, kter\u00fd se m\u016f\u017ee objevit na povrchu epoxidov\u00e9 prysky\u0159ice b\u011bhem vytvrzov\u00e1n\u00ed, zejm\u00e9na za n\u00edzk\u00fdch teplot nebo p\u0159i vysok\u00e9 vlhkosti. P\u0159ed nanesen\u00edm nov\u00e9 vrstvy nebo p\u0159ed fin\u00e1ln\u00ed \u00fapravou je nutn\u00e9 tento film odstranit, aby byla zaji\u0161t\u011bna spr\u00e1vn\u00e1 p\u0159ilnavost."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inhibi\u010dn\u00ed vrstva (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Kalibrace je proces, p\u0159i kter\u00e9m se obraz p\u0159evede na skute\u010dn\u00fd m\u011b\u0159ic\u00ed m\u011b\u0159\u00edtko pomoc\u00ed zn\u00e1m\u00e9ho rozm\u011bru. V programu HFZWood umo\u017e\u0148uje kalibrace p\u0159ev\u00e9st m\u011b\u0159en\u00ed proveden\u00e1 na obr\u00e1zku na skute\u010dn\u00e9 rozm\u011bry, \u010d\u00edm\u017e zaji\u0161\u0165uje p\u0159esnost v\u00fdpo\u010dt\u016f plochy a objemu."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Rovn\u00e1n\u00ed d\u0159eva"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalibrace"
+    },
+    {
+      "definition": [
+        "Kalibrace obrazu je proces, p\u0159i kter\u00e9m aplikace stanov\u00ed vztah mezi rozm\u011bry na fotografii a skute\u010dn\u00fdmi rozm\u011bry pomoc\u00ed zn\u00e1m\u00e9 referen\u010dn\u00ed vzd\u00e1lenosti. Spr\u00e1vn\u00e1 kalibrace je nezbytn\u00e1 pro dosa\u017een\u00ed p\u0159esn\u00fdch v\u00fdsledk\u016f."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalibrace obrazu"
+    },
+    {
+      "definition": [
+        "Kalkul\u00e1tor prysky\u0159ice je n\u00e1stroj, kter\u00fd odhaduje mno\u017estv\u00ed epoxidov\u00e9 prysky\u0159ice a tu\u017eidla pot\u0159ebn\u00e9 k realizaci projektu. V programu HFZWood se v\u00fdpo\u010dty zakl\u00e1daj\u00ed na geometrii projektu, objemu d\u0159eva, objemu dutin a parametrech zadan\u00fdch u\u017eivatelem, \u010d\u00edm\u017e poskytuj\u00ed rychl\u00fd a p\u0159esn\u00fd odhad spot\u0159eby materi\u00e1lu."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kalkul\u00e1tor prysky\u0159ice"
+    },
+    {
+      "definition": [
+        "Kompatibilita materi\u00e1l\u016f p\u0159edstavuje schopnost r\u016fzn\u00fdch materi\u00e1l\u016f pou\u017eit\u00fdch v projektu fungovat spole\u010dn\u011b, ani\u017e by doch\u00e1zelo k ne\u017e\u00e1douc\u00edm reakc\u00edm nebo vad\u00e1m. V\u00fdb\u011br kompatibiln\u00edch materi\u00e1l\u016f p\u0159isp\u00edv\u00e1 k dosa\u017een\u00ed dobr\u00e9 p\u0159ilnavosti, vysok\u00e9 trvanlivosti a stabiln\u00edho chov\u00e1n\u00ed p\u0159i provozu."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kompatibilita materi\u00e1l\u016f"
+    },
+    {
+      "definition": [
+        "Konfigurace projektu popisuje uspo\u0159\u00e1d\u00e1n\u00ed a um\u00edst\u011bn\u00ed v\u0161ech prvk\u016f, z nich\u017e se projekt skl\u00e1d\u00e1, v\u010detn\u011b vn\u011bj\u0161\u00edho obrysu, d\u0159ev\u011bn\u00fdch d\u00edl\u016f, dutin a dal\u0161\u00edch oblast\u00ed relevantn\u00edch pro v\u00fdpo\u010det. Definuje geometrickou strukturu, na jej\u00edm\u017e z\u00e1klad\u011b aplikace prov\u00e1d\u00ed odhady spot\u0159eby materi\u00e1lu."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Konfigurace projektu"
+    },
+    {
+      "definition": [
+        "Struktur\u00e1ln\u00ed vadou se rozum\u00ed jak\u00e1koli vada d\u0159eva, kter\u00e1 m\u016f\u017ee sn\u00ed\u017eit jeho pevnost, stabilitu nebo schopnost odol\u00e1vat mechanick\u00e9mu nam\u00e1h\u00e1n\u00ed. Do t\u00e9to kategorie pat\u0159\u00ed trhliny, rozs\u00e1hl\u00e9 praskliny, hniloba, dutiny nebo jin\u00e9 po\u0161kozen\u00ed, kter\u00e9 ovliv\u0148uj\u00ed chov\u00e1n\u00ed d\u00edlu p\u0159i provozu."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "D\u0159ev\u011bn\u00fd uzel"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Konstruk\u010dn\u00ed vada"
+    },
+    {
+      "definition": [
+        "Kontaminace p\u0159edstavuje p\u0159\u00edtomnost ne\u017e\u00e1douc\u00edch l\u00e1tek nebo ne\u010distot, jako je prach, oleje, tuky, voda nebo silikon, kter\u00e9 mohou ovlivnit p\u0159ilnavost, vzhled nebo vytvrzen\u00ed epoxidov\u00e9 prysky\u0159ice. Udr\u017eov\u00e1n\u00ed \u010dist\u00e9ho prost\u0159ed\u00ed a povrch\u016f je z\u00e1sadn\u00ed pro dosa\u017een\u00ed kvalitn\u00edch v\u00fdsledk\u016f."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskozita"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontaminace"
+    },
+    {
+      "definition": [
+        "Smr\u0161\u0165ov\u00e1n\u00ed p\u0159edstavuje zmen\u0161en\u00ed rozm\u011br\u016f materi\u00e1lu v d\u016fsledku ztr\u00e1ty vlhkosti, procesu vytvrzov\u00e1n\u00ed nebo teplotn\u00edch zm\u011bn. U projekt\u016f s pou\u017eit\u00edm d\u0159eva a epoxidov\u00e9 prysky\u0159ice m\u016f\u017ee smr\u0161\u0165ov\u00e1n\u00ed ovlivnit rozm\u011brovou p\u0159esnost a p\u0159isp\u011bt ke vzniku trhlin nebo vnit\u0159n\u00edho pnut\u00ed."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontrakce"
+    },
+    {
+      "definition": [
+        "Kontrola kvality p\u0159edstavuje proces ov\u011b\u0159ov\u00e1n\u00ed materi\u00e1l\u016f, jednotliv\u00fdch pracovn\u00edch f\u00e1z\u00ed a kone\u010dn\u00e9ho v\u00fdsledku s c\u00edlem potvrdit, \u017ee projekt spl\u0148uje stanoven\u00e9 po\u017eadavky na kvalitu. Umo\u017e\u0148uje identifikovat a napravit p\u0159\u00edpadn\u00e9 probl\u00e9my je\u0161t\u011b p\u0159edt\u00edm, ne\u017e je dan\u00fd d\u00edl pova\u017eov\u00e1n za dokon\u010den\u00fd."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontrola kvality"
+    },
+    {
+      "definition": [
+        "Kontroln\u00ed bod je bod, kter\u00fd definuje tvar a polohu m\u011b\u0159ic\u00edho polygonu. Posunut\u00ed kontroln\u00edho bodu automaticky zm\u011bn\u00ed geometrii ohrani\u010den\u00e9 plochy a ovlivn\u00ed v\u00fdsledky vypo\u010d\u00edtan\u00e9 aplikac\u00ed."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Referen\u010dn\u00ed bod"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kontroln\u00ed bod"
+    },
+    {
+      "definition": [
+        "Kop\u00edrovac\u00ed fr\u00e9za je fr\u00e9za vybaven\u00e1 jedn\u00edm nebo v\u00edce vodic\u00edmi lo\u017eisky, kter\u00e1 umo\u017e\u0148uj\u00ed kop\u00edrov\u00e1n\u00ed \u0161ablony nebo st\u00e1vaj\u00edc\u00ed hrany. Pou\u017e\u00edv\u00e1 se k p\u0159esn\u00e9mu kop\u00edrov\u00e1n\u00ed obrys\u016f a k v\u00fdrob\u011b identick\u00fdch d\u00edl\u016f."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kop\u00edrovac\u00ed fr\u00e9za"
+    },
+    {
+      "definition": [
+        "Kotou\u010dov\u00e1 pila je stroj nebo n\u00e1stroj vybaven\u00fd rotuj\u00edc\u00edm kotou\u010dem, kter\u00fd se pou\u017e\u00edv\u00e1 k \u0159ez\u00e1n\u00ed d\u0159eva na d\u00e9lku, \u0161\u00ed\u0159ku nebo pod r\u016fzn\u00fdmi \u00fahly. P\u0159esnost a stabilita \u0159ezu z\u00e1vis\u00ed na nastaven\u00ed stroje, typu pilov\u00e9ho kotou\u010de a zp\u016fsobu veden\u00ed materi\u00e1lu."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "kotou\u010dov\u00e1 pila",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kotou\u010dov\u00e1 pila"
+    },
+    {
+      "definition": [
+        "Krystalizace je jev, p\u0159i kter\u00e9m n\u011bkter\u00e9 epoxidov\u00e9 prysky\u0159ice b\u011bhem skladov\u00e1n\u00ed vytv\u00e1\u0159ej\u00ed pevn\u00e9 krystaly, zejm\u00e9na p\u0159i n\u00edzk\u00fdch teplot\u00e1ch. Ve v\u011bt\u0161in\u011b p\u0159\u00edpad\u016f je krystalizace reverzibiln\u00ed a lze ji odstranit \u0159\u00edzen\u00fdm zah\u0159\u00e1t\u00edm prysky\u0159ice p\u0159ed pou\u017eit\u00edm v souladu s doporu\u010den\u00edmi v\u00fdrobce."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Viskozita"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Krystalizace"
+    },
+    {
+      "definition": [
+        "Krater je povrchov\u00e1 vada, kter\u00e1 se po vytvrzen\u00ed projevuje jako mal\u00e9 prohlouben\u00ed nebo kruhov\u00e1 dutina v epoxidov\u00e9 prysky\u0159ici. M\u016f\u017ee b\u00fdt zp\u016fsobena ne\u010distotami, vzduchov\u00fdmi bublinami nebo jin\u00fdmi okolnostmi, kter\u00e9 br\u00e1n\u00ed rovnom\u011brn\u00e9mu rozprost\u0159en\u00ed prysky\u0159ice."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Kr\u00e1ter"
+    },
+    {
+      "definition": [
+        "Lepkav\u00fd povrch je vada charakterizovan\u00e1 t\u00edm, \u017ee prysky\u0159ice z\u016fst\u00e1v\u00e1 na dotek m\u011bkk\u00e1 nebo lepkav\u00e1 i po uplynut\u00ed b\u011b\u017en\u00e9 doby vytvrzen\u00ed. Tento jev obvykle signalizuje probl\u00e9m, kter\u00fd vznikl b\u011bhem m\u00edch\u00e1n\u00ed, polymerizace nebo p\u0159i nedodr\u017een\u00ed doporu\u010den\u00fdch podm\u00ednek pou\u017eit\u00ed."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lepkav\u00fd povrch"
+    },
+    {
+      "definition": [
+        "Leskl\u00fd povrch je typ povrchov\u00e9 \u00fapravy, kter\u00fd se vyzna\u010duje vysok\u00fdm stupn\u011bm odrazu sv\u011btla a velmi hladk\u00fdm povrchem. K dosa\u017een\u00ed tohoto vzhledu je nutn\u00e9 spr\u00e1vn\u011b prov\u00e9st brou\u0161en\u00ed a le\u0161t\u011bn\u00ed s pou\u017eit\u00edm vhodn\u00fdch materi\u00e1l\u016f a technik."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Leskl\u00fd povrch"
+    },
+    {
+      "definition": [
+        "Le\u0161tic\u00ed podlo\u017eka je p\u0159\u00edslu\u0161enstv\u00ed namontovan\u00e9 na le\u0161tic\u00ed stroj, kter\u00e9 se pou\u017e\u00edv\u00e1 k nan\u00e1\u0161en\u00ed a rovnom\u011brn\u00e9mu rozprost\u0159en\u00ed le\u0161tic\u00edch past\u00ed na povrch. Podlo\u017eky se vyr\u00e1b\u011bj\u00ed z r\u016fzn\u00fdch materi\u00e1l\u016f, p\u0159i\u010dem\u017e ka\u017ed\u00e1 z nich je ur\u010dena pro ur\u010ditou \u00farove\u0148 korekce nebo dokon\u010dovac\u00ed \u00fapravy."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "le\u0161tic\u00ed podlo\u017eka",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Le\u0161tic\u00ed podlo\u017eka"
+    },
+    {
+      "definition": [
+        "Le\u0161t\u011bn\u00ed je z\u00e1v\u011bre\u010dn\u00e1 f\u00e1ze povrchov\u00e9 \u00fapravy, p\u0159i kter\u00e9 se povrch d\u0159eva nebo epoxidov\u00e9 prysky\u0159ice opracov\u00e1v\u00e1 tak, aby se dos\u00e1hlo vysok\u00e9 hladkosti a po\u017eadovan\u00e9ho vzhledu. Tento proces odstra\u0148uje jemn\u00e9 stopy po brou\u0161en\u00ed a zlep\u0161uje \u010distotu, odraz sv\u011btla a estetick\u00fd vzhled d\u00edlu."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Le\u0161t\u011bn\u00ed"
+    },
+    {
+      "definition": [
+        "Melaminovan\u00e9 MDF je deska vyroben\u00e1 z lisovan\u00fdch jemn\u00fdch d\u0159ev\u011bn\u00fdch vl\u00e1ken a pota\u017een\u00e1 melaminovou vrstvou. Jej\u00ed povrch je velmi rovnom\u011brn\u00fd a umo\u017e\u0148uje v\u00fdrobu bedn\u011bn\u00ed s kvalitn\u00edm povrchem; pou\u017e\u00edv\u00e1 se zejm\u00e9na pro projekty, kter\u00e9 vy\u017eaduj\u00ed p\u0159esnost a \u010dist\u00e9 hrany."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF s melaminov\u00fdm povrchem"
+    },
+    {
+      "definition": [
+        "Melaminov\u00e1 deska je deska vyroben\u00e1 z lisovan\u00fdch d\u0159ev\u011bn\u00fdch t\u0159\u00edsek a pota\u017een\u00e1 melaminovou vrstvou, kter\u00e1 zaji\u0161\u0165uje hladk\u00fd a odoln\u00fd povrch. D\u00edky n\u00edzk\u00e9 cen\u011b a relativn\u011b neadhezivn\u00edmu povrchu se \u010dasto pou\u017e\u00edv\u00e1 p\u0159i v\u00fdrob\u011b bedn\u011bn\u00ed pro lit\u00ed epoxidovou prysky\u0159ic\u00ed."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "melaminovan\u00e1 d\u0159evot\u0159\u00edskov\u00e1 deska"
+    },
+    {
+      "definition": [
+        "Mikroprasklina je prasklina velmi mal\u00fdch rozm\u011br\u016f, kterou je \u010dasto obt\u00ed\u017en\u00e9 spat\u0159it pouh\u00fdm okem. A\u010dkoli se m\u016f\u017ee jevit jako nev\u00fdznamn\u00e1, m\u016f\u017ee se v pr\u016fb\u011bhu \u010dasu zv\u011bt\u0161ovat a ovlivnit pevnost, t\u011bsnost nebo vzhled povrchu."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mikroprasklina"
+    },
+    {
+      "definition": [
+        "Mokr\u00e9 brou\u0161en\u00ed je metoda povrchov\u00e9 \u00fapravy prov\u00e1d\u011bn\u00e1 za pou\u017eit\u00ed vody nebo jin\u00e9 kompatibiln\u00ed kapaliny, kter\u00e1 sni\u017euje zah\u0159\u00edv\u00e1n\u00ed povrchu a omezuje tvorbu prachu. Tato technika se pou\u017e\u00edv\u00e1 zejm\u00e9na v z\u00e1v\u011bre\u010dn\u00fdch f\u00e1z\u00edch k dosa\u017een\u00ed velmi jemn\u00fdch povrch\u016f p\u0159ipraven\u00fdch k le\u0161t\u011bn\u00ed."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Mokr\u00e9 brou\u0161en\u00ed"
+    },
+    {
+      "definition": [
+        "M\u00edch\u00e1n\u00ed je proces, p\u0159i kter\u00e9m se epoxidov\u00e1 prysky\u0159ice a tvrdidlo sm\u00edchaj\u00ed do zcela homogenn\u00ed sm\u011bsi. Spr\u00e1vn\u00e9 prom\u00edch\u00e1n\u00ed zaji\u0161\u0165uje rovnom\u011brn\u00fd pr\u016fb\u011bh polymera\u010dn\u00ed reakce a sni\u017euje riziko vzniku m\u00edst, kter\u00e1 z\u016fst\u00e1vaj\u00ed lepkav\u00e1 nebo zcela nevytvrdnou."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u00edch\u00e1n\u00ed"
+    },
+    {
+      "definition": [
+        "M\u00edstn\u00ed projekt je projekt ulo\u017een\u00fd na za\u0159\u00edzen\u00ed u\u017eivatele, kter\u00fd lze otev\u0159\u00edt a upravovat bez nutnosti p\u0159ipojen\u00ed k internetu. V architektu\u0159e HFZWood z\u016fst\u00e1vaj\u00ed m\u00edstn\u00ed projekty u\u017eivateli k dispozici i po vypr\u0161en\u00ed p\u0159edplatn\u00e9ho."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u00edstn\u00ed projekt"
+    },
+    {
+      "definition": [
+        "M\u011b\u0159ic\u00ed polygon p\u0159edstavuje posloupnost vz\u00e1jemn\u011b propojen\u00fdch bod\u016f, kter\u00e9 vymezuj\u00ed obrys plochy, kter\u00e1 m\u00e1 b\u00fdt zm\u011b\u0159ena. V programu HFZWood se polygony pou\u017e\u00edvaj\u00ed k definov\u00e1n\u00ed vn\u011bj\u0161\u00edho obrysu, d\u0159ev\u011bn\u00fdch d\u00edl\u016f, dutin a dal\u0161\u00edch oblast\u00ed pot\u0159ebn\u00fdch pro geometrick\u00e9 v\u00fdpo\u010dty."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u011b\u0159ic\u00ed polygon"
+    },
+    {
+      "definition": [
+        "M\u011b\u0159\u00edtko sn\u00edmku p\u0159edstavuje pom\u011br mezi rozm\u011bry na fotografii a skute\u010dn\u00fdmi rozm\u011bry m\u011b\u0159en\u00e9ho objektu. Spr\u00e1vn\u00e9 stanoven\u00ed m\u011b\u0159\u00edtka umo\u017e\u0148uje prov\u00e1d\u011bt p\u0159esn\u00e9 v\u00fdpo\u010dty v r\u00e1mci projektu."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "M\u011b\u0159\u00edtko obr\u00e1zku"
+    },
+    {
+      "definition": [
+        "Nadm\u011brn\u00e1 vlhkost znamen\u00e1, \u017ee mno\u017estv\u00ed vody v d\u0159ev\u011b nebo v pracovn\u00edm prost\u0159ed\u00ed p\u0159esahuje \u00farove\u0148 doporu\u010denou pro pou\u017eit\u00ed epoxidov\u00e9 prysky\u0159ice. To m\u016f\u017ee ovlivnit p\u0159ilnavost, rozm\u011brovou stabilitu, proces vytvrzov\u00e1n\u00ed a kone\u010dnou kvalitu projektu."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nadm\u011brn\u00e1 vlhkost"
+    },
+    {
+      "definition": [
+        "Import obr\u00e1zku je operace, p\u0159i kter\u00e9 se fotografie nahraje do aplikace HFZWood za \u00fa\u010delem pou\u017eit\u00ed v nov\u00e9m projektu. Importovan\u00fd obr\u00e1zek se st\u00e1v\u00e1 z\u00e1kladem v\u0161ech n\u00e1sledn\u00fdch m\u011b\u0159en\u00ed a v\u00fdpo\u010dt\u016f."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Na\u010dten\u00ed obr\u00e1zku"
+    },
+    {
+      "definition": [
+        "Nestabiln\u00ed d\u0159evo je d\u0159evo, kter\u00e9 m\u00e1 tendenci se deformovat, prasknout nebo zm\u011bnit sv\u00e9 rozm\u011bry po zpracov\u00e1n\u00ed nebo b\u011bhem pou\u017e\u00edv\u00e1n\u00ed. Na nestabilitu m\u00e1 vliv vlhkost, vnit\u0159n\u00ed pnut\u00ed, zp\u016fsob su\u0161en\u00ed a struktura materi\u00e1lu. Pou\u017eit\u00ed takov\u00e9ho d\u0159eva m\u016f\u017ee ohrozit kvalitu odlitku z epoxidov\u00e9 prysky\u0159ice."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nestabiln\u00ed d\u0159evo"
+    },
+    {
+      "definition": [
+        "Nestabiln\u00ed k\u016fra je k\u016fra, kter\u00e1 pevn\u011b nedr\u017e\u00ed na d\u0159ev\u011b a m\u016f\u017ee se odlou\u010dit b\u011bhem zpracov\u00e1n\u00ed nebo po nalit\u00ed prysky\u0159ice. Ve v\u011bt\u0161in\u011b projekt\u016f je nutn\u00e9 ji odstranit, aby se zabr\u00e1nilo vzniku dutin, odlou\u010den\u00ed nebo jin\u00fdm probl\u00e9m\u016fm s p\u0159ilnavost\u00ed."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "P\u0159irozen\u00fd okraj"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nestabiln\u00ed k\u016fra"
+    },
+    {
+      "definition": [
+        "Ne\u00fapln\u00e9 vytvrzen\u00ed p\u0159edstavuje situaci, kdy epoxidov\u00e1 prysky\u0159ice po uplynut\u00ed b\u011b\u017en\u00e9 doby vytvrzen\u00ed nedos\u00e1hne pln\u00fdch mechanick\u00fdch vlastnost\u00ed. P\u0159\u00ed\u010dinou m\u016f\u017ee b\u00fdt nespr\u00e1vn\u00fd pom\u011br sm\u011bsi, nedostate\u010dn\u00e9 prom\u00edch\u00e1n\u00ed nebo nevhodn\u00e9 pracovn\u00ed podm\u00ednky."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ne\u00fapln\u00e9 vytvrzen\u00ed"
+    },
+    {
+      "definition": [
+        "P\u0159\u00edru\u010dka HFZWood p\u0159edstavuje hlavn\u00ed dokumentaci k aplikaci, kter\u00e1 vysv\u011btluje jej\u00ed funkce, zp\u016fsob pou\u017eit\u00ed a dostupn\u00e9 pracovn\u00ed postupy. Poskytuje u\u017eivatel\u016fm informace nezbytn\u00e9 pro spr\u00e1vn\u00e9 a efektivn\u00ed pou\u017e\u00edv\u00e1n\u00ed aplikace."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "N\u00e1vod k pou\u017eit\u00ed HFZWood"
+    },
+    {
+      "definition": [
+        "Objem dutin p\u0159edstavuje celkov\u00fd objem dutin ve d\u0159ev\u011b, kter\u00e9 maj\u00ed b\u00fdt vypln\u011bny epoxidovou prysky\u0159ic\u00ed. Jedn\u00e1 se o jeden z parametr\u016f, kter\u00e9 spole\u010dnost HFZWood pou\u017e\u00edv\u00e1 k odhadu mno\u017estv\u00ed materi\u00e1lu pot\u0159ebn\u00e9ho pro dan\u00fd projekt."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Objem dutin"
+    },
+    {
+      "definition": [
+        "Objem d\u0159eva p\u0159edstavuje prostor, kter\u00fd zab\u00edraj\u00ed v\u0161echny d\u0159ev\u011bn\u00e9 d\u00edly, kter\u00e9 jsou sou\u010d\u00e1st\u00ed projektu. Je vyj\u00e1d\u0159en v jednotk\u00e1ch objemu a aplikace jej pou\u017e\u00edv\u00e1 k ur\u010den\u00ed celkov\u00e9ho objemu projektu a pot\u0159ebn\u00e9ho mno\u017estv\u00ed prysky\u0159ice."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Rovnom\u011brn\u00e1 tlou\u0161\u0165ka"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Objem d\u0159eva"
+    },
+    {
+      "definition": [
+        "Objem lit\u00ed p\u0159edstavuje celkov\u00e9 mno\u017estv\u00ed epoxidov\u00e9 prysky\u0159ice pot\u0159ebn\u00e9 k vypln\u011bn\u00ed ur\u010dit\u00e9 oblasti nebo k proveden\u00ed kompletn\u00edho lit\u00ed. Stanovuje se na z\u00e1klad\u011b geometrick\u00fdch rozm\u011br\u016f projektu a p\u0159edstavuje jeden z hlavn\u00edch v\u00fdstup\u016f aplikace HFZWood."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "M\u00edch\u00e1n\u00ed"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Vzduchov\u00e9 bubliny"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Odply\u0148ov\u00e1n\u00ed \u2013 Odmrazov\u00e1n\u00ed"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerizace"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exotermick\u00e1 reakce"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Teplota okol\u00ed"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Hlubok\u00e9 lit\u00ed (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Vrstv\u00e9 lit\u00ed"
+        },
+        {
+          "id": "turnare",
+          "term": "Odl\u00e9v\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Objem odlitku"
+    },
+    {
+      "definition": [
+        "Oblast lit\u00ed p\u0159edstavuje povrch projektu ur\u010den\u00fd k napln\u011bn\u00ed epoxidovou prysky\u0159ic\u00ed. M\u016f\u017ee zahrnovat dutiny, mezery mezi d\u0159ev\u011bn\u00fdmi d\u00edly nebo jin\u00e9 oblasti vymezen\u00e9 u\u017eivatelem pro proveden\u00ed lit\u00ed."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Oblast lit\u00ed"
+    },
+    {
+      "definition": [
+        "Obrys dutiny p\u0159edstavuje geometrickou hranici, kter\u00e1 vymezuje dutinu ve d\u0159ev\u011b ur\u010denou k vypln\u011bn\u00ed epoxidovou prysky\u0159ic\u00ed. Spr\u00e1vn\u00e9 vymezen\u00ed tohoto obrysu umo\u017e\u0148uje p\u0159esn\u00fd v\u00fdpo\u010det plochy a objemu dutiny."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "M\u011b\u0159ic\u00ed polygon"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Obrys dutiny"
+    },
+    {
+      "definition": [
+        "Ochrana povrchu b\u011bhem vytvrzov\u00e1n\u00ed p\u0159edstavuje opat\u0159en\u00ed p\u0159ijat\u00e1 za \u00fa\u010delem zabr\u00e1n\u011bn\u00ed usazov\u00e1n\u00ed prachu, hmyzu nebo jin\u00fdch ne\u010distot na epoxidov\u00e9 prysky\u0159ici a\u017e do dokon\u010den\u00ed procesu vytvrzov\u00e1n\u00ed. Spr\u00e1vn\u00e1 ochrana p\u0159isp\u00edv\u00e1 k dosa\u017een\u00ed \u010dist\u00e9ho povrchu a sni\u017euje pot\u0159ebu n\u00e1sledn\u00fdch z\u00e1sah\u016f."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Doba zpracovatelnosti (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "turnare",
+          "term": "Odl\u00e9v\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochrana povrchu b\u011bhem vytvrzov\u00e1n\u00ed"
+    },
+    {
+      "definition": [
+        "UV ochrana p\u0159edstavuje schopnost povrchov\u00e9 \u00fapravy omezovat \u00fa\u010dinky ultrafialov\u00e9ho z\u00e1\u0159en\u00ed na d\u0159evo a epoxidovou prysky\u0159ici. Adekv\u00e1tn\u00ed \u00farove\u0148 ochrany p\u0159isp\u00edv\u00e1 k omezen\u00ed vyblednut\u00ed, za\u017eloutnut\u00ed a degradace zp\u016fsoben\u00e9 dlouhodob\u00fdm vystaven\u00edm slune\u010dn\u00edmu z\u00e1\u0159en\u00ed."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochrana p\u0159ed UV z\u00e1\u0159en\u00edm"
+    },
+    {
+      "definition": [
+        "Ochrann\u00e9 br\u00fdle jsou osobn\u00ed ochrann\u00e9 prost\u0159edky ur\u010den\u00e9 k ochran\u011b o\u010d\u00ed p\u0159ed prachem, odletuj\u00edc\u00edmi \u010d\u00e1sticemi a n\u00e1hodn\u00fdmi post\u0159\u00edk\u00e1n\u00edmi. Jejich no\u0161en\u00ed se doporu\u010duje ve v\u0161ech f\u00e1z\u00edch mechanick\u00e9ho zpracov\u00e1n\u00ed a p\u0159i pr\u00e1ci s epoxidov\u00fdmi prysky\u0159icemi."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "br\u00fdle",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochrann\u00e9 br\u00fdle"
+    },
+    {
+      "definition": [
+        "Ochrann\u00fd vosk je fin\u00e1ln\u00ed n\u00e1t\u011br, kter\u00fd se nan\u00e1\u0161\u00ed na povrch d\u0159eva nebo na vrstvu oleje za \u00fa\u010delem zlep\u0161en\u00ed ochrany a kone\u010dn\u00e9ho vzhledu. Poskytuje povrch p\u0159\u00edjemn\u00fd na dotek, sni\u017euje absorpci ne\u010distot a usnad\u0148uje \u00fadr\u017ebu povrchu."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "vosk",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ochrann\u00fd vosk"
+    },
+    {
+      "definition": [
+        "Odlu\u010dov\u00e1n\u00ed pigmentu p\u0159edstavuje nerovnom\u011brn\u00e9 rozlo\u017een\u00ed pigmentu v hmot\u011b epoxidov\u00e9 prysky\u0159ice, co\u017e vede k viditeln\u00fdm rozd\u00edl\u016fm v barv\u011b nebo vzhledu. Tento jev m\u016f\u017ee b\u00fdt zp\u016fsoben nedostate\u010dn\u00fdm prom\u00edch\u00e1n\u00edm, neslu\u010ditelnost\u00ed produkt\u016f nebo podm\u00ednkami vytvrzov\u00e1n\u00ed."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odd\u011blen\u00ed pigmentu"
+    },
+    {
+      "definition": [
+        "Odhad mno\u017estv\u00ed prysky\u0159ice p\u0159edstavuje proces, p\u0159i kter\u00e9m aplikace HFZWood vypo\u010d\u00edt\u00e1 objem a pot\u0159ebn\u00e9 mno\u017estv\u00ed epoxidov\u00e9 prysky\u0159ice pro realizaci projektu na z\u00e1klad\u011b geometrie definovan\u00e9 u\u017eivatelem a dostupn\u00fdch v\u00fdpo\u010dtov\u00fdch parametr\u016f."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odhad mno\u017estv\u00ed prysky\u0159ice"
+    },
+    {
+      "definition": [
+        "Odl\u00e9v\u00e1n\u00ed je proces, p\u0159i kter\u00e9m se tekut\u00e1 epoxidov\u00e1 prysky\u0159ice vn\u00e1\u0161\u00ed do bedn\u011bn\u00ed, dutin nebo jin\u00fdch \u010d\u00e1st\u00ed konstrukce, aby vyplnila dostupn\u00fd prostor a po vytvrzen\u00ed vytvo\u0159ila fin\u00e1ln\u00ed d\u00edl. Kvalita lit\u00ed je ovlivn\u011bna p\u0159\u00edpravou materi\u00e1l\u016f, pracovn\u00edmi podm\u00ednkami a dodr\u017eov\u00e1n\u00edm parametr\u016f doporu\u010den\u00fdch v\u00fdrobcem."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Bedn\u011bn\u00ed"
+        },
+        {
+          "id": "etan-are",
+          "term": "T\u011bsn\u011bn\u00ed"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polymerizace"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Hlubok\u00e9 lit\u00ed (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Vrstv\u00e9 lit\u00ed"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odl\u00e9v\u00e1n\u00ed"
+    },
+    {
+      "definition": [
+        "Odolnost proti po\u0161kr\u00e1b\u00e1n\u00ed p\u0159edstavuje schopnost povrchu sn\u00e1\u0161et kontakt s tvrd\u00fdmi p\u0159edm\u011bty, ani\u017e by na n\u011bm vznikaly viditeln\u00e9 \u0161kr\u00e1bance. Tato vlastnost z\u00e1vis\u00ed na pou\u017eit\u00e9m materi\u00e1lu, typu povrchov\u00e9 \u00fapravy a provozn\u00edch podm\u00ednk\u00e1ch dan\u00e9ho d\u00edlu."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odolnost proti po\u0161kr\u00e1b\u00e1n\u00ed"
+    },
+    {
+      "definition": [
+        "Odolnost proti vlhkosti p\u0159edstavuje schopnost materi\u00e1lu nebo povrchov\u00e9 \u00fapravy zachovat si sv\u00e9 vlastnosti p\u0159i vystaven\u00ed vod\u011b nebo vlhk\u00e9mu prost\u0159ed\u00ed. Vysok\u00e1 odolnost proti vlhkosti p\u0159isp\u00edv\u00e1 k zachov\u00e1n\u00ed stability a vzhledu d\u00edlu v pr\u016fb\u011bhu \u010dasu."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odolnost proti vlhkosti"
+    },
+    {
+      "definition": [
+        "Odvzdu\u0161n\u011bn\u00ed p\u0159edstavuje proces odstran\u011bn\u00ed vzduchu a plyn\u016f z epoxidov\u00e9 prysky\u0159ice p\u0159ed lit\u00edm nebo bezprost\u0159edn\u011b po n\u011bm. C\u00edlem tohoto postupu je sn\u00ed\u017eit po\u010det vzduchov\u00fdch bublin a dos\u00e1hnout co nejrovnom\u011brn\u011bj\u0161\u00edho a nejpr\u016fhledn\u011bj\u0161\u00edho odlitku."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskozita"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Doba zpracovatelnosti (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Odply\u0148ov\u00e1n\u00ed \u2013 Odmrazov\u00e1n\u00ed"
+    },
+    {
+      "definition": [
+        "Ods\u00e1v\u00e1n\u00ed prachu je proces sb\u011bru a odstra\u0148ov\u00e1n\u00ed prachu vznikaj\u00edc\u00edho p\u0159i zpracov\u00e1n\u00ed d\u0159eva a epoxidov\u00e9 prysky\u0159ice. Pou\u017eit\u00ed \u00fa\u010dinn\u00e9ho ods\u00e1vac\u00edho syst\u00e9mu p\u0159isp\u00edv\u00e1 k udr\u017een\u00ed \u010dist\u00e9ho pracovn\u00edho prost\u0159ed\u00ed, chr\u00e1n\u00ed zdrav\u00ed obsluhy a zlep\u0161uje kvalitu povrchov\u00e9 \u00fapravy."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ods\u00e1v\u00e1n\u00ed prachu"
+    },
+    {
+      "definition": [
+        "Olej na d\u0159evo je povrchov\u00e1 \u00faprava, kter\u00e1 pronik\u00e1 do struktury d\u0159eva a chr\u00e1n\u00ed jej p\u0159ed vlhkost\u00ed a opot\u0159eben\u00edm, p\u0159i\u010dem\u017e z\u00e1rove\u0148 zd\u016fraz\u0148uje texturu a p\u0159irozen\u00fd vzhled d\u0159evn\u00edch vl\u00e1ken. V z\u00e1vislosti na pou\u017eit\u00e9m typu m\u016f\u017ee olej vy\u017eadovat pravidelnou \u00fadr\u017ebu a opakovan\u00e9 nan\u00e1\u0161en\u00ed."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "olej",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Olej na d\u0159evo"
+    },
+    {
+      "definition": [
+        "Oprava vad p\u0159edstavuje soubor operac\u00ed prov\u00e1d\u011bn\u00fdch za \u00fa\u010delem odstran\u011bn\u00ed nedokonalost\u00ed, kter\u00e9 vznikly b\u011bhem odl\u00e9v\u00e1n\u00ed, vytvrzov\u00e1n\u00ed nebo dokon\u010dov\u00e1n\u00ed projektu. V z\u00e1vislosti na povaze vady m\u016f\u017ee oprava zahrnovat \u010di\u0161t\u011bn\u00ed, brou\u0161en\u00ed, vypln\u011bn\u00ed epoxidovou prysky\u0159ic\u00ed, le\u0161t\u011bn\u00ed nebo jin\u00e9 z\u00e1sahy nezbytn\u00e9 k tomu, aby byl d\u00edl uveden do po\u017eadovan\u00e9 kvality."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Opravy z\u00e1vad"
+    },
+    {
+      "definition": [
+        "Opr\u00e1vn\u011bn\u00ed k \u00faprav\u00e1m p\u0159edstavuje pr\u00e1vo u\u017eivatele m\u011bnit obsah projektu. V z\u00e1vislosti na roli u\u017eivatele a pravidlech aplikace m\u016f\u017ee b\u00fdt projekt upraviteln\u00fd nebo dostupn\u00fd pouze v re\u017eimu prohl\u00ed\u017een\u00ed."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Opr\u00e1vn\u011bn\u00ed k \u00faprav\u00e1m"
+    },
+    {
+      "definition": [
+        "Optick\u00e1 \u010dirost p\u0159edstavuje schopnost epoxidov\u00e9 prysky\u0159ice propou\u0161t\u011bt sv\u011btlo bez zkreslen\u00ed, ru\u0161en\u00ed nebo viditeln\u00fdch zm\u011bn obrazu. Vysok\u00e1 optick\u00e1 \u010dirost umo\u017e\u0148uje zd\u016fraznit detaily d\u0159eva a dos\u00e1hnout kvalitn\u00edch pr\u016fhledn\u00fdch odlitk\u016f."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Optick\u00e1 \u010distota"
+    },
+    {
+      "definition": [
+        "Osobn\u00ed ochrann\u00e9 prost\u0159edky p\u0159edstavuj\u00ed souhrn vybaven\u00ed, kter\u00e9 nos\u00ed obsluha za \u00fa\u010delem sn\u00ed\u017een\u00ed rizik spojen\u00fdch se zpracov\u00e1n\u00edm d\u0159eva a pou\u017e\u00edv\u00e1n\u00edm epoxidov\u00fdch prysky\u0159ic. Do t\u00e9to kategorie pat\u0159\u00ed mimo jin\u00e9 d\u00fdchac\u00ed masky, ochrann\u00e9 br\u00fdle, rukavice a sluchov\u00e1 ochrana."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Osobn\u00ed ochrann\u00e9 prost\u0159edky"
+    },
+    {
+      "definition": [
+        "T\u011bsn\u011bn\u00ed d\u0159eva spo\u010d\u00edv\u00e1 v nanesen\u00ed tenk\u00e9 vrstvy epoxidov\u00e9 prysky\u0159ice nebo jin\u00e9ho kompatibiln\u00edho materi\u00e1lu, aby se p\u0159ed hlavn\u00edm lit\u00edm omezila nadm\u011brn\u00e1 absorpce a \u00fanik vzduchu z p\u00f3r\u016f d\u0159eva. Tento krok p\u0159isp\u00edv\u00e1 k z\u00edsk\u00e1n\u00ed \u010dist\u00e9ho povrchu a ke sn\u00ed\u017een\u00ed v\u00fdskytu vzduchov\u00fdch bublin."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "O\u0161et\u0159en\u00ed d\u0159eva"
+    },
+    {
+      "definition": [
+        "Pendulov\u00e1 pila je elektrick\u00e9 n\u00e1\u0159ad\u00ed vybaven\u00e9 \u00fazk\u00fdm pilov\u00fdm p\u00e1sem, kter\u00e9 prov\u00e1d\u00ed vertik\u00e1ln\u00ed kmitav\u00fd pohyb a pou\u017e\u00edv\u00e1 se k \u0159ez\u00e1n\u00ed rovn\u00fdch i zak\u0159iven\u00fdch \u0159ez\u016f do d\u0159eva a jin\u00fdch materi\u00e1l\u016f. D\u00edky sv\u00e9 obratnosti je vhodn\u00e1 pro slo\u017eit\u00e9 v\u00fd\u0159ezy a obrysy."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "pendul\u00e1rn\u00ed",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pendulov\u00e1 pila"
+    },
+    {
+      "definition": [
+        "Pigment je l\u00e1tka pou\u017e\u00edvan\u00e1 k barven\u00ed epoxidov\u00e9 prysky\u0159ice, kter\u00e1 p\u0159i spr\u00e1vn\u00e9m d\u00e1vkov\u00e1n\u00ed neovliv\u0148uje proces vytvrzov\u00e1n\u00ed. Pigmenty jsou k dispozici v \u0161irok\u00e9 \u0161k\u00e1le barev a efekt\u016f a umo\u017e\u0148uj\u00ed z\u00edskat pr\u016fhledn\u00e9, polopr\u016fhledn\u00e9 nebo nepr\u016fhledn\u00e9 odlitky v z\u00e1vislosti na pou\u017eit\u00e9m typu a mno\u017estv\u00ed."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigment"
+    },
+    {
+      "definition": [
+        "Pigmentov\u00e1 pasta je pigment ve form\u011b koncentrovan\u00e9 pasty, speci\u00e1ln\u011b vyvinut\u00fd pro barven\u00ed epoxidov\u00fdch prysky\u0159ic. D\u00edky sv\u00e9 konzistenci se snadno rozpt\u00fdl\u00ed ve sm\u011bsi a umo\u017e\u0148uje dos\u00e1hnout jednotn\u00fdch a syt\u00fdch barev ji\u017e p\u0159i mal\u00e9m mno\u017estv\u00ed pou\u017eit\u00e9ho materi\u00e1lu."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmentov\u00e1 pasta"
+    },
+    {
+      "definition": [
+        "Plynov\u00e1 ho\u0159\u00e1k je n\u00e1stroj, kter\u00fd vytv\u00e1\u0159\u00ed kontrolovan\u00fd plamen a pou\u017e\u00edv\u00e1 se k odstran\u011bn\u00ed vzduchov\u00fdch bublin z povrchu epoxidov\u00e9 prysky\u0159ice bezprost\u0159edn\u011b po nalit\u00ed. Jeho pou\u017e\u00edv\u00e1n\u00ed vy\u017eaduje opatrnost, proto\u017ee nadm\u011brn\u00e9 vystaven\u00ed teplu m\u016f\u017ee po\u0161kodit prysky\u0159ici nebo okoln\u00ed materi\u00e1ly."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "poh\u00e1r",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Vzduchov\u00e9 bubliny"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Plynov\u00e1 ho\u0159\u00e1k"
+    },
+    {
+      "definition": [
+        "Polymerizace je chemick\u00e1 reakce, p\u0159i n\u00ed\u017e epoxidov\u00e1 prysky\u0159ice a tvrdidlo vytv\u00e1\u0159ej\u00ed pevnou a stabiln\u00ed strukturu. Tento proces za\u010d\u00edn\u00e1 ihned po sm\u00edch\u00e1n\u00ed a pokra\u010duje, dokud materi\u00e1l nedos\u00e1hne sv\u00fdch kone\u010dn\u00fdch vlastnost\u00ed, jako je pevnost, tvrdost a stabilita."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Pom\u011br sm\u011bsi"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polymerizace"
+    },
+    {
+      "definition": [
+        "Pomeran\u010dov\u00e1 k\u016fra, zn\u00e1m\u00e1 tak\u00e9 pod n\u00e1zvem Orange Peel, je povrchov\u00e1 vada charakterizovan\u00e1 nepravidelnou texturou, kter\u00e1 p\u0159ipom\u00edn\u00e1 k\u016fru pomeran\u010de. Tato vada m\u016f\u017ee vzniknout v d\u016fsledku podm\u00ednek nan\u00e1\u0161en\u00ed, nevhodn\u00e9 viskozity nebo jin\u00fdch faktor\u016f, kter\u00e9 ovliv\u0148uj\u00ed vyrovn\u00e1n\u00ed prysky\u0159ice."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pomeran\u010dov\u00e1 k\u016fra"
+    },
+    {
+      "definition": [
+        "Pom\u011br m\u00edch\u00e1n\u00ed p\u0159edstavuje pom\u011br, v jak\u00e9m je t\u0159eba sm\u00edchat epoxidovou prysky\u0159ici a tvrdidlo, aby do\u0161lo ke spr\u00e1vn\u00e9 polymerizaci. Tento pom\u011br stanov\u00ed v\u00fdrobce a je nutn\u00e9 jej p\u0159esn\u011b dodr\u017eovat, proto\u017ee ovliv\u0148uje dobu zpracovatelnosti, tuhnut\u00ed a kone\u010dn\u00e9 vlastnosti materi\u00e1lu."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pom\u011br sm\u011bsi"
+    },
+    {
+      "definition": [
+        "Por\u00e9zn\u00ed d\u0159evo je d\u0159evo, kter\u00e9 obsahuje velk\u00e9 mno\u017estv\u00ed p\u00f3r\u016f nebo mikroskopick\u00fdch dutin, kter\u00fdmi m\u016f\u017ee absorbovat kapaliny, v\u010detn\u011b epoxidov\u00e9 prysky\u0159ice. Stupe\u0148 por\u00e9znosti ovliv\u0148uje spot\u0159ebu prysky\u0159ice, nutnost nanesen\u00ed t\u011bsnic\u00ed vrstvy a kone\u010dn\u00fd vzhled povrchu."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Por\u00e9zn\u00ed d\u0159evo"
+    },
+    {
+      "definition": [
+        "Tvrdidlo je slo\u017eka, kter\u00e1 spou\u0161t\u00ed chemickou reakci nezbytnou pro vytvrzen\u00ed epoxidov\u00e9 prysky\u0159ice. Mus\u00ed b\u00fdt pou\u017e\u00edv\u00e1n v\u00fdhradn\u011b spole\u010dn\u011b s prysky\u0159ic\u00ed, pro kterou byl ur\u010den, a v pom\u011bru sm\u00edch\u00e1n\u00ed doporu\u010den\u00e9m v\u00fdrobcem, proto\u017ee jak\u00e1koli odchylka m\u016f\u017ee ovlivnit kvalitu a pevnost v\u00fdsledn\u00e9ho materi\u00e1lu."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Posilova\u010d"
+    },
+    {
+      "definition": [
+        "Pot\u0159ebn\u00e9 mno\u017estv\u00ed prysky\u0159ice p\u0159edstavuje odhadovan\u00fd objem nebo hmotnost epoxidov\u00e9 prysky\u0159ice pot\u0159ebn\u00e9 k realizaci projektu, v\u010detn\u011b p\u0159\u00edpadn\u00e9ho bezpe\u010dnostn\u00edho faktoru stanoven\u00e9ho u\u017eivatelem. V programu HFZWood se tato hodnota vypo\u010d\u00edt\u00e1v\u00e1 automaticky na z\u00e1klad\u011b geometrie projektu a zadan\u00fdch parametr\u016f."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pot\u0159ebn\u00e9 mno\u017estv\u00ed prysky\u0159ice"
+    },
+    {
+      "definition": [
+        "Pot\u0159ebn\u00e9 mno\u017estv\u00ed tvrdidla p\u0159edstavuje objem nebo hmotnost tvrdidla vypo\u010d\u00edtanou na z\u00e1klad\u011b mno\u017estv\u00ed prysky\u0159ice a pom\u011bru m\u00edch\u00e1n\u00ed specifick\u00e9ho pro pou\u017eit\u00fd produkt. Dodr\u017een\u00ed t\u00e9to hodnoty je z\u00e1sadn\u00ed pro spr\u00e1vn\u00fd pr\u016fb\u011bh procesu polymerace."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pot\u0159ebn\u00e9 mno\u017estv\u00ed zpev\u0148ova\u010de"
+    },
+    {
+      "definition": [
+        "Pracovn\u00ed prostor p\u0159edstavuje hlavn\u00ed pracovn\u00ed prost\u0159ed\u00ed aplikace HFZWood, ve kter\u00e9m u\u017eivatel vytv\u00e1\u0159\u00ed, otev\u00edr\u00e1, upravuje a spravuje projekty a m\u00e1 p\u0159\u00edstup k funkc\u00edm a zdroj\u016fm dostupn\u00fdm v z\u00e1vislosti na jeho roli a p\u0159edplatn\u00e9m."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pracovn\u00ed prostor"
+    },
+    {
+      "definition": [
+        "Pracovn\u00ed st\u016fl je plocha nebo st\u016fl ur\u010den\u00fd k prov\u00e1d\u011bn\u00ed operac\u00ed obr\u00e1b\u011bn\u00ed, mont\u00e1\u017ee a dokon\u010dov\u00e1n\u00ed. Stabiln\u00ed a dostate\u010dn\u011b tuh\u00fd pracovn\u00ed st\u016fl p\u0159isp\u00edv\u00e1 k p\u0159esnosti operac\u00ed a k bezpe\u010dn\u00e9mu prov\u00e1d\u011bn\u00ed \u010dinnost\u00ed v d\u00edln\u011b."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pracovn\u00ed st\u016fl"
+    },
+    {
+      "definition": [
+        "Odformovac\u00ed prost\u0159edek je l\u00e1tka, kter\u00e1 se nan\u00e1\u0161\u00ed na povrch bedn\u011bn\u00ed, aby se zabr\u00e1nilo ulp\u00edv\u00e1n\u00ed epoxidov\u00e9 prysky\u0159ice b\u011bhem vytvrzov\u00e1n\u00ed. Jeho pou\u017eit\u00ed usnad\u0148uje demont\u00e1\u017e bedn\u011bn\u00ed a sni\u017euje riziko po\u0161kozen\u00ed d\u00edlu nebo kontaktn\u00edch ploch."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "odstra\u0148ova\u010d n\u00e1nos\u016f",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Prost\u0159edek na odstra\u0148ov\u00e1n\u00ed n\u00e1nos\u016f"
+    },
+    {
+      "definition": [
+        "P\u00e1sov\u00e1 pila je \u0159ezac\u00ed stroj, kter\u00fd vyu\u017e\u00edv\u00e1 souvisl\u00fd \u0159ezac\u00ed p\u00e1s namontovan\u00fd na dvou nebo v\u00edce hnac\u00edch kolech. Umo\u017e\u0148uje prov\u00e1d\u011bt p\u0159esn\u00e9 \u0159ezy, a to jak rovn\u00e9, tak i zak\u0159iven\u00e9, a \u010dasto se pou\u017e\u00edv\u00e1 k \u0159ez\u00e1n\u00ed masivn\u00edho d\u0159eva a ke zpracov\u00e1n\u00ed d\u00edl\u016f nepravideln\u00fdch tvar\u016f."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "banzic",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u00e1sov\u00e1 pila"
+    },
+    {
+      "definition": [
+        "P\u011bnov\u00fd kotou\u010d je p\u0159\u00edslu\u0161enstv\u00ed pro le\u0161tic\u00ed stroje, kter\u00e9 se pou\u017e\u00edv\u00e1 k nan\u00e1\u0161en\u00ed brusn\u00fdch a dokon\u010dovac\u00edch past. V z\u00e1vislosti na tvrdosti p\u011bny lze tento kotou\u010d pou\u017e\u00edt jak k odstran\u011bn\u00ed drobn\u00fdch vad, tak k dosa\u017een\u00ed kone\u010dn\u00e9ho lesku."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "le\u0161tic\u00ed podlo\u017eka",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u011bnov\u00fd kotou\u010d"
+    },
+    {
+      "definition": [
+        "P\u0159edplatn\u00e9 p\u0159edstavuje formu licence, d\u00edky n\u00ed\u017e u\u017eivatel z\u00edsk\u00e1 p\u0159\u00edstup k ur\u010dit\u00fdm funkc\u00edm aplikace HFZWood. Typ p\u0159edplatn\u00e9ho ur\u010duje dostupn\u00e9 funkce a p\u0159\u00edpadn\u00e1 omezen\u00ed pou\u017eit\u00ed."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0159edplatn\u00e9"
+    },
+    {
+      "definition": [
+        "P\u0159eh\u0159\u00e1t\u00ed, zn\u00e1m\u00e9 tak\u00e9 pod n\u00e1zvem Overheating, p\u0159edstavuje nadm\u011brn\u00fd n\u00e1r\u016fst teploty epoxidov\u00e9 prysky\u0159ice b\u011bhem polymerizace. K tomuto jevu obvykle doch\u00e1z\u00ed u p\u0159\u00edli\u0161 siln\u00fdch odlitk\u016f nebo p\u0159i velk\u00fdch objemech a m\u016f\u017ee zp\u016fsobit praskliny, deformace, za\u017eloutnut\u00ed nebo jin\u00e9 vady d\u00edlu."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0159eh\u0159\u00e1t\u00ed"
+    },
+    {
+      "definition": [
+        "P\u0159esnost m\u011b\u0159en\u00ed p\u0159edstavuje m\u00edru shody mezi hodnotami vypo\u010d\u00edtan\u00fdmi aplikac\u00ed a skute\u010dn\u00fdmi rozm\u011bry projektu. Z\u00e1vis\u00ed na kvalit\u011b sn\u00edmku, spr\u00e1vnosti kalibrace a p\u0159esnosti, s jakou jsou definov\u00e1ny m\u011b\u0159ic\u00ed body a obrysy."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0159esnost m\u011b\u0159en\u00ed"
+    },
+    {
+      "definition": [
+        "P\u0159ilnavost p\u0159edstavuje schopnost dvou materi\u00e1l\u016f, kter\u00e9 jsou ve vz\u00e1jemn\u00e9m kontaktu, pevn\u011b se k sob\u011b p\u0159ilnout. P\u0159i projektech s pou\u017eit\u00edm epoxidov\u00e9 prysky\u0159ice je odpov\u00eddaj\u00edc\u00ed p\u0159ilnavost mezi prysky\u0159ic\u00ed a d\u0159evem z\u00e1sadn\u00ed pro pevnost a trvanlivost hotov\u00e9ho d\u00edlu."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0159ilnavost"
+    },
+    {
+      "definition": [
+        "P\u0159\u00edrodn\u00ed hrana p\u0159edstavuje p\u016fvodn\u00ed obrys d\u0159eva, kter\u00fd z\u016fst\u00e1v\u00e1 zachov\u00e1n po odstran\u011bn\u00ed k\u016fry. Tento typ hrany se \u010dasto pou\u017e\u00edv\u00e1 v projektech typu River Table a v dal\u0161\u00edch dekorativn\u00edch kusech, aby vynikla p\u0159irozen\u00e1 forma d\u0159eva."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "P\u0159irozen\u00fd okraj"
+    },
+    {
+      "definition": [
+        "Referen\u010dn\u00ed bod je bod vybran\u00fd na obr\u00e1zku za \u00fa\u010delem definov\u00e1n\u00ed zn\u00e1m\u00e9ho rozm\u011bru nebo proveden\u00ed geometrick\u00fdch m\u011b\u0159en\u00ed. V programu HFZWood se referen\u010dn\u00ed body pou\u017e\u00edvaj\u00ed p\u0159i kalibraci a p\u0159i vyzna\u010dov\u00e1n\u00ed obrys\u016f pot\u0159ebn\u00fdch pro v\u00fdpo\u010det ploch a objem\u016f."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Referen\u010dn\u00ed bod"
+    },
+    {
+      "definition": [
+        "Referen\u010dn\u00ed obr\u00e1zek je fotografie pou\u017eit\u00e1 v aplikaci HFZWood jako z\u00e1klad pro m\u011b\u0159en\u00ed a v\u00fdpo\u010det objemu prysky\u0159ice pot\u0159ebn\u00e9ho pro dan\u00fd projekt. P\u0159edstavuje podklad, na kter\u00e9m jsou definov\u00e1ny geometrick\u00e9 prvky pou\u017e\u00edvan\u00e9 aplikac\u00ed, a z\u016fst\u00e1v\u00e1 trvale p\u0159i\u0159azen k dan\u00e9mu projektu."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Referen\u010dn\u00ed obr\u00e1zek"
+    },
+    {
+      "definition": [
+        "Referen\u010dn\u00ed \u010d\u00e1ra je \u00fase\u010dka vymezen\u00e1 mezi dv\u011bma referen\u010dn\u00edmi body a odpov\u00edd\u00e1 zn\u00e1m\u00e9 skute\u010dn\u00e9 vzd\u00e1lenosti. V programu HFZWood se tato \u010d\u00e1ra pou\u017e\u00edv\u00e1 p\u0159i kalibraci k nastaven\u00ed spr\u00e1vn\u00e9ho m\u011b\u0159\u00edtka obr\u00e1zku a k prov\u00e1d\u011bn\u00ed p\u0159esn\u00fdch m\u011b\u0159en\u00ed."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Referen\u010dn\u00ed \u010d\u00e1ra"
+    },
+    {
+      "definition": [
+        "Renovace povrchu je proces, p\u0159i kter\u00e9m se opot\u0159ebovan\u00fd nebo po\u0161kozen\u00fd d\u00edl uvede do stavu, kter\u00fd se sv\u00fdm vzhledem a \u00farovn\u00ed ochrany bl\u00ed\u017e\u00ed p\u016fvodn\u00edmu stavu. V z\u00e1vislosti na stavu povrchu m\u016f\u017ee tento proces zahrnovat brou\u0161en\u00ed, opravu vad a nanesen\u00ed nov\u00e9 povrchov\u00e9 \u00fapravy."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Renovace povrchu"
+    },
+    {
+      "definition": [
+        "River Table je typ stolu vyroben\u00e9ho ze dvou nebo v\u00edce kus\u016f d\u0159eva, mezi kter\u00e9 se nalije epoxidov\u00e1 prysky\u0159ice, \u010d\u00edm\u017e vznikne centr\u00e1ln\u00ed \u010d\u00e1st p\u0159ipom\u00ednaj\u00edc\u00ed tok \u0159eky. Tento designov\u00fd styl zd\u016fraz\u0148uje p\u0159irozen\u00e9 okraje d\u0159eva a p\u0159edstavuje jedno z nejzn\u00e1m\u011bj\u0161\u00edch pou\u017eit\u00ed epoxidov\u00e9 prysky\u0159ice v n\u00e1bytk\u00e1\u0159stv\u00ed."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "River Table"
+    },
+    {
+      "definition": [
+        "Router Sled je vodic\u00ed syst\u00e9m, kter\u00fd umo\u017e\u0148uje \u0159\u00edzen\u00fd pohyb fr\u00e9zky nad velk\u00fdmi obrobky. Toto za\u0159\u00edzen\u00ed se pou\u017e\u00edv\u00e1 k vyrovn\u00e1v\u00e1n\u00ed povrch\u016f, kter\u00e9 nelze opracovat hoblovkou, jako jsou nap\u0159\u00edklad stoly typu River Table nebo jin\u00e9 rozm\u011brn\u00e9 desky."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "router sleed",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router Sled"
+    },
+    {
+      "definition": [
+        "Rovnom\u011brn\u00e1 tlou\u0161\u0165ka popisuje situaci, kdy m\u00e1 d\u0159ev\u011bn\u00fd d\u00edl po cel\u00e9 sv\u00e9 plo\u0161e stejnou tlou\u0161\u0165ku. Udr\u017eov\u00e1n\u00ed konstantn\u00ed tlou\u0161\u0165ky usnad\u0148uje zpracov\u00e1n\u00ed, spojov\u00e1n\u00ed a spr\u00e1vn\u00fd v\u00fdpo\u010det objemu v projektech realizovan\u00fdch s pou\u017eit\u00edm epoxidov\u00e9 prysky\u0159ice."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Rovn\u00e1n\u00ed d\u0159eva",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Rovnom\u011brn\u00e1 tlou\u0161\u0165ka"
+    },
+    {
+      "definition": [
+        "Vyrovn\u00e1v\u00e1n\u00ed d\u0159eva je operace, p\u0159i kter\u00e9 se povrch d\u00edlu uvede do spr\u00e1vn\u00e9 roviny a odstran\u00ed se tak deformace, nerovnosti a vady. Tento proces zaji\u0161\u0165uje stabiln\u00ed z\u00e1klad pro dal\u0161\u00ed zpracov\u00e1n\u00ed a p\u0159isp\u00edv\u00e1 k dosa\u017een\u00ed kvalitn\u00edch spoj\u016f a spojovac\u00edch prvk\u016f."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Kalibrace"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Rovnom\u011brn\u00e1 tlou\u0161\u0165ka",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Rovn\u00e1n\u00ed d\u0159eva"
+    },
+    {
+      "definition": [
+        "Rozm\u011brov\u00e1 stabilita p\u0159edstavuje schopnost materi\u00e1lu zachovat si sv\u016fj tvar a rozm\u011bry v pr\u016fb\u011bhu \u010dasu, a to i p\u0159es kol\u00eds\u00e1n\u00ed teploty a vlhkosti. Vysok\u00e1 rozm\u011brov\u00e1 stabilita p\u0159isp\u00edv\u00e1 k trvanlivosti a spr\u00e1vn\u00e9mu fungov\u00e1n\u00ed konstrukc\u00ed vyroben\u00fdch ze d\u0159eva a epoxidov\u00e9 prysky\u0159ice."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rozm\u011brov\u00e1 stabilita"
+    },
+    {
+      "definition": [
+        "Rozta\u017enost p\u0159edstavuje zv\u011bt\u0161en\u00ed rozm\u011br\u016f materi\u00e1lu v d\u016fsledku absorpce vlhkosti nebo teplotn\u00edch zm\u011bn. Vzhledem k tomu, \u017ee d\u0159evo a epoxidov\u00e1 prysky\u0159ice se p\u0159i rozta\u017enosti chovaj\u00ed odli\u0161n\u011b, je t\u0159eba tento jev zohlednit p\u0159i navrhov\u00e1n\u00ed a pou\u017e\u00edv\u00e1n\u00ed d\u00edl\u016f."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rozta\u017een\u00ed"
+    },
+    {
+      "definition": [
+        "Ryb\u00ed o\u010di, zn\u00e1m\u00e9 tak\u00e9 pod n\u00e1zvem Fish Eyes, jsou povrchov\u00e9 vady, kter\u00e9 se projevuj\u00ed ve form\u011b kruhov\u00fdch oblast\u00ed, kde prysky\u0159ice ustupuje a nep\u0159ilne rovnom\u011brn\u011b. Jsou obecn\u011b zp\u016fsobeny zne\u010di\u0161t\u011bn\u00edm povrchu oleji, silikonem nebo jin\u00fdmi l\u00e1tkami, kter\u00e9 sni\u017euj\u00ed p\u0159ilnavost."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ryb\u00ed o\u010di"
+    },
+    {
+      "definition": [
+        "Sat\u00e9nov\u00e1 povrchov\u00e1 \u00faprava je typ povrchov\u00e9 \u00fapravy, kter\u00e1 poskytuje jednotn\u00fd vzhled s nen\u00e1padn\u00fdmi odlesky a m\u00edrn\u00fdm leskem. Zd\u016fraz\u0148uje strukturu materi\u00e1lu a je preferov\u00e1na v projektech, kde je \u017e\u00e1d\u00e1n p\u0159irozen\u00fd a elegantn\u00ed vzhled."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sat\u00e9nov\u00fd povrch"
+    },
+    {
+      "definition": [
+        "Funkce (*Capability*) p\u0159edstavuje funkci nebo skupinu funkc\u00ed, kter\u00e9 aplikace HFZWood poskytuje u\u017eivateli. Dostupn\u00e9 funkce jsou ur\u010deny typem p\u0159edplatn\u00e9ho a rol\u00ed p\u0159i\u0159azenou k \u00fa\u010dtu."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Schopnost"
+    },
+    {
+      "definition": [
+        "Sd\u00edlen\u00fd projekt (*Read-Only*) je projekt, kter\u00fd je jin\u00e9mu u\u017eivateli zp\u0159\u00edstupn\u011bn v\u00fdhradn\u011b k prohl\u00ed\u017een\u00ed. Lze jej otev\u0159\u00edt a prohl\u00ed\u017eet, ale jeho obsah nemohou upravovat u\u017eivatel\u00e9, kte\u0159\u00ed nejsou vlastn\u00edky projektu."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sd\u00edlen\u00fd projekt"
+    },
+    {
+      "definition": [
+        "Slovn\u00edk p\u0159edstavuje sb\u00edrku term\u00edn\u016f a definic pou\u017e\u00edvan\u00fdch v r\u00e1mci aplikace HFZWood a v oblasti zpracov\u00e1n\u00ed d\u0159eva a epoxidov\u00fdch prysky\u0159ic. Jeho \u00fakolem je zajistit jednotn\u00e9 pou\u017e\u00edv\u00e1n\u00ed terminologie a jasn\u00e9 pochopen\u00ed pojm\u016f prezentovan\u00fdch v aplikaci."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Slovn\u00ed\u010dek pojm\u016f"
+    },
+    {
+      "definition": [
+        "Kompozice projektu p\u0159edstavuje zp\u016fsob, jak\u00fdm jsou uspo\u0159\u00e1d\u00e1ny a integrov\u00e1ny v\u0161echny prvky tvo\u0159\u00edc\u00ed fin\u00e1ln\u00ed d\u00edlo, jako je d\u0159evo, epoxidov\u00e1 prysky\u0159ice a p\u0159\u00edpadn\u00e9 dekorativn\u00ed prvky. Promy\u0161len\u00e1 kompozice zaji\u0161\u0165uje jak estetickou vyv\u00e1\u017eenost, tak funk\u010dnost projektu."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Slo\u017een\u00ed projektu"
+    },
+    {
+      "definition": [
+        "Such\u00e9 brou\u0161en\u00ed je proces brou\u0161en\u00ed prov\u00e1d\u011bn\u00fd bez pou\u017eit\u00ed chladic\u00edch nebo mazac\u00edch kapalin. Jedn\u00e1 se o metodu nej\u010dast\u011bji pou\u017e\u00edvanou p\u0159i zpracov\u00e1n\u00ed d\u0159eva a epoxidov\u00e9 prysky\u0159ice a umo\u017e\u0148uje \u00fa\u010dinn\u00e9 odstra\u0148ov\u00e1n\u00ed materi\u00e1lu ve v\u0161ech f\u00e1z\u00edch zpracov\u00e1n\u00ed."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Such\u00e9 brou\u0161en\u00ed"
+    },
+    {
+      "definition": [
+        "Sv\u011br\u00e1k je up\u00ednac\u00ed za\u0159\u00edzen\u00ed pou\u017e\u00edvan\u00e9 k pevn\u00e9mu uchycen\u00ed obrobk\u016f b\u011bhem obr\u00e1b\u011bn\u00ed. Spr\u00e1vn\u00e9 upnut\u00ed zvy\u0161uje p\u0159esnost operac\u00ed a sni\u017euje riziko n\u00e1hodn\u00e9ho posunut\u00ed materi\u00e1lu."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "sv\u011br\u00e1k",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sv\u011br\u00e1k"
+    },
+    {
+      "definition": [
+        "Technick\u00e1 reference p\u0159edstavuje zdokumentovanou informaci, kter\u00e1 slou\u017e\u00ed jako podklad pro vysv\u011btlen\u00ed, doporu\u010den\u00ed nebo postup. V r\u00e1mci aplikace technick\u00e9 reference podporuj\u00ed p\u0159esnost a d\u016fv\u011bryhodnost vzd\u011bl\u00e1vac\u00edho obsahu."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Technick\u00e1 specifikace"
+    },
+    {
+      "definition": [
+        "Technologick\u00e1 ztr\u00e1ta p\u0159edstavuje mno\u017estv\u00ed prysky\u0159ice, kter\u00e9 se nedostane do kone\u010dn\u00e9ho v\u00fdrobku v d\u016fsledku proces\u016f m\u00edch\u00e1n\u00ed, p\u0159epravy, lit\u00ed nebo zbytk\u016f, kter\u00e9 z\u016fst\u00e1vaj\u00ed v n\u00e1dob\u00e1ch a n\u00e1stroj\u00edch. Jedn\u00e1 se o b\u011b\u017en\u00fd jev, kter\u00fd je t\u0159eba zohlednit p\u0159i odhadu celkov\u00e9 spot\u0159eby materi\u00e1lu."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Technologick\u00e1 ztr\u00e1ta"
+    },
+    {
+      "definition": [
+        "Tepeln\u00e9 prask\u00e1n\u00ed p\u0159edstavuje vznik trhlin v epoxidov\u00e9 prysky\u0159ici nebo ve d\u0159ev\u011b v d\u016fsledku velk\u00fdch teplotn\u00edch v\u00fdkyv\u016f nebo nadm\u011brn\u00e9ho v\u00fdvinu tepla b\u011bhem polymerizace. Tato vada m\u016f\u017ee naru\u0161it jak estetick\u00fd vzhled, tak pevnost hotov\u00e9ho d\u00edlu."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tepeln\u00e9 prasknut\u00ed"
+    },
+    {
+      "definition": [
+        "Okoln\u00ed teplota p\u0159edstavuje teplotu vzduchu v prostoru, kde jsou epoxidov\u00e9 prysky\u0159ice skladov\u00e1ny, m\u00edch\u00e1ny a pou\u017e\u00edv\u00e1ny. Ovliv\u0148uje viskozitu, dobu zpracovatelnosti, rychlost polymerizace a kone\u010dnou kvalitu odlitku, a proto mus\u00ed b\u00fdt udr\u017eov\u00e1na v rozmez\u00ed doporu\u010den\u00e9m v\u00fdrobcem."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Teplota okol\u00ed"
+    },
+    {
+      "definition": [
+        "Tlou\u0161\u0165ka lit\u00e9 vrstvy p\u0159edstavuje v\u00fd\u0161ku vrstvy epoxidov\u00e9 prysky\u0159ice nanesen\u00e9 v jednom kroku. Ta mus\u00ed spadat do rozmez\u00ed doporu\u010den\u00e9ho v\u00fdrobcem pro dan\u00fd typ prysky\u0159ice, aby proces polymerizace prob\u00edhal za optim\u00e1ln\u00edch podm\u00ednek a bez vzniku vad."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Odply\u0148ov\u00e1n\u00ed \u2013 Odmrazov\u00e1n\u00ed"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Posilova\u010d"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Vrstv\u00e9 lit\u00ed"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Hlubok\u00e9 lit\u00ed (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tlou\u0161\u0165ka lit\u00ed"
+    },
+    {
+      "definition": [
+        "Trhlina je prasklina, kter\u00e1 vznikla ve struktu\u0159e d\u0159eva v d\u016fsledku vnit\u0159n\u00edho pnut\u00ed, vysych\u00e1n\u00ed nebo mechanick\u00e9ho nam\u00e1h\u00e1n\u00ed. V z\u00e1vislosti na velikosti a um\u00edst\u011bn\u00ed mohou trhliny vy\u017eadovat zpevn\u011bn\u00ed, vypln\u011bn\u00ed epoxidovou prysky\u0159ic\u00ed nebo odstran\u011bn\u00ed po\u0161kozen\u00e9 \u010d\u00e1sti."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Dutina",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Trhlina"
+    },
+    {
+      "definition": [
+        "T\u011bsnic\u00ed silikon je pru\u017en\u00fd materi\u00e1l pou\u017e\u00edvan\u00fd k ut\u011bsn\u011bn\u00ed spoj\u016f a sp\u00e1r bedn\u011bn\u00ed p\u0159ed nalit\u00edm epoxidov\u00e9 prysky\u0159ice. P\u0159i spr\u00e1vn\u00e9m nanesen\u00ed zabra\u0148uje \u00fanik\u016fm a po demont\u00e1\u017ei bedn\u011bn\u00ed se snadno odstra\u0148uje."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Bedn\u011bn\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "T\u011bsnic\u00ed silikon"
+    },
+    {
+      "definition": [
+        "T\u011bsnic\u00ed vrstva, zn\u00e1m\u00e1 tak\u00e9 pod n\u00e1zvem Seal Coat, je tenk\u00e1 vrstva epoxidov\u00e9 prysky\u0159ice nan\u00e1\u0161en\u00e1 p\u0159ed hlavn\u00edm lit\u00edm, kter\u00e1 uzav\u00edr\u00e1 p\u00f3ry d\u0159eva a omezuje \u00fanik vzduchu. Tento krok p\u0159isp\u00edv\u00e1 ke sn\u00ed\u017een\u00ed vzniku bublin a k dosa\u017een\u00ed kvalitn\u00edho kone\u010dn\u00e9ho povrchu."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viskozita"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Hlubok\u00e9 lit\u00ed (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Doba zpracovatelnosti (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Pom\u011br sm\u011bsi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "T\u011bsnic\u00ed vrstva (Seal Coat)"
+    },
+    {
+      "definition": [
+        "T\u011bsn\u011bn\u00ed p\u0159edstavuje proces, kter\u00fd zabra\u0148uje \u00faniku epoxidov\u00e9 prysky\u0159ice z bedn\u011bn\u00ed b\u011bhem lit\u00ed a tuhnut\u00ed. Spr\u00e1vn\u011b proveden\u00e9 t\u011bsn\u011bn\u00ed zabra\u0148uje ztr\u00e1t\u00e1m materi\u00e1lu, zachov\u00e1v\u00e1 tvar konstrukce a p\u0159isp\u00edv\u00e1 k dosa\u017een\u00ed bezchybn\u00e9ho odlitku."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "T\u011bsn\u011bn\u00ed"
+    },
+    {
+      "definition": [
+        "Um\u00edst\u011bn\u00ed d\u0159eva je proces usazov\u00e1n\u00ed a vyrovn\u00e1v\u00e1n\u00ed d\u0159ev\u011bn\u00fdch d\u00edl\u016f do kone\u010dn\u00e9 konfigurace projektu p\u0159ed nalit\u00edm epoxidov\u00e9 prysky\u0159ice. Zp\u016fsob jejich um\u00edst\u011bn\u00ed ovliv\u0148uje estetick\u00fd vzhled, pot\u0159ebn\u00e9 mno\u017estv\u00ed prysky\u0159ice a stabilitu cel\u00e9 konstrukce."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Um\u00edst\u011bn\u00ed d\u0159eva"
+    },
+    {
+      "definition": [
+        "Up\u00ednac\u00ed svorka je za\u0159\u00edzen\u00ed pou\u017e\u00edvan\u00e9 k do\u010dasn\u00e9mu upevn\u011bn\u00ed d\u00edl\u016f nebo sou\u010d\u00e1st\u00ed v po\u017eadovan\u00e9 poloze b\u011bhem lepen\u00ed, obr\u00e1b\u011bn\u00ed nebo mont\u00e1\u017ee. Existuje mnoho typ\u016f svorek, p\u0159izp\u016fsoben\u00fdch r\u016fzn\u00fdm rozm\u011br\u016fm a aplikac\u00edm."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "d\u0159ev\u011bn\u00e1 svorka",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Upev\u0148ovac\u00ed svorka"
+    },
+    {
+      "definition": [
+        "Sedimentace pigmentu je jev, p\u0159i kter\u00e9m se \u010d\u00e1stice pigmentu usazuj\u00ed na dn\u011b odlitku je\u0161t\u011b p\u0159ed \u00fapln\u00fdm vytvrzen\u00edm prysky\u0159ice. To m\u016f\u017ee ovlivnit kone\u010dn\u00fd vzhled odlitku a je to z\u00e1visl\u00e9 na typu pigmentu, viskozit\u011b prysky\u0159ice a d\u00e9lce procesu vytvrzov\u00e1n\u00ed."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Usazov\u00e1n\u00ed pigmentu"
+    },
+    {
+      "definition": [
+        "Zav\u0159en\u00ed vzduchov\u00fdch bublin znamen\u00e1 zadr\u017een\u00ed bublin v hmot\u011b epoxidov\u00e9 prysky\u0159ice b\u011bhem procesu vytvrzov\u00e1n\u00ed. Uv\u011bzn\u011bn\u00e9 bubliny mohou ovlivnit pr\u016fhlednost, estetick\u00fd vzhled a v n\u011bkter\u00fdch p\u0159\u00edpadech i pevnost hotov\u00e9ho d\u00edlu."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "vzduchov\u00e9 bubliny v prysky\u0159ici",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Vzduchov\u00e9 bubliny"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Doba zpracovatelnosti (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Uzav\u0159en\u00ed vzduchov\u00fdch bublin"
+    },
+    {
+      "definition": [
+        "Vada odlitku p\u0159edstavuje jakoukoli nedokonalost vzniklou b\u011bhem procesu odl\u00e9v\u00e1n\u00ed nebo vytvrzov\u00e1n\u00ed epoxidov\u00e9 prysky\u0159ice, kter\u00e1 ovliv\u0148uje vzhled, funk\u010dnost nebo kvalitu hotov\u00e9ho d\u00edlu. Mezi nej\u010dast\u011bj\u0161\u00ed vady pat\u0159\u00ed vzduchov\u00e9 bubliny, dutiny, vyt\u00e9k\u00e1n\u00ed, trhliny a oblasti, kter\u00e9 \u0159\u00e1dn\u011b nevytvrdly."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vada odlitku"
+    },
+    {
+      "definition": [
+        "Viskozita p\u0159edstavuje stupe\u0148 tekutosti epoxidov\u00e9 prysky\u0159ice, tedy jej\u00ed odpor proti toku. Prysky\u0159ice s n\u00edzkou viskozitou snadn\u011bji pronik\u00e1 do p\u00f3r\u016f a dutin, zat\u00edmco prysky\u0159ice s vysokou viskozitou je vhodn\u011bj\u0161\u00ed pro aplikace, kter\u00e9 vy\u017eaduj\u00ed kontrolu toku nebo vytvo\u0159en\u00ed siln\u011bj\u0161\u00edch vrstev."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Doba zpracovatelnosti (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Doba gelifikace"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Exotermick\u00e1 reakce"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Viskozita"
+    },
+    {
+      "definition": [
+        "Vlastn\u00edkem projektu je u\u017eivatel, kter\u00fd projekt vytvo\u0159il a m\u00e1 k n\u011bmu pr\u00e1va k \u00faprav\u00e1m. Identita vlastn\u00edka je trvale spojena s projektem a tvo\u0159\u00ed z\u00e1klad pro spr\u00e1vu p\u0159\u00edstupov\u00fdch opr\u00e1vn\u011bn\u00ed."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vlastn\u00edk projektu"
+    },
+    {
+      "definition": [
+        "Vlhkost d\u0159eva p\u0159edstavuje mno\u017estv\u00ed vody obsa\u017een\u00e9 v hmot\u011b d\u0159eva, vyj\u00e1d\u0159en\u00e9 v procentech vzta\u017een\u00fdch k hmotnosti such\u00e9ho d\u0159eva. Tento parametr ovliv\u0148uje rozm\u011brovou stabilitu, chov\u00e1n\u00ed v \u010dase a kompatibilitu d\u0159eva s epoxidovou prysky\u0159ic\u00ed. V projektech realizovan\u00fdch s HFZWood sni\u017euje pou\u017eit\u00ed d\u0159eva s odpov\u00eddaj\u00edc\u00ed vlhkost\u00ed riziko vzniku trhlin, deformac\u00ed a probl\u00e9m\u016f s p\u0159ilnavost\u00ed."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Hygroskopick\u00e9 d\u0159evo"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Hygroskopick\u00e9 d\u0159evo",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Vlhkost d\u0159eva"
+    },
+    {
+      "definition": [
+        "Vm\u011bstky prachu p\u0159edstavuj\u00ed \u010d\u00e1stice prachu nebo jin\u00e9 ne\u010distoty, kter\u00e9 z\u016fstaly zachyceny v epoxidov\u00e9 prysky\u0159ici b\u011bhem vytvrzov\u00e1n\u00ed. Tyto vady ovliv\u0148uj\u00ed vzhled povrchu a k jejich odstran\u011bn\u00ed m\u016f\u017ee b\u00fdt nutn\u00e9 dodate\u010dn\u00e9 brou\u0161en\u00ed a le\u0161t\u011bn\u00ed."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vm\u011bstky prachu"
+    },
+    {
+      "definition": [
+        "Vnit\u0159n\u00ed pnut\u00ed jsou nap\u011bt\u00ed vznikaj\u00edc\u00ed ve struktu\u0159e d\u0159eva v d\u016fsledku p\u0159irozen\u00e9ho procesu r\u016fstu nebo nerovnom\u011brn\u00e9ho vysych\u00e1n\u00ed. Mohou zp\u016fsobit deformace, praskliny nebo rozm\u011brov\u00e9 zm\u011bny b\u011bhem zpracov\u00e1n\u00ed a pou\u017e\u00edv\u00e1n\u00ed. Identifikace a omezen\u00ed vliv\u016f vnit\u0159n\u00edch pnut\u00ed p\u0159isp\u00edv\u00e1 k realizaci stabiln\u00edch a trvanliv\u00fdch projekt\u016f."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vnit\u0159n\u00ed nap\u011bt\u00ed"
+    },
+    {
+      "definition": [
+        "Vn\u011bj\u0161\u00ed obrys p\u0159edstavuje hranici, kter\u00e1 definuje vn\u011bj\u0161\u00ed tvar n\u00e1vrhu. Ur\u010duje celkovou plochu d\u00edlu a tvo\u0159\u00ed v\u00fdchoz\u00ed bod pro v\u0161echny geometrick\u00e9 v\u00fdpo\u010dty prov\u00e1d\u011bn\u00e9 v aplikaci."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vn\u011bj\u0161\u00ed obrys"
+    },
+    {
+      "definition": [
+        "Vrstven\u00e9 lit\u00ed je technika, p\u0159i kter\u00e9 se epoxidov\u00e1 prysky\u0159ice nan\u00e1\u0161\u00ed v n\u011bkolika po sob\u011b jdouc\u00edch f\u00e1z\u00edch, a to po \u010d\u00e1ste\u010dn\u00e9m nebo \u00fapln\u00e9m vytvrzen\u00ed p\u0159edchoz\u00ed vrstvy. Tato metoda umo\u017e\u0148uje vytv\u00e1\u0159et siln\u00e9 odlitky, sni\u017euje riziko p\u0159eh\u0159\u00e1t\u00ed a poskytuje lep\u0161\u00ed kontrolu nad kone\u010dn\u00fdm v\u00fdsledkem."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vrstv\u00e9 lit\u00ed"
+    },
+    {
+      "definition": [
+        "Vrta\u010dka je elektrick\u00e9 n\u00e1\u0159ad\u00ed pou\u017e\u00edvan\u00e9 k vrt\u00e1n\u00ed otvor\u016f do d\u0159eva a jin\u00fdch materi\u00e1l\u016f. V z\u00e1vislosti na namontovan\u00e9m p\u0159\u00edslu\u0161enstv\u00ed ji lze pou\u017e\u00edt tak\u00e9 k \u0161roubov\u00e1n\u00ed, roz\u0161i\u0159ov\u00e1n\u00ed otvor\u016f nebo k dal\u0161\u00edm opracovac\u00edm operac\u00edm."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "vrta\u010dka",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vrtac\u00ed stroj"
+    },
+    {
+      "definition": [
+        "Vypo\u010d\u00edtan\u00e1 plocha p\u0159edstavuje plochu automaticky ur\u010denou aplikac\u00ed na z\u00e1klad\u011b u\u017eivatelem definovan\u00e9ho m\u011b\u0159ic\u00edho mnoho\u00faheln\u00edku. Tato hodnota se pou\u017e\u00edv\u00e1 v geometrick\u00fdch v\u00fdpo\u010dtech a p\u0159isp\u00edv\u00e1 k odhadu objemu a pot\u0159ebn\u00e9ho mno\u017estv\u00ed prysky\u0159ice."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vypo\u010d\u00edtan\u00e1 plocha"
+    },
+    {
+      "definition": [
+        "Vyrovn\u00e1n\u00ed bedn\u011bn\u00ed je operace, p\u0159i kter\u00e9 se bedn\u011bn\u00ed p\u0159ed lit\u00edm nastav\u00ed do dokonale vodorovn\u00e9 polohy. Spr\u00e1vn\u00e9 vyrovn\u00e1n\u00ed zaji\u0161\u0165uje rovnom\u011brn\u00e9 rozlo\u017een\u00ed epoxidov\u00e9 prysky\u0159ice a p\u0159isp\u00edv\u00e1 k z\u00edsk\u00e1n\u00ed kone\u010dn\u00e9ho povrchu bez v\u00fd\u0161kov\u00fdch rozd\u00edl\u016f."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (vodov\u00e1ha)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vyrovn\u00e1n\u00ed bedn\u011bn\u00ed"
+    },
+    {
+      "definition": [
+        "Vyrovn\u00e1vac\u00ed fr\u00e9za je fr\u00e9za ur\u010den\u00e1 k dosa\u017een\u00ed dokonale rovn\u00fdch hran nebo povrch\u016f. Pou\u017e\u00edv\u00e1 se k \u00faprav\u011b okraj\u016f d\u0159ev\u011bn\u00fdch d\u00edl\u016f a k jejich p\u0159\u00edprav\u011b p\u0159ed spojov\u00e1n\u00edm nebo dal\u0161\u00edmi operacemi p\u0159i zpracov\u00e1n\u00ed."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vyrovn\u00e1vac\u00ed fr\u00e9za"
+    },
+    {
+      "definition": [
+        "Vyrovn\u00e1vac\u00ed fr\u00e9za je fr\u00e9za s velk\u00fdm pr\u016fm\u011brem, kter\u00e1 se pou\u017e\u00edv\u00e1 k vyrovn\u00e1n\u00ed povrch\u016f na stejnou \u00farove\u0148 pomoc\u00ed \u0159\u00edzen\u00e9ho odstra\u0148ov\u00e1n\u00ed materi\u00e1lu. \u010casto se pou\u017e\u00edv\u00e1 spole\u010dn\u011b s fr\u00e9zovac\u00edm voz\u00edkem k vyrovn\u00e1n\u00ed velk\u00fdch desek ze d\u0159eva a epoxidov\u00e9 prysky\u0159ice."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vyrovn\u00e1vac\u00ed fr\u00e9za"
+    },
+    {
+      "definition": [
+        "Vzduchov\u00e9 bubliny jsou vzduchov\u00e9 inkluze, kter\u00e9 z\u016fstaly v epoxidov\u00e9 prysky\u0159ici b\u011bhem m\u00edch\u00e1n\u00ed, lit\u00ed nebo uvol\u0148ov\u00e1n\u00ed z p\u00f3r\u016f d\u0159eva. Pokud nejsou odstran\u011bny, mohou ovlivnit vzhled a v n\u011bkter\u00fdch p\u0159\u00edpadech i pevnost hotov\u00e9ho d\u00edlu."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "vzduchov\u00e9 bubliny v prysky\u0159ici",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "M\u00edch\u00e1n\u00ed"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Hlubok\u00e9 lit\u00ed (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Vrstv\u00e9 lit\u00ed"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vzduchov\u00e9 bubliny"
+    },
+    {
+      "definition": [
+        "Vztlakov\u00e1 s\u00edla je s\u00edla, kterou vyv\u00edj\u00ed tekut\u00e1 prysky\u0159ice na d\u0159evo a kter\u00e1 m\u00e1 tendenci ho zvedat, pokud je jeho hustota ni\u017e\u0161\u00ed ne\u017e hustota prysky\u0159ice. Pokud nejsou d\u0159ev\u011bn\u00e9 d\u00edly \u0159\u00e1dn\u011b upevn\u011bny, mohou se b\u011bhem lit\u00ed posunout nebo plavat, co\u017e ovlivn\u00ed geometrii a kone\u010dn\u00fd vzhled projektu."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Vztlakov\u00e1 s\u00edla"
+    },
+    {
+      "definition": [
+        "Otev\u0159en\u00ed projektu p\u0159edstavuje operaci, p\u0159i kter\u00e9 se d\u0159\u00edve ulo\u017een\u00fd projekt na\u010dte do aplikace HFZWood za \u00fa\u010delem zobrazen\u00ed, \u00fapravy nebo pokra\u010dov\u00e1n\u00ed v pr\u00e1ci."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zah\u00e1jen\u00ed projektu"
+    },
+    {
+      "definition": [
+        "Zdrav\u00e9 d\u0159evo je d\u0159evo, kter\u00e9 nevykazuje \u017e\u00e1dn\u00e9 zn\u00e1mky biologick\u00e9ho po\u0161kozen\u00ed ani v\u00fdznamn\u00e9 struktur\u00e1ln\u00ed vady a kter\u00e9 si zachov\u00e1v\u00e1 sv\u00e9 mechanick\u00e9 a estetick\u00e9 vlastnosti. V\u00fdb\u011br zdrav\u00e9ho d\u0159eva je jednou z nezbytn\u00fdch podm\u00ednek pro realizaci udr\u017eiteln\u00fdch a kvalitn\u00edch projekt\u016f."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zdrav\u00e9 d\u0159evo"
+    },
+    {
+      "definition": [
+        "Znalostn\u00ed b\u00e1ze (Knowledge Base) p\u0159edstavuje sb\u00edrku technick\u00fdch \u010dl\u00e1nk\u016f a dopl\u0148uj\u00edc\u00edch informac\u00ed, kter\u00e9 dopl\u0148uj\u00ed p\u0159\u00edru\u010dku k aplikaci. Nab\u00edz\u00ed podrobn\u00e1 vysv\u011btlen\u00ed, doporu\u010den\u00ed a u\u017eite\u010dn\u00e9 informace o materi\u00e1lech, postupech a technik\u00e1ch pou\u017e\u00edvan\u00fdch p\u0159i projektech s d\u0159evem a epoxidovou prysky\u0159ic\u00ed."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Znalostn\u00ed datab\u00e1ze"
+    },
+    {
+      "definition": [
+        "Zrnitost brusiva p\u0159edstavuje velikost brusn\u00fdch \u010d\u00e1stic na brusn\u00e9m materi\u00e1lu, vyj\u00e1d\u0159enou konkr\u00e9tn\u00edm \u010d\u00edslem. Mal\u00e1 zrnitost se pou\u017e\u00edv\u00e1 k rychl\u00e9mu odstra\u0148ov\u00e1n\u00ed materi\u00e1lu, zat\u00edmco velk\u00e1 zrnitost slou\u017e\u00ed k dokon\u010dov\u00e1n\u00ed a vyhlazov\u00e1n\u00ed povrch\u016f."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Zrnitost brusiva"
+    },
+    {
+      "definition": [
+        "Ulo\u017een\u00ed projektu je operace, p\u0159i kter\u00e9 se v\u0161echny informace o projektu ulo\u017e\u00ed do souboru HFZWood, aby bylo mo\u017en\u00e9 jej pozd\u011bji znovu otev\u0159\u00edt a pokra\u010dovat v pr\u00e1ci bez ztr\u00e1ty dat."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Z\u00e1chrana projektu"
+    },
+    {
+      "definition": [
+        "Z\u00e1loha, naz\u00fdvan\u00e1 tak\u00e9 Backup, p\u0159edstavuje dodate\u010dnou kopii projekt\u016f nebo dat, kter\u00e1 se uchov\u00e1v\u00e1 za \u00fa\u010delem jejich obnoven\u00ed v p\u0159\u00edpad\u011b ztr\u00e1ty, po\u0161kozen\u00ed nebo n\u00e1hodn\u00e9ho smaz\u00e1n\u00ed informac\u00ed."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Z\u00e1lo\u017en\u00ed kopie"
+    },
+    {
+      "definition": [
+        "Kone\u010dn\u00e1 kontrola p\u0159edstavuje komplexn\u00ed prov\u011b\u0159en\u00ed projektu po dokon\u010den\u00ed v\u0161ech f\u00e1z\u00ed zpracov\u00e1n\u00ed a povrchov\u00e9 \u00fapravy. Jej\u00edm c\u00edlem je odhalit p\u0159\u00edpadn\u00e9 zb\u00fdvaj\u00edc\u00ed vady, zkontrolovat rozm\u011bry a kvalitu povrch\u016f a potvrdit, \u017ee d\u00edl spl\u0148uje stanoven\u00e9 po\u017eadavky na kvalitu."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Z\u00e1v\u011bre\u010dn\u00e1 kontrola"
+    },
+    {
+      "definition": [
+        "\u00dadr\u017eba povrchu p\u0159edstavuje soubor \u00fakon\u016f prov\u00e1d\u011bn\u00fdch za \u00fa\u010delem zachov\u00e1n\u00ed vzhledu a ochrann\u00fdch vlastnost\u00ed d\u0159eva a povrchov\u00e9 \u00fapravy b\u011bhem pou\u017e\u00edv\u00e1n\u00ed. Pravideln\u00e9 \u010di\u0161t\u011bn\u00ed a opakovan\u00e9 nan\u00e1\u0161en\u00ed p\u0159\u00edpravk\u016f pro \u00fadr\u017ebu p\u0159isp\u00edvaj\u00ed k prodlou\u017een\u00ed \u017eivotnosti dan\u00e9ho kusu."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00dadr\u017eba povrchu"
+    },
+    {
+      "definition": [
+        "\u00daniky prysky\u0159ice p\u0159edstavuj\u00ed nekontrolovan\u00fd \u00fanik epoxidov\u00e9 prysky\u0159ice skrz sp\u00e1ry, spoje nebo vady bedn\u011bn\u00ed p\u0159ed vytvrzen\u00edm. Mohou zm\u011bnit kone\u010dn\u00fd objem odlitku, ohrozit projekt a v\u00e9st k nadm\u011brn\u00e9 spot\u0159eb\u011b materi\u00e1lu."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Bedn\u011bn\u00ed"
+        },
+        {
+          "id": "etan-are",
+          "term": "T\u011bsn\u011bn\u00ed"
+        },
+        {
+          "id": "fisur",
+          "term": "Trhlina"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Epoxidov\u00e1 prysky\u0159ice"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Doba vytvrzov\u00e1n\u00ed"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u00daniky prysky\u0159ice"
+    },
+    {
+      "definition": [
+        "\u010ci\u0161t\u011bn\u00ed dutin spo\u010d\u00edv\u00e1 v odstran\u011bn\u00ed prachu, zbytk\u016f d\u0159eva, odloupnut\u00e9 k\u016fry a dal\u0161\u00edch ne\u010distot z p\u0159irozen\u00fdch dutin ve d\u0159ev\u011b p\u0159ed nalit\u00edm epoxidov\u00e9 prysky\u0159ice. Spr\u00e1vn\u00e9 o\u010di\u0161t\u011bn\u00ed zlep\u0161uje p\u0159ilnavost prysky\u0159ice a sni\u017euje riziko vzniku vad."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u010ci\u0161t\u011bn\u00ed dutin"
+    },
+    {
+      "definition": [
+        "\u0158ez\u00e1n\u00ed p\u0159edstavuje operaci, p\u0159i kter\u00e9 se d\u0159evo roz\u0159ez\u00e1v\u00e1 na rozm\u011bry a tvary pot\u0159ebn\u00e9 pro realizaci projektu. M\u016f\u017ee b\u00fdt prov\u00e1d\u011bno pomoc\u00ed r\u016fzn\u00fdch stroj\u016f a jeho c\u00edlem je z\u00edskat d\u00edly, kter\u00e9 lze d\u00e1le zpracov\u00e1vat a za\u010dlenit do dal\u0161\u00ed f\u00e1ze projektu."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "\u0158ez\u00e1n\u00ed"
+    }
+  ],
   "locale": "cs"
 }

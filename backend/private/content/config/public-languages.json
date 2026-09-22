@@ -2,9 +2,13 @@
   "activePublicLocales": [
     "en",
     "ro",
+    "fr",
     "de",
     "es",
-    "pt"
+    "pt",
+    "pl",
+    "cs",
+    "it"
   ],
   "defaultPublicLocale": "en"
 }

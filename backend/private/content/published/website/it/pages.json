@@ -1,6 +1,142 @@
 {
   "locale": "it",
   "pages": {
+    "about": {
+      "body": {
+        "pageKind": "about",
+        "publicTitle": "Informazioni su HFZWood",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "<strong>Basato su un&#x27;esperienza concreta</strong>",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood \u00e8 il risultato di oltre quindici anni di esperienza pratica nella realizzazione di progetti in legno e resina epossidica. In tutto questo tempo abbiamo realizzato pezzi unici, sperimentato tecniche diverse, affrontato situazioni difficili e imparato, progetto dopo progetto, cosa funziona davvero in officina.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Tutta questa esperienza pratica \u00e8 stata trasferita in HFZWood. Il flusso di lavoro che segui nell\u2019applicazione non \u00e8 teorico n\u00e9 concepito solo per semplificare l\u2019interfaccia. Riproduce un processo di lavoro collaudato in numerosi progetti reali, concepito per ridurre gli errori, aumentare la precisione delle stime e garantire risultati coerenti da un progetto all\u2019altro.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood non intende sostituirsi all\u2019esperienza, alla creativit\u00e0 o al giudizio professionale dell\u2019utente. Al contrario, l\u2019applicazione \u00e8 stata creata per supportarle attraverso calcoli precisi e un processo di lavoro chiaro, in modo che le decisioni importanti rimangano sempre nelle mani di chi realizza il progetto.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Ogni progetto \u00e8 diverso e nessun software pu\u00f2 sostituire l&#x27;attenzione ai dettagli e l&#x27;esperienza maturata nel tempo. Per questo motivo, HFZWood non cerca di prendere decisioni al posto dell\u2019utente e non effettua stime basate su supposizioni. L\u2019applicazione effettua i calcoli esclusivamente sulla base delle informazioni definite dall\u2019utente, fornendo risultati riproducibili e facilmente verificabili. Il nostro obiettivo \u00e8 semplice: offrirti maggiore fiducia nelle tue stime, ridurre lo spreco di materiale e aiutarti a ottenere risultati prevedibili, progetto dopo progetto.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "",
+                "type": "paragraph"
+              }
+            ],
+            "id": "hero",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Molto pi\u00f9 di un semplice calcolatore per resina epossidica"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Chiunque abbia lavorato con la resina epossidica sa bene che una stima errata pu\u00f2 comportare costi aggiuntivi, ritardi o compromessi durante lo svolgimento del progetto. In molti casi, i calcoli vengono effettuati \u00aba occhio\u00bb o sulla base dell\u2019esperienza, e i risultati possono variare da un progetto all\u2019altro.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood \u00e8 stato creato per offrire un metodo pratico e coerente di stima, in modo che ogni progetto possa partire con una pianificazione migliore e con maggiore sicurezza riguardo alla quantit\u00e0 di materiale necessaria.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-vigvsh",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Perch\u00e9 abbiamo creato HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "L&#x27;app \u00e8 pensata sia per chi sta realizzando i primi progetti con resina epossidica, sia per falegnami, artigiani, maker e laboratori che utilizzano frequentemente questa tecnologia.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Indipendentemente dal livello di esperienza, HFZWood offre un flusso di lavoro di facile comprensione, che contribuisce a ridurre gli errori e a ottenere preventivi coerenti da un progetto all\u2019altro.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-cac06z",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "A chi si rivolge"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood non si limita ai calcoli di volume.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "L&#x27;applicazione include un manuale d&#x27;uso completo, tutorial video, un glossario dei termini utilizzati nel settore e una Knowledge Base in continuo sviluppo. Queste risorse sono pensate per rispondere sia alle domande di base sia a quelle che sorgono nei progetti pi\u00f9 complessi, trasformando l\u2019applicazione in una piattaforma di apprendimento e di lavoro, non solo in uno strumento di calcolo.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-h4j804",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "Pi\u00f9 di un semplice computer"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Crediamo che un risultato di qualit\u00e0 inizi con una corretta pianificazione.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Ecco perch\u00e9 sviluppiamo HFZWood tenendo conto di tre semplici principi: precisione, chiarezza e apprendimento continuo. Desideriamo che ogni utente possa prendere decisioni basate su informazioni corrette, ridurre lo spreco di materiali e affrontare ogni progetto con maggiore sicurezza.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood \u00e8 un progetto in continua evoluzione, e l&#x27;applicazione e le risorse didattiche continueranno a essere sviluppate e migliorate man mano che la comunit\u00e0 cresce e emergono nuove esigenze.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-9v4a5y",
+            "image": {
+              "alt": "",
+              "src": ""
+            },
+            "title": "La nostra filosofia"
+          }
+        ]
+      },
+      "pageKey": "about",
+      "pageKind": "about",
+      "slug": "/about"
+    },
     "contact": {
       "body": {
         "intro": "Siamo qui se hai bisogno di aiuto\nVogliamo che l'utilizzo di HFZWood sia il pi\u00f9 semplice e piacevole possibile. Se hai domande sull'app, riscontri un problema o desideri inviarci un suggerimento, puoi contattarci utilizzando le informazioni riportate di seguito.\nCerchiamo di rispondere a tutti i messaggi nel pi\u00f9 breve tempo possibile e apprezziamo qualsiasi feedback che ci aiuti a migliorare l\u2019app.\n\nPrima di scriverci\n\u00c8 possibile che la risposta che cerchi sia gi\u00e0 presente nell\u2019app.\nTi invitiamo a consultare:\nManuale d\u2019uso \u2013 spiegazioni complete di tutte le funzionalit\u00e0 dell\u2019applicazione.\nTutorial video \u2013 dimostrazioni passo dopo passo dei principali flussi di lavoro.\nGlossario \u2013 spiegazioni dei termini utilizzati nel settore del legno e delle resine epossidiche.\nKnowledge Base \u2013 consigli pratici, domande frequenti e informazioni utili per i tuoi progetti.\n\nFeedback\nHFZWood \u00e8 un progetto in continua evoluzione.\nLe idee, le osservazioni e i suggerimenti degli utenti contribuiscono direttamente al miglioramento dell\u2019app e allo sviluppo delle funzionalit\u00e0 future. Se hai un suggerimento che possa rendere HFZWood pi\u00f9 utile per l\u2019intera comunit\u00e0, ci farebbe piacere conoscerlo.\n\nTi ringraziamo per aver scelto di utilizzare HFZWood e per far parte della nostra comunit\u00e0.",
@@ -24,6 +160,391 @@
       "pageKey": "contact",
       "pageKind": "contact",
       "slug": "/contact"
+    },
+    "home": {
+      "body": {
+        "cta": {
+          "destination": "",
+          "label": "",
+          "visible": false
+        },
+        "description": "HFZWood trasforma una semplice fotografia in uno strumento di calcolo preciso e facile da usare. L'app ti guida passo dopo passo nella definizione dell'area di colata, nell'esclusione delle isole di legno e delle cavit\u00e0, fornendoti una stima affidabile che ti aiuta a pianificare correttamente i materiali, a ridurre gli sprechi e ad affrontare ogni progetto con maggiore sicurezza.\n\nPi\u00f9 che un semplice calcolatore, HFZWood \u00e8 una piattaforma dedicata agli appassionati e ai professionisti che lavorano con il legno e la resina epossidica. Oltre agli strumenti di calcolo, hai accesso a un manuale d\u2019uso completo, a tutorial video che spiegano ogni fase del flusso di lavoro, un glossario con i termini utilizzati nel settore e una Knowledge Base in continuo sviluppo, che raccoglie informazioni pratiche, consigli e risposte alle domande pi\u00f9 frequenti.\n\nChe tu stia realizzando il tuo primo progetto o che tu abbia gi\u00e0 esperienza nella colata con resina epossidica, HFZWood ti offre gli strumenti e le informazioni necessarie per lavorare in modo pi\u00f9 organizzato, prendere decisioni basate su stime accurate e ottenere risultati prevedibili da un progetto all\u2019altro.",
+        "image": {
+          "alt": "",
+          "src": "",
+          "visible": false
+        },
+        "pageKind": "home",
+        "publicTitle": "Precisione e fiducia nel lavoro con la resina.",
+        "subtitle": "Calcola e pianifica i progetti in resina epossidica in base alla forma reale del tuo progetto.",
+        "video": {
+          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "visible": true
+        }
+      },
+      "pageKey": "home",
+      "pageKind": "home",
+      "slug": "/"
+    },
+    "pricing": {
+      "body": {
+        "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti gi\u00e0 realizzati.",
+        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
+        "offers": [
+          {
+            "benefits": [
+              "Resin estimator for simple projects.",
+              "Fino a 4 punti per poligono \u2014 ideale per forme di progetto semplici.",
+              "Save and reopen your projects on your device.",
+              "Full access to the Manual and all video tutorials.",
+              "Access to the curated free Glossary and Knowledge Base selection."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "$0",
+            "id": "free",
+            "title": "Free Plan",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Accesso completo agli strumenti e alle risorse HFZWood.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "$9.99",
+            "id": "monthly",
+            "title": "Monthly Plan",
+            "visible": true
+          },
+          {
+            "benefits": [
+              "Accesso completo agli strumenti e alle risorse HFZWood.",
+              "Unlimited polygon points and complex-project tools.",
+              "PDF export and pour-layer planning.",
+              "Full access to the Glossary and Knowledge Base."
+            ],
+            "ctaDestination": "",
+            "ctaLabel": "",
+            "displayedPriceText": "$89.99",
+            "id": "annual",
+            "title": "Annual Plan",
+            "visible": true
+          }
+        ],
+        "pageKind": "pricing",
+        "publicTitle": "Scegli il piano pi\u00f9 adatto al tuo modo di lavorare"
+      },
+      "pageKey": "pricing",
+      "pageKind": "pricing",
+      "slug": "/pricing"
+    },
+    "privacy": {
+      "body": {
+        "pageKind": "privacy",
+        "publicTitle": "Informativa sulla privacy",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "La tutela dei dati degli utenti \u00e8 una priorit\u00e0 per HFZWood. Raccogliamo solo i dati necessari al funzionamento dell&#x27;applicazione e ci impegniamo a trattarli in modo trasparente, responsabile e nel rispetto della normativa vigente in materia di protezione dei dati personali.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Rispettiamo la riservatezza dei tuoi dati"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Per l&#x27;utilizzo dell&#x27;applicazione potremmo raccogliere informazioni quali l&#x27;indirizzo e-mail utilizzato per l&#x27;autenticazione, le preferenze dell&#x27;applicazione, i progetti salvati e altri dati necessari al funzionamento dei servizi offerti.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Non richiediamo informazioni che non siano necessarie per l&#x27;utilizzo dell&#x27;applicazione.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-te5a1a",
+            "title": "Quali dati raccogliamo"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "I dati raccolti vengono utilizzati esclusivamente per:",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 gestione dell&#x27;account utente;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 salvataggio e sincronizzazione dei progetti;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 fornitura delle funzionalit\u00e0 dell&#x27;applicazione;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 migliorare i servizi e l&#x27;esperienza degli utenti;",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "\u2022 gestione degli abbonamenti e delle licenze.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Non utilizziamo i tuoi dati per creare profili commerciali e non li vendiamo a terzi.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-nu3u5w",
+            "title": "Come utilizziamo queste informazioni"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Adottiamo misure tecniche e organizzative volte a proteggere le informazioni degli utenti da accessi non autorizzati, perdita o alterazione accidentale.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Sebbene nessun sistema connesso a Internet possa garantire una sicurezza assoluta, ci impegniamo con ogni mezzo ragionevole per proteggere i dati che ci vengono affidati.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-drs6kj",
+            "title": "Sicurezza dei dati"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood utilizza servizi esterni necessari al funzionamento dell&#x27;applicazione, quali l&#x27;autenticazione degli utenti e l&#x27;elaborazione dei pagamenti.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Questi servizi sono forniti da aziende specializzate che applicano le proprie politiche di sicurezza e privacy.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-0abtcs",
+            "title": "Servizi di terze parti"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "In base alla normativa applicabile, puoi richiedere l&#x27;accesso ai tuoi dati, la loro rettifica, la loro cancellazione o esercitare altri diritti previsti dalle normative in materia di protezione dei dati.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Risponderemo alle richieste entro un termine ragionevole e in conformit\u00e0 con gli obblighi di legge.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-iipswe",
+            "title": "I tuoi diritti"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Man mano che l&#x27;applicazione si evolve, la presente Informativa sulla privacy potr\u00e0 essere aggiornata per riflettere le modifiche apportate ai servizi offerti o ai requisiti di legge.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Si consiglia di consultare periodicamente questa pagina per rimanere aggiornati su eventuali modifiche.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-qyxaxt",
+            "title": "Aggiornamento della presente informativa"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Se hai domande su come vengono trattati i tuoi dati, puoi contattarci utilizzando le informazioni disponibili nella pagina <strong>Contatti</strong>.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-ofnkyg",
+            "title": "Contatti"
+          }
+        ]
+      },
+      "pageKey": "privacy",
+      "pageKind": "privacy",
+      "slug": "/privacy"
+    },
+    "terms": {
+      "body": {
+        "pageKind": "terms",
+        "publicTitle": "Termini e condizioni",
+        "sections": [
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Utilizzando l&#x27;applicazione HFZWood, accetti i termini e le condizioni riportati in questa pagina. Il loro scopo \u00e8 garantire un&#x27;esperienza corretta e trasparente a tutti gli utenti e chiarire le modalit\u00e0 di utilizzo dei servizi offerti dall&#x27;applicazione.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-1",
+            "title": "Semplici regole per l'utilizzo di HFZWood"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood \u00e8 uno strumento software destinato alla stima del volume di resina epossidica necessario per progetti realizzati in legno e resina.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "I risultati generati dall&#x27;applicazione sono stime calcolate sulla base delle informazioni inserite dall&#x27;utente e devono essere utilizzati come supporto per la pianificazione dei progetti. L&#x27;utente rimane responsabile della verifica di tutti i dati prima dell&#x27;avvio dell&#x27;esecuzione di un progetto.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-i41f94",
+            "title": "Utilizzo dell'applicazione"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Per accedere ad alcune funzionalit\u00e0 \u00e8 necessario creare un account.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "L&#x27;utente \u00e8 responsabile della riservatezza dei propri dati di accesso e delle attivit\u00e0 svolte tramite il proprio account.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pmpk5b",
+            "title": "Account utente"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood offre sia un piano gratuito che opzioni commerciali basate su abbonamento o licenza permanente.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Le funzionalit\u00e0 disponibili dipendono dal piano scelto e possono essere consultate nella pagina <strong>Prezzi</strong>.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "In caso di modifica del piano di utilizzo, i progetti esistenti rimangono disponibili e possono essere portati avanti in base alle funzionalit\u00e0 offerte dal nuovo piano attivo.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-muom6q",
+            "title": "Abbonamenti e licenze"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "L&#x27;applicazione \u00e8 in continua evoluzione.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Ci riserviamo il diritto di migliorare le funzionalit\u00e0, l&#x27;interfaccia e i contenuti didattici al fine di offrire agli utenti un&#x27;esperienza ottimale.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-mub4em",
+            "title": "Aggiornamenti"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Il codice dell&#x27;applicazione, l&#x27;interfaccia, la documentazione, i tutorial, le immagini e gli altri materiali messi a disposizione tramite HFZWood sono protetti dalla normativa sul diritto d&#x27;autore e non possono essere copiati, ridistribuiti o utilizzati per altri scopi senza il consenso del titolare dei diritti.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "I progetti creati dagli utenti e le immagini caricate nell&#x27;applicazione rimangono di propriet\u00e0 degli utenti.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-pz330d",
+            "title": "Propriet\u00e0 intellettuale"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "HFZWood si impegna a fornire preventivi il pi\u00f9 possibile precisi e informazioni corrette.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Tuttavia, l&#x27;utente \u00e8 tenuto a verificare i risultati prima di utilizzarli in un progetto reale, nonch\u00e9 a rispettare le raccomandazioni dei produttori delle resine, dei materiali e delle attrezzature utilizzate.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-26nw02",
+            "title": "Limitazione di responsabilit\u00e0"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "I presenti Termini e condizioni possono essere aggiornati periodicamente per riflettere l&#x27;evoluzione dell&#x27;applicazione o le modifiche legislative.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "La versione pubblicata su questa pagina \u00e8 sempre quella pi\u00f9 recente.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-jifxt8",
+            "title": "Modifica dei termini"
+          },
+          {
+            "blocks": [
+              {
+                "align": null,
+                "text": "Per qualsiasi domanda relativa all&#x27;utilizzo dell&#x27;applicazione o ai presenti Termini e condizioni, puoi contattarci utilizzando le informazioni disponibili nella pagina <strong>Contatti</strong>.",
+                "type": "paragraph"
+              }
+            ],
+            "id": "section-udmshq",
+            "title": "Contatti"
+          }
+        ]
+      },
+      "pageKey": "terms",
+      "pageKind": "terms",
+      "slug": "/terms"
     }
   }
 }

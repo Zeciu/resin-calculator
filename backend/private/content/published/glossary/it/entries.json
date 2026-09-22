@@ -1,4 +1,2652 @@
 {
-  "entries": [],
+  "entries": [
+    {
+      "definition": [
+        "L'abbonamento \u00e8 la forma di licenza che consente all'utente di accedere a determinate funzionalit\u00e0 dell'applicazione HFZWood. Il tipo di abbonamento determina le funzionalit\u00e0 disponibili ed eventuali limitazioni d'uso."
+      ],
+      "id": "abonament",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Abbonamento"
+    },
+    {
+      "definition": [
+        "L'adesione \u00e8 la capacit\u00e0 di due materiali a contatto di legarsi saldamente l'uno all'altro. Nei progetti che prevedono l'uso di resina epossidica, un'adesione adeguata tra la resina e il legno \u00e8 essenziale per la resistenza e la durata del pezzo finito."
+      ],
+      "id": "aderen",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Adesione"
+    },
+    {
+      "definition": [
+        "L'agente distaccante \u00e8 una sostanza applicata sulla superficie della cassaforma per impedire l'adesione della resina epossidica durante l'indurimento. Il suo utilizzo facilita lo smontaggio della cassaforma e riduce il rischio di danneggiamento del pezzo o delle superfici di contatto."
+      ],
+      "id": "agent-de-demulare",
+      "media": [
+        {
+          "alt": "agente di demulazione",
+          "caption": null,
+          "src": "/api/content/glossary/images/20d85f36-6b20-4600-a2d1-4b02b24d5807.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Agente di demulaggio"
+    },
+    {
+      "definition": [
+        "L'aggiornamento del progetto \u00e8 l'operazione mediante la quale le modifiche apportate a un progetto esistente vengono salvate senza creare un nuovo progetto. Questa operazione mantiene l'identit\u00e0 del progetto e sostituisce la versione salvata in precedenza con quella aggiornata."
+      ],
+      "id": "actualizarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aggiornamento del progetto"
+    },
+    {
+      "definition": [
+        "L'alburno \u00e8 la zona esterna del legno, situata tra il durame e la corteccia. Questa parte del tronco trasporta l'acqua e le sostanze nutritive durante la vita dell'albero ed \u00e8, di norma, di colore pi\u00f9 chiaro e pi\u00f9 sensibile all'umidit\u00e0 e agli attacchi biologici. A seconda del progetto, l\u2019alburno pu\u00f2 essere mantenuto per motivi estetici oppure rimosso per garantire una maggiore stabilit\u00e0."
+      ],
+      "id": "alburn",
+      "media": [
+        {
+          "alt": "bianco",
+          "caption": null,
+          "src": "/api/content/glossary/images/d3a552fc-7f95-4c27-9494-588304928ddb.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "duramen",
+          "term": "Durame"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-duramen",
+          "label": "Durame",
+          "targetId": "duramen",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Alburn"
+    },
+    {
+      "definition": [
+        "L'area calcolata rappresenta la superficie determinata automaticamente dall'applicazione sulla base del poligono di misurazione definito dall'utente. Questo valore viene utilizzato nei calcoli geometrici e contribuisce alla stima del volume e della quantit\u00e0 necessaria di resina."
+      ],
+      "id": "arie-calculat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Area calcolata"
+    },
+    {
+      "definition": [
+        "L'area di colata \u00e8 la superficie del progetto destinata al riempimento con resina epossidica. Pu\u00f2 includere cavit\u00e0, gli spazi tra i pezzi di legno o altre aree delimitate dall'utente per l'esecuzione della colata."
+      ],
+      "id": "zon-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Area di colata"
+    },
+    {
+      "definition": [
+        "L'aspirazione della polvere \u00e8 il processo di raccolta e rimozione della polvere prodotta durante la lavorazione del legno e della resina epossidica. L'utilizzo di un sistema di aspirazione efficiente contribuisce a mantenere pulito l'ambiente di lavoro, tutela la salute dell'operatore e migliora la qualit\u00e0 della finitura."
+      ],
+      "id": "aspirare-a-prafului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Aspirazione della polvere"
+    },
+    {
+      "definition": [
+        "L'attacco biologico consiste nel degrado del legno causato da funghi, muffe, batteri o insetti xilofagi. La sua intensit\u00e0 pu\u00f2 compromettere sia la resistenza meccanica che l\u2019aspetto del pezzo. Il legno colpito deve essere valutato attentamente prima di essere utilizzato in un progetto con resina epossidica."
+      ],
+      "id": "atac-biologic",
+      "media": [
+        {
+          "alt": "attacco biologico",
+          "caption": null,
+          "src": "/api/content/glossary/images/711172cf-c91d-4761-a71a-b6a25ba3f21a.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "lemn-instabil",
+          "term": "Legno instabile"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Attacco biologico"
+    },
+    {
+      "definition": [
+        "L'autorizzazione alla modifica \u00e8 il diritto di un utente di modificare il contenuto di un progetto. A seconda del ruolo dell'utente e delle regole dell'applicazione, un progetto pu\u00f2 essere modificabile o disponibile solo in modalit\u00e0 di visualizzazione."
+      ],
+      "id": "permisiune-de-editare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Autorizzazione alla modifica"
+    },
+    {
+      "definition": [
+        "L'apertura del progetto consiste nell'operazione mediante la quale un progetto precedentemente salvato viene caricato nell'applicazione HFZWood per essere visualizzato, modificato o per continuare a lavorarci."
+      ],
+      "id": "deschiderea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Avvio del progetto"
+    },
+    {
+      "definition": [
+        "Il banco da lavoro \u00e8 la superficie o il tavolo destinato allo svolgimento delle operazioni di lavorazione, assemblaggio e finitura. Un banco da lavoro stabile e sufficientemente rigido contribuisce alla precisione delle operazioni e allo svolgimento in sicurezza delle attivit\u00e0 in officina."
+      ],
+      "id": "banc-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Banco da lavoro"
+    },
+    {
+      "definition": [
+        "La Knowledge Base \u00e8 una raccolta di articoli tecnici e informazioni aggiuntive che integrano il manuale dell'applicazione. Fornisce spiegazioni dettagliate, consigli e informazioni utili sui materiali, i processi e le tecniche utilizzati nei progetti che prevedono l'uso di legno e resina epossidica."
+      ],
+      "id": "baza-de-cunostinte",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Base di conoscenza"
+    },
+    {
+      "definition": [
+        "Le bolle d'aria sono inclusioni d'aria rimaste nella resina epossidica durante la miscelazione, il colaggio o la fuoriuscita dai pori del legno. Se non vengono eliminate, possono compromettere l'aspetto e, in alcuni casi, la resistenza del pezzo finito."
+      ],
+      "id": "bule-de-aer",
+      "media": [
+        {
+          "alt": "bolle d'aria nella resina",
+          "caption": null,
+          "src": "/api/content/glossary/images/9f48ddc9-0ce1-4574-a047-65f3eef8ab50.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Miscelazione"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Colata profonda (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Colata a strati"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bolle d'aria"
+    },
+    {
+      "definition": [
+        "Il boloboc, detto anche livella, \u00e8 lo strumento utilizzato per verificare l'orizzontalit\u00e0 o la verticalit\u00e0 di una superficie. Nella realizzazione di progetti con resina epossidica, viene utilizzato per livellare la cassaforma e per verificare la corretta posizione dei componenti prima della colata."
+      ],
+      "id": "boloboc-nivel",
+      "media": [
+        {
+          "alt": "boloboc",
+          "caption": null,
+          "src": "/api/content/glossary/images/4e561613-0f56-4d06-a5b9-170d1361cdff.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "nivelarea-cofrajului",
+          "term": "Livellamento della cassaforma"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Boloboc (livella)"
+    },
+    {
+      "definition": [
+        "Il bordo naturale rappresenta il contorno originale del legno, conservato dopo la rimozione della corteccia. Questo tipo di bordo \u00e8 spesso utilizzato nei progetti di tipo River Table e in altri elementi decorativi per mettere in risalto la forma naturale del legno."
+      ],
+      "id": "margine-natural",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Bordo naturale"
+    },
+    {
+      "definition": [
+        "Il calcolatore di resina \u00e8 uno strumento che stima la quantit\u00e0 di resina epossidica e indurente necessaria per la realizzazione di un progetto. In HFZWood, i calcoli si basano sulla geometria del progetto, sul volume del legno, sul volume delle cavit\u00e0 e sui parametri inseriti dall'utente, fornendo una stima rapida e precisa del consumo di materiale."
+      ],
+      "id": "calculator-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calcolatore della resina"
+    },
+    {
+      "definition": [
+        "La calibrazione \u00e8 il processo mediante il quale un'immagine viene riportata a una scala di misurazione reale utilizzando una dimensione nota. In HFZWood, la calibrazione consente di convertire le misurazioni effettuate sull'immagine in dimensioni reali, garantendo l'accuratezza dei calcoli di superficie e volume."
+      ],
+      "id": "calibrare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "ndreptarea-lemnului",
+          "term": "Raddrizzatura del legno"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibrazione"
+    },
+    {
+      "definition": [
+        "La calibrazione dell'immagine \u00e8 il processo attraverso il quale l'applicazione stabilisce la corrispondenza tra le dimensioni presenti nella fotografia e quelle reali, utilizzando una distanza di riferimento nota. Una calibrazione corretta \u00e8 essenziale per ottenere risultati precisi."
+      ],
+      "id": "calibrarea-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Calibrazione dell'immagine"
+    },
+    {
+      "definition": [
+        "Il poligono di misura \u00e8 una successione di punti collegati tra loro che delimitano il contorno di una superficie da misurare. In HFZWood, i poligoni vengono utilizzati per definire il contorno esterno, i pezzi di legno, le cavit\u00e0 e altre aree necessarie ai calcoli geometrici."
+      ],
+      "id": "poligon-de-m-surare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Campo di misurazione"
+    },
+    {
+      "definition": [
+        "Una funzionalit\u00e0 (*Capability*) rappresenta una funzionalit\u00e0 o un gruppo di funzionalit\u00e0 che l'applicazione HFZWood mette a disposizione dell'utente. Le funzionalit\u00e0 disponibili dipendono dal tipo di abbonamento e dal ruolo associato all'account."
+      ],
+      "id": "capabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Capacit\u00e0"
+    },
+    {
+      "definition": [
+        "La carta abrasiva \u00e8 un materiale flessibile rivestito di particelle abrasive, utilizzato per la levigatura manuale o meccanica delle superfici. La scelta della grana adeguata influisce sulla qualit\u00e0 della finitura e sull'efficienza del processo di lavorazione."
+      ],
+      "id": "h-rtie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Carta abrasiva"
+    },
+    {
+      "definition": [
+        "La cassaforma \u00e8 la struttura temporanea utilizzata per sostenere e delimitare la resina epossidica durante il getto e l'indurimento. Deve essere a tenuta stagna, stabile e realizzata con materiali che consentano un facile distacco del pezzo al termine del processo."
+      ],
+      "id": "cofraj",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cassaforma"
+    },
+    {
+      "definition": [
+        "La cavit\u00e0 \u00e8 un vuoto naturale o derivante dal deterioramento del legno, che pu\u00f2 essere riempito con resina epossidica a scopo strutturale o decorativo. La forma e le dimensioni delle cavit\u00e0 influenzano direttamente il volume di resina necessario per la realizzazione del progetto."
+      ],
+      "id": "cavitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Nodo in legno"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-fisur",
+          "label": "Fessura",
+          "targetId": "fisur",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Cavit\u00e0"
+    },
+    {
+      "definition": [
+        "La cera protettiva \u00e8 un prodotto di finitura che si applica sulla superficie del legno o sopra uno strato di olio per migliorare la protezione e l'aspetto finale. Offre una finitura piacevole al tatto, riduce l'assorbimento dello sporco e facilita la manutenzione della superficie."
+      ],
+      "id": "cear-de-protec-ie",
+      "media": [
+        {
+          "alt": "cera",
+          "caption": null,
+          "src": "/api/content/glossary/images/b84d62e6-9c20-4746-a751-33ea6e3cced0.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cera protettiva"
+    },
+    {
+      "definition": [
+        "La chiarezza ottica \u00e8 la capacit\u00e0 della resina epossidica di trasmettere la luce senza distorsioni, alterazioni o modifiche visibili dell'immagine. Un'elevata chiarezza ottica consente di mettere in risalto i dettagli del legno e di ottenere colate trasparenti di alta qualit\u00e0."
+      ],
+      "id": "claritate-optic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Chiarezza ottica"
+    },
+    {
+      "definition": [
+        "Il CNC (Computer Numerical Control) \u00e8 un sistema di lavorazione automatizzata in cui i movimenti della macchina sono controllati da un programma informatico. Nella lavorazione del legno, le macchine CNC vengono utilizzate per il taglio, la fresatura, l\u2019incisione e la realizzazione di forme complesse con un elevato livello di precisione e ripetibilit\u00e0."
+      ],
+      "id": "cnc",
+      "media": [
+        {
+          "alt": "cnc",
+          "caption": null,
+          "src": "/api/content/glossary/images/a77f37a5-ab66-4cdb-851a-b2a1c9370410.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "CNC"
+    },
+    {
+      "definition": [
+        "La colata \u00e8 l'operazione mediante la quale la resina epossidica liquida viene introdotta nella cassaforma, nelle cavit\u00e0 o in altre aree del progetto per riempire gli spazi disponibili e formare il pezzo finale dopo l'indurimento. La qualit\u00e0 del colaggio dipende dalla preparazione dei materiali, dalle condizioni di lavoro e dal rispetto dei parametri raccomandati dal produttore."
+      ],
+      "id": "turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cassaforma"
+        },
+        {
+          "id": "etan-are",
+          "term": "Sigillatura"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizzazione"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Colata profonda (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Colata a strati"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Colata"
+    },
+    {
+      "definition": [
+        "La colata a strati \u00e8 la tecnica mediante la quale la resina epossidica viene applicata in pi\u00f9 fasi successive, dopo l'indurimento parziale o completo dello strato precedente. Questo metodo consente di realizzare colate di grande spessore, riduce il rischio di surriscaldamento e offre un miglior controllo sul risultato finale."
+      ],
+      "id": "turnare-n-straturi",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Colata a strati"
+    },
+    {
+      "definition": [
+        "La colata profonda, nota anche come Deep Pour, \u00e8 una tecnica che utilizza resine epossidiche appositamente formulate per colate di grande spessore in un'unica fase. Queste resine generano meno calore durante la polimerizzazione e consentono di realizzare grandi volumi senza che si verifichino difetti causati dal surriscaldamento."
+      ],
+      "id": "turnare-ad-nc-deep-pour",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e0"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reazione esotermica"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Rapporto di miscelazione"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizzazione"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Colata profonda (Deep Pour)"
+    },
+    {
+      "definition": [
+        "La compatibilit\u00e0 dei materiali indica la capacit\u00e0 dei diversi materiali utilizzati in un progetto di funzionare insieme senza provocare reazioni indesiderate o difetti. La scelta di materiali compatibili contribuisce a garantire una buona adesione, un'elevata durata e un comportamento stabile durante l'utilizzo."
+      ],
+      "id": "compatibilitatea-materialelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Compatibilit\u00e0 dei materiali"
+    },
+    {
+      "definition": [
+        "La configurazione del progetto descrive l'organizzazione e la disposizione di tutti gli elementi che compongono il progetto, compresi il contorno esterno, i pezzi in legno, le cavit\u00e0 e le altre aree rilevanti ai fini del calcolo. Essa definisce la struttura geometrica sulla base della quale l'applicazione effettua le stime relative al materiale."
+      ],
+      "id": "configura-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Configurazione del progetto"
+    },
+    {
+      "definition": [
+        "La contaminazione consiste nella presenza di sostanze o impurit\u00e0 indesiderate, quali polvere, oli, grassi, acqua o silicone, che possono compromettere l'adesione, l'aspetto o l'indurimento della resina epossidica. Mantenere un ambiente e delle superfici pulite \u00e8 fondamentale per ottenere risultati di qualit\u00e0."
+      ],
+      "id": "contaminare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e0"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contaminazione"
+    },
+    {
+      "definition": [
+        "Il ritiro \u00e8 la riduzione delle dimensioni di un materiale a seguito della perdita di umidit\u00e0, del processo di indurimento o delle variazioni di temperatura. Nei progetti che prevedono l'uso di legno e resina epossidica, il ritiro pu\u00f2 influire sulla precisione dimensionale e favorire la formazione di fessurazioni o tensioni interne."
+      ],
+      "id": "contrac-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Contrazione"
+    },
+    {
+      "definition": [
+        "Il controllo qualit\u00e0 \u00e8 il processo di verifica dei materiali, delle fasi di lavorazione e del risultato finale, volto a confermare che il progetto soddisfi i requisiti di qualit\u00e0 stabiliti. Consente di individuare e correggere eventuali problemi prima che il pezzo sia considerato completato."
+      ],
+      "id": "controlul-calit-ii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Controllo della qualit\u00e0"
+    },
+    {
+      "definition": [
+        "Il backup, noto anche come copia di sicurezza, \u00e8 una copia aggiuntiva dei progetti o dei dati, conservata per consentirne il recupero in caso di perdita, danneggiamento o cancellazione accidentale delle informazioni."
+      ],
+      "id": "copie-de-siguran",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Copia di sicurezza"
+    },
+    {
+      "definition": [
+        "La corteccia instabile \u00e8 quella che non aderisce saldamente al legno e pu\u00f2 staccarsi durante la lavorazione o dopo la colata della resina. Nella maggior parte dei progetti, deve essere rimossa per evitare la formazione di vuoti, distacchi o altri problemi di adesione."
+      ],
+      "id": "scoar-instabil",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "margine-natural",
+          "term": "Bordo naturale"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Corteccia instabile"
+    },
+    {
+      "definition": [
+        "Il cratere \u00e8 un difetto superficiale che si presenta sotto forma di una piccola depressione o di un vuoto circolare nella resina epossidica dopo l'indurimento. Pu\u00f2 essere causato da contaminazioni, bolle d'aria o altre condizioni che impediscono la stesura uniforme della resina."
+      ],
+      "id": "crater",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Crater"
+    },
+    {
+      "definition": [
+        "La cristallizzazione \u00e8 il fenomeno per cui alcune resine epossidiche sviluppano cristalli solidi durante lo stoccaggio, in particolare a basse temperature. Nella maggior parte dei casi, la cristallizzazione \u00e8 reversibile e pu\u00f2 essere eliminata riscaldando in modo controllato la resina prima dell'uso, secondo le raccomandazioni del produttore."
+      ],
+      "id": "cristalizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        },
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e0"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Cristallizzazione"
+    },
+    {
+      "definition": [
+        "La deformazione del legno consiste nella modifica della forma iniziale di un pezzo a causa delle variazioni di umidit\u00e0, delle tensioni interne o di altri fattori che influenzano la stabilit\u00e0 del materiale. Le forme pi\u00f9 comuni di deformazione sono la flessione, la torsione e l'incurvatura."
+      ],
+      "id": "deformarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deformazione del legno"
+    },
+    {
+      "definition": [
+        "La deformazione della cassaforma consiste nella modifica della forma o della posizione della cassaforma durante il getto o l\u2019indurimento della resina epossidica. Ci\u00f2 pu\u00f2 essere causato dalla pressione della resina, da un fissaggio insufficiente o da una ridotta rigidit\u00e0 della cassaforma e pu\u00f2 comportare una variazione delle dimensioni del progetto."
+      ],
+      "id": "deformarea-cofrajului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Deformazione della cassaforma"
+    },
+    {
+      "definition": [
+        "La degassificazione \u00e8 il processo di rimozione dell'aria e dei gas dalla resina epossidica prima o immediatamente dopo la colata. Lo scopo di questa operazione \u00e8 ridurre il numero di bolle d'aria e ottenere una colata il pi\u00f9 possibile uniforme e trasparente."
+      ],
+      "id": "degazare-debulare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e0"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Degassificazione - Sbrinamento"
+    },
+    {
+      "definition": [
+        "La delaminazione consiste nel distacco o nella separazione degli strati di un materiale o delle superfici incollate tra loro. Nei progetti che prevedono l'uso di resina epossidica, la delaminazione indica una perdita di adesione e pu\u00f2 compromettere sia la resistenza meccanica che l'aspetto finale del pezzo."
+      ],
+      "id": "delaminare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Delaminazione"
+    },
+    {
+      "definition": [
+        "La densit\u00e0 della resina rappresenta la massa di un determinato volume di resina epossidica ed \u00e8 espressa, di norma, in grammi per centimetro cubo o in chilogrammi per litro. Questo parametro viene utilizzato per la conversione tra volume e massa nel calcolo delle quantit\u00e0 necessarie di materiale."
+      ],
+      "id": "densitatea-r-inii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Densit\u00e0 della resina"
+    },
+    {
+      "definition": [
+        "Per difetto di colata si intende qualsiasi imperfezione insorta durante il processo di colata o di indurimento della resina epossidica, che compromette l\u2019aspetto, la funzionalit\u00e0 o la qualit\u00e0 del pezzo finito. Tra i difetti pi\u00f9 comuni figurano bolle d\u2019aria, vuoti, colate, crepe e zone che non si sono indurite correttamente."
+      ],
+      "id": "defect-de-turnare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Difetto di fusione"
+    },
+    {
+      "definition": [
+        "Un difetto strutturale \u00e8 qualsiasi imperfezione del legno che possa ridurne la resistenza, la stabilit\u00e0 o la capacit\u00e0 di sopportare sollecitazioni meccaniche. Rientrano in questa categoria fessure, crepe estese, marciume, cavit\u00e0 o altri segni di degrado che influenzano il comportamento del pezzo durante l\u2019utilizzo."
+      ],
+      "id": "defect-structural",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nod-in-lemn",
+          "term": "Nodo in legno"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Difetto strutturale"
+    },
+    {
+      "definition": [
+        "La dilatazione consiste nell'aumento delle dimensioni di un materiale a seguito dell'assorbimento di umidit\u00e0 o di variazioni di temperatura. Poich\u00e9 il legno e la resina epossidica presentano comportamenti diversi in termini di dilatazione, \u00e8 necessario tenere conto di questo fenomeno nella progettazione e nell'utilizzo dei componenti."
+      ],
+      "id": "dilatare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dilatazione"
+    },
+    {
+      "definition": [
+        "I dischi abrasivi sono materiali di consumo di forma circolare utilizzati in combinazione con le levigatrici per la lavorazione del legno e della resina epossidica. Sono disponibili in diverse grane e consentono la rimozione controllata del materiale a seconda della fase di lavorazione."
+      ],
+      "id": "discuri-abrazive",
+      "media": [
+        {
+          "alt": "disco abrasivo",
+          "caption": null,
+          "src": "/api/content/glossary/images/010eaf34-1ba7-47af-91bc-9b74065e37d4.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dischi abrasivi"
+    },
+    {
+      "definition": [
+        "Il disco in feltro \u00e8 un accessorio utilizzato per la lucidatura delle superfici in combinazione con paste abrasive o di finitura. Grazie alla sua struttura compatta, viene impiegato in particolare per ottenere una lucentezza elevata e una superficie uniforme."
+      ],
+      "id": "disc-de-p-sl",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disco di feltro"
+    },
+    {
+      "definition": [
+        "Il disco in schiuma \u00e8 un accessorio per le lucidatrici, utilizzato per l'applicazione di composti abrasivi e di finitura. A seconda della durezza della schiuma, pu\u00f2 essere utilizzato sia per correggere piccoli difetti, sia per ottenere la lucidatura finale."
+      ],
+      "id": "disc-din-spum",
+      "media": [
+        {
+          "alt": "tampone in spugna",
+          "caption": null,
+          "src": "/api/content/glossary/images/205a117b-d7e9-4eb6-81a8-de29ead748c7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Disco in schiuma"
+    },
+    {
+      "definition": [
+        "I dispositivi di protezione individuale sono l'insieme delle attrezzature indossate dall'operatore per ridurre i rischi associati alla lavorazione del legno e all'uso di resine epossidiche. Rientrano in questa categoria, tra l\u2019altro, le maschere respiratorie, gli occhiali protettivi, i guanti e la protezione acustica."
+      ],
+      "id": "echipament-individual-de-protec-ie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dispositivi di protezione individuale"
+    },
+    {
+      "definition": [
+        "Il dosaggio del pigmento indica la quantit\u00e0 di pigmento aggiunta alla resina epossidica per ottenere il colore e l'opacit\u00e0 desiderati. \u00c8 importante rispettare il dosaggio raccomandato dal produttore per mantenere le propriet\u00e0 meccaniche e garantire il normale processo di polimerizzazione della resina."
+      ],
+      "id": "dozarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Dosaggio del pigmento"
+    },
+    {
+      "definition": [
+        "Il durame \u00e8 la parte centrale, matura e pi\u00f9 densa del tronco di un albero. In generale, presenta una maggiore resistenza all\u2019umidit\u00e0, ai funghi e agli insetti rispetto all\u2019alburno ed \u00e8 preferito per la realizzazione di mobili e progetti decorativi con resina epossidica grazie alla sua stabilit\u00e0 e al suo aspetto."
+      ],
+      "id": "duramen",
+      "media": [
+        {
+          "alt": "albur",
+          "caption": null,
+          "src": "/api/content/glossary/images/c2f0bbab-ea34-44df-8248-9a66433632d5.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "alburn",
+          "term": "Alburn"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Durame"
+    },
+    {
+      "definition": [
+        "Il fattore di sicurezza rappresenta la quantit\u00e0 aggiuntiva di materiale aggiunta al valore calcolato per compensare le normali perdite che si verificano durante la preparazione e la colata. L'utilizzo di un fattore di sicurezza riduce il rischio di rimanere senza resina prima del completamento del progetto."
+      ],
+      "id": "factor-de-siguran",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fattore di sicurezza"
+    },
+    {
+      "definition": [
+        "Una fessura \u00e8 una crepa che si forma nella struttura del legno a causa di tensioni interne, essiccazione o sollecitazioni meccaniche. A seconda delle dimensioni e della posizione, le fessure possono richiedere un intervento di stabilizzazione, il riempimento con resina epossidica o la rimozione della parte interessata."
+      ],
+      "id": "fisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-cavitate",
+          "label": "Cavit\u00e0",
+          "targetId": "cavitate",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Fessura"
+    },
+    {
+      "definition": [
+        "La fessurazione termica consiste nella formazione di fessure nella resina epossidica o nel legno a causa di forti sbalzi di temperatura o di un eccessivo sviluppo di calore durante la polimerizzazione. Questo difetto pu\u00f2 compromettere sia l'aspetto estetico che la resistenza del pezzo finito."
+      ],
+      "id": "fisurare-termic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fessurazione termica"
+    },
+    {
+      "definition": [
+        "La finitura lucida \u00e8 un tipo di finitura caratterizzata da un elevato grado di riflessione della luce e da una superficie molto liscia. Per ottenere questo aspetto \u00e8 necessario eseguire correttamente la levigatura e la lucidatura, utilizzando materiali e tecniche adeguati."
+      ],
+      "id": "finisaj-lucios",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finitura lucida"
+    },
+    {
+      "definition": [
+        "La finitura satinata \u00e8 un tipo di finitura che conferisce un aspetto uniforme, con riflessi discreti e una lucentezza moderata. Mette in risalto la trama del materiale ed \u00e8 preferita nei progetti in cui si desidera un aspetto naturale ed elegante."
+      ],
+      "id": "finisaj-satinat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Finitura satinata"
+    },
+    {
+      "definition": [
+        "La forza di galleggiamento \u00e8 la forza esercitata dalla resina liquida sul legno, che tende a sollevarlo quando la sua densit\u00e0 \u00e8 inferiore a quella della resina. Se i pezzi di legno non sono fissati correttamente, possono spostarsi o galleggiare durante la colata, compromettendo la geometria e l\u2019aspetto finale del progetto."
+      ],
+      "id": "for-a-de-flotabilitate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Forza di galleggiamento"
+    },
+    {
+      "definition": [
+        "La fresa \u00e8 un utensile da taglio montato su una fresatrice o su altre macchine utensili, utilizzato per la rimozione controllata del materiale. Esistono numerosi tipi di frese, ciascuna progettata per una determinata operazione o profilo di lavorazione."
+      ],
+      "id": "frez",
+      "media": [
+        {
+          "alt": "fresa",
+          "caption": null,
+          "src": "/api/content/glossary/images/1f7c321f-9796-4148-803f-43540e1f278c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresa"
+    },
+    {
+      "definition": [
+        "La fresa a copiare \u00e8 una fresa dotata di uno o pi\u00f9 cuscinetti di guida che consentono di seguire una dima o un bordo esistente. Viene utilizzata per riprodurre con precisione i contorni e per realizzare pezzi identici."
+      ],
+      "id": "frez-de-copiere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresa a copiare"
+    },
+    {
+      "definition": [
+        "La fresa livellatrice \u00e8 una fresa di grande diametro, utilizzata per portare le superfici allo stesso livello attraverso la rimozione controllata del materiale. Viene spesso utilizzata insieme a una slitta per fresatrice per livellare grandi piani in legno e resina epossidica."
+      ],
+      "id": "frez-de-nivelare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresa livellatrice"
+    },
+    {
+      "definition": [
+        "La fresa di raddrizzatura \u00e8 una fresa destinata a ottenere spigoli o superfici perfettamente diritti. Viene utilizzata per correggere i bordi dei pezzi in legno e per prepararli prima dell'assemblaggio o di altre operazioni di lavorazione."
+      ],
+      "id": "frez-de-ndreptare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Fresa raddrizzatrice"
+    },
+    {
+      "definition": [
+        "La fresatrice, nota anche come router, \u00e8 un utensile elettrico utilizzato per la lavorazione di precisione del legno tramite fresatura. Consente di realizzare bordi profilati, scanalature, intagli e altre operazioni di lavorazione necessarie nella realizzazione e nella finitura di progetti in legno."
+      ],
+      "id": "oberfrez-router",
+      "media": [
+        {
+          "alt": "fresatrice",
+          "caption": null,
+          "src": "/api/content/glossary/images/34d5361b-d89c-4eed-8c7a-8bad44b1ec12.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [
+        {
+          "id": "frez",
+          "term": "Fresa"
+        }
+      ],
+      "term": "Fresatrice (router)"
+    },
+    {
+      "definition": [
+        "La geometria del progetto descrive la forma, le dimensioni e le relazioni spaziali tra tutti gli elementi che compongono il progetto. In HFZWood, la geometria costituisce la base per il calcolo delle superfici, dei volumi e della quantit\u00e0 stimata di resina necessaria."
+      ],
+      "id": "geometria-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Geometria del progetto"
+    },
+    {
+      "definition": [
+        "Il glossario \u00e8 una raccolta di termini e definizioni utilizzati nell'applicazione HFZWood e nel settore della lavorazione del legno e delle resine epossidiche. Il suo scopo \u00e8 garantire un uso coerente della terminologia e una chiara comprensione dei concetti presentati nell'applicazione."
+      ],
+      "id": "glosar",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Glossario"
+    },
+    {
+      "definition": [
+        "La granulometria abrasiva indica la dimensione delle particelle abrasive presenti su un materiale abrasivo, espressa tramite un numero specifico. Le granulometrie fini vengono utilizzate per la rimozione rapida del materiale, mentre quelle grossolane per la finitura e la levigatura delle superfici."
+      ],
+      "id": "granula-ie-abraziv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Grana abrasiva"
+    },
+    {
+      "definition": [
+        "Il contorno della cavit\u00e0 rappresenta il limite geometrico che delimita una cavit\u00e0 nel legno destinata al riempimento con resina epossidica. La corretta definizione di questo contorno consente il calcolo preciso della superficie e del volume della cavit\u00e0."
+      ],
+      "id": "conturul-cavit-ii",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "poligon-de-m-surare",
+          "term": "Campo di misurazione"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Il contorno della cavit\u00e0"
+    },
+    {
+      "definition": [
+        "Il proprietario del progetto \u00e8 l'utente che ha creato il progetto e ne detiene i diritti di modifica. L'identit\u00e0 del proprietario \u00e8 associata in modo permanente al progetto e costituisce la base per la gestione dei permessi di accesso."
+      ],
+      "id": "proprietarul-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Il titolare del progetto"
+    },
+    {
+      "definition": [
+        "Il volume delle cavit\u00e0 rappresenta il volume totale degli spazi vuoti presenti nel legno che devono essere riempiti con resina epossidica. Si tratta di uno degli elementi utilizzati da HFZWood per stimare la quantit\u00e0 di materiale necessaria per il progetto."
+      ],
+      "id": "volumul-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Il volume delle cavit\u00e0"
+    },
+    {
+      "definition": [
+        "L'immagine di riferimento \u00e8 la fotografia utilizzata in HFZWood come base per la misurazione e il calcolo del volume di resina necessario per un progetto. Essa costituisce il supporto su cui vengono definiti gli elementi geometrici utilizzati dall'applicazione e rimane associata in modo permanente al progetto."
+      ],
+      "id": "imagine-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Immagine di riferimento"
+    },
+    {
+      "definition": [
+        "L'importazione dell'immagine \u00e8 l'operazione con cui una fotografia viene caricata nell'applicazione HFZWood per essere utilizzata in un nuovo progetto. L'immagine importata costituisce la base di tutte le misurazioni e i calcoli effettuati successivamente."
+      ],
+      "id": "importul-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Importazione dell'immagine"
+    },
+    {
+      "definition": [
+        "L'incapsulamento delle bolle d'aria consiste nel trattenere le bolle all'interno della massa della resina epossidica durante il processo di indurimento. Le bolle intrappolate possono compromettere la trasparenza, l'aspetto estetico e, in determinati casi, la resistenza del pezzo finito."
+      ],
+      "id": "incapsularea-bulelor-de-aer",
+      "media": [
+        {
+          "alt": "bolle d'aria nella resina",
+          "caption": null,
+          "src": "/api/content/glossary/images/42df5f96-4bac-43eb-9014-6d1a6661bf5f.png",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bolle d'aria"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Incapsulamento delle bolle d'aria"
+    },
+    {
+      "definition": [
+        "Le inclusioni di polvere sono particelle di polvere o altre impurit\u00e0 rimaste incorporate nella resina epossidica durante l'indurimento. Questi difetti compromettono l'aspetto della superficie e possono richiedere un'ulteriore levigatura e lucidatura per essere eliminati."
+      ],
+      "id": "incluziuni-de-praf",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Inclusioni di polvere"
+    },
+    {
+      "definition": [
+        "L'isola di legno \u00e8 una porzione di legno completamente circondata da una zona di colata con resina epossidica o da una cassaforma, senza collegamento diretto con il resto del pezzo di legno nella stessa zona. In HFZWood, le isole di legno vengono definite separatamente affinch\u00e9 il volume e la quantit\u00e0 necessaria di resina vengano calcolati correttamente."
+      ],
+      "id": "insul-de-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cassaforma"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Isola di legno"
+    },
+    {
+      "definition": [
+        "L'ispezione finale consiste nella verifica completa del progetto al termine di tutte le fasi di lavorazione e finitura. Ha lo scopo di individuare eventuali difetti residui, verificare le dimensioni e la qualit\u00e0 delle superfici e confermare che il pezzo soddisfi i requisiti di qualit\u00e0 stabiliti."
+      ],
+      "id": "inspec-ia-final",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Ispezione finale"
+    },
+    {
+      "definition": [
+        "L'area di lavoro \u00e8 lo spazio principale dell'applicazione HFZWood, in cui l'utente crea, apre, modifica e gestisce i progetti, oltre ad accedere alle funzioni e alle risorse disponibili in base al proprio ruolo e al proprio abbonamento."
+      ],
+      "id": "spatiu-de-lucru",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "L'area di lavoro"
+    },
+    {
+      "definition": [
+        "Il legno igroscopico \u00e8 quel tipo di legno che possiede la capacit\u00e0 naturale di assorbire ed eliminare umidit\u00e0 dall'ambiente circostante fino al raggiungimento di un equilibrio con l'atmosfera. Per questo motivo, le sue dimensioni e le sue propriet\u00e0 possono variare in funzione delle condizioni di temperatura e umidit\u00e0. Questo comportamento deve essere tenuto in considerazione nella progettazione e nella realizzazione di pezzi stampati con resina epossidica."
+      ],
+      "id": "lemn-higroscopic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Legno igroscopico"
+    },
+    {
+      "definition": [
+        "Il legno instabile \u00e8 quel tipo di legno che tende a deformarsi, fessurarsi o subire variazioni dimensionali dopo la lavorazione o durante l\u2019utilizzo. L'instabilit\u00e0 \u00e8 influenzata dall'umidit\u00e0, dalle tensioni interne, dal metodo di essiccazione e dalla struttura del materiale. L'utilizzo di questo tipo di legno pu\u00f2 compromettere la qualit\u00e0 di una colata con resina epossidica."
+      ],
+      "id": "lemn-instabil",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Legno instabile"
+    },
+    {
+      "definition": [
+        "Il legno poroso \u00e8 un tipo di legno che presenta un elevato numero di pori o cavit\u00e0 microscopiche attraverso le quali pu\u00f2 assorbire liquidi, compresa la resina epossidica. Il grado di porosit\u00e0 influisce sul consumo di resina, sulla necessit\u00e0 di applicare uno strato sigillante e sull'aspetto finale della superficie."
+      ],
+      "id": "lemn-poros",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Legno poroso"
+    },
+    {
+      "definition": [
+        "Il legno sano \u00e8 quel legno che non presenta segni di degrado biologico n\u00e9 difetti strutturali significativi e che conserva le proprie propriet\u00e0 meccaniche ed estetiche. La scelta di un legno sano rappresenta una delle condizioni essenziali per la realizzazione di progetti sostenibili e di qualit\u00e0."
+      ],
+      "id": "lemn-s-n-tos",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Legno sano"
+    },
+    {
+      "definition": [
+        "La levigatura \u00e8 il processo di lavorazione della superficie del legno o della resina epossidica con materiali abrasivi, finalizzato a rimuovere le imperfezioni e a ottenere una superficie liscia, uniforme e pronta per le successive fasi di finitura."
+      ],
+      "id": "lefuire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Levigatura"
+    },
+    {
+      "definition": [
+        "La levigatura a secco \u00e8 il processo di levigatura effettuato senza l'uso di liquidi di raffreddamento o lubrificazione. \u00c8 il metodo pi\u00f9 comunemente utilizzato nella lavorazione del legno e della resina epossidica e consente una rimozione efficiente del materiale in tutte le fasi di lavorazione."
+      ],
+      "id": "lefuire-uscat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Levigatura a secco"
+    },
+    {
+      "definition": [
+        "La levigatura a umido \u00e8 un metodo di finitura che utilizza acqua o un altro liquido compatibile, che riduce il surriscaldamento della superficie e limita la formazione di polvere. Questa tecnica viene utilizzata soprattutto nelle fasi finali per ottenere superfici molto levigate e pronte per la lucidatura."
+      ],
+      "id": "lefuire-umed",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Levigatura a umido"
+    },
+    {
+      "definition": [
+        "La linea di riferimento \u00e8 il segmento definito tra due punti di riferimento e corrisponde a una distanza reale nota. In HFZWood, questa linea viene utilizzata nel processo di calibrazione per stabilire la corretta scala dell'immagine ed effettuare misurazioni precise."
+      ],
+      "id": "linie-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Linea di riferimento"
+    },
+    {
+      "definition": [
+        "Il livellamento della cassaforma \u00e8 l'operazione mediante la quale la cassaforma viene posizionata perfettamente in orizzontale prima del getto. Un corretto livellamento garantisce la distribuzione uniforme della resina epossidica e contribuisce a ottenere una superficie finale priva di dislivelli."
+      ],
+      "id": "nivelarea-cofrajului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "boloboc-nivel",
+          "term": "Boloboc (livella)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Livellamento della cassaforma"
+    },
+    {
+      "definition": [
+        "La lucidatura \u00e8 la fase finale della finitura, durante la quale la superficie del legno o della resina epossidica viene lavorata per ottenere un elevato grado di levigatezza e l'aspetto desiderato. Questo processo elimina i fini segni lasciati dalla levigatura e migliora la trasparenza, la riflessione della luce e l\u2019aspetto estetico del pezzo."
+      ],
+      "id": "lustruire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Lucidatura"
+    },
+    {
+      "definition": [
+        "La sgrossatrice \u00e8 una macchina utilizzata per portare i pezzi di legno a uno spessore uniforme e preciso. Dopo la piallatura, questa macchina rimuove il materiale in modo controllato fino al raggiungimento della dimensione finale desiderata."
+      ],
+      "id": "ma-in-de-degro-at",
+      "media": [
+        {
+          "alt": "sgrossatura",
+          "caption": null,
+          "src": "/api/content/glossary/images/d783c0c4-5e28-4f23-a500-b741c1d43e54.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Macchina sgrossatrice"
+    },
+    {
+      "definition": [
+        "Il manuale HFZWood costituisce la documentazione principale dell'applicazione e illustra le funzionalit\u00e0, le modalit\u00e0 d'uso e i flussi di lavoro disponibili. Fornisce agli utenti le informazioni necessarie per un utilizzo corretto ed efficiente dell'applicazione."
+      ],
+      "id": "manual-hfzwood",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Manuale HFZWood"
+    },
+    {
+      "definition": [
+        "La manutenzione della superficie comprende l'insieme delle operazioni effettuate per preservare l'aspetto e le propriet\u00e0 protettive del legno e della finitura durante l'uso. La pulizia periodica e la riapplicazione dei prodotti per la manutenzione contribuiscono a prolungare la durata del prodotto."
+      ],
+      "id": "ntre-inerea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Manutenzione della superficie"
+    },
+    {
+      "definition": [
+        "La maschera respiratoria \u00e8 un dispositivo di protezione individuale destinato a filtrare particelle, vapori o altri contaminanti presenti nell'aria inalata. Si raccomanda l'uso di una maschera adeguata durante le operazioni di levigatura, lavorazione del legno e manipolazione di prodotti chimici, secondo le istruzioni dei produttori."
+      ],
+      "id": "masc-respiratorie",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Maschera respiratoria"
+    },
+    {
+      "definition": [
+        "L'MDF melaminico \u00e8 un pannello ottenuto da fibre di legno sottili pressate e rivestito con uno strato di melamina. La sua superficie \u00e8 molto uniforme e consente di realizzare casseforme con finiture di alta qualit\u00e0; viene utilizzato in particolare per progetti che richiedono precisione e spigoli ben definiti."
+      ],
+      "id": "mdf-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "MDF melaminato"
+    },
+    {
+      "definition": [
+        "Una microfessura \u00e8 una fessura di dimensioni molto ridotte, spesso difficile da individuare a occhio nudo. Sebbene possa sembrare insignificante, pu\u00f2 evolversi nel tempo e compromettere la resistenza, la tenuta o l'aspetto della superficie."
+      ],
+      "id": "microfisur",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Microfessura"
+    },
+    {
+      "definition": [
+        "La miscelazione \u00e8 il processo mediante il quale la resina epossidica e l'indurente vengono miscelati fino a ottenere una miscela completamente omogenea. Una corretta miscelazione garantisce lo svolgimento uniforme della reazione di polimerizzazione e riduce il rischio che si formino zone che rimangono appiccicose o che non si induriscono completamente."
+      ],
+      "id": "amestecare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Miscelazione"
+    },
+    {
+      "definition": [
+        "La morsa \u00e8 un dispositivo di fissaggio utilizzato per immobilizzare saldamente i pezzi durante la lavorazione. Un fissaggio adeguato aumenta la precisione delle operazioni e riduce il rischio di spostamento accidentale del materiale."
+      ],
+      "id": "menghin",
+      "media": [
+        {
+          "alt": "morsa",
+          "caption": null,
+          "src": "/api/content/glossary/images/a14b23f8-fde7-4778-8d95-1b4829ada998.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Morsa"
+    },
+    {
+      "definition": [
+        "Il morsetto di fissaggio \u00e8 un dispositivo utilizzato per mantenere temporaneamente pezzi o componenti nella posizione desiderata durante la saldatura, la lavorazione o l'assemblaggio. Esistono numerosi tipi di morsetti, adatti a diverse dimensioni e applicazioni."
+      ],
+      "id": "clem-de-fixare",
+      "media": [
+        {
+          "alt": "morsetto in legno",
+          "caption": null,
+          "src": "/api/content/glossary/images/6aa3769a-bb86-4472-9d32-e17f48e5a04d.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Morsetto di fissaggio"
+    },
+    {
+      "definition": [
+        "Il nodo \u00e8 la zona del legno in cui \u00e8 stato inserito un ramo durante la crescita dell'albero. I nodi possono influenzare l'aspetto estetico, la resistenza meccanica e il comportamento del legno durante la lavorazione, e vengono valutati singolarmente in base alle dimensioni, alla posizione e alla stabilit\u00e0."
+      ],
+      "id": "nod-in-lemn",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cavitate",
+          "term": "Cavit\u00e0"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Nodo in legno"
+    },
+    {
+      "definition": [
+        "Gli occhi di pesce, noti anche come Fish Eyes, sono difetti superficiali che si presentano sotto forma di aree circolari in cui la resina si ritira e non aderisce in modo uniforme. Sono causati, in genere, dalla contaminazione della superficie con oli, silicone o altre sostanze che riducono l\u2019adesione."
+      ],
+      "id": "ochi-de-pe-te",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Occhi di pesce"
+    },
+    {
+      "definition": [
+        "Gli occhiali di protezione sono dispositivi di protezione individuale progettati per proteggere gli occhi da polvere, particelle proiettate e schizzi accidentali. Se ne raccomanda l'uso in tutte le fasi della lavorazione meccanica e durante la lavorazione con resine epossidiche."
+      ],
+      "id": "ochelari-de-protec-ie",
+      "media": [
+        {
+          "alt": "occhiali",
+          "caption": null,
+          "src": "/api/content/glossary/images/c4abfa1a-151e-4eca-a432-b7054a75fecb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Occhiali di protezione"
+    },
+    {
+      "definition": [
+        "L'olio per legno \u00e8 un prodotto di finitura che penetra nella struttura del legno e lo protegge dall'umidit\u00e0 e dall'usura, esaltandone al contempo la trama e l'aspetto naturale delle fibre. A seconda del tipo utilizzato, l\u2019olio pu\u00f2 richiedere manutenzione e riapplicazione periodica."
+      ],
+      "id": "ulei-pentru-lemn",
+      "media": [
+        {
+          "alt": "olio",
+          "caption": null,
+          "src": "/api/content/glossary/images/7a9e4198-74e2-4d81-a36c-3117b04df471.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Olio per legno"
+    },
+    {
+      "definition": [
+        "Il pannello truciolare melaminico \u00e8 un pannello realizzato con trucioli di legno pressati e rivestito con uno strato di melamina che garantisce una superficie liscia e resistente. Grazie al costo contenuto e alla superficie relativamente antiaderente, viene spesso utilizzato nella realizzazione di casseforme per la colata di resina epossidica."
+      ],
+      "id": "pal-melaminat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pannello truciolare melaminato"
+    },
+    {
+      "definition": [
+        "La pasta abrasiva \u00e8 un composto lucidante contenente particelle abrasive fini, utilizzato per correggere le imperfezioni residue dopo la levigatura. La scelta del tipo di pasta dipende dalle condizioni della superficie e dal livello di finitura desiderato."
+      ],
+      "id": "compus-de-polish",
+      "media": [
+        {
+          "alt": "pasta abrasiva",
+          "caption": null,
+          "src": "/api/content/glossary/images/eb6c9219-223e-456b-b03f-e32f1c087125.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta abrasiva"
+    },
+    {
+      "definition": [
+        "La pasta di finitura \u00e8 un composto a bassissima abrasivit\u00e0, utilizzato nell'ultima fase della lucidatura per migliorare la lucentezza e la trasparenza della superficie. Elimina i segni molto sottili lasciati dal lucidante e contribuisce a ottenere una finitura di alta qualit\u00e0."
+      ],
+      "id": "past-de-finisare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta di finitura"
+    },
+    {
+      "definition": [
+        "La pasta pigmentata \u00e8 un pigmento sotto forma di pasta concentrata, appositamente formulata per la colorazione delle resine epossidiche. Grazie alla sua consistenza, si disperde facilmente nella miscela e consente di ottenere colori uniformi e intensi con una quantit\u00e0 ridotta di prodotto."
+      ],
+      "id": "past-pigmentar",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pasta pigmentata"
+    },
+    {
+      "definition": [
+        "La perdita tecnologica \u00e8 la quantit\u00e0 di resina che non entra a far parte del prodotto finale a causa dei processi di miscelazione, trasferimento, colata o dei residui rimasti nei contenitori e negli utensili. Si tratta di un fenomeno normale e deve essere preso in considerazione nella stima del consumo totale di materiale."
+      ],
+      "id": "pierdere-tehnologic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Perdita tecnologica"
+    },
+    {
+      "definition": [
+        "Le perdite di resina consistono nella fuoriuscita incontrollata di resina epossidica attraverso fessure, giunti o difetti della cassaforma prima dell'indurimento. Possono alterare il volume finale del getto, compromettere il progetto e comportare un consumo aggiuntivo di materiale."
+      ],
+      "id": "scurgeri-de-r-in",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cassaforma"
+        },
+        {
+          "id": "etan-are",
+          "term": "Sigillatura"
+        },
+        {
+          "id": "fisur",
+          "term": "Fessura"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Perdite di resina"
+    },
+    {
+      "definition": [
+        "La piallatrice \u00e8 una macchina utilizzata per ottenere una superficie piana e un bordo perfettamente diritto sui pezzi di legno. Si tratta di una delle operazioni fondamentali nella preparazione del materiale prima della sgrossatura e della lavorazione. La piallatrice pu\u00f2 essere manuale o a tavolo."
+      ],
+      "id": "ma-in-de-rindeluit",
+      "media": [
+        {
+          "alt": "piallatura di grandi dimensioni",
+          "caption": null,
+          "src": "/api/content/glossary/images/b69948ed-e04e-4d05-a757-75a524db6967.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Piallatrice"
+    },
+    {
+      "definition": [
+        "Il pigmento \u00e8 una sostanza utilizzata per colorare la resina epossidica senza alterarne il processo di indurimento, se dosato correttamente. I pigmenti sono disponibili in una vasta gamma di colori ed effetti e consentono di ottenere stampaggi trasparenti, semitrasparenti o opachi, a seconda del tipo e della quantit\u00e0 utilizzati."
+      ],
+      "id": "pigment",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pigmento"
+    },
+    {
+      "definition": [
+        "La pistola ad aria calda \u00e8 un'attrezzatura che genera un flusso d'aria riscaldata e pu\u00f2 essere utilizzata per eliminare le bolle d'aria dalla superficie della resina epossidica. La temperatura e la distanza di lavoro devono essere controllate con attenzione per evitare il surriscaldamento o la deformazione della superficie."
+      ],
+      "id": "pistol-cu-aer-cald",
+      "media": [
+        {
+          "alt": "pistola ad aria calda",
+          "caption": null,
+          "src": "/api/content/glossary/images/8b698298-95bb-4f75-a9a2-a9a95d506f51.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bolle d'aria"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pistola ad aria calda"
+    },
+    {
+      "definition": [
+        "La polimerizzazione \u00e8 la reazione chimica attraverso la quale la resina epossidica e l'indurente formano una struttura solida e stabile. Questo processo ha inizio immediatamente dopo la miscelazione e prosegue fino a quando il materiale non raggiunge le sue propriet\u00e0 definitive in termini di resistenza, durezza e stabilit\u00e0."
+      ],
+      "id": "polimerizare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "raport-de-amestec",
+          "term": "Rapporto di miscelazione"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Polimerizzazione"
+    },
+    {
+      "definition": [
+        "Il posizionamento del legno \u00e8 il processo di disposizione e allineamento dei pezzi di legno nella configurazione finale del progetto prima della colata della resina epossidica. Il modo in cui vengono posizionati influisce sull'aspetto estetico, sul volume di resina necessario e sulla stabilit\u00e0 dell'insieme."
+      ],
+      "id": "pozi-ionarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Posizionamento del legno"
+    },
+    {
+      "definition": [
+        "La precisione della misurazione rappresenta il grado di corrispondenza tra i valori calcolati dall'applicazione e le dimensioni reali del progetto. Essa dipende dalla qualit\u00e0 dell'immagine, dalla correttezza della calibrazione e dalla precisione con cui vengono definiti i punti e i contorni di misurazione."
+      ],
+      "id": "precizia-m-sur-torii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Precisione della misurazione"
+    },
+    {
+      "definition": [
+        "Il contorno esterno rappresenta il limite che definisce la forma esterna del progetto. Esso determina la superficie totale del pezzo e costituisce il punto di partenza per tutti i calcoli geometrici effettuati nell'applicazione."
+      ],
+      "id": "contur-exterior",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Profilo esterno"
+    },
+    {
+      "definition": [
+        "Un progetto condiviso (*Sola lettura*) \u00e8 un progetto messo a disposizione di un altro utente esclusivamente a scopo di visualizzazione. Pu\u00f2 essere aperto e consultato, ma il suo contenuto non pu\u00f2 essere modificato dagli utenti che non ne sono i proprietari."
+      ],
+      "id": "proiect-partajat",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Progetto condiviso"
+    },
+    {
+      "definition": [
+        "Un progetto locale \u00e8 un progetto salvato sul dispositivo dell'utente, che pu\u00f2 essere aperto e modificato senza bisogno di una connessione a Internet. Nell'architettura HFZWood, i progetti locali rimangono a disposizione dell'utente anche dopo la scadenza dell'abbonamento."
+      ],
+      "id": "proiect-local",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Progetto locale"
+    },
+    {
+      "definition": [
+        "La protezione dai raggi UV \u00e8 la capacit\u00e0 di una finitura di ridurre gli effetti delle radiazioni ultraviolette sul legno e sulla resina epossidica. Un livello adeguato di protezione contribuisce a limitare lo scolorimento, l'ingiallimento e il deterioramento causati dall'esposizione prolungata alla luce solare."
+      ],
+      "id": "protec-ia-uv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protezione dai raggi UV"
+    },
+    {
+      "definition": [
+        "La protezione della superficie durante l'indurimento consiste nelle misure adottate per impedire che polvere, insetti o altre impurit\u00e0 si depositino sulla resina epossidica fino al completamento del processo di indurimento. Una protezione adeguata contribuisce a ottenere una finitura pulita e riduce la necessit\u00e0 di interventi successivi."
+      ],
+      "id": "protec-ia-suprafe-ei-n-timpul-nt-ririi",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "turnare",
+          "term": "Colata"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Protezione della superficie durante l'indurimento"
+    },
+    {
+      "definition": [
+        "La pulizia delle cavit\u00e0 consiste nella rimozione di polvere, residui di legno, corteccia staccata e altre impurit\u00e0 dalle cavit\u00e0 naturali del legno prima della colata della resina epossidica. Una pulizia adeguata migliora l\u2019adesione della resina e riduce il rischio di difetti."
+      ],
+      "id": "cur-area-cavit-ilor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Pulizia delle cavit\u00e0"
+    },
+    {
+      "definition": [
+        "Il punto di controllo \u00e8 un punto che definisce la forma e la posizione di un poligono di misurazione. Lo spostamento di un punto di controllo modifica automaticamente la geometria dell'area delimitata e influisce sui risultati calcolati dall'applicazione."
+      ],
+      "id": "punct-de-control",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "punct-de-referin",
+          "term": "Punto di riferimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Punto di controllo"
+    },
+    {
+      "definition": [
+        "Il punto di riferimento \u00e8 un punto scelto sull'immagine per definire una dimensione nota o per effettuare misurazioni geometriche. In HFZWood, i punti di riferimento vengono utilizzati per la calibrazione e per tracciare i contorni necessari al calcolo di superfici e volumi."
+      ],
+      "id": "punct-de-referin",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Punto di riferimento"
+    },
+    {
+      "definition": [
+        "La quantit\u00e0 necessaria di indurente corrisponde al volume o alla massa dell'indurente calcolata in base alla quantit\u00e0 di resina e al rapporto di miscelazione specifico del prodotto utilizzato. Il rispetto di questo valore \u00e8 essenziale per il corretto svolgimento del processo di polimerizzazione."
+      ],
+      "id": "cantitate-necesar-de-nt-ritor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quantit\u00e0 necessaria di indurente"
+    },
+    {
+      "definition": [
+        "La quantit\u00e0 necessaria di resina rappresenta il volume o la massa di resina epossidica stimata per la realizzazione di un progetto, compreso l'eventuale fattore di sicurezza stabilito dall'utente. In HFZWood, questo valore viene calcolato automaticamente in base alla geometria del progetto e ai parametri inseriti."
+      ],
+      "id": "cantitate-necesar-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Quantit\u00e0 necessaria di resina"
+    },
+    {
+      "definition": [
+        "La raddrizzatura del legno \u00e8 l'operazione mediante la quale la superficie di un pezzo viene riportata su un piano corretto, eliminando deformazioni, irregolarit\u00e0 e imperfezioni. Questo processo garantisce una base stabile per le lavorazioni successive e contribuisce a ottenere giunti e incastri di qualit\u00e0."
+      ],
+      "id": "ndreptarea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "calibrare",
+          "term": "Calibrazione"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-grosime-uniform",
+          "label": "Spessore uniforme",
+          "targetId": "grosime-uniform",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Raddrizzatura del legno"
+    },
+    {
+      "definition": [
+        "L'indurimento incompleto si verifica quando la resina epossidica non sviluppa appieno le proprie propriet\u00e0 meccaniche al termine del normale tempo di indurimento. Le cause possono includere un rapporto di miscelazione errato, una miscelazione insufficiente o condizioni di lavoro inadeguate."
+      ],
+      "id": "int-rire-incomplet",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rafforzamento incompleto"
+    },
+    {
+      "definition": [
+        "Il rapporto di miscelazione indica la proporzione in cui la resina epossidica e l'indurente devono essere miscelati per ottenere una polimerizzazione corretta. Questo rapporto \u00e8 stabilito dal produttore e deve essere rispettato con precisione, poich\u00e9 influenza il tempo di lavorabilit\u00e0, l'indurimento e le propriet\u00e0 finali del materiale."
+      ],
+      "id": "raport-de-amestec",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rapporto di miscelazione"
+    },
+    {
+      "definition": [
+        "La reazione esotermica \u00e8 il processo attraverso il quale la resina epossidica sprigiona calore durante la polimerizzazione. La quantit\u00e0 di calore prodotta dipende dal tipo di resina, dal volume della miscela e dalla temperatura dell'ambiente. Una reazione esotermica eccessiva pu\u00f2 compromettere la qualit\u00e0 dello stampaggio e danneggiare il materiale."
+      ],
+      "id": "reac-ie-exoterm",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizzazione"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Reazione esotermica"
+    },
+    {
+      "definition": [
+        "La resina epossidica \u00e8 un materiale bicomponente che, una volta miscelato con l'indurente nella proporzione raccomandata, si trasforma tramite reazione chimica in un materiale solido, resistente e durevole. Nella lavorazione del legno, viene utilizzata per riempire cavit\u00e0, realizzare colate decorative o strutturali e ottenere superfici trasparenti o pigmentate."
+      ],
+      "id": "r-in-epoxidic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resina epossidica"
+    },
+    {
+      "definition": [
+        "La resistenza ai graffi \u00e8 la capacit\u00e0 di una superficie di sopportare il contatto con oggetti duri senza che si formino graffi visibili. Questa propriet\u00e0 dipende dal materiale utilizzato, dal tipo di finitura e dalle condizioni di utilizzo del componente."
+      ],
+      "id": "rezisten-la-zg-riere",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resistenza ai graffi"
+    },
+    {
+      "definition": [
+        "La resistenza all'umidit\u00e0 \u00e8 la capacit\u00e0 di un materiale o di una finitura di mantenere le proprie propriet\u00e0 quando esposto all'acqua o a un ambiente umido. Un elevato livello di resistenza all'umidit\u00e0 contribuisce a preservare la stabilit\u00e0 e l'aspetto del pezzo nel tempo."
+      ],
+      "id": "rezisten-la-umiditate",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resistenza all'umidit\u00e0"
+    },
+    {
+      "definition": [
+        "La resistenza chimica \u00e8 la capacit\u00e0 di un materiale o di una finitura di resistere al contatto con diverse sostanze chimiche senza subire un degrado significativo del proprio aspetto o delle proprie propriet\u00e0. Il livello di tale resistenza varia a seconda del tipo di prodotto e della natura delle sostanze con cui entra in contatto."
+      ],
+      "id": "rezisten-chimic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Resistenza chimica"
+    },
+    {
+      "definition": [
+        "La rete abrasiva \u00e8 un materiale abrasivo con struttura perforata, progettato per consentire un'efficace evacuazione della polvere durante la levigatura. Il suo utilizzo riduce l'accumulo di polvere sulla superficie abrasiva, ne prolunga la durata e contribuisce a ottenere una finitura pi\u00f9 uniforme."
+      ],
+      "id": "plas-abraziv",
+      "media": [
+        {
+          "alt": "rete abrasiva",
+          "caption": null,
+          "src": "/api/content/glossary/images/f5cd3f10-d9d9-480f-b5ea-2ee9e86dd2bb.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "discuri-abrazive",
+          "term": "Dischi abrasivi"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rete abrasiva"
+    },
+    {
+      "definition": [
+        "Il ricondizionamento della superficie \u00e8 il processo attraverso il quale un pezzo usurato o danneggiato viene riportato a un aspetto e a un livello di protezione simili a quelli iniziali. A seconda delle condizioni della superficie, questo processo pu\u00f2 includere la levigatura, la riparazione dei difetti e l'applicazione di un nuovo strato di finitura."
+      ],
+      "id": "recondi-ionarea-suprafe-ei",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rifinitura della superficie"
+    },
+    {
+      "definition": [
+        "La rimozione della cassaforma consiste nell'operazione di smontaggio della cassaforma dopo che la resina epossidica si \u00e8 indurita a sufficienza per mantenere la propria forma. Questa fase deve essere eseguita con attenzione per evitare il danneggiamento del progetto o dei bordi colati."
+      ],
+      "id": "demulare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rimozione"
+    },
+    {
+      "definition": [
+        "Il indurente \u00e8 il componente che innesca la reazione chimica necessaria per l'indurimento della resina epossidica. Deve essere utilizzato esclusivamente insieme alla resina per cui \u00e8 stato progettato e nel rapporto di miscelazione raccomandato dal produttore, poich\u00e9 qualsiasi scostamento pu\u00f2 compromettere la qualit\u00e0 e la resistenza del materiale finale."
+      ],
+      "id": "nt-ritor",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Rinforzante"
+    },
+    {
+      "definition": [
+        "La riparazione dei difetti rappresenta l'insieme delle operazioni effettuate per correggere le imperfezioni sorte durante la fusione, l'indurimento o la finitura di un progetto. A seconda della natura del difetto, la riparazione pu\u00f2 includere la pulizia, la levigatura, il riempimento con resina epossidica, la lucidatura o altri interventi necessari per riportare il pezzo al livello di qualit\u00e0 desiderato."
+      ],
+      "id": "repararea-defectelor",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Riparazione dei difetti"
+    },
+    {
+      "definition": [
+        "Il Router Sled \u00e8 un sistema di guida che consente lo spostamento controllato di una fresatrice sopra un pezzo di grandi dimensioni. Questo dispositivo viene utilizzato per livellare superfici che non possono essere lavorate con una piallatrice, come i tavoli di tipo River Table o altri pannelli di grandi dimensioni."
+      ],
+      "id": "router-sled",
+      "media": [
+        {
+          "alt": "router sleed",
+          "caption": null,
+          "src": "/api/content/glossary/images/f1c320eb-b75a-4b1b-a6d9-eb0613f836fd.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Router Sled"
+    },
+    {
+      "definition": [
+        "Il salvataggio del progetto consiste nell'operazione mediante la quale tutte le informazioni relative a un progetto vengono salvate in un file HFZWood, in modo che possa essere riaperto e portato avanti in un secondo momento senza perdita di dati."
+      ],
+      "id": "salvarea-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Salvare il progetto"
+    },
+    {
+      "definition": [
+        "La scala dell'immagine rappresenta il rapporto tra le dimensioni nella fotografia e le dimensioni reali dell'oggetto misurato. La corretta determinazione della scala consente di effettuare calcoli precisi nell'ambito del progetto."
+      ],
+      "id": "scara-imaginii",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scala dell'immagine"
+    },
+    {
+      "definition": [
+        "Il riferimento tecnico \u00e8 un'informazione documentata utilizzata per fondare una spiegazione, una raccomandazione o una procedura. Nell'ambito dell'applicazione, i riferimenti tecnici garantiscono l'accuratezza e la credibilit\u00e0 dei contenuti didattici."
+      ],
+      "id": "referin-tehnic",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scheda tecnica"
+    },
+    {
+      "definition": [
+        "L'effetto buccia d'arancia, noto anche come Orange Peel, \u00e8 un difetto superficiale caratterizzato da una texture irregolare che ricorda la buccia di un'arancia. Questo difetto pu\u00f2 verificarsi a causa delle condizioni di applicazione, di una viscosit\u00e0 inadeguata o di altri fattori che influenzano il livellamento della resina."
+      ],
+      "id": "coaj-de-portocal",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Scorza d'arancia"
+    },
+    {
+      "definition": [
+        "La sedimentazione del pigmento \u00e8 il fenomeno per cui le particelle di pigmento si depositano sul fondo dello stampo prima che la resina si indurisca completamente. Ci\u00f2 pu\u00f2 alterare l'aspetto finale del pezzo ed \u00e8 influenzato dal tipo di pigmento, dalla viscosit\u00e0 della resina e dalla durata del processo di indurimento."
+      ],
+      "id": "sedimentarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sedimentazione del pigmento"
+    },
+    {
+      "definition": [
+        "La sega a nastro \u00e8 una macchina da taglio che utilizza una lama continua montata su due o pi\u00f9 volani. Consente di eseguire tagli precisi, sia diritti che curvi, ed \u00e8 spesso utilizzata per il taglio del legno massiccio e per la lavorazione di pezzi dalle forme irregolari."
+      ],
+      "id": "fier-str-u-panglic",
+      "media": [
+        {
+          "alt": "banzic",
+          "caption": null,
+          "src": "/api/content/glossary/images/5beb8fe2-560d-4335-8ec7-09875683f6b7.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sega a nastro"
+    },
+    {
+      "definition": [
+        "La sega circolare \u00e8 una macchina o un utensile dotato di una lama circolare rotante, utilizzata per tagliare il legno in lunghezza, larghezza o a diversi angoli. La precisione e la stabilit\u00e0 del taglio dipendono dalle regolazioni della macchina, dal tipo di lama e dal modo in cui viene guidato il materiale."
+      ],
+      "id": "fier-str-u-circular",
+      "media": [
+        {
+          "alt": "fcb",
+          "caption": null,
+          "src": "/api/content/glossary/images/f9f3702a-aa9b-469c-a4e4-e24f4eb4ea2e.webp",
+          "type": "image"
+        },
+        {
+          "alt": "sega circolare",
+          "caption": null,
+          "src": "/api/content/glossary/images/1ce6480b-e573-4940-9639-50ce07177998.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sega circolare"
+    },
+    {
+      "definition": [
+        "La sega pendolare \u00e8 un utensile elettrico dotato di una lama stretta che esegue un movimento alternato verticale, utilizzata per tagli diritti o curvi nel legno e in altri materiali. Grazie alla sua maneggevolezza, \u00e8 adatta per ritagli e contorni complessi."
+      ],
+      "id": "fier-str-u-pendular",
+      "media": [
+        {
+          "alt": "pendolare",
+          "caption": null,
+          "src": "/api/content/glossary/images/4791ba37-db95-417e-b30b-175118c44440.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sega pendolare"
+    },
+    {
+      "definition": [
+        "La separazione del pigmento consiste nella distribuzione non uniforme del pigmento nella massa della resina epossidica, il che porta a differenze visibili di colore o di effetto. Questo fenomeno pu\u00f2 essere causato da una miscelazione insufficiente, dall'incompatibilit\u00e0 dei prodotti o dalle condizioni di indurimento."
+      ],
+      "id": "separarea-pigmentului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Separazione del pigmento"
+    },
+    {
+      "definition": [
+        "La sigillatura \u00e8 il processo volto a impedire la fuoriuscita della resina epossidica dalla cassaforma durante la colata e l'indurimento. Una sigillatura eseguita correttamente previene le perdite di materiale, mantiene la forma del progetto e contribuisce all'ottenimento di una colata priva di difetti."
+      ],
+      "id": "etan-are",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Sigillatura"
+    },
+    {
+      "definition": [
+        "Il silicone sigillante \u00e8 un materiale elastico utilizzato per sigillare i giunti e le fessure della cassaforma prima del getto della resina epossidica. Se applicato correttamente, impedisce la formazione di perdite e pu\u00f2 essere facilmente rimosso dopo lo smontaggio della cassaforma."
+      ],
+      "id": "silicon-de-etan-are",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "cofraj",
+          "term": "Cassaforma"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Silicone sigillante"
+    },
+    {
+      "definition": [
+        "Lo spessore dello strato di colata corrisponde all'altezza dello strato di resina epossidica applicato in un'unica fase. Essa deve rientrare nei limiti raccomandati dal produttore per il tipo di resina utilizzata, in modo che il processo di polimerizzazione si svolga in condizioni ottimali e senza l\u2019insorgenza di difetti."
+      ],
+      "id": "grosimea-stratului-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "degazare-debulare",
+          "term": "Degassificazione - Sbrinamento"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Colata a strati"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Colata profonda (Deep Pour)"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Spessore dello strato di colata"
+    },
+    {
+      "definition": [
+        "Lo spessore uniforme descrive la situazione in cui un pezzo di legno presenta lo stesso spessore su tutta la sua superficie. Il mantenimento di uno spessore costante facilita la lavorazione, l'assemblaggio e il calcolo corretto del volume nei progetti realizzati con resina epossidica."
+      ],
+      "id": "grosime-uniform",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-ndreptarea-lemnului",
+          "label": "Raddrizzatura del legno",
+          "targetId": "ndreptarea-lemnului",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Spessore uniforme"
+    },
+    {
+      "definition": [
+        "La stabilit\u00e0 dimensionale \u00e8 la capacit\u00e0 di un materiale di mantenere la propria forma e le proprie dimensioni nel tempo, nonostante le variazioni di temperatura e umidit\u00e0. Un'elevata stabilit\u00e0 dimensionale contribuisce alla durata e al corretto funzionamento delle realizzazioni in legno e resina epossidica."
+      ],
+      "id": "stabilitate-dimensional",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Stabilit\u00e0 dimensionale"
+    },
+    {
+      "definition": [
+        "La stima della quantit\u00e0 di resina \u00e8 il processo attraverso il quale l'applicazione HFZWood calcola il volume e la quantit\u00e0 necessaria di resina epossidica per la realizzazione di un progetto, sulla base della geometria definita dall'utente e dei parametri di calcolo disponibili."
+      ],
+      "id": "estimarea-cantit-ii-de-r-in",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Stima della quantit\u00e0 di resina"
+    },
+    {
+      "definition": [
+        "Lo strato inibitorio, noto anche come Amine Blush, \u00e8 una sottile pellicola che pu\u00f2 formarsi sulla superficie della resina epossidica durante l'indurimento, in particolare in condizioni di bassa temperatura o elevata umidit\u00e0. Prima di applicare una nuova mano o di procedere alla finitura, questa pellicola deve essere rimossa per garantire un'adesione adeguata."
+      ],
+      "id": "strat-de-inhibi-ie-amine-blush",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Strato inibitore (Amine Blush)"
+    },
+    {
+      "definition": [
+        "Lo strato sigillante, noto anche come Seal Coat, \u00e8 un sottile strato di resina epossidica applicato prima della colata principale per chiudere i pori del legno e ridurre la fuoriuscita d'aria. Questa fase contribuisce a ridurre la formazione di bolle e a ottenere una superficie finale di qualit\u00e0."
+      ],
+      "id": "strat-de-sigilare-seal-coat",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "v-scozitate",
+          "term": "Viscosit\u00e0"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Colata profonda (Deep Pour)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "raport-de-amestec",
+          "term": "Rapporto di miscelazione"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Strato sigillante (Seal Coat)"
+    },
+    {
+      "definition": [
+        "La composizione del progetto rappresenta il modo in cui sono disposti e integrati tutti gli elementi che costituiscono il pezzo finale, quali il legno, la resina epossidica ed eventuali componenti decorativi. Una composizione ben studiata garantisce sia l'equilibrio estetico che la funzionalit\u00e0 del progetto."
+      ],
+      "id": "compozi-ia-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Struttura del progetto"
+    },
+    {
+      "definition": [
+        "La superficie appiccicosa \u00e8 un difetto caratterizzato dal fatto che la resina rimane morbida o aderente al tatto dopo il normale periodo di indurimento. Questo fenomeno indica, di norma, un problema verificatosi durante la miscelazione, la polimerizzazione o il rispetto delle condizioni d\u2019uso raccomandate."
+      ],
+      "id": "suprafa-lipicioas",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Superficie adesiva"
+    },
+    {
+      "definition": [
+        "Il surriscaldamento, noto anche come Overheating, consiste in un aumento eccessivo della temperatura della resina epossidica durante la polimerizzazione. Questo fenomeno si verifica solitamente in caso di colate troppo spesse o di grandi volumi e pu\u00f2 causare crepe, deformazioni, ingiallimento o altri difetti del pezzo."
+      ],
+      "id": "supra-nc-lzire",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Surriscaldamento"
+    },
+    {
+      "definition": [
+        "Il taglio consiste nell'operazione di tagliare il legno nelle dimensioni e nella forma necessarie per la realizzazione del progetto. Pu\u00f2 essere effettuato con diverse attrezzature e ha lo scopo di ottenere pezzi che possano essere lavorati e integrati nella fase successiva del progetto."
+      ],
+      "id": "debitare",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Taglio"
+    },
+    {
+      "definition": [
+        "Il tampone per lucidatura \u00e8 un accessorio montato sulla lucidatrice, utilizzato per applicare e distribuire uniformemente i composti lucidanti sulla superficie. I tamponi sono realizzati in materiali diversi, ciascuno destinato a un determinato livello di correzione o finitura."
+      ],
+      "id": "pad-de-polish",
+      "media": [
+        {
+          "alt": "tampone per lucidatura",
+          "caption": null,
+          "src": "/api/content/glossary/images/b0262b10-a03f-4db3-a208-0f47eb5acc87.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tampone per lucidatura"
+    },
+    {
+      "definition": [
+        "Il River Table \u00e8 un tipo di tavolo realizzato con due o pi\u00f9 pezzi di legno tra i quali viene colata della resina epossidica, formando una zona centrale che ricorda il corso di un fiume. Questo stile di design mette in risalto le venature naturali del legno e rappresenta una delle applicazioni pi\u00f9 note della resina epossidica nell\u2019arredamento."
+      ],
+      "id": "river-table",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tavolo da fiume"
+    },
+    {
+      "definition": [
+        "La temperatura ambiente \u00e8 la temperatura dell'aria nell'ambiente in cui vengono conservate, miscelate e utilizzate le resine epossidiche. Essa influenza la viscosit\u00e0, il tempo di lavorabilit\u00e0, la velocit\u00e0 di polimerizzazione e la qualit\u00e0 finale della colata; per questo motivo deve essere mantenuta entro l\u2019intervallo raccomandato dal produttore."
+      ],
+      "id": "temperatur-ambiental",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Temperatura ambiente"
+    },
+    {
+      "definition": [
+        "Il tempo di gelificazione \u00e8 il periodo necessario affinch\u00e9 la resina epossidica passi dallo stato liquido a uno stato gelatinoso, in cui non pu\u00f2 pi\u00f9 scorrere liberamente. Questo momento segna la fine della possibilit\u00e0 di modellare o correggere la colata e precede la fase di indurimento completo."
+      ],
+      "id": "timp-de-gelificare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tempo di gelificazione"
+    },
+    {
+      "definition": [
+        "Il tempo di indurimento \u00e8 il periodo necessario affinch\u00e9 la resina epossidica sviluppi le proprie propriet\u00e0 meccaniche e possa essere maneggiata o lavorata in sicurezza. La durata di questo processo dipende dal tipo di resina, dalla temperatura dell'ambiente e dalle condizioni di lavoro."
+      ],
+      "id": "timp-de-nt-rire",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tempo di indurimento"
+    },
+    {
+      "definition": [
+        "Il tempo di lavorabilit\u00e0, noto anche come Pot Life, rappresenta l'intervallo di tempo durante il quale la miscela di resina e indurente pu\u00f2 essere utilizzata prima che la viscosit\u00e0 inizi ad aumentare in modo significativo. Una volta trascorso questo intervallo, il materiale non pu\u00f2 pi\u00f9 essere colato o lavorato in condizioni ottimali."
+      ],
+      "id": "timp-de-lucru-pot-life",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Miscelazione"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "nt-ritor",
+          "term": "Rinforzante"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+    },
+    {
+      "definition": [
+        "Le tensioni interne sono sollecitazioni presenti nella struttura del legno a seguito del processo naturale di crescita o di un'essiccazione non uniforme. Queste possono causare deformazioni, fessurazioni o variazioni dimensionali durante la lavorazione e l\u2019utilizzo. L\u2019identificazione e la riduzione degli effetti delle tensioni interne contribuiscono alla realizzazione di progetti stabili e durevoli."
+      ],
+      "id": "tensiuni-interne",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Tensioni interne"
+    },
+    {
+      "definition": [
+        "La torcia a gas \u00e8 uno strumento che produce una fiamma controllata e viene utilizzata per eliminare le bolle d'aria dalla superficie della resina epossidica subito dopo la colata. Il suo utilizzo richiede attenzione, poich\u00e9 un'eccessiva esposizione al calore pu\u00f2 danneggiare la resina o i materiali circostanti."
+      ],
+      "id": "tor-cu-gaz",
+      "media": [
+        {
+          "alt": "torcia",
+          "caption": null,
+          "src": "/api/content/glossary/images/89a1660d-4101-4075-a1eb-551528127d35.webp",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [
+        {
+          "id": "bule-de-aer",
+          "term": "Bolle d'aria"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Torcia a gas"
+    },
+    {
+      "definition": [
+        "Il trapano \u00e8 un utensile elettrico utilizzato per praticare fori nel legno e in altri materiali. A seconda degli accessori montati, pu\u00f2 essere utilizzato anche per avvitare, allargare i fori o eseguire altre operazioni di lavorazione."
+      ],
+      "id": "ma-in-de-g-urit",
+      "media": [
+        {
+          "alt": "trapano",
+          "caption": null,
+          "src": "/api/content/glossary/images/50ecb65a-31bb-475a-a3ef-f1cd9e3a294c.jpg",
+          "type": "image"
+        }
+      ],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Trapano"
+    },
+    {
+      "definition": [
+        "La sigillatura del legno consiste nell'applicazione di un sottile strato di resina epossidica o di un altro materiale compatibile per ridurre l'assorbimento eccessivo e la fuoriuscita d'aria dai pori del legno prima della colata principale. Questa fase contribuisce a ottenere una superficie pulita e a ridurre la formazione di bolle d\u2019aria."
+      ],
+      "id": "sigilarea-lemnului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Trattamento protettivo del legno"
+    },
+    {
+      "definition": [
+        "L'umidit\u00e0 del legno rappresenta la quantit\u00e0 di acqua contenuta nella massa del legno, espressa in percentuale rispetto alla massa del legno secco. Questo parametro influenza la stabilit\u00e0 dimensionale, il comportamento nel tempo e la compatibilit\u00e0 del legno con la resina epossidica. Nei progetti realizzati con HFZWood, l\u2019utilizzo di legno con un\u2019umidit\u00e0 adeguata riduce il rischio di fessurazioni, deformazioni e problemi di adesione."
+      ],
+      "id": "umiditatea-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "lemn-higroscopic",
+          "term": "Legno igroscopico"
+        }
+      ],
+      "seeAlso": [
+        {
+          "href": "/glossary#glossary-entry-lemn-higroscopic",
+          "label": "Legno igroscopico",
+          "targetId": "lemn-higroscopic",
+          "targetType": "glossary_entry"
+        }
+      ],
+      "synonyms": [],
+      "term": "Umidit\u00e0 del legno"
+    },
+    {
+      "definition": [
+        "L'umidit\u00e0 eccessiva indica la presenza di una quantit\u00e0 d'acqua nel legno o nell'ambiente di lavoro superiore al livello raccomandato per l'uso della resina epossidica. Ci\u00f2 pu\u00f2 compromettere l'adesione, la stabilit\u00e0 dimensionale, il processo di indurimento e la qualit\u00e0 finale del progetto."
+      ],
+      "id": "umiditate-excesiv",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Umidit\u00e0 eccessiva"
+    },
+    {
+      "definition": [
+        "La viscosit\u00e0 rappresenta il grado di fluidit\u00e0 della resina epossidica, ovvero la sua resistenza allo scorrimento. Una resina a bassa viscosit\u00e0 penetra pi\u00f9 facilmente nei pori e nelle cavit\u00e0, mentre una ad alta viscosit\u00e0 \u00e8 pi\u00f9 adatta per applicazioni che richiedono il controllo dello scorrimento o la realizzazione di strati pi\u00f9 spessi."
+      ],
+      "id": "v-scozitate",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "timp-de-nt-rire",
+          "term": "Tempo di indurimento"
+        },
+        {
+          "id": "timp-de-lucru-pot-life",
+          "term": "Tempo di lavorabilit\u00e0 (Pot Life)"
+        },
+        {
+          "id": "timp-de-gelificare",
+          "term": "Tempo di gelificazione"
+        },
+        {
+          "id": "r-in-epoxidic",
+          "term": "Resina epossidica"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reazione esotermica"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Viscosit\u00e0"
+    },
+    {
+      "definition": [
+        "Il volume del legno rappresenta lo spazio occupato da tutti i pezzi di legno che fanno parte del progetto. \u00c8 espresso in unit\u00e0 di volume e viene utilizzato dall'applicazione per determinare il volume totale del progetto e la quantit\u00e0 necessaria di resina."
+      ],
+      "id": "volumul-lemnului",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "grosime-uniform",
+          "term": "Spessore uniforme"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume del legno"
+    },
+    {
+      "definition": [
+        "Il volume di colata rappresenta la quantit\u00e0 totale di resina epossidica necessaria per riempire un'area o per eseguire una colata completa. Viene determinato in base alle dimensioni geometriche del progetto e costituisce uno dei principali risultati calcolati dall'applicazione HFZWood."
+      ],
+      "id": "volum-de-turnare",
+      "media": [],
+      "relatedTerms": [
+        {
+          "id": "amestecare",
+          "term": "Miscelazione"
+        },
+        {
+          "id": "bule-de-aer",
+          "term": "Bolle d'aria"
+        },
+        {
+          "id": "degazare-debulare",
+          "term": "Degassificazione - Sbrinamento"
+        },
+        {
+          "id": "polimerizare",
+          "term": "Polimerizzazione"
+        },
+        {
+          "id": "reac-ie-exoterm",
+          "term": "Reazione esotermica"
+        },
+        {
+          "id": "temperatur-ambiental",
+          "term": "Temperatura ambiente"
+        },
+        {
+          "id": "turnare-ad-nc-deep-pour",
+          "term": "Colata profonda (Deep Pour)"
+        },
+        {
+          "id": "turnare-n-straturi",
+          "term": "Colata a strati"
+        },
+        {
+          "id": "turnare",
+          "term": "Colata"
+        }
+      ],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume di colata"
+    },
+    {
+      "definition": [
+        "Il volume totale del progetto corrisponde al volume occupato dall'intero pezzo finito, compreso sia il legno che la resina epossidica. Questo parametro \u00e8 alla base dei calcoli effettuati dall'applicazione e consente di determinare le quantit\u00e0 di materiale necessarie."
+      ],
+      "id": "volumul-total-al-proiectului",
+      "media": [],
+      "relatedTerms": [],
+      "seeAlso": [],
+      "synonyms": [],
+      "term": "Volume totale del progetto"
+    }
+  ],
   "locale": "it"
 }
