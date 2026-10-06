@@ -19,11 +19,6 @@ os.environ.setdefault("COGNITO_USER_POOL_ID", "eu-central-1_testpool")
 os.environ.setdefault("COGNITO_REGION", "eu-central-1")
 os.environ.setdefault("COGNITO_CLIENT_ID", "test-client-id")
 
-
-@pytest.fixture(autouse=True)
-def _clear_promo_activation_env(monkeypatch):
-    monkeypatch.delenv("HFZWOOD_PROMO_ACTIVATED_AT", raising=False)
-
 # The suite always models a local workstation. Host tooling (for example AWS
 # CLI-based agents) can export AWS_EXECUTION_ENV, which would make
 # public.content_corpus treat the process as an AWS runtime and silently skip

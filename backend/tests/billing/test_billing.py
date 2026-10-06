@@ -628,7 +628,7 @@ class TestBillingService:
         assert result["status"] == "applied"
         assert entitlements_repo.get_record("user-a")["accessTier"] == "free"
 
-    def test_subscription_deleted_preserves_promotional_grant(
+    def test_subscription_deleted_preserves_grant_and_downgrades_to_free(
         self, billing_service, entitlements_repo, fake_stripe
     ):
         grant_expires_at = 1_900_000_000
@@ -665,8 +665,9 @@ class TestBillingService:
         capabilities = CapabilityResolver(
             entitlements_repo, now=lambda: grant_expires_at - 1
         ).resolve("user-a")
-        assert capabilities.accessTier == "subscriber"
-        assert capabilities.capabilities["calculator.pdfExport"] is True
+        # grantExpiresAt only limits the stored accessTier; it never upgrades "free".
+        assert capabilities.accessTier == "free"
+        assert capabilities.capabilities["calculator.pdfExport"] is False
 
     def test_webhook_stale_commercial_save_cannot_erase_grant_written_after_read(
         self, billing_config, fake_stripe

@@ -77,8 +77,9 @@ Run these from the repository root unless stated otherwise.
 
    Required frontend build arguments are `VITE_COGNITO_USER_POOL_ID`, `VITE_COGNITO_CLIENT_ID`, `VITE_COGNITO_DOMAIN`, and `VITE_COGNITO_REDIRECT_URI`. The frontend always uses Cognito.
 
-4. Deploy the application stack:
-
+4. Deploy the application stack
+   Run this from the deploy/cdk folder:
+5. 
    ```commandline
    cdk deploy AppStack --profile hfzwood
    ```

@@ -53,6 +53,23 @@ def dynamodb_table():
 
 
 class TestDynamoDbEntitlementsRepositoryRecords:
+    def test_create_record_if_absent_creates_promo_record(self, dynamodb_table):
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        assert repository.record_exists("user-new") is False
+        assert repository.create_record_if_absent("user-new", "subscriber", 1_850_000_000) is True
+        assert repository.record_exists("user-new") is True
+        item = dynamodb_table.Table(TABLE_NAME).get_item(Key={"userId": "user-new"})["Item"]
+        assert item["accessTier"] == "subscriber"
+        assert int(item["grantExpiresAt"]) == 1_850_000_000
+
+    def test_create_record_if_absent_never_overwrites(self, dynamodb_table):
+        dynamodb_table.Table(TABLE_NAME).put_item(Item={"userId": "user-old", "accessTier": "free"})
+        repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
+        assert repository.record_exists("user-old") is True
+        assert repository.create_record_if_absent("user-old", "subscriber", 1_850_000_000) is False
+        item = dynamodb_table.Table(TABLE_NAME).get_item(Key={"userId": "user-old"})["Item"]
+        assert item == {"userId": "user-old", "accessTier": "free"}
+
     def test_get_record_returns_empty_record_when_missing(self, dynamodb_table):
         repository = DynamoDbEntitlementsRepository(TABLE_NAME, resource=dynamodb_table)
         record = repository.get_record("user-a")

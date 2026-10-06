@@ -15,6 +15,7 @@ from typing import Any
 from public.product.entitlements import (
     EntitlementsRepository,
     VALID_STORED_ACCESS_TIERS,
+    _validate_new_record,
     empty_entitlement_record,
     normalize_entitlement_record,
 )
@@ -74,6 +75,21 @@ class InMemoryEntitlementsRepository(EntitlementsRepository):
             self._records[user_id] = record
             return True
         existing["grantExpiresAt"] = grant_expires_at
+        return True
+
+    def record_exists(self, user_id: str) -> bool:
+        return user_id in self._records
+
+    def create_record_if_absent(
+        self, user_id: str, access_tier: str, grant_expires_at: int
+    ) -> bool:
+        _validate_new_record(user_id, access_tier, grant_expires_at)
+        if user_id in self._records:
+            return False
+        record = empty_entitlement_record()
+        record["accessTier"] = access_tier
+        record["grantExpiresAt"] = grant_expires_at
+        self._records[user_id] = record
         return True
 
     def find_user_id_by_stripe_customer_id(self, stripe_customer_id: str) -> str | None:

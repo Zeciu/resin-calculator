@@ -185,12 +185,32 @@ class EntitlementsRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    def record_exists(self, user_id: str) -> bool:
+        raise NotImplementedError
+
+    @abstractmethod
+    def create_record_if_absent(
+        self, user_id: str, access_tier: str, grant_expires_at: int
+    ) -> bool:
+        """Create `{accessTier, grantExpiresAt}` only if no record exists. Returns True if created."""
+        raise NotImplementedError
+
+    @abstractmethod
     def find_user_id_by_stripe_customer_id(self, stripe_customer_id: str) -> str | None:
         raise NotImplementedError
 
 
 ENTITLEMENTS_TABLE_NAME_ENV = "ENTITLEMENTS_TABLE_NAME"
 STRIPE_CUSTOMER_ID_INDEX_NAME = "stripeCustomerId-index"
+
+
+def _validate_new_record(user_id: str, access_tier: str, grant_expires_at: int) -> None:
+    if not isinstance(user_id, str) or not user_id.strip():
+        raise ValueError("user_id must be a non-empty string.")
+    if access_tier not in VALID_STORED_ACCESS_TIERS:
+        raise ValueError(f"Unsupported access tier: {access_tier}")
+    if isinstance(grant_expires_at, bool) or not isinstance(grant_expires_at, int) or grant_expires_at < 0:
+        raise ValueError("grantExpiresAt must be a non-negative Unix timestamp.")
 
 
 def _create_dynamodb_resource():
@@ -330,6 +350,37 @@ class DynamoDbEntitlementsRepository(EntitlementsRepository):
             return tier
         return None
 
+    def record_exists(self, user_id: str) -> bool:
+        response = self._dynamodb_call(
+            "record_exists",
+            lambda: self._table.get_item(
+                Key={"userId": user_id}, ProjectionExpression="userId"
+            ),
+        )
+        return response.get("Item") is not None
+
+    def create_record_if_absent(
+        self, user_id: str, access_tier: str, grant_expires_at: int
+    ) -> bool:
+        _validate_new_record(user_id, access_tier, grant_expires_at)
+        item = {
+            "userId": user_id,
+            "accessTier": access_tier,
+            "grantExpiresAt": grant_expires_at,
+            "updatedAt": _utc_now_iso(),
+        }
+        try:
+            self._table.put_item(
+                Item=item, ConditionExpression="attribute_not_exists(userId)"
+            )
+            return True
+        except ClientError as exc:
+            if exc.response.get("Error", {}).get("Code") == "ConditionalCheckFailedException":
+                return False
+            self._raise_unavailable("create_record_if_absent", exc)
+        except BotoCoreError as exc:
+            self._raise_unavailable("create_record_if_absent", exc)
+
     def save_access_tier(self, user_id: str, access_tier: str) -> str:
         if access_tier not in VALID_STORED_ACCESS_TIERS:
             raise ValueError(f"Unsupported access tier: {access_tier}")
@@ -362,19 +413,23 @@ class DynamoDbEntitlementsRepository(EntitlementsRepository):
         try:
             return request()
         except (BotoCoreError, ClientError) as exc:
-            error_code = (
-                exc.response.get("Error", {}).get("Code", "unknown")
-                if isinstance(exc, ClientError)
-                else type(exc).__name__
-            )
-            logger.error(
-                "entitlements_dynamodb_unavailable operation=%s error_code=%s",
-                operation,
-                error_code,
-            )
-            raise EntitlementsServiceUnavailableError(
-                "DynamoDB entitlement access is temporarily unavailable."
-            ) from exc
+            DynamoDbEntitlementsRepository._raise_unavailable(operation, exc)
+
+    @staticmethod
+    def _raise_unavailable(operation: str, exc: Exception):
+        error_code = (
+            exc.response.get("Error", {}).get("Code", "unknown")
+            if isinstance(exc, ClientError)
+            else type(exc).__name__
+        )
+        logger.error(
+            "entitlements_dynamodb_unavailable operation=%s error_code=%s",
+            operation,
+            error_code,
+        )
+        raise EntitlementsServiceUnavailableError(
+            "DynamoDB entitlement access is temporarily unavailable."
+        ) from exc
 
 
 def get_entitlements_repository() -> EntitlementsRepository:

@@ -19,18 +19,12 @@ def normalize_commercial_access_tier(access_tier: str | None) -> str:
     return access_tier if access_tier in COMMERCIAL_ACCESS_TIERS else "free"
 
 
-def has_live_promotional_grant(record: dict[str, Any], *, now: int) -> bool:
-    expires_at = record.get("grantExpiresAt")
-    return isinstance(expires_at, int) and not isinstance(expires_at, bool) and expires_at > now
-
-
 def resolve_effective_access_tier(record: dict[str, Any], *, now: int) -> str:
-    """Subscriber catalog if Stripe/commercial access OR a live promotional grant."""
-    if normalize_commercial_access_tier(record.get("accessTier")) == "subscriber":
-        return "subscriber"
-    if has_live_promotional_grant(record, now=now):
-        return "subscriber"
-    return "free"
+    """The stored accessTier, valid until grantExpiresAt (forever when absent)."""
+    expires_at = record.get("grantExpiresAt")
+    if isinstance(expires_at, int) and not isinstance(expires_at, bool) and expires_at <= now:
+        return "free"
+    return normalize_commercial_access_tier(record.get("accessTier"))
 
 
 class CapabilityResolver:
@@ -55,7 +49,7 @@ class CapabilityResolver:
         # `role` is retained as an ignored compatibility argument while callers
         # migrate. Customer capability decisions are entitlement-only.
         if self._promo_grants is not None:
-            self._promo_grants.ensure_for_user(user_id, username=username)
+            self._promo_grants.ensure_for_user(user_id)
         record = self._entitlements.get_record(user_id)
         access_tier = resolve_effective_access_tier(record, now=int(self._now()))
         return CapabilitiesResponse(

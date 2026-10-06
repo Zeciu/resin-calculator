@@ -22,7 +22,8 @@ class TestCapabilitiesApi:
         assert response.status_code == 200
         payload = response.json()
         assert "capabilities" in payload
-        assert payload["accessTier"] == "free"
+        # Launch promotion: a user without a record gets subscriber access on first request.
+        assert payload["accessTier"] == "subscriber"
         assert payload["catalogVersion"] == 1
 
     def test_entitlement_service_failure_returns_controlled_503(self, client):
