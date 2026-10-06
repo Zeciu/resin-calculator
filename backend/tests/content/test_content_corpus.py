@@ -93,5 +93,8 @@ def test_packaged_public_languages_exist():
         / "public-languages.json"
     )
     payload = json.loads(path.read_text(encoding="utf-8"))
-    assert payload["activePublicLocales"] == ["en", "ro"]
-    assert "fr" not in payload["activePublicLocales"]
+    active = payload["activePublicLocales"]
+    assert payload["defaultPublicLocale"] == "en"
+    assert active[0] == "en"
+    assert "ro" in active
+    assert len(active) == len(set(active))

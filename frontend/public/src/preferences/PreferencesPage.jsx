@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { usePublicLanguages } from "../publicLanguages/usePublicLanguages.js";
@@ -16,9 +16,11 @@ export default function PreferencesPage() {
   const { t } = useI18n();
   const { preferences, isLoading, error, updatePreferences } = usePreferences();
   const { activePublicLocales, defaultPublicLocale } = usePublicLanguages();
-  const languageOptions = listActiveInterfaceLanguages(
-    activePublicLocales,
-    defaultPublicLocale,
+  // Memoized: listActiveInterfaceLanguages returns a fresh array, and an
+  // unstable reference in the effect deps below causes an infinite render loop.
+  const languageOptions = useMemo(
+    () => listActiveInterfaceLanguages(activePublicLocales, defaultPublicLocale),
+    [activePublicLocales, defaultPublicLocale],
   );
   const [draft, setDraft] = useState(preferences);
   const [statusMessage, setStatusMessage] = useState("");
@@ -33,7 +35,7 @@ export default function PreferencesPage() {
       ...preferences,
       interfaceLanguage: resolvedLanguage,
     });
-  }, [preferences, activePublicLocales, defaultPublicLocale, languageOptions]);
+  }, [preferences, defaultPublicLocale, languageOptions]);
 
   async function handleSubmit(event) {
     event.preventDefault();

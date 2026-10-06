@@ -20,7 +20,6 @@ const DEMO_P01_KEYS = [
   "demo.learnHeadline",
   "demo.learnBody",
   "demo.exploreKnowledgePreview",
-  "register.comparePlansLead",
   "preview.viewPlans",
   "calculator.modifyProject",
   "calculator.modifyProjectActive",
@@ -89,12 +88,7 @@ describe("DemoFollowUp", () => {
     expect(stylesSource).toMatch(
       /@media \(max-width:\s*760px\)\s*\{[\s\S]*?\.demo-follow-up__paths\s*\{[\s\S]*?grid-template-columns:\s*1fr;/,
     );
-    expect(stylesSource).toMatch(/\.register-page__hint\s*\{/);
-    expect(stylesSource).toMatch(
-      /\.register-page__secondary\s*\{[^}]*background:\s*var\(--surface-ivory\);/,
-    );
-    expect(stylesSource).toMatch(
-      /\.register-page__secondary\s*\{[^}]*border:\s*1px solid var\(--border-warm\);/,
-    );
+    expect(stylesSource).toMatch(/\.register-page__promo\s*\{/);
+    expect(stylesSource).toMatch(/\.register-page__plans-link\s*\{/);
   });
 });

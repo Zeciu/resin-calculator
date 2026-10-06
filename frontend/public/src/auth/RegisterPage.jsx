@@ -178,9 +178,14 @@ export default function RegisterPage() {
     <section className="register-page">
       <h2 className="register-page__title">{t("register.title")}</h2>
       <div className="register-page__pricing">
-        <p className="register-page__hint">{t("register.comparePlansLead")}</p>
-        <Link className="register-page__secondary" to={ROUTES.PRICING}>
-          {t("preview.viewPlans")}
+        <p className="register-page__promo">{t("register.promoNote")}</p>
+        <Link
+          className="register-page__plans-link"
+          to={ROUTES.PRICING}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t("register.viewSubscriptionPlans")}
         </Link>
       </div>
 

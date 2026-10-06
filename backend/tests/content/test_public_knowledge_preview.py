@@ -372,7 +372,16 @@ class TestLocaleAbsenceDoesNotSubstitute:
             assert config["manualChapterIds"][0] not in [chapter["id"] for chapter in manual["chapters"]]
             assert manual["chapters"] == []
 
-    def test_inactive_locale_follows_existing_content_api_convention(self):
+    def test_inactive_locale_follows_existing_content_api_convention(self, monkeypatch):
+        # de and fr are active in the shipped registry; pin one where they are
+        # inactive so both routers' inactive-locale handling is compared.
+        from public import content_api
+
+        monkeypatch.setattr(
+            content_api,
+            "_languages",
+            lambda: {"activePublicLocales": ["en", "ro"], "defaultPublicLocale": "en"},
+        )
         preview = _preview_client().get("/api/public-preview/manual?locale=de")
         content = _authenticated_content_client("subscriber").get("/api/content/manual?locale=de")
         french_preview = _preview_client().get("/api/public-preview/manual?locale=fr")

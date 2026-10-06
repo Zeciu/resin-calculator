@@ -24,6 +24,18 @@ os.environ.setdefault("COGNITO_CLIENT_ID", "test-client-id")
 def _clear_promo_activation_env(monkeypatch):
     monkeypatch.delenv("HFZWOOD_PROMO_ACTIVATED_AT", raising=False)
 
+# The suite always models a local workstation. Host tooling (for example AWS
+# CLI-based agents) can export AWS_EXECUTION_ENV, which would make
+# public.content_corpus treat the process as an AWS runtime and silently skip
+# mounting the local editorial routes. Tests that exercise AWS-runtime
+# detection set these explicitly via monkeypatch.
+for _aws_runtime_var in (
+    "AWS_EXECUTION_ENV",
+    "ECS_CONTAINER_METADATA_URI",
+    "ECS_CONTAINER_METADATA_URI_V4",
+):
+    os.environ.pop(_aws_runtime_var, None)
+
 ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))

@@ -415,13 +415,3 @@ class TestProductionRegistryIsAuthoritative:
             )
         assert CHECKOUT_PRIVATE_LANGUAGES.read_bytes() == before_private
         assert CHECKOUT_PUBLIC_LANGUAGES.read_bytes() == before_public
-        assert json.loads(before_public.decode("utf-8"))["activePublicLocales"] == [
-            "en",
-            "ro",
-            "de",
-        ]
-        assert json.loads(before_private.decode("utf-8"))["activePublicLocales"] == [
-            "en",
-            "ro",
-            "de",
-        ]

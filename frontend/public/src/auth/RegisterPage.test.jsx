@@ -9,7 +9,8 @@ import { localeBundleHasOwnKey, translate } from "../i18n/translate.js";
 
 const REGISTER_COPY_KEYS = [
   "register.title",
-  "register.comparePlansLead",
+  "register.promoNote",
+  "register.viewSubscriptionPlans",
   "register.email",
   "register.username",
   "register.password",
@@ -123,19 +124,30 @@ describe("RegisterPage", () => {
     });
   });
 
-  it("offers a secondary View plans CTA to Pricing without replacing Create account", () => {
+  it("shows the promo note and a new-tab View subscription plans link at the top, above the form", () => {
     renderWorkspace(ROUTES.REGISTER);
 
     const createAccountButton = screen.getByRole("button", { name: /^create account$/i });
-    const viewPlansLink = screen.getByRole("link", { name: "View plans" });
+    const heading = screen.getByRole("heading", { name: /Create your HFZWood account/i });
+    const promo = screen.getByText(
+      "Register now and get full access free for 3 months. No credit card required.",
+    );
+    const viewAllPlansLink = screen.getByRole("link", { name: "View subscription plans" });
+    const emailInput = screen.getByLabelText(/^email$/i);
 
-    expect(screen.getByRole("heading", { name: /Create your HFZWood account/i })).toBeInTheDocument();
-    expect(screen.getByText(/Want to compare Free and subscription options\?/i)).toBeInTheDocument();
-    expect(viewPlansLink).toHaveAttribute("href", "/pricing");
-    expect(viewPlansLink.className).toMatch(/register-page__secondary/);
-    expect(screen.queryByRole("button", { name: /view plans/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Want to compare Free and subscription options/i)).not.toBeInTheDocument();
+    expect(promo.closest("form")).toBeNull();
+    expect(viewAllPlansLink).toHaveAttribute("href", "/pricing");
+    expect(viewAllPlansLink).toHaveAttribute("target", "_blank");
+    expect(viewAllPlansLink.getAttribute("rel")).toMatch(/noopener/);
+    expect(viewAllPlansLink.getAttribute("rel")).toMatch(/noreferrer/);
+    expect(screen.queryByRole("button", { name: /view (all )?plans/i })).not.toBeInTheDocument();
     expect(createAccountButton.className).toMatch(/register-page__submit/);
-    expect(createAccountButton.className).not.toMatch(/register-page__secondary/);
+
+    const follows = (a, b) => Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(follows(heading, promo)).toBe(true);
+    expect(follows(promo, viewAllPlansLink)).toBe(true);
+    expect(follows(viewAllPlansLink, emailInput)).toBe(true);
   });
 
   it("renders Register page copy from the active locale instead of mixed English", () => {
@@ -143,7 +155,11 @@ describe("RegisterPage", () => {
     renderWorkspace(ROUTES.REGISTER);
 
     expect(screen.getByRole("heading", { name: "Creează-ți contul HFZWood" })).toBeInTheDocument();
-    expect(screen.getByText("Vrei să compari opțiunea gratuită cu abonamentele?")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Înregistrează-te acum și obții acces complet gratuit timp de 3 luni. Nu este necesar niciun card.",
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByLabelText("E-mail")).toBeInTheDocument();
     expect(screen.getByLabelText("Nume de utilizator")).toBeInTheDocument();
     expect(screen.getByLabelText("Parolă")).toBeInTheDocument();
@@ -154,9 +170,13 @@ describe("RegisterPage", () => {
     loginLinks.forEach((link) => {
       expect(link).toHaveAttribute("href", "/login");
     });
-    expect(screen.getByRole("link", { name: "Vezi planurile" })).toHaveAttribute("href", "/pricing");
-    expect(screen.getByRole("link", { name: "Vezi planurile" }).className).toMatch(
-      /register-page__secondary/,
+    expect(screen.getByRole("link", { name: "Vezi planurile de abonament" })).toHaveAttribute(
+      "href",
+      "/pricing",
+    );
+    expect(screen.getByRole("link", { name: "Vezi planurile de abonament" })).toHaveAttribute(
+      "target",
+      "_blank",
     );
     expect(screen.queryByRole("heading", { name: /Create your HFZWood account/i })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /^create account$/i })).not.toBeInTheDocument();

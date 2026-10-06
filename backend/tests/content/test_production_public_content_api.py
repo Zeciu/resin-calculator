@@ -50,9 +50,11 @@ def test_guest_can_read_published_languages_and_website_without_a_token():
     languages = client.get("/api/content/public-languages")
     website = client.get("/api/content/website/home?locale=en")
 
+    packaged_languages = json.loads(
+        (PUBLIC_CORPUS / "config" / "public-languages.json").read_text(encoding="utf-8")
+    )
     assert languages.status_code == 200
-    assert languages.json()["activePublicLocales"] == ["en", "ro"]
-    assert "fr" not in languages.json()["activePublicLocales"]
+    assert languages.json() == packaged_languages
     assert website.status_code == 200
     assert website.json()["available"] is True
 
@@ -104,12 +106,21 @@ def test_free_preview_glossary_image_urls_remain_unchanged():
     assert entries["ulei-pentru-lemn"]["media"][0]["src"] == OIL_PREVIEW_SRC
 
 
-def test_authenticated_manual_en_follows_packaged_corpus_not_admin_live_status():
+def test_authenticated_manual_en_follows_packaged_corpus_not_admin_live_status(monkeypatch):
     """Production Manual reads backend/public/content, not Admin's private snapshot.
 
     Admin Publish writes private/content. Production Manual is served from the
     packaged public EN snapshot, which must contain the same 18 live chapters.
     """
+    # French is active in the shipped registry; pin a registry where it is
+    # inactive so the inactive-locale rejection is still exercised.
+    from public import content_api
+
+    monkeypatch.setattr(
+        content_api,
+        "_languages",
+        lambda: {"activePublicLocales": ["en", "ro"], "defaultPublicLocale": "en"},
+    )
     public_en = json.loads(
         (PUBLIC_CORPUS / "published" / "manual" / "en" / "document.json").read_text(
             encoding="utf-8"

@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-DOCKERFILE = REPO_ROOT / "Dockerfile"
+DOCKERFILE = REPO_ROOT / "deployment" / "Dockerfile"
 DOCKERIGNORE = REPO_ROOT / ".dockerignore"
 PUBLIC_ROUTER = REPO_ROOT / "frontend" / "public" / "src" / "workspace" / "WorkspaceRouter.jsx"
 
