@@ -7,16 +7,18 @@ from private.access import require_local_editorial_access
 from private.editorial_content_mode import require_editorial_writes_allowed
 from private.repositories.filesystem import FilesystemContentRepository
 from private.schemas.website import (
+    GenerateWebsiteTranslationRequest,
+    PublishWebsiteVariantRequest,
     PublishWebsiteVariantResponse,
     SaveWebsiteVariantRequest,
     WebsitePageListItem,
     WebsiteVariantResponse,
 )
-from private.schemas.glossary import GenerateTranslationRequest
 from private.routers.generate_translation import run_generate
 from private.services.website_images import WebsiteImageService
 from private.services.website_pages import WebsitePageService
 from private.services.website_publish import WebsitePublishService
+from private.services.website_publish import TextOutdatedPublishConfirmationRequired
 
 router = APIRouter(prefix="/admin/website/pages", tags=["admin-website"])
 
@@ -104,12 +106,19 @@ def save_variant(
 def publish_variant(
     page_key: str,
     locale: str,
+    payload: PublishWebsiteVariantRequest = PublishWebsiteVariantRequest(),
     _: dict = Depends(require_local_editorial_access),
     _writes: None = Depends(require_editorial_writes_allowed),
     publish_service: WebsitePublishService = Depends(get_publish_service),
 ) -> PublishWebsiteVariantResponse:
     try:
-        return publish_service.publish_variant(page_key, locale)
+        return publish_service.publish_variant(
+            page_key,
+            locale,
+            confirm_text_outdated=payload.confirmTextOutdated,
+        )
+    except TextOutdatedPublishConfirmationRequired as exc:
+        raise HTTPException(status_code=409, detail=exc.message) from exc
     except KeyError as exc:
         raise _page_not_found() from exc
     except ValueError as exc:
@@ -136,7 +145,7 @@ def unpublish_variant(
 def generate_translation(
     page_key: str,
     locale: str,
-    payload: GenerateTranslationRequest = GenerateTranslationRequest(),
+    payload: GenerateWebsiteTranslationRequest = GenerateWebsiteTranslationRequest(),
     _: dict = Depends(require_local_editorial_access),
     _writes: None = Depends(require_editorial_writes_allowed),
     service: WebsitePageService = Depends(get_page_service),
@@ -146,6 +155,7 @@ def generate_translation(
             page_key,
             locale,
             confirm_overwrite=payload.confirmOverwrite,
+            force_regenerate=payload.forceRegenerate,
         )
     )
 

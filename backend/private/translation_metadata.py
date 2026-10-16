@@ -119,6 +119,7 @@ def initial_translation_metadata_on_create(locale: str) -> dict[str, Any]:
         "generatedFromSourceTextRevision": None,
         "translationProvider": None,
         "generatedAt": None,
+        "manuallyEditedAt": None,
     }
 
 
@@ -150,13 +151,23 @@ def apply_translation_metadata_on_save(
             "generatedFromSourceTextRevision": None,
             "translationProvider": None,
             "generatedAt": None,
+            "manuallyEditedAt": None,
+            "manuallyEditedAt": None,
         }
+
+    manually_edited_at = existing.get("manuallyEditedAt")
+    if (
+        existing.get("generatedFromSourceRevision") is not None
+        and not draft_bodies_equal(existing.get("draftBody"), new_body)
+    ):
+        manually_edited_at = datetime.now(timezone.utc).isoformat()
 
     return {
         "generatedFromSourceRevision": existing.get("generatedFromSourceRevision"),
         "generatedFromSourceTextRevision": existing.get("generatedFromSourceTextRevision"),
         "translationProvider": existing.get("translationProvider"),
         "generatedAt": existing.get("generatedAt"),
+        "manuallyEditedAt": manually_edited_at,
     }
 
 
@@ -174,6 +185,7 @@ def translation_metadata_on_generation(
         "generatedFromSourceTextRevision": int(source_text_revision),
         "translationProvider": provider,
         "generatedAt": aware.astimezone(timezone.utc).isoformat(),
+        "manuallyEditedAt": None,
     }
 
 
@@ -193,6 +205,7 @@ def translation_metadata_on_media_sync(
         "generatedFromSourceTextRevision": existing_target.get("generatedFromSourceTextRevision"),
         "translationProvider": existing_target.get("translationProvider"),
         "generatedAt": existing_target.get("generatedAt"),
+        "manuallyEditedAt": existing_target.get("manuallyEditedAt"),
     }
 
 
@@ -298,6 +311,7 @@ def translation_metadata_for_api(variant: dict[str, Any] | None) -> dict[str, An
         "generatedFromSourceTextRevision": variant.get("generatedFromSourceTextRevision"),
         "translationProvider": variant.get("translationProvider"),
         "generatedAt": variant.get("generatedAt"),
+        "manuallyEditedAt": variant.get("manuallyEditedAt"),
         "translationUpdateState": variant.get("_translationUpdateState"),
         "translationUpdateAction": variant.get("_translationUpdateAction"),
     }

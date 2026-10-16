@@ -356,7 +356,7 @@ def extract_website_items(draft_body: dict[str, Any]) -> list[TranslatableItem]:
             for offer_index, offer in enumerate(offers):
                 if not isinstance(offer, dict):
                     continue
-                for field in ("title", "displayedPriceText", "ctaLabel"):
+                for field in ("title", "ctaLabel"):
                     _append_item(
                         items,
                         path=("offers", offer_index, field),

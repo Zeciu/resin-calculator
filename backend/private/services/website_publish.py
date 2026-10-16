@@ -7,6 +7,17 @@ from ..schemas.website import PublishWebsiteVariantResponse, parse_admin_locale
 from .snapshot_publish import rebuild_locale_snapshot
 from .website_pages import variant_has_publishable_body
 from .website_public import WebsitePublicService
+from .translation_update import TranslationUpdateState, classify_translation_update
+from ..translation_metadata import CANONICAL_SOURCE_LOCALE
+
+
+class TextOutdatedPublishConfirmationRequired(Exception):
+    def __init__(self, page_key: str, locale: str) -> None:
+        self.message = (
+            f"{page_key} ({locale.upper()}) was generated from an older canonical text "
+            "revision. Confirm publication to continue."
+        )
+        super().__init__(self.message)
 
 
 def _default_public_content_root(repository) -> Path:
@@ -34,11 +45,34 @@ class WebsitePublishService:
             else _default_public_content_root(repository)
         )
 
-    def publish_variant(self, page_key: str, locale: str) -> PublishWebsiteVariantResponse:
+    def publish_variant(
+        self,
+        page_key: str,
+        locale: str,
+        *,
+        confirm_text_outdated: bool = False,
+    ) -> PublishWebsiteVariantResponse:
         parsed_locale = parse_admin_locale(locale)
         variant = self._repository.get_website_variant(page_key, parsed_locale)
         if not variant:
             raise KeyError(page_key)
+
+        if parsed_locale != CANONICAL_SOURCE_LOCALE:
+            ro_variant = self._repository.get_website_variant(
+                page_key, CANONICAL_SOURCE_LOCALE
+            )
+            if ro_variant is not None:
+                classification = classify_translation_update(
+                    ro_variant=ro_variant,
+                    target_variant=variant,
+                )
+                if (
+                    classification.state is TranslationUpdateState.TEXT_OUTDATED
+                    and not confirm_text_outdated
+                ):
+                    raise TextOutdatedPublishConfirmationRequired(
+                        page_key, parsed_locale
+                    )
 
         body = variant["draftBody"]
         if not isinstance(body, dict) or not variant_has_publishable_body(body):

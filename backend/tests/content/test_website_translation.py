@@ -13,8 +13,10 @@ from private.routers import admin_translation_bulk
 from private.routers import admin_website, public_content
 from private.services.translation_bulk import TranslationBulkService, reset_bulk_run_locks_for_tests
 from private.services.translation_generation import TranslationGenerationService
+from private.services.website_publish import WebsitePublishService
 from tests.support.authenticated_client import AuthenticatedTestClient
 from private.services.translation_update import (
+    OverwriteConfirmationRequired,
     TranslationUpdateService,
     classify_translation_update,
 )
@@ -265,10 +267,12 @@ class TestWebsiteExtractionReconstruction:
         body = pricing_body()
         items = extract_translatable_items("website", body)
         rebuilt = reconstruct_draft_body(body, [(item, f"X:{item.text}") for item in items])
-        assert {offer["id"] for offer in rebuilt["offers"]} == {"free", "monthly", "annual"}
+        assert [offer["id"] for offer in rebuilt["offers"]] == ["free", "monthly", "annual"]
         assert rebuilt["offers"][0]["ctaDestination"] == "/register"
+        assert rebuilt["offers"][0]["displayedPriceText"] == "0 RON"
         assert all("id" not in item.path for item in items)
         assert all("ctaDestination" not in item.path for item in items)
+        assert all("displayedPriceText" not in item.path for item in items)
 
     def test_contact_preserves_email_and_urls(self):
         body = contact_body()
@@ -385,6 +389,149 @@ class TestWebsiteTranslationGeneration:
         )
         assert classification.state.value == "manual_untracked"
 
+    def test_current_translation_skips_normally_but_can_be_forced(self, repository):
+        seed_ro_page(repository, "pricing")
+        initial_provider = FakeTranslationProvider()
+        updater = TranslationUpdateService(repository, provider=initial_provider)
+        updater.update(module="website", content_id="pricing", target_locale="es")
+
+        normal_provider = FakeTranslationProvider()
+        saved, classification = TranslationUpdateService(
+            repository, provider=normal_provider
+        ).update(module="website", content_id="pricing", target_locale="es")
+        assert classification.action.value == "skip_current"
+        assert normal_provider.calls == []
+
+        forced_provider = FakeTranslationProvider()
+        regenerated, forced_classification = TranslationUpdateService(
+            repository, provider=forced_provider
+        ).update(
+            module="website",
+            content_id="pricing",
+            target_locale="es",
+            confirm_overwrite=True,
+            force_regenerate=True,
+        )
+        assert forced_classification.state.value == "current"
+        assert forced_provider.calls
+        assert regenerated["draftBody"]["publicTitle"].startswith("[es]")
+        assert regenerated["draftBody"]["offers"][0]["displayedPriceText"] == "0 RON"
+        assert all(call["text"] != "0 RON" for call in forced_provider.calls)
+
+    def test_forced_regeneration_requires_explicit_confirmation(self, repository):
+        seed_ro_page(repository, "pricing")
+        provider = FakeTranslationProvider()
+        TranslationUpdateService(repository, provider=provider).update(
+            module="website", content_id="pricing", target_locale="it"
+        )
+        provider.calls.clear()
+
+        with pytest.raises(OverwriteConfirmationRequired):
+            TranslationUpdateService(repository, provider=provider).update(
+                module="website",
+                content_id="pricing",
+                target_locale="it",
+                force_regenerate=True,
+            )
+        assert provider.calls == []
+
+    def test_forced_pricing_regeneration_preserves_structure_and_snapshot(self, repository):
+        source = seed_ro_page(repository, "pricing")
+        initial_provider = FakeTranslationProvider()
+        TranslationUpdateService(repository, provider=initial_provider).update(
+            module="website", content_id="pricing", target_locale="it"
+        )
+        TranslationUpdateService(repository, provider=initial_provider).update(
+            module="website", content_id="pricing", target_locale="es"
+        )
+        seed_ro_page(repository, "home")
+        TranslationUpdateService(repository, provider=initial_provider).update(
+            module="website", content_id="home", target_locale="it"
+        )
+        WebsitePublishService(repository).publish_variant("pricing", "it")
+        snapshot_before = deepcopy(repository.read_website_snapshot("it"))
+        unrelated_before = deepcopy(repository.get_website_variant("pricing", "es"))
+        unrelated_page_before = deepcopy(repository.get_website_variant("home", "it"))
+
+        forced_provider = FakeTranslationProvider()
+        regenerated, _ = TranslationUpdateService(
+            repository, provider=forced_provider
+        ).update(
+            module="website",
+            content_id="pricing",
+            target_locale="it",
+            confirm_overwrite=True,
+            force_regenerate=True,
+        )
+
+        source_offers = source["offers"]
+        target_offers = regenerated["draftBody"]["offers"]
+        assert [offer["id"] for offer in target_offers] == [
+            offer["id"] for offer in source_offers
+        ]
+        assert [offer["visible"] for offer in target_offers] == [
+            offer["visible"] for offer in source_offers
+        ]
+        assert [offer["ctaDestination"] for offer in target_offers] == [
+            offer["ctaDestination"] for offer in source_offers
+        ]
+        assert [offer["displayedPriceText"] for offer in target_offers] == [
+            offer["displayedPriceText"] for offer in source_offers
+        ]
+        assert repository.read_website_snapshot("it") == snapshot_before
+        assert repository.get_website_variant("pricing", "es") == unrelated_before
+        assert repository.get_website_variant("home", "it") == unrelated_page_before
+
+    def test_provider_failure_does_not_replace_current_translation(self, repository):
+        seed_ro_page(repository, "pricing")
+        TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(module="website", content_id="pricing", target_locale="es")
+        before = deepcopy(repository.get_website_variant("pricing", "es"))
+
+        with pytest.raises(TranslationTemporaryProviderError):
+            TranslationUpdateService(
+                repository, provider=FakeTranslationProvider(fail=True)
+            ).update(
+                module="website",
+                content_id="pricing",
+                target_locale="es",
+                confirm_overwrite=True,
+                force_regenerate=True,
+            )
+        assert repository.get_website_variant("pricing", "es") == before
+
+    def test_manual_edit_is_recorded_without_changing_freshness_classification(
+        self, repository
+    ):
+        seed_ro_page(repository, "home")
+        TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(module="website", content_id="home", target_locale="es")
+        generated = repository.get_website_variant("home", "es")
+        edited_body = deepcopy(generated["draftBody"])
+        edited_body["description"] = "Corrección editorial manual"
+
+        edited = repository.save_website_variant("home", "es", edited_body)
+        classification = classify_translation_update(
+            ro_variant=repository.get_website_variant("home", "ro"),
+            target_variant=edited,
+        )
+        assert classification.state.value == "current"
+        assert edited["generatedAt"] == generated["generatedAt"]
+        assert edited["manuallyEditedAt"] is not None
+
+        regenerated, _ = TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(
+            module="website",
+            content_id="home",
+            target_locale="es",
+            confirm_overwrite=True,
+            force_regenerate=True,
+        )
+        assert regenerated["manuallyEditedAt"] is None
+
 
 class TestWebsiteTranslationApi:
     def test_generate_translation_endpoint(self, client, tmp_path, monkeypatch):
@@ -412,6 +559,119 @@ class TestWebsiteTranslationApi:
         assert payload["generatedFromSourceRevision"] is not None
         assert payload["generatedFromSourceTextRevision"] is not None
 
+    def test_force_regenerate_endpoint_requires_confirmation_and_rejects_ro(
+        self, client, tmp_path, monkeypatch
+    ):
+        from private.services import translation_generation as tg_module
+
+        repository = FilesystemContentRepository(tmp_path)
+        seed_ro_page(repository, "pricing")
+        TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(module="website", content_id="pricing", target_locale="es")
+
+        fake = FakeTranslationProvider()
+        original_init = tg_module.TranslationGenerationService.__init__
+
+        def patched_init(self, repository, *, provider=None):
+            original_init(self, repository, provider=provider or fake)
+
+        monkeypatch.setattr(
+            tg_module.TranslationGenerationService, "__init__", patched_init
+        )
+        admin_website.reset_repository_cache()
+
+        confirmation_required = client.post(
+            "/api/admin/website/pages/pricing/variants/es/generate-translation",
+            headers=admin_headers(),
+            json={"forceRegenerate": True, "confirmOverwrite": False},
+        )
+        assert confirmation_required.status_code == 409
+        assert fake.calls == []
+
+        regenerated = client.post(
+            "/api/admin/website/pages/pricing/variants/es/generate-translation",
+            headers=admin_headers(),
+            json={"forceRegenerate": True, "confirmOverwrite": True},
+        )
+        assert regenerated.status_code == 200
+        assert fake.calls
+
+        canonical = client.post(
+            "/api/admin/website/pages/pricing/variants/ro/generate-translation",
+            headers=admin_headers(),
+            json={"forceRegenerate": True, "confirmOverwrite": True},
+        )
+        assert canonical.status_code == 400
+
+    def test_publish_current_translation_needs_no_freshness_confirmation(
+        self, client, tmp_path
+    ):
+        repository = FilesystemContentRepository(tmp_path)
+        seed_ro_page(repository, "home")
+        TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(module="website", content_id="home", target_locale="en")
+
+        response = client.post(
+            "/api/admin/website/pages/home/variants/en/publish",
+            headers=admin_headers(),
+            json={"confirmTextOutdated": False},
+        )
+        assert response.status_code == 200
+
+    def test_publish_text_outdated_translation_requires_confirmation(
+        self, client, tmp_path
+    ):
+        repository = FilesystemContentRepository(tmp_path)
+        seed_ro_page(repository, "home")
+        TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(module="website", content_id="home", target_locale="es")
+        source = deepcopy(repository.get_website_variant("home", "ro")["draftBody"])
+        source["description"] = "Text canonic nou"
+        repository.save_website_variant("home", "ro", source)
+
+        refused = client.post(
+            "/api/admin/website/pages/home/variants/es/publish",
+            headers=admin_headers(),
+            json={"confirmTextOutdated": False},
+        )
+        assert refused.status_code == 409
+        assert "older canonical text revision" in refused.json()["detail"]
+        assert repository.get_website_variant("home", "es")["status"] == "draft"
+
+        confirmed = client.post(
+            "/api/admin/website/pages/home/variants/es/publish",
+            headers=admin_headers(),
+            json={"confirmTextOutdated": True},
+        )
+        assert confirmed.status_code == 200
+
+    def test_publish_media_only_outdated_translation_needs_no_text_confirmation(
+        self, client, tmp_path
+    ):
+        repository = FilesystemContentRepository(tmp_path)
+        seed_ro_page(repository, "home")
+        TranslationUpdateService(
+            repository, provider=FakeTranslationProvider()
+        ).update(module="website", content_id="home", target_locale="it")
+        source = deepcopy(repository.get_website_variant("home", "ro")["draftBody"])
+        source["video"]["url"] = "https://example.com/new-video"
+        repository.save_website_variant("home", "ro", source)
+
+        classification = classify_translation_update(
+            ro_variant=repository.get_website_variant("home", "ro"),
+            target_variant=repository.get_website_variant("home", "it"),
+        )
+        assert classification.state.value == "media_only_outdated"
+        response = client.post(
+            "/api/admin/website/pages/home/variants/it/publish",
+            headers=admin_headers(),
+            json={"confirmTextOutdated": False},
+        )
+        assert response.status_code == 200
+
     def test_provider_configuration_error_maps_to_503(self, client, monkeypatch):
         repository = FilesystemContentRepository()
         seed_ro_page(repository, "home")
@@ -424,12 +684,21 @@ class TestWebsiteTranslationApi:
 
         original = website_pages_module.WebsitePageService.generate_translation
 
-        def patched(self, page_key, locale, *, confirm_overwrite=False, provider=None):
+        def patched(
+            self,
+            page_key,
+            locale,
+            *,
+            confirm_overwrite=False,
+            force_regenerate=False,
+            provider=None,
+        ):
             return original(
                 self,
                 page_key,
                 locale,
                 confirm_overwrite=confirm_overwrite,
+                force_regenerate=force_regenerate,
                 provider=FailingProvider(),
             )
 

@@ -145357,7 +145357,7 @@
       "sk": "META",
       "slug": "/about",
       "sortOrder": 200,
-      "updatedAt": "2026-09-22T20:02:09.866410+00:00"
+      "updatedAt": "2026-10-16T07:17:59.658086+00:00"
     },
     "CONTENT#website_page#about|VARIANT#cs": {
       "contentId": "about",
@@ -145804,17 +145804,32 @@
             "blocks": [
               {
                 "align": null,
-                "text": "\u00bfQu\u00e9 es HFZWood?",
+                "text": "<strong>Basado en la experiencia real</strong>",
                 "type": "paragraph"
               },
               {
                 "align": null,
-                "text": "HFZWood es una aplicaci\u00f3n creada para ayudar a los aficionados y profesionales que realizan proyectos con madera y resina epoxi a calcular con la mayor precisi\u00f3n posible el volumen de resina necesario para cada proyecto. A partir de una fotograf\u00eda de la pieza, la aplicaci\u00f3n te gu\u00eda paso a paso para definir la zona de vertido, excluir las zonas de madera y las cavidades, y te ofrece una estimaci\u00f3n clara y f\u00e1cil de comprobar antes de comenzar el vertido.",
+                "text": "HFZWood es el resultado de m\u00e1s de quince a\u00f1os de experiencia pr\u00e1ctica en la realizaci\u00f3n de proyectos con madera y resina epoxi. Durante todo este tiempo hemos construido piezas \u00fanicas, hemos experimentado con diferentes t\u00e9cnicas, nos hemos enfrentado a situaciones dif\u00edciles y hemos aprendido, proyecto tras proyecto, lo que realmente funciona en el taller.",
                 "type": "paragraph"
               },
               {
                 "align": null,
-                "text": "Nuestro objetivo es sustituir las estimaciones aproximadas por un proceso de trabajo sencillo, l\u00f3gico y reproducible.",
+                "text": "Toda esta experiencia pr\u00e1ctica se ha plasmado en HFZWood. El flujo de trabajo que sigues en la aplicaci\u00f3n no es te\u00f3rico ni est\u00e1 concebido \u00fanicamente para simplificar la interfaz. Reproduce un proceso de trabajo validado en numerosos proyectos reales, dise\u00f1ado para reducir los errores, aumentar la precisi\u00f3n de las estimaciones y ofrecer resultados coherentes de un proyecto a otro.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood no pretende sustituir la experiencia, la creatividad ni el criterio profesional del usuario. Al contrario, la aplicaci\u00f3n se ha creado para respaldarlas mediante c\u00e1lculos precisos y un proceso de trabajo claro, de modo que las decisiones importantes sigan estando siempre en manos de quien lleva a cabo el proyecto.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Cada proyecto es diferente, y ning\u00fan programa inform\u00e1tico puede sustituir la atenci\u00f3n al detalle y la experiencia acumulada con el tiempo. Por este motivo, HFZWood no intenta tomar decisiones en lugar del usuario ni realiza estimaciones basadas en suposiciones. La aplicaci\u00f3n realiza sus c\u00e1lculos exclusivamente a partir de la informaci\u00f3n definida por el usuario, ofreciendo resultados reproducibles y f\u00e1ciles de verificar. Nuestro objetivo es sencillo: ofrecerte m\u00e1s confianza en tus c\u00e1lculos, reducir el desperdicio de material y ayudarte a obtener resultados predecibles, proyecto tras proyecto.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "",
                 "type": "paragraph"
               }
             ],
@@ -145829,7 +145844,7 @@
             "blocks": [
               {
                 "align": null,
-                "text": "Cualquiera que haya trabajado con resina epoxi sabe que un c\u00e1lculo err\u00f3neo puede suponer costes adicionales, retrasos o concesiones durante el proyecto. En muchas situaciones, los c\u00e1lculos se realizan \u00aba ojo\u00bb o bas\u00e1ndose en la experiencia, y los resultados pueden variar de un proyecto a otro.",
+                "text": "Cualquiera que haya trabajado con resina epoxi sabe que un c\u00e1lculo err\u00f3neo puede suponer costes adicionales, retrasos o concesiones durante el proyecto. En muchas situaciones, los c\u00e1lculos se hacen \u00aba ojo\u00bb o bas\u00e1ndose en la experiencia, y los resultados pueden variar de un proyecto a otro.",
                 "type": "paragraph"
               },
               {
@@ -145854,7 +145869,7 @@
               },
               {
                 "align": null,
-                "text": "Independientemente del nivel de experiencia, HFZWood ofrece un flujo de trabajo f\u00e1cil de seguir que ayuda a reducir los errores y a obtener estimaciones coherentes de un proyecto a otro.",
+                "text": "Independientemente del nivel de experiencia, HFZWood ofrece un flujo de trabajo f\u00e1cil de seguir que ayuda a reducir los errores y a obtener presupuestos coherentes de un proyecto a otro.",
                 "type": "paragraph"
               }
             ],
@@ -145869,12 +145884,12 @@
             "blocks": [
               {
                 "align": null,
-                "text": "HFZWood no se limita a los c\u00e1lculos de volumen.",
+                "text": "HFZWood no se limita a realizar c\u00e1lculos de volumen.",
                 "type": "paragraph"
               },
               {
                 "align": null,
-                "text": "La aplicaci\u00f3n incluye un manual de usuario completo, tutoriales en v\u00eddeo, un glosario de t\u00e9rminos espec\u00edficos del sector y una base de conocimientos en constante desarrollo. Estos recursos est\u00e1n dise\u00f1ados para responder tanto a preguntas b\u00e1sicas como a aquellas que surgen en proyectos m\u00e1s complejos, lo que convierte a la aplicaci\u00f3n en una plataforma de aprendizaje y trabajo, y no solo en una herramienta de c\u00e1lculo.",
+                "text": "La aplicaci\u00f3n incluye un manual de usuario completo, tutoriales en v\u00eddeo, un glosario de t\u00e9rminos del sector y una base de conocimientos en constante desarrollo. Estos recursos est\u00e1n dise\u00f1ados para responder tanto a preguntas b\u00e1sicas como a aquellas que surgen en proyectos m\u00e1s complejos, lo que convierte a la aplicaci\u00f3n en una plataforma de aprendizaje y trabajo, y no solo en una herramienta de c\u00e1lculo.",
                 "type": "paragraph"
               }
             ],
@@ -145912,17 +145927,17 @@
           }
         ]
       },
-      "generatedAt": "2026-07-23T07:06:24.985311+00:00",
-      "generatedFromSourceRevision": 4,
-      "generatedFromSourceTextRevision": 4,
+      "generatedAt": "2026-10-16T07:17:51.384694+00:00",
+      "generatedFromSourceRevision": 6,
+      "generatedFromSourceTextRevision": 6,
       "locale": "es",
       "pk": "CONTENT#about",
-      "publishedAt": "2026-09-21T11:26:16.928600+00:00",
+      "publishedAt": "2026-10-16T07:17:59.658086+00:00",
       "sk": "VARIANT#es",
       "snapshotKey": "published/website/es/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-21T11:26:16.928600+00:00"
+      "updatedAt": "2026-10-16T07:17:59.658086+00:00"
     },
     "CONTENT#website_page#about|VARIANT#fr": {
       "contentId": "about",
@@ -146966,7 +146981,7 @@
       "sk": "META",
       "slug": "/",
       "sortOrder": 100,
-      "updatedAt": "2026-09-22T20:02:05.606795+00:00"
+      "updatedAt": "2026-10-16T06:54:31.976922+00:00"
     },
     "CONTENT#website_page#home|VARIANT#cs": {
       "contentId": "home",
@@ -147078,31 +147093,31 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood convierte una simple fotograf\u00eda en una herramienta de c\u00e1lculo precisa y f\u00e1cil de usar. La aplicaci\u00f3n te gu\u00eda paso a paso para definir la zona de vertido y excluir las islas de madera y las cavidades, ofreci\u00e9ndote una estimaci\u00f3n fiable que te ayuda a planificar correctamente los materiales, reducir las p\u00e9rdidas y empezar cada proyecto con m\u00e1s confianza.\n\nM\u00e1s que una simple calculadora, HFZWood es una plataforma dedicada a los aficionados y profesionales que trabajan con madera y resina epoxi. Adem\u00e1s de las herramientas de c\u00e1lculo, tienes acceso a un completo manual de uso, tutoriales en v\u00eddeo que explican cada etapa del flujo de trabajo, un glosario con los t\u00e9rminos utilizados en el sector y una base de conocimientos en constante desarrollo, que re\u00fane informaci\u00f3n pr\u00e1ctica, recomendaciones y respuestas a las preguntas m\u00e1s frecuentes.\n\nTanto si est\u00e1s llevando a cabo tu primer proyecto como si ya tienes experiencia en moldes con resina epoxi, HFZWood te ofrece las herramientas y la informaci\u00f3n necesarias para trabajar de forma m\u00e1s organizada, tomar decisiones basadas en estimaciones precisas y obtener resultados predecibles de un proyecto a otro.",
+        "description": "Calcula la cantidad necesaria de resina a partir de la forma real del proyecto\nHFZWood calcula la cantidad de resina necesaria para proyectos con formas irregulares, bordes naturales, huecos y cavidades. Solo tienes que definir la zona de vertido y las dimensiones reales, y la aplicaci\u00f3n calcular\u00e1 el volumen necesario.\n\n\n\nDe la estimaci\u00f3n a la planificaci\u00f3n del vertido\nTras calcular el volumen, puedes planificar el vertido por capas, comprobar las necesidades de material y estimar los costes del proyecto en un \u00fanico flujo de trabajo.\n\nGuarda el proyecto, no solo el resultado de un c\u00e1lculo\nGuarda el proyecto y vuelve en cualquier momento a la geometr\u00eda, las dimensiones y los c\u00e1lculos para realizar comprobaciones, modificaciones o pasar a las siguientes fases del trabajo.\n\nHerramientas e informaci\u00f3n en un mismo lugar\nHFZWood no se limita al c\u00e1lculo. El manual, los tutoriales, el glosario y la base de conocimientos re\u00fanen en un mismo lugar explicaciones e informaci\u00f3n pr\u00e1ctica sobre el uso de la aplicaci\u00f3n, la madera, la resina y las fases del proyecto.\n\nTus proyectos siguen siendo tuyos\nTu trabajo sigue siendo tuyo. Los proyectos creados mientras tengas una suscripci\u00f3n activa se pueden abrir, modificar y continuar incluso despu\u00e9s de que esta haya caducado; las limitaciones del plan Free solo se aplican a los proyectos nuevos.",
         "image": {
           "alt": "",
           "src": "",
           "visible": false
         },
         "pageKind": "home",
-        "publicTitle": "Precisi\u00f3n y confianza en el trabajo con resina.",
-        "subtitle": "Calcula y planifica proyectos de resina epoxi a partir de la forma real de tu proyecto.",
+        "publicTitle": "Precisi\u00f3n y confianza al trabajar con resina.",
+        "subtitle": "Calcula y planifica proyectos con resina epoxi bas\u00e1ndote en la forma real de tu proyecto.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
-      "generatedAt": "2026-07-23T07:06:20.332459+00:00",
-      "generatedFromSourceRevision": 12,
-      "generatedFromSourceTextRevision": 10,
+      "generatedAt": "2026-10-16T06:54:27.087625+00:00",
+      "generatedFromSourceRevision": 17,
+      "generatedFromSourceTextRevision": 12,
       "locale": "es",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-09-21T11:25:59.963657+00:00",
+      "publishedAt": "2026-10-16T06:54:31.976922+00:00",
       "sk": "VARIANT#es",
       "snapshotKey": "published/website/es/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-21T11:25:59.963657+00:00"
+      "updatedAt": "2026-10-16T06:54:31.976922+00:00"
     },
     "CONTENT#website_page#home|VARIANT#fr": {
       "contentId": "home",
@@ -147122,7 +147137,7 @@
         "publicTitle": "Pr\u00e9cision et confiance dans le travail avec la r\u00e9sine.",
         "subtitle": "Calculez et planifiez vos projets en r\u00e9sine \u00e9poxy \u00e0 partir de la forme r\u00e9elle de votre projet.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
@@ -147131,12 +147146,12 @@
       "generatedFromSourceTextRevision": 12,
       "locale": "fr",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-08-16T10:50:01.090671+00:00",
+      "publishedAt": "2026-10-16T06:37:26.160314+00:00",
       "sk": "VARIANT#fr",
       "snapshotKey": "published/website/fr/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-08-16T10:50:01.090671+00:00"
+      "updatedAt": "2026-10-16T06:37:26.160314+00:00"
     },
     "CONTENT#website_page#home|VARIANT#it": {
       "contentId": "home",
@@ -147146,31 +147161,31 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood trasforma una semplice fotografia in uno strumento di calcolo preciso e facile da usare. L'app ti guida passo dopo passo nella definizione dell'area di colata, nell'esclusione delle isole di legno e delle cavit\u00e0, fornendoti una stima affidabile che ti aiuta a pianificare correttamente i materiali, a ridurre gli sprechi e ad affrontare ogni progetto con maggiore sicurezza.\n\nPi\u00f9 che un semplice calcolatore, HFZWood \u00e8 una piattaforma dedicata agli appassionati e ai professionisti che lavorano con il legno e la resina epossidica. Oltre agli strumenti di calcolo, hai accesso a un manuale d\u2019uso completo, a tutorial video che spiegano ogni fase del flusso di lavoro, un glossario con i termini utilizzati nel settore e una Knowledge Base in continuo sviluppo, che raccoglie informazioni pratiche, consigli e risposte alle domande pi\u00f9 frequenti.\n\nChe tu stia realizzando il tuo primo progetto o che tu abbia gi\u00e0 esperienza nella colata con resina epossidica, HFZWood ti offre gli strumenti e le informazioni necessarie per lavorare in modo pi\u00f9 organizzato, prendere decisioni basate su stime accurate e ottenere risultati prevedibili da un progetto all\u2019altro.",
+        "description": "Calcola il fabbisogno di resina partendo dalla forma reale del progetto\nHFZWood stima la quantit\u00e0 di resina necessaria per progetti con forme irregolari, bordi naturali, vuoti e cavit\u00e0. Basta definire l'area di colata e le dimensioni reali e l'applicazione calcoler\u00e0 il volume necessario.\n\n\n\nDalla stima alla pianificazione della colata\nDopo aver calcolato il volume, puoi pianificare la colata a strati, verificare il fabbisogno di materiale e stimare i costi del progetto in un unico flusso di lavoro.\n\nSalva il progetto, non solo il risultato di un calcolo\nSalva il progetto e torna in qualsiasi momento alla geometria, alle dimensioni e ai calcoli per verifiche, modifiche o fasi successive del lavoro.\n\nStrumenti e informazioni in un unico posto\nHFZWood non si limita al calcolo. Il manuale, i tutorial, il glossario e la knowledge base riuniscono in un unico posto spiegazioni e informazioni pratiche sull\u2019uso dell\u2019applicazione, sul legno, sulla resina e sulle fasi del progetto.\n\nI tuoi progetti rimangono tuoi\nIl tuo lavoro rimane tuo. I progetti creati mentre hai un abbonamento attivo possono essere aperti, modificati e portati avanti anche dopo la sua scadenza; le limitazioni del piano Free si applicano solo ai nuovi progetti.",
         "image": {
           "alt": "",
           "src": "",
           "visible": false
         },
         "pageKind": "home",
-        "publicTitle": "Precisione e fiducia nel lavoro con la resina.",
-        "subtitle": "Calcola e pianifica i progetti in resina epossidica in base alla forma reale del tuo progetto.",
+        "publicTitle": "Precisione e sicurezza nella lavorazione della resina.",
+        "subtitle": "Calcola e pianifica i tuoi progetti con resina epossidica in base alla forma reale del tuo progetto.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
-      "generatedAt": "2026-07-23T07:43:24.884461+00:00",
-      "generatedFromSourceRevision": 12,
-      "generatedFromSourceTextRevision": 10,
+      "generatedAt": "2026-10-16T06:53:28.206308+00:00",
+      "generatedFromSourceRevision": 17,
+      "generatedFromSourceTextRevision": 12,
       "locale": "it",
       "pk": "CONTENT#home",
-      "publishedAt": "2026-09-22T20:02:05.606795+00:00",
+      "publishedAt": "2026-10-16T06:54:02.814087+00:00",
       "sk": "VARIANT#it",
       "snapshotKey": "published/website/it/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-22T20:02:05.606795+00:00"
+      "updatedAt": "2026-10-16T06:54:02.814087+00:00"
     },
     "CONTENT#website_page#home|VARIANT#pl": {
       "contentId": "home",
@@ -147283,7 +147298,7 @@
       "sk": "META",
       "slug": "/pricing",
       "sortOrder": 300,
-      "updatedAt": "2026-09-22T20:02:13.712343+00:00"
+      "updatedAt": "2026-10-16T07:38:01.319303+00:00"
     },
     "CONTENT#website_page#pricing|VARIANT#cs": {
       "contentId": "pricing",
@@ -147408,12 +147423,12 @@
       "generatedFromSourceTextRevision": 3,
       "locale": "de",
       "pk": "CONTENT#pricing",
-      "publishedAt": "2026-09-20T18:41:27.189716+00:00",
+      "publishedAt": "2026-10-16T07:21:45.622152+00:00",
       "sk": "VARIANT#de",
       "snapshotKey": "published/website/de/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-20T18:41:27.189716+00:00"
+      "updatedAt": "2026-10-16T07:21:45.622152+00:00"
     },
     "CONTENT#website_page#pricing|VARIANT#en": {
       "contentId": "pricing",
@@ -147473,77 +147488,77 @@
       "generatedFromSourceTextRevision": 3,
       "locale": "en",
       "pk": "CONTENT#pricing",
-      "publishedAt": "2026-07-22T21:13:25.830491+00:00",
+      "publishedAt": "2026-10-16T07:21:41.241645+00:00",
       "sk": "VARIANT#en",
       "snapshotKey": "published/website/en/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-07-22T21:13:25.830491+00:00"
+      "updatedAt": "2026-10-16T07:21:41.241645+00:00"
     },
     "CONTENT#website_page#pricing|VARIANT#es": {
       "contentId": "pricing",
       "draftBody": {
         "footnote": "Puedes empezar gratis y pasar a un plan superior en cualquier momento, sin perder los proyectos que ya hayas realizado.",
-        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
+        "intro": "Puedes empezar de forma gratuita y pasar posteriormente a tener acceso completo como suscriptor. El plan mensual y el plan anual incluyen las mismas funciones; solo difieren en el periodo de facturaci\u00f3n y el precio.",
         "offers": [
           {
             "benefits": [
-              "Resin estimator for simple projects.",
-              "Hasta 4 puntos por pol\u00edgono \u2014 ideal para formas de proyecto simples.",
-              "Save and reopen your projects on your device.",
-              "Full access to the Manual and all video tutorials.",
-              "Access to the curated free Glossary and Knowledge Base selection."
+              "Calculadora de resina para proyectos sencillos.",
+              "Hasta 4 puntos por cada pol\u00edgono: ideal para proyectos con formas sencillas.",
+              "Guarda y vuelve a abrir los proyectos en tu dispositivo.",
+              "Acceso completo al manual y a todos los tutoriales en v\u00eddeo.",
+              "Accede de forma gratuita al Glosario y a la Base de conocimientos."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$0",
             "id": "free",
-            "title": "Free Plan",
+            "title": "Plan gratuito",
             "visible": true
           },
           {
             "benefits": [
               "Acceso completo a las herramientas y recursos de HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Puntos ilimitados para pol\u00edgonos y herramientas para proyectos complejos.",
+              "Exportaci\u00f3n a PDF y planificaci\u00f3n de las capas de vertido.",
+              "Acceso completo al glosario y a la base de conocimientos."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$9.99",
             "id": "monthly",
-            "title": "Monthly Plan",
+            "title": "Plan mensual",
             "visible": true
           },
           {
             "benefits": [
               "Acceso completo a las herramientas y recursos de HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Puntos ilimitados para pol\u00edgonos y herramientas para proyectos complejos.",
+              "Exportaci\u00f3n a PDF y planificaci\u00f3n de las capas de vertido.",
+              "Acceso completo al glosario y a la base de conocimientos."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$89.99",
             "id": "annual",
-            "title": "Annual Plan",
+            "title": "Plan anual",
             "visible": true
           }
         ],
         "pageKind": "pricing",
         "publicTitle": "Elige el plan que mejor se adapte a tu forma de trabajar"
       },
-      "generatedAt": "2026-07-23T07:06:30.636036+00:00",
+      "generatedAt": "2026-10-16T07:33:10.041382+00:00",
       "generatedFromSourceRevision": 3,
       "generatedFromSourceTextRevision": 3,
       "locale": "es",
       "pk": "CONTENT#pricing",
-      "publishedAt": "2026-09-21T11:26:29.786251+00:00",
+      "publishedAt": "2026-10-16T07:38:01.319303+00:00",
       "sk": "VARIANT#es",
       "snapshotKey": "published/website/es/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-21T11:26:29.786251+00:00"
+      "updatedAt": "2026-10-16T07:38:01.319303+00:00"
     },
     "CONTENT#website_page#pricing|VARIANT#fr": {
       "contentId": "pricing",
@@ -147614,66 +147629,66 @@
       "contentId": "pricing",
       "draftBody": {
         "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti gi\u00e0 realizzati.",
-        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
+        "intro": "Puoi iniziare gratuitamente e passare successivamente all'accesso completo riservato agli abbonati. Il piano mensile e quello annuale includono le stesse funzionalit\u00e0; differiscono solo per il periodo di fatturazione e il prezzo.",
         "offers": [
           {
             "benefits": [
-              "Resin estimator for simple projects.",
-              "Fino a 4 punti per poligono \u2014 ideale per forme di progetto semplici.",
-              "Save and reopen your projects on your device.",
-              "Full access to the Manual and all video tutorials.",
-              "Access to the curated free Glossary and Knowledge Base selection."
+              "Calcolatore di resina per progetti semplici.",
+              "Fino a 4 punti per ogni poligono \u2014 adatto a progetti con forme semplici.",
+              "Salva e riapri i progetti sul tuo dispositivo.",
+              "Accesso completo al Manuale e a tutti i tutorial video.",
+              "Accedi gratuitamente alla selezione del Glossario e della Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$0",
             "id": "free",
-            "title": "Free Plan",
+            "title": "Piano gratuito",
             "visible": true
           },
           {
             "benefits": [
-              "Accesso completo agli strumenti e alle risorse HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Accesso completo agli strumenti e alle risorse di HFZWood.",
+              "Punti illimitati per poligoni e strumenti per progetti complessi.",
+              "Esportazione in PDF e pianificazione degli strati di colata.",
+              "Accesso completo al Glossario e alla Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$9.99",
             "id": "monthly",
-            "title": "Monthly Plan",
+            "title": "Abbonamento mensile",
             "visible": true
           },
           {
             "benefits": [
-              "Accesso completo agli strumenti e alle risorse HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Accesso completo agli strumenti e alle risorse di HFZWood.",
+              "Punti illimitati per poligoni e strumenti per progetti complessi.",
+              "Esportazione in PDF e pianificazione degli strati di colata.",
+              "Accesso completo al Glossario e alla Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$89.99",
             "id": "annual",
-            "title": "Annual Plan",
+            "title": "Piano annuale",
             "visible": true
           }
         ],
         "pageKind": "pricing",
         "publicTitle": "Scegli il piano pi\u00f9 adatto al tuo modo di lavorare"
       },
-      "generatedAt": "2026-07-23T07:43:39.243278+00:00",
+      "generatedAt": "2026-10-16T07:33:56.731669+00:00",
       "generatedFromSourceRevision": 3,
       "generatedFromSourceTextRevision": 3,
       "locale": "it",
       "pk": "CONTENT#pricing",
-      "publishedAt": "2026-09-22T20:02:13.712343+00:00",
+      "publishedAt": "2026-10-16T07:37:23.082836+00:00",
       "sk": "VARIANT#it",
       "snapshotKey": "published/website/it/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-22T20:02:13.712343+00:00"
+      "updatedAt": "2026-10-16T07:37:23.082836+00:00"
     },
     "CONTENT#website_page#pricing|VARIANT#pl": {
       "contentId": "pricing",
@@ -147860,13 +147875,13 @@
       },
       "locale": "ro",
       "pk": "CONTENT#pricing",
-      "publishedAt": "2026-07-22T16:22:20.129554+00:00",
+      "publishedAt": "2026-10-16T07:21:35.930492+00:00",
       "sk": "VARIANT#ro",
       "snapshotKey": "published/website/ro/pages.json",
       "sourceRevision": 3,
       "sourceTextRevision": 3,
       "status": "published",
-      "updatedAt": "2026-07-22T16:22:20.129554+00:00"
+      "updatedAt": "2026-10-16T07:21:35.930492+00:00"
     },
     "CONTENT#website_page#privacy|META": {
       "adminLabel": "Privacy Policy",
@@ -149357,7 +149372,7 @@
       "sk": "META",
       "slug": "/terms",
       "sortOrder": 500,
-      "updatedAt": "2026-09-22T20:02:21.787505+00:00"
+      "updatedAt": "2026-10-16T07:23:05.860500+00:00"
     },
     "CONTENT#website_page#terms|VARIANT#cs": {
       "contentId": "terms",
@@ -150169,7 +150184,7 @@
               }
             ],
             "id": "section-1",
-            "title": "Semplici regole per l&#x27;utilizzo di HFZWood"
+            "title": "Semplici regole per l'utilizzo di HFZWood"
           },
           {
             "blocks": [
@@ -150185,7 +150200,7 @@
               }
             ],
             "id": "section-i41f94",
-            "title": "Utilizzo dell&#x27;applicazione"
+            "title": "Utilizzo dell'applicazione"
           },
           {
             "blocks": [
@@ -150306,12 +150321,12 @@
       "generatedFromSourceTextRevision": 3,
       "locale": "it",
       "pk": "CONTENT#terms",
-      "publishedAt": "2026-09-22T20:02:21.787505+00:00",
+      "publishedAt": "2026-10-16T07:23:05.860500+00:00",
       "sk": "VARIANT#it",
       "snapshotKey": "published/website/it/pages.json",
       "status": "published",
       "translationProvider": "deepl",
-      "updatedAt": "2026-09-22T20:02:21.787505+00:00"
+      "updatedAt": "2026-10-16T07:23:05.860500+00:00"
     },
     "CONTENT#website_page#terms|VARIANT#pl": {
       "contentId": "terms",

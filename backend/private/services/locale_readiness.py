@@ -1,14 +1,14 @@
-"""Read-only structural locale readiness for preview and production.
+"""Read-only locale readiness for preview and production.
 
-This module evaluates whether a configured locale is structurally complete
-enough to serve. It does not judge translation quality, activate languages,
-publish content, or write files.
+This module evaluates structural completeness and lightweight Website integrity
+signals. It does not activate languages, publish content, or write files.
 """
 
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+import re
+from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 from typing import Any
@@ -17,6 +17,7 @@ from private.repositories.filesystem import (
     CONTENT_TYPE_GLOSSARY_ENTRY,
     CONTENT_TYPE_KB_ENTRY,
     CONTENT_TYPE_MANUAL_CHAPTER,
+    CONTENT_TYPE_WEBSITE_PAGE,
     _resolve_variant_key,
     make_glossary_meta_key,
     make_glossary_variant_key,
@@ -24,9 +25,18 @@ from private.repositories.filesystem import (
     make_kb_variant_key,
     make_manual_meta_key,
     make_manual_variant_key,
+    make_website_meta_key,
+    make_website_variant_key,
+    parse_iso,
 )
 from private.schemas.common import ADMIN_EDITORIAL_LOCALE_ORDER, ContentStatus
-from private.website_pages import WEBSITE_PAGE_KEYS
+from private.services.translation_update import (
+    TranslationUpdateState,
+    classify_translation_update,
+)
+from private.translation.editorial_text import extract_translatable_items
+from private.translation_metadata import CANONICAL_SOURCE_LOCALE
+from private.website_pages import WEBSITE_PAGE_KEYS, website_page_definition
 
 _SERVICE_FILE = Path(__file__).resolve()
 _PRIVATE_PACKAGE_ROOT = _SERVICE_FILE.parents[1]
@@ -96,6 +106,27 @@ class StoreDiagnostics:
 
 
 @dataclass(frozen=True, slots=True)
+class WebsiteIntegrityIssue:
+    severity: str
+    code: str
+    page_key: str
+    plane: str
+    path: str
+    message: str
+
+
+@dataclass(frozen=True, slots=True)
+class WebsiteIntegrityDiagnostics:
+    issues: tuple[WebsiteIntegrityIssue, ...] = ()
+
+    def has_errors(self, plane: str) -> bool:
+        return any(
+            issue.severity == "error" and issue.plane == plane
+            for issue in self.issues
+        )
+
+
+@dataclass(frozen=True, slots=True)
 class LocaleReadiness:
     locale: str
     ui: LayerReadiness
@@ -110,6 +141,9 @@ class LocaleReadiness:
     preview_ready: bool
     production_ready: bool
     store: StoreDiagnostics
+    website_integrity: WebsiteIntegrityDiagnostics = field(
+        default_factory=WebsiteIntegrityDiagnostics
+    )
 
 
 def default_locale_readiness_roots() -> LocaleReadinessRoots:
@@ -191,6 +225,12 @@ def evaluate_locale_readiness(
         items_key="entries",
         id_field="id",
     )
+    website_integrity = evaluate_website_integrity(
+        normalized,
+        roots=resolved_roots,
+        records=records,
+        required_pages=resolved_catalogs.website_pages,
+    )
 
     preview_ready = _all_complete(
         ui,
@@ -198,13 +238,13 @@ def evaluate_locale_readiness(
         manual_preview,
         glossary_preview,
         knowledge_base_preview,
-    )
+    ) and not website_integrity.has_errors("preview")
     production_ready = preview_ready and _all_complete(
         website_production,
         manual_production,
         glossary_production,
         knowledge_base_production,
-    )
+    ) and not website_integrity.has_errors("production")
 
     return LocaleReadiness(
         locale=normalized,
@@ -245,6 +285,7 @@ def evaluate_locale_readiness(
                 normalized,
             ),
         ),
+        website_integrity=website_integrity,
     )
 
 
@@ -260,6 +301,411 @@ def evaluate_configured_locales(
         evaluate_locale_readiness(locale, roots=resolved_roots, catalogs=resolved_catalogs)
         for locale in ADMIN_EDITORIAL_LOCALE_ORDER
     )
+
+
+def evaluate_website_integrity(
+    locale: str,
+    *,
+    roots: LocaleReadinessRoots,
+    records: dict[str, Any],
+    required_pages: tuple[str, ...],
+) -> WebsiteIntegrityDiagnostics:
+    """Inspect published Website snapshots without treating pending drafts as published."""
+    normalized = _normalize_locale(locale)
+    issues: list[WebsiteIntegrityIssue] = []
+    snapshots: dict[str, dict[str, Any] | None] = {
+        "preview": _read_json_object(
+            _website_snapshot_path(roots.private_content_root, normalized)
+        ),
+        "production": _read_json_object(
+            _website_snapshot_path(roots.public_content_root, normalized)
+        ),
+    }
+
+    for plane, snapshot in snapshots.items():
+        pages = snapshot.get("pages") if isinstance(snapshot, dict) else None
+        if not isinstance(pages, dict):
+            continue
+        canonical_snapshot = _read_json_object(
+            _website_snapshot_path(
+                roots.private_content_root
+                if plane == "preview"
+                else roots.public_content_root,
+                CANONICAL_SOURCE_LOCALE,
+            )
+        )
+        canonical_pages = (
+            canonical_snapshot.get("pages")
+            if isinstance(canonical_snapshot, dict)
+            else None
+        )
+        for page_key in required_pages:
+            page = pages.get(page_key)
+            if not isinstance(page, dict):
+                continue
+            body = page.get("body")
+            structural_errors = _website_structure_errors(page_key, page, body)
+            for path, message in structural_errors:
+                issues.append(
+                    WebsiteIntegrityIssue(
+                        severity="error",
+                        code="invalid_snapshot_structure",
+                        page_key=page_key,
+                        plane=plane,
+                        path=path,
+                        message=message,
+                    )
+                )
+
+            if (
+                normalized != CANONICAL_SOURCE_LOCALE
+                and isinstance(canonical_pages, dict)
+                and isinstance(canonical_pages.get(page_key), dict)
+                and isinstance(body, dict)
+            ):
+                canonical_body = canonical_pages[page_key].get("body")
+                if isinstance(canonical_body, dict):
+                    target_signature = _website_structure_signature(body)
+                    canonical_signature = _website_structure_signature(canonical_body)
+                    if (
+                        target_signature is not None
+                        and canonical_signature is not None
+                        and target_signature != canonical_signature
+                    ):
+                        issues.append(
+                            WebsiteIntegrityIssue(
+                                severity="error",
+                                code="canonical_structure_mismatch",
+                                page_key=page_key,
+                                plane=plane,
+                                path="body",
+                                message=(
+                                    "Published structure differs from the canonical "
+                                    "published page structure."
+                                ),
+                            )
+                        )
+
+            _, variant = _resolve_variant_key(
+                records,
+                page_key,
+                normalized,
+                CONTENT_TYPE_WEBSITE_PAGE,
+                make_website_variant_key,
+                make_website_meta_key,
+            )
+            if variant is None:
+                continue
+            if variant.get("status") != ContentStatus.PUBLISHED.value:
+                issues.append(
+                    WebsiteIntegrityIssue(
+                        severity="error",
+                        code="snapshot_contains_unpublished_page",
+                        page_key=page_key,
+                        plane=plane,
+                        path="body",
+                        message="Snapshot contains a page that is not published in Content Store.",
+                    )
+                )
+                continue
+            if _has_unpublished_changes(variant):
+                issues.append(
+                    WebsiteIntegrityIssue(
+                        severity="info",
+                        code="unpublished_draft",
+                        page_key=page_key,
+                        plane=plane,
+                        path="body",
+                        message=(
+                            "A newer draft exists; snapshot parity is intentionally not "
+                            "required until the draft is published."
+                        ),
+                    )
+                )
+            elif isinstance(body, dict) and body != variant.get("draftBody"):
+                issues.append(
+                    WebsiteIntegrityIssue(
+                        severity="error",
+                        code="snapshot_editorial_mismatch",
+                        page_key=page_key,
+                        plane=plane,
+                        path="body",
+                        message=(
+                            "Published snapshot differs from the current published "
+                            "editorial content."
+                        ),
+                    )
+                )
+
+    issues.extend(
+        _website_translation_metadata_issues(
+            normalized, records=records, required_pages=required_pages
+        )
+    )
+    issues.extend(
+        _website_content_warning_issues(
+            normalized,
+            snapshots=snapshots,
+            roots=roots,
+            required_pages=required_pages,
+        )
+    )
+    return WebsiteIntegrityDiagnostics(issues=tuple(issues))
+
+
+def _website_translation_metadata_issues(
+    locale: str,
+    *,
+    records: dict[str, Any],
+    required_pages: tuple[str, ...],
+) -> list[WebsiteIntegrityIssue]:
+    if locale == CANONICAL_SOURCE_LOCALE:
+        return []
+    issues: list[WebsiteIntegrityIssue] = []
+    for page_key in required_pages:
+        _, source = _resolve_variant_key(
+            records,
+            page_key,
+            CANONICAL_SOURCE_LOCALE,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        _, target = _resolve_variant_key(
+            records,
+            page_key,
+            locale,
+            CONTENT_TYPE_WEBSITE_PAGE,
+            make_website_variant_key,
+            make_website_meta_key,
+        )
+        if (
+            source is None
+            or target is None
+            or source.get("status") != ContentStatus.PUBLISHED.value
+            or target.get("status") != ContentStatus.PUBLISHED.value
+            or _has_unpublished_changes(source)
+            or _has_unpublished_changes(target)
+        ):
+            continue
+        classification = classify_translation_update(
+            ro_variant=source, target_variant=target
+        )
+        if classification.state is TranslationUpdateState.TEXT_OUTDATED:
+            issues.append(
+                WebsiteIntegrityIssue(
+                    severity="warning",
+                    code="text_outdated",
+                    page_key=page_key,
+                    plane="editorial",
+                    path="",
+                    message=(
+                        "Published translation was generated from an older canonical "
+                        "text revision."
+                    ),
+                )
+            )
+        elif classification.state is TranslationUpdateState.MEDIA_ONLY_OUTDATED:
+            issues.append(
+                WebsiteIntegrityIssue(
+                    severity="info",
+                    code="media_only_outdated",
+                    page_key=page_key,
+                    plane="editorial",
+                    path="",
+                    message=(
+                        "Text revision is current; only non-text source structure or "
+                        "media metadata is newer."
+                    ),
+                )
+            )
+        if target.get("manuallyEditedAt"):
+            issues.append(
+                WebsiteIntegrityIssue(
+                    severity="info",
+                    code="manually_edited",
+                    page_key=page_key,
+                    plane="editorial",
+                    path="",
+                    message=(
+                        "Translation was manually edited after machine generation; "
+                        "generation metadata does not imply revalidation."
+                    ),
+                )
+            )
+    return issues
+
+
+def _website_content_warning_issues(
+    locale: str,
+    *,
+    snapshots: dict[str, dict[str, Any] | None],
+    roots: LocaleReadinessRoots,
+    required_pages: tuple[str, ...],
+) -> list[WebsiteIntegrityIssue]:
+    selected_plane = "production"
+    selected = snapshots.get(selected_plane)
+    if not isinstance(selected, dict):
+        selected_plane = "preview"
+        selected = snapshots.get(selected_plane)
+    pages = selected.get("pages") if isinstance(selected, dict) else None
+    if not isinstance(pages, dict):
+        return []
+
+    english_pages: dict[str, Any] = {}
+    if locale != "en":
+        english_snapshot = _read_json_object(
+            _website_snapshot_path(
+                roots.public_content_root
+                if selected_plane == "production"
+                else roots.private_content_root,
+                "en",
+            )
+        )
+        raw_english_pages = (
+            english_snapshot.get("pages")
+            if isinstance(english_snapshot, dict)
+            else None
+        )
+        if isinstance(raw_english_pages, dict):
+            english_pages = raw_english_pages
+
+    issues: list[WebsiteIntegrityIssue] = []
+    entity_pattern = re.compile(r"&(?:#\d+|#x[0-9a-f]+|[a-z][a-z0-9]+);", re.I)
+    for page_key in required_pages:
+        page = pages.get(page_key)
+        body = page.get("body") if isinstance(page, dict) else None
+        if not isinstance(body, dict):
+            continue
+        try:
+            target_items = extract_translatable_items("website", body)
+        except ValueError:
+            continue
+        for item in target_items:
+            path = "/".join(str(part) for part in item.path)
+            if item.content_format == "plain" and entity_pattern.search(item.text):
+                issues.append(
+                    WebsiteIntegrityIssue(
+                        severity="warning",
+                        code="plain_text_html_entity",
+                        page_key=page_key,
+                        plane=selected_plane,
+                        path=path,
+                        message="Plain-text field contains a visible HTML entity.",
+                    )
+                )
+
+        english_page = english_pages.get(page_key)
+        english_body = (
+            english_page.get("body") if isinstance(english_page, dict) else None
+        )
+        if not isinstance(english_body, dict):
+            continue
+        try:
+            english_by_path = {
+                tuple(item.path): item.text
+                for item in extract_translatable_items("website", english_body)
+            }
+        except ValueError:
+            continue
+        for item in target_items:
+            if _is_substantial_shared_english(
+                item.text, english_by_path.get(tuple(item.path))
+            ):
+                issues.append(
+                    WebsiteIntegrityIssue(
+                        severity="warning",
+                        code="suspicious_english_text",
+                        page_key=page_key,
+                        plane=selected_plane,
+                        path="/".join(str(part) for part in item.path),
+                        message=(
+                            "Substantial editorial text is identical to the English "
+                            "published value."
+                        ),
+                    )
+                )
+    return issues
+
+
+def _is_substantial_shared_english(value: str, english_value: str | None) -> bool:
+    if not isinstance(english_value, str) or value.strip() != english_value.strip():
+        return False
+    normalized = value.strip()
+    if len(normalized) < 28:
+        return False
+    if normalized.lower() in {"hfzwood", "knowledge base"}:
+        return False
+    if normalized.startswith(("http://", "https://", "/")):
+        return False
+    return len(re.findall(r"[A-Za-z]{2,}", normalized)) >= 4
+
+
+def _has_unpublished_changes(variant: dict[str, Any]) -> bool:
+    updated_at = parse_iso(variant.get("updatedAt"))
+    published_at = parse_iso(variant.get("publishedAt"))
+    return bool(updated_at and published_at and updated_at > published_at)
+
+
+def _website_structure_errors(
+    page_key: str, page: dict[str, Any], body: Any
+) -> list[tuple[str, str]]:
+    errors: list[tuple[str, str]] = []
+    expected_kind = website_page_definition(page_key)["pageKind"]
+    if page.get("pageKey") != page_key:
+        errors.append(("pageKey", "Snapshot pageKey does not match its catalog key."))
+    if page.get("pageKind") != expected_kind:
+        errors.append(("pageKind", "Snapshot pageKind does not match page metadata."))
+    if not isinstance(body, dict):
+        errors.append(("body", "Snapshot page body is missing or invalid."))
+        return errors
+    if body.get("pageKind") != expected_kind:
+        errors.append(("body/pageKind", "Body pageKind does not match page metadata."))
+    if not isinstance(body.get("publicTitle"), str) or not body["publicTitle"].strip():
+        errors.append(("body/publicTitle", "Published page title is empty."))
+    if _website_structure_signature(body) is None:
+        errors.append(("body", "Published page has an invalid structural shape."))
+    return errors
+
+
+def _website_structure_signature(body: dict[str, Any]) -> tuple[Any, ...] | None:
+    kind = body.get("pageKind")
+    if kind == "pricing":
+        offers = body.get("offers")
+        if not isinstance(offers, list) or any(
+            not isinstance(offer, dict)
+            or not isinstance(offer.get("id"), str)
+            or not offer["id"].strip()
+            for offer in offers
+        ):
+            return None
+        return (kind, tuple(offer["id"] for offer in offers))
+    if kind in {"about", "privacy", "terms"}:
+        sections = body.get("sections")
+        if not isinstance(sections, list):
+            return None
+        signature: list[tuple[str, tuple[str, ...]]] = []
+        for section in sections:
+            if (
+                not isinstance(section, dict)
+                or not isinstance(section.get("id"), str)
+                or not section["id"].strip()
+                or not isinstance(section.get("blocks"), list)
+            ):
+                return None
+            block_types: list[str] = []
+            for block in section["blocks"]:
+                if (
+                    not isinstance(block, dict)
+                    or block.get("type") not in {"heading", "paragraph"}
+                ):
+                    return None
+                block_types.append(block["type"])
+            signature.append((section["id"], tuple(block_types)))
+        return (kind, tuple(signature))
+    if kind in {"home", "contact"}:
+        return (kind,)
+    return None
 
 
 def evaluate_ui_layer(locale: str, i18n_dir: Path, required_keys: tuple[str, ...]) -> LayerReadiness:

@@ -10,17 +10,32 @@
             "blocks": [
               {
                 "align": null,
-                "text": "\u00bfQu\u00e9 es HFZWood?",
+                "text": "<strong>Basado en la experiencia real</strong>",
                 "type": "paragraph"
               },
               {
                 "align": null,
-                "text": "HFZWood es una aplicaci\u00f3n creada para ayudar a los aficionados y profesionales que realizan proyectos con madera y resina epoxi a calcular con la mayor precisi\u00f3n posible el volumen de resina necesario para cada proyecto. A partir de una fotograf\u00eda de la pieza, la aplicaci\u00f3n te gu\u00eda paso a paso para definir la zona de vertido, excluir las zonas de madera y las cavidades, y te ofrece una estimaci\u00f3n clara y f\u00e1cil de comprobar antes de comenzar el vertido.",
+                "text": "HFZWood es el resultado de m\u00e1s de quince a\u00f1os de experiencia pr\u00e1ctica en la realizaci\u00f3n de proyectos con madera y resina epoxi. Durante todo este tiempo hemos construido piezas \u00fanicas, hemos experimentado con diferentes t\u00e9cnicas, nos hemos enfrentado a situaciones dif\u00edciles y hemos aprendido, proyecto tras proyecto, lo que realmente funciona en el taller.",
                 "type": "paragraph"
               },
               {
                 "align": null,
-                "text": "Nuestro objetivo es sustituir las estimaciones aproximadas por un proceso de trabajo sencillo, l\u00f3gico y reproducible.",
+                "text": "Toda esta experiencia pr\u00e1ctica se ha plasmado en HFZWood. El flujo de trabajo que sigues en la aplicaci\u00f3n no es te\u00f3rico ni est\u00e1 concebido \u00fanicamente para simplificar la interfaz. Reproduce un proceso de trabajo validado en numerosos proyectos reales, dise\u00f1ado para reducir los errores, aumentar la precisi\u00f3n de las estimaciones y ofrecer resultados coherentes de un proyecto a otro.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "HFZWood no pretende sustituir la experiencia, la creatividad ni el criterio profesional del usuario. Al contrario, la aplicaci\u00f3n se ha creado para respaldarlas mediante c\u00e1lculos precisos y un proceso de trabajo claro, de modo que las decisiones importantes sigan estando siempre en manos de quien lleva a cabo el proyecto.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "Cada proyecto es diferente, y ning\u00fan programa inform\u00e1tico puede sustituir la atenci\u00f3n al detalle y la experiencia acumulada con el tiempo. Por este motivo, HFZWood no intenta tomar decisiones en lugar del usuario ni realiza estimaciones basadas en suposiciones. La aplicaci\u00f3n realiza sus c\u00e1lculos exclusivamente a partir de la informaci\u00f3n definida por el usuario, ofreciendo resultados reproducibles y f\u00e1ciles de verificar. Nuestro objetivo es sencillo: ofrecerte m\u00e1s confianza en tus c\u00e1lculos, reducir el desperdicio de material y ayudarte a obtener resultados predecibles, proyecto tras proyecto.",
+                "type": "paragraph"
+              },
+              {
+                "align": null,
+                "text": "",
                 "type": "paragraph"
               }
             ],
@@ -35,7 +50,7 @@
             "blocks": [
               {
                 "align": null,
-                "text": "Cualquiera que haya trabajado con resina epoxi sabe que un c\u00e1lculo err\u00f3neo puede suponer costes adicionales, retrasos o concesiones durante el proyecto. En muchas situaciones, los c\u00e1lculos se realizan \u00aba ojo\u00bb o bas\u00e1ndose en la experiencia, y los resultados pueden variar de un proyecto a otro.",
+                "text": "Cualquiera que haya trabajado con resina epoxi sabe que un c\u00e1lculo err\u00f3neo puede suponer costes adicionales, retrasos o concesiones durante el proyecto. En muchas situaciones, los c\u00e1lculos se hacen \u00aba ojo\u00bb o bas\u00e1ndose en la experiencia, y los resultados pueden variar de un proyecto a otro.",
                 "type": "paragraph"
               },
               {
@@ -60,7 +75,7 @@
               },
               {
                 "align": null,
-                "text": "Independientemente del nivel de experiencia, HFZWood ofrece un flujo de trabajo f\u00e1cil de seguir que ayuda a reducir los errores y a obtener estimaciones coherentes de un proyecto a otro.",
+                "text": "Independientemente del nivel de experiencia, HFZWood ofrece un flujo de trabajo f\u00e1cil de seguir que ayuda a reducir los errores y a obtener presupuestos coherentes de un proyecto a otro.",
                 "type": "paragraph"
               }
             ],
@@ -75,12 +90,12 @@
             "blocks": [
               {
                 "align": null,
-                "text": "HFZWood no se limita a los c\u00e1lculos de volumen.",
+                "text": "HFZWood no se limita a realizar c\u00e1lculos de volumen.",
                 "type": "paragraph"
               },
               {
                 "align": null,
-                "text": "La aplicaci\u00f3n incluye un manual de usuario completo, tutoriales en v\u00eddeo, un glosario de t\u00e9rminos espec\u00edficos del sector y una base de conocimientos en constante desarrollo. Estos recursos est\u00e1n dise\u00f1ados para responder tanto a preguntas b\u00e1sicas como a aquellas que surgen en proyectos m\u00e1s complejos, lo que convierte a la aplicaci\u00f3n en una plataforma de aprendizaje y trabajo, y no solo en una herramienta de c\u00e1lculo.",
+                "text": "La aplicaci\u00f3n incluye un manual de usuario completo, tutoriales en v\u00eddeo, un glosario de t\u00e9rminos del sector y una base de conocimientos en constante desarrollo. Estos recursos est\u00e1n dise\u00f1ados para responder tanto a preguntas b\u00e1sicas como a aquellas que surgen en proyectos m\u00e1s complejos, lo que convierte a la aplicaci\u00f3n en una plataforma de aprendizaje y trabajo, y no solo en una herramienta de c\u00e1lculo.",
                 "type": "paragraph"
               }
             ],
@@ -153,17 +168,17 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood convierte una simple fotograf\u00eda en una herramienta de c\u00e1lculo precisa y f\u00e1cil de usar. La aplicaci\u00f3n te gu\u00eda paso a paso para definir la zona de vertido y excluir las islas de madera y las cavidades, ofreci\u00e9ndote una estimaci\u00f3n fiable que te ayuda a planificar correctamente los materiales, reducir las p\u00e9rdidas y empezar cada proyecto con m\u00e1s confianza.\n\nM\u00e1s que una simple calculadora, HFZWood es una plataforma dedicada a los aficionados y profesionales que trabajan con madera y resina epoxi. Adem\u00e1s de las herramientas de c\u00e1lculo, tienes acceso a un completo manual de uso, tutoriales en v\u00eddeo que explican cada etapa del flujo de trabajo, un glosario con los t\u00e9rminos utilizados en el sector y una base de conocimientos en constante desarrollo, que re\u00fane informaci\u00f3n pr\u00e1ctica, recomendaciones y respuestas a las preguntas m\u00e1s frecuentes.\n\nTanto si est\u00e1s llevando a cabo tu primer proyecto como si ya tienes experiencia en moldes con resina epoxi, HFZWood te ofrece las herramientas y la informaci\u00f3n necesarias para trabajar de forma m\u00e1s organizada, tomar decisiones basadas en estimaciones precisas y obtener resultados predecibles de un proyecto a otro.",
+        "description": "Calcula la cantidad necesaria de resina a partir de la forma real del proyecto\nHFZWood calcula la cantidad de resina necesaria para proyectos con formas irregulares, bordes naturales, huecos y cavidades. Solo tienes que definir la zona de vertido y las dimensiones reales, y la aplicaci\u00f3n calcular\u00e1 el volumen necesario.\n\n\n\nDe la estimaci\u00f3n a la planificaci\u00f3n del vertido\nTras calcular el volumen, puedes planificar el vertido por capas, comprobar las necesidades de material y estimar los costes del proyecto en un \u00fanico flujo de trabajo.\n\nGuarda el proyecto, no solo el resultado de un c\u00e1lculo\nGuarda el proyecto y vuelve en cualquier momento a la geometr\u00eda, las dimensiones y los c\u00e1lculos para realizar comprobaciones, modificaciones o pasar a las siguientes fases del trabajo.\n\nHerramientas e informaci\u00f3n en un mismo lugar\nHFZWood no se limita al c\u00e1lculo. El manual, los tutoriales, el glosario y la base de conocimientos re\u00fanen en un mismo lugar explicaciones e informaci\u00f3n pr\u00e1ctica sobre el uso de la aplicaci\u00f3n, la madera, la resina y las fases del proyecto.\n\nTus proyectos siguen siendo tuyos\nTu trabajo sigue siendo tuyo. Los proyectos creados mientras tengas una suscripci\u00f3n activa se pueden abrir, modificar y continuar incluso despu\u00e9s de que esta haya caducado; las limitaciones del plan Free solo se aplican a los proyectos nuevos.",
         "image": {
           "alt": "",
           "src": "",
           "visible": false
         },
         "pageKind": "home",
-        "publicTitle": "Precisi\u00f3n y confianza en el trabajo con resina.",
-        "subtitle": "Calcula y planifica proyectos de resina epoxi a partir de la forma real de tu proyecto.",
+        "publicTitle": "Precisi\u00f3n y confianza al trabajar con resina.",
+        "subtitle": "Calcula y planifica proyectos con resina epoxi bas\u00e1ndote en la forma real de tu proyecto.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
@@ -174,49 +189,49 @@
     "pricing": {
       "body": {
         "footnote": "Puedes empezar gratis y pasar a un plan superior en cualquier momento, sin perder los proyectos que ya hayas realizado.",
-        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
+        "intro": "Puedes empezar de forma gratuita y pasar posteriormente a tener acceso completo como suscriptor. El plan mensual y el plan anual incluyen las mismas funciones; solo difieren en el periodo de facturaci\u00f3n y el precio.",
         "offers": [
           {
             "benefits": [
-              "Resin estimator for simple projects.",
-              "Hasta 4 puntos por pol\u00edgono \u2014 ideal para formas de proyecto simples.",
-              "Save and reopen your projects on your device.",
-              "Full access to the Manual and all video tutorials.",
-              "Access to the curated free Glossary and Knowledge Base selection."
+              "Calculadora de resina para proyectos sencillos.",
+              "Hasta 4 puntos por cada pol\u00edgono: ideal para proyectos con formas sencillas.",
+              "Guarda y vuelve a abrir los proyectos en tu dispositivo.",
+              "Acceso completo al manual y a todos los tutoriales en v\u00eddeo.",
+              "Accede de forma gratuita al Glosario y a la Base de conocimientos."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$0",
             "id": "free",
-            "title": "Free Plan",
+            "title": "Plan gratuito",
             "visible": true
           },
           {
             "benefits": [
               "Acceso completo a las herramientas y recursos de HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Puntos ilimitados para pol\u00edgonos y herramientas para proyectos complejos.",
+              "Exportaci\u00f3n a PDF y planificaci\u00f3n de las capas de vertido.",
+              "Acceso completo al glosario y a la base de conocimientos."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$9.99",
             "id": "monthly",
-            "title": "Monthly Plan",
+            "title": "Plan mensual",
             "visible": true
           },
           {
             "benefits": [
               "Acceso completo a las herramientas y recursos de HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Puntos ilimitados para pol\u00edgonos y herramientas para proyectos complejos.",
+              "Exportaci\u00f3n a PDF y planificaci\u00f3n de las capas de vertido.",
+              "Acceso completo al glosario y a la base de conocimientos."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$89.99",
             "id": "annual",
-            "title": "Annual Plan",
+            "title": "Plan anual",
             "visible": true
           }
         ],

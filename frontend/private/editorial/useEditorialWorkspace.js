@@ -12,7 +12,9 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   loadVariant: (contentId: string, locale: string) => Promise<unknown>;
  *   saveItem: (contentId: string, locale: string, editorState: TEditor) => Promise<unknown>;
  *   publishItem: (contentId: string, locale: string, editorState: TEditor) => Promise<unknown>;
+ *   confirmPublish?: (contentId: string, locale: string, editorState: TEditor, selectedItem: unknown) => boolean;
  *   generateTranslation?: (contentId: string, locale: string, confirmOverwrite: boolean) => Promise<unknown>;
+ *   regenerateTranslation?: (contentId: string, locale: string) => Promise<unknown>;
  *   createItem: (promptValue: string) => Promise<{ contentId: string }>;
  *   deleteItem: (contentId: string) => Promise<void>;
  *   deleteLocaleVariant?: (contentId: string, locale: string) => Promise<void>;
@@ -365,6 +367,12 @@ export function useEditorialWorkspace(config) {
     if (!selectedItemId) {
       return;
     }
+    if (
+      config.confirmPublish &&
+      !config.confirmPublish(selectedItemId, locale, editorState, selectedItem)
+    ) {
+      return;
+    }
 
     setErrorMessage("");
     setIsSaving(true);
@@ -382,7 +390,7 @@ export function useEditorialWorkspace(config) {
     } finally {
       setIsSaving(false);
     }
-  }, [config, editorState, loadVariant, locale, refreshItems, selectedItemId]);
+  }, [config, editorState, loadVariant, locale, refreshItems, selectedItem, selectedItemId]);
 
   const runGenerateTranslation = useCallback(
     async (confirmOverwrite) => {
@@ -432,6 +440,40 @@ export function useEditorialWorkspace(config) {
     });
   }, [requestNavigation, runGenerateTranslation]);
 
+  const runRegenerateTranslation = useCallback(async () => {
+    if (!selectedItemId || !config.regenerateTranslation || isCanonicalSourceLocale(locale)) {
+      return;
+    }
+    const confirmed = window.confirm(
+      `Regenerate the entire ${locale.toUpperCase()} localized draft from the current canonical Romanian source?\n\nExisting manual translation edits may be overwritten. This action will not publish the regenerated draft.`,
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    setErrorMessage("");
+    setIsGenerating(true);
+    try {
+      const generated = await config.regenerateTranslation(selectedItemId, locale);
+      let nextEditor = config.applySavedVariant(generated, editorState);
+      if (config.transformEditor) {
+        const nextItems = await refreshItems(locale);
+        nextEditor = config.transformEditor(nextEditor, { items: nextItems, variant: generated });
+      }
+      setEditorState(nextEditor);
+      setSavedState(nextEditor);
+      await refreshItems(locale);
+    } catch (error) {
+      setErrorMessage(error.message || config.messages?.generate || "Failed to regenerate translation.");
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [config, editorState, locale, refreshItems, selectedItemId]);
+
+  const handleRegenerateTranslation = useCallback(() => {
+    requestNavigation(runRegenerateTranslation);
+  }, [requestNavigation, runRegenerateTranslation]);
+
   const reloadAfterBulkUpdate = useCallback(async () => {
     setErrorMessage("");
     try {
@@ -473,6 +515,7 @@ export function useEditorialWorkspace(config) {
     handleSaveDraft,
     handlePublish,
     handleGenerateTranslation,
+    handleRegenerateTranslation,
     reloadAfterBulkUpdate,
     handleUnsavedSave,
     handleUnsavedDiscard,

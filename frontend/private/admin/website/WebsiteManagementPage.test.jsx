@@ -113,7 +113,7 @@ function createInMemoryWebsiteApi() {
     reset() {
       variants.clear();
     },
-    seedVariant(pageKey, locale, body, status = "draft") {
+    seedVariant(pageKey, locale, body, status = "draft", overrides = {}) {
       const page = WEBSITE_PAGES.find((item) => item.pageKey === pageKey);
       variants.set(variantKey(pageKey, locale), {
         pageKey,
@@ -124,6 +124,7 @@ function createInMemoryWebsiteApi() {
         body,
         updatedAt: "2026-01-01T00:00:00+00:00",
         publishedAt: status === "published" ? "2026-01-01T00:00:00+00:00" : null,
+        ...overrides,
       });
     },
     getVariant(pageKey, locale) {
@@ -207,6 +208,7 @@ function createInMemoryWebsiteApi() {
         }
         const existing = variants.get(variantKey(pageKey, locale));
         const saved = {
+          ...existing,
           pageKey,
           locale,
           pageKind: page?.pageKind ?? "home",
@@ -228,6 +230,19 @@ function createInMemoryWebsiteApi() {
       if (publishMatch && method === "POST") {
         const [, pageKey, locale] = publishMatch;
         const variant = variants.get(variantKey(pageKey, locale));
+        const payload = JSON.parse(init.body || "{}");
+        if (
+          variant?.translationUpdateState === "text_outdated" &&
+          !payload.confirmTextOutdated
+        ) {
+          return Promise.resolve({
+            ok: false,
+            status: 409,
+            json: async () => ({
+              detail: `${pageKey} (${locale.toUpperCase()}) requires confirmation.`,
+            }),
+          });
+        }
         if (!variant?.body?.publicTitle?.trim()) {
           return Promise.resolve({
             ok: false,
@@ -275,7 +290,16 @@ function createInMemoryWebsiteApi() {
       const generateMatch = path.match(/^\/([^/]+)\/variants\/([^/]+)\/generate-translation$/);
       if (generateMatch && method === "POST") {
         const [, pageKey, locale] = generateMatch;
+        const payload = JSON.parse(init.body || "{}");
+        if (payload.forceRegenerate && !payload.confirmOverwrite) {
+          return Promise.resolve({
+            ok: false,
+            status: 409,
+            json: async () => ({ detail: "Confirm overwrite to regenerate the translation." }),
+          });
+        }
         const ro = variants.get(variantKey(pageKey, "ro"));
+        const existing = variants.get(variantKey(pageKey, locale));
         const translatedBody = {
           ...ro.body,
           publicTitle: `[${locale}]${ro.body.publicTitle}`,
@@ -284,11 +308,11 @@ function createInMemoryWebsiteApi() {
           pageKey,
           locale,
           pageKind: ro.pageKind,
-          status: "draft",
+          status: existing?.status ?? "draft",
           exists: true,
           body: translatedBody,
           updatedAt: "2026-01-05T00:00:00+00:00",
-          publishedAt: null,
+          publishedAt: existing?.publishedAt ?? null,
           generatedFromSourceRevision: 1,
           generatedFromSourceTextRevision: 1,
           translationProvider: "deepl",
@@ -422,6 +446,87 @@ describe("Website management editors (Stage 5B)", () => {
     });
   });
 
+  it.each(["current", "media_only_outdated"])(
+    "publishes a %s localized Website variant without an outdated-text warning",
+    async (translationUpdateState) => {
+      memoryApi.seedVariant("home", "ro", {
+        ...emptyHomeBody(),
+        publicTitle: "Acasă",
+      });
+      memoryApi.seedVariant(
+        "home",
+        "en",
+        { ...emptyHomeBody(), publicTitle: "Home" },
+        "published",
+        { translationUpdateState },
+      );
+      const confirm = vi.spyOn(window, "confirm");
+      seedEditorialUser();
+      const user = userEvent.setup();
+      renderWorkspace(ADMIN_ROUTES.WEBSITE);
+
+      await screen.findByLabelText("Hero title");
+      await user.click(screen.getByRole("button", { name: "EN" }));
+      await user.click(screen.getByRole("button", { name: "Update published" }));
+
+      await waitFor(() => {
+        expect(memoryApi.getVariant("home", "en")?.publishedAt).toBe(
+          "2026-01-03T00:00:00+00:00",
+        );
+      });
+      expect(confirm).not.toHaveBeenCalled();
+      const request = fetch.mock.calls.find(([url]) =>
+        String(url).endsWith("/home/variants/en/publish"),
+      );
+      expect(JSON.parse(request[1].body)).toEqual({ confirmTextOutdated: false });
+    },
+  );
+
+  it("requires explicit confirmation before publishing text-outdated Website content", async () => {
+    memoryApi.seedVariant("home", "ro", {
+      ...emptyHomeBody(),
+      publicTitle: "Acasă",
+    });
+    memoryApi.seedVariant(
+      "home",
+      "en",
+      { ...emptyHomeBody(), publicTitle: "Old Home" },
+      "published",
+      { translationUpdateState: "text_outdated" },
+    );
+    const confirm = vi
+      .spyOn(window, "confirm")
+      .mockReturnValueOnce(false)
+      .mockReturnValueOnce(true);
+    seedEditorialUser();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.WEBSITE);
+
+    await screen.findByLabelText("Hero title");
+    await user.click(screen.getByRole("button", { name: "EN" }));
+    const publish = screen.getByRole("button", { name: "Update published" });
+    await user.click(publish);
+    expect(confirm).toHaveBeenCalledWith(
+      expect.stringMatching(/Home \(EN\).*older canonical text revision.*Continue/s),
+    );
+    expect(memoryApi.getVariant("home", "en")?.publishedAt).toBe(
+      "2026-01-01T00:00:00+00:00",
+    );
+
+    await user.click(publish);
+    await waitFor(() => {
+      expect(memoryApi.getVariant("home", "en")?.publishedAt).toBe(
+        "2026-01-03T00:00:00+00:00",
+      );
+    });
+    const request = fetch.mock.calls.find(
+      ([url, init]) =>
+        String(url).endsWith("/home/variants/en/publish") &&
+        JSON.parse(init.body).confirmTextOutdated,
+    );
+    expect(request).toBeTruthy();
+  });
+
   it("shows unsaved changes guard when switching pages", async () => {
     memoryApi.seedVariant("home", "ro", { ...emptyHomeBody(), publicTitle: "Home" });
     seedEditorialUser();
@@ -449,6 +554,78 @@ describe("Website management editors (Stage 5B)", () => {
     await waitFor(() => {
       expect(memoryApi.getVariant("home", "en")?.body.publicTitle).toBe("[en]Acasă");
     });
+  });
+
+  it("offers confirmed regeneration for an existing current translation without publishing", async () => {
+    memoryApi.seedVariant("pricing", "ro", {
+      ...emptyBodyForPage("pricing"),
+      publicTitle: "Prețuri",
+    });
+    memoryApi.seedVariant(
+      "pricing",
+      "en",
+      { ...emptyBodyForPage("pricing"), publicTitle: "Existing translation" },
+      "published",
+      {
+        translationUpdateState: "current",
+        translationUpdateAction: "skip_current",
+      },
+    );
+    const confirm = vi
+      .spyOn(window, "confirm")
+      .mockReturnValueOnce(false)
+      .mockReturnValueOnce(true);
+    seedEditorialUser();
+    const user = userEvent.setup();
+    renderWorkspace(ADMIN_ROUTES.WEBSITE);
+
+    const sidebar = await screen.findByRole("navigation", { name: "Website pages" });
+    await user.click(within(sidebar).getByRole("button", { name: "Pricing" }));
+    await user.click(screen.getByRole("button", { name: "EN" }));
+
+    expect(screen.getByRole("button", { name: "Update Translation" })).toBeDisabled();
+    const regenerate = screen.getByRole("button", { name: "Regenerate Translation…" });
+    expect(regenerate).toBeEnabled();
+
+    await user.click(regenerate);
+    expect(confirm).toHaveBeenCalledWith(
+      expect.stringMatching(/entire EN localized draft.*manual translation edits.*will not publish/s),
+    );
+    expect(memoryApi.getVariant("pricing", "en")?.body.publicTitle).toBe(
+      "Existing translation",
+    );
+
+    await user.click(regenerate);
+    await waitFor(() => {
+      expect(memoryApi.getVariant("pricing", "en")?.body.publicTitle).toBe("[en]Prețuri");
+    });
+    expect(memoryApi.getVariant("pricing", "en")?.status).toBe("published");
+    expect(memoryApi.getVariant("pricing", "en")?.publishedAt).toBe(
+      "2026-01-01T00:00:00+00:00",
+    );
+    const request = fetch.mock.calls.find(
+      ([url, init]) =>
+        String(url).endsWith("/pricing/variants/en/generate-translation") &&
+        JSON.parse(init.body).forceRegenerate,
+    );
+    expect(JSON.parse(request[1].body)).toEqual({
+      confirmOverwrite: true,
+      forceRegenerate: true,
+    });
+  });
+
+  it("does not offer forced regeneration for Romanian", async () => {
+    memoryApi.seedVariant("home", "ro", {
+      ...emptyHomeBody(),
+      publicTitle: "Acasă",
+    });
+    seedEditorialUser();
+    renderWorkspace(ADMIN_ROUTES.WEBSITE);
+
+    await screen.findByLabelText("Hero title");
+    expect(
+      screen.queryByRole("button", { name: "Regenerate Translation…" }),
+    ).not.toBeInTheDocument();
   });
 
   it("renders pricing editor with fixed plans only", async () => {

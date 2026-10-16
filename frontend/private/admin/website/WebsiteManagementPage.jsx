@@ -45,8 +45,24 @@ export default function WebsiteManagementPage() {
       }
       return saveWebsiteVariant(pageKey, locale, editorToVariantBody(editorState));
     },
-    publishItem: (pageKey, locale) => publishWebsiteVariant(pageKey, locale),
+    confirmPublish: (pageKey, locale, state, item) => {
+      if (state.translationUpdateState !== "text_outdated") {
+        return true;
+      }
+      const label = item?.adminLabel || pageKey;
+      return window.confirm(
+        `${label} (${locale.toUpperCase()}) was generated from an older canonical text revision.\n\nPublishing now will intentionally keep the outdated translated text. Continue with Update Published?`,
+      );
+    },
+    publishItem: (pageKey, locale, state) =>
+      publishWebsiteVariant(
+        pageKey,
+        locale,
+        state.translationUpdateState === "text_outdated",
+      ),
     generateTranslation: generateWebsiteTranslation,
+    regenerateTranslation: (pageKey, locale) =>
+      generateWebsiteTranslation(pageKey, locale, true, true),
     createItem: async () => {
       throw new Error("Website pages cannot be created.");
     },
@@ -88,6 +104,7 @@ export default function WebsiteManagementPage() {
     handleSaveDraft,
     handlePublish,
     handleGenerateTranslation,
+    handleRegenerateTranslation,
     reloadAfterBulkUpdate,
     handleUnsavedSave,
     handleUnsavedDiscard,
@@ -153,6 +170,7 @@ export default function WebsiteManagementPage() {
       onPublish={handlePublish}
       onUnpublish={handleUnpublish}
       onGenerateTranslation={handleGenerateTranslation}
+      onRegenerateTranslation={handleRegenerateTranslation}
       onBulkCompleted={() => {
         void reloadAfterBulkUpdate();
       }}

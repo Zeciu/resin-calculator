@@ -12,6 +12,8 @@ from private.services.locale_readiness import (
     LocaleReadiness,
     StoreDiagnostics,
     StoreVariantDiagnostic,
+    WebsiteIntegrityDiagnostics,
+    WebsiteIntegrityIssue,
 )
 
 LayerStatusValue = Literal["complete", "incomplete", "missing"]
@@ -46,6 +48,23 @@ class StoreDiagnosticsResponse(BaseModel):
     knowledge_base: StoreVariantDiagnosticResponse
 
 
+class WebsiteIntegrityIssueResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    severity: Literal["error", "warning", "info"]
+    code: str
+    page_key: str
+    plane: str
+    path: str
+    message: str
+
+
+class WebsiteIntegrityDiagnosticsResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    issues: list[WebsiteIntegrityIssueResponse] = Field(default_factory=list)
+
+
 class LocaleReadinessRow(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -63,6 +82,7 @@ class LocaleReadinessRow(BaseModel):
     preview_ready: bool
     production_ready: bool
     store: StoreDiagnosticsResponse
+    website_integrity: WebsiteIntegrityDiagnosticsResponse
 
 
 class AdminLocaleReadinessResponse(BaseModel):
@@ -115,6 +135,30 @@ def store_to_response(store: StoreDiagnostics) -> StoreDiagnosticsResponse:
     )
 
 
+def website_integrity_issue_to_response(
+    issue: WebsiteIntegrityIssue,
+) -> WebsiteIntegrityIssueResponse:
+    return WebsiteIntegrityIssueResponse(
+        severity=issue.severity,  # type: ignore[arg-type]
+        code=issue.code,
+        page_key=issue.page_key,
+        plane=issue.plane,
+        path=issue.path,
+        message=issue.message,
+    )
+
+
+def website_integrity_to_response(
+    diagnostics: WebsiteIntegrityDiagnostics,
+) -> WebsiteIntegrityDiagnosticsResponse:
+    return WebsiteIntegrityDiagnosticsResponse(
+        issues=[
+            website_integrity_issue_to_response(issue)
+            for issue in diagnostics.issues
+        ]
+    )
+
+
 def locale_readiness_to_row(result: LocaleReadiness) -> LocaleReadinessRow:
     return LocaleReadinessRow(
         locale=result.locale,
@@ -131,6 +175,7 @@ def locale_readiness_to_row(result: LocaleReadiness) -> LocaleReadinessRow:
         preview_ready=result.preview_ready,
         production_ready=result.production_ready,
         store=store_to_response(result.store),
+        website_integrity=website_integrity_to_response(result.website_integrity),
     )
 
 

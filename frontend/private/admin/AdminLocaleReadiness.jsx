@@ -110,6 +110,45 @@ function StoreDetail({ title, diagnostic }) {
   );
 }
 
+function WebsiteIntegritySummary({ diagnostics }) {
+  const issues = diagnostics?.issues ?? [];
+  const errors = issues.filter((issue) => issue.severity === "error").length;
+  const warnings = issues.filter((issue) => issue.severity === "warning").length;
+  if (!errors && !warnings) {
+    return null;
+  }
+  return (
+    <div className="admin-locale-readiness__inline-missing">
+      Website integrity: {errors} error{errors === 1 ? "" : "s"}, {warnings} warning
+      {warnings === 1 ? "" : "s"}
+    </div>
+  );
+}
+
+function WebsiteIntegrityDetail({ diagnostics }) {
+  const issues = diagnostics?.issues ?? [];
+  if (!issues.length) {
+    return (
+      <div className="admin-locale-readiness__layer-detail">
+        <p><strong>Website integrity</strong>: no issues detected</p>
+      </div>
+    );
+  }
+  return (
+    <div className="admin-locale-readiness__layer-detail">
+      <p><strong>Website integrity</strong></p>
+      <ul className="admin-locale-readiness__ids">
+        {issues.map((issue, index) => (
+          <li key={`${issue.code}-${issue.page_key}-${issue.path}-${index}`}>
+            {issue.severity.toUpperCase()} · {issue.page_key}
+            {issue.path ? ` · ${issue.path}` : ""} · {issue.message}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function AdminLocaleReadiness({
   payload,
   loadState,
@@ -235,6 +274,7 @@ export default function AdminLocaleReadiness({
                   </td>
                   <td>
                     <ModuleCell preview={row.website_preview} production={row.website_production} />
+                    <WebsiteIntegritySummary diagnostics={row.website_integrity} />
                   </td>
                   <td>
                     <ModuleCell preview={row.manual_preview} production={row.manual_production} />
@@ -262,6 +302,7 @@ export default function AdminLocaleReadiness({
                 <LayerDetail title="UI" layer={row.ui} />
                 <LayerDetail title="Website preview" layer={row.website_preview} />
                 <LayerDetail title="Website production" layer={row.website_production} />
+                <WebsiteIntegrityDetail diagnostics={row.website_integrity} />
                 <LayerDetail title="Manual preview" layer={row.manual_preview} />
                 <LayerDetail title="Manual production" layer={row.manual_production} />
                 <LayerDetail title="Glossary preview" layer={row.glossary_preview} />

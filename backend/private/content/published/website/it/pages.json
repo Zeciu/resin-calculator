@@ -168,17 +168,17 @@
           "label": "",
           "visible": false
         },
-        "description": "HFZWood trasforma una semplice fotografia in uno strumento di calcolo preciso e facile da usare. L'app ti guida passo dopo passo nella definizione dell'area di colata, nell'esclusione delle isole di legno e delle cavit\u00e0, fornendoti una stima affidabile che ti aiuta a pianificare correttamente i materiali, a ridurre gli sprechi e ad affrontare ogni progetto con maggiore sicurezza.\n\nPi\u00f9 che un semplice calcolatore, HFZWood \u00e8 una piattaforma dedicata agli appassionati e ai professionisti che lavorano con il legno e la resina epossidica. Oltre agli strumenti di calcolo, hai accesso a un manuale d\u2019uso completo, a tutorial video che spiegano ogni fase del flusso di lavoro, un glossario con i termini utilizzati nel settore e una Knowledge Base in continuo sviluppo, che raccoglie informazioni pratiche, consigli e risposte alle domande pi\u00f9 frequenti.\n\nChe tu stia realizzando il tuo primo progetto o che tu abbia gi\u00e0 esperienza nella colata con resina epossidica, HFZWood ti offre gli strumenti e le informazioni necessarie per lavorare in modo pi\u00f9 organizzato, prendere decisioni basate su stime accurate e ottenere risultati prevedibili da un progetto all\u2019altro.",
+        "description": "Calcola il fabbisogno di resina partendo dalla forma reale del progetto\nHFZWood stima la quantit\u00e0 di resina necessaria per progetti con forme irregolari, bordi naturali, vuoti e cavit\u00e0. Basta definire l'area di colata e le dimensioni reali e l'applicazione calcoler\u00e0 il volume necessario.\n\n\n\nDalla stima alla pianificazione della colata\nDopo aver calcolato il volume, puoi pianificare la colata a strati, verificare il fabbisogno di materiale e stimare i costi del progetto in un unico flusso di lavoro.\n\nSalva il progetto, non solo il risultato di un calcolo\nSalva il progetto e torna in qualsiasi momento alla geometria, alle dimensioni e ai calcoli per verifiche, modifiche o fasi successive del lavoro.\n\nStrumenti e informazioni in un unico posto\nHFZWood non si limita al calcolo. Il manuale, i tutorial, il glossario e la knowledge base riuniscono in un unico posto spiegazioni e informazioni pratiche sull\u2019uso dell\u2019applicazione, sul legno, sulla resina e sulle fasi del progetto.\n\nI tuoi progetti rimangono tuoi\nIl tuo lavoro rimane tuo. I progetti creati mentre hai un abbonamento attivo possono essere aperti, modificati e portati avanti anche dopo la sua scadenza; le limitazioni del piano Free si applicano solo ai nuovi progetti.",
         "image": {
           "alt": "",
           "src": "",
           "visible": false
         },
         "pageKind": "home",
-        "publicTitle": "Precisione e fiducia nel lavoro con la resina.",
-        "subtitle": "Calcola e pianifica i progetti in resina epossidica in base alla forma reale del tuo progetto.",
+        "publicTitle": "Precisione e sicurezza nella lavorazione della resina.",
+        "subtitle": "Calcola e pianifica i tuoi progetti con resina epossidica in base alla forma reale del tuo progetto.",
         "video": {
-          "url": "https://www.youtube.com/watch?v=wxk4q0LbSWs",
+          "url": "https://www.youtube.com/watch?v=tgEv6Kbabt4",
           "visible": true
         }
       },
@@ -189,49 +189,49 @@
     "pricing": {
       "body": {
         "footnote": "Puoi iniziare gratuitamente e passare a un piano superiore in qualsiasi momento, senza perdere i progetti gi\u00e0 realizzati.",
-        "intro": "Start free and upgrade later when you need complete subscriber access. Monthly and Annual include the same functionality; only the billing period and price differ.",
+        "intro": "Puoi iniziare gratuitamente e passare successivamente all'accesso completo riservato agli abbonati. Il piano mensile e quello annuale includono le stesse funzionalit\u00e0; differiscono solo per il periodo di fatturazione e il prezzo.",
         "offers": [
           {
             "benefits": [
-              "Resin estimator for simple projects.",
-              "Fino a 4 punti per poligono \u2014 ideale per forme di progetto semplici.",
-              "Save and reopen your projects on your device.",
-              "Full access to the Manual and all video tutorials.",
-              "Access to the curated free Glossary and Knowledge Base selection."
+              "Calcolatore di resina per progetti semplici.",
+              "Fino a 4 punti per ogni poligono \u2014 adatto a progetti con forme semplici.",
+              "Salva e riapri i progetti sul tuo dispositivo.",
+              "Accesso completo al Manuale e a tutti i tutorial video.",
+              "Accedi gratuitamente alla selezione del Glossario e della Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$0",
             "id": "free",
-            "title": "Free Plan",
+            "title": "Piano gratuito",
             "visible": true
           },
           {
             "benefits": [
-              "Accesso completo agli strumenti e alle risorse HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Accesso completo agli strumenti e alle risorse di HFZWood.",
+              "Punti illimitati per poligoni e strumenti per progetti complessi.",
+              "Esportazione in PDF e pianificazione degli strati di colata.",
+              "Accesso completo al Glossario e alla Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$9.99",
             "id": "monthly",
-            "title": "Monthly Plan",
+            "title": "Abbonamento mensile",
             "visible": true
           },
           {
             "benefits": [
-              "Accesso completo agli strumenti e alle risorse HFZWood.",
-              "Unlimited polygon points and complex-project tools.",
-              "PDF export and pour-layer planning.",
-              "Full access to the Glossary and Knowledge Base."
+              "Accesso completo agli strumenti e alle risorse di HFZWood.",
+              "Punti illimitati per poligoni e strumenti per progetti complessi.",
+              "Esportazione in PDF e pianificazione degli strati di colata.",
+              "Accesso completo al Glossario e alla Knowledge Base."
             ],
             "ctaDestination": "",
             "ctaLabel": "",
             "displayedPriceText": "$89.99",
             "id": "annual",
-            "title": "Annual Plan",
+            "title": "Piano annuale",
             "visible": true
           }
         ],

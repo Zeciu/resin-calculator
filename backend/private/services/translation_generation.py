@@ -46,12 +46,14 @@ class TranslationGenerationService:
         content_id: str,
         target_locale: str,
         confirm_overwrite: bool = False,
+        force_regenerate: bool = False,
     ) -> dict[str, Any]:
         saved, classification = self._update.update(
             module=module,
             content_id=content_id,
             target_locale=target_locale,
             confirm_overwrite=confirm_overwrite,
+            force_regenerate=force_regenerate,
         )
         # Attach ephemeral classification for response builders (not persisted).
         saved = dict(saved)

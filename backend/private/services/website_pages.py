@@ -175,6 +175,7 @@ class WebsitePageService:
         locale: str,
         *,
         confirm_overwrite: bool = False,
+        force_regenerate: bool = False,
         provider=None,
     ) -> WebsiteVariantResponse:
         from private.services.translation_generation import TranslationGenerationService
@@ -185,5 +186,6 @@ class WebsitePageService:
             content_id=page_key,
             target_locale=locale,
             confirm_overwrite=confirm_overwrite,
+            force_regenerate=force_regenerate,
         )
         return self._variant_response(page_key, locale, saved)

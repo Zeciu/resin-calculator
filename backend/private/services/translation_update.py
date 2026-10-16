@@ -240,6 +240,7 @@ class TranslationUpdateService:
         content_id: str,
         target_locale: str,
         confirm_overwrite: bool = False,
+        force_regenerate: bool = False,
     ) -> tuple[dict[str, Any], TranslationClassification]:
         """Return (variant_record, classification) after applying the update action."""
         parsed_target = parse_admin_locale(target_locale)
@@ -261,6 +262,19 @@ class TranslationUpdateService:
         draft_body = ro_variant.get("draftBody")
         if not isinstance(draft_body, dict):
             raise MissingRomanianSourceError("Romanian source draft is missing.")
+
+        if force_regenerate:
+            if not confirm_overwrite:
+                raise OverwriteConfirmationRequired(state=classification.state)
+            saved = self._generate_full(
+                module=module,
+                content_id=content_id,
+                target_locale=parsed_target,
+                ro_variant=ro_variant,
+                draft_body=draft_body,
+            )
+            post = classify_translation_update(ro_variant=ro_variant, target_variant=saved)
+            return saved, post
 
         if classification.action == TranslationUpdateAction.SKIP_CURRENT:
             assert target_variant is not None

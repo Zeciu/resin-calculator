@@ -7,6 +7,8 @@ backend/private/content or backend/public/content.
 from __future__ import annotations
 
 import json
+from copy import deepcopy
+from datetime import datetime, timezone
 from io import StringIO
 from pathlib import Path
 from unittest.mock import patch
@@ -14,6 +16,7 @@ from unittest.mock import patch
 import pytest
 
 from private.schemas.common import ADMIN_EDITORIAL_LOCALE_ORDER, ContentStatus
+from private.repositories.filesystem import FilesystemContentRepository
 from private.services.locale_readiness import (
     CanonicalCatalogs,
     LayerStatus,
@@ -22,16 +25,23 @@ from private.services.locale_readiness import (
     evaluate_id_snapshot_layer,
     evaluate_locale_readiness,
     evaluate_ui_layer,
+    evaluate_website_integrity,
     evaluate_website_snapshot_layer,
     load_canonical_catalogs,
 )
+from private.services.website_publish import WebsitePublishService
+from private.translation_metadata import translation_metadata_on_generation
 from private.tools.locale_readiness import (
     HUMAN_MISSING_LIST_LIMIT,
     format_missing_for_human,
     locale_to_json,
     main as locale_readiness_cli,
 )
-from private.website_pages import WEBSITE_PAGE_KEYS
+from private.website_pages import (
+    WEBSITE_PAGE_KEYS,
+    empty_website_draft_body,
+    website_page_definition,
+)
 
 
 def _write_json(path: Path, payload: dict) -> None:
@@ -65,7 +75,17 @@ def _catalogs(
 
 
 def _complete_pages() -> dict[str, dict]:
-    return {page_key: {"pageKey": page_key} for page_key in WEBSITE_PAGE_KEYS}
+    pages: dict[str, dict] = {}
+    for page_key in WEBSITE_PAGE_KEYS:
+        definition = website_page_definition(page_key)
+        body = empty_website_draft_body(definition["pageKind"])
+        body["publicTitle"] = page_key
+        pages[page_key] = {
+            "pageKey": page_key,
+            "pageKind": definition["pageKind"],
+            "body": body,
+        }
+    return pages
 
 
 def _items(ids: list[str], *, id_field: str) -> list[dict]:
@@ -159,6 +179,47 @@ def _variant_record(content_id: str, locale: str, status: str) -> dict:
         "pk": f"CONTENT#{content_id}",
         "draftBody": {"term": content_id},
     }
+
+
+def _website_integrity_repository(
+    tmp_path: Path,
+) -> tuple[
+    LocaleReadinessRoots,
+    FilesystemContentRepository,
+    WebsitePublishService,
+]:
+    roots = _empty_roots(tmp_path)
+    repository = FilesystemContentRepository(roots.private_content_root)
+    repository.ensure_website_pages_exist()
+    publisher = WebsitePublishService(
+        repository, public_content_root=roots.public_content_root
+    )
+    return roots, repository, publisher
+
+
+def _publish_website_body(
+    repository: FilesystemContentRepository,
+    publisher: WebsitePublishService,
+    page_key: str,
+    locale: str,
+    body: dict,
+) -> None:
+    generation_metadata = None
+    if locale != "ro":
+        source = repository.get_website_variant(page_key, "ro")
+        generation_metadata = translation_metadata_on_generation(
+            source_revision=source["sourceRevision"],
+            source_text_revision=source["sourceTextRevision"],
+            provider="test",
+            generated_at=datetime.now(timezone.utc),
+        )
+    repository.save_website_variant(
+        page_key,
+        locale,
+        body,
+        generation_metadata=generation_metadata,
+    )
+    publisher.publish_variant(page_key, locale, confirm_text_outdated=True)
 
 
 class TestUiLayer:
@@ -315,6 +376,205 @@ class TestWebsiteSnapshotLayer:
         result = evaluate_website_snapshot_layer(path, required)
         assert result.status is LayerStatus.COMPLETE
         assert result.extra == ("legacy",)
+
+
+class TestWebsiteIntegrityDiagnostics:
+    def test_snapshot_mismatch_is_error_when_no_pending_draft(self, tmp_path: Path) -> None:
+        roots, repository, publisher = _website_integrity_repository(tmp_path)
+        ro = empty_website_draft_body("pricing")
+        ro["publicTitle"] = "Prețuri"
+        ro["intro"] = "Introducere canonică"
+        _publish_website_body(repository, publisher, "pricing", "ro", ro)
+        es = deepcopy(ro)
+        es["publicTitle"] = "Precios"
+        es["intro"] = "Introducción"
+        _publish_website_body(repository, publisher, "pricing", "es", es)
+
+        production_path = (
+            roots.public_content_root / "published" / "website" / "es" / "pages.json"
+        )
+        production = json.loads(production_path.read_text(encoding="utf-8"))
+        production["pages"]["pricing"]["body"]["intro"] = "Snapshot vechi"
+        _write_json(production_path, production)
+
+        diagnostics = evaluate_website_integrity(
+            "es",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("pricing",),
+        )
+        assert any(
+            issue.code == "snapshot_editorial_mismatch"
+            and issue.plane == "production"
+            for issue in diagnostics.issues
+        )
+
+    def test_pending_draft_does_not_create_snapshot_parity_error(self, tmp_path: Path) -> None:
+        roots, repository, publisher = _website_integrity_repository(tmp_path)
+        ro = empty_website_draft_body("home")
+        ro.update(
+            {
+                "publicTitle": "Acasă",
+                "subtitle": "Subtitlu",
+                "description": "Descriere canonică suficient de lungă.",
+            }
+        )
+        _publish_website_body(repository, publisher, "home", "ro", ro)
+        fr = deepcopy(ro)
+        fr["publicTitle"] = "Accueil"
+        _publish_website_body(repository, publisher, "home", "fr", fr)
+        pending = deepcopy(fr)
+        pending["description"] = "Brouillon non publié"
+        repository.save_website_variant("home", "fr", pending)
+
+        diagnostics = evaluate_website_integrity(
+            "fr",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("home",),
+        )
+        assert not any(
+            issue.code == "snapshot_editorial_mismatch"
+            for issue in diagnostics.issues
+        )
+        assert any(
+            issue.code == "unpublished_draft" for issue in diagnostics.issues
+        )
+
+    def test_structural_difference_from_canonical_is_error(self, tmp_path: Path) -> None:
+        roots, repository, publisher = _website_integrity_repository(tmp_path)
+        ro = empty_website_draft_body("pricing")
+        ro["publicTitle"] = "Prețuri"
+        _publish_website_body(repository, publisher, "pricing", "ro", ro)
+        it = deepcopy(ro)
+        it["publicTitle"] = "Prezzi"
+        it["offers"] = list(reversed(it["offers"]))
+        _publish_website_body(repository, publisher, "pricing", "it", it)
+
+        diagnostics = evaluate_website_integrity(
+            "it",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("pricing",),
+        )
+        assert any(
+            issue.code == "canonical_structure_mismatch"
+            for issue in diagnostics.issues
+        )
+
+    def test_text_and_media_freshness_are_distinguished(self, tmp_path: Path) -> None:
+        roots, repository, publisher = _website_integrity_repository(tmp_path)
+        ro = empty_website_draft_body("home")
+        ro.update(
+            {
+                "publicTitle": "Acasă",
+                "subtitle": "Subtitlu",
+                "description": "Descriere canonică.",
+            }
+        )
+        _publish_website_body(repository, publisher, "home", "ro", ro)
+        es = deepcopy(ro)
+        es["publicTitle"] = "Inicio"
+        es["description"] = "Descripción."
+        _publish_website_body(repository, publisher, "home", "es", es)
+        it = deepcopy(es)
+        it["publicTitle"] = "Home"
+        _publish_website_body(repository, publisher, "home", "it", it)
+
+        changed = deepcopy(ro)
+        changed["description"] = "Text canonic revizuit."
+        _publish_website_body(repository, publisher, "home", "ro", changed)
+        es_diagnostics = evaluate_website_integrity(
+            "es",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("home",),
+        )
+        assert any(issue.code == "text_outdated" for issue in es_diagnostics.issues)
+
+        _publish_website_body(repository, publisher, "home", "it", deepcopy(changed))
+        media_changed = deepcopy(changed)
+        media_changed["video"]["url"] = "https://example.com/new-video"
+        _publish_website_body(repository, publisher, "home", "ro", media_changed)
+        it_diagnostics = evaluate_website_integrity(
+            "it",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("home",),
+        )
+        assert any(
+            issue.code == "media_only_outdated" for issue in it_diagnostics.issues
+        )
+        assert not any(
+            issue.code == "text_outdated" for issue in it_diagnostics.issues
+        )
+
+    def test_suspicious_english_warning_ignores_prices_and_ids(self, tmp_path: Path) -> None:
+        roots, repository, publisher = _website_integrity_repository(tmp_path)
+        ro = empty_website_draft_body("pricing")
+        ro["publicTitle"] = "Prețuri"
+        _publish_website_body(repository, publisher, "pricing", "ro", ro)
+        english = deepcopy(ro)
+        english["publicTitle"] = "Pricing"
+        english["intro"] = (
+            "Start free and upgrade when you need complete subscriber access."
+        )
+        english["offers"][0]["benefits"] = [
+            "Save and reopen your projects on your device."
+        ]
+        _publish_website_body(repository, publisher, "pricing", "en", english)
+        es = deepcopy(english)
+        es["publicTitle"] = "Precios"
+        _publish_website_body(repository, publisher, "pricing", "es", es)
+
+        diagnostics = evaluate_website_integrity(
+            "es",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("pricing",),
+        )
+        suspicious_paths = {
+            issue.path
+            for issue in diagnostics.issues
+            if issue.code == "suspicious_english_text"
+        }
+        assert "intro" in suspicious_paths
+        assert "offers/0/benefits/0" in suspicious_paths
+        assert not any("displayedPriceText" in path for path in suspicious_paths)
+        assert not any(path.endswith("/id") for path in suspicious_paths)
+
+    def test_plain_text_entity_warning_does_not_flag_rich_text(self, tmp_path: Path) -> None:
+        roots, repository, publisher = _website_integrity_repository(tmp_path)
+        ro = empty_website_draft_body("terms")
+        ro["publicTitle"] = "Termeni"
+        ro["sections"] = [
+            {
+                "id": "usage",
+                "title": "Utilizare",
+                "blocks": [
+                    {"type": "paragraph", "text": "Textul aplicației."}
+                ],
+            }
+        ]
+        _publish_website_body(repository, publisher, "terms", "ro", ro)
+        it = deepcopy(ro)
+        it["publicTitle"] = "Termini"
+        it["sections"][0]["title"] = "Utilizzo dell&#x27;applicazione"
+        it["sections"][0]["blocks"][0]["text"] = "Uso dell&#x27;applicazione"
+        _publish_website_body(repository, publisher, "terms", "it", it)
+
+        diagnostics = evaluate_website_integrity(
+            "it",
+            roots=roots,
+            records=repository.read_editorial_records(),
+            required_pages=("terms",),
+        )
+        entity_paths = {
+            issue.path
+            for issue in diagnostics.issues
+            if issue.code == "plain_text_html_entity"
+        }
+        assert entity_paths == {"sections/0/title"}
 
 
 class TestReadinessAggregation:

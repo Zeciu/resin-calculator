@@ -73,6 +73,7 @@ function readinessRow(locale, overrides = {}) {
       glossary: storeDiagnostic(173, 173),
       knowledge_base: storeDiagnostic(112, 112),
     },
+    website_integrity: { issues: [] },
     ...overrides,
   };
 }
@@ -357,6 +358,49 @@ describe("Admin Locale Readiness overview", () => {
     expect(within(germanRow).getByText(/MISSING 0\/18/)).toBeInTheDocument();
     expect(within(germanRow).getByText(/INCOMPLETE 0\/173/)).toBeInTheDocument();
     expect(within(germanRow).getByText(/INCOMPLETE 0\/112/)).toBeInTheDocument();
+  });
+
+  it("shows Website integrity errors and warnings without hiding readiness counts", async () => {
+    const locales = defaultReadinessLocales().map((row) =>
+      row.locale === "it"
+        ? {
+            ...row,
+            website_integrity: {
+              issues: [
+                {
+                  severity: "error",
+                  code: "snapshot_editorial_mismatch",
+                  page_key: "pricing",
+                  plane: "production",
+                  path: "body",
+                  message: "Published snapshot differs from editorial content.",
+                },
+                {
+                  severity: "warning",
+                  code: "plain_text_html_entity",
+                  page_key: "terms",
+                  plane: "production",
+                  path: "sections/0/title",
+                  message: "Plain-text field contains a visible HTML entity.",
+                },
+              ],
+            },
+          }
+        : row,
+    );
+    mockAdminDashboardApis({ readiness: async () => ({ locales }) });
+    renderWorkspace(ADMIN_ROUTES.ROOT);
+
+    const table = await screen.findByRole("table", { name: "Locale readiness" });
+    const italianRow = within(table).getByText("Italian").closest("tr");
+    expect(within(italianRow).getByText(/Website integrity: 1 error, 1 warning/)).toBeInTheDocument();
+
+    const user = userEvent.setup();
+    const summary = screen.getByText("Italian details");
+    await user.click(summary);
+    const details = summary.closest("details");
+    expect(within(details).getByText(/ERROR · pricing/)).toBeInTheDocument();
+    expect(within(details).getByText(/WARNING · terms/)).toBeInTheDocument();
   });
 
   it("shows complete counts and inspectable small missing lists", async () => {

@@ -19,10 +19,13 @@ export function saveWebsiteVariant(pageKey, locale, body) {
   });
 }
 
-export function publishWebsiteVariant(pageKey, locale) {
+export function publishWebsiteVariant(pageKey, locale, confirmTextOutdated = false) {
   return client.request(
     `/${encodeURIComponent(pageKey)}/variants/${encodeURIComponent(locale)}/publish`,
-    { method: "POST" },
+    {
+      method: "POST",
+      body: JSON.stringify({ confirmTextOutdated }),
+    },
   );
 }
 
@@ -33,12 +36,17 @@ export function unpublishWebsiteVariant(pageKey, locale) {
   );
 }
 
-export function generateWebsiteTranslation(pageKey, locale, confirmOverwrite = false) {
+export function generateWebsiteTranslation(
+  pageKey,
+  locale,
+  confirmOverwrite = false,
+  forceRegenerate = false,
+) {
   return client.request(
     `/${encodeURIComponent(pageKey)}/variants/${encodeURIComponent(locale)}/generate-translation`,
     {
       method: "POST",
-      body: JSON.stringify({ confirmOverwrite }),
+      body: JSON.stringify({ confirmOverwrite, forceRegenerate }),
     },
   );
 }

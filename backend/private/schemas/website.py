@@ -199,6 +199,15 @@ class SaveWebsiteVariantRequest(BaseModel):
     body: SaveWebsiteVariantBodyUnion
 
 
+class GenerateWebsiteTranslationRequest(BaseModel):
+    confirmOverwrite: bool = False
+    forceRegenerate: bool = False
+
+
+class PublishWebsiteVariantRequest(BaseModel):
+    confirmTextOutdated: bool = False
+
+
 class WebsitePageMeta(BaseModel):
     contentId: str
     contentType: Literal["website_page"] = "website_page"

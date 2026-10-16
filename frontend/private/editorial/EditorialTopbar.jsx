@@ -13,6 +13,7 @@ import { ADMIN_EDITORIAL_LOCALES, isCanonicalSourceLocale } from "./editorialLoc
  *   canSave?: boolean;
  *   canPublish?: boolean;
  *   canGenerate?: boolean;
+ *   canRegenerate?: boolean;
  *   canUpdateAll?: boolean;
  *   canPublishAllDrafts?: boolean;
  *   editorialVisibility?: string;
@@ -21,6 +22,7 @@ import { ADMIN_EDITORIAL_LOCALES, isCanonicalSourceLocale } from "./editorialLoc
  *   onPublish: () => void;
  *   onPublishAllDrafts?: () => void;
  *   onGenerateTranslation?: () => void;
+ *   onRegenerateTranslation?: () => void;
  *   onUpdateAllTranslations?: () => void;
  *   onUnpublish?: () => void;
  *   canUnpublish?: boolean;
@@ -36,6 +38,7 @@ export default function EditorialTopbar({
   canSave = false,
   canPublish = false,
   canGenerate = false,
+  canRegenerate = false,
   canUpdateAll = false,
   canPublishAllDrafts = false,
   editorialVisibility,
@@ -44,6 +47,7 @@ export default function EditorialTopbar({
   onPublish,
   onPublishAllDrafts,
   onGenerateTranslation,
+  onRegenerateTranslation,
   onUpdateAllTranslations,
   onUnpublish,
   canUnpublish = false,
@@ -79,6 +83,15 @@ export default function EditorialTopbar({
               disabled={!canGenerate || busy}
             >
               {isGenerating ? "Updating…" : "Update Translation"}
+            </button>
+          ) : null}
+          {!isCanonicalSourceLocale(locale) && onRegenerateTranslation ? (
+            <button
+              type="button"
+              onClick={onRegenerateTranslation}
+              disabled={!canRegenerate || busy}
+            >
+              {isGenerating ? "Regenerating…" : "Regenerate Translation…"}
             </button>
           ) : null}
           {!isCanonicalSourceLocale(locale) && onUpdateAllTranslations ? (

@@ -31,6 +31,7 @@ import { isCanonicalSourceLocale } from "./editorialLocales.js";
  *   onPublish: () => void;
  *   onPublishAllDrafts?: () => void;
  *   onGenerateTranslation?: () => void;
+ *   onRegenerateTranslation?: () => void;
  *   onBulkCompleted?: () => void;
  *   onUnpublish?: () => void;
  *   canUnpublish?: boolean;
@@ -67,6 +68,7 @@ export default function EditorialManagementShell({
   onPublish,
   onPublishAllDrafts,
   onGenerateTranslation,
+  onRegenerateTranslation,
   onBulkCompleted,
   onUnpublish,
   canUnpublish = false,
@@ -87,6 +89,11 @@ export default function EditorialManagementShell({
     hasSelection &&
     !isCanonicalSourceLocale(locale) &&
     !translationIsCurrent;
+  const canRegenerate =
+    Boolean(onRegenerateTranslation) &&
+    hasSelection &&
+    exists &&
+    !isCanonicalSourceLocale(locale);
   const canUpdateAll =
     Boolean(bulkModule) && !isCanonicalSourceLocale(locale) && !isBulkUpdating;
 
@@ -107,6 +114,7 @@ export default function EditorialManagementShell({
         canSave={canSave}
         canPublish={canPublish}
         canGenerate={canGenerate}
+        canRegenerate={canRegenerate}
         canUpdateAll={canUpdateAll}
         canPublishAllDrafts={canPublishAllDrafts}
         editorialVisibility={editorialVisibility}
@@ -115,6 +123,7 @@ export default function EditorialManagementShell({
         onPublish={onPublish}
         onPublishAllDrafts={onPublishAllDrafts}
         onGenerateTranslation={onGenerateTranslation}
+        onRegenerateTranslation={onRegenerateTranslation}
         onUpdateAllTranslations={bulkModule ? openBulkDialog : undefined}
         onUnpublish={onUnpublish}
         canUnpublish={canUnpublish}

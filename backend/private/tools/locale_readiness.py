@@ -1,4 +1,4 @@
-"""Read-only CLI for structural locale readiness.
+"""Read-only CLI for locale readiness and Website integrity diagnostics.
 
 Presentation layer over ``private.services.locale_readiness``. Does not publish,
 package, activate locales, or write content.
@@ -60,7 +60,7 @@ _PRODUCTION_LAYER_ATTRS = (
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Report structural locale readiness for preview and production. "
+            "Report locale readiness for preview and production. "
             "Read-only: does not publish, package, or activate languages."
         )
     )
@@ -187,6 +187,16 @@ def format_locale_human(result: LocaleReadiness) -> str:
         f"Preview Ready:    {_ready_label(result.preview_ready)}",
         f"Production Ready: {_ready_label(result.production_ready)}",
     ]
+    if result.website_integrity.issues:
+        lines.extend(["", "Website integrity:"])
+        lines.extend(
+            (
+                f"  - {issue.severity.upper()} {issue.plane} "
+                f"{issue.page_key}{f'/{issue.path}' if issue.path else ''}: "
+                f"{issue.message}"
+            )
+            for issue in result.website_integrity.issues
+        )
     if not result.preview_ready:
         preview_blockers = _blocker_lines(result, _PREVIEW_LAYER_ATTRS)
         if preview_blockers:
@@ -284,6 +294,12 @@ def store_variant_to_json(diagnostic: StoreVariantDiagnostic) -> dict[str, Any]:
 def locale_to_json(result: LocaleReadiness) -> dict[str, Any]:
     preview_blockers = _blocker_payload(result, _PREVIEW_LAYER_ATTRS)
     production_blockers = _blocker_payload(result, _PRODUCTION_LAYER_ATTRS)
+    preview_blockers.extend(
+        _website_integrity_blockers(result, plane="preview")
+    )
+    production_blockers.extend(
+        _website_integrity_blockers(result, plane="production")
+    )
     return {
         "locale": result.locale,
         "ui": layer_to_json(result.ui),
@@ -302,9 +318,40 @@ def locale_to_json(result: LocaleReadiness) -> dict[str, Any]:
             "glossary": store_variant_to_json(result.store.glossary),
             "knowledge_base": store_variant_to_json(result.store.knowledge_base),
         },
+        "website_integrity": {
+            "issues": [
+                {
+                    "severity": issue.severity,
+                    "code": issue.code,
+                    "page_key": issue.page_key,
+                    "plane": issue.plane,
+                    "path": issue.path,
+                    "message": issue.message,
+                }
+                for issue in result.website_integrity.issues
+            ]
+        },
         "preview_blockers": preview_blockers,
         "production_blockers": production_blockers,
     }
+
+
+def _website_integrity_blockers(
+    result: LocaleReadiness, *, plane: str
+) -> list[dict[str, Any]]:
+    return [
+        {
+            "layer": f"website_{plane}_integrity",
+            "label": f"Website {plane} integrity",
+            "status": "incomplete",
+            "code": issue.code,
+            "page_key": issue.page_key,
+            "path": issue.path,
+            "message": issue.message,
+        }
+        for issue in result.website_integrity.issues
+        if issue.severity == "error" and issue.plane == plane
+    ]
 
 
 def _blocker_payload(result: LocaleReadiness, attrs: tuple[str, ...]) -> list[dict[str, Any]]:
