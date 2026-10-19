@@ -13,7 +13,7 @@ ENV VITE_COGNITO_DOMAIN=$VITE_COGNITO_DOMAIN
 ENV VITE_COGNITO_REDIRECT_URI=$VITE_COGNITO_REDIRECT_URI
 
 COPY frontend/package*.json ./
-COPY frontend/vite.config.js ./
+COPY frontend/vite.config.js frontend/vendorChunks.js ./
 COPY frontend/public ./public
 RUN npm ci
 RUN npm run build

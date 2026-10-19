@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { vendorChunkFor } from "./vendorChunks.js";
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const publicSource = path.resolve(rootDir, "public");
@@ -58,6 +59,11 @@ export default defineConfig(({ command }) => {
     build: {
       outDir: path.resolve(rootDir, "dist"),
       emptyOutDir: true,
+      rollupOptions: {
+        output: {
+          manualChunks: vendorChunkFor,
+        },
+      },
     },
     test: {
       environment: "jsdom",

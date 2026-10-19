@@ -29,8 +29,9 @@ describe("Demo route", () => {
     renderWorkspace(ROUTES.DEMO);
 
     expect(screen.getByRole("banner", { name: "Module header" })).toHaveTextContent("Demo project");
+    // DemoWorkspace is lazy-loaded; wait for its chunk to resolve.
+    expect(await screen.findByRole("button", { name: "Reset demo" })).toBeInTheDocument();
     expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Reset demo" })).toBeInTheDocument();
     expect(
       screen.queryByText(/Create your free HFZWood account to unlock this section/i),
     ).not.toBeInTheDocument();
@@ -74,7 +75,9 @@ describe("Demo route", () => {
     await user.click(demoCta);
 
     expect(screen.getByRole("banner", { name: "Module header" })).toHaveTextContent("Demo project");
-    expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
+    });
     expect(
       within(screen.getByRole("navigation", { name: "Workspace navigation" })).getByRole("link", {
         name: "Try a demo project",
@@ -123,7 +126,9 @@ describe("Demo route", () => {
       }),
     );
 
-    expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(document.querySelector("[data-project-kind='demo']")).toBeInTheDocument();
+    });
     expect(localStorage.getItem(RECENT_PROJECTS_STORAGE_KEY)).toBe(seededRecents);
     expect(screen.queryByRole("button", { name: /Save Project/i })).not.toBeInTheDocument();
   });

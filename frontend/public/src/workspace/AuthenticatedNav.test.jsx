@@ -33,9 +33,10 @@ function expectProjectsHub() {
   expect(within(main).getByRole("button", { name: "Open Project" })).toBeInTheDocument();
 }
 
-function expectCalculatorRoute() {
+async function expectCalculatorRoute() {
   const main = screen.getByRole("main");
-  expect(within(main).getByText("Upload Photo:")).toBeInTheDocument();
+  // The calculator route is lazy-loaded; wait for its chunk to resolve.
+  expect(await within(main).findByText("Upload Photo:")).toBeInTheDocument();
   expect(within(main).queryByRole("button", { name: /Import Project/i })).not.toBeInTheDocument();
   expect(
     within(main).queryByText(/River Table & Woodworking Resin Calculator/i),
@@ -117,7 +118,7 @@ describe("Authenticated Mode navigation", () => {
     renderWorkspace(ROUTES.HOME);
 
     await user.click(screen.getByRole("link", { name: "New Project" }));
-    expectCalculatorRoute();
+    await expectCalculatorRoute();
     expect(screen.getByRole("navigation", { name: "Workspace navigation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
 

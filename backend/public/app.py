@@ -8,6 +8,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 from typing import Optional, List, Any
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from jose import jwt, JWTError
 from jose.exceptions import ExpiredSignatureError
 
@@ -99,6 +100,13 @@ if not _EDITORIAL_CONTENT_MOUNTED:
     from public.content_api import router as public_content_router
 
     app.include_router(public_content_router, prefix="/api")
+
+# Compress text responses (JS, CSS, HTML, JSON) for clients that accept gzip.
+# Small responses are left alone; the overhead is not worth it below ~1 KB.
+# Registered before every @app.middleware("http") so it is the innermost
+# middleware: BaseHTTPMiddleware re-streams responses in chunks, which would
+# hide the body size from GZipMiddleware and make it compress everything.
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 from public.content_corpus import (
     EDITORIAL_PUBLISHED,
@@ -710,16 +718,40 @@ def health():
     return {"status": "ok"}
 
 
+# Vite emits content-hashed file names under /assets/, so a given URL never
+# changes content and can be cached for a year. Everything else (index.html,
+# robots.txt, sitemap.xml, logo) keeps a stable URL and must be revalidated so
+# a deploy is picked up immediately.
+CACHE_CONTROL_IMMUTABLE = "public, max-age=31536000, immutable"
+CACHE_CONTROL_REVALIDATE = "no-cache"
+
+
+def cache_control_for_static_path(request_path: str) -> str:
+    # Extensionless /assets/<x> falls back to index.html (HTML), never immutable.
+    if request_path.startswith("/assets/") and Path(request_path).suffix:
+        return CACHE_CONTROL_IMMUTABLE
+    return CACHE_CONTROL_REVALIDATE
+
+
 class SpaStaticFiles(StaticFiles):
     """Serve index.html for extensionless client-side SPA routes.
 
     Missing API paths and missing files retain their 404 responses so frontend
     routing does not conceal backend or asset errors. Non-public HTML document
     responses receive X-Robots-Tag: noindex, nofollow so crawlers do not have
-    to execute JavaScript to see the indexing policy.
+    to execute JavaScript to see the indexing policy. Successful responses get
+    a Cache-Control header (see ``cache_control_for_static_path``).
     """
 
     async def get_response(self, path: str, scope):
+        response = await self._get_spa_response(path, scope)
+        if getattr(response, "status_code", None) in {200, 304}:
+            response.headers["Cache-Control"] = cache_control_for_static_path(
+                scope.get("path") or "/"
+            )
+        return response
+
+    async def _get_spa_response(self, path: str, scope):
         raw_path = scope.get("path") or scope.get("raw_path", path)
         if isinstance(raw_path, bytes):
             raw_path = raw_path.decode("ascii", errors="ignore")
@@ -769,7 +801,9 @@ if os.path.isdir(_static_dir):
 
     @app.get("/callback", include_in_schema=False)
     async def spa_callback():
-        return apply_spa_document_robots_header(FileResponse(_index_html), "/callback")
+        response = apply_spa_document_robots_header(FileResponse(_index_html), "/callback")
+        response.headers["Cache-Control"] = CACHE_CONTROL_REVALIDATE
+        return response
 
     app.mount("/", SpaStaticFiles(directory=_static_dir, html=True), name="static")
 

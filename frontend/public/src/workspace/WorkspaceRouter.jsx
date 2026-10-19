@@ -1,5 +1,7 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { editorialRoutes } from "@private-editorial-routes";
+import { useI18n } from "../i18n/I18nContext.jsx";
 import GlossaryPage from "../modules/GlossaryPage.jsx";
 import KnowledgeBasePage from "../modules/KnowledgeBasePage.jsx";
 import ManualTutorialsPage from "../modules/ManualTutorialsPage.jsx";
@@ -21,13 +23,29 @@ import AuthRouteGuard from "./AuthRouteGuard.jsx";
 import DedicatedModuleLayout from "./DedicatedModuleLayout.jsx";
 import HomeHubLayout from "./HomeHubLayout.jsx";
 import HomeRoute from "./HomeRoute.jsx";
-import NewProjectWorkspace from "./NewProjectWorkspace.jsx";
-import DemoWorkspace from "./DemoWorkspace.jsx";
 import PublicKnowledgePreviewLanding from "../publicPreview/PublicKnowledgePreviewLanding.jsx";
 import ManualPreviewPage from "../publicPreview/ManualPreviewPage.jsx";
 import KnowledgeBasePreviewPage from "../publicPreview/KnowledgeBasePreviewPage.jsx";
 import GlossaryPreviewPage from "../publicPreview/GlossaryPreviewPage.jsx";
 import { ROUTES } from "./routes.js";
+
+// The calculator (and everything it pulls in) is split into its own chunk so
+// public pages do not download it. It loads when /demo or /new-project opens.
+const NewProjectWorkspace = lazy(() => import("./NewProjectWorkspace.jsx"));
+const DemoWorkspace = lazy(() => import("./DemoWorkspace.jsx"));
+
+function CalculatorRouteFallback() {
+  const { t } = useI18n();
+  return (
+    <p className="new-project-workspace__status" role="status">
+      {t("common.loading")}
+    </p>
+  );
+}
+
+function CalculatorRoute({ children }) {
+  return <Suspense fallback={<CalculatorRouteFallback />}>{children}</Suspense>;
+}
 
 export const WORKSPACE_ROUTE_PATHS = [
   ROUTES.ABOUT,
@@ -108,11 +126,20 @@ export default function WorkspaceRouter() {
             path={workspaceRoutePath(ROUTES.NEW_PROJECT)}
             element={
               <AuthRouteGuard>
-                <NewProjectWorkspace />
+                <CalculatorRoute>
+                  <NewProjectWorkspace />
+                </CalculatorRoute>
               </AuthRouteGuard>
             }
           />
-          <Route path={workspaceRoutePath(ROUTES.DEMO)} element={<DemoWorkspace />} />
+          <Route
+            path={workspaceRoutePath(ROUTES.DEMO)}
+            element={
+              <CalculatorRoute>
+                <DemoWorkspace />
+              </CalculatorRoute>
+            }
+          />
           <Route
             path={workspaceRoutePath(ROUTES.KNOWLEDGE_PREVIEW)}
             element={<PublicKnowledgePreviewLanding />}

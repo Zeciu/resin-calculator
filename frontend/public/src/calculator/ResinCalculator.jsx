@@ -1,5 +1,4 @@
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
-import { jsPDF } from "jspdf";
 import { computeProjectDirtyState } from "./projectDirtyState.js";
 import {
   formatPdfAxisReferencesUsed,
@@ -2048,7 +2047,12 @@ export default forwardRef(function ResinCalculator(
       return;
     }
 
-    const { applyPdfUnicodeFont, registerPdfUnicodeFont } = await import("./pdfUnicodeFont.js");
+    // jsPDF and the Unicode font are loaded only when the user exports, keeping
+    // them out of the calculator chunk.
+    const [{ jsPDF }, { applyPdfUnicodeFont, registerPdfUnicodeFont }] = await Promise.all([
+      import("jspdf"),
+      import("./pdfUnicodeFont.js"),
+    ]);
     const doc = new jsPDF({ unit: "mm", format: "a4" });
     registerPdfUnicodeFont(doc);
     const pageWidth = doc.internal.pageSize.getWidth();
