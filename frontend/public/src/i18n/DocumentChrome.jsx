@@ -13,7 +13,7 @@ export default function DocumentChrome() {
 
   useEffect(() => {
     document.documentElement.lang = language || "en";
-    applyDocumentHead(resolveDocumentHeadState(pathname, t));
+    applyDocumentHead(resolveDocumentHeadState(pathname, t, language || "en"));
   }, [language, t, pathname]);
 
   return (

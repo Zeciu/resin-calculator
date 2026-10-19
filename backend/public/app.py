@@ -17,6 +17,7 @@ from public.product.entitlements import EntitlementsServiceUnavailableError
 from public.spa_document_indexing import (
     apply_spa_document_robots_header,
     is_extensionless_spa_path,
+    is_known_spa_document_path,
 )
 from public.routers.billing import router as billing_router
 from public.routers.me import router as me_router
@@ -741,6 +742,10 @@ class SpaStaticFiles(StaticFiles):
     responses receive X-Robots-Tag: noindex, nofollow so crawlers do not have
     to execute JavaScript to see the indexing policy. Successful responses get
     a Cache-Control header (see ``cache_control_for_static_path``).
+
+    Extensionless paths that are not known SPA routes still receive the SPA
+    shell (so the browser renders the Not Found page) but with HTTP 404, so
+    crawlers do not record them as soft 404s.
     """
 
     async def get_response(self, path: str, scope):
@@ -770,8 +775,7 @@ class SpaStaticFiles(StaticFiles):
                 or Path(relative_path).suffix
             ):
                 raise
-            response = await super().get_response("index.html", scope)
-            return self._with_document_robots(response, request_path, is_api_path)
+            return await self._spa_fallback(scope, request_path)
 
         if (
             response.status_code != 404
@@ -780,8 +784,20 @@ class SpaStaticFiles(StaticFiles):
             or Path(relative_path).suffix
         ):
             return self._with_document_robots(response, request_path, is_api_path)
-        response = await super().get_response("index.html", scope)
-        return self._with_document_robots(response, request_path, is_api_path)
+        return await self._spa_fallback(scope, request_path)
+
+    async def _spa_fallback(self, scope, request_path: str):
+        if is_known_spa_document_path(request_path):
+            response = await super().get_response("index.html", scope)
+            return self._with_document_robots(response, request_path, is_api_path=False)
+        # Unknown route: always a fresh 404 (no conditional 304), never indexed.
+        response = FileResponse(
+            os.path.join(self.directory, "index.html"),
+            status_code=404,
+            media_type="text/html",
+        )
+        response.headers["Cache-Control"] = CACHE_CONTROL_REVALIDATE
+        return apply_spa_document_robots_header(response, request_path)
 
     @staticmethod
     def _with_document_robots(response, request_path: str, is_api_path: bool):

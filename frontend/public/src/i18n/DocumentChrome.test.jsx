@@ -9,6 +9,7 @@ import {
   localeBundleHasOwnKey,
 } from "./translate.js";
 import { ROUTES } from "../workspace/routes.js";
+import { HOME_SEO_TITLE } from "../website/documentMetadata.js";
 import { renderWorkspace } from "../workspace/renderWorkspaceRouter.jsx";
 import {
   clearDevicePreferences,
@@ -56,7 +57,7 @@ describe("Document chrome", () => {
     await waitFor(() => {
       expect(document.documentElement.lang).toBe("en");
     });
-    expect(document.title).toBe("HFZWood");
+    expect(document.title).toBe(HOME_SEO_TITLE);
     expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute(
       "href",
       "#main-content",

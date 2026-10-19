@@ -6,12 +6,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   CANONICAL_LINK_ATTR,
   FAVICON_PATH,
+  HOME_SEO_TITLE,
   INDEXABLE_PATHS,
   OG_IMAGE_PATH,
   PUBLIC_ORIGIN,
   ROBOTS_INDEX,
   ROBOTS_META_ATTR,
   ROBOTS_NOINDEX,
+  SEO_BY_PATH,
   SITE_DESCRIPTION,
   SITE_NAME,
   applyDocumentHead,
@@ -36,13 +38,13 @@ const robotsPath = join(staticDir, "robots.txt");
 const sitemapPath = join(staticDir, "sitemap.xml");
 
 const INDEXABLE_CASES = [
-  { path: ROUTES.HOME, title: "HFZWood", canonical: `${PUBLIC_ORIGIN}/` },
-  { path: ROUTES.ABOUT, title: "About | HFZWood", canonical: `${PUBLIC_ORIGIN}/about` },
-  { path: ROUTES.PRICING, title: "Pricing | HFZWood", canonical: `${PUBLIC_ORIGIN}/pricing` },
-  { path: ROUTES.PRIVACY, title: "Privacy Policy | HFZWood", canonical: `${PUBLIC_ORIGIN}/privacy` },
-  { path: ROUTES.TERMS, title: "Terms | HFZWood", canonical: `${PUBLIC_ORIGIN}/terms` },
-  { path: ROUTES.CONTACT, title: "Contact | HFZWood", canonical: `${PUBLIC_ORIGIN}/contact` },
-];
+  { path: ROUTES.HOME, canonical: `${PUBLIC_ORIGIN}/` },
+  { path: ROUTES.ABOUT, canonical: `${PUBLIC_ORIGIN}/about` },
+  { path: ROUTES.PRICING, canonical: `${PUBLIC_ORIGIN}/pricing` },
+  { path: ROUTES.PRIVACY, canonical: `${PUBLIC_ORIGIN}/privacy` },
+  { path: ROUTES.TERMS, canonical: `${PUBLIC_ORIGIN}/terms` },
+  { path: ROUTES.CONTACT, canonical: `${PUBLIC_ORIGIN}/contact` },
+].map((testCase) => ({ ...testCase, ...SEO_BY_PATH[testCase.path] }));
 
 const NOINDEX_CASES = [
   ROUTES.LOGIN,
@@ -71,9 +73,16 @@ function canonicalHref() {
   );
 }
 
+function metaContent(attribute, key) {
+  return document.head.querySelector(`meta[${attribute}="${key}"]`)?.getAttribute("content") ?? null;
+}
+
 function resetDocumentHead() {
   document.head.querySelector(`meta[name="robots"][${ROBOTS_META_ATTR}]`)?.remove();
   document.head.querySelector(`link[rel="canonical"][${CANONICAL_LINK_ATTR}]`)?.remove();
+  for (const element of document.head.querySelectorAll('meta[name^="twitter:"], meta[property^="og:"], meta[name="description"]')) {
+    element.remove();
+  }
   document.title = "";
   document.documentElement.lang = "en";
 }
@@ -110,6 +119,36 @@ describe("document metadata policy", () => {
     expect(robotsContent()).toBe(ROBOTS_NOINDEX);
     expect(canonicalHref()).toBeNull();
   });
+
+  it("keeps SEO titles and descriptions within search-result length limits", () => {
+    expect(Object.keys(SEO_BY_PATH).sort()).toEqual([...INDEXABLE_PATHS].sort());
+    const titles = new Set();
+    const descriptions = new Set();
+    for (const [path, { title, description }] of Object.entries(SEO_BY_PATH)) {
+      expect(title.length, path).toBeLessThanOrEqual(60);
+      expect(title, path).toContain(SITE_NAME);
+      expect(description.length, path).toBeGreaterThanOrEqual(70);
+      expect(description.length, path).toBeLessThanOrEqual(160);
+      titles.add(title);
+      descriptions.add(description);
+    }
+    expect(titles.size).toBe(INDEXABLE_PATHS.length);
+    expect(descriptions.size).toBe(INDEXABLE_PATHS.length);
+  });
+
+  it("uses English SEO titles only for English; other locales keep localized titles", () => {
+    const translate = (key) => `t:${key}`;
+    expect(resolveDocumentHeadState(ROUTES.ABOUT, translate, "en").title).toBe(
+      SEO_BY_PATH[ROUTES.ABOUT].title,
+    );
+    const romanian = resolveDocumentHeadState(ROUTES.ABOUT, translate, "ro");
+    expect(romanian.title).toBe("t:website.documentTitle.about");
+    expect(romanian.description).toBe(SEO_BY_PATH[ROUTES.ABOUT].description);
+    const noindex = resolveDocumentHeadState(ROUTES.LOGIN, translate, "en");
+    expect(noindex.title).toBe("t:app.documentTitle");
+    expect(noindex.description).toBe(SITE_DESCRIPTION);
+    expect(noindex.socialUrl).toBe(PUBLIC_ORIGIN);
+  });
 });
 
 describe("document metadata runtime", () => {
@@ -131,14 +170,21 @@ describe("document metadata runtime", () => {
   });
 
   it.each(INDEXABLE_CASES)(
-    "indexes $path with the public title and production canonical",
-    async ({ path, title, canonical }) => {
+    "indexes $path with the SEO title, description, social tags and canonical",
+    async ({ path, title, description, canonical }) => {
       renderWorkspace(path);
       await waitFor(() => {
         expect(document.title).toBe(title);
       });
       expect(robotsContent()).toBe(ROBOTS_INDEX);
       expect(canonicalHref()).toBe(canonical);
+      expect(metaContent("name", "description")).toBe(description);
+      expect(metaContent("property", "og:title")).toBe(title);
+      expect(metaContent("property", "og:description")).toBe(description);
+      expect(metaContent("property", "og:url")).toBe(canonical);
+      expect(metaContent("name", "twitter:title")).toBe(title);
+      expect(metaContent("name", "twitter:description")).toBe(description);
+      expect(document.head.querySelectorAll('meta[name="description"]')).toHaveLength(1);
     },
   );
 
@@ -157,7 +203,7 @@ describe("document metadata runtime", () => {
     const { router } = renderWorkspace(ROUTES.ABOUT);
 
     await waitFor(() => {
-      expect(document.title).toBe("About | HFZWood");
+      expect(document.title).toBe(SEO_BY_PATH[ROUTES.ABOUT].title);
     });
     expect(robotsContent()).toBe(ROBOTS_INDEX);
     expect(canonicalHref()).toBe(`${PUBLIC_ORIGIN}/about`);
@@ -168,13 +214,16 @@ describe("document metadata runtime", () => {
     });
     expect(document.title).toBe("HFZWood");
     expect(canonicalHref()).toBeNull();
+    expect(metaContent("name", "description")).toBe(SITE_DESCRIPTION);
+    expect(metaContent("property", "og:url")).toBe(PUBLIC_ORIGIN);
 
     await router.navigate(ROUTES.PRICING);
     await waitFor(() => {
-      expect(document.title).toBe("Pricing | HFZWood");
+      expect(document.title).toBe(SEO_BY_PATH[ROUTES.PRICING].title);
     });
     expect(robotsContent()).toBe(ROBOTS_INDEX);
     expect(canonicalHref()).toBe(`${PUBLIC_ORIGIN}/pricing`);
+    expect(metaContent("name", "description")).toBe(SEO_BY_PATH[ROUTES.PRICING].description);
   });
 
   it("uses localized public titles when the active locale is Romanian", async () => {
@@ -184,6 +233,7 @@ describe("document metadata runtime", () => {
       expect(document.documentElement.lang).toBe("ro");
     });
     expect(document.title).toBe("Despre | HFZWood");
+    expect(metaContent("name", "description")).toBe(SEO_BY_PATH[ROUTES.ABOUT].description);
   });
 
   it("renders a noindex Not Found page for unknown paths", async () => {
@@ -205,19 +255,20 @@ describe("static publication files", () => {
 
   it("keeps site-wide fallback metadata and favicon in the SPA HTML", () => {
     const compactHtml = indexHtml.replace(/\s+/g, " ");
-    expect(compactHtml).toContain(`<title>${SITE_NAME}</title>`);
+    expect(compactHtml).toContain(`<title>${HOME_SEO_TITLE}</title>`);
     expect(compactHtml).toContain(`content="${SITE_DESCRIPTION}"`);
     expect(compactHtml).not.toMatch(/name=["']robots["']/i);
     expect(compactHtml).not.toMatch(/rel=["']canonical["']/i);
     expect(compactHtml).not.toContain("index, follow");
     expect(compactHtml).toContain(`href="${FAVICON_PATH}"`);
-    expect(compactHtml).toContain(`property="og:title" content="${SITE_NAME}"`);
+    expect(compactHtml).toContain(`property="og:site_name" content="${SITE_NAME}"`);
+    expect(compactHtml).toContain(`property="og:title" content="${HOME_SEO_TITLE}"`);
     expect(compactHtml).toContain(`property="og:description" content="${SITE_DESCRIPTION}"`);
     expect(compactHtml).toContain(`property="og:url" content="${PUBLIC_ORIGIN}"`);
     expect(compactHtml).toContain(`property="og:image" content="${PUBLIC_ORIGIN}${OG_IMAGE_PATH}"`);
     expect(compactHtml).toContain(`property="og:type" content="website"`);
     expect(compactHtml).toContain(`name="twitter:card" content="summary"`);
-    expect(compactHtml).toContain(`name="twitter:title" content="${SITE_NAME}"`);
+    expect(compactHtml).toContain(`name="twitter:title" content="${HOME_SEO_TITLE}"`);
     expect(compactHtml).toContain(`name="twitter:description" content="${SITE_DESCRIPTION}"`);
     expect(compactHtml).toContain(`name="twitter:image" content="${PUBLIC_ORIGIN}${OG_IMAGE_PATH}"`);
     expect(existsSync(logoPath)).toBe(true);

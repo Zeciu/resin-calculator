@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -5,10 +6,12 @@ from fastapi.testclient import TestClient
 
 from public.app import SpaStaticFiles
 from public.spa_document_indexing import (
+    KNOWN_SPA_DOCUMENT_PATHS,
     PUBLIC_SPA_DOCUMENT_PATHS,
     X_ROBOTS_TAG_HEADER,
     X_ROBOTS_TAG_NOINDEX,
     apply_spa_document_robots_header,
+    is_known_spa_document_path,
     is_public_spa_document_path,
 )
 
@@ -36,9 +39,14 @@ NOINDEX_DOCUMENT_PATHS = (
     "/manual",
     "/glossary",
     "/knowledge-base",
+)
+UNKNOWN_DOCUMENT_PATHS = (
+    "/this-route-does-not-exist",
     "/admin",
     "/admin/website",
-    "/this-route-does-not-exist",
+    "/about/team",
+    "/knowledge-preview/unknown",
+    "/assets",
 )
 
 
@@ -100,6 +108,37 @@ def test_non_public_spa_documents_send_noindex_header(tmp_path):
         assert response.status_code == 200, path
         assert response.text == "<html>HFZWood</html>", path
         assert _robots_tag(response) == X_ROBOTS_TAG_NOINDEX, path
+
+
+def test_unknown_spa_paths_return_404_with_spa_shell_and_noindex(tmp_path):
+    client = _spa_client(tmp_path)
+    for path in UNKNOWN_DOCUMENT_PATHS:
+        response = client.get(path)
+        assert response.status_code == 404, path
+        # The shell is still served so the browser renders the Not Found page.
+        assert response.text == "<html>HFZWood</html>", path
+        assert response.headers["content-type"].startswith("text/html"), path
+        assert _robots_tag(response) == X_ROBOTS_TAG_NOINDEX, path
+        assert response.headers["cache-control"] == "no-cache", path
+
+
+def test_unknown_spa_paths_never_answer_304(tmp_path):
+    client = _spa_client(tmp_path)
+    etag = client.get("/about").headers["etag"]
+    response = client.get("/this-route-does-not-exist", headers={"If-None-Match": etag})
+    assert response.status_code == 404
+
+
+def test_known_spa_paths_tolerate_trailing_slash_query_and_case(tmp_path):
+    client = _spa_client(tmp_path)
+    for path in ("/about/", "/pricing?ref=youtube", "/About", "/account/preferences/"):
+        assert client.get(path).status_code == 200, path
+
+
+def test_head_requests_follow_the_same_status(tmp_path):
+    client = _spa_client(tmp_path)
+    assert client.head("/about").status_code == 200
+    assert client.head("/this-route-does-not-exist").status_code == 404
 
 
 def test_static_assets_and_api_do_not_receive_document_noindex(tmp_path):
@@ -165,3 +204,13 @@ def test_public_spa_allowlist_matches_frontend_indexable_routes():
         assert f"[ROUTES.{name}]" in metadata_source
 
     assert frozenset(route_values.values()) == PUBLIC_SPA_DOCUMENT_PATHS
+
+
+def test_known_spa_paths_match_every_frontend_route():
+    routes_source = FRONTEND_ROUTES.read_text(encoding="utf-8")
+    frontend_paths = frozenset(re.findall(r'^\s+[A-Z_]+: "(/[^"]*)",', routes_source, re.MULTILINE))
+    assert len(frontend_paths) >= 20
+    assert frontend_paths == KNOWN_SPA_DOCUMENT_PATHS
+    for path in frontend_paths:
+        assert is_known_spa_document_path(path) is True, path
+    assert is_known_spa_document_path("/admin") is False
