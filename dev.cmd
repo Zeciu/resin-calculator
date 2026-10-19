@@ -31,7 +31,7 @@ set HFZWOOD_AWS_PROFILE_ARG=--profile %HFZWOOD_AWS_PROFILE%
 
 aws sts get-caller-identity --region eu-central-1 %HFZWOOD_AWS_PROFILE_ARG% >nul 2>nul
 if errorlevel 1 (
-  echo Session expired, please run 'aws login'
+  echo Session expired, please run 'aws login --profile hfzwood'
   exit /b 1
 )
 
