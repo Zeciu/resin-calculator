@@ -5,7 +5,7 @@
 | Stack | Resources |
 |---|---|
 | `InfraStack` | ECR, Cognito user pool/app client/Hosted UI domain, CloudWatch log group |
-| `AppStack` | ECS/Fargate, HTTPS ALB, ACM, Route 53 alias, DynamoDB entitlements, CloudWatch alarms |
+| `AppStack` | ECS/Fargate, HTTPS ALB, ACM, Route 53 aliases (`www` 301-redirects to the apex), DynamoDB entitlements, CloudWatch alarms |
 
 Production is a FastAPI application with a packaged React SPA and read-only public content. Editorial tooling and DeepL integration are local-only. DynamoDB stores commercial entitlements; browser local storage stores user preferences.
 

@@ -8,12 +8,14 @@ import * as ecsPatterns from 'aws-cdk-lib/aws-ecs-patterns';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as route53 from 'aws-cdk-lib/aws-route53';
+import * as route53Targets from 'aws-cdk-lib/aws-route53-targets';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import { Construct } from 'constructs';
 
 const DOMAIN = 'hfzwood.com';
+const WWW_DOMAIN = `www.${DOMAIN}`;
 const PRODUCTION_ORIGIN = `https://${DOMAIN}`;
 const STRIPE_SECRET_NAME = 'hfzwood/stripe';
 /**
@@ -41,6 +43,7 @@ export class AppStack extends cdk.Stack {
 
     const certificate = new acm.Certificate(this, 'Certificate', {
       domainName: DOMAIN,
+      subjectAlternativeNames: [WWW_DOMAIN],
       validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
@@ -155,6 +158,22 @@ export class AppStack extends cdk.Stack {
       fargateService.loadBalancer,
       ec2.Port.tcp(5000),
     );
+
+    // www.hfzwood.com -> permanent redirect to the apex origin. The app keeps a single
+    // canonical origin so Cognito callbacks, CORS, and Stripe return URLs stay unchanged.
+    // HTTP requests to www first hit the pattern's HTTP->HTTPS redirect, then this rule.
+    new route53.ARecord(this, 'WwwAliasRecord', {
+      zone: hostedZone,
+      recordName: 'www',
+      target: route53.RecordTarget.fromAlias(
+        new route53Targets.LoadBalancerTarget(fargateService.loadBalancer),
+      ),
+    });
+    fargateService.listener.addAction('WwwToApexRedirect', {
+      priority: 1,
+      conditions: [elbv2.ListenerCondition.hostHeaders([WWW_DOMAIN])],
+      action: elbv2.ListenerAction.redirect({ host: DOMAIN, permanent: true }),
+    });
 
     new cloudwatch.Alarm(this, 'AlbUnhealthyHostsAlarm', {
       alarmName: 'resin-calculator-alb-unhealthy-hosts',
